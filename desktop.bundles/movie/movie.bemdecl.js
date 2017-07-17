@@ -1,4 +1,4 @@
 exports.blocks = [
     { name: 'root' },
-    { name: 'page-components' }
+    { name: 'page-movie' }
 ];
