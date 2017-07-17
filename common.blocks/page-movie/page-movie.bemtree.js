@@ -22,23 +22,23 @@ block('page-movie')
     };
 
     const {
-      id,
-      code,
+      // id,
+      // code,
       orig_name,
       rating,
       year,
-      duration,
+      // duration,
       tvpg,
-      action_years,
+      // action_years,
       tags,
       trailer,
-      length_type,
-      cover_id,
-      fin_type,
-      rights_owner,
-      status,
-      created_at,
-      updated_at
+      // length_type,
+      // cover_id,
+      // fin_type,
+      // rights_owner,
+      // status,
+      // created_at,
+      // updated_at
     } = this.data.api;
 
     return [
@@ -61,7 +61,7 @@ block('page-movie')
       } : '',
       tags ? {
         block: 'tags',
-        content: tags.split(/\s*,\s*/).map( (tag, index, tags) => {
+        content: tags.split(/\s*,\s*/).map( (tag) => {
           return [
             {
               block: 'link',
@@ -81,6 +81,9 @@ block('page-movie')
           }
         ]
       } : '',
+      {
+
+      },
       {
         block: 'table',
         tag: 'table',

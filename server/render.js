@@ -68,7 +68,7 @@ function evalFile(filename) {
 }
 
 function getTemplates(bundleName = 'index') {
-  pathToBundle = path.resolve('desktop.bundles', bundleName);
+  var pathToBundle = path.resolve('desktop.bundles', bundleName);
   return {
     BEMTREE: evalFile(path.join(pathToBundle, bundleName + '.bemtree.js')).BEMTREE,
     BEMHTML: evalFile(path.join(pathToBundle, bundleName + '.bemhtml.js')).BEMHTML

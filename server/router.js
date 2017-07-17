@@ -43,7 +43,7 @@ module.exports = function( app ) {
   app.get( [ '/movie/:id', '/movie/:id/:date' ], ( req, res ) => {
     request( { url: 'movie/' + req.params.id } )
       .then(response => render( req, res, { bundle: 'movie', api: response } ) )
-      .catch(mock => render( req, res, { bundle: 'movie', api: null } ) );
+      .catch(() => render( req, res, { bundle: 'movie', api: null } ) );
   });
 
 }
