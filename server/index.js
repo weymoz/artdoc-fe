@@ -62,32 +62,13 @@ app.get('/ping/', function(req, res) {
   res.send('ok');
 });
 
-app.get('/', function(req, res) {
-  render(req, res, {
-    view: 'page-index',
-    title: 'Main page'
-  })
-});
-
-app.get('/catalog', function(req, res) {
-  render(req, res, {
-    view: 'page-index',
-    title: 'Catalog'
-  })
-});
-
-app.get('/components', function(req, res) {
-  render(req, res, {
-    view: 'page-components',
-    title: 'Components'
-  })
-});
+require('./router')(app);
 
 isDev && require('./rebuild')(app);
 
 app.get('*', function(req, res) {
   res.status(404);
-  return render(req, res, { view: '404' });
+  return render(req, res, { view: '404', bundle: 'index' });
 });
 
 if (isDev) {

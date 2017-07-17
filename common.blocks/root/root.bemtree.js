@@ -13,13 +13,13 @@ block('root').replace()(function() {
     styles: [
       {
         elem: 'css',
-        url: '/index.min.css'
+        url: '/' + data.bundle + '.min.css'
       }
     ],
     scripts: [
       {
         elem: 'js',
-        url: '/index.min.js'
+        url: '/' + data.bundle + '.min.js'
       }
     ],
     head: [
