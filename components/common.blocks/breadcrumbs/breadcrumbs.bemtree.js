@@ -1,28 +1,24 @@
 block('breadcrumbs').content()(function() {
   const path = this.data.url.pathname.split( '/' );
 
-  let breadcrumbs = [];
-
-  path.map( page => {
+  return path.map( page => {
     switch (page) {
       case '':
-        breadcrumbs.push({
+        return {
           elem: 'item',
           url: '/',
           content: 'Главная'
-        });
-        break;
+        };
       case 'cinema':
-        breadcrumbs.push({
+        return {
           elem: 'item',
           elemMods: {
             active: 'true'
           },
           content: 'Онлайн-киносеансы'
-        });
-          break;
+        };
       case 'movie':
-        breadcrumbs.push([
+        return [
           {
             elem: 'item',
             url: '/schedule',
@@ -35,10 +31,9 @@ block('breadcrumbs').content()(function() {
             },
             content: this.data.title
           }
-        ]);
-        break;
+        ];
     }
-  });
 
-  return breadcrumbs;
+    return false;
+  });
 });

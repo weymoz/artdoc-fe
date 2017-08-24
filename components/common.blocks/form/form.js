@@ -2,7 +2,7 @@ modules.define('form', ['i-bem-dom'], function(provide, bemDom, Form) {
 
 provide(bemDom.declBlock(Form, {
 
-  _onSubmit: function( e, data ) {
+  _onSubmit: function( e/*, data*/ ) {
 
     e.preventDefault();
 

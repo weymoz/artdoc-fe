@@ -3,8 +3,8 @@
  */
 
 modules.define('ticket-case',
-  ['i-bem-dom', 'radio-group', 'jquery'],
-  function(provide, bemDom, radioGroup, $) {
+  ['i-bem-dom', 'radio-group'],
+  function(provide, bemDom, radioGroup) {
 
 /**
  * @exports

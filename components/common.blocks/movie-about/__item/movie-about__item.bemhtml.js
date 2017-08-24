@@ -37,6 +37,7 @@ block('movie-about').elem('item')(
               }
             ]
           }
+          return false;
         } )
       }
     ]

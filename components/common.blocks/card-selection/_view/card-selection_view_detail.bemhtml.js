@@ -1,6 +1,6 @@
 block('card-selection').mod('view', 'detail')(
 
-  def()( ( node ) => {
+  def()( () => {
     return applyNext({ author_image: '84x84' });
   })
 

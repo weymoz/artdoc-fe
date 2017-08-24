@@ -1,7 +1,7 @@
 block('card-movie').mod('view', 'short')(
 
   def()( ( node, ctx ) => {
-    ctx.movie.url = _movie.code ? '/movie/' + _movie.code : null;
+    ctx.movie.url = ctx.movie.code ? '/movie/' + ctx.movie.code : null;
     return applyNext();
   }),
 

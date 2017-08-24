@@ -4,11 +4,11 @@ block( 'card-movie' ).elem( 'name' )(
 
   tag()('h2'),
 
-  content()( ( node, ctx ) => {
+  content()( node => {
     return node._name
   } ),
 
-  match( ( node, ctx ) => node._url && node.mods.view !== 'promo' ).content()( node => {
+  match( node => node._url && node.mods.view !== 'promo' ).content()( node => {
     return {
       block: 'link',
       mods: {

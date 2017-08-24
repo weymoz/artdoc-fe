@@ -1,10 +1,12 @@
 block( 'card-selection' ).elem( 'name' )(
-  match( function () { return !this._name } ).def()(''),
+
+  match( node => !node._name ).def()(''),
+
   tag()('h2'),
-  content()( ( node, ctx ) => {
-    return node._name
-  } ),
-  match( ( node, ctx ) => node._url ).content()( ( node, ctx ) => {
+
+  content()( node => node._name ),
+
+  match( node => node._url ).content()( node => {
     return {
       block: 'link',
       mods: {

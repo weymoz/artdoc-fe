@@ -1,4 +1,4 @@
-block( 'page' ).def()( ( node, ctx ) => {
+block( 'page' ).def()( () => {
   return applyNext( { 'ctx.mods.theme': 'artdoc-dark' } )
 } );
 

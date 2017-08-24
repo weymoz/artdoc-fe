@@ -1,6 +1,6 @@
 block('text').mod('plural', true)(
   def()( (node, ctx) => {
-    plural = function({ number, one, two, five }) {
+    const plural = function({ number, one, two, five }) {
       number = Math.abs( number );
       number %= 100;
       if ( number >= 5 && number <= 20 ) {

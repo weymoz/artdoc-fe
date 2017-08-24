@@ -13,7 +13,7 @@ var fs = require('fs'),
     slashes = require('connect-slashes'),
     passport = require('passport'),
     // LocalStrategy = require('passport-local').Strategy,
-    csrf = require('csurf'),
+    // csrf = require('csurf'),
     compression = require('compression'),
 
     config = require('./config'),

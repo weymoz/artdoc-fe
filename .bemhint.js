@@ -8,14 +8,14 @@ module.exports = {
   ],
 
   plugins: {
-    'bemhint-css-naming': {
-      techs: {
-        styl: true,
-        'post.css': true,
-        css: true
-      }
-    },
-    'bemhint-fs-naming': true,
+    // 'bemhint-css-naming': {
+    //   techs: {
+    //     styl: true,
+    //     'post.css': true,
+    //     css: true
+    //   }
+    // },
+    'bemhint-fs-naming': false,
     'bemhint-deps-specification': true
   }
 };
