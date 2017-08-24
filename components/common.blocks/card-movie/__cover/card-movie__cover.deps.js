@@ -1,6 +1,6 @@
 [{
   shouldDeps: [
     { block: 'link' },
-    { block: 'image', mods: { cover: true } }
+    { block: 'image', mods: { cover: 'width' } }
   ]
 }]

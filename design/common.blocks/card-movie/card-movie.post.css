@@ -1,8 +1,6 @@
 block(card-movie) {
   display: flex;
   lost-center: 100%;
-  padding-top: 1.5em;
-  padding-bottom: 1.5em;
 
   .mod(view full) {
     .elem(aside) {
@@ -26,6 +24,8 @@ block(card-movie) {
   }
 
   .mod(view schedule) {
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
     box-shadow: inset 0px 1px 0px 0px currentColor,
                 inset 0px -1px 0px 0px currentColor;
 
@@ -271,4 +271,47 @@ block(card-movie) {
     }
   }
 
+  .mod(view selection) {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid black;
+
+    .block(image) {
+      height: 110px;
+    }
+
+    .elem(name) {
+      font-size: 16px;
+    }
+
+    .elem(cover) {
+      height: 110px;
+    }
+
+    .elem(on-cover) {
+      height: 10px;
+    }
+
+    .elem(content):before {
+      padding-bottom: 0;
+    }
+
+    .elem(director) {
+      display: block;
+      color: #676770;
+      font-size: 16px;
+    }
+
+    .elem(aside) {
+      margin-bottom: 10px;
+    }
+
+    .elem(year),
+    .elem(countries) {
+      display: block;
+      font-size: 12px;
+      margin-bottom: 5px;
+    }
+
+  }
 }

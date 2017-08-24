@@ -8,7 +8,7 @@ block('card-movie').elem('cover')(
         block: 'image',
         mix: { block: node.block, elem: node.elem },
         mods: {
-          cover: true
+          cover: 'width'
         },
         url: node._cover
       },
@@ -30,7 +30,7 @@ block('card-movie').elem('cover')(
           {
             block: 'image',
             mods: {
-              cover: true
+              cover: 'width'
             },
             url: node._cover
           },

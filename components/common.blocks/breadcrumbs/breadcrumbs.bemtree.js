@@ -21,8 +21,8 @@ block('breadcrumbs').content()(function() {
         return [
           {
             elem: 'item',
-            url: '/schedule',
-            content: 'Расписание'
+            url: '/movie',
+            content: 'Все фильмы'
           },
           {
             elem: 'item',
