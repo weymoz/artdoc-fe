@@ -1,0 +1,180 @@
+:root {
+  --color: black;
+  --background-color: white;
+  --border-color: #666;
+  --border-color_focus: 0 0 0 yellow;
+  --border-radius: 0;
+}
+
+block(input).mod(theme artdoc) {
+  position: relative;
+  color: var(--color);
+  background-color: var(--border-color);
+  border-radius: var(--border-radius);
+
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+  /* Decorative element (inner background) */
+  &:before {
+    content: '';
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    bottom: 1px;
+    left: 1px;
+    background-color: var(--background-color);
+    border-radius: var(--border-radius);
+  }
+
+  .elem(box) {
+    position: relative;
+    user-select: none;
+
+    -webkit-touch-callout: none;
+  }
+
+  .elem(control) {
+    position: relative;
+    width: 100%;
+    padding: .25em .5em;
+    box-sizing: border-box;
+    margin: 0;
+    border: 0;
+    outline: none;
+    background: 0 0;
+    font-size: inherit;
+
+    -webkit-appearance: none;
+
+    /*лишние отступы у текста */
+    &::-webkit-search-decoration {
+      -webkit-appearance: none
+    }
+
+    /*нативный крестик */
+    &::-webkit-search-cancel-button {
+      display: none
+    }
+
+    &::-webkit-input-placeholder {
+      color: #333;
+      text-indent: 0
+    }
+
+    &::-moz-placeholder {
+      color: #333;
+      opacity: 1
+    }
+
+    &::-ms-clear {
+      display: none
+    }
+
+    &:-webkit-autofill {
+      border: 1px solid transparent;
+      background-color: transparent;
+      box-shadow: 0 0 0 1em var(--background-color) inset;
+      background-clip: padding-box;
+    }
+
+  }
+
+  .elem(clear) {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 2em;
+    background-image: svg-load('../../icon/_symbol/icon_symbol_times.svg', fill: #000);
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.1s ease-out;
+
+    .mod(visible) {
+      opacity: 0.3;
+
+      &:hover {
+        cursor: pointer;
+        opacity: 1
+      }
+    }
+  }
+
+  @each $size, $fontSize in
+    (xs, s, m, l, xl, xxl),
+    (10px, 12px, 16px, 18px, 22px, 32px) {
+    .mod(size $size) {
+      font-size: $fontSize;
+    }
+  }
+
+  .mod(has-clear) .elem(control) {
+    text-overflow: ellipsis;
+    padding-right: 2em;
+  }
+
+  .mod(focused) {
+    z-index: 1;
+
+    &:before {
+      box-shadow: var(--border-color_focus)
+    }
+
+    .elem(control) {
+      text-overflow: clip /* fix ellipsis bug in Chrome */
+    }
+  }
+
+  .mod(disabled) {
+    background: rgba(0, 0, 0, 0.08);
+
+    &:before,
+    .elem(clear) {
+      display: none
+    }
+
+    .elem(box),
+    .elem(control) {
+      color: rgba(0, 0, 0, 0.4);
+      cursor: default
+    }
+  }
+
+  .mod(invalid) {
+    background-color: red;
+
+    &:before {
+      background-color: #273c48;
+    }
+  }
+
+  .mod(width available) {
+    width: 100%
+  }
+
+  .mod(type password) .elem(control) {
+    text-overflow: clip
+  }
+
+}
+
+block(control-group) {
+  block(input).mod(theme artdoc) {
+    &:before {
+      right: 0
+    }
+  }
+
+  > block(input).mod(theme artdoc):last-child,
+  > :last-child block(input).mod(theme artdoc) {
+    &:before {
+      right: 1px
+    }
+  }
+}
+
+
+

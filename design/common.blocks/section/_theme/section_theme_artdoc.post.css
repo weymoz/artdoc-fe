@@ -1,0 +1,12 @@
+block(section).mod(theme artdoc) {
+  width: 100vw;
+  background-color: #23232C;
+  box-sizing: border-box;
+  padding-top: 2em;
+  padding-bottom: 2em;
+
+  .elem(content) {
+    width: 1316px;
+    margin: 0 auto;
+  }
+}

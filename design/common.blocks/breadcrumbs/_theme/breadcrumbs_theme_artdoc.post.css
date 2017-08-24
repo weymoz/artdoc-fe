@@ -1,0 +1,21 @@
+block(breadcrumbs).mod(theme artdoc) {
+  font-size: 12px;
+
+  .elem(item) {
+    text-decoration: none;
+    color: #666;
+
+    & + .elem(item) {
+      position: relative;
+      margin-left: 1.3em;
+
+      &:before {
+        content: '';
+        position: absolute;
+        left: -1em;
+        content: '/';
+      }
+    }
+
+  }
+}

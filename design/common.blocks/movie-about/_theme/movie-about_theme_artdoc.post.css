@@ -1,0 +1,29 @@
+/*@lost gutter 28px;*/
+/*@lost flexbox flex;*/
+/*@lost cycle none;*/
+/*@lost clearing right;*/
+/*@lost rounder 100;*/
+
+block(movie-about).mod(theme artdoc) {
+  lost-center: 100%;
+
+  .elem(section) {
+    lost-column: 1/2;
+  }
+
+  .elem(title) {
+    font-size: 17px;
+    font-weight: bold;
+    font-stretch: condensed;
+    line-height: 1.41;
+    color: #23232c;
+    border-top: 1px solid #23232c;
+    text-transform: uppercase;
+    padding-top: 3px;
+    margin-bottom: 16px;
+  }
+
+  .elem(item) {
+    padding-bottom: 32px;
+  }
+}

@@ -1,0 +1,17 @@
+.link {
+    -ms-touch-action: manipulation;
+        touch-action: manipulation;
+}
+.link_disabled {
+    pointer-events: none;
+}
+.page_view_404 {
+  color: red;
+}
+.header_theme_artdoc {
+  padding: .5em;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  background-color: #111;
+  color: #fff;
+}

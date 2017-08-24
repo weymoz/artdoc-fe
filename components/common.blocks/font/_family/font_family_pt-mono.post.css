@@ -1,0 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=PT+Mono');
+
+block(font).mod(family pt-mono).mod(loaded) {
+  font-family: 'PT Mono', monospace;
+  font-weight: 300
+}

@@ -1,0 +1,80 @@
+block(ticket-case).mod(theme artdoc) {
+  .elem(header) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .elem(title) {
+    flex: 1;
+    font-size: 17px;
+    font-weight: bold;
+    font-stretch: condensed;
+    line-height: 1.18;
+    color: #f7f7f7;
+    text-transform: uppercase;
+  }
+
+  .elem(calendar) {
+    display: block;
+    lost-center: 100%;
+    margin-bottom: 52px;
+
+    .block(radio) {
+      lost-column: 1/7 7 28px;
+      border-top: 1px solid #666770;
+      padding: 8px 12px 12px;
+      box-sizing: border-box;
+      font-size: 40px;
+      font-weight: bold;
+
+      .elem(box) {
+        position: absolute;
+        opacity: 0;
+      }
+
+      .mod(checked) {
+        background-color: #f4203b;
+        position: relative;
+        border-top-color: transparent;
+
+        &:after {
+          content: '';
+          top: 100%;
+          left: 50%;
+          border: solid transparent;
+          height: 0;
+          width: 0;
+          position: absolute;
+          pointer-events: none;
+          border-color: rgba(244, 32, 59, 0);
+          border-top-color: #f4203b;
+          border-width: 12px;
+          margin-left: -12px;
+
+        }
+      }
+    }
+  }
+
+  .elem(content) {
+    lost-center: 100%;
+  }
+
+  .elem(list-tickets) {
+    lost-column: 5/6 0 28px;
+  }
+
+  .elem(list-tickets-set) {
+    display: none;
+
+    .mod(show) {
+      display: block;
+    }
+  }
+
+
+  .elem(aside) {
+    lost-column: 1/6 0 28px;
+  }
+}

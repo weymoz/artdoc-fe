@@ -1,0 +1,111 @@
+block(list) {
+
+  @each $size, $fontSize, $lineHeight in
+    (xs, s, m, l, xl, xxl),
+    (10px, 14px, 16px, 18px, 22px, 32px),
+    (1.5, 16px, 1.5, 1.5, 1.5, 1.5) {
+    .mod(size $size) {
+      font-size: $fontSize;
+      line-height: $lineHeight;
+    }
+  }
+
+  .mod(type inline) {
+    .elem(item) {
+      display: inline;
+      margin-right: 12px;
+
+      &:last-of-type {
+        margin-right: 0;
+      }
+    }
+  }
+
+  .mod(delimiter vertical) {
+    .elem(item) {
+      
+      &:after {
+        content: '';
+        display: inline-block;
+        font-size: inherit;
+        line-height: inherit;
+        width: 1px;
+        height: 1.2857em;
+        background-color: currentColor;
+        margin-left: 12px;
+        vertical-align: top;
+      }
+
+      &:last-of-type:after {
+        content: none;
+      }
+    }
+  }
+
+  .mod(type description) {
+    margin: 0;
+    display: table;
+
+    .elem(item) {
+      display: table-row;
+
+      .mod(footer) {
+        display: table-caption;
+        padding: .5rem;
+        box-sizing: border-box;
+        caption-side: bottom;
+      }
+    }
+
+    .elem(item) + .elem(item) {
+      .elem(term),
+      .elem(definition) {
+      }
+    }
+  }
+
+  .elem(item) {
+    line-height: inherit;
+    font-size: inherit;
+    flex-wrap: wrap;
+
+    .mod(vertical-align center) {
+      align-items: center;
+
+      .elem(term),
+      .elem(definition) {
+        vertical-align: middle;
+      }
+
+    }
+  }
+
+  .elem(term) {
+    display: table-cell;
+    text-align: start;
+    padding: .5rem 0;
+    width: 33%;
+    font-size: inherit;
+  }
+
+  .elem(definition) {
+    display: table-cell;
+    text-align: end;
+    hyphens: auto;
+    padding: .5rem 0;
+    font-size: inherit;
+    vertical-align: bottom;
+
+    .mod(align center) {
+      text-align: center
+    }
+
+    .mod(align start) {
+      text-align: start
+    }
+
+    .mod(align end) {
+      text-align: end
+    }
+  }
+}

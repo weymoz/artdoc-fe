@@ -1,0 +1,16 @@
+block(nav-menu).mod(theme artdoc) {
+  padding-left: 1em;
+  padding-right: 1em;
+
+  .elem(item) {
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 1.25;
+    color: #fff;
+    text-decoration: none;
+
+    & + elem(item) {
+      margin-left: 2em;
+    }
+  }
+}

@@ -14,7 +14,7 @@ var fs = require('fs'),
     };
 
 // get bundles list
-var bundlesDir = path.join(rootDir, 'desktop.bundles');
+var bundlesDir = path.join(rootDir, 'bundles/desktop.bundles');
 var bundles = fs.readdirSync(bundlesDir).filter(function(file) {
   return fs.statSync(path.join(bundlesDir, file)).isDirectory();
 });
@@ -30,7 +30,7 @@ function rebuild(event, file) {
   .then(function() {
     console.timeEnd('Rebuild: ' + file);
     notifier.notify({
-      title: 'ArtDocMedia',
+      title: 'bem-express',
       message: 'Build finished'
     });
   })
@@ -45,14 +45,15 @@ function rebuild(event, file) {
 var debouncedRebuild = _.debounce(rebuild, 30, { leading: true, trailing: true });
 
 process.env.NO_AUTOMAKE || watch([
-  path.join(rootDir, '*.blocks', '**'),
+  path.join(rootDir, 'components', '*.blocks', '**'),
+  path.join(rootDir, 'design', '*.blocks', '**'),
   ].concat(bundles.map(function(bundle) {
     return path.join(bundlesDir, bundle, bundle + '.bemdecl.js');
   })), watchOpts).on('all', debouncedRebuild);
 
 // livereload
 process.env.NO_LIVERELOAD || watch([
-  path.join(rootDir, 'static', '*.min.*'),
+  path.join(rootDir, 'static', '**', '*.min.*'),
   path.join(bundlesDir, '*', '*.bemtree.js')
   ].concat(bundles.map(function(bundle) {
     return path.join(bundlesDir, bundle, bundle + '.bemhtml.js');

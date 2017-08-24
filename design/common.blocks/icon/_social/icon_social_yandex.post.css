@@ -1,0 +1,6 @@
+block(icon).mod(social yandex) {
+  background-color: #ffcc00;
+  background-image: svg-load('icon_social_yandex.svg', fill="#fff");
+  background-origin: padding-box;
+  box-sizing: content-box;
+}

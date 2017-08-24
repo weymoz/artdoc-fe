@@ -1,0 +1,4 @@
+block(icon).mod(width half) {
+  width: 50% !important;
+  height: auto !important;
+}

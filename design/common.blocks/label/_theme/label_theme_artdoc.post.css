@@ -1,0 +1,9 @@
+block(label).mod(theme artdoc) {
+  display: inline-block;
+  font-weight: 600;
+  padding-bottom: 5px;
+
+  .mod(disabled) {
+    opacity: .5;
+  }  
+}

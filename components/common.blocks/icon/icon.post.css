@@ -1,0 +1,12 @@
+block(icon) {
+  /* all: initial */
+  display: inline-block;
+  vertical-align: baseline;
+  max-width: 100%;
+  max-height: 100%;
+  width: 100%;
+  height: auto;
+  color: inherit;
+  background-origin: content-box;
+  box-sizing: border-box;
+}
