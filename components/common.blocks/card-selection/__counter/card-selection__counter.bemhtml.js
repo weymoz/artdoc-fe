@@ -1,9 +1,9 @@
 block( 'card-selection' ).elem( 'counter' )(
   match( function () { return !this._name } ).def()(''),
-  content()( ( node, ctx ) => {
+  content()( node => {
     return node._name
   } ),
-  match( ( node, ctx ) => node._url ).content()( ( node, ctx ) => {
+  match( node => node._url ).content()( node => {
     return [
       {
         block: 'selection-counter',

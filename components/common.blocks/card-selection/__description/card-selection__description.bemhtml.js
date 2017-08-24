@@ -1,5 +1,5 @@
 block('card-selection').elem('description')(
-    content()( ( node, ctx ) => {
+    content()( node => {
         return [
             {
                 block: 'text',

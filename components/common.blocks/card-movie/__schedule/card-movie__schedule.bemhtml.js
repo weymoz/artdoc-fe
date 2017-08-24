@@ -33,7 +33,7 @@ block( 'card-movie' ).elem( 'schedule' )(
       }
     ]
   } ),
-  match( node => { return node._schedule && node._schedule.length } ).def()( ( node, ctx ) => {
+  match( node => { return node._schedule && node._schedule.length } ).def()( node => {
     return [
       applyNext( { 'ctx.content': node._schedule[ 0 ] } ),
       node._schedule.length > 1

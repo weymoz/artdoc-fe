@@ -32,6 +32,7 @@ provide(Form.declMod({ modName: 'view', modVal: 'order' }, {
     $.ajax(settings).done(function (response) {
 
       var data = JSON.parse( response );
+      var braintree;
 
       loader('//js.braintreegateway.com/web/dropin/1.4.0/js/dropin.min.js',
         function() {

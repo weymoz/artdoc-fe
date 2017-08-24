@@ -14,7 +14,7 @@ block('page-schedule').replace()(function() {
 
   const firstCinemaDate = new Date( schedule[0].schedule[0] * 1000 ).getDate();
   const today = new Date().getDate();
-  const promoBlock = true //firstCinemaDate === today
+  const promoBlock = firstCinemaDate === today
     ? {
       block: 'card-movie',
       mods: {
