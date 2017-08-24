@@ -1,0 +1,8 @@
+block(page).mod(view page-selection) {
+
+  .elem(content) {
+    width: 100%!important;
+    padding: 0!important;
+  }
+}
+

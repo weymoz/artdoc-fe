@@ -35,7 +35,7 @@ app
   .use(compression())
   .use(favicon(path.join(staticFolder, 'favicon.ico')))
   .use(serveStatic(staticFolder))
-  .use(morgan('combined'))
+  .use(morgan('tiny'))
   .use(cookieParser())
   .use(bodyParser.urlencoded({ extended: true }))
   .use(expressSession({
@@ -45,7 +45,7 @@ app
   }))
   .use(passport.initialize())
   .use(passport.session())
-  .use(csrf());
+  // .use(csrf());
 
 // NOTE: conflicts with livereload
 isDev || app.use(slashes());
@@ -68,7 +68,7 @@ isDev && require('./rebuild')(app);
 
 app.get('*', function(req, res) {
   res.status(404);
-  return render(req, res, { view: '404', bundle: 'index' });
+  return render(req, res, { view: '404', page: 'index' });
 });
 
 if (isDev) {

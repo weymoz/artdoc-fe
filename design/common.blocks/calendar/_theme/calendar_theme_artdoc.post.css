@@ -1,0 +1,18 @@
+block(calendar).mod(theme artdoc) {
+  .mod(view ticket-case) {
+    display: flex;
+
+    .elem(date) {
+      line-height: 1.0;
+      color: #ffffff;
+      margin-right: 8px;
+    }
+
+    .elem(content) {
+      flex: 1;
+      font-size: 0.35em;
+      line-height: 1.4em;
+      color: #ffffff;
+    }
+  }
+}

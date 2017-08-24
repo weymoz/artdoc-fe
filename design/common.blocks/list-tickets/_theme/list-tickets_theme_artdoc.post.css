@@ -1,0 +1,11 @@
+block(list-tickets).mod(theme artdoc) {
+  display: block;
+  margin: 0;
+  padding: 0;
+  lost-center: 100%;
+
+  .elem(item) {
+    lost-column: 1/5 5 28px;
+    display: block;
+  }
+}

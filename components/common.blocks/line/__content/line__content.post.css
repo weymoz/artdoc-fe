@@ -1,0 +1,6 @@
+block(line).elem(content) {
+  /* all: initial */
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit
+}

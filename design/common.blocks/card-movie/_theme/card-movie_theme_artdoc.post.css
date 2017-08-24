@@ -1,0 +1,65 @@
+block(card-movie).mod(theme artdoc) {
+
+  .mod(view schedule) {
+    box-shadow: inset 0px 1px 0px 0px #000,
+                inset 0px -1px 0px 0px #000;
+
+    & + & {
+      box-shadow: inset 0px -1px 0px 0px #000
+    }
+  }
+
+  .mod(view promo) {
+    box-shadow: inset 0px -1px 0px 0px #000;
+
+    .elem(today-label) {
+      color: #fff;
+    }
+
+    .elem(name) {
+      color: #fff;
+    }
+
+    .elem(orig-name) {
+      color: #fff;
+    }
+  }
+
+  .elem(orig-name) {
+    color: #111;
+  }
+
+  .elem(name) {
+    color: #111;
+  }
+
+  .elem(tvpg) {
+    box-shadow: inset 0 0 0 1px #c4c4c4;
+  }
+  
+  .elem(description) {
+    color: #23232c;
+  }
+
+  .elem(schedule-duration) {
+    background-color: #23232c;
+    color: #fff;
+  }
+
+  .elem(schedule) {
+    box-shadow: inset 1px 0 0 #000;
+  }
+
+  .elem(schedule-day) {
+    color: #23232c;
+  }
+
+  .elem(schedule-month) {
+    color: #23232c;
+  }
+
+  .elem(show-more) {
+    color: #111;
+  }
+
+}

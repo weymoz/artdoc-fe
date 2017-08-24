@@ -1,0 +1,6 @@
+block(icon).mod(social live) {
+  background-color: #00a1f1;
+  background-image: svg-load('icon_social_live.svg', fill="#fff");
+  background-origin: padding-box;
+  box-sizing: content-box;
+}

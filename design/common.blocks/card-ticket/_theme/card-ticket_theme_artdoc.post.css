@@ -1,0 +1,98 @@
+block(card-ticket).mod(theme artdoc) {
+  text-decoration: none;
+
+  .mod(status active) {
+    &:hover,
+    &:focus {
+      .elem(buy) {
+        background-color: #f3203b;
+        color: #fff;
+        border-top-color: #f3203b;
+      }
+    }
+  }
+
+  .elem(header),
+  .elem(content) {
+    color: #23232c;
+    background-color: #fff;
+  }
+
+  .elem(header) {
+    display: flex;
+    align-items: baseline;
+    align-content: baseline;
+    padding: 16px 16px 40px;
+    box-sizing: border-box;
+    font-stretch: condensed;
+    font-weight: bold;
+    font-size: 17px;
+    line-height: 20px;
+
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .elem(room) {
+    color: #c5c5d3;
+    text-transform: uppercase;
+  }
+
+  .elem(city) {
+    color: #23232c;
+    text-transform: uppercase;
+  }
+
+  .elem(content) {
+    padding: 1em;
+  }
+
+  .elem(user-date) {
+    font-size: 14px;
+    line-height: 20px;
+    color: #23232c
+  }
+
+  .elem(user-time) {
+    font-size: 56px;
+    line-height: 1.0;
+    letter-spacing: -0.4px;
+    color: #23232c
+  }
+
+  .elem(timezone) {
+    font-size: 14px;
+    line-height: 1.43;
+    letter-spacing: -0.1px;
+    color: #666770;
+  }
+
+  .elem(buy) {
+    background-color: #fff;
+    color: #23232c;
+    text-align: left;
+    font-size: 18px;
+    line-height: 24px;
+    padding: 16px;
+    font-weight: bold;
+    border-top: 1px solid #23232c;
+  }
+
+  .elem(left) {
+    font-size: 12px;
+    line-height: 16px;
+    color: #a0a0ad;
+    margin-top: 12px;
+  }
+  
+  .mod(status less) {
+    .elem(left) {
+      color: red;
+    }
+  }
+
+  .mod(status disabled) {
+    opacity: .5;
+  }
+}

@@ -1,0 +1,40 @@
+block(footer).mod(theme artdoc) {
+  background-color: #111;
+  color: #a0a0ad;
+  padding-top: 64px;
+  padding-bottom: 48px;
+
+  .elem(content) {
+    lost-center: 1316px;
+  }
+
+  .elem(about) {
+    lost-column: 16/47 0 0;
+    font-size: 14px;
+    padding-right: 140px;
+    box-sizing: border-box;
+
+    .block(logo).mod(title) {
+      display: block;
+      width: 308px;
+      height: 39.2px;
+      margin-bottom: 26px;
+    }
+  }
+
+  .elem(for-viewers) {
+    lost-column: 8/47 0 0;
+    padding-right: 56px;
+    box-sizing: border-box;
+  }
+
+  .elem(for-professionals) {
+    lost-column: 12/47 0 0;
+    padding-right: 56px;
+    box-sizing: border-box;
+  }
+
+  .elem(contacts) {
+    lost-column: 11/47 0 0;
+  }
+}

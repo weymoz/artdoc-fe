@@ -1,0 +1,4 @@
+block(image).mod(circle) {
+  display: inline-block;
+  border-radius: 50%;
+}

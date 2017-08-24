@@ -1,0 +1,7 @@
+block(form).mod(theme artdoc) {
+
+  .elem(section) {
+    margin-bottom: 24px;
+  }
+
+}

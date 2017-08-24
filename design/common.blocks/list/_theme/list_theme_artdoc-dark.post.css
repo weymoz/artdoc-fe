@@ -1,0 +1,22 @@
+block(list).mod(theme artdoc-dark) {
+
+  .elem(item) {
+    .mod(negative) {
+      background-color: rgba(255, 0, 0, .2)
+    }
+
+    .mod(positive) {
+      background-color: rgba(0, 255, 0, .2)
+    }
+  }
+
+  .elem(term) {
+    color: #777783;
+  }
+
+  .mod(delimiter vertical) {
+    .elem(item) + .elem(item):before {
+      background-color: #fff;
+    }
+  }
+}

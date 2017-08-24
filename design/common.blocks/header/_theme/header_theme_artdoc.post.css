@@ -1,0 +1,57 @@
+block(header).mod(theme artdoc) {
+  display: flex;
+  align-items: stretch;
+  align-content: baseline;
+  width: 100%;
+  line-height: 4em;
+  background-color: #111;
+  color: #fff;
+
+  .elem(logo),
+  .elem(user) {
+    width: 4em;
+    text-align: center;
+
+    &:before {
+      content: '';
+      float: left;
+      padding-bottom: 100%;
+    }
+
+    &:after {
+      content: '';
+      display: table;
+      clear: both;
+    }
+  }
+
+  .elem(logo) {
+    padding: .75em;
+    box-sizing: border-box;
+    background-color: #f4203b;
+    background-origin: content-box;
+  }
+
+  .elem(title) {
+    width: 207px;
+    padding: .75em;
+    box-sizing: border-box;
+    background-origin: content-box;
+  }
+
+  .elem(menu) {
+    flex: 1;
+  }
+
+  .elem(lang) {
+    background-color: #ccc;
+  }
+
+  .elem(search) {
+    background-color: #cccfff;
+  }
+
+  .elem(user) {
+    background-color: #ccc;
+  }
+}

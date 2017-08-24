@@ -1,0 +1,4 @@
+block(icon).mod(circle) {
+  display: inline-block;
+  border-radius: 50%;
+}

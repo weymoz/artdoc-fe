@@ -1,0 +1,17 @@
+block(card-author).mod(theme artdoc) {
+  display: inline-flex;
+  align-items: center;
+
+  & + & {
+    margin-left: .5em;
+  }
+
+  .elem(content) {
+    padding-right: .5em;
+  }
+
+  .elem(aside) {
+    padding-right: .5em;
+  }
+  
+}

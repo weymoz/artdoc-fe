@@ -1,0 +1,274 @@
+block(card-movie) {
+  display: flex;
+  lost-center: 100%;
+  padding-top: 1.5em;
+  padding-bottom: 1.5em;
+
+  .mod(view full) {
+    .elem(aside) {
+      lost-column: 15/47 0 0;
+      margin-left: 56px;
+    }
+  }
+
+  .mod(view short) {
+    box-shadow: inset 0px 1px 0px 0px currentColor,
+                inset 0px -1px 0px 0px currentColor;
+
+    & + & {
+      box-shadow: inset 0px -1px 0px 0px currentColor;
+    }
+
+    .elem(aside) {
+      lost-column: 23/32 1 0;
+      margin-left: 28px;
+    }
+  }
+
+  .mod(view schedule) {
+    box-shadow: inset 0px 1px 0px 0px currentColor,
+                inset 0px -1px 0px 0px currentColor;
+
+    & + & {
+      box-shadow: inset 0px -1px 0px 0px currentColor;
+    }
+
+    .elem(aside) {
+      lost-column: 9/24 0 28px;
+      margin-left: 28px;
+    }
+
+    .elem(aside).mod(view schedule) {
+      lost-column: 2/24 0 28px;
+      margin-left: 0;
+    }
+
+    .elem(aside).mod(view action) {
+      lost-column: 5/24 1 28px;
+      margin-left: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+  }
+
+  .mod(view promo) {
+    .elem(aside) {
+      lost-column: 8/24 1 28px;
+      margin-left: 56px;
+    }
+
+    .elem(aside).mod(view schedule) {
+      lost-column: 2/24 0 28px;
+      margin-left: 0;
+    }
+  }
+
+  .mod(view play) {
+    flex-direction: column;
+
+    .elem(section) {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      width: 100%;
+      margin: 0;
+
+      .mod(view title) {
+        flex-direction: column;
+        margin-bottom: 8px;
+      }
+
+      .mod(view info) {
+        flex-direction: column;
+        margin-top: 40px;
+        padding-right: 50%;
+        box-sizing: border-box;
+      }
+    }
+
+    .elem(aside) {
+      lost-column: 13/47 1 0;
+      background-color: #111;
+    }
+
+    .elem(discussion) {
+      padding: 40px 28px;
+      box-sizing: border-box;
+      text-align: center;
+    }
+  }
+
+  .elem(content) {
+    position: relative;
+    flex: 1;
+
+    &:before {
+      content: '';
+      float: left;
+      padding-bottom: 56.25%;
+    }
+
+    &:after {
+      content: '';
+      display: table;
+      clear: both;
+    }
+  }
+
+  .elem(cover) {
+    display: block;
+    position: relative;
+  }
+
+  .elem(on-cover) {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 56px 28px 40px;
+    text-decoration: none;
+  }
+
+  .elem(today-label) {
+    font-size: 17px;
+    font-weight: bold;
+    font-stretch: condensed;
+    text-transform: uppercase;
+    flex: 1;
+  }
+
+  .elem(video) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .elem(rating) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: inline-block;
+    font-size: 2rem;
+    padding: 0 10px;
+    box-sizing: border-box;
+    opacity: .8;
+    z-index: 1;
+    line-height: 3rem;
+
+    &:before {
+      content: attr(data-title);
+      font-size: 12px;
+      line-height: 1.17;
+      display: inline-block;
+      width: 54px;
+    }
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      display: block;
+      width: 10px;
+      height: 10px;
+    }
+  }
+ 
+  .elem(orig-name) {
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1.5;
+  }
+
+  .elem(name) {
+    display: block;
+    font-size: 40px;
+    font-weight: bold;
+    line-height: 1.0;
+    text-decoration: none;
+    margin-top: 0;
+    margin-bottom: 24px;
+  }
+
+  .elem(list).elem(list) {
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+
+  .elem(list) + .elem(list) {
+    margin-top: 16px;
+  }
+
+  .elem(tvpg) {
+    display: inline-block;
+    font-size: 12px;
+    line-height: 2;
+    padding: 0 5px;
+    box-sizing: border-box;
+  }
+  
+  .elem(buy) {
+    margin-top: 1em;
+  }
+
+  .elem(description) {
+    margin-top: 24px;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .elem(schedule-duration) {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1.5;
+    margin-bottom: 1em;
+    padding-left: 6px;
+    padding-right: 6px;
+  }
+
+  .elem(schedule) {
+    display: block;
+    padding-left: .75em;
+
+    & + .elem(schedule):before {
+      content: '…';
+      display: block;
+      color: red;
+    }
+  }
+
+  .elem(schedule-day) {
+    font-size: 40px;
+    font-weight: bold;
+    line-height: 1;
+  }
+
+  .elem(schedule-month) {
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 1.25;
+  }
+
+  .elem(show-more) {
+    margin-top: auto;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1.43;
+    text-decoration: none;
+
+    &:after {
+      content: '>';
+      margin-left: 12px;
+    }
+  }
+
+}

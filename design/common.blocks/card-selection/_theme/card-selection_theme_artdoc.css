@@ -1,0 +1,166 @@
+.card-selection_view_selections.card-selection_theme_artdoc {
+  max-height: 340px;
+}
+
+.card-selection_view_selections {
+  margin-bottom: 60px;
+}
+
+
+.card-selection_view_selections {
+  display: flex;
+  justify-content: flex-start;
+}
+
+
+.card-selection_view_selections .card-selection__aside {
+  display: flex;
+  margin-left: 20px;
+  justify-content: flex-start;
+}
+
+
+.card-selection_view_selections .card-selection__preview {
+  display: block;
+  width: 644px;
+  height: 320px;
+  overflow: hidden;
+}
+
+.card-selection_view_selections .card-selection__on-cover {
+  top: 0;
+  left: 0;
+  background: black;
+  opacity: 0.5;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.card-selection_view_selections .card-selection__content {
+  position: relative;
+}
+
+
+.card-selection_view_selections .card-selection__name {
+  position: absolute;
+  top: 0px;
+  left: 30px;
+  color: white;
+  font-size: 40px;
+}
+
+
+.card-selection_view_selections .card-selection__author {
+  position: absolute;
+  top: 80px;
+  left: 30px;
+  color: white;
+  margin-top: 20px;
+}
+
+.card-selection_view_selections .card-selection__author .list {
+  margin-left: 10px;
+}
+
+.card-selection_view_selections .card-selection__author .list__content {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.card-selection_view_selections .card-selection__author .list__date {
+  font-size: 12px;
+}
+
+.card-selection_view_selections .card-selection__counter {
+  position: absolute;
+  bottom: 20px;
+  right: 30px;
+  color: white;
+ }
+
+.card-selection_view_selections .card-selection__counter .selection-counter {
+  text-align: right;
+  font-size: 56px;
+  line-height: 56px;
+}
+
+.card-selection_view_selections .card-selection__counter .selection-counter_adds {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+
+/*Раскрытая карточка подборки*/
+
+
+
+.card-selection_view_detail .card-selection__content {
+  position: relative;
+}
+
+.card-selection_view_detail .card-selection__aside {
+  margin: 0 55px;
+}
+
+.card-selection_view_detail .breadcrumbs {
+  position: absolute;
+  top: 40px;
+  left: 55px;
+}
+
+.card-selection_view_detail .image {
+  max-height: 500px;
+}
+
+
+.card-selection_view_detail .card-selection__content {
+  position: relative;
+}
+
+
+.card-selection_view_detail .card-selection__name {
+  position: absolute;
+  top: 320px;
+  left: 55px;
+  color: white;
+  font-size: 56px;
+  line-height: 64px;
+}
+
+
+.card-selection_view_detail .card-selection__author {
+  margin-left: 55px;
+}
+
+.card-selection_view_detail .card-selection__author .list {
+  margin-left: 10px;
+}
+
+.card-selection_view_detail .card-selection__author .list__content {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.card-selection_view_detail .card-selection__author .list__date {
+  font-size: 12px;
+}
+
+.card-selection_view_detail .card-selection__counter {
+  position: absolute;
+  top: 400px;
+  right: 30px;
+  color: white;
+ }
+
+.card-selection_view_detail .card-selection__counter .selection-counter {
+  text-align: right;
+  font-size: 56px;
+  line-height: 56px;
+}
+
+
+.card-selection_view_detail .card-selection__counter .selection-counter_adds {
+  font-weight: bold;
+  font-size: 14px;
+}
