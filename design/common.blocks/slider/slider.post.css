@@ -1,0 +1,79 @@
+block(slider) {
+  width: 100%;
+  margin: 20px auto;
+
+  block(button) {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background-color: #111;
+    cursor: pointer;
+
+    mod(focused):before{
+      background-color: unset;
+    }
+
+    mod(disabled){
+      background-color: #d8d8d8;
+    }
+  }
+
+  block(button):before {
+    box-shadow: unset;
+  }
+
+  elem(page) {
+      display: none;
+
+    mod(visible) {
+      display: block;
+    }
+  }
+
+  elem(link) {
+    border: 1px solid #D8D8D8;
+  }
+
+  elem(view) {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+  }
+
+  elem(content) {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 170px;
+    margin: 0 70px;
+    text-align: center;
+  }
+
+  elem(pagination) {
+    height: 12px;
+    display: flex;
+    justify-content: center;
+    max-width: 800px;
+    text-align: center;
+    margin: 15px auto;
+  }
+
+  elem(page-item) {
+    width: 8px;
+    height: 8px;
+    margin-right: 12px;
+    background-color: #d8d8d8;
+    cursor: pointer;
+
+    mod(active) {
+      background-color: #F21026;
+    }
+  }
+
+  elem(page-item):last-child {
+    margin-right: 0;
+  }
+
+}
