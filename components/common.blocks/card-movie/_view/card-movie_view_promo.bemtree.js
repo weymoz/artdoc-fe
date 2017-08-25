@@ -9,7 +9,7 @@ block('card-movie').mod('view', 'promo')(
 
   content()( ( node, ctx ) => {
     return [
-      (ctx.movie.schedule && ctx.movie.schedule.length) && {
+      ctx.movie.schedules && {
         elem: 'aside',
         elemMods: { view: 'schedule' },
         content: [
@@ -19,7 +19,6 @@ block('card-movie').mod('view', 'promo')(
       },
       {
         elem: 'content',
-        elemMods: { view: 'cover' },
         content: [
           {
             elem: 'cover',
@@ -54,15 +53,15 @@ block('card-movie').mod('view', 'promo')(
               { elem: 'subs' }
             ]
           },
+          { elem: 'description', elemMods: { 'short': true } },
           {
-            elem: 'content',
+            elem: 'section',
             content: [
-              { elem: 'description', elemMods: { 'short': true } },
               { elem: 'discussion' },
               { elem: 'show-more' },
-              { elem: 'buy' }
             ]
-          }
+          },
+          { elem: 'buy' },
         ]
       }
     ];

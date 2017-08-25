@@ -68,6 +68,7 @@ module.exports = function( app ) {
     let req_url = new URL(req.protocol + '://' + req.get('host') + req.originalUrl);
 
     data.page = 'movies';
+    data.currentCategoryCode = 'all';
     data.title = req.params.category ? data.categoryById[ req.params.category ].name : 'Все фильмы';
     data.pagination = {
       'per-page' : 20,
@@ -76,11 +77,12 @@ module.exports = function( app ) {
     };
 
     let url = '/api/movie/?sort=-rating';
-    if (typeof req.params.category != 'undefined') {
-       url = '/api/movie/filter/?sort=-rating&filter%5Bcategory%5D=' + req.params.category;
+    if (typeof req.params.category !== 'undefined') {
+      url = '/api/movie/filter/?sort=-rating&filter%5Bcategory%5D=' + req.params.category;
+      data.currentCategoryCode = data.categoryById[ req.params.category ].code;
     }
 
-    if (typeof req.params.tag != 'undefined') {
+    if (typeof req.params.tag !== 'undefined') {
       url = '/api/movie/filter/?sort=-rating&filter%5Btags%5D=' + encodeURIComponent(req.params.tag);
     }
     url += '&per-page=' + data.pagination['per-page'] + '&page=' + data.pagination.page;

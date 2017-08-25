@@ -53,14 +53,45 @@ block(card-movie) {
   }
 
   .mod(view promo) {
+    padding-bottom: 38px;
+
     .elem(aside) {
       lost-column: 8/24 1 28px;
       margin-left: 56px;
+      display: flex;
+      flex-direction: column;
     }
 
     .elem(aside).mod(view schedule) {
       lost-column: 2/24 0 28px;
       margin-left: 0;
+    }
+
+    .elem(description) {
+      margin-bottom: auto;
+    }
+
+    .elem(section) {
+      lost-center: 100%;
+      display: flex;
+      flex-direction: row;
+    }
+
+    .elem(discussion) {
+      lost-column: 1/2 0 28px;
+      color: #23232c;
+      font-size: 13px;
+      line-height: 16px;
+    }
+
+    .elem(show-more) {
+      lost-column: 1/2 1 28px;
+      text-align: right;
+    }
+
+    .elem(on-cover) {
+      padding: 56px 28px 40px;
+      background-color: hsla(0, 0%, 0%, 0.4);
     }
   }
 
@@ -99,6 +130,50 @@ block(card-movie) {
     }
   }
 
+  .mod(view selection) {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid black;
+
+    .block(image) {
+      height: 110px;
+    }
+
+    .elem(name) {
+      font-size: 16px;
+    }
+
+    .elem(cover) {
+      height: 110px;
+    }
+
+    .elem(on-cover) {
+      height: 10px;
+    }
+
+    .elem(content):before {
+      padding-bottom: 0;
+    }
+
+    .elem(director) {
+      display: block;
+      color: #676770;
+      font-size: 16px;
+    }
+
+    .elem(aside) {
+      margin-bottom: 10px;
+    }
+
+    .elem(year),
+    .elem(countries) {
+      display: block;
+      font-size: 12px;
+      margin-bottom: 5px;
+    }
+
+  }
+
   .elem(content) {
     position: relative;
     flex: 1;
@@ -129,7 +204,7 @@ block(card-movie) {
     top: 0;
     display: flex;
     flex-direction: column;
-    padding: 56px 28px 40px;
+    
     text-decoration: none;
   }
 
@@ -217,10 +292,33 @@ block(card-movie) {
   
   .elem(buy) {
     margin-top: 1em;
+    display: block;
+    width: 100%;
+
+    block(button) {
+      line-height: 48px;
+      font-weight: bold;
+      background-color: #111;
+      color: #fff;
+      display: block;
+      width: 100%;
+
+      .block(icon) {
+        background-color: #f4203b;
+        width: 2em;
+      }
+    }
+
+    &.block(checkbox).mod(checked) {
+      block(button) {
+        background-color: #eeeef2;
+        color: #111;
+      }
+    }
   }
 
   .elem(description) {
-    margin-top: 24px;
+    /*margin-top: 24px;*/
     font-size: 14px;
     line-height: 1.5;
   }
@@ -269,49 +367,5 @@ block(card-movie) {
       content: '>';
       margin-left: 12px;
     }
-  }
-
-  .mod(view selection) {
-    display: flex;
-    flex-direction: column;
-    border-bottom: 1px solid black;
-
-    .block(image) {
-      height: 110px;
-    }
-
-    .elem(name) {
-      font-size: 16px;
-    }
-
-    .elem(cover) {
-      height: 110px;
-    }
-
-    .elem(on-cover) {
-      height: 10px;
-    }
-
-    .elem(content):before {
-      padding-bottom: 0;
-    }
-
-    .elem(director) {
-      display: block;
-      color: #676770;
-      font-size: 16px;
-    }
-
-    .elem(aside) {
-      margin-bottom: 10px;
-    }
-
-    .elem(year),
-    .elem(countries) {
-      display: block;
-      font-size: 12px;
-      margin-bottom: 5px;
-    }
-
   }
 }

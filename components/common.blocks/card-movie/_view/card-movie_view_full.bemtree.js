@@ -32,7 +32,7 @@ block('card-movie').mod('view', 'full').content()( ( node, ctx ) => {
             { elem: 'subs' }
           ]
         },
-        { elem: 'buy', elemMods: { size: 'l' } },
+        { elem: 'buy', elemMods: { type: 'button' } },
         { elem: 'description' }
       ]
     },
