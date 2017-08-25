@@ -9,14 +9,14 @@ block('card-movie').mod('view', 'schedule')(
 
   content()( ( node, ctx ) => {
     return [
-      (ctx.movie.schedule && ctx.movie.schedule.length) ? {
+      ctx.movie.schedules && {
         elem: 'aside',
         elemMods: { view: 'schedule' },
         content: [
           { elem: 'schedule-duration' },
           { elem: 'schedule' }
         ]
-      } : '',
+      },
       {
         elem: 'content',
         content: [

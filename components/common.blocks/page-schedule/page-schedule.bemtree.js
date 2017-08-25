@@ -5,16 +5,16 @@ block('page-schedule').replace()(function() {
   let schedule = [];
 
   _movies.forEach( movie => {
-    if (schedule.length && (schedule[schedule.length - 1].movie_id == movie.movie[0].movie_id)) {
-      schedule[ schedule.length - 1 ].schedule.push( movie.date_gmt3 );
+    if ( schedule.length && ( schedule[ schedule.length - 1 ].movie_id === movie.movie[0].movie_id)) {
+      schedule[ schedule.length - 1 ].schedules.push( movie.date_gmt3 );
     } else {
-      schedule.push(Object.assign(movie.movie[0], {schedule:[movie.date_gmt3]}));
+      schedule.push( Object.assign( movie.movie[ 0 ], { schedules: [ movie.date_gmt3 ] } ) );
     }
   });
 
-  const firstCinemaDate = new Date( schedule[0].schedule[0] * 1000 ).getDate();
+  const firstCinemaDate = new Date( schedule[0].schedules[0] * 1000 ).getDate();
   const today = new Date().getDate();
-  const promoBlock = firstCinemaDate === today
+  const promoBlock = true //firstCinemaDate === today
     ? {
       block: 'card-movie',
       mods: {
