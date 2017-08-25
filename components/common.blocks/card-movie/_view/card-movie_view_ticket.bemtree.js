@@ -34,6 +34,7 @@ block('card-movie').mod('view', 'short')(
         content: [
           {
             elem: 'content',
+            elemMods: { type: 'link' },
             content: [
               { elem: 'cover' }
             ]

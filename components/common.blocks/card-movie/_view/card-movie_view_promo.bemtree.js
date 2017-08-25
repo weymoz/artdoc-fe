@@ -19,6 +19,7 @@ block('card-movie').mod('view', 'promo')(
       },
       {
         elem: 'content',
+        elemMods: { type: 'link' },
         content: [
           {
             elem: 'cover',
