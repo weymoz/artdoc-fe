@@ -182,9 +182,12 @@ module.exports = function( app ) {
   });
 
   app.get( '/order/:transaction_id', ( req, res ) => {
+    data.page = 'thanks';
+    data.title = 'Билет успешно оплачен';
     client.post( '/payment/provide/', { nonce: req.query.payment_nonce, transaction_id: req.params.transaction_id } )
       .then( response => {
-        render( req, res, { page: 'thanks', api: response.data } )
+        data.api = response.data;
+        render( req, res, data );
       } )
       .catch(() => res.send('error') );
   });

@@ -1,4 +1,8 @@
-modules.define('form', ['jquery', 'modal', 'loader_type_js', 'BEMHTML', 'button'], function(provide, $, Modal, loader, BEMHTML, Button, Form) {
+/*global braintree*/
+
+modules.define('form',
+  ['jquery', 'modal', 'loader_type_js', 'BEMHTML', 'button'],
+  function(provide, $, Modal, loader, BEMHTML, Button, Form) {
 
 provide(Form.declMod({ modName: 'view', modVal: 'order' }, {
 
@@ -32,7 +36,7 @@ provide(Form.declMod({ modName: 'view', modVal: 'order' }, {
     $.ajax(settings).done(function (response) {
 
       var data = JSON.parse( response );
-      var braintree;
+      // var braintree;
 
       loader('//js.braintreegateway.com/web/dropin/1.4.0/js/dropin.min.js',
         function() {
