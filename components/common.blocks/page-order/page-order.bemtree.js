@@ -21,7 +21,7 @@ block('page-order')(
           {
             block: 'card-movie',
             mods: {
-              view: 'short'
+              view: 'order'
             },
             movie: node.data.api.movie
           },

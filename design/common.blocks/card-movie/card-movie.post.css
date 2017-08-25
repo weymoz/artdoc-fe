@@ -9,12 +9,32 @@ block(card-movie) {
     }
   }
 
-  .mod(view short) {
+  .mod(view order) {
+    padding: 24px 0;
+    box-sizing: border-box;
     box-shadow: inset 0px 1px 0px 0px currentColor,
                 inset 0px -1px 0px 0px currentColor;
 
-    & + & {
-      box-shadow: inset 0px -1px 0px 0px currentColor;
+    .elem(aside) {
+      lost-column: 23/32 1 0;
+      margin-left: 28px;
+    }
+  }
+
+  .mod(view ticket) {
+    flex-direction: column;
+
+    .elem(section) {
+      display: flex;
+      flex-direction: row;
+      padding: 24px 0;
+      box-sizing: border-box;
+      box-shadow: inset 0px 1px 0px 0px currentColor,
+                  inset 0px -1px 0px 0px currentColor;
+
+      & + .elem(section) {
+        box-shadow: inset 0px -1px 0px 0px currentColor;
+      }
     }
 
     .elem(aside) {
@@ -205,6 +225,7 @@ block(card-movie) {
     display: flex;
     flex-direction: column;
     
+    padding: 56px 28px 40px;
     text-decoration: none;
   }
 
@@ -319,6 +340,7 @@ block(card-movie) {
 
   .elem(description) {
     /*margin-top: 24px;*/
+    margin-top: 24px;
     font-size: 14px;
     line-height: 1.5;
   }
@@ -367,5 +389,50 @@ block(card-movie) {
       content: '>';
       margin-left: 12px;
     }
+  }
+
+  .mod(view selection) {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid black;
+
+    .block(image) {
+      height: 110px;
+    }
+
+    .elem(name) {
+      font-size: 16px;
+    }
+
+    .elem(cover) {
+      height: 110px;
+    }
+
+    .elem(on-cover) {
+      height: 10px;
+    }
+
+    .elem(content):before {
+      padding-bottom: 0;
+    }
+
+    .elem(director) {
+      display: block;
+      color: #676770;
+      font-size: 14px;
+      margin: 10px 0;
+    }
+
+    .elem(aside) {
+      margin-bottom: 10px;
+    }
+
+    .elem(year),
+    .elem(countries) {
+      display: block;
+      font-size: 12px;
+      margin-bottom: 5px;
+    }
+
   }
 }

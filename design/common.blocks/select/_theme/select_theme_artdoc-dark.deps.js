@@ -1,9 +1,0 @@
-[{
-  shouldDeps: [
-    {
-      mods: {
-        theme: '*'
-      }
-    }
-  ]
-}]

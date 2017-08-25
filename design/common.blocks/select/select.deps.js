@@ -3,10 +3,6 @@
     { block : 'button' }
   ],
   shouldDeps: [
-    {
-      mods: {
-        theme: '*'
-      }
-    },
+    
   ]
 }]

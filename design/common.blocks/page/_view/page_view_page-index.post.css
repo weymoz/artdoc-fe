@@ -1,0 +1,24 @@
+block(page).mod(view page-index) {
+
+  .elem(title) {
+    text-align: center;
+    width: 740px;
+    font-size: 32px;
+    line-height: 40px;
+    letter-spacing: 1px;
+    margin: 0 auto 40px;
+    text-transform: uppercase;
+  }
+
+  block(info) {
+    margin: 0 auto;
+    max-width: 644px;
+  }
+
+  block(info).elem(content) {
+    text-align: center;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+}

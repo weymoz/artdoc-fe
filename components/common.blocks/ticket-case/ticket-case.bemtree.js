@@ -90,7 +90,7 @@ block('ticket-case').content()(function() {
                     mods: {
                       mode: 'radio',
                       width: 'available',
-                      theme: 'artdoc'
+                      theme: 'artdoc-dark'
                     },
                     name: 'timezone',
                     id: 'timezone',
@@ -115,7 +115,7 @@ block('ticket-case').content()(function() {
                     mods: {
                       mode: 'radio',
                       width: 'available',
-                      theme: 'artdoc'
+                      theme: 'artdoc-dark'
                     },
                     name: 'timezone',
                     id: 'timezone',

@@ -61,6 +61,14 @@ module.exports = function( app ) {
     data.page = 'index';
     data.bundle = isCallerMobile( req ) ? 'touch' : 'desktop';
     render( req, res, data );
+
+    request( { url: '/api/authorcompilation/?per-page=3&page=1' } )
+      .then(response => {
+          data.api = response.items;
+          render( req, res, data );
+      } )
+      .catch(() => res.send('error') );
+
   });
 
   //Catalog
@@ -182,9 +190,12 @@ module.exports = function( app ) {
   });
 
   app.get( '/order/:transaction_id', ( req, res ) => {
+    data.page = 'thanks';
+    data.title = 'Билет успешно оплачен';
     client.post( '/payment/provide/', { nonce: req.query.payment_nonce, transaction_id: req.params.transaction_id } )
       .then( response => {
-        render( req, res, { page: 'thanks', api: response.data } )
+        data.api = response.data;
+        render( req, res, data );
       } )
       .catch(() => res.send('error') );
   });

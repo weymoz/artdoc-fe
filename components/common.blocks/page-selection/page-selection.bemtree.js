@@ -1,19 +1,17 @@
-block('page-selection').replace()(function() {
-
-    const selection = this.data.api;
-    return [
+block('page-selection').replace()( node => {
+  return [
+    {
+      elem: 'content',
+      content: [
         {
-            elem: 'content',
-            content: [
-                {
-                    block: 'card-selection',
-                    mods: {
-                        view: [ 'detail' ]
-                    },
-                    selection: selection
-                }
-            ]
-        },
-        { block: 'pagination', params: this.data.pagination }
-    ];
+          block: 'card-selection',
+          mods: {
+            view: [ 'detail' ]
+          },
+          selection: node.data.api
+        }
+      ]
+    },
+    { block: 'pagination', params: node.data.pagination }
+  ];
 });
