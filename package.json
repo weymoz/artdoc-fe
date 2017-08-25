@@ -1,10 +1,10 @@
 {
-  "author": "Vladimir Grinenko",
-  "name": "bem-express",
-  "version": "2.3.0",
+  "author": "Roman @Realetive Ganin",
+  "name": "artdoc-site",
+  "version": "1.0.1",
   "repository": {
     "type": "git",
-    "url": "git@github.com:tadatuta/bem-express.git"
+    "url": "git@bitbucket.org:artdocfest/frontend.git"
   },
   "engines": {
     "node": ">=6"
