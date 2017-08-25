@@ -1,8 +1,7 @@
 block(link).mod(theme artdoc) {
-  color: #f4203b;
+  color: #a0a0ac;
 
   .mod(view text) {
-
     &,
     &:hover,
     &:focus {
@@ -11,6 +10,11 @@ block(link).mod(theme artdoc) {
       line-height: inherit;
       text-decoration: inherit;
     }
+  }
+
+  .mod(hovered),
+  .mod(focused) {
+    color: #f4203b;
   }
 
   .mod(view tag) {
