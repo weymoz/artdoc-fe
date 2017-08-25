@@ -61,6 +61,14 @@ module.exports = function( app ) {
     data.page = 'index';
     data.bundle = isCallerMobile( req ) ? 'touch' : 'desktop';
     render( req, res, data );
+
+    request( { url: '/api/authorcompilation/?per-page=3&page=1' } )
+      .then(response => {
+          data.api = response.items;
+          render( req, res, data );
+      } )
+      .catch(() => res.send('error') );
+
   });
 
   //Catalog
