@@ -42,7 +42,7 @@ module.exports = function( app ) {
   let data = {};
 
   data.title = 'ArtDocMedia';
-  data.categoryById = {};
+  data.categoryByCode = {};
 
   request( { url: '/api/category/?per-page=1000'} ).then( response => {
 
@@ -51,7 +51,7 @@ module.exports = function( app ) {
     });
 
     for ( let i = data.category.length - 1; i >= 0; i-- ) {
-      data.categoryById[ data.category[i].id ] = data.category[i];
+      data.categoryByCode[ data.category[i].code ] = data.category[i];
     }
 
   } ).catch( () => 'Fail for get category' );
@@ -69,7 +69,7 @@ module.exports = function( app ) {
 
     data.page = 'movies';
     data.currentCategoryCode = 'all';
-    data.title = req.params.category ? data.categoryById[ req.params.category ].name : 'Все фильмы';
+    data.title = req.params.category ? data.categoryByCode[ req.params.category ].name : 'Все фильмы';
     data.pagination = {
       'per-page' : 20,
       'page': req.query.page ? req.query.page : 1,
@@ -78,8 +78,8 @@ module.exports = function( app ) {
 
     let url = '/api/movie/?sort=-rating';
     if (typeof req.params.category !== 'undefined') {
-      url = '/api/movie/filter/?sort=-rating&filter%5Bcategory%5D=' + req.params.category;
-      data.currentCategoryCode = data.categoryById[ req.params.category ].code;
+      url = '/api/movie/filter/?sort=-rating&filter%5Bcategory%5D=' + data.categoryByCode[ req.params.category ].id;
+      data.currentCategoryCode = data.categoryByCode[ req.params.category ].code;
     }
 
     if (typeof req.params.tag !== 'undefined') {

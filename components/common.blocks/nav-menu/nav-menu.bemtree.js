@@ -46,7 +46,7 @@ block('nav-menu').content()( node => {
                 val: item.code,
                 content: {
                   block: 'link',
-                  url: item.id ? '/movie/category-' + item.id : '/movie',
+                  url: item.id ? '/movie/category-' + item.code : '/movie',
                   content: item.name
                 }
               }
