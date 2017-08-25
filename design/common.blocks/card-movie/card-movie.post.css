@@ -9,12 +9,32 @@ block(card-movie) {
     }
   }
 
-  .mod(view short) {
+  .mod(view order) {
+    padding: 24px 0;
+    box-sizing: border-box;
     box-shadow: inset 0px 1px 0px 0px currentColor,
                 inset 0px -1px 0px 0px currentColor;
 
-    & + & {
-      box-shadow: inset 0px -1px 0px 0px currentColor;
+    .elem(aside) {
+      lost-column: 23/32 1 0;
+      margin-left: 28px;
+    }
+  }
+
+  .mod(view ticket) {
+    flex-direction: column;
+
+    .elem(section) {
+      display: flex;
+      flex-direction: row;
+      padding: 24px 0;
+      box-sizing: border-box;
+      box-shadow: inset 0px 1px 0px 0px currentColor,
+                  inset 0px -1px 0px 0px currentColor;
+
+      & + .elem(section) {
+        box-shadow: inset 0px -1px 0px 0px currentColor;
+      }
     }
 
     .elem(aside) {
