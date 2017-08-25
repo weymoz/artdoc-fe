@@ -1,5 +1,14 @@
 block('nav-menu').content()( node => {
-  const category = node.data.category;
+  const categoryCode = node.data.currentCategoryCode;
+  const category = [
+    {
+      name: 'Все фильмы',
+      id: null,
+      code: 'all',
+    },
+    ...node.data.category
+  ];
+  
   return [
     {
       block: 'dropdown',
@@ -24,37 +33,24 @@ block('nav-menu').content()( node => {
             block: 'menu',
             mods: {
               type: 'radio',
-              'nav-menu': true,
+              'nav-menu': true
             },
             mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } },
-            content: [
-              {
-                elem: 'item',
-                elemMods: {
-                  type: 'link',
-                },
-                val: 'all',
-                content: {
-                  block: 'link',
-                  url: '/movie',
-                  content: 'Все фильмы'
-                }
-              },
-              category && category.map( item => {
+            val: categoryCode,
+            content: category && category.map( item => {
               return {
                 elem: 'item',
                 elemMods: {
-                  type: 'link',
+                  type: 'link'
                 },
                 val: item.code,
                 content: {
                   block: 'link',
-                  url: '/movie/category-' + item.id,//item.code,
+                  url: item.id ? '/movie/category-' + item.id : '/movie',
                   content: item.name
                 }
               }
             } )
-            ]
           }
         }
       }

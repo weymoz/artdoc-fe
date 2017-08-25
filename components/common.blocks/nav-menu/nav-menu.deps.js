@@ -14,7 +14,7 @@
     },
     {
       block: 'menu',
-      mods: { type: 'radio' },
+      mods: { type: 'radio', 'nav-menu': true },
       elems: [ 'item' ]
     }
   ]

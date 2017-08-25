@@ -14,11 +14,11 @@ block(menu).mod(theme artdoc) {
   }
 
   @each $size, $fontSize, $lineHeight, $paddingVert, $paddingHor in
-  (s,    m,    l,    xl),
-  (13px, 13px, 15px, 15px),  /* fontSize */
-  (24px, 24px, 28px, 32px,), /* lineHeight */
-  (3px,  4px,  5px,  6px),   /* paddingVer */
-  (10px, 13px, 15px, 20px)   /* paddingHor */ {
+    (s,    m,    l,    xl),
+    (13px, 13px, 15px, 15px),  /* fontSize */
+    (24px, 24px, 28px, 32px,), /* lineHeight */
+    (3px,  4px,  5px,  6px),   /* paddingVer */
+    (10px, 13px, 15px, 20px)   /* paddingHor */ {
     .mod(size $size) {
       font-size: $fontSize;
       line-height: $lineHeight;
@@ -39,17 +39,6 @@ block(menu).mod(theme artdoc) {
           padding: 0 $paddingHor;
         }
       }
-    }
-  }
-
-  .mod(nav-menu) {
-    background-color: #23232C;
-    color: #fff;
-    column-count: 6;
-
-    &:before,
-    &:after {
-      content: none
     }
   }
 
