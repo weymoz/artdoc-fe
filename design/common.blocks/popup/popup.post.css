@@ -1,0 +1,250 @@
+.popup {
+  display: none;
+  visibility: hidden;
+  margin: -9999px 0 0 -9999px;
+  animation-duration: 0.1s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}
+
+.popup.popup_js_inited {
+  display: block;
+}
+
+.popup.popup_visible {
+  visibility: visible;
+  margin: 0;
+}
+/* Divided into two parts for better optimization */
+
+.popup.popup_direction_bottom-left {
+  animation-name: popup_bottom;
+}
+
+.popup.popup_direction_bottom-left.popup_visible {
+  animation-name: popup_bottom_visible;
+}
+
+.popup.popup_direction_bottom-center {
+  animation-name: popup_bottom;
+}
+
+.popup.popup_direction_bottom-center.popup_visible {
+  animation-name: popup_bottom_visible;
+}
+
+.popup.popup_direction_bottom-right {
+  animation-name: popup_bottom;
+}
+
+.popup.popup_direction_bottom-right.popup_visible {
+  animation-name: popup_bottom_visible;
+}
+
+.popup.popup_direction_top-left {
+  animation-name: popup_top;
+}
+
+.popup.popup_direction_top-left.popup_visible {
+  animation-name: popup_top_visible;
+}
+
+.popup.popup_direction_top-center {
+  animation-name: popup_top;
+}
+
+.popup.popup_direction_top-center.popup_visible {
+  animation-name: popup_top_visible;
+}
+
+.popup.popup_direction_top-right {
+  animation-name: popup_top;
+}
+
+.popup.popup_direction_top-right.popup_visible {
+  animation-name: popup_top_visible;
+}
+
+.popup.popup_direction_right-top {
+  animation-name: popup_right;
+}
+
+.popup.popup_direction_right-top.popup_visible {
+  animation-name: popup_right_visible;
+}
+
+.popup.popup_direction_right-center {
+  animation-name: popup_right;
+}
+
+.popup.popup_direction_right-center.popup_visible {
+  animation-name: popup_right_visible;
+}
+
+.popup.popup_direction_right-bottom {
+  animation-name: popup_right;
+}
+
+.popup.popup_direction_right-bottom.popup_visible {
+  animation-name: popup_right_visible;
+}
+
+.popup.popup_direction_left-top {
+  animation-name: popup_left;
+}
+
+.popup.popup_direction_left-top.popup_visible {
+  animation-name: popup_left_visible;
+}
+
+.popup.popup_direction_left-center {
+  animation-name: popup_left;
+}
+
+.popup.popup_direction_left-center.popup_visible {
+  animation-name: popup_left_visible;
+}
+
+.popup.popup_direction_left-bottom {
+  animation-name: popup_left;
+}
+
+.popup.popup_direction_left-bottom.popup_visible {
+  animation-name: popup_left_visible;
+}
+
+@keyframes popup_bottom {
+
+  0% {
+    visibility: visible;
+    margin: 0;
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  99% {
+    margin: 0;
+    transform: translateY(10px);
+  }
+
+  100% {
+    visibility: hidden;
+    margin: -9999px 0 0 -9999px;
+    opacity: 0;
+  }
+}
+
+@keyframes popup_bottom_visible {
+
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes popup_top {
+
+  0% {
+    visibility: visible;
+    margin: 0;
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  99% {
+    margin: 0;
+    transform: translateY(-10px);
+  }
+
+  100% {
+    visibility: hidden;
+    margin: -9999px 0 0 -9999px;
+    opacity: 0;
+  }
+}
+
+@keyframes popup_top_visible {
+
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes popup_right {
+
+  0% {
+    visibility: visible;
+    margin: 0;
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  99% {
+    margin: 0;
+    transform: translateX(10px);
+  }
+
+  100% {
+    visibility: hidden;
+    margin: -9999px 0 0 -9999px;
+    opacity: 0;
+  }
+}
+
+@keyframes popup_right_visible {
+
+  0% {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes popup_left {
+
+  0% {
+    visibility: visible;
+    margin: 0;
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  99% {
+    margin: 0;
+    transform: translateX(-10px);
+  }
+
+  100% {
+    visibility: hidden;
+    margin: -9999px 0 0 -9999px;
+    opacity: 0;
+  }
+}
+
+@keyframes popup_left_visible {
+
+  0% {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

@@ -1,9 +1,7 @@
-block('card-movie').mod('view', 'short')(
+block('card-movie').mod('view', 'order')(
 
   def()( ( node, ctx ) => {
-    const _movie = ctx.movie;
-    _movie.url = _movie.code ? '/movie/' + _movie.code : null;
-
+    ctx.movie.url = ctx.movie.code ? '/movie/' + ctx.movie.code : null;
     return applyNext();
   }),
 
@@ -11,6 +9,7 @@ block('card-movie').mod('view', 'short')(
     return [
       {
         elem: 'content',
+        elemMods: { type: 'link' },
         content: [
           { elem: 'cover' }
         ]
@@ -39,7 +38,7 @@ block('card-movie').mod('view', 'short')(
               { elem: 'language' },
               { elem: 'subs' }
             ]
-          },
+          }
         ]
       }
     ];

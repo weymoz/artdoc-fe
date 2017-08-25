@@ -19,6 +19,7 @@ block('card-movie').mod('view', 'schedule')(
       },
       {
         elem: 'content',
+        elemMods: { type: 'link' },
         content: [
           { elem: 'cover' }
         ]
@@ -30,9 +31,7 @@ block('card-movie').mod('view', 'schedule')(
           { elem: 'name' },
           {
             elem: 'list',
-            elemMods: {
-              delimiter: 'vertical'
-            },
+            elemMods: { delimiter: 'vertical' },
             content: [
               { elem: 'director' },
               { elem: 'countries' },

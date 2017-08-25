@@ -1,39 +1,28 @@
-block(select).mod(theme artdoc) {
-  max-width: 100%;
-  vertical-align: bottom;
+block(select).mod(theme artdoc) {    
 
   .elem(button) {
-    width: 100%;
-    vertical-align: top;
+    
   }
 
   block(button).elem(text) {
-    display: block;
-    text-align: left;
-    padding-right: 25px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-
-    &:empty:before {
-      content: '\00a0';
-    }
+    
   }
 
   .elem(tick) {
-    position: absolute;
-    top: 0;
-    right: 0;
-
-    background-image: url(../../icon/_symbol/icon_symbol_chevron-down.svg);
-
-    transition: transform 0.1s ease-out;
+    
   }
 
   .mod(opened) .elem(tick) {
-    transform: rotate(-180deg);
+    
   }
 
   .mod(width available) {
-    width: 100%;
+    
+  }
+
+  .mod(has-error) {
+    block(button) {
+      
+    }
   }
 }
