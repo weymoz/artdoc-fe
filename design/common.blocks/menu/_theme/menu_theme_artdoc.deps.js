@@ -1,5 +1,9 @@
 [{
   shouldDeps: [
-    { elem: 'item', mods: { theme: 'artdoc' } }
+    {
+      elem: 'item',
+      mod: 'theme',
+      val: 'artdoc'
+    }
   ]
 }]

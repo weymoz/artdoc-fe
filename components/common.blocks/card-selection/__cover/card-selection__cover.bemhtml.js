@@ -6,7 +6,7 @@ block('card-selection').elem('cover')(
       block: 'image',
       mix: { block: node.block, elem: node.elem },
       mods: {
-        cover: true
+        cover: 'width'
       },
       url: node._image
     }
@@ -26,7 +26,7 @@ block('card-selection').elem('cover')(
           {
             block: 'image',
             mods: {
-              cover: true
+              cover: 'width'
             },
             url: node._image
           },

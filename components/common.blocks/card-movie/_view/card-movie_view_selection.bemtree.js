@@ -13,21 +13,16 @@ block('card-movie').mod('view', 'selection')(
         elem: 'content',
         content: [
           { elem: 'cover' },
-          {
-            elem: 'list',
-            content: [
-              { elem: 'director' }
-            ]
-          },
+          { elem: 'director', mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } } },
           { elem: 'orig-name' },
-          { elem: 'name' },
-          {
-            elem: 'list',
-            content: [
-              { elem: 'year' },
-              { elem: 'countries' }
-            ]
-          }
+          { elem: 'name' }
+        ]
+      },
+      {
+        elem: 'aside',
+        content: [
+          { elem: 'countries', mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } } },
+          { elem: 'year', mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } } }
         ]
       }
     ];

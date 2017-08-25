@@ -1,5 +1,5 @@
 block( 'card-movie' ).elem( 'schedule' )(
-  match( node => { return !node._schedule || !node._schedule.length } ).def()( '' ),
+  match( node => { return !node._schedules || !node._schedules.length } ).def()( '' ),
   addAttrs()( ( node, ctx ) => {
     return {
       title: applyCtx( {
@@ -33,11 +33,11 @@ block( 'card-movie' ).elem( 'schedule' )(
       }
     ]
   } ),
-  match( node => { return node._schedule && node._schedule.length } ).def()( node => {
+  match( node => { return node._schedules && node._schedules.length } ).def()( node => {
     return [
-      applyNext( { 'ctx.content': node._schedule[ 0 ] } ),
-      node._schedule.length > 1
-        ? applyNext( { 'ctx.content': node._schedule[ node._schedule.length - 1 ] } )
+      applyNext( { 'ctx.content': node._schedules[ 0 ] } ),
+      node._schedules.length > 1
+        ? applyNext( { 'ctx.content': node._schedules[ node._schedules.length - 1 ] } )
         : ''
     ].join('');
   } )

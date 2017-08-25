@@ -7,7 +7,9 @@ block('card-movie').elem('description')(
 )
 
 block('card-movie').elem('description').elemMod( 'short', true ).content()( node => {
-  return node._description.length > 190
-    ? node._description.replace( /^(.{140}[^\s]*).*/, '$1' ) + '…'
-    : node._description
+  if ( node._description.length > 190 ) {
+    var text = node._description.substr( 0, 160 );
+    node._description = text.substr( 0, Math.min( text.length, text.lastIndexOf( ' ' ) ) ) + '…'
+  }
+  return node._description
 } )

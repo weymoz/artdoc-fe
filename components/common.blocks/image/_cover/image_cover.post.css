@@ -1,6 +1,11 @@
-block(image).mod(cover) {
+block(image).mod(cover width) {
   display: block;
   width: 100%;
   object-fit: cover
-  /*font-family: 'object-fit: cover' */
+}
+
+block(image).mod(cover height) {
+  display: block;
+  height: 100%;
+  object-fit: cover
 }

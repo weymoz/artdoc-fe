@@ -125,21 +125,6 @@ block(button).mod(theme artdoc) {
     }
   }
 
-  .mod(style order) {
-    font-weight: bold;
-    background-color: #111;
-
-    .block(icon) {
-      background-color: #f4203b;
-      width: 2em;
-    }
-
-    .elem(text) {
-      text-align: center;
-      color: #fff;
-    }
-  }
-
   @each $name, $color in
     (facebook, twitter,    live,   yahoo, google-plus, vkontakte,  yandex,    line,   weibo),
     ( #3b5998, #55acee, #00a1f1, #410093,     #dc4e41,   #45668e, #ffcc00, #00c300, #e71d34) {

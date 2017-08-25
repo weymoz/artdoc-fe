@@ -13,6 +13,7 @@ block('card-selection').mod('view', 'selections')(
               ctx.selection.movies.map( item => {
                 return {
                   block: 'card-movie',
+                  mix: { block: node.block, elem: 'item' },
                   mods: {
                       view: 'selection'
                   },
