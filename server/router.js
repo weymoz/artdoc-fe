@@ -47,7 +47,7 @@ module.exports = function( app ) {
   request( { url: '/api/category/?per-page=1000'} ).then( response => {
 
     data.category = response.items.sort(function (a,b) {
-      return a.name.localeCompare(b.name);
+      return a.name.localeCompare(b.name, 'ru');
     });
 
     for ( let i = data.category.length - 1; i >= 0; i-- ) {
