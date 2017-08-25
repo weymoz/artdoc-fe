@@ -1,19 +1,19 @@
 block('page').elem('title')
-  .mod('size', 'xl')
+  .elemMod('size', 'xl')
   .tag()('h1');
 
 block('page').elem('title')
-  .mod('size', 'l')
+  .elemMod('size', 'l')
   .tag()('h2');
 
 block('page').elem('title')
-  .mod('size', 'm')
+  .elemMod('size', 'm')
   .tag()('h3');
 
 block('page').elem('title')
-  .mod('size', 's')
+  .elemMod('size', 's')
   .tag()('h4');
 
 block('page').elem('title')
-  .mod('size', 'xs')
+  .elemMod('size', 'xs')
   .tag()('h5');

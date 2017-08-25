@@ -18,7 +18,8 @@
     {
       block: 'link',
       mods: {
-        view: 'tag'
+        view: 'tag',
+        theme: 'artdoc-dark'
       }
     }
   ]
