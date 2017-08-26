@@ -32,11 +32,20 @@ block('page-index').replace()(function() {
           elemMods: {
             size: 'xl'
           },
+          mix: { block: 'font', mods: { family: 'helvetica-condensed', loaded: true } },
           content:  'Архив и онлайн-сеансы документального кино на русском языке'
         },
         {
           block: 'slider',
           content: slider
+        },
+        {
+            elem: 'title',
+            elemMods: {
+            size: 'xl'
+            },
+            mix: { block: 'font', mods: { family: 'helvetica-condensed', loaded: true } },
+            content: 'Авторские подборки'
         },
         {
           elem: 'collections',
@@ -56,6 +65,7 @@ block('page-index').replace()(function() {
             elemMods: {
             size: 'xl'
             },
+            mix: { block: 'font', mods: { family: 'helvetica-condensed', loaded: true } },
             content: 'О проекте'
         },
         {
