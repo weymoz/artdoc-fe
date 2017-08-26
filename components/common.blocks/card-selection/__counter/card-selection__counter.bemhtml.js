@@ -3,7 +3,7 @@ block( 'card-selection' ).elem( 'counter' )(
   content()( node => {
     return node._name
   } ),
-  match( node => node._url ).content()( node => {
+  match( node => node._movies && node._movies.length ).content()( node => {
     return [
       {
         block: 'selection-counter',

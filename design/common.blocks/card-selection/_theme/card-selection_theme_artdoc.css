@@ -3,8 +3,7 @@
   margin-bottom: 60px;
   display: flex;
   justify-content: flex-start;
-  max-height: 340px;
-  height: 340px;
+  height: 320px;
 }
 
 .card-selection_view_selections .card-selection__content {
@@ -24,7 +23,7 @@
 .card-selection_view_selections .card-selection__preview {
   display: block;
   max-width: 644px;
-  height: 320px;
+  height: 340px;
   overflow: hidden;
 }
 
@@ -46,6 +45,7 @@
   height: 100%;
   box-sizing: border-box;
   padding: 20px 30px;
+  background-color: rgb(0, 0, 0, 0.5);
 }
 
 .card-selection_view_selections .card-selection__name {

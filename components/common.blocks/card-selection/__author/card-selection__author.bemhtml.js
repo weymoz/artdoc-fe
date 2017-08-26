@@ -3,7 +3,7 @@ block( 'card-selection' ).elem( 'author' )(
   content()( node => {
     return node._name
   } ),
-  match( node => node._url ).content()( node => {
+  match( node => node._author && node._author.length ).content()( node => {
     let author = node._author[0];
     return {
         block: 'card-author',
