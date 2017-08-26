@@ -13,8 +13,7 @@ block('page-index').replace()(function() {
       slider[ slidePage ][ linkCount ] = {
         block: 'link',
         mods: {
-          view: 'tag',
-          size: 'l'
+          view: 'tag'
         },
         mix: { block: 'slider', elem: 'link' },
         url: '/movie/category-' + currentLink.code,

@@ -23,15 +23,11 @@ block(slider) {
   }
 
   elem(page) {
-      display: none;
+    display: none;
 
     mod(visible) {
       display: block;
     }
-  }
-
-  elem(link) {
-    border: 1px solid #D8D8D8;
   }
 
   elem(view) {

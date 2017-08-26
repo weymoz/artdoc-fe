@@ -72,9 +72,11 @@ block('movie-about').elem('item')(
     return ctx.movie.tags.split(', ').map( tag => {
       return {
         block: 'link',
+        mix: { block: 'text', mods: { bold: true } },
         mods: {
           view: 'tag',
-          size: 's'
+          size: 'xs',
+          theme: 'artdoc-dark'
         },
         url: '/movie/tag-' + tag,
         content: tag
