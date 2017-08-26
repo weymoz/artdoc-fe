@@ -3,13 +3,13 @@
   margin-bottom: 60px;
   display: flex;
   justify-content: flex-start;
-  max-height: 340px;
-  height: 340px;
+  height: 320px;
 }
 
 .card-selection_view_selections .card-selection__content {
   flex: 1;
   position: relative;
+  height: 320px;
 }
 
 .card-selection_view_selections .card-selection__aside {
