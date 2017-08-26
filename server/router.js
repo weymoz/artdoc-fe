@@ -39,32 +39,37 @@ const isCallerMobile = req => {
 module.exports = function( app ) {
 
   // Expand
-  let data = {};
+  let global = {};
 
-  data.title = 'ArtDocMedia';
-  data.categoryByCode = {};
+  global.title = 'ArtDocMedia';
+  global.categoryByCode = {};
 
   request( { url: '/api/category/?per-page=1000'} ).then( response => {
 
-    data.category = response.items.sort(function (a,b) {
+    global.category = response.items.sort(function (a,b) {
       return a.name.localeCompare(b.name, 'ru');
     });
 
-    for ( let i = data.category.length - 1; i >= 0; i-- ) {
-      data.categoryByCode[ data.category[i].code ] = data.category[i];
+    for ( let i = global.category.length - 1; i >= 0; i-- ) {
+      global.categoryByCode[ global.category[i].code ] = global.category[i];
     }
 
   } ).catch( () => 'Fail for get category' );
 
   //Pages
   app.get( '/', function( req, res ) {
-    data.page = 'index';
-    data.bundle = isCallerMobile( req ) ? 'touch' : 'desktop';
+
+    //render( req, res, global );
     request( { url: '/api/authorcompilation/?per-page=3&page=1' } )
       .then(response => {
-          data.api = response.items;
-          render( req, res, data );
-      } )
+
+        let data = Object.assign({}, global, {api: response.items});
+
+        data.page = 'index';
+
+        data.bundle = isCallerMobile( req ) ? 'touch' : 'desktop';
+        render( req, res, data );
+      })
       .catch(() => res.send('error') );
 
   });
@@ -73,9 +78,11 @@ module.exports = function( app ) {
   app.get( ['/movie/category-:category', '/movie/tag-:tag', '/movie'], function( req, res ) {
     let req_url = new URL(req.protocol + '://' + req.get('host') + req.originalUrl);
 
+    let data = Object.assign({}, global);
+
     data.page = 'movies';
     data.currentCategoryCode = 'all';
-    data.title = req.params.category ? data.categoryByCode[ req.params.category ].name : 'Все фильмы';
+    data.title = req.params.category ? global.categoryByCode[ req.params.category ].name : 'Все фильмы';
     data.pagination = {
       'per-page' : 20,
       'page': req.query.page ? req.query.page : 1,
@@ -84,8 +91,8 @@ module.exports = function( app ) {
 
     let url = '/api/movie/?sort=-rating';
     if (typeof req.params.category !== 'undefined') {
-      url = '/api/movie/filter/?sort=-rating&filter%5Bcategory%5D=' + data.categoryByCode[ req.params.category ].id;
-      data.currentCategoryCode = data.categoryByCode[ req.params.category ].code;
+      url = '/api/movie/filter/?sort=-rating&filter%5Bcategory%5D=' + global.categoryByCode[ req.params.category ].id;
+      data.currentCategoryCode = global.categoryByCode[ req.params.category ].code;
     }
 
     if (typeof req.params.tag !== 'undefined') {
@@ -103,6 +110,8 @@ module.exports = function( app ) {
   });
 
   app.get( [ '/movie/:name' ], ( req, res ) => {
+    let data = Object.assign({}, global);
+
     if ( req.query.hasOwnProperty( 'code' ) ) {
       data.page = 'order';
       request( { url: '/api/session/?expand=movie,category&code=' + req.query.code } )
@@ -127,55 +136,57 @@ module.exports = function( app ) {
 
   //Selections
   app.get( ['/selection'], function( req, res ) {
-      data.pagination = {
-          'per-page' : 20,
-          'page': req.query.page ? req.query.page : 1
-      };
+    let data = Object.assign({}, global);
+    data.pagination = {
+      'per-page' : 20,
+      'page': req.query.page ? req.query.page : 1
+    };
 
-      let url = '/api/authorcompilation/';
-      url += '?per-page=' + data.pagination['per-page'] + '&page=' + data.pagination.page;
+    let url = '/api/authorcompilation/';
+    url += '?per-page=' + data.pagination['per-page'] + '&page=' + data.pagination.page;
 
-      data.page = 'selections';
-      data.title = 'Selections';
+    data.page = 'selections';
+    data.title = 'Selections';
       request( { url: url } )
-          .then( response => {
-              data.api = response.items;
-              render( req, res, data );
-          } )
-          .catch(() => res.send('error') );
+        .then( response => {
+          data.api = response.items;
+          render( req, res, data );
+        }).catch(() => res.send('error') );
   });
 
   app.get( ['/selection/:code'], function( req, res ) {
-      data.pagination = {
-          'per-page' : 20,
-          'page': req.query.page ? req.query.page : 1
-      };
+    let data = Object.assign({}, global);
+    data.pagination = {
+      'per-page' : 20,
+      'page': req.query.page ? req.query.page : 1
+    };
 
-      let url = '/api/authorcompilation/?code=' + req.params.code;
+    let url = '/api/authorcompilation/?code=' + req.params.code;
 
-      data.page = 'selection';
-      request( { url: url } )
-          .then( response => {
-              data.api = response.items[0];
-              data.title = response.items[0].name;
-              render( req, res, data );
-          } )
-          .catch(() => res.send('error') );
+    data.page = 'selection';
+    request( { url: url } )
+      .then( response => {
+        data.api = response.items[0];
+        data.title = response.items[0].name;
+        render( req, res, data );
+      }).catch(() => res.send('error') );
   });
 
   //Cinema
   app.get( '/cinema', function( req, res ) {
+    let data = Object.assign({}, global);
     data.page = 'schedule';
     data.title = 'Schedule';
     request( { url: '/api/schedule/?expand=sessions,movie&sort=date_gmt3&date_from=' + (Date.now() / 1000 - (31 * 60 * 60)) } )
         .then( response => {
-            data.api = response.items;
+          data.api = response.items;
             render( req, res, data );
         } )
         .catch(() => res.send('error') );
   });
 
   app.get( '/cinema/release', function ( req, res ) {
+    let data = Object.assign({}, global);
     if ( req.query.hasOwnProperty( 'hash' ) && req.query.hasOwnProperty( 'sess_id' ) && req.query.hasOwnProperty( 'id' ) ) {
       data.page = 'play';
       request( { url: '/cinema/release/?id=' + req.query.id + '&hash=' + req.query.hash + '&sess_id=' + req.query.sess_id } )
@@ -188,6 +199,7 @@ module.exports = function( app ) {
   });
 
   app.get( '/order/:transaction_id', ( req, res ) => {
+    let data = Object.assign({}, global);
     data.page = 'thanks';
     data.title = 'Билет успешно оплачен';
     client.post( '/payment/provide/', { nonce: req.query.payment_nonce, transaction_id: req.params.transaction_id } )
@@ -200,6 +212,7 @@ module.exports = function( app ) {
 
   // API
   app.get( '/api/order/:session_id', ( req, res ) => {
+    let data = Object.assign({}, global);
     client.post( '/cinema/booking/booking/', { CinemaTicketModel: { email: req.query.email }, session_id: req.params.session_id } )
       .then( api => {
         if ( api.data.payment_url ) {

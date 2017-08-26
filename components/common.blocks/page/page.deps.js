@@ -11,6 +11,13 @@
       elems: [ 'title' ]
     },
     { block: 'header' },
-    { block: 'footer' }
+    { block: 'footer' },
+    {
+      block: 'font',
+      mods: {
+          family: 'helvetica-condensed',
+          loaded: true
+      }
+    }
   ]
 })
