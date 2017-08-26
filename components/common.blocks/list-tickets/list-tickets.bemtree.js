@@ -8,7 +8,7 @@ block('list-tickets').content()(function() {
       mix: { block: 'list-tickets', elem: 'item' },
       code: _code,
       ticket: ticket,
-      js: { ticket: ticket }
+      js: { ticket: ticket, timezoneOffset: 0 }
     }
   } );
 });

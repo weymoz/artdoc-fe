@@ -93,6 +93,7 @@ block(card-movie) {
 
     .elem(section) {
       lost-center: 100%;
+      width: 100%;
       display: flex;
       flex-direction: row;
     }
