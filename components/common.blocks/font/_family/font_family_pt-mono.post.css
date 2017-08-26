@@ -2,5 +2,5 @@
 
 block(font).mod(family pt-mono).mod(loaded) {
   font-family: 'PT Mono', monospace;
-  font-weight: 300
+  /*font-weight: 300*/
 }
