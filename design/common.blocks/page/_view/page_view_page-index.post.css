@@ -8,7 +8,6 @@ block(page).mod(view page-index) {
     letter-spacing: 1px;
     margin: 0 auto 40px;
     text-transform: uppercase;
-    font-family: 'Helvetica Neue Condensed'
   }
 
   block(info) {
