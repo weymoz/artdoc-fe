@@ -9,6 +9,7 @@
 .card-selection_view_selections .card-selection__content {
   flex: 1;
   position: relative;
+  height: 320px;
 }
 
 .card-selection_view_selections .card-selection__aside {
