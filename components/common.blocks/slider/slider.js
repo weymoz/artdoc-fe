@@ -25,7 +25,7 @@ provide(bemDom.declBlock(this.name, {
                 }
                 })
 
-                this._domEvents('prev').on('click', function(event) {
+                this._domEvents('prev').on('click', function() {
                   if ( this._currentPage > 0 ) {
                     this._elem('next').findMixedBlock(Button).setMod('disabled', false);
                     pages.get( this._currentPage ).setMod('visible', false);
