@@ -1,0 +1,6 @@
+[{
+  shouldDeps: [
+    { mods: { theme: '*' } },
+    'link'
+  ]
+}]

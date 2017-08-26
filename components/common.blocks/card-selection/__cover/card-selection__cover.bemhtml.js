@@ -12,29 +12,29 @@ block('card-selection').elem('cover')(
     }
   }),
 
-  match( node => node._url )(
-    replace()( node => {
-      var onCover = applyCtx( {
-        elem: 'on-cover',
-        content: node.ctx.cover
-      } );
-      return {
-        block: 'link',
-        mix: { block: node.block, elem: node.elem },
-        url: node._url,
-        content: [
-          {
-            block: 'image',
-            mods: {
-              cover: 'width'
-            },
-            url: node._image
-          },
-          {
-            html: onCover
-          }
-        ]
-      }
-    })
-  )
+  // match( node => node._url )(
+  //   replace()( node => {
+  //     var onCover = applyCtx( {
+  //       elem: 'on-cover',
+  //       content: node.ctx.cover
+  //     } );
+  //     return {
+  //       block: 'link',
+  //       mix: { block: node.block, elem: node.elem },
+  //       url: node._url,
+  //       content: [
+  //         {
+  //           block: 'image',
+  //           mods: {
+  //             cover: 'width'
+  //           },
+  //           url: node._image
+  //         },
+  //         {
+  //           html: onCover
+  //         }
+  //       ]
+  //     }
+  //   })
+  // )
 );
