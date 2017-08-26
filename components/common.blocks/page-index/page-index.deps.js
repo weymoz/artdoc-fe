@@ -8,6 +8,13 @@
       }
     },
     {
+      block: 'font',
+      mods: {
+        loaded: true,
+        family: 'helvetica-condensed'
+      }
+    },
+    {
       block: 'card-selection',
       mods: {
         view: [ 'selections' ],

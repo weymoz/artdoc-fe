@@ -1,0 +1,15 @@
+@import url("https://fast.fonts.net/lt/1.css?apiType=css&c=c20d4c2b-d38c-4d42-9749-ae6773d410d7&fontids=1489180,1489204,1489294");
+
+block(font).mod(family helvetica-bold).mod(loaded) {
+  font-family: 'Helvetica Neue Bold';
+}
+
+@font-face{
+    font-family:"Helvetica Neue Bold";
+    src:url("../Fonts/1489294/fc98cb07-9317-4687-927e-e9e2c0173311.eot?#iefix");
+    src:url("../Fonts/1489294/fc98cb07-9317-4687-927e-e9e2c0173311.eot?#iefix") format("eot"),
+        url("../Fonts/1489294/2552e819-deec-4fb3-b8d1-06bb1a2ec070.woff2") format("woff2"),
+        url("../Fonts/1489294/e7fab64a-919f-4845-9167-4bd2078c1334.woff") format("woff"),
+        url("../Fonts/1489294/2537cc83-9bfa-42a6-80b3-6eb1df154527.ttf") format("truetype");
+  }
+
