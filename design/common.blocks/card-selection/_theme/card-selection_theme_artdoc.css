@@ -24,7 +24,7 @@
 .card-selection_view_selections .card-selection__preview {
   display: block;
   max-width: 644px;
-  height: 320px;
+  height: 340px;
   overflow: hidden;
 }
 
@@ -101,7 +101,8 @@
 
 /*Раскрытая карточка подборки*/
 .card-selection_view_detail .card-selection__aside {
-  margin: 0 55px;
+  margin: 0 auto;
+  max-width: 1316px;
 }
 
 .card-selection_view_detail .card-selection__content {
@@ -159,7 +160,8 @@
 }
 
 .card-selection_view_detail .card-selection__author {
-  margin-left: 30px;
+  max-width: 1316px;
+  margin: 0 auto;
 }
 
 .card-selection_view_detail .card-selection__author .image {
@@ -199,9 +201,10 @@
 }
 
 .card-selection_view_detail .card-selection__description {
-  margin: 0px 55px 40px;
+  margin: 0px auto 40px;
   line-height: 24px;
   font-size: 16px;
+  max-width: 1316px;
 }
 
 .card-selection_view_detail .card-selection__description .text {
