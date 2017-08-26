@@ -3,6 +3,7 @@ block('card-selection').mod('view', 'selections')(
     return [
       {
         elem: 'content',
+        url: '/selection/' + node._code,
         content: [
           { elem: 'preview' }
         ]
