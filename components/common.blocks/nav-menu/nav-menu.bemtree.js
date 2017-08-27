@@ -1,5 +1,4 @@
 block('nav-menu').content()( node => {
-  const categoryCode = node.data.currentCategoryCode;
   const category = [
     {
       name: 'Все фильмы',
@@ -36,7 +35,7 @@ block('nav-menu').content()( node => {
               'nav-menu': true
             },
             mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } },
-            val: categoryCode,
+            val: node.data.currentCategoryCode,
             content: category && category.map( item => {
               return {
                 elem: 'item',

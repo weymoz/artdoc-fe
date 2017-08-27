@@ -1,0 +1,32 @@
+block(link) {
+  line-height: 1.5;
+
+  @each $size, $fontSize in
+    (xs, s, m, l, xl, xxl),
+    (12px, 14px, 16px, 18px, 22px, 32px) {
+    .mod(size $size) {
+      font-size: $fontSize;
+    }
+  }  
+
+  .mod(view text) {
+
+    &,
+    .mod(hovered),
+    .mod(focused) {
+      color: inherit;
+      font-size: inherit;
+      line-height: inherit;
+      text-decoration: inherit;
+    }
+  }
+
+  .mod(view tag) {
+    display: inline-block;
+    border-radius: 2em;
+    text-decoration: none;
+    margin-bottom: .5em;
+    margin-right: .5em;
+    padding: .5em 1em;
+  }
+}

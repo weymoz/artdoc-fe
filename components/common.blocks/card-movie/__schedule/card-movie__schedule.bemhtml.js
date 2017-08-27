@@ -35,9 +35,9 @@ block( 'card-movie' ).elem( 'schedule' )(
   } ),
   match( node => { return node._schedules && node._schedules.length } ).def()( node => {
     return [
-      applyNext( { 'ctx.content': node._schedules[ 0 ] } ),
+      applyNext( { 'ctx.content': node._schedules[ 0 ].date } ),
       node._schedules.length > 1
-        ? applyNext( { 'ctx.content': node._schedules[ node._schedules.length - 1 ] } )
+        ? applyNext( { 'ctx.content': node._schedules[ node._schedules.length - 1 ].date } )
         : ''
     ].join('');
   } )
