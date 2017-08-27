@@ -8,7 +8,7 @@ block('nav-menu').content()( node => {
     },
     ...node.data.category
   ];
-  
+
   return [
     {
       block: 'dropdown',

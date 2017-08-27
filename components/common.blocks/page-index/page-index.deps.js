@@ -22,6 +22,7 @@
       }
     },
     'slider',
+    'news',
     {
       block: 'card-poster'
     }

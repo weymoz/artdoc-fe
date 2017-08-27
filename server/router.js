@@ -64,7 +64,7 @@ module.exports = function( app ) {
     }
 
     function  getPoster() {
-      return request( { url: 'http://dev.artdoc.media/api/schedule/?expand=sessions&per-page=4&unique=1&date_from=' + (Date.now() / 1000) } )
+      return request( { url: 'http://dev.artdoc.media/api/schedule/?expand=sessions,movie&per-page=4&unique=1&date_from=' + (Date.now() / 1000) } )
     }
 
     axios.all([ getCompilation(), getPoster() ])
@@ -214,7 +214,7 @@ module.exports = function( app ) {
 
   // API
   app.get( '/api/order/:session_id', ( req, res ) => {
-    let data = Object.assign({}, global);
+    // let data = Object.assign({}, global);
     client.post( '/cinema/booking/booking/', { CinemaTicketModel: { email: req.query.email }, session_id: req.params.session_id } )
       .then( api => {
         if ( api.data.payment_url ) {

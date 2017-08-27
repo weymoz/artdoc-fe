@@ -2,12 +2,18 @@ block('page-index').replace()(function() {
 
   // Функции для постера
   const poster = this.data.poster;
-  console.log(poster);
 
   // Функция для слайдера
   let slider = [];
   const linkPerSlide = 20;
-  const categories = this.data.category;
+  const categories = [
+    {
+      name: 'Все фильмы',
+      id: null,
+      code: 'all',
+    },
+    ...this.data.category
+  ];
   let links = categories.length;
   const slidesCount = ( ( links - ( links % linkPerSlide ) ) / linkPerSlide ) + ( links % linkPerSlide ? 1 : 0 );
 
@@ -22,7 +28,7 @@ block('page-index').replace()(function() {
           size: 'l'
         },
         mix: { block: 'slider', elem: 'link' },
-        url: '/movie/category-' + currentLink.code,
+        url: currentLink.id ? '/movie/category-' + currentLink.code : '/movie',
         content: currentLink.name
       };
     }
@@ -46,7 +52,12 @@ block('page-index').replace()(function() {
         },
         {
           block: 'card-poster',
+          poster: poster,
           mix: { block: 'page', elem: 'poster' }
+        },
+        {
+          block: 'news',
+          mix: { block: 'page', elem: 'news' }
         },
         {
             elem: 'title',

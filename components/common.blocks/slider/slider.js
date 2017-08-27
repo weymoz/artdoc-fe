@@ -38,10 +38,12 @@ provide(bemDom.declBlock(this.name, {
                   }
                 })
 
-                // this._domEvents('page-item').on('click', function(event) {
-                //   pages.get( this._currentPage ).setMod('visible', false);
-                //   pagination.get( this._currentPage ).setMod('active', false);
-                // }
+                this._domEvents('page-item').on('click', function( event ) {
+                  pages.setMod('visible', false);
+                  pagination.setMod('active', false);
+                  pages.get( event.bemTarget.params.index ).setMod('visible', true);
+                  pagination.get( event.bemTarget.params.index ).setMod('active', true);
+                })
 
             }
         }

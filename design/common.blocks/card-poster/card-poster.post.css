@@ -1,3 +1,90 @@
 block(card-poster) {
-  
+  display: flex;
+  height: 100%;
+
+  elem(control) {
+    position: absolute;
+    width: 90px;
+    height: 40px;
+    top: 20px;
+    right: 30px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  elem(item).mod(selected) {
+    background: rgb(197,197,210, 0.2);
+  }
+
+  elem(prev) {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+
+  elem(next) {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+
+  block(button) {
+    cursor: pointer;
+
+    mod(focused):before{
+      background-color: unset;
+    }
+
+    mod(disabled){
+      background-color: #d8d8d8;
+      opacity: 0.5;
+    }
+  }
+
+  block(button):before {
+    box-shadow: unset;
+  }
+
+  elem(content) {
+    width: 70%;
+    height: 100%;
+    background-color: gray;
+    position: relative;
+
+    elem(preview) {
+      height: 100%;
+      overflow: hidden;
+    }
+  }
+
+  elem(title) {
+    color: white;
+    font-size: 17px;
+    line-height: 20px;
+    padding: 20px 25px 8px;
+    text-transform: uppercase;
+  }
+
+  elem(aside){
+    width: 30%;
+    height: 100%;
+    background-color: #23232C;
+    display: flex;
+    flex-direction: column;
+  }
+
+  elem(movies) {
+    flex: 1;
+  }
+
+  elem(link) {
+    height: 48px;
+    font-weight: bold;
+    padding-left: 25px;
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+
 }

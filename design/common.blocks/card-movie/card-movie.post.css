@@ -150,46 +150,124 @@ block(card-movie) {
     }
   }
 
-  .mod(view selection) {
+  .mod(view short) {
+    padding: 12px 28px 12px 12px;
+    box-sizing: border-box;
     display: flex;
-    flex-direction: column;
-    border-bottom: 1px solid black;
+    justify-content: flex-start;
+    box-shadow: 0px 28px 0px -27px rgb(255, 255, 255, 0.1);
+    cursor: pointer;
 
-    .block(image) {
-      height: 110px;
+    .elem(short-content) {
+      max-width: 38%;
+      padding-left: 15px;
     }
 
     .elem(name) {
-      font-size: 16px;
+      font-size: 14px;
+      line-height: 20px;
+      color: #fff;
+    }
+
+    .elem(date) {
+      color: #A0A0AC;
+      font-size: 14px;
+      line-height: 20px;
+      padding-top: 5px;
     }
 
     .elem(cover) {
-      height: 110px;
+      height: 74px;
+
+      block(image){
+        max-height: 75px;
+      }
     }
 
-    .elem(on-cover) {
-      height: 10px;
+    .elem(short-aside) {
+      flex: 1;
+      margin-left: 15px;
     }
 
-    .elem(content):before {
-      padding-bottom: 0;
+  }
+
+  .mod( view slide ) {
+    height: 100%;
+
+    elem(content) {
+      position: relative;
     }
 
-    .elem(director) {
+    elem(orig-name) {
+      color: white;
+    }
+
+    elem(name) {
+      font-weight: bold;
+      font-size: 40px;
+      line-height: 48px;
+      color: white;
+    }
+
+    elem(info) {
+      position: absolute;
+      top: 0;
+      z-index: 2;
+      width: 311px;
+      display: flex;
+      height: 48px;
+
+      elem(title) {
+        color: white;
+        font-size: 17px;
+        line-height: 20px;
+        padding: 20px 15px 8px;
+        text-transform: uppercase;
+      }
+
+      elem(icon) {
+        width: 48px;
+        height: 48px;
+        background-color: #F3203B;
+      }
+    }
+
+    elem(on-cover) {
+      background: rgb(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: flex-end;
+      flex-direction: column;
+    }
+
+    elem(director) {
+      color: white;
+    }
+
+    elem(description) {
+      max-width: 60%;
+    }
+
+    elem(year) {
+      color: white;
+    }
+
+    elem(countries) {
+      color: white;
+    }
+
+    elem(buy-button) {
+      max-width: 234px;
+      margin-top: 30px;
+    }
+
+    block(button) {
       display: block;
-      color: #676770;
-      font-size: 16px;
-    }
+      padding: 15px 30px;
+      background-color: #fff;
 
-    .elem(aside) {
-      margin-bottom: 10px;
-    }
-
-    .elem(year),
-    .elem(countries) {
-      display: block;
-      font-size: 12px;
-      margin-bottom: 5px;
+      elem(text) {
+        color: black!important;
+      }
     }
 
   }
@@ -224,7 +302,7 @@ block(card-movie) {
     top: 0;
     display: flex;
     flex-direction: column;
-    
+
     padding: 56px 28px 40px;
     text-decoration: none;
   }
@@ -277,7 +355,7 @@ block(card-movie) {
       height: 10px;
     }
   }
- 
+
   .elem(orig-name) {
     font-size: 14px;
     font-weight: bold;
@@ -291,7 +369,6 @@ block(card-movie) {
     line-height: 1.0;
     text-decoration: none;
     margin-top: 0;
-    margin-bottom: 24px;
   }
 
   .elem(list).elem(list) {
@@ -310,7 +387,7 @@ block(card-movie) {
     padding: 0 5px;
     box-sizing: border-box;
   }
-  
+
   .elem(buy) {
     margin-top: 1em;
     display: block;
@@ -339,7 +416,6 @@ block(card-movie) {
   }
 
   .elem(description) {
-    /*margin-top: 24px;*/
     margin-top: 24px;
     font-size: 14px;
     line-height: 1.5;
@@ -390,6 +466,7 @@ block(card-movie) {
       margin-left: 12px;
     }
   }
+
 
   .mod(view selection) {
     display: flex;

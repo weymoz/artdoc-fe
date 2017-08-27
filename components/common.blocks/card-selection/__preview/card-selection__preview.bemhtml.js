@@ -1,5 +1,5 @@
 block('card-selection').elem('preview')(
-    content()( ( node, ctx ) => {
+    content()( ( ) => {
         return [
           { elem: 'cover' },
           {
