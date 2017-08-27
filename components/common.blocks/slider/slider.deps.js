@@ -8,7 +8,7 @@
       'page'
       ]
     },
-    { block: 'link' },
+    { block: 'link', mods: { view: 'tag' } },
     {
       block: 'button',
       mods: {

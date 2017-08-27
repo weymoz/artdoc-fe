@@ -1,5 +1,5 @@
 ({
   shouldDeps: [
-    { mods: { theme: 'artdoc' } }
+    { mods: { theme: '*' } }
   ]
 })

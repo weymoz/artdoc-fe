@@ -21,6 +21,12 @@
         view: 'tag',
         theme: 'artdoc-dark'
       }
+    },
+    {
+      block: 'text',
+      mods: {
+        bold: true
+      }
     }
   ]
 }]

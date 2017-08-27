@@ -1,30 +1,13 @@
 block(link).mod(theme artdoc-dark) {
   color: #f4203b;
 
-  .mod(view text) {
-
-    &,
-    &:hover,
-    &:focus {
-      color: inherit;
-      font-size: inherit;
-      line-height: inherit;
-      text-decoration: inherit;
-    }
+  .mod(hovered),
+  .mod(focused) {
+    color: #a0a0ac;
   }
 
   .mod(view tag) {
-    display: inline-block;
-    padding-left: 10px;
-    padding-right: 10px;
-    border-radius: 2em;
-    background-color: #23232c;
     color: #fff;
-    text-decoration: none;
-    margin-bottom: .5em;
-    font-weight: bold;
-    line-height: 28px;
-    font-size: 14px;
-    margin-right: .5em;
+    background-color: #23232c;
   }
 }

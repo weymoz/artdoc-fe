@@ -59,7 +59,7 @@ block('card-movie').mod('view', 'promo')(
             elem: 'section',
             content: [
               { elem: 'discussion' },
-              { elem: 'show-more' },
+              { elem: 'show-more' }
             ]
           },
           { elem: 'buy' },
