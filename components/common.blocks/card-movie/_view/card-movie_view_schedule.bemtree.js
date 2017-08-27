@@ -21,7 +21,8 @@ block('card-movie').mod('view', 'schedule')(
         elem: 'content',
         elemMods: { type: 'link' },
         content: [
-          { elem: 'cover' }
+          { elem: 'cover' },
+          { elem: 'rating' }
         ]
       },
       {

@@ -13,6 +13,7 @@
         'list',
         'name',
         'orig-name',
+        'rating',
         'schedule',
         'schedule-duration',
         'show-more',
