@@ -21,6 +21,9 @@
         theme: 'artdoc'
       }
     },
-    'slider'
+    'slider',
+    {
+      block: 'card-poster'
+    }
   ]
 })

@@ -1,5 +1,10 @@
 block('page-index').replace()(function() {
 
+  // Функции для постера
+  const poster = this.data.poster;
+  console.log(poster);
+
+  // Функция для слайдера
   let slider = [];
   const linkPerSlide = 20;
   const categories = this.data.category;
@@ -38,6 +43,10 @@ block('page-index').replace()(function() {
         {
           block: 'slider',
           content: slider
+        },
+        {
+          block: 'card-poster',
+          mix: { block: 'page', elem: 'poster' }
         },
         {
             elem: 'title',

@@ -59,19 +59,21 @@ module.exports = function( app ) {
   //Pages
   app.get( '/', function( req, res ) {
 
-    //render( req, res, global );
-    request( { url: '/api/authorcompilation/?per-page=3&page=1' } )
-      .then(response => {
+    function getCompilation() {
+      return request( { url: '/api/authorcompilation/?per-page=3&page=1' } )
+    }
 
-        let data = Object.assign({}, global, {api: response.items});
+    function  getPoster() {
+      return request( { url: 'http://dev.artdoc.media/api/schedule/?expand=sessions&per-page=4&unique=1&date_from=' + (Date.now() / 1000) } )
+    }
 
+    axios.all([ getCompilation(), getPoster() ])
+      .then( (response) => {
+        let data = Object.assign({}, global, {api: response[0].items}, {poster: response[1]});
         data.page = 'index';
-
         data.bundle = isCallerMobile( req ) ? 'touch' : 'desktop';
         render( req, res, data );
-      })
-      .catch(() => res.send('error') );
-
+      } )
   });
 
   //Catalog
