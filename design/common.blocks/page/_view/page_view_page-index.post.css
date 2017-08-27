@@ -6,7 +6,7 @@ block(page).mod(view page-index) {
     font-size: 32px;
     line-height: 40px;
     letter-spacing: 1px;
-    margin: 0 auto 40px;
+    margin: 40px auto;
     text-transform: uppercase;
   }
 
@@ -21,6 +21,11 @@ block(page).mod(view page-index) {
     line-height: 24px;
   }
 
+  elem(poster) {
+    width: 100%;
+    height: 504px;
+    margin: 80px auto 100px;
+  }
 
 
 }

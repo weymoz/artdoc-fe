@@ -1,11 +1,11 @@
 block(text).mod(theme artdoc) {
 
-  @each $size, $fontSize in
+/*  @each $size, $fontSize in
     (xs, s, m, l, xl, xxl),
     (10px, 14px, 16px, 18px, 22px, 32px) {
     .mod(size $size) {
       font-size: $fontSize;
     }
-  }
+  }*/
 }
 

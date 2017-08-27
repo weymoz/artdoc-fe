@@ -5,7 +5,6 @@ block( 'card-selection' ).elem( 'author' )(
   } ),
   match( node => node._author && node._author.length ).content()( node => {
     let author = node._author[0];
-    console.log(author.image_id);
     return {
         block: 'card-author',
         content: [

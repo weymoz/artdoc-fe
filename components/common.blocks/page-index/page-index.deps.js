@@ -21,6 +21,10 @@
         theme: 'artdoc'
       }
     },
-    'slider'
+    'slider',
+    'news',
+    {
+      block: 'card-poster'
+    }
   ]
 })
