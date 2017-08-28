@@ -76,6 +76,14 @@ module.exports = function( app ) {
       } )
   });
 
+  // About
+  app.get('/about', function(req, res) {
+    let data = Object.assign({}, global);
+    data.page = 'about';
+    render( req, res, data );
+  });
+
+
   //Catalog
   app.get( ['/movie/category-:category', '/movie/tag-:tag', '/movie'], function( req, res ) {
     let req_url = new URL(req.protocol + '://' + req.get('host') + req.originalUrl);

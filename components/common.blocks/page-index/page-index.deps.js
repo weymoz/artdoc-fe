@@ -25,6 +25,13 @@
     'news',
     {
       block: 'card-poster'
+    },
+    {
+      block: 'button',
+      mods: {
+        type: 'link',
+        theme: 'artdoc'
+      }
     }
   ]
 })

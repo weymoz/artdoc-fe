@@ -5,7 +5,15 @@ block('card-selection').mod('view', 'selections')(
         elem: 'content',
         url: '/selection/' + node._code,
         content: [
-          { elem: 'preview' }
+          { elem: 'preview' },
+          {
+            elem: 'preview-info',
+              content: [
+                { elem: 'name' },
+                { elem: 'author' },
+                { elem: 'counter' }
+              ]
+          },
         ]
       },
       {

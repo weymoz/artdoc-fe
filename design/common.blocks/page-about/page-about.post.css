@@ -1,0 +1,168 @@
+block(page-about) {
+
+  block(breadcrumbs){
+    block(link){
+    font-size: 12px;
+    }
+  }
+
+  block(title) {
+    font-size: 32px;
+    letter-spacing: 1px;
+    line-height: 40px;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+  }
+
+
+  .block(paragraph) {
+    font-size: 20px;
+    line-height: 28px;
+    margin-bottom: 30px;
+    color: #23232C;
+
+    block(link) {
+      color: #23232C;
+      font-size: 20px;
+      line-height: 28px;
+    }
+  }
+
+  elem(main-title) {
+    max-width: 285px;
+    font-size: 54px!important;
+    line-height: 64px!important;
+    text-transform: none!important;
+    position: relative;
+  }
+
+  elem(main-title):after {
+    content: '';
+    width: 12px;
+    height: 12px;
+    background-color: #F3203B;
+    position: absolute;
+    bottom: 12px;
+    right: -10px;
+  }
+
+  elem(header) {
+    width: 100%;
+    margin: 30px 56px 50px;
+  }
+
+  elem(content) {
+    max-width: 868px;
+    margin: 0 auto;
+
+    elem(text-block){
+      margin-bottom: 80px;
+    }
+  }
+
+  elem(rate-list) {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  elem(rate-title) {
+    margin-bottom: 0!important;
+  }
+
+  block(rate-card) {
+    width: 380px;
+    box-sizing: border-box;
+    margin-top: 64px;
+    margin-right: 36px;
+    height: 72px;
+    display: flex;
+    font-size: 16px;
+    line-height: 24px;
+
+    elem(counter) {
+      background-color: #23232C;
+      display: block;
+      width: 40px;
+      height: 40px;
+      position: relative;
+      color: white;
+      font-size: 20px;
+      line-height: 40px;
+      flex-shrink: 0;
+      margin-right: 16px;
+      text-align: center;
+      font-weight: bold;
+      z-index: 9;
+    }
+
+    elem(counter):after {
+      content: '';
+      width: 8px;
+      height: 8px;
+      display: block;
+      background-color: #E20F18;
+      position: absolute;
+      top: 0px;
+      right: 0;
+      z-index: 10;
+    }
+
+  }
+
+  elem(footer) {
+    margin: 0 auto;
+    background-color: #23232C;
+    padding: 80px 0 40px;
+    color: white;
+
+    block(title){
+      max-width: 868px;
+      display: block;
+      margin: 0 auto 40px;
+      color: white;
+      text-align: center;
+    }
+
+    elem(info) {
+      display: flex;
+      max-width: 868px;
+      margin: 0 auto;
+      justify-content: space-between;
+    }
+
+    elem(aside) {
+      max-width: 200px;
+
+      block(image){
+        width: 114px;
+        height: 114px;
+        border-radius: 50%;
+        border: 1px solid white;
+      }
+    }
+
+    block(description){
+
+      elem(name){
+        margin-top: 23px;
+        font-size: 14px;
+        line-height: 24px;
+      }
+
+      elem(role){
+        font-size: 14px;
+        line-height: 20px;
+        color: #777783;
+      }
+    }
+
+    elem(footer-content){
+      max-width: 644px;
+
+      block(paragraph) {
+        color: white;
+      }
+    }
+  }
+
+}

@@ -6,6 +6,16 @@ block('card-author')(
       node[ '_' + key ] = ctx.author[ key ];
       return true;
     } );
+
+    switch ( node.mods.size ) {
+      case 'xs':
+        node._size = '48x48';
+        break;
+
+      default:
+        node._size = '84x84';
+    }
+
     return applyNext();
   } ),
 
@@ -15,19 +25,30 @@ block('card-author')(
 
   content()( { elem: 'aside' } ),
 
-  match( node => node._image_id ).elem('aside').replace()( node => {
+  match( node => node._image_id ).elem('aside').replace()( ( node, ctx ) => {
     return {
       block: 'image',
       mix: { block: 'card-author', elem: 'aside' },
       mods: { circle: true },
-      url: 'http://dev.artdoc.media/upload/resize/' + node._image_id + '/84x84.jpg'
+      url: 'http://dev.artdoc.media/upload/resize/' + node._image_id + '/' + node._size + '.jpg'
     }
   } ),
 
-  appendContent()( node => {
+  appendContent()( ( node, ctx ) => {
     return  {
       elem: 'content',
-      content: node._name
+      content: [
+        {
+          elem: 'header',
+          mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } },
+          content: [
+            node._name
+
+          ]
+        },
+        ctx.content
+      ]
     }
   })
+
 )

@@ -2,7 +2,7 @@ block('card-movie').mod('view', 'short')(
 
   def()( ( node, ctx ) => {
     const _movie = ctx.movie;
-    _movie.url = _movie.code ? '/movie/' + _movie.code : null;
+    // _movie.url = _movie.code ? '/movie/' + _movie.code : null;
     _movie.cover.width = 130;
 
     return applyNext();
