@@ -10,7 +10,7 @@ block( 'text' ).mod( 'format', 'datetime' )(
     switch ( locale ) {
       case 'ru': node.require( 'moment_ru' ); break;
     }
-    
+
     datetime.locale( locale );
 
     if ( format === 'genitive#MMMM' && locale === 'ru' ) {
@@ -22,7 +22,6 @@ block( 'text' ).mod( 'format', 'datetime' )(
         ]
       } );
     }
-
     return datetime.format( format );
   }),
 

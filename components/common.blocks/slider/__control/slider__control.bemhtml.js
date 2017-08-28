@@ -1,6 +1,6 @@
-block('slider').elem('control')(
-  content()( node => {
-    return;
-   })
-)
+// block('slider').elem('control')(
+//   content()( node => {
+//     return;
+//    })
+// )
 
