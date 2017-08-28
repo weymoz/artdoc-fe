@@ -1,12 +1,12 @@
 block('card-movie').mod('view', 'play')(
 
   def()( ( node, ctx ) => {
-    const _movie = ctx.movie;
-    _movie.trailer = 'https://vimeo.com/102787065';
-    _movie.cover.width = 1316;
+    const movie = node.mergeDeep( ctx.movie, {
+      cover: { width: 1316 },
+      trailer: 'https://vimeo.com/102787065' || 'https://youtu.be/TSfTmeq0ne0'
+    } );
 
-    // ctx.movie.trailer = 'https://youtu.be/TSfTmeq0ne0'
-    return applyNext();
+    return applyNext( { 'ctx.movie': movie } );
   } ),
 
   content()( ( node, ctx ) => {
@@ -25,7 +25,6 @@ block('card-movie').mod('view', 'play')(
         content: [
           {
             elem: 'content',
-            // elemMods: { view: 'cover' },
             content: [
               { elem: 'image' },
               // { elem: 'video', elemMods: { visible: true }, content: ctx.movie.trailer },
