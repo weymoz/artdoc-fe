@@ -39,6 +39,14 @@ block( 'card-movie' ).elem( 'video' )(
       allowfullscreen: true,
       src: node._frame + node._video_id + '?showinfo=0'
     }
-  } )
+  } ),
+
+  wrap()( ( node, ctx ) => {
+    return {
+      elem: 'video-container',
+      elemMods: node.elemMods,
+      content: ctx
+    }
+  })
 
 )

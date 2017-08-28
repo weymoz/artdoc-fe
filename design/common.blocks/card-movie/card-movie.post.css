@@ -3,6 +3,9 @@ block(card-movie) {
   lost-center: 100%;
 
   .mod(view full) {
+    align-items: flex-start;
+    margin-bottom: 40px;
+
     .elem(aside) {
       lost-column: 15/47 0 0;
       margin-left: 56px;
@@ -110,7 +113,7 @@ block(card-movie) {
       text-align: right;
     }
 
-    .elem(on-cover) {
+    .elem(cover) {
       padding: 56px 28px 40px;
       background-color: hsla(0, 0%, 0%, 0.4);
     }
@@ -168,7 +171,7 @@ block(card-movie) {
       height: 110px;
     }
 
-    .elem(on-cover) {
+    .elem(cover) {
       height: 10px;
     }
 
@@ -192,7 +195,23 @@ block(card-movie) {
       font-size: 12px;
       margin-bottom: 5px;
     }
+  }
 
+  .elem(play-status) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    font-size: 32px;
+    text-transform: uppercase;
+  }
+
+  .elem(play-status-header) {
+    font-weight: bold;
+  }
+
+  .elem(play-status-countdown) {
+    font-size: 56px;
   }
 
   .elem(content) {
@@ -212,12 +231,55 @@ block(card-movie) {
     }
   }
 
-  .elem(cover) {
-    display: block;
-    position: relative;
+  .elem(header) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+
+    .mod(hide) {
+      display: none;
+    }
   }
 
-  .elem(on-cover) {
+  .elem(footer) {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+  }
+
+  .elem(is-premiere) {
+    display: inline-block;
+    background-color: #f3203b;
+    color: #fff;
+    font-size: 14px;
+    line-height: 1.5;
+    text-transform: uppercase;
+    padding: .393em .785em;
+    box-sizing: border-box;
+    float: left;
+  }
+
+  .elem(image) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .elem(cover) {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /*background: linear-gradient(90deg, #000 0%, transparent 100%);*/
+  }
+
+  .elem(cover) {
     position: absolute;
     left: 0;
     right: 0;
@@ -230,7 +292,7 @@ block(card-movie) {
     text-decoration: none;
   }
 
-  .elem(today-label) {
+  .elem(is-today) {
     font-size: 17px;
     font-weight: bold;
     font-stretch: condensed;
@@ -238,14 +300,80 @@ block(card-movie) {
     flex: 1;
   }
 
+  .elem(video-container) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: -10;
+
+    &:before {
+      content: '';
+      float: left;
+      padding-bottom: 56.25%;
+    }
+
+    &:after {
+      content: '';
+      display: table;
+      clear: both;
+    }
+
+    .mod(visible) {
+      z-index: 1;
+    }
+    
+  }
+
   .elem(video) {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0;
     width: 100%;
+    bottom: 0;
     height: 100%;
+  }
+
+  .elem(slider) {
+    margin-top: 10px;
+    white-space: nowrap;
+  }
+
+  .elem(slider-item) {
+    display: inline-block;
+    position: relative;
+
+
+    & + .elem(slider-item) {
+      margin-left: 10px;
+    }
+
+    .mod(checked):before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      border: 3px solid #f5083f;
+      box-sizing: border-box;
+    }
+
+    .mod(type video):after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-left: -10px;
+      margin-top: -10px;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 10px 0 10px 20px;
+      border-color: transparent transparent transparent #fff;
+    }
   }
 
   .elem(rating) {
@@ -409,7 +537,7 @@ block(card-movie) {
       height: 110px;
     }
 
-    .elem(on-cover) {
+    .elem(cover) {
       height: 10px;
     }
 

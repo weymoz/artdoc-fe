@@ -1,26 +1,29 @@
-({
+[{
   shouldDeps: [
     {
       elems: [
+        'awards',
         'buy',
         'countries',
-        'cover',
         'description',
         'director',
         'discussion',
         'duration',
+        'image',
+        'is-premiere',
+        'is-today',
         'language',
         'list',
         'name',
         'orig-name',
+        'rating',
         'schedule',
         'schedule-duration',
         'show-more',
         'subs',
-        'today-label',
         'tvpg',
         'year'
       ],
     }
   ]
-})
+}]

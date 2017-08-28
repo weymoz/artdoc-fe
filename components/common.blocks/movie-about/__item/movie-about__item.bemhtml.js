@@ -49,20 +49,7 @@ block('movie-about').elem('item')(
       return ctx.movie.authors.map( author => {
         return {
           block: 'card-author',
-          content: [
-            author.image_id && {
-              block: 'image',
-              mix: { block: 'card-author', elem: 'aside' },
-              mods: {
-                circle: true
-              },
-              url: 'http://dev.artdoc.media/upload/resize/' + author.image_id + '/84x84.jpg'
-            },
-            {
-              elem: 'content',
-              content: author.name
-            }
-          ]
+          author: author
         }
       } )
     } )
