@@ -69,15 +69,15 @@ block('page-index').replace()(function() {
         {
           elem: 'collections',
           content: this.data.api.map( item => {
-              return {
-                block: 'card-selection',
-                mods: {
-                  view: [ 'selections' ],
-                  theme: 'artdoc'
-                },
-                selection: item
-              }
-            } )
+            return {
+              block: 'card-selection',
+              mods: {
+                view: [ 'selections' ],
+                theme: 'artdoc'
+              },
+              selection: item
+            }
+          } )
         },
         {
             elem: 'title',

@@ -1,14 +1,16 @@
-({
+[{
   shouldDeps: [
     {
       elems: [
+        'awards',
         'buy',
         'countries',
-        'cover',
         'description',
         'director',
         'discussion',
         'duration',
+        'image',
+        'is-premiere',
         'language',
         'list',
         'name',
@@ -23,4 +25,4 @@
       ],
     }
   ]
-})
+}]

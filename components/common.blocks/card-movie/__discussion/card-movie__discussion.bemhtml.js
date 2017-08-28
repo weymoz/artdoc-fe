@@ -1,6 +1,6 @@
 block('card-movie').elem('discussion')(
 
-  match( node => node._discuss_preview || node._discuss_link ).replace()( ( node, ctx ) => {
+  match( node => node._discuss_preview || node._discuss_link ).replace()( node => {
     return [
       {
         block: 'link',
