@@ -1,5 +1,13 @@
 block('card-movie').mod('view', 'slide')(
 
+  def()( ( node, ctx ) => {
+    const _movie = ctx.movie;
+    _movie.url = _movie.code ? '/movie/' + _movie.code : null;
+    _movie.cover.width = 896;
+
+    return applyNext();
+  }),
+
   content()( ( node, ctx ) => {
 
     // var options = {
@@ -25,9 +33,10 @@ block('card-movie').mod('view', 'slide')(
             }
             ]
           },
+          { elem: 'image' },
           {
             elem: 'cover',
-            cover: [
+            content: [
               { elem: 'orig-name' },
               { elem: 'name' },
               {

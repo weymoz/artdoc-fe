@@ -30,8 +30,5 @@ block('card-movie').def()( ( node, ctx ) => {
     _movie.premiere = premiere;
   }
 
-  // 16:9 ratio for all covers
-  _movie.cover.height = _movie.cover.width / ( 16 / 9 );
-
   return applyNext();
 });

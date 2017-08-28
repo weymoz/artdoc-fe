@@ -4,7 +4,7 @@
       elems: [
         'buy',
         'countries',
-        'cover',
+        'image',
         'description',
         'director',
         'discussion',
