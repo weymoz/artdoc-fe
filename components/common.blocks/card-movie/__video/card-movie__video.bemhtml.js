@@ -17,6 +17,7 @@ block( 'card-movie' ).elem( 'video' )(
       }
 
       return {
+        _trailer: url,
         _type: type,
         _frame: frame,
         _video_id: RegExp.$6
