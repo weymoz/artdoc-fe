@@ -2,6 +2,8 @@ block('card-movie').mod('view', 'ticket')(
 
   def()( ( node, ctx ) => {
     ctx.movie.url = ctx.movie.code ? '/movie/' + ctx.movie.code : null;
+    ctx.movie.cover.width = 235;
+
     return applyNext();
   }),
 
@@ -41,7 +43,7 @@ block('card-movie').mod('view', 'ticket')(
             elem: 'content',
             elemMods: { type: 'link' },
             content: [
-              { elem: 'cover' }
+              { elem: 'image' }
             ]
           },
           {

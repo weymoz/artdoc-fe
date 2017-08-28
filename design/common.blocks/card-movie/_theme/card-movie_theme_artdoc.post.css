@@ -12,7 +12,7 @@ block(card-movie).mod(theme artdoc) {
   .mod(view promo) {
     box-shadow: inset 0px -1px 0px 0px #000;
 
-    .elem(today-label) {
+    .elem(is-today) {
       color: #fff;
     }
 
@@ -63,8 +63,8 @@ block(card-movie).mod(theme artdoc) {
   }
 
   .elem(rating) {
-    background-color: rgba(0, 0, 0, 0.30);
     color: #fff;
+    background-color: rgba(17, 17, 17, .8);
   }
 
 }

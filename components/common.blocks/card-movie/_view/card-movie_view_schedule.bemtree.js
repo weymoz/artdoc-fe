@@ -3,6 +3,8 @@ block('card-movie').mod('view', 'schedule')(
   def()( ( node, ctx ) => {
     const _movie = ctx.movie;
     _movie.url = _movie.code ? '/movie/' + _movie.code : null;
+    _movie.cover = _movie.cover || {};
+    _movie.cover.width = 421;
 
     return applyNext();
   }),
@@ -21,8 +23,14 @@ block('card-movie').mod('view', 'schedule')(
         elem: 'content',
         elemMods: { type: 'link' },
         content: [
-          { elem: 'cover' },
-          { elem: 'rating' }
+          {
+            elem: 'header',
+            content: [
+              { elem: 'is-premiere' },
+              { elem: 'awards' }
+            ]
+          },
+          { elem: 'image' }
         ]
       },
       {

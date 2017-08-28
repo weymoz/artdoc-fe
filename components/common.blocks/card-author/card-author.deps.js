@@ -1,5 +1,6 @@
 [{
   shouldDeps: [
-    { mods: { theme: '*' } }
+    { mods: { 'no-photo': true, theme: '*' } },
+    { block: 'image', mods: { circle: true } }
   ]
 }]

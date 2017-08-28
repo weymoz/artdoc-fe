@@ -3,6 +3,7 @@ block('card-movie').mod('view', 'selection')(
   def()( ( node, ctx ) => {
     const _movie = ctx.movie;
     _movie.url = _movie.code ? '/movie/' + _movie.code : null;
+    _movie.cover.width = 196;
 
     return applyNext();
   }),
@@ -13,7 +14,7 @@ block('card-movie').mod('view', 'selection')(
         elem: 'content',
         elemMods: { type: 'link' },
         content: [
-          { elem: 'cover' },
+          { elem: 'image' }
         ]
       },
       {

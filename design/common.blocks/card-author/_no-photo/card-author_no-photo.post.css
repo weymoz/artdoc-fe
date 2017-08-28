@@ -1,0 +1,6 @@
+block(card-author).mod(no-photo) {
+  .elem(aside) {
+    background-image: url(card-author_no-photo.svg);
+    background-size: cover;
+  }
+}

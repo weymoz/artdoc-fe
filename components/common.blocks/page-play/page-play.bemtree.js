@@ -1,4 +1,7 @@
-block( 'page' ).def()( () => {
+block( 'page' ).def()( node => {
+  // Move start timer to movie object
+  node.data.api.movie.starts_in = node.data.api.starts_in;
+
   return applyNext( { 'ctx.mods.theme': 'artdoc-dark' } )
 } );
 

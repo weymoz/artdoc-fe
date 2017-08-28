@@ -1,12 +1,16 @@
 block('card-movie').mod('view', 'play')(
 
   def()( ( node, ctx ) => {
-    ctx.movie.trailer = 'https://vimeo.com/102787065';
+    const _movie = ctx.movie;
+    _movie.trailer = 'https://vimeo.com/102787065';
+    _movie.cover.width = 1316;
+
     // ctx.movie.trailer = 'https://youtu.be/TSfTmeq0ne0'
     return applyNext();
   } ),
 
   content()( ( node, ctx ) => {
+
     return [
       {
         elem: 'section',
@@ -21,10 +25,16 @@ block('card-movie').mod('view', 'play')(
         content: [
           {
             elem: 'content',
-            elemMods: { view: 'cover' },
+            // elemMods: { view: 'cover' },
             content: [
-              { elem: 'cover' },
-              { elem: 'video', content: ctx.movie.trailer }
+              { elem: 'image' },
+              // { elem: 'video', elemMods: { visible: true }, content: ctx.movie.trailer },
+              {
+                elem: 'cover',
+                content: [
+                  { elem: 'play-status' }
+                ]
+              }
             ]
           },
           {

@@ -3,7 +3,7 @@
     {
       elems: [
         'countries',
-        'cover',
+        'image',
         'director',
         'discussion',
         'duration',

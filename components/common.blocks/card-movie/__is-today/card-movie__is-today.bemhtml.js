@@ -1,4 +1,4 @@
-block('card-movie').elem('today-label')(
+block('card-movie').elem('is-today')(
 
   content()( () => {
     return 'Сегодня в онлайн-кинотеатрах';

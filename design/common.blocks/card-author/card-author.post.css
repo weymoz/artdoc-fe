@@ -1,4 +1,4 @@
-block(card-author).mod(theme artdoc) {
+block(card-author) {
   display: inline-flex;
   align-items: center;
 
@@ -8,10 +8,13 @@ block(card-author).mod(theme artdoc) {
 
   .elem(content) {
     padding-right: .5em;
+    box-sizing: border-box;
   }
 
   .elem(aside) {
-    padding-right: .5em;
+    margin-right: .5em;
+    width: 5.25em;
+    height: 5.25em;
   }
   
 }
