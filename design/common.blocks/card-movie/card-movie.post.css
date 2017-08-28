@@ -47,6 +47,7 @@ block(card-movie) {
   }
 
   .mod(view schedule) {
+    align-items: flex-start;
     padding-top: 1.5em;
     padding-bottom: 1.5em;
     box-shadow: inset 0px 1px 0px 0px currentColor,
@@ -67,6 +68,7 @@ block(card-movie) {
     }
 
     .elem(aside).mod(view action) {
+      align-self: stretch;
       lost-column: 5/24 1 28px;
       margin-left: 0;
       display: flex;
@@ -155,16 +157,15 @@ block(card-movie) {
   }
 
   .mod(view short) {
-    padding: 12px 28px 12px 12px;
-    box-sizing: border-box;
     display: flex;
     justify-content: flex-start;
+    padding: 12px 28px;
+    box-sizing: border-box;
     box-shadow: 0px 28px 0px -27px rgb(255, 255, 255, 0.1);
-    cursor: pointer;
 
-    .elem(short-content) {
-      max-width: 38%;
-      padding-left: 15px;
+    .elem(aside) {
+      lost-column: 16/26 0 0;
+      margin-left: 14px;
     }
 
     .elem(name) {
@@ -179,20 +180,6 @@ block(card-movie) {
       line-height: 20px;
       padding-top: 5px;
     }
-
-    .elem(cover) {
-      height: 74px;
-
-      block(image){
-        max-height: 75px;
-      }
-    }
-
-    .elem(short-aside) {
-      flex: 1;
-      margin-left: 15px;
-    }
-
   }
 
   .mod( view slide ) {

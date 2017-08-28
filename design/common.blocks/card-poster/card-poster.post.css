@@ -1,4 +1,5 @@
 block(card-poster) {
+  lost-center: 100%;
   display: flex;
   height: 100%;
 
@@ -46,7 +47,7 @@ block(card-poster) {
   }
 
   elem(content) {
-    width: 70%;
+    flex: 1;
     height: 100%;
     background-color: gray;
     position: relative;
@@ -66,7 +67,7 @@ block(card-poster) {
   }
 
   elem(aside){
-    width: 30%;
+    lost-column: 15/47 0 0;
     height: 100%;
     background-color: #23232C;
     display: flex;

@@ -1,9 +1,11 @@
 block('card-movie').elem('slider')(
 
   content()( node => {
-    let slides = [
-      { id: node._cover.id, type: 'image' }
-    ]
+    let slides = [];
+
+    if ( node._cover && node._cover.id ) {
+      slides.push( { id: node._cover.id, type: 'image' } );
+    }
 
     if ( node._trailer ) {
       slides.push( { id: node._cover.id, type: 'video' } );
