@@ -22,10 +22,11 @@ block('footer').content()(function() {
           content: [
             {
               block: 'title',
+              mix: { block: 'font', mods: { family: 'helvetica-condensed', loaded: true } },
               mods: {
                 size: 'm'
               },
-              content: 'Для зрителей'
+              content: 'Зрителям'
             },
             {
               block: 'list',
@@ -47,6 +48,7 @@ block('footer').content()(function() {
           content: [
             {
               block: 'title',
+              mix: { block: 'font', mods: { family: 'helvetica-condensed', loaded: true } },
               mods: {
                 size: 'm'
               },
@@ -61,8 +63,8 @@ block('footer').content()(function() {
                 { elem: 'item', content: 'Клуб artdoc.media' },
                 { elem: 'item', content: 'Аккредитованные фестивали' },
                 { elem: 'item', content: 'Аккредитованная пресса' },
-                { elem: 'item', content: 'Ретроспективы' },
-                { elem: 'item', content: 'Предложить фильм' }
+               // { elem: 'item', content: 'Ретроспективы' },
+               // { elem: 'item', content: 'Предложить фильм' }
               ]
             }
           ]
