@@ -53,19 +53,21 @@
   color: white;
   font-size: 2.6vw;
   margin: 0;
+  line-height: 48px;
 }
 
 .card-selection_view_selections .card-selection__author {
   color: white;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
-.card-selection_view_selections .card-selection__author .list {
+.card-selection_view_selections .card-author__content {
   margin-left: 10px;
 }
 
-.card-selection_view_selections .card-selection__author .list__content {
+.card-selection_view_selections .card-author__header {
   font-size: 14px;
+  font-weight: bold;
   margin-bottom: 5px;
 }
 
@@ -100,60 +102,56 @@
 
 
 /*Раскрытая карточка подборки*/
-.card-selection_view_detail .card-selection__aside {
-  margin: 0 auto;
-  max-width: 1316px;
-}
 
 .card-selection_view_detail .card-selection__content {
   position: relative;
   height: 50%;
 }
 
+
 .card-selection_view_detail .breadcrumbs {
   position: absolute;
   top: 40px;
   left: 55px;
+  z-index: 2;
+  color: #A0A0AC;
+}
+
+
+.card-selection_view_detail .card-selection__preview {
+  width: 100%;
+  max-height: 500px;
+  overflow: hidden;
+  position: relative;
+}
+
+.card-selection_view_detail .card-selection__on-cover {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  display: block;
+  background-color: rgb(0,0,0,0.5);
   z-index: 1;
 }
 
-.card-selection_view_detail .card-selection__cover{
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
 
-.card-selection_view_detail .card-selection__preview::after {
-  content: '';
-  top: 0;
-  left: 0;
-  display: block;
-  background: black;
-  opacity: 0.5;
-  position: absolute;
-  width: 100%;
-  height: 500px;
-  max-height: 500px;
-  z-index: 0;
-}
-
-.card-selection_view_detail .card-selection__preview .image {
-  max-height: 500px;
-}
+/* Блок с информацией об авторе подборки */
 
 .card-selection_view_detail .card-selection__preview-info {
   box-sizing: border-box;
+  max-width: 1316px;
+  margin: 0 auto;
   position: relative;
-  padding: 20px 30px;
+  padding: 20px 0px;
   height: 150px;
-  z-index: 1;
+  z-index: 2;
 }
-
-
 
 .card-selection_view_detail .card-selection__name {
   color: white;
-  font-size: 2.6vw;
+  font-size: 2.6em;
+  word-wrap: break-word;
   margin: 0;
   position: absolute;
   top: -50%;
@@ -169,11 +167,11 @@
 }
 
 
-.card-selection_view_detail .card-selection__author .list {
+.card-selection_view_detail .card-author__content {
   margin-left: 10px;
 }
 
-.card-selection_view_detail .card-selection__author .list__content {
+.card-selection_view_detail .card-author__header {
   font-size: 14px;
   margin-bottom: 5px;
 }
@@ -181,6 +179,8 @@
 .card-selection_view_detail .card-selection__author .list__date {
   font-size: 12px;
 }
+
+/* Счётчик */
 
 .card-selection_view_detail .card-selection__counter {
   position: absolute;
@@ -200,6 +200,8 @@
   font-size: 14px;
 }
 
+/* Краткое описание подборки */
+
 .card-selection_view_detail .card-selection__description {
   margin: 0px auto 40px;
   line-height: 24px;
@@ -210,5 +212,11 @@
 .card-selection_view_detail .card-selection__description .text {
   width: 60%!important;
   display: block;
+}
+
+/* Нижний блок с карточками */
+.card-selection_view_detail .card-selection__aside {
+  margin: 0 auto;
+  max-width: 1316px;
 }
 

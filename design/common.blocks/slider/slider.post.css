@@ -37,6 +37,15 @@ block(slider) {
     align-items: center;
   }
 
+  elem(page) {
+
+    block(link):hover{
+      background-color: #111;
+      color: #fff;
+      box-shadow: unset;
+    }
+  }
+
   elem(content) {
     flex: 1;
     display: flex;

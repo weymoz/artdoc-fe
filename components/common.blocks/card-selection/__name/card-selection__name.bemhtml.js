@@ -6,14 +6,14 @@ block( 'card-selection' ).elem( 'name' )(
 
   content()( node => node._name ),
 
-  match( node => node._url ).content()( node => {
-    return {
-      block: 'link',
-      mods: {
-        view: 'text'
-      },
-      url: node._url,
-      content: node._name
-    }
-  } )
+  // match( node => node._url ).content()( node => {
+  //   return {
+  //     block: 'link',
+  //     mods: {
+  //       view: 'text'
+  //     },
+  //     // url: node._url,
+  //     content: node._name
+  //   }
+  // } )
 );

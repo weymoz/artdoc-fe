@@ -1,0 +1,6 @@
+block(page).mod(view page-about) {
+
+  block(footer){
+    margin-top: 0;
+  }
+}

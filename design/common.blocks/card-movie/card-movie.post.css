@@ -354,7 +354,6 @@ block(card-movie) {
     left: 0;
     right: 0;
     bottom: 0;
-    /*background: linear-gradient(90deg, #000 0%, transparent 100%);*/
   }
 
   .elem(cover) {
@@ -401,7 +400,7 @@ block(card-movie) {
     .mod(visible) {
       z-index: 1;
     }
-    
+
   }
 
   .elem(video) {
@@ -606,16 +605,16 @@ block(card-movie) {
       height: 110px;
     }
 
+    elem(content) {
+      text-decoration: none;
+    }
+
     .elem(name) {
       font-size: 16px;
     }
 
     .elem(cover) {
       height: 110px;
-    }
-
-    .elem(cover) {
-      height: 10px;
     }
 
     .elem(content):before {
