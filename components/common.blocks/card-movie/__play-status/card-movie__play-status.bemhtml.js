@@ -1,5 +1,6 @@
 block('card-movie').elem('play-status')(
-  content()( node => {
+
+  elemMod('status', 'get').content()( node => {
     return [
       {
         elem: 'play-status-header',
@@ -12,5 +13,27 @@ block('card-movie').elem('play-status')(
         }
       }
     ];
+  }),
+
+  elemMod('status', 'ready').def()(''),
+
+  elemMod('status', 'finish').content()( node => {
+    return [
+      {
+        elem: 'play-status-header',
+        content: 'Сеанс окончен'
+      },
+      {
+        block: 'button',
+        mods: {
+          type: 'link',
+          size: 'xxl',
+          theme: 'artdoc-dark'
+        },
+        url: node._url,
+        text: 'На страницу фильма'
+      }
+    ];
   })
+
 )

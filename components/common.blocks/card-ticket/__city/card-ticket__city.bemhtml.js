@@ -1,3 +1,7 @@
 block('card-ticket').elem('city')(
-  // tag()('h3')
+
+  match( node => !node._city || !node._city.name ).def()(''),
+
+  content()( node => node._city.name )
+
 )

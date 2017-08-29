@@ -1,10 +1,5 @@
 block('card-movie').elem('image')(
   match( node => !node._cover || !node._cover.id )(
-    def()( node => {
-      console.log( node._cover );
-      console.log('^^^^^^^^^^^');
-      return applyNext();
-    }),
     addElemMods()( { 'no-image': true } )
   ),
 

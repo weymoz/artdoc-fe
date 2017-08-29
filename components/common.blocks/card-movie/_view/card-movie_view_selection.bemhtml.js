@@ -9,7 +9,7 @@ block('card-movie').mod('view', 'selection')(
     return applyNext( { 'ctx.movie': movie } );
   }),
 
-  content()( (node) => {
+  content()( () => {
     return [
       {
         elem: 'content',
