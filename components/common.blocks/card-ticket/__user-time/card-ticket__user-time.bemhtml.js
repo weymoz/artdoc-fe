@@ -1,4 +1,4 @@
-block('card-ticket').elem('user-time').content()(function() {
+block('card-ticket').elem('user-time').content()( node => {
   return {
     block: 'text',
     mix: { block: this.block, elem: this.elem },
@@ -6,6 +6,6 @@ block('card-ticket').elem('user-time').content()(function() {
       format: 'datetime'
     },
     format: 'HH:mm',
-    content: this.ctx.content
+    content: node._time_gmt3
   }
 });

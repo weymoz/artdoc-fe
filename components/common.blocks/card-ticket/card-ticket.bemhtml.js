@@ -1,4 +1,13 @@
 block('card-ticket')(
+
+  match( ( node, ctx ) => ctx.ticket ).def()( ( node, ctx ) => {
+    Object.keys( ctx.ticket ).map( key => {
+      node[ '_' + key ] = ctx.ticket[ key ];
+      return true;
+    } );
+
+    return applyNext();
+  } ),
   
   tag()('article'),
 
@@ -16,6 +25,6 @@ block('card-ticket')(
 
   ),
 
-  match(function(){ return this.ctx.ticket.tickets_left < 5; }).addMods()({ status: 'less' })
+  match( ( node, ctx ) => ctx.ticket.tickets_left < 5 ).addMods()({ status: 'less' })
 
 )

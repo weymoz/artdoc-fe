@@ -34,6 +34,7 @@ function render(req, res, data, context) {
   };
 
   try {
+    templates.BEMTREE.BEMContext.prototype.mergeDeep = mergeDeep;
     var bemjson = templates.BEMTREE.apply(bemtreeCtx);
   } catch(err) {
     console.error('BEMTREE error', err.stack);
