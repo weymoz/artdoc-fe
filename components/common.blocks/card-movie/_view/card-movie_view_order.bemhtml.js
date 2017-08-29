@@ -1,27 +1,21 @@
-block('card-movie').mod('view', 'full')(
+block('card-movie').mod('view', 'order')(
 
   def()( ( node, ctx ) => {
-    const _movie = ctx.movie;
-    _movie.cover.width = 843;
+    const movie = node.mergeDeep( ctx.movie, {
+      cover: { width: 235 },
+      url: ctx.movie.code ? '/movie/' + ctx.movie.code : null
+    } );
 
-    return applyNext();
+    return applyNext( { 'ctx.movie': movie } );
   }),
 
-  content()( ( node, ctx ) => {
+  content()( () => {
     return [
       {
         elem: 'content',
+        elemMods: { type: 'link' },
         content: [
-          {
-            elem: 'header',
-            content: [
-              { elem: 'rating' },
-              { elem: 'awards' }
-            ]
-          },
-          { elem: 'video', content: ctx.movie.trailer },
-          { elem: 'image' },
-          { elem: 'slider' }
+          { elem: 'image' }
         ]
       },
       {
@@ -48,13 +42,10 @@ block('card-movie').mod('view', 'full')(
               { elem: 'language' },
               { elem: 'subs' }
             ]
-          },
-          { elem: 'buy', elemMods: { type: 'button' } },
-          { elem: 'description' }
+          }
         ]
-      },
+      }
     ];
   })
 
-)
-
+);

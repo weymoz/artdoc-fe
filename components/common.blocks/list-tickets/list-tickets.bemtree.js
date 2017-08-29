@@ -5,8 +5,10 @@ block('list-tickets').content()(function() {
   return _tickets.map( ticket => {
     return {
       block: 'card-ticket',
+      mods: {
+        view: 'movie'
+      },
       mix: { block: 'list-tickets', elem: 'item' },
-      code: _code,
       ticket: ticket,
       js: { ticket: ticket, timezoneOffset: 0 }
     }

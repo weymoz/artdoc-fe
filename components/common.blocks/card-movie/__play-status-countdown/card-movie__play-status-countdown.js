@@ -14,7 +14,7 @@ provide(bemDom.declElem('card-movie', 'play-status-countdown', {
                 var minute = 1000 * 60;
                 var hour = minute * 60;
 
-                var days = Math.floor( distance / ( 24 * hour ) );
+                // var days = Math.floor( distance / ( 24 * hour ) );
                 var hours = Math.floor( ( distance % ( 24 * hour ) ) / hour );
                 var minutes = this.fixZero( Math.floor( ( distance % hour ) / minute ) );
                 var seconds = this.fixZero( Math.floor( ( distance % minute ) / 1000 ) );

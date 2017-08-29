@@ -1,15 +1,26 @@
 block('card-movie').mod('view', 'play')(
 
   def()( ( node, ctx ) => {
-    const _movie = ctx.movie;
-    _movie.trailer = 'https://vimeo.com/102787065';
-    _movie.cover.width = 1316;
+    // console.log( node );
+    const movie = node.mergeDeep( ctx.movie, {
+      cover: { width: 1316 },
+      play: ctx.movie.play,
+      discuss_link: '#',
+      discuss_preview: 'В 21:00 состоится обсуждение фильма с автором через Zoom.'
+    } );
 
-    // ctx.movie.trailer = 'https://youtu.be/TSfTmeq0ne0'
-    return applyNext();
+    return applyNext( { 'ctx.movie': movie } );
   } ),
 
-  content()( ( node, ctx ) => {
+  content()( node => {
+    let status = 'finish';
+    if ( node.starts_in ) {
+      status = 'get'
+    } else if ( node._play ) {
+      status = 'ready'
+    }
+
+    status = 'finish';
 
     return [
       {
@@ -25,19 +36,18 @@ block('card-movie').mod('view', 'play')(
         content: [
           {
             elem: 'content',
-            // elemMods: { view: 'cover' },
             content: [
-              { elem: 'image' },
-              // { elem: 'video', elemMods: { visible: true }, content: ctx.movie.trailer },
+              status !== 'ready' && { elem: 'image' },
+              status === 'ready' && { elem: 'video', elemMods: { visible: true }, content: node._play },
               {
                 elem: 'cover',
                 content: [
-                  { elem: 'play-status' }
+                  { elem: 'play-status', elemMods: { status: status } }
                 ]
               }
             ]
           },
-          {
+          status === 'finish' && {
             elem: 'aside',
             content: [
               { elem: 'discussion' }

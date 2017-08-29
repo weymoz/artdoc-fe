@@ -55,7 +55,8 @@ provide(Form.declMod({ modName: 'view', modVal: 'order' }, {
                 block: 'button',
                 mods: {
                   type: 'submit',
-                  size: 'm',
+                  width: 'available',
+                  size: 'xxl',
                   theme: 'artdoc'
                 },
                 text: 'Отправить'

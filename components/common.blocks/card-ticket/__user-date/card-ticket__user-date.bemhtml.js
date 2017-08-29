@@ -2,7 +2,7 @@ block('card-ticket').elem('user-date')(
 
   addMix()( { block: 'font', mods: { family: 'pt-mono', loaded: true } } ),
 
-  content()(function() {
+  content()( node => {
     return [
       {
         block: 'text',
@@ -10,9 +10,9 @@ block('card-ticket').elem('user-date')(
           format: 'datetime'
         },
         format: 'DD MMMM',
-        content: this.ctx.content
+        content: node._time_gmt3
       },
-      ( new Date( this.ctx.content * 1000 ).getDate() === new Date().getDate() + 1 ? ', завтра' : '' )
+      ( new Date( node._time_gmt3 * 1000 ).getDate() === new Date().getDate() + 1 ? ', завтра' : '' )
     ]
   })
 )
