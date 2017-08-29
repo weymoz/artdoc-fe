@@ -1,8 +1,5 @@
-block('list-tickets').content()(function() {
-  const _tickets = this.ctx.tickets,
-        _code = this.ctx.code;
-
-  return _tickets.map( ticket => {
+block('list-tickets').content()( ( node, ctx ) => {
+  return ctx.tickets.map( ticket => {
     return {
       block: 'card-ticket',
       mods: {

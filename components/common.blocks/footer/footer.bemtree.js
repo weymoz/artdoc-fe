@@ -22,10 +22,11 @@ block('footer').content()(function() {
           content: [
             {
               block: 'title',
+              mix: { block: 'font', mods: { family: 'helvetica-condensed', loaded: true } },
               mods: {
                 size: 'm'
               },
-              content: 'Для зрителей'
+              content: 'Зрителям'
             },
             {
               block: 'list',
@@ -47,6 +48,7 @@ block('footer').content()(function() {
           content: [
             {
               block: 'title',
+              mix: { block: 'font', mods: { family: 'helvetica-condensed', loaded: true } },
               mods: {
                 size: 'm'
               },
@@ -61,8 +63,8 @@ block('footer').content()(function() {
                 { elem: 'item', content: 'Клуб artdoc.media' },
                 { elem: 'item', content: 'Аккредитованные фестивали' },
                 { elem: 'item', content: 'Аккредитованная пресса' },
-                { elem: 'item', content: 'Ретроспективы' },
-                { elem: 'item', content: 'Предложить фильм' }
+               // { elem: 'item', content: 'Ретроспективы' },
+               // { elem: 'item', content: 'Предложить фильм' }
               ]
             }
           ]
@@ -81,7 +83,13 @@ block('footer').content()(function() {
               ]
             }
           ]
+        },
+        { elem: 'analytics',
+          tag: 'script',
+          content:
+            '(function(i,s,o,g,r,a,m){i[\'GoogleAnalyticsObject\']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,\'script\',\'https://www.google-analytics.com/analytics.js\',\'ga\');ga(\'create\', \'UA-105336712-1\', \'auto\');ga(\'send\', \'pageview\');'
         }
+
       ]
     }
   ];
