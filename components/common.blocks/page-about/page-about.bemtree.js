@@ -208,7 +208,7 @@ block('page-about').content()(function() {
         mods: {
           size: 'l'
         },
-        content: 'Рейтинг фильмов'
+        content: 'От автора'
       },
       {
         elem: 'info',
@@ -218,7 +218,6 @@ block('page-about').content()(function() {
             content: [
             {
               block: 'image',
-              // url: '../design/assets/img/static/'
               mix: { block: 'page-about', elem: 'filmmaker' }
             },
             {

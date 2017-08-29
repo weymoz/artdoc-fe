@@ -1,40 +1,40 @@
 block('page-club').elem('partners').content()(function() {
   this.ctx.partners = [
       {
-        image: ''
+        counter: 'partner_1'
       },
       {
-        image: ''
+        counter: 'partner_2'
       },
       {
-        image: ''
+        counter: 'partner_3'
       },
       {
-        image: ''
+        counter: 'partner_4'
       },
       {
-        image: ''
+        counter: 'partner_5'
       },
       {
-        image: ''
+        counter: 'partner_6'
       },
       {
-        image: ''
+        counter: 'partner_7'
       },
       {
-        image: ''
+        counter: 'partner_8'
       },
       {
-        image: ''
+        counter: 'partner_9'
       },
       {
-        image: ''
+        counter: 'partner_10'
       },
       {
-        image: ''
+        counter: 'partner_11'
       },
       {
-        image: ''
+        counter: 'partner_12'
       }
     ]
 
@@ -44,8 +44,8 @@ block('page-club').elem('partners').content()(function() {
          elem: 'partner',
          content: [
            {
-             block: 'image',
-             image: item.image,
+             elem: 'image',
+             mix: { block: 'page-club', elem: item.counter },
            }
          ]
        }

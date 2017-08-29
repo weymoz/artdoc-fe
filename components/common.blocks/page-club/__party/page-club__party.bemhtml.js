@@ -1,64 +1,64 @@
 block('page-club').elem('party').content()(function() {
   this.ctx.showed = [
       {
-        image: '',
-        name: 'Иван',
-        role: ''
+        name: 'Алёна Солнцева',
+        role: 'Кинокритик',
+        counter: 'director_1'
       },
       {
-        image: '',
-        name: '',
-        role: ''
+        name: 'Андрей Архангельский',
+        role: 'Кинокритик',
+        counter: 'director_2'
       },
       {
-        image: '',
-        name: '',
-        role: ''
+        name: 'Андрей Плахов',
+        role: 'Кинокритик',
+        counter: 'director_3'
       },
       {
-        image: '',
-        name: '',
-        role: ''
+        name: 'Андрей Шемякин',
+        role: 'Кинокритик',
+        counter: 'director_4'
       },
       {
-        image: '',
-        name: '',
-        role: ''
+        name: 'Антон Долин',
+        role: 'Кинокритик',
+        counter: 'director_5'
       },
       {
-        image: '',
-        name: '',
-        role: ''
+        name: 'Василий Корецкий',
+        role: 'Кинокритик',
+        counter: 'director_6'
       },
       {
-        image: '',
-        name: '',
-        role: ''
+        name: 'Виктор Матизен',
+        role: 'Кинокритик',
+        counter: 'director_7'
       },
       {
-        image: '',
-        name: '',
-        role: ''
+        name: 'Константин Шавловский',
+        role: 'Кинокритик',
+        counter: 'director_8'
       },
       {
-        image: '',
-        name: '',
-        role: ''
+        name: 'Виктория Смирнова',
+        role: 'Кинокритик',
+        counter: 'director_9'
       },
       {
-        image: '',
-        name: '',
-        role: ''
+        name: 'Елена Стишова',
+        role: 'Кинокритик',
+        counter: 'director_10'
       },
       {
-        image: '',
-        name: '',
-        role: ''
+        name: 'Зара Абдуллаева',
+        role: 'Кинокритик',
+        counter: 'director_11'
       },
       {
-        image: '',
-        name: '',
-        role: ''
+        name: 'Лариса Малюкова',
+        role: 'Кинокритик',
+        counter: 'director_12'
       }
     ]
 
@@ -69,9 +69,56 @@ block('page-club').elem('party').content()(function() {
          content: [
            {
              elem: 'maker',
-             image: item.image,
              name: item.name,
-             role: item.role
+             role: item.role,
+             counter: item.counter
+           }
+         ]
+       }
+    })
+  ]
+});
+
+
+block('page-club').elem('party').elemMod('hide', true).content()(function() {
+  this.ctx.hide = [
+      {
+        name: 'Никита Карцев',
+        role: 'Кинокритик',
+        counter: 'director_13'
+      },
+      {
+        name: 'Любовь Аркус',
+        role: 'Кинокритик',
+        counter: 'director_14'
+      },
+      {
+        name: 'Ольга Галицкая',
+        role: 'Кинокритик',
+        counter: 'director_15'
+      },
+      {
+        name: 'Ольга Шервуд',
+        role: 'Кинокритик',
+        counter: 'director_16'
+      },
+      {
+        name: 'Татьяна Ершова',
+        role: 'Кинокритик',
+        counter: 'director_17'
+      }
+    ]
+
+  return [
+    this.ctx.hide.map( item => {
+       return {
+         elem: 'item',
+         content: [
+           {
+             elem: 'maker',
+             name: item.name,
+             role: item.role,
+             counter: item.counter
            }
          ]
        }

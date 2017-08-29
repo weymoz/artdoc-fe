@@ -64,7 +64,7 @@ module.exports = function( app ) {
     }
 
     function  getPoster() {
-      return request( { url: 'http://dev.artdoc.media/api/schedule/?expand=sessions,movie&per-page=4&unique=1&date_from=' + (Date.now() / 1000) } )
+      return request( { url: '/api/schedule/?expand=sessions,movie&per-page=4&unique=1&date_from=' + (Date.now() / 1000) } )
     }
 
     axios.all([ getCompilation(), getPoster() ])

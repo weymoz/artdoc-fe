@@ -1,8 +1,8 @@
 block('page-club').elem('maker').content()(function() {
     return [
       {
-        block: 'image',
-        url: this.ctx.image
+        elem: 'image',
+        mix: { block: 'page-club', elem: this.ctx.counter }
       },
       {
         block: 'description',

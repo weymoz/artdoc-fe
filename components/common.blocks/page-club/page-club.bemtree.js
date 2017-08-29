@@ -52,9 +52,11 @@ block('page-club').content()(function() {
               mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } },
               content:[
               {
-                block: 'image',
-                mix: { block: 'rate-card', elem: 'counter' },
-                url: ''
+                elem: 'image',
+                mix: [
+                { block: 'rate-card', elem: 'count'   },
+                { block: 'rate-card', elem: 'count_1' }
+                ]
               },
               'Бесплатный просмотр всех фильмов на сайте АртдокМедиа, кроме премьер текущего года '
               ]
@@ -64,9 +66,11 @@ block('page-club').content()(function() {
               mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } },
               content:[
               {
-                block: 'image',
-                mix: { block: 'rate-card', elem: 'counter' },
-                url: ''
+                elem: 'image',
+                mix: [
+                { block: 'rate-card', elem: 'count'  },
+                { block: 'rate-card', elem: 'count_2'}
+                ]
               },
               'Бесплатные билеты на любые онлайн-киносеансы АртдокМедиа'
               ]
@@ -76,9 +80,11 @@ block('page-club').content()(function() {
               mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } },
               content:[
               {
-                block: 'image',
-                mix: { block: 'rate-card', elem: 'counter' },
-                url: ''
+                elem: 'image',
+                mix: [
+                { block: 'rate-card', elem: 'count'   },
+                { block: 'rate-card', elem: 'count_3' }
+                ]
               },
               'Пригласительные билеты на церемонию открытия и закрытия фестиваля Артдокфест'
               ]
@@ -88,9 +94,11 @@ block('page-club').content()(function() {
               mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } },
               content:[
               {
-                block: 'image',
-                mix: { block: 'rate-card', elem: 'counter' },
-                url: ''
+                elem: 'image',
+                mix: [
+                { block: 'rate-card', elem: 'count'   },
+                { block: 'rate-card', elem: 'count_4' }
+                ]
               },
               'Посещение всех показов и мероприятий Артдокфеста в России в течение года'
               ]
@@ -144,9 +152,8 @@ block('page-club').content()(function() {
             content: 'Клубная карта'
           },
           {
-            block: 'image',
-            mix: { block: 'page-club', elem: 'card-image' },
-            url: ''
+            elem: 'image',
+            mix: { block: 'page-club', elem: 'card-image' }
           },
           {
             block: 'paragraph',
@@ -179,9 +186,15 @@ block('page-club').content()(function() {
               },
               content: 'Участники клуба Артдок'
             },
-            // {
-            //  elem: 'party',
-            // }
+            {
+             elem: 'party',
+            },
+            {
+              elem: 'party',
+              elemMods: {
+                hide: true
+              }
+            },
             {
               block: 'button',
               mix: { block: 'page-club', elem: 'make-party' },
@@ -200,9 +213,9 @@ block('page-club').content()(function() {
               },
               content: 'Партнерские фестивали'
             },
-            // {
-            //   elem: 'partners'
-            // }
+            {
+              elem: 'partners'
+            }
           ]
         }
       ]
