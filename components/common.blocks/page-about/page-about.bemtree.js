@@ -217,7 +217,9 @@ block('page-about').content()(function() {
             elem: 'aside',
             content: [
             {
-              block: 'image'
+              block: 'image',
+              // url: '../design/assets/img/static/'
+              mix: { block: 'page-about', elem: 'filmmaker' }
             },
             {
               block: 'description',

@@ -83,6 +83,13 @@ module.exports = function( app ) {
     render( req, res, data );
   });
 
+  // Club
+  app.get('/club', function(req, res) {
+    let data = Object.assign({}, global);
+    data.page = 'club';
+    render( req, res, data );
+  });
+
 
   //Catalog
   app.get( ['/movie/category-:category', '/movie/tag-:tag', '/movie'], function( req, res ) {

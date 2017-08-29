@@ -1,0 +1,156 @@
+block(page-club) {
+
+  block(breadcrumbs){
+    block(link){
+    font-size: 12px;
+    }
+  }
+
+  block(title) {
+    font-size: 32px;
+    letter-spacing: 1px;
+    line-height: 40px;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+  }
+
+  elem(main-title) {
+    max-width: 355px;
+    font-size: 54px!important;
+    line-height: 64px!important;
+    text-transform: none!important;
+    position: relative;
+  }
+
+
+  elem(main-title):after {
+    content: '';
+    width: 12px;
+    height: 12px;
+    background-color: #F3203B;
+    position: absolute;
+    bottom: 12px;
+    right: -10px;
+  }
+
+  .block(paragraph) {
+    font-size: 20px;
+    line-height: 28px;
+    margin-bottom: 30px;
+    color: #23232C;
+
+    block(link) {
+      color: #fff;
+      font-size: 20px;
+      line-height: 28px;
+      border-bottom: 1px solid rgb(255, 255, 255, 0.5);
+      cursor: pointer;
+    }
+  }
+
+elem(header) {
+    width: 100%;
+    margin: 30px 56px 50px;
+  }
+
+elem(content) {
+    max-width: 868px;
+    margin: 0 auto;
+
+    elem(text-block){
+      margin-bottom: 80px;
+    }
+
+    elem(rate-list) {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    elem(rate-title) {
+      margin-bottom: 0!important;
+    }
+
+
+    block(rate-card) {
+      display: flex;
+      width: 380px;
+      margin-bottom: 60px;
+      margin-right: 36px;
+      height: 72px;
+      line-height: 24px;
+      font-size: 16px;
+      position: relative;
+      box-sizing: border-box;
+
+      elem(counter) {
+        width: 56px;
+        height: 56px;
+        display: block;
+        flex-shrink: 0;
+        margin-right: 16px;
+      }
+    }
+
+  }
+
+
+
+elem(footer) {
+    margin: 0 auto;
+    background-color: #23232C;
+    padding: 80px 0 40px;
+    color: white;
+
+    block(title){
+      max-width: 868px;
+      display: block;
+      margin: 0 auto 40px;
+      color: white;
+      text-align: center;
+    }
+
+    elem(info) {
+      display: flex;
+      max-width: 868px;
+      margin: 0 auto;
+      justify-content: space-between;
+    }
+
+    elem(aside) {
+      max-width: 200px;
+
+      block(image){
+        width: 114px;
+        height: 114px;
+        border-radius: 50%;
+        border: 1px solid white;
+      }
+    }
+
+    elem(footer-content) {
+      max-width: 840px;
+      margin: 0 auto;
+
+      block(paragraph) {
+        color: white;
+        text-align: center;
+      }
+    }
+
+    block(description){
+
+      elem(name){
+        margin-top: 23px;
+        font-size: 14px;
+        line-height: 24px;
+      }
+
+      elem(role){
+        font-size: 14px;
+        line-height: 20px;
+        color: #777783;
+      }
+    }
+  }
+
+}
