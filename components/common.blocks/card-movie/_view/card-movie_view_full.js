@@ -14,7 +14,7 @@ provide(CardMovie.declMod({ modName: 'view', modVal: 'full' }, {
 
           switch ( event.bemTarget.getMod('type') ) {
             case 'image':
-              this._cover.domElem[0].src = '/upload/resize/' + image_id + '/843x474.1875.jpg';
+              this._cover.domElem[0].src = 'http://preprod.artdoc.media/upload/resize/' + image_id + '/843x474.jpg';
               this._elem('video-container').setMod('visible', false);
               this._elem('header').setMod('hide', false);
               break;

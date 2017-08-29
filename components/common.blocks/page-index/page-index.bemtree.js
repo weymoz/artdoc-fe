@@ -105,10 +105,15 @@ block('page-index').replace()(function() {
             url: '/about'
           }
           ]
+        },
+        {
+          block: 'club-footer'
         }
       ]
     }
   ]
+
+
 })
 
 

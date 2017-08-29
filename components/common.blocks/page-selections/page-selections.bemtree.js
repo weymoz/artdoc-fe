@@ -1,7 +1,5 @@
 block('page-selections').replace()(function() {
-
   const selections = this.data.api;
-
   return [
     {
       elem: 'content',

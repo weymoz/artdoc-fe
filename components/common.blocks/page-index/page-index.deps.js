@@ -1,8 +1,11 @@
 ({
   shouldDeps: [
     {
+      mods: { theme: '*' },
+      elem: ['title']
+    },
+    {
       block: 'page',
-      elems: [ 'title' ],
       mods: {
         view: 'page-index'
       }
@@ -23,6 +26,7 @@
     },
     'slider',
     'news',
+    'club-footer',
     {
       block: 'card-poster'
     },
