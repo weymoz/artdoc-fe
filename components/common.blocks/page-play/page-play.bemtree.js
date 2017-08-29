@@ -1,6 +1,6 @@
 block( 'page' ).def()( node => {
   // Move start timer to movie object
-  node.data.api.movie.starts_in = node.data.api.starts_in;
+  // node.data.api.movie.starts_in = node.data.api.starts_in;
 
   return applyNext( { 'ctx.mods.theme': 'artdoc-dark' } )
 } );
@@ -8,6 +8,12 @@ block( 'page' ).def()( node => {
 block('page-play')(
 
   replace()( node => {
+    // Move start timer to movie object
+    const movie = node.mergeDeep( node.data.api.movie, {
+      starts_in: node.data.api.starts_in,
+      play: node.data.api.link
+    } );
+
     return [
       {
         elem: 'content',
@@ -21,8 +27,7 @@ block('page-play')(
               view: 'play',
               theme: 'artdoc-dark'
             },
-            movie: node.data.api.movie,
-            link: node.data.api.link
+            movie: movie
           }
         ]
       }

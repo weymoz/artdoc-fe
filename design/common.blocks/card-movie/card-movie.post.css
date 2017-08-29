@@ -273,6 +273,7 @@ block(card-movie) {
 
   .elem(play-status-header) {
     font-weight: bold;
+    margin-bottom: 12px;
   }
 
   .elem(play-status-countdown) {
