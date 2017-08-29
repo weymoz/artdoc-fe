@@ -408,21 +408,28 @@ block(card-movie) {
   .elem(slider-item) {
     display: inline-block;
     position: relative;
+    width: 100px;
+    border: 3px solid transparent;
+    box-sizing: border-box;
 
+    &:before {
+      content: '';
+      float: left;
+      padding-bottom: 56.25%;
+    }
+
+    &:after {
+      content: '';
+      display: table;
+      clear: both;
+    }
 
     & + .elem(slider-item) {
       margin-left: 10px;
     }
 
-    .mod(checked):before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      right: 0;
-      border: 3px solid #f5083f;
-      box-sizing: border-box;
+    .mod(checked) {
+      border-color: #f5083f;
     }
 
     .mod(type video):after {
