@@ -8,14 +8,14 @@ block('club-footer').content()(function() {
         },
         {
           elem: 'footer-title',
+          mix: { block: 'font', mods: { family: 'helvetica-condensed', loaded: true } },
           content: [
               {
                   elem: 'title',
                   mix: { block: 'club-footer', elem: 'title-white' },
                   elemMods: {
-                  size: 'xl'
+                    size: 'xl'
                   },
-                  mix: { block: 'font', mods: { family: 'helvetica-condensed', loaded: true } },
                   content: 'Клуб'
               },
               {
@@ -24,7 +24,6 @@ block('club-footer').content()(function() {
                 elemMods: {
                   size: 'xl'
                 },
-                mix: { block: 'font', mods: { family: 'helvetica-condensed', loaded: true } },
                 content: 'Артдок'
               }
           ]
