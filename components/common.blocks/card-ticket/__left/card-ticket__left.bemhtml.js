@@ -1,25 +1,27 @@
 block('card-ticket').elem('left')(
+
   addMix()( { block: 'font', mods: { family: 'pt-mono', loaded: true } } ),  
-  content()(function() {
+
+  content()( node => {
     return [
       {
         block: 'text',
         mods: { plural: true },
         content: {
-          number: this.ctx.content,
+          number: node._tickets_left,
           one: 'Остался',
           two: 'Осталось',
           five: 'Осталось'
         }
       },
       ' ',
-      this.ctx.content,
+      node._tickets_left,
       ' ',
       {
         block: 'text',
         mods: { plural: true },
         content: {
-          number: this.ctx.content,
+          number: node._tickets_left,
           one: 'билет',
           two: 'билета',
           five: 'билетов'
@@ -28,9 +30,9 @@ block('card-ticket').elem('left')(
     ]
   }),
 
-  match(function(){ return !this.ctx.content })(
+  match( node => !node._tickets_left )(
     content()(function() {
-      return 'Нэт билэт ¯\\_(ツ)_/¯'
+      return 'Билетов больше нет…'
     })
   )
   

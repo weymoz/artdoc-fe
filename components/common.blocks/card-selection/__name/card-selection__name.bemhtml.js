@@ -4,7 +4,7 @@ block( 'card-selection' ).elem( 'name' )(
 
   tag()('h2'),
 
-  content()( node => node._name ),
+  content()( node => node._name )
 
   // match( node => node._url ).content()( node => {
   //   return {
@@ -16,4 +16,4 @@ block( 'card-selection' ).elem( 'name' )(
   //     content: node._name
   //   }
   // } )
-);
+)

@@ -1,12 +1,13 @@
 block('card-movie').mod('view', 'promo')(
 
   def()( ( node, ctx ) => {
-    const _movie = ctx.movie;
-    _movie.url = _movie.code ? '/movie/' + _movie.code : null;
-    _movie.cover.width = 745;
+    const movie = node.mergeDeep( ctx.movie, {
+      cover: { width: 745 },
+      url: ctx.movie.code ? '/movie/' + ctx.movie.code : null
+    } );
 
-    return applyNext();
-  }),
+    return applyNext( { 'ctx.movie': movie } );
+  } ),
 
   content()( ( node, ctx ) => {
     return [

@@ -33,8 +33,8 @@ function render(req, res, data, context) {
     }, data)
   };
 
-
   try {
+    templates.BEMTREE.BEMContext.prototype.mergeDeep = mergeDeep;
     var bemjson = templates.BEMTREE.apply(bemtreeCtx);
   } catch(err) {
     console.error('BEMTREE error', err.stack);
@@ -45,6 +45,7 @@ function render(req, res, data, context) {
   if (isDev && query.bemjson) return res.send('<pre>' + JSON.stringify(bemjson, null, 4) + '</pre>');
 
   try {
+    templates.BEMHTML.BEMContext.prototype.mergeDeep = mergeDeep;
     var html = templates.BEMHTML.apply(bemjson);
   } catch(err) {
     console.error('BEMHTML error', err.stack);
@@ -65,6 +66,30 @@ function dropCache() {
 
 function evalFile(filename) {
   return nodeEval(fs.readFileSync(filename, 'utf8'), filename);
+}
+
+function isObject(item) {
+  return (item && typeof item === 'object' && !Array.isArray(item));
+}
+
+function mergeDeep ( target, source ) {
+  let output = Object.assign( {}, target );
+
+  if ( isObject( target ) && isObject( source ) ) {
+    Object.keys( source ).forEach( key => {
+      if ( isObject( source[ key ] ) ) {
+        if (!( key in target ) ) {
+          Object.assign( output, { [ key ]: source[ key ] } );
+        } else {
+          output[ key ] = mergeDeep( target[ key ], source[ key ] );
+        }
+      } else {
+        Object.assign( output, { [ key ]: source[ key ] } );
+      }
+    });
+  }
+
+  return output;
 }
 
 function getTemplates(bundleName = 'index', level = 'desktop') {

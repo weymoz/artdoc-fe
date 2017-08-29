@@ -25,7 +25,7 @@ block('card-author')(
 
   content()( { elem: 'aside' } ),
 
-  match( node => node._image_id ).elem('aside').replace()( ( node, ctx ) => {
+  match( node => node._image_id ).elem('aside').replace()( node => {
     return {
       block: 'image',
       mix: { block: 'card-author', elem: 'aside' },

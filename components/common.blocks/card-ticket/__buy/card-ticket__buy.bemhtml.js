@@ -1,3 +1,8 @@
-block('card-ticket').elem('buy').content()(function() {
-  return 'Купить ' + this.ctx.content + ' ₽'
-});
+block('card-ticket').elem('buy')(
+
+  match( node => !node.price && !node._price.price ).def()(''),
+
+  content()( node => {
+    return 'Купить ' + node._price.price + ' ₽'
+  })
+)

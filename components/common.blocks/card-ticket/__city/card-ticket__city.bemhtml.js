@@ -1,4 +1,9 @@
 block('card-ticket').elem('city')(
-  addMix()({ block: 'font', mods: { family: 'helvetica-condensed', loaded: true }  })
-  // tag()('h3')
+
+  match( node => !node._city || !node._city.name ).def()(''),
+
+  addMix()({ block: 'font', mods: { family: 'helvetica-condensed', loaded: true }  }),
+
+  content()( node => node._city.name )
+
 )
