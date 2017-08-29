@@ -1,5 +1,9 @@
 block(page).mod(view page-index) {
 
+  block(footer){
+    margin-top: 0;
+  }
+
   .elem(title) {
     text-align: center;
     width: 740px;
@@ -31,13 +35,17 @@ block(page).mod(view page-index) {
         color: white;
       }
     }
-
   }
 
   elem(poster) {
     width: 100%;
     height: 504px;
     margin: 80px auto 100px;
+  }
+
+  block(club) {
+    width: 100%;
+    background-color: red;
   }
 
 }
