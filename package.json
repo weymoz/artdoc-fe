@@ -71,6 +71,7 @@
     "postcss-reporter": "^4.0.0",
     "postcss-simple-vars": "^4.0.0",
     "postcss-url": "^7.1.1",
+    "pre-commit": "^1.2.2",
     "serve-favicon": "^2.4.3",
     "serve-static": "^1.12.3",
     "stylelint": "^8.0.0",
@@ -88,5 +89,8 @@
     "lint": "eslint . && bemhint .",
     "stylelint": "stylelint static/**/*.css"
   },
+  "pre-commit": [
+    "test"
+  ],
   "private": true
 }
