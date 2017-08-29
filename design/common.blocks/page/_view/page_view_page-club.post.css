@@ -1,8 +1,8 @@
 block(page).mod(view page-club) {
 
-    block(button):before {
-      box-shadow: unset;
-    }
+  block(button):before {
+    box-shadow: unset;
+  }
 
   block(page-club).elem(get-card) {
     max-width: 420px;
@@ -13,7 +13,7 @@ block(page).mod(view page-club) {
     background-color: #fff;
     cursor: pointer;
 
-    block(button__text) {
+    block(button).elem(text) {
       color: black;
       font-weight: bold;
       letter-spacing: 0.8px;
@@ -29,7 +29,7 @@ block(page).mod(view page-club) {
     background-color: #EEEEF2;
     cursor: pointer;
 
-    block(button__text) {
+    block(button).elem(text) {
       color: black;
       font-weight: bold;
     }

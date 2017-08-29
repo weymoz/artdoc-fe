@@ -112,17 +112,16 @@ elem(content) {
 
   }
 
-
 elem(party) {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 
-  elemMods(hide) {
+  mod(hide) {
     display: none;
   }
 
-  block(description){
+  block(description) {
 
       elem(name){
         margin-top: 23px;
@@ -139,11 +138,11 @@ elem(party) {
       }
   }
 
-  elem(item) {
-    width: 200px;
-    height: 180px;
-    margin: 30px 0;
-  }
+    elem(item){
+      width: 200px;
+      height: 180px;
+      margin: 30px 0;
+    }
 
     elem(director_1) {
       background-image: url(../../assets/img/filmmaker/userpic_Solnceva.png);
@@ -308,7 +307,7 @@ elem(party) {
     }
   }
 
-elem(footer) {
+  elem(footer) {
     margin: 0 auto;
     background-color: #23232C;
     padding: 80px 0 40px;
