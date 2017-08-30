@@ -15,7 +15,8 @@
         ],
         mods: { theme: '*' }
       },
-      { block: 'link' }
+      { block: 'link' },
+      { block: 'font', mods: { family: ['helvetica-condensed', 'pt-mono'] }  }
     ]
   },
   {

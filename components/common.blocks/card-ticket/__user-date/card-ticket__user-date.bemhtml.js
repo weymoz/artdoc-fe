@@ -1,8 +1,6 @@
 block('card-ticket').elem('user-date')(
 
-  addMix()( { block: 'font', mods: { family: 'pt-mono', loaded: true } } ),
-
-  content()( node => {
+  match( node => node.mods.view === 'movie' ).content()( ( node, ctx ) => {
     return [
       {
         block: 'text',
@@ -12,7 +10,36 @@ block('card-ticket').elem('user-date')(
         format: 'DD MMMM',
         content: node._time_gmt3
       },
-      ( new Date( node._time_gmt3 * 1000 ).getDate() === new Date().getDate() + 1 ? ', завтра' : '' )
+      ctx.append
+    ]
+  }),
+
+  match( node => node.mods.view === 'order' ).content()( node => {
+    const template = node.reapply({
+      block: node.block,
+      elem: node.elem,
+      content: [
+        {
+          elem: 'day',
+          content: ']DD['
+        },
+        {
+          elem: 'month',
+          content: ']MMMM[, ] dd['
+        }
+      ]
+    });
+
+    return [
+      {
+        block: 'text',
+        mods: {
+          format: 'datetime'
+        },
+        format: '[' + template + ']',
+        content: node._time_gmt3
+      },
     ]
   })
+
 )
