@@ -203,16 +203,37 @@ module.exports = function( app ) {
         .catch(() => res.send('error') );
   });
 
-  app.get( '/cinema/release', function ( req, res ) {
+  app.get(/cinema\/(release|discuss)/, function ( req, res ) {
     let data = Object.assign({}, global);
     if ( req.query.hasOwnProperty( 'hash' ) && req.query.hasOwnProperty( 'sess_id' ) && req.query.hasOwnProperty( 'id' ) ) {
-      data.page = 'play';
+      data.page = req.params[0]=='discuss'?'discuss':'play';
       request( { url: '/cinema/release/?id=' + req.query.id + '&hash=' + req.query.hash + '&sess_id=' + req.query.sess_id } )
         .then( response => {
+
           data.api = response;
+
+          if (req.params[0]=='discuss') {
+
+            console.log(response.schedule);
+
+            if (typeof response.schedule != 'undefined') {
+              if (response.schedule.discuss_link) {
+                return res.redirect(response.schedule.discuss_link);
+              } else if (response.schedule.discuss_preview) {
+                render( req, res, data );
+              }
+            }
+
+            res.status(404);
+            return render(req, res, { view: '404', page: 'index' });
+          }
+
+
           render( req, res, data );
         } )
-        .catch(() => res.send('error') );
+        .catch(() => {
+          res.send('error')
+        } );
     }
   });
 

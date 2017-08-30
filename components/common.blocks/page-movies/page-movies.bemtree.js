@@ -17,7 +17,7 @@ block('page-movies').replace()(function() {
           return {
             block: 'card-movie',
             mods: {
-              view: 'schedule'
+              view: 'list'
             },
             movie: item
           }

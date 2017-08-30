@@ -7,8 +7,15 @@ block('card-movie').elem('description')(
 )
 
 block('card-movie').elem('description').elemMod( 'short', true ).content()( node => {
-  if ( node._description.length > 190 ) {
-    var text = node._description.substr( 0, 160 );
+
+  let limit = [360, 330];
+  console.log(node.mods);
+  if (typeof node.mods.view != 'undefined' && node.mods.view == 'schedule') {
+    limit = [260, 230]
+  }
+
+  if ( node._description.length > limit[0] ) {
+    var text = node._description.substr( 0, limit[1] );
     node._description = text.substr( 0, Math.min( text.length, text.lastIndexOf( ' ' ) ) ) + '…'
   }
   return node._description
