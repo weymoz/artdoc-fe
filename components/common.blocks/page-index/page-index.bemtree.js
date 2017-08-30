@@ -106,9 +106,15 @@ block('page-index').replace()(function() {
           }
           ]
         },
-        {
-          block: 'club-footer'
-        }
+      ]
+    },
+    {
+      block: 'section',
+      content: [
+      {
+        block: 'club-footer',
+        mix: { block: 'page', elem: 'club' }
+      }
       ]
     }
   ]
