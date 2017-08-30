@@ -5,6 +5,7 @@ block(page) {
 
   .elem(content) {
     lost-center: 1316px;
+    margin-bottom: 104px;
     padding-top: 2em;
     box-sizing: border-box;
 
@@ -33,9 +34,6 @@ block(page) {
     box-sizing: border-box;
   }
 
-  .elem(footer) {
-    margin-top: 104px;
-  }
 
   .mod(view page-index) {
 

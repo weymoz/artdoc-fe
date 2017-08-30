@@ -17,7 +17,7 @@ block('page-selections').replace()(function() {
             block: 'card-selection',
             mods: {
               view: [ 'selections' ],
-              theme: this.data.api.image ? 'artdoc' : 'artdoc-dark'
+              theme: item.image ? 'artdoc' : 'artdoc-dark'
             },
             selection: item
           }
@@ -27,6 +27,15 @@ block('page-selections').replace()(function() {
     {
       block: 'pagination',
       params: this.data.pagination
+    },
+    {
+      block: 'section',
+      content: [
+      {
+        block: 'club-footer',
+        mix: { block: 'page', elem: 'club' }
+      }
+      ]
     }
   ];
 });

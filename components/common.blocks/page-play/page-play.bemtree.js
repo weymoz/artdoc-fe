@@ -29,6 +29,15 @@ block('page-play')(
             movie: movie
           }
         ]
+      },
+      {
+        block: 'section',
+        content: [
+        {
+          block: 'club-footer',
+          mix: { block: 'page', elem: 'club' }
+        }
+        ]
       }
     ];
   })

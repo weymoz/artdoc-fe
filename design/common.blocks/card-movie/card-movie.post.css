@@ -196,7 +196,6 @@ block(card-movie) {
       position: absolute;
       top: 0;
       z-index: 2;
-      width: 311px;
       display: flex;
       height: 48px;
     }

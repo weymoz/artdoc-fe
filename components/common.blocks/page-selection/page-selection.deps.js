@@ -9,6 +9,8 @@
     {
       block: 'breadcrumbs'
     },
+    'club-footer',
+    'section',
     {
       block: 'card-selection',
       mods: {

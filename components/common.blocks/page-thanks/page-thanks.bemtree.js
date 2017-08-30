@@ -58,6 +58,15 @@ block('page-thanks')(
             ]
           }
         ]
+      },
+      {
+        block: 'section',
+        content: [
+        {
+          block: 'club-footer',
+          mix: { block: 'page', elem: 'club' }
+        }
+        ]
       }
     ]
   } )

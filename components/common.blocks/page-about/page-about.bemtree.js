@@ -257,5 +257,5 @@ block('page-about').content()(function() {
       }
       ]
     }
-    ];
+    ]
 });

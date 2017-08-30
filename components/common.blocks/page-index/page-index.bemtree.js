@@ -119,7 +119,6 @@ block('page-index').replace()(function() {
     }
   ]
 
-
 })
 
 

@@ -1,4 +1,6 @@
 block(club-footer) {
+  max-width: 1316px;
+  margin: 0 auto;
 
   elem(avatar) {
     display: block;
