@@ -52,7 +52,7 @@ block('ticket-case').content()(function() {
       },
       name: 'calendar',
       val: _schedules[0].id,
-      options: _schedules.map( item => {
+      options: _schedules.slice(0, 7).map( item => {
         return {
           val: item.id,
           text: [
@@ -77,7 +77,8 @@ block('ticket-case').content()(function() {
               {
                 block: 'form-field',
                 mods: {
-                  type: 'select'
+                  type: 'select',
+                  size: 'l'
                 },
                 name: 'city',
                 id: 'city',
@@ -91,50 +92,74 @@ block('ticket-case').content()(function() {
                     mods: {
                       mode: 'radio',
                       width: 'available',
+                      size: 'm',
                       theme: 'artdoc-dark'
                     },
-                    val: 'ru',
+                    val: 180,
                     options: [
-                      { val: 'ru', text: 'Россия' },
-                      { val: 'ch', text: 'Китай' },
-                      { val: 'uk', text: 'Великобритания' },
-                      { val: 'us', text: 'США' },
+                      { text: 'UTC−11:00', val: (11 * 60 * -1) },
+                      { text: 'UTC−10:00', val: (10 * 60 * -1) },
+                      { text: 'UTC−09:00', val: (9 * 60 * -1) },
+                      { text: 'UTC−07:00', val: (7 * 60 * -1) },
+                      { text: 'UTC−06:00', val: (6 * 60 * -1) },
+                      { text: 'UTC−05:00', val: (5 * 60 * -1) },
+                      { text: 'UTC−04:00', val: (4 * 60 * -1) },
+                      { text: 'UTC-08:00', val: (8 * 60 * -1) },
+                      { text: 'UTC-05:00', val: (5 * 60 * -1) },
+                      { text: 'UTC-04:00', val: (4 * 60 * -1) },
+                      { text: 'UTC-03:30', val: ((3 * 60 + 30) * -1) },
+                      { text: 'UTC-03:00', val: (3 * 60 * -1) },
+                      { text: 'UTC±00:00', val: 0 },
+                      { text: 'UTC+01:00', val: (1 * 60) },
+                      { text: 'UTC+02:00', val: (2 * 60) },
+                      { text: 'UTC+03:00', val: (3 * 60) },
+                      { text: 'UTC+03:30', val: (3 * 60 + 30) },
+                      { text: 'UTC+05:00', val: (5 * 60) },
+                      { text: 'UTC+05:30', val: (5 * 60 + 30) },
+                      { text: 'UTC+06:00', val: (6 * 60) },
+                      { text: 'UTC+06:30', val: (6 * 60 + 30) },
+                      { text: 'UTC+07:00', val: (7 * 60) },
+                      { text: 'UTC+08:00', val: (8 * 60) },
+                      { text: 'UTC+09:00', val: (9 * 60) },
+                      { text: 'UTC+09:30', val: (9 * 60 + 30) },
+                      { text: 'UTC+10:00', val: (10 * 60) },
+                      { text: 'UTC+11:00', val: (11 * 60) }
                     ]
                   },
                 ]
               },
-              {
-                block: 'form-field',
-                mods: {
-                  type: 'select'
-                },
-                name: 'timezone',
-                id: 'timezone',
-                content: [
-                  {
-                    block: 'select',
-                    mods: {
-                      mode: 'radio',
-                      width: 'available',
-                      theme: 'artdoc-dark'
-                    },
-                    val: 'msk',
-                    options: [
-                      { val: 'kalt', text: 'UTC+2 Калининградское время' },
-                      { val: 'msk' , text: 'UTC+3 Московское время' },
-                      { val: 'samt', text: 'UTC+4 Самарское время' },
-                      { val: 'yekt', text: 'UTC+5 Екатеринбургское время' },
-                      { val: 'omst', text: 'UTC+6 Омское время' },
-                      { val: 'krat', text: 'UTC+7 Красноярское время' },
-                      { val: 'irkt', text: 'UTC+8 Иркутское время' },
-                      { val: 'yakt', text: 'UTC+9 Якутское время' },
-                      { val: 'vlat', text: 'UTC+10 Владивостокское время' },
-                      { val: 'magt', text: 'UTC+11 Магаданское время' },
-                      { val: 'pett', text: 'UTC+12 Камчатское время' }
-                    ]
-                  }
-                ]
-              },
+              // {
+              //   block: 'form-field',
+              //   mods: {
+              //     type: 'select'
+              //   },
+              //   name: 'timezone',
+              //   id: 'timezone',
+              //   content: [
+              //     {
+              //       block: 'select',
+              //       mods: {
+              //         mode: 'radio',
+              //         width: 'available',
+              //         theme: 'artdoc-dark'
+              //       },
+              //       val: 'msk',
+              //       options: [
+              //         { val: 'kalt', text: 'UTC+2 Калининградское время' },
+              //         { val: 'msk' , text: 'UTC+3 Московское время' },
+              //         { val: 'samt', text: 'UTC+4 Самарское время' },
+              //         { val: 'yekt', text: 'UTC+5 Екатеринбургское время' },
+              //         { val: 'omst', text: 'UTC+6 Омское время' },
+              //         { val: 'krat', text: 'UTC+7 Красноярское время' },
+              //         { val: 'irkt', text: 'UTC+8 Иркутское время' },
+              //         { val: 'yakt', text: 'UTC+9 Якутское время' },
+              //         { val: 'vlat', text: 'UTC+10 Владивостокское время' },
+              //         { val: 'magt', text: 'UTC+11 Магаданское время' },
+              //         { val: 'pett', text: 'UTC+12 Камчатское время' }
+              //       ]
+              //     }
+              //   ]
+              // },
             ]
           },
           {
