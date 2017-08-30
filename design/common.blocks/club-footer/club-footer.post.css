@@ -1,3 +1,177 @@
 block(club-footer) {
-  
+
+  elem(avatar) {
+    display: block;
+    width: 48px;
+    height: 48px;
+    background-image: url(../../common.blocks/icon/_symbol/club_artdoc_icon.svg);
+    margin-right: 15px;
+    flex-shrink: 0;
+  }
+
+  elem( aside ) {
+    display: flex;
+    box-shadow: 0px 1px 0px 0px rgb(255, 255, 255, 0.25);
+    justify-content: space-between;
+    padding-bottom: 45px;
+    margin: 10px 0 30px;
+
+    elem(footer-title) {
+      display: flex;
+      color: white;
+      font-size: 32px;
+      line-height: 48px;
+      text-transform: uppercase;
+      justify-content: space-between;
+      width: 250px;
+      justify-content: space-between;
+      margin-right: 25px;
+
+      elem(title):last-child {
+        color: red;
+      }
+    }
+
+    block(paragraph) {
+      max-width: 728px;
+      color: white;
+    }
+  }
+
+  elem( content ) {
+    display: flex;
+    justify-content: space-between;
+
+    elem(footer-item){
+      width: 25%;
+      height: 350px;
+    }
+
+    elem(title) {
+      font-size: 17px;
+      line-height: 24px;
+      color: white;
+      margin-bottom: 40px;
+      text-transform: uppercase;
+      margin-left: 10px;
+    }
+
+    elem(partners) {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+
+      elem(partner) {
+        width: 100px;
+        height: 100px;
+
+        elem(image) {
+          width: 64px;
+          height: 64px;
+          background-repeat: no-repeat;
+          -webkit-background-size: contain;
+          background-size: contain;
+          background-position: center center;
+        }
+
+      elem(partner_1){
+        background-image: url(../../assets/img/fests/fest_logo_white_1.svg);
+      }
+
+      elem(partner_2){
+        background-image: url(../../assets/img/fests/fest_logo_white_2.svg);
+      }
+
+      elem(partner_3){
+        background-image: url(../../assets/img/fests/fest_logo_white_3.svg);
+      }
+
+      elem(partner_4){
+        background-image: url(../../assets/img/fests/fest_logo_white_4.svg);
+      }
+
+      elem(partner_5){
+        background-image: url(../../assets/img/fests/fest_logo_white_5.svg);
+      }
+
+      elem(partner_6){
+        background-image: url(../../assets/img/fests/fest_logo_white_6.svg);
+      }
+
+      elem(partner_7){
+        background-image: url(../../assets/img/fests/fest_logo_white_7.svg);
+      }
+
+      elem(partner_8){
+        background-image: url(../../assets/img/fests/fest_logo_white_8.svg);
+      }
+
+      elem(partner_9){
+        background-image: url(../../assets/img/fests/fest_logo_white_9.png);
+      }
+    }
+  }
+
+    elem(club-login){
+      color: white;
+      line-height: 250px;
+      font-weight: bold;
+    }
+
+    elem(party) {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+
+      elem(maker) {
+        width: 100px;
+        height: 100px;
+      }
+
+      elem(image) {
+        width: 64px;
+        height: 64px;
+        background-repeat: no-repeat;
+        -webkit-background-size: contain;
+        background-size: contain;
+        background-position: center center;
+      }
+
+      elem(director_1){
+        background-image: url(../../assets/img/filmmaker/userpic_Karcev.png);
+      }
+
+      elem(director_2){
+        background-image: url(../../assets/img/filmmaker/userpic_Plaxov.png);
+      }
+
+      elem(director_3){
+        background-image: url(../../assets/img/filmmaker/userpic_Matizen.png);
+      }
+
+      elem(director_4){
+        background-image: url(../../assets/img/filmmaker/userpic_Korezkiy.png);
+      }
+
+      elem(director_5){
+        background-image: url(../../assets/img/filmmaker/userpic_Arkus.png);
+      }
+
+      elem(director_6){
+        background-image: url(../../assets/img/filmmaker/userpic_Dolin.png);
+      }
+
+      elem(director_7){
+        background-image: url(../../assets/img/filmmaker/userpic_Smirnova.png);
+      }
+
+      elem(director_8){
+        background-image: url(../../assets/img/filmmaker/userpic_Solnceva.png);
+      }
+
+      elem(director_9){
+        background-image: url(../../assets/img/filmmaker/userpic_Arxangel.png);
+      }
+    }
+  }
 }

@@ -1,3 +1,5 @@
+// block('page').appendContent()()
+
 block('form').mod('view', 'order')(
   def()(function() {
     return applyNext({
@@ -28,11 +30,6 @@ block('form').mod('view', 'order')(
           disabled: !ctx.session
         },
         content : [
-          {
-            block: 'paragraph',
-            mix: { block: node.block, elem: 'section' },
-            content: 'Мы отправим на вашу электронную почту ссылку на страницу сеанса после оплаты. Фильм будет доступен к просмотру 26 декабря с 18:00 до 21:00 (время UTC+3 Санкт-Петербург).'
-          },
           {
             tag: 'input',
             attrs: {
@@ -131,7 +128,8 @@ block('form').mod('view', 'order')(
         block: 'modal',
         mods: {
           autoclosable: true,
-          'has-close': true
+          'has-close': true,
+          size: 's'
         }        
       }
     ]

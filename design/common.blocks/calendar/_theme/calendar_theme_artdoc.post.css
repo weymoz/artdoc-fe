@@ -15,4 +15,8 @@ block(calendar).mod(theme artdoc) {
       color: #ffffff;
     }
   }
+
+  .elem(week-day) {
+    text-transform: uppercase;
+  }
 }
