@@ -6,6 +6,7 @@ block(modal).mod(theme artdoc) {
   /* to prevent clickability and visiblity of internal elements with visiblity: visible */
   margin: -9999px 0 0 -9999px;
 
+
   background: rgba(50, 50, 50, 0.2);
 
   &,
@@ -25,12 +26,11 @@ block(modal).mod(theme artdoc) {
   }
 
   .elem(content) {
-    padding: 0 .5;
     background-color: #fff;
     background-clip: content-box;
     box-sizing: border-box;
-    max-height: 70vh;
     overflow: auto;
+
   }
 
   .elem(close) {
