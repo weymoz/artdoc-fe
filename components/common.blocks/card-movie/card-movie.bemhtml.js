@@ -9,11 +9,28 @@ block( 'card-movie' )(
     } );
 
     // 16:9 ratio for all covers
-    node._cover.height = Math.floor( node._cover.width / ( 16 / 9 ) );
+    node._cover.height = Math.round( node._cover.width / ( 16 / 9 ) );
     // node._cover.height = node._cover.width / ( 16 / 9 );
 
     return applyNext();
   } ),
 
-  tag()( 'article' )
+  tag()( 'article' ),
+
+  elem('*')(
+    match( node => node.elemMods.type === 'link' && node._url )(
+      tag()('a'),
+      addMix()( () => { return { block: 'link' } } ),
+      addAttrs()( node => {
+
+        // remove url for nested elements
+        let url = node._url;
+        // delete node._url;
+
+        return {
+          href: url
+        }
+      } )
+    )
+  )
 )

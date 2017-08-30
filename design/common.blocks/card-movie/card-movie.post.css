@@ -177,68 +177,68 @@ block(card-movie) {
   .mod( view slide ) {
     height: 100%;
 
-    elem(content) {
+    .elem(content) {
       position: relative;
     }
 
-    elem(orig-name) {
+    .elem(orig-name) {
       color: white;
     }
 
-    elem(name) {
+    .elem(name) {
       font-weight: bold;
       font-size: 40px;
       line-height: 48px;
       color: white;
     }
 
-    elem(info) {
+    .elem(info) {
       position: absolute;
       top: 0;
       z-index: 2;
+      width: 311px;
       display: flex;
       height: 48px;
-
-      elem(title) {
-        color: white;
-        font-size: 17px;
-        line-height: 20px;
-        padding: 20px 15px 8px;
-        text-transform: uppercase;
-      }
-
-      elem(icon) {
-        width: 48px;
-        height: 48px;
-        background-color: #F3203B;
-        flex-shrink: 0;
-      }
     }
 
-    elem(cover) {
-      background: rgb(0, 0, 0, 0.7);
+    .elem(title) {
+      color: white;
+      font-size: 17px;
+      line-height: 20px;
+      padding: 20px 15px 8px;
+      text-transform: uppercase;
+    }
+
+    .elem(icon) {
+      width: 48px;
+      height: 48px;
+      background-color: #F3203B;
+    }
+
+    .elem(cover) {
+      background: rgb(0, 0, 0, 0.8);
       display: flex;
       justify-content: flex-end;
       flex-direction: column;
     }
 
-    elem(director) {
+    .elem(director) {
       color: white;
     }
 
-    elem(description) {
+    .elem(description) {
       max-width: 60%;
     }
 
-    elem(year) {
+    .elem(year) {
       color: white;
     }
 
-    elem(countries) {
+    .elem(countries) {
       color: white;
     }
 
-    elem(buy-button) {
+    .elem(buy-button) {
       max-width: 234px;
       margin-top: 30px;
     }
@@ -248,7 +248,7 @@ block(card-movie) {
       padding: 15px 30px;
       background-color: #fff;
 
-      elem(text) {
+      .elem(text) {
         color: black!important;
       }
     }
@@ -325,6 +325,10 @@ block(card-movie) {
     width: 100%;
     height: 100%;
     object-fit: cover;
+
+    .mod(hide) {
+      opacity: 0;
+    }
   }
 
   .elem(cover) {
@@ -555,6 +559,12 @@ block(card-movie) {
       display: block;
       color: red;
     }
+
+    .mod(period) {
+      .elem(schedule-day) {
+        font-size: 18px;
+      }
+    }
   }
 
   .elem(schedule-day) {
@@ -564,7 +574,14 @@ block(card-movie) {
   }
 
   .elem(schedule-month) {
-    font-size: 16px;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 1.25;
+  }
+
+  .elem(schedule-week-day) {
+    text-transform: uppercase;
+    font-size: 18px;
     font-weight: bold;
     line-height: 1.25;
   }
@@ -592,7 +609,7 @@ block(card-movie) {
       height: 110px;
     }
 
-    elem(content) {
+    .elem(content) {
       text-decoration: none;
     }
 

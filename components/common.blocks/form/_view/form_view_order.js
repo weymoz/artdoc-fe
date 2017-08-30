@@ -1,8 +1,8 @@
 /*global braintree*/
 
 modules.define('form',
-  ['jquery', 'modal', 'loader_type_js', 'BEMHTML', 'button'],
-  function(provide, $, Modal, loader, BEMHTML, Button, Form) {
+  ['jquery', 'modal', 'i-bem-dom', 'loader_type_js', 'BEMHTML', 'button'],
+  function(provide, $, Modal, bemDom, loader, BEMHTML, Button, Form) {
 
 provide(Form.declMod({ modName: 'view', modVal: 'order' }, {
 
@@ -35,38 +35,18 @@ provide(Form.declMod({ modName: 'view', modVal: 'order' }, {
 
     $.ajax(settings).done(function (response) {
 
-      var data = JSON.parse( response );
-      // var braintree;
+      const data = JSON.parse( response );
 
       loader('//js.braintreegateway.com/web/dropin/1.4.0/js/dropin.min.js',
         function() {
-          var content = BEMHTML.apply({
+          const paymentForm = BEMHTML.apply({
             block: 'form',
             mods: {
               view: 'payment'
             },
-            content: [
-              {
-                attrs: {
-                  id: 'payment-form'
-                }
-              },
-              {
-                block: 'button',
-                mods: {
-                  type: 'submit',
-                  width: 'available',
-                  size: 'xxl',
-                  theme: 'artdoc'
-                },
-                text: 'Отправить'
-              }
-            ]
           });
 
-          _this._modal.setContent( content ).setMod('visible');
-
-          var button = _this._modal.findChildBlock(Button);
+          _this._modal.setContent( '' ).setMod('visible').setContent( paymentForm );
 
           braintree.dropin.create({
             authorization: data.clientToken,
@@ -79,11 +59,30 @@ provide(Form.declMod({ modName: 'view', modVal: 'order' }, {
               return;
             }
 
+            _this._paymentForm = _this._modal.findChildBlock({ block: Form, modName: 'view', modVal: 'payment' });
+
+            bemDom.append(
+              _this._paymentForm.domElem,
+              BEMHTML.apply({
+                block: 'button',
+                mods: {
+                  type: 'submit',
+                  width: 'available',
+                  size: 'xxl',
+                  theme: 'artdoc'
+                },
+                text: 'Отправить'
+              })
+            );
+
+            const button = _this._modal.findChildBlock(Button);
+
             _this._domEvents(button).on('click', function () {
               instance.requestPaymentMethod(function (err, payload) {
                 if (err){
                   console.error(err);
                 } else {
+                  bemDom.destruct( button.domElem );
                   window.location.href = '/order/' + data.transaction_id + '?payment_nonce=' + payload.nonce;
                 }
               });
