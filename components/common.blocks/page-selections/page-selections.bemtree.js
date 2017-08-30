@@ -17,7 +17,7 @@ block('page-selections').replace()(function() {
             block: 'card-selection',
             mods: {
               view: [ 'selections' ],
-              theme: 'artdoc'
+              theme: this.data.api.image ? 'artdoc' : 'artdoc-dark'
             },
             selection: item
           }

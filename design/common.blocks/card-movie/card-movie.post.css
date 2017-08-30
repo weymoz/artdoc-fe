@@ -196,7 +196,6 @@ block(card-movie) {
       position: absolute;
       top: 0;
       z-index: 2;
-      width: 311px;
       display: flex;
       height: 48px;
 
@@ -212,11 +211,12 @@ block(card-movie) {
         width: 48px;
         height: 48px;
         background-color: #F3203B;
+        flex-shrink: 0;
       }
     }
 
-    elem(on-cover) {
-      background: rgb(0, 0, 0, 0.8);
+    elem(cover) {
+      background: rgb(0, 0, 0, 0.7);
       display: flex;
       justify-content: flex-end;
       flex-direction: column;

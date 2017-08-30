@@ -68,12 +68,12 @@ block('page-index').replace()(function() {
         },
         {
           elem: 'collections',
-          content: this.data.api.map( item => {
+          content: this.data.api.slice(0, 3).map( item => {
             return {
               block: 'card-selection',
               mods: {
                 view: [ 'selections' ],
-                theme: 'artdoc'
+                theme: item.image ? 'artdoc' : 'artdoc-dark'
               },
               selection: item
             }

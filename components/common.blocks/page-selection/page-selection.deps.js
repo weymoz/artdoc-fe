@@ -13,7 +13,7 @@
       block: 'card-selection',
       mods: {
         view: [ 'detail' ],
-        theme: 'artdoc'
+        theme: '*'
       }
     }
   ]

@@ -12,7 +12,8 @@
       {
         block: 'card-selection',
         mods: {
-          view: [ 'selections' ]
+          view: [ 'selections' ],
+          theme: '*'
         }
       },
       {

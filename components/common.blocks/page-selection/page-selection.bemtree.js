@@ -6,7 +6,8 @@ block('page-selection').replace()( node => {
         {
           block: 'card-selection',
           mods: {
-            view: [ 'detail' ]
+            view: [ 'detail' ],
+            theme: node.data.api.image ? 'artdoc' : 'artdoc-dark'
           },
           selection: node.data.api
         }
