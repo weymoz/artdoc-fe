@@ -42,7 +42,8 @@ provide(Form.declMod({ modName: 'view', modVal: 'order' }, {
           const paymentForm = BEMHTML.apply({
             block: 'form',
             mods: {
-              view: 'payment'
+              view: 'payment',
+              theme: 'artdoc'
             },
           });
 
