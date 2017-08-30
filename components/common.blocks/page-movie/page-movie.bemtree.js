@@ -40,6 +40,15 @@ block('page-movie').replace()(function() {
       content: {
         block: 'rewards'
       }
+    },
+    {
+      block: 'section',
+      content: [
+      {
+        block: 'club-footer',
+        mix: { block: 'page', elem: 'club' }
+      }
+      ]
     }
   ];
 });

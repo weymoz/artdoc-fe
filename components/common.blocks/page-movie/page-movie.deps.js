@@ -10,6 +10,8 @@
       }
     },
     'ticket-case',
-    'movie-about'
+    'movie-about',
+    'club-footer',
+    'section',
   ]
 }]

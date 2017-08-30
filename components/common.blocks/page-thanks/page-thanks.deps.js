@@ -2,6 +2,8 @@
     shouldDeps: [
       { block: 'card-movie', mods: { view: 'ticket' } },
       { block: 'card-ticket' },
-      { block: 'paragraph' }
+      { block: 'paragraph' },
+      'club-footer',
+      'section',
     ]
 })

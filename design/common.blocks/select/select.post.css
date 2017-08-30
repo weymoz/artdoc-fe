@@ -19,10 +19,10 @@ block(select) {
 
   .elem(tick) {
     position: absolute;
-    top: 0;
+    top: 50%;
+    margin-top: -0.75em;
     bottom: 0;
     right: 0;
-    background-image: url('../icon/_symbol/icon_symbol_chevron-down.svg');
     transition: transform 0.1s ease-out;
     width: 2em;
     padding: .5em;

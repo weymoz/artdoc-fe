@@ -196,7 +196,6 @@ block(card-movie) {
       position: absolute;
       top: 0;
       z-index: 2;
-      width: 311px;
       display: flex;
       height: 48px;
     }
@@ -488,6 +487,10 @@ block(card-movie) {
     line-height: 1.0;
     text-decoration: none;
     margin-top: 0;
+    
+    block(link) {
+      color: inherit;
+    }
   }
 
   .elem(list).elem(list) {

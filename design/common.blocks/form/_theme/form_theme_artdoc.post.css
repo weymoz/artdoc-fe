@@ -3,11 +3,9 @@ block(form).mod(theme artdoc) {
   .mod(view payment) {
     padding: 0 40px 40px;
   }
-
+  
   .elem(section) {
     margin-bottom: 24px;
   }
-
-
 
 }

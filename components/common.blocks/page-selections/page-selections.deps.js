@@ -9,10 +9,13 @@
       {
         block: 'breadcrumbs'
       },
+      'club-footer',
+      'section',
       {
         block: 'card-selection',
         mods: {
-          view: [ 'selections' ]
+          view: [ 'selections' ],
+          theme: '*'
         }
       },
       {

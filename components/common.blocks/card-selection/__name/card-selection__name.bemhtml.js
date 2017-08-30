@@ -4,6 +4,8 @@ block( 'card-selection' ).elem( 'name' )(
 
   tag()('h2'),
 
+  addMix()({ block: 'font', mods: { family: 'helvetica-bold', loaded: true } }),
+
   content()( node => node._name )
 
   // match( node => node._url ).content()( node => {
