@@ -15,7 +15,7 @@
     {
       block: 'font',
       mods: {
-          family: 'helvetica-condensed',
+          family: '*',
           loaded: true
       }
     }
