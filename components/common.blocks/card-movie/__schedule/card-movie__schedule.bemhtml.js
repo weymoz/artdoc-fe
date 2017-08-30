@@ -1,5 +1,9 @@
 block( 'card-movie' ).elem( 'schedule' )(
+
   match( node => { return !node._schedules || !node._schedules.length } ).def()( '' ),
+
+  tag()('time'),
+
   addAttrs()( ( node, ctx ) => {
     return {
       title: applyCtx( {
@@ -20,25 +24,58 @@ block( 'card-movie' ).elem( 'schedule' )(
       } )
     }
   } ),
-  tag()('time'),
+
   content()( ( node, ctx ) => {
-    return [
+    const template = node.reapply([
       {
+        block: node.block,
         elem: 'schedule-day',
-        content: ctx.content
+        content: ']['+ ctx.prefix + ']D['
       },
       {
+        block: node.block,
         elem: 'schedule-month',
+        content: ']MMMM['
+      },
+      ctx['show-week-day'] && {
+        block: node.block,
+        elem: 'schedule-week-day',
+        content: ']dd['
+      }      
+    ]);
+
+    return [
+      {
+        block: 'text',
+        mods: { format: 'datetime' },
+        format: '[' + template + ']',
         content: ctx.content
-      }
+      },
     ]
   } ),
+
   match( node => { return node._schedules && node._schedules.length } ).def()( node => {
+    const isPeriod = node._schedules.length > 1;
+    const prefix = isPeriod ? 'c ' : '';
     return [
-      applyNext( { 'ctx.content': node._schedules[ 0 ].date } ),
-      node._schedules.length > 1
-        ? applyNext( { 'ctx.content': node._schedules[ node._schedules.length - 1 ].date } )
+      applyNext( {
+        elemMods: { period: isPeriod },
+        ctx: {
+          prefix: prefix,
+          'show-week-day': !isPeriod,
+          content: node._schedules[ 0 ].date
+        }
+      } ),
+      isPeriod
+        ? applyNext( {
+          elemMods: { period: true },
+          ctx: {
+            prefix: 'по ',
+            content: node._schedules[ node._schedules.length - 1 ].date
+          }
+        } )
         : ''
     ].join('');
   } )
+
 )
