@@ -184,7 +184,7 @@ block('page-club').content()(function() {
               mods: {
                 size: 'l'
               },
-              content: 'Участники клуба Артдок'
+              content: 'Аккредитованные кинокритики'
             },
             {
              elem: 'party',

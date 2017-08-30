@@ -1,26 +1,52 @@
-block('card-ticket').mod('view', 'movie').content()( () => {
-  return [
-    {
-      elem: 'header',
-      content: [
-        { elem: 'room' },
-        { elem: 'city' },
-      ]
-    },
-    {
-      elem: 'content',
-      content: [
-        { elem: 'user-date' },
-        { elem: 'user-time' }
-      ]
-    },
-    {
-      elem: 'footer',
-      content: { elem: 'buy' }
-    },
-    {
-      elem: 'footer',
-      content: { elem: 'left' }
-    }
-  ]
-});
+block('card-ticket').mod('view', 'movie')(
+
+  addMods()({ status: 'disabled' }),
+
+  match( ( node, ctx ) => ctx.ticket.tickets_left && ( ( ctx.ticket.time_gmt3 * 1000 ) > Date.now() ) )(
+
+    tag()('a'),
+
+    addMix()( { block: 'link'} ),
+
+    addAttrs()( ( node, ctx ) => {
+      return { 'href': '?code=' + ctx.ticket.code + '&tz=3&city=spb' } }
+    ),
+
+    addMods()( { status: 'active' } )
+
+  ),
+
+  match( ( node, ctx ) => ctx.ticket.tickets_left < 10 && ( ( ctx.ticket.time_gmt3 * 1000 ) > Date.now() ) ).addMods()({ status: 'less' }),
+
+  content()( node => {
+    return [
+      {
+        elem: 'header',
+        mix: { block: 'font', mods: { family: 'helvetica-condensed', loaded: true }  },
+        content: [
+          { elem: 'room' },
+          { elem: 'city' },
+        ]
+      },
+      {
+        elem: 'content',
+        content: [
+          {
+            elem: 'user-date',
+            mix: { block: 'font', mods: { family: 'pt-mono', loaded: true }  },
+            append: ( node.position > 3 && new Date( node._time_gmt3 * 1000 ).getDate() === new Date().getDate() + 1 ? ', завтра' : '' ),
+          },
+          { elem: 'user-time' }
+        ]
+      },
+      {
+        elem: 'footer',
+        content: { elem: 'buy' }
+      },
+      {
+        elem: 'footer',
+        content: { elem: 'left' }
+      }
+    ]
+  })
+)

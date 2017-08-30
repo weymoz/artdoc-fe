@@ -1,10 +1,5 @@
 block(page-about) {
 
-  block(breadcrumbs){
-    block(link){
-    font-size: 12px;
-    }
-  }
 
   block(title) {
     font-size: 32px;
@@ -47,8 +42,8 @@ block(page-about) {
   }
 
   elem(header) {
-    width: 100%;
-    margin: 30px 56px 50px;
+    max-width: 1316px;
+    margin: 30px auto 50px;
   }
 
   elem(content) {

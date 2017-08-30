@@ -1,13 +1,5 @@
 block(page-club) {
 
-  block(breadcrumbs){
-
-    block(link){
-    font-size: 12px;
-    }
-
-  }
-
   block(title) {
     font-size: 32px;
     letter-spacing: 1px;
@@ -50,8 +42,9 @@ block(page-club) {
     }
   }
 
-elem(header) {
-    margin: 30px 56px 0;
+  elem(header) {
+    max-width: 1316px;
+    margin: 30px auto 0;
   }
 
 elem(content) {

@@ -1,8 +1,8 @@
 block(footer).mod(theme artdoc) {
   background-color: #111;
   color: #a0a0ad;
-  padding-top: 64px;
-  padding-bottom: 48px;
+  padding: 64px 56px 48px;
+  box-sizing: border-box;
 
   .elem(content) {
     lost-center: 1316px;
@@ -22,6 +22,22 @@ block(footer).mod(theme artdoc) {
     }
   }
 
+  .block(list){
+
+    elem(item){
+      color: #A0A0AC;
+      cursor: pointer;
+
+      block(link) {
+        text-decoration: none;
+      }
+
+      block(link):hover {
+        color: unset;
+      }
+    }
+  }
+
   .elem(for-viewers) {
     lost-column: 8/47 0 0;
     padding-right: 56px;
@@ -36,5 +52,11 @@ block(footer).mod(theme artdoc) {
 
   .elem(contacts) {
     lost-column: 11/47 0 0;
+
+    block(list){
+        elem(item) {
+          font-size: 14px;
+      }
+    }
   }
 }

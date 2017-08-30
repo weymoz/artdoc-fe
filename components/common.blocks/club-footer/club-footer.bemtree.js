@@ -1,26 +1,26 @@
 block('club-footer').content()(function() {
     return [
       {
-        elem: 'footer-aside',
+        elem: 'aside',
         content: [
-        {
-          elem: 'icon'
-        },
         {
           elem: 'footer-title',
           mix: { block: 'font', mods: { family: 'helvetica-condensed', loaded: true } },
           content: [
               {
+                elem: 'avatar',
+                content: ''
+              },
+              {
                   elem: 'title',
-                  mix: { block: 'club-footer', elem: 'title-white' },
                   elemMods: {
                     size: 'xl'
                   },
-                  content: 'Клуб'
+                  mix: { block: 'font', mods: { family: 'helvetica-condensed', loaded: true } },
+                  content: 'Клуб '
               },
               {
                 elem: 'title',
-                mix: { block: 'club-footer', elem: 'title-red' },
                 elemMods: {
                   size: 'xl'
                 },
@@ -35,19 +35,28 @@ block('club-footer').content()(function() {
         ]
       },
       {
-        elem: 'footer-content',
+        elem: 'content',
         content: [
         {
           elem: 'footer-item',
-          content: [{ elem: 'partners' }]
+          content: [
+          { elem: 'title', mix: { block: 'font', mods: { family: 'helvetica-condensed', loaded: true } }, content: ['партнерские фестивали'] },
+          { elem: 'partners' }
+          ]
         },
         {
           elem: 'footer-item',
-          content: [{ elem: 'party' }]
+          content: [
+          { elem: 'title', mix: { block: 'font', mods: { family: 'helvetica-condensed', loaded: true } }, content: ['участники фестиваля'] },
+          { elem: 'party' }
+          ]
         },
         {
           elem: 'footer-item',
-          content: [{ elem: 'club-login' }]
+          content: [
+          { elem: 'title', mix: { block: 'font', mods: { family: 'helvetica-condensed', loaded: true } }, content: ['вход для участников'] },
+          { elem: 'club-login', content: 'Открытие клуба 15 сентября' }
+          ]
         }
         ]
       }

@@ -19,7 +19,7 @@ block('card-selection').mod('view', 'selections')(
       {
         elem: 'aside',
         content: [
-              ctx.selection.movies.map( item => {
+              (ctx.selection.movies).splice(0, 3).map( item => {
                 return {
                   block: 'card-movie',
                   mix: { block: node.block, elem: 'item' },

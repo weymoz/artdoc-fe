@@ -1,4 +1,4 @@
-block('page').elem('party').content()(function() {
+block('club-footer').elem('party').content()(function() {
   this.ctx.showed = [
       {
         counter: 'director_1'
@@ -32,11 +32,11 @@ block('page').elem('party').content()(function() {
   return [
     this.ctx.showed.map( item => {
        return {
-         elem: 'item',
+         elem: 'maker',
          content: [
            {
-             elem: 'maker',
-             counter: item.counter
+             elem: 'image',
+             mix: { block: 'club-footer', elem: item.counter }
            }
          ]
        }

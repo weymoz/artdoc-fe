@@ -11,7 +11,7 @@ block('header').content()(function() {
     },
     {
       block: 'nav-menu',
-      mix: { block: 'header', elem: 'menu' }
+      mix: [{ block: 'header', elem: 'menu' }, { block: 'font', mods: { family: 'helvetica-bold', loaded: true } }]
     },
 /*
     {

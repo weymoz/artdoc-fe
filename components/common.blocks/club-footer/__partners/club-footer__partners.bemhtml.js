@@ -1,4 +1,4 @@
-block('page').elem('partners').content()(function() {
+block('club-footer').elem('partners').content()(function() {
   this.ctx.partners = [
       {
         counter: 'partner_1'
@@ -36,7 +36,7 @@ block('page').elem('partners').content()(function() {
          content: [
            {
              elem: 'image',
-             mix: { block: 'page-index', elem: item.counter },
+             mix: { block: 'club-footer', elem: item.counter },
            }
          ]
        }

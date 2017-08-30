@@ -24,7 +24,7 @@
 .card-selection_view_selections .card-selection__preview {
   display: block;
   max-width: 644px;
-  height: 340px;
+  height: 100%;
   overflow: hidden;
 }
 

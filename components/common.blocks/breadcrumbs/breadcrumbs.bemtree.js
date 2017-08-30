@@ -17,6 +17,30 @@ block('breadcrumbs').content()(function() {
           },
           content: 'Онлайн-киносеансы'
         };
+      case 'selection':
+        return {
+          elem: 'item',
+          elemMods: {
+            active: 'true'
+          },
+          content: 'Подборки'
+        };
+      case 'about':
+        return {
+          elem: 'item',
+          elemMods: {
+            active: 'true'
+          },
+          content: 'О проекте'
+      };
+      case 'club':
+        return {
+          elem: 'item',
+          elemMods: {
+            active: 'true'
+          },
+          content: 'Клуб Artdoc'
+      };
       case 'movie':
         return [
           {

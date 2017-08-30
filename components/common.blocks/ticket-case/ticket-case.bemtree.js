@@ -73,18 +73,19 @@ block('ticket-case').content()(function() {
           content: [
           {
             block: 'paragraph',
-            content: 'Онлайн-сеансы Artdoc.media начинаются в 18:00 по местному времени пяти мировых центров культуры.'
-          },
-          {
-            block: 'paragraph',
             content: [
-              'Ваш часовой пояс:',
               {
                 block: 'form-field',
                 mods: {
                   type: 'select'
                 },
+                name: 'city',
+                id: 'city',
                 content: [
+                  {
+                    block: 'label',
+                    content: 'Ваш часовой пояс'
+                  },
                   {
                     block: 'select',
                     mods: {
@@ -92,8 +93,6 @@ block('ticket-case').content()(function() {
                       width: 'available',
                       theme: 'artdoc-dark'
                     },
-                    name: 'timezone',
-                    id: 'timezone',
                     val: 'ru',
                     options: [
                       { val: 'ru', text: 'Россия' },
@@ -109,6 +108,8 @@ block('ticket-case').content()(function() {
                 mods: {
                   type: 'select'
                 },
+                name: 'timezone',
+                id: 'timezone',
                 content: [
                   {
                     block: 'select',
@@ -117,8 +118,6 @@ block('ticket-case').content()(function() {
                       width: 'available',
                       theme: 'artdoc-dark'
                     },
-                    name: 'timezone',
-                    id: 'timezone',
                     val: 'msk',
                     options: [
                       { val: 'kalt', text: 'UTC+2 Калининградское время' },
@@ -137,6 +136,10 @@ block('ticket-case').content()(function() {
                 ]
               },
             ]
+          },
+          {
+            block: 'paragraph',
+            content: 'Онлайн-сеансы начинаются в 18:00 по местному времени пяти мировых центров культуры.'
           }
           ]
         },
