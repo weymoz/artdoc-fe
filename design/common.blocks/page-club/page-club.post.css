@@ -105,31 +105,33 @@ elem(content) {
 
   }
 
+elem(hidden){
+    mod(hide) {
+    display: none;
+  }
+}
+
 elem(party) {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 
-  mod(hide) {
-    display: none;
-  }
+    block(description) {
 
-  block(description) {
+        elem(name){
+          margin-top: 23px;
+          text-align: center;
+          font-size: 14px;
+          line-height: 24px;
+        }
 
-      elem(name){
-        margin-top: 23px;
-        text-align: center;
-        font-size: 14px;
-        line-height: 24px;
-      }
-
-      elem(role){
-        font-size: 14px;
-        line-height: 20px;
-        text-align: center;
-        color: #777783;
-      }
-  }
+        elem(role){
+          font-size: 14px;
+          line-height: 20px;
+          text-align: center;
+          color: #777783;
+        }
+    }
 
     elem(item){
       width: 200px;
@@ -224,7 +226,6 @@ elem(party) {
         background-size: cover;
       }
     }
-
   }
 
   elem(partners) {

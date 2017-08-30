@@ -1,7 +1,7 @@
 {
   "author": "Roman @Realetive Ganin",
   "name": "artdoc-site",
-  "version": "1.10.0",
+  "version": "1.11.0",
   "repository": {
     "type": "git",
     "url": "git@bitbucket.org:artdocfest/frontend.git"
@@ -67,6 +67,7 @@
     "postcss-each": "^0.10.0",
     "postcss-for": "^2.1.1",
     "postcss-import": "^10.0.0",
+    "postcss-inline-svg": "^3.0.0",
     "postcss-nested": "^2.0.4",
     "postcss-reporter": "^4.0.0",
     "postcss-simple-vars": "^4.0.0",

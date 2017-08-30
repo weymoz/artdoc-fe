@@ -12,6 +12,7 @@ module.exports = {
     require('postcss-nested'),
     require('lost'),
     require('pobem'),
+    require('postcss-inline-svg'),
     require('postcss-url')({ url: 'inline', optimizeSvgEncode: true }),
     require('postcss-cssnext')(),
     require('postcss-reporter')()

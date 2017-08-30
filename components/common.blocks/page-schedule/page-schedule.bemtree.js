@@ -66,6 +66,15 @@ block('page-schedule').replace()(function() {
           }
         } )
       ]
+    },
+    {
+      block: 'section',
+      content: [
+      {
+        block: 'club-footer',
+        mix: { block: 'page', elem: 'club' }
+      }
+      ]
     }
   ];
 });

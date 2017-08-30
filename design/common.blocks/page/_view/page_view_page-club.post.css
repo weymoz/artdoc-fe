@@ -35,9 +35,4 @@ block(page).mod(view page-club) {
     }
   }
 
-
-  block(footer) {
-    margin-top: 0;
-  }
-
 }

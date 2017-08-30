@@ -8,7 +8,9 @@
         }
 
       },
-      'pagination'
+      'pagination',
+      'club-footer',
+      'section'
     ],
 
 }]

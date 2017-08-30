@@ -24,6 +24,15 @@ block('page-movies').replace()(function() {
         } )
       ]
     },
-    { block: 'pagination', params: this.data.pagination }
+    { block: 'pagination', params: this.data.pagination },
+    {
+      block: 'section',
+      content: [
+      {
+        block: 'club-footer',
+        mix: { block: 'page', elem: 'club' }
+      }
+      ]
+    }
   ];
 });

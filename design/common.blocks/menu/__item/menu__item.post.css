@@ -1,6 +1,8 @@
 block(menu).elem(item) {
   position: relative;
   white-space: nowrap;
+  line-height: 2.5;
+  background-origin: content-box;
 
   .mod(disabled) {
     opacity: 0.3;
@@ -11,7 +13,8 @@ block(menu).elem(item) {
   }
 
   .mod(checked) {
-    background: 0 50% no-repeat url(../../icon/_symbol/icon_symbol_tip.svg);
+    background-image: url(../../icon/_symbol/icon_symbol_tip.svg);
+    background-repeat: no-repeat;
   }
 
   .mod(hovered) {
@@ -50,7 +53,7 @@ block(menu).elem(item) {
       padding: 0 $paddingHor;
 
       background-size: $tipSize $tipSize;
-      background-position: $paddingHor 50%;
+      background-position: right 50%;
     }
 
     .elem(group) + .elem(item) {

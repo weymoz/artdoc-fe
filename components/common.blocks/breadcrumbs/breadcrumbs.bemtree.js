@@ -17,6 +17,7 @@ block('breadcrumbs').content()(function() {
           },
           content: 'Онлайн-киносеансы'
         };
+
       case 'selection':
         return {
           elem: 'item',
@@ -25,6 +26,7 @@ block('breadcrumbs').content()(function() {
           },
           content: 'Подборки'
         };
+
       case 'about':
         return {
           elem: 'item',

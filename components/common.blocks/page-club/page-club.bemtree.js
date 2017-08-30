@@ -190,10 +190,18 @@ block('page-club').content()(function() {
              elem: 'party',
             },
             {
-              elem: 'party',
+              elem: 'hidden',
               elemMods: {
-                hide: true
-              }
+                    hide: true
+              },
+              content: [
+                {
+                  elem: 'party',
+                  elemMods: {
+                    hide: true
+                  }
+                }
+              ]
             },
             {
               block: 'button',

@@ -38,14 +38,6 @@ block('card-movie').mod('view', 'slide')(
   }),
 
   content()( node => {
-
-    // var options = {
-    //   day: 'numeric',
-    //   month: 'long'
-    // };
-    // let movieDate = new Date(ctx.sessions[0].time_gmt3);
-    // let date = new Date( ctx.sessions[0].time_gmt3 * 1000 ).getDate() === new Date().getDate() ? 'Сегодня в кинотеатрах' : 'Ближайшая дата: ' + movieDate.toDateString();
-
     return applyNext( { 'ctx.content': {
         elem: 'content',
         content: [
@@ -58,7 +50,7 @@ block('card-movie').mod('view', 'slide')(
             {
               elem: 'title',
               mix: { block: 'font', mods: { family: 'helvetica-condensed', loaded: true } },
-              content: 'Сегодня в кинотеатрах'
+              content: 'Сегодня в онлайн-киносеансах'
             }
             ]
           },
@@ -87,7 +79,7 @@ block('card-movie').mod('view', 'slide')(
                   type: 'link'
                 },
                 text: 'Купить онлайн-билет',
-                url: '/movie/' + node._code
+                url: '/movie/' + node._code + '#schedule'
               }
             ]
           },

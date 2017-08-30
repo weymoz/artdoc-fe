@@ -1,4 +1,4 @@
-.card-selection_view_selections {
+.card-selection_theme_artdoc.card-selection_view_selections {
   lost: 100%;
   margin-bottom: 60px;
   display: flex;
@@ -6,29 +6,29 @@
   height: 320px;
 }
 
-.card-selection_view_selections .card-selection__content {
+.card-selection_theme_artdoc.card-selection_view_selections .card-selection__content {
   flex: 1;
   position: relative;
   height: 320px;
 }
 
-.card-selection_view_selections .card-selection__aside {
+.card-selection_theme_artdoc.card-selection_view_selections .card-selection__aside {
   lost-column: 1/2 0 0;
   position: relative;
 }
 
-.card-selection_view_selections .card-selection__item {
+.card-selection_theme_artdoc.card-selection_view_selections .card-selection__item {
   lost-column: 1/3 3 20px;
 }
 
-.card-selection_view_selections .card-selection__preview {
+.card-selection_theme_artdoc.card-selection_view_selections .card-selection__preview {
   display: block;
   max-width: 644px;
   height: 100%;
   overflow: hidden;
 }
 
-.card-selection_view_selections .card-selection__on-cover {
+.card-selection_theme_artdoc.card-selection_view_selections .card-selection__on-cover {
   top: 0;
   left: 0;
   background: black;
@@ -38,7 +38,7 @@
   height: 100%;
 }
 
-.card-selection_view_selections .card-selection__preview-info {
+.card-selection_theme_artdoc.card-selection_view_selections .card-selection__preview-info {
   position: absolute;
   top: 0;
   left: 0;
@@ -49,52 +49,62 @@
   background-color: rgb(0, 0, 0, 0.5);
 }
 
-.card-selection_view_selections .card-selection__name {
+.card-selection_theme_artdoc.card-selection_view_selections .card-selection__name {
   color: white;
   font-size: 2.6vw;
   margin: 0;
   line-height: 48px;
+  position: relative;
 }
 
-.card-selection_view_selections .card-selection__author {
+.card-selection_theme_artdoc.card-selection_view_selections .card-selection__name::after {
+  content: '';
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+  background-color: #F3203B;
+  margin-left: 5px;
+}
+
+.card-selection_theme_artdoc.card-selection_view_selections .card-selection__author {
   color: white;
   margin-top: 10px;
 }
 
-.card-selection_view_selections .card-author__content {
+.card-selection_theme_artdoc.card-selection_view_selections .card-author__content {
   margin-left: 10px;
 }
 
-.card-selection_view_selections .card-author__header {
+.card-selection_theme_artdoc.card-selection_view_selections .card-author__header {
   font-size: 14px;
   font-weight: bold;
   margin-bottom: 5px;
 }
 
-.card-selection_view_selections .card-selection__author .list__date {
+.card-selection_theme_artdoc.card-selection_view_selections .card-selection__author .list__date {
   font-size: 12px;
 }
 
-.card-selection_view_selections .card-selection__counter {
+.card-selection_theme_artdoc.card-selection_view_selections .card-selection__counter {
   position: absolute;
   bottom: 20px;
   right: 30px;
   color: white;
  }
 
-.card-selection_view_selections .card-selection__counter .selection-counter {
+.card-selection_theme_artdoc.card-selection_view_selections .card-selection__counter .selection-counter {
   text-align: right;
   font-size: 56px;
   line-height: 56px;
 }
 
-.card-selection_view_selections .card-selection__counter .selection-counter_adds {
+.card-selection_theme_artdoc.card-selection_view_selections .card-selection__counter .selection-counter_adds {
   font-weight: bold;
   font-size: 14px;
 }
 
 
-.card-selection_view_selections .card-selection__aside {
+.card-selection_theme_artdoc.card-selection_view_selections .card-selection__aside {
   display: flex;
   margin-left: 20px;
   justify-content: flex-start;
@@ -103,13 +113,13 @@
 
 /*Раскрытая карточка подборки*/
 
-.card-selection_view_detail .card-selection__content {
+.card-selection_theme_artdoc.card-selection_view_detail .card-selection__content {
   position: relative;
   height: 50%;
 }
 
 
-.card-selection_view_detail .breadcrumbs {
+.card-selection_theme_artdoc.card-selection_view_detail .breadcrumbs {
   position: absolute;
   top: 40px;
   left: 55px;
@@ -118,14 +128,14 @@
 }
 
 
-.card-selection_view_detail .card-selection__preview {
+.card-selection_theme_artdoc.card-selection_view_detail .card-selection__preview {
   width: 100%;
   max-height: 500px;
   overflow: hidden;
   position: relative;
 }
 
-.card-selection_view_detail .card-selection__on-cover {
+.card-selection_theme_artdoc.card-selection_view_detail .card-selection__on-cover {
   width: 100%;
   height: 100%;
   position: absolute;
@@ -138,7 +148,7 @@
 
 /* Блок с информацией об авторе подборки */
 
-.card-selection_view_detail .card-selection__preview-info {
+.card-selection_theme_artdoc.card-selection_view_detail .card-selection__preview-info {
   box-sizing: border-box;
   max-width: 1316px;
   margin: 0 auto;
@@ -148,7 +158,7 @@
   z-index: 2;
 }
 
-.card-selection_view_detail .card-selection__name {
+.card-selection_theme_artdoc.card-selection_view_detail .card-selection__name {
   color: white;
   font-size: 2.6em;
   word-wrap: break-word;
@@ -157,65 +167,74 @@
   top: -50%;
 }
 
-.card-selection_view_detail .card-selection__author {
+.card-selection_theme_artdoc.card-selection_view_detail .card-selection__name::after {
+  content: '';
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+  background-color: #F3203B;
+  margin-left: 5px;
+}
+
+.card-selection_theme_artdoc.card-selection_view_detail .card-selection__author {
   max-width: 1316px;
   margin: 0 auto;
 }
 
-.card-selection_view_detail .card-selection__author .image {
+.card-selection_theme_artdoc.card-selection_view_detail .card-selection__author .image {
   padding: 0;
 }
 
 
-.card-selection_view_detail .card-author__content {
+.card-selection_theme_artdoc.card-selection_view_detail .card-author__content {
   margin-left: 10px;
 }
 
-.card-selection_view_detail .card-author__header {
+.card-selection_theme_artdoc.card-selection_view_detail .card-author__header {
   font-size: 14px;
   margin-bottom: 5px;
 }
 
-.card-selection_view_detail .card-selection__author .list__date {
+.card-selection_theme_artdoc.card-selection_view_detail .card-selection__author .list__date {
   font-size: 12px;
 }
 
 /* Счётчик */
 
-.card-selection_view_detail .card-selection__counter {
+.card-selection_theme_artdoc.card-selection_view_detail .card-selection__counter {
   position: absolute;
   top: -60%;
   right: 30px;
   color: white;
  }
 
-.card-selection_view_detail .card-selection__counter .selection-counter {
+.card-selection_theme_artdoc.card-selection_view_detail .card-selection__counter .selection-counter {
   text-align: right;
   font-size: 56px;
   line-height: 56px;
 }
 
-.card-selection_view_detail .card-selection__counter .selection-counter_adds {
+.card-selection_theme_artdoc.card-selection_view_detail .card-selection__counter .selection-counter_adds {
   font-weight: bold;
   font-size: 14px;
 }
 
 /* Краткое описание подборки */
 
-.card-selection_view_detail .card-selection__description {
+.card-selection_theme_artdoc.card-selection_view_detail .card-selection__description {
   margin: 0px auto 40px;
   line-height: 24px;
   font-size: 16px;
   max-width: 1316px;
 }
 
-.card-selection_view_detail .card-selection__description .text {
+.card-selection_theme_artdoc.card-selection_view_detail .card-selection__description .text {
   width: 60%!important;
   display: block;
 }
 
 /* Нижний блок с карточками */
-.card-selection_view_detail .card-selection__aside {
+.card-selection_theme_artdoc.card-selection_view_detail .card-selection__aside {
   margin: 0 auto;
   max-width: 1316px;
 }

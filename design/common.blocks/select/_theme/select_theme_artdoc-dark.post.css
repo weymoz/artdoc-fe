@@ -9,7 +9,7 @@ block(select).mod(theme artdoc-dark) {
   }
 
   .elem(tick) {
-    
+    background-image: svg-load('../../icon/_symbol/icon_symbol_chevron-down.svg', fill="#fff");
   }
 
   .mod(opened) .elem(tick) {
