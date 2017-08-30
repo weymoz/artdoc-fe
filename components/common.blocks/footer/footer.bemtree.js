@@ -34,11 +34,46 @@ block('footer').content()(function() {
                 type: 'unstyled'
               },
               content: [
-                { elem: 'item', content: 'О проекте' },
-                { elem: 'item', content: 'Подборки' },
-                { elem: 'item', content: 'Онлайн-киносеансы' },
-                { elem: 'item', content: 'Все фильмы' },
-                { elem: 'item', content: 'Помощь' }
+                { elem: 'item',
+                  content: [
+                  {
+                    block: 'link',
+                    url: '/about',
+                    content: 'О проекте'
+                  }]
+                },
+                { elem: 'item',
+                  content: [
+                  {
+                    block: 'link',
+                    url: '/selection',
+                    content: 'Подборки'
+                  }]
+                },
+                { elem: 'item',
+                  content: [
+                  {
+                    block: 'link',
+                    url: '/cinema',
+                    content: 'Онлайн-киносеансы'
+                  }]
+                },
+                { elem: 'item',
+                  content: [
+                  {
+                    block: 'link',
+                    url: '/movie',
+                    content: 'Все фильмы'
+                  }]
+                },
+                // { elem: 'item',
+                //   content: [
+                //   {
+                //     block: 'link',
+                //     url: '',
+                //     content: 'Помощь'
+                //   }]
+                // }
               ]
             }
           ]
@@ -60,11 +95,46 @@ block('footer').content()(function() {
                 type: 'unstyled'
               },
               content: [
-                { elem: 'item', content: 'Клуб artdoc.media' },
-                { elem: 'item', content: 'Аккредитованные фестивали' },
-                { elem: 'item', content: 'Аккредитованная пресса' },
-               // { elem: 'item', content: 'Ретроспективы' },
-               // { elem: 'item', content: 'Предложить фильм' }
+                { elem: 'item',
+                  content: [
+                  {
+                    block: 'link',
+                    url: '/club',
+                    content: 'Клуб artdoc.media'
+                  }]
+                },
+                // { elem: 'item',
+                //   content: [
+                //   {
+                //     block: 'link',
+                //     url: '/selection',
+                //     content: 'Аккредитованные фестивали'
+                //   }]
+                // },
+                // { elem: 'item',
+                //   content: [
+                //   {
+                //     block: 'link',
+                //     url: '/cinema',
+                //     content: 'Аккредитованная пресса'
+                //   }]
+                // },
+                // { elem: 'item',
+                //   content: [
+                //   {
+                //     block: 'link',
+                //     url: '/movie',
+                //     content: 'Ретроспективы'
+                //   }]
+                // },
+                // { elem: 'item',
+                //   content: [
+                //   {
+                //     block: 'link',
+                //     url: '',
+                //     content: 'Предложить фильм'
+                //   }]
+                // }
               ]
             }
           ]
@@ -74,12 +144,12 @@ block('footer').content()(function() {
           content: [
             {
               block: 'list',
-              type: {
+              mods: {
                 type: 'unstyled'
               },
               content: [
-                'office@artdocfest.com',
-                'LV 1011 Latvia Riga Stabu 19-2'
+                { elem: 'item', mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } }, content: 'office@artdocfest.com' },
+                { elem: 'item', mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } }, content: 'LV 1011 Latvia Riga Stabu 19-2' }
               ]
             }
           ]

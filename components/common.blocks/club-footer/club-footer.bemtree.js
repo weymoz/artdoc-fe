@@ -53,7 +53,10 @@ block('club-footer').content()(function() {
         },
         {
           elem: 'footer-item',
-          content: [{ elem: 'club-login' }]
+          content: [
+          { elem: 'title', mix: { block: 'font', mods: { family: 'helvetica-condensed', loaded: true } }, content: ['вход для участников'] },
+          { elem: 'club-login', content: 'Открытие клуба 15 сентября' }
+          ]
         }
         ]
       }

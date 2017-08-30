@@ -1,5 +1,8 @@
 block(breadcrumbs).mod(theme artdoc) {
-  font-size: 12px;
+  margin-bottom: 10px;
+  block(link){
+    font-size: 12px;
+  }
 
   .elem(item) {
     text-decoration: none;

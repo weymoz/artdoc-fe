@@ -4,7 +4,7 @@ block(club-footer) {
     display: block;
     width: 48px;
     height: 48px;
-    background-color: #F3203B;
+    background-image: url(../../common.blocks/icon/_symbol/club_artdoc_icon.svg);
     margin-right: 15px;
     flex-shrink: 0;
   }
@@ -111,6 +111,12 @@ block(club-footer) {
       }
     }
   }
+
+    elem(club-login){
+      color: white;
+      line-height: 250px;
+      font-weight: bold;
+    }
 
     elem(party) {
       display: flex;
