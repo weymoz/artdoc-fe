@@ -46,7 +46,6 @@ block(club-footer) {
 
     elem(footer-item){
       width: 25%;
-      height: 350px;
     }
 
     elem(title) {
