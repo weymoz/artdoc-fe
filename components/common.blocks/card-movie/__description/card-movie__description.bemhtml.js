@@ -9,9 +9,9 @@ block('card-movie').elem('description')(
 block('card-movie').elem('description').elemMod( 'short', true ).content()( node => {
 
   let limit = [360, 330];
-  console.log(node.mods);
+
   if (typeof node.mods.view != 'undefined' && node.mods.view == 'schedule') {
-    limit = [260, 230]
+    limit = [260, 230];
   }
 
   if ( node._description.length > limit[0] ) {

@@ -514,7 +514,7 @@ block(card-movie) {
     line-height: 1.0;
     text-decoration: none;
     margin-top: 0;
-    
+
     block(link) {
       color: inherit;
     }
@@ -541,6 +541,8 @@ block(card-movie) {
     margin-top: 1em;
     display: block;
     width: 100%;
+    background: #111;
+    color: #fff;
 
     block(button) {
       line-height: 48px;

@@ -114,11 +114,12 @@ block('form').mod('view', 'order')(
           },
           {
             block: 'button',
-            mix: { block: node.block, elem: 'section' },
+            mix: [{ block: node.block, elem: 'section' },  { block: 'font', mods: { family: 'helvetica-bold', loaded: true } }],
             mods: {
               type: 'submit',
               width: 'available',
-              size: 'l'
+              size: 'l',
+              theme: 'artdoc-dark'
             },
             text: 'Купить онлайн-билет'
           }
@@ -130,7 +131,7 @@ block('form').mod('view', 'order')(
           autoclosable: true,
           'has-close': true,
           size: 's'
-        }        
+        }
       }
     ]
   })

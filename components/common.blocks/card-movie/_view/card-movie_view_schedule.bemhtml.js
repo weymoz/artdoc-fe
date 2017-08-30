@@ -70,7 +70,7 @@ block('card-movie').mod('view', 'schedule')(
         content: [
           { elem: 'discussion' },
           { elem: 'show-more' },
-          { elem: 'buy' }
+          { elem: 'buy',  elemMods: { type: 'button' }  }
         ]
       }
     ];
