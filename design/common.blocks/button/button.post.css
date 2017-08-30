@@ -53,7 +53,7 @@ block(button) {
   @each $size, $fontSize, $lineHeight in
     (xs, s, m, l, xl, xxl),
     (10px, 12px, 16px, 18px, 22px, 32px),
-    (1.5, 1.5, 1.5, 3.11, 1.5, 1.5) {
+    (1.5, 1.5, 2.5, 3.11, 1.5, 1.5) {
     .mod(size $size) {
       font-size: $fontSize;
       line-height: $lineHeight;
