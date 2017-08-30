@@ -131,7 +131,7 @@ module.exports = function( app ) {
 
     if ( req.query.hasOwnProperty( 'code' ) ) {
       data.page = 'order';
-      request( { url: '/api/session/?expand=movie,category,city&code=' + req.query.code } )
+      request( { url: '/api/session/?expand=movie,category,city&code=' + encodeURIComponent(req.query.code) } )
         .then( response => {
           data.api = response.items[0];
           data.title = response.items[0].name;
@@ -142,7 +142,7 @@ module.exports = function( app ) {
         .catch(( error ) => res.send( error ) );
     } else {
       data.page = 'movie';
-      request( { url: '/api/movie/?expand=schedules,sessions,category,screenshots&code=' + req.params.name } )
+      request( { url: '/api/movie/?expand=schedules,sessions,category,screenshots&code=' + encodeURIComponent(req.params.name) } )
         .then( response => {
           data.api = response.items[0];
           data.title = response.items[0].name;
@@ -179,7 +179,7 @@ module.exports = function( app ) {
       'page': req.query.page ? req.query.page : 1
     };
 
-    let url = '/api/authorcompilation/?code=' + req.params.code;
+    let url = '/api/authorcompilation/?code=' + encodeURIComponent(req.params.code);
 
     data.page = 'selection';
     request( { url: url } )
