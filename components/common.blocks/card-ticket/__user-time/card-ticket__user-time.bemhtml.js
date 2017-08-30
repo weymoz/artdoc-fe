@@ -8,8 +8,6 @@ block('card-ticket').elem('user-time').content()( node => {
       },
       format: 'HH:mm',
       content: node._time_gmt3
-    },
-    ' UTC',
-    node._tz
+    }
   ]
 });
