@@ -61,6 +61,13 @@ block(modal).mod(theme artdoc) {
       }
     }
   }
+
+  .mod(size s) {
+    .elem(content) {
+      width: 400px;
+    }
+  }
+
 }
 
 

@@ -1,12 +1,12 @@
 block(breadcrumbs).mod(theme artdoc) {
-  margin-bottom: 10px;
-  block(link){
-    font-size: 12px;
-  }
+  font-size: 12px;
+  padding: .5em 0;
+  box-sizing: border-box;
 
   .elem(item) {
     text-decoration: none;
     color: #666;
+    font-size: inherit;
 
     & + .elem(item) {
       position: relative;

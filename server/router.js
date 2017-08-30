@@ -131,11 +131,12 @@ module.exports = function( app ) {
 
     if ( req.query.hasOwnProperty( 'code' ) ) {
       data.page = 'order';
-      request( { url: '/api/session/?expand=movie,category&code=' + req.query.code } )
+      request( { url: '/api/session/?expand=movie,category,city&code=' + req.query.code } )
         .then( response => {
           data.api = response.items[0];
           data.title = response.items[0].name;
-          data.session_id = req.query.id;
+          data.api.tz = req.query.tz;
+          data.api.checked_city = req.query.city;
           render( req, res, data );
         } )
         .catch(( error ) => res.send( error ) );

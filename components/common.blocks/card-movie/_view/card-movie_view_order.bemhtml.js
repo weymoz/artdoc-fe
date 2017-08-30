@@ -21,8 +21,8 @@ block('card-movie').mod('view', 'order')(
       {
         elem: 'aside',
         content: [
-          { elem: 'orig-name' },
-          { elem: 'name' },
+          { elem: 'orig-name', elemMods: { type: 'link' } },
+          { elem: 'name', elemMods: { type: 'link' } },
           {
             elem: 'list',
             elemMods: {
