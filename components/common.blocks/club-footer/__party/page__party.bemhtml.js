@@ -1,4 +1,4 @@
-block('page').elem('party').content()(function() {
+block('club-footer').elem('party').content()(function() {
   this.ctx.showed = [
       {
         counter: 'director_1'

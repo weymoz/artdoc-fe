@@ -1,8 +1,8 @@
-block('page-index').elem('maker').content()(function() {
+block('club-footer').elem('maker').content()(function() {
     return [
       {
         elem: 'image',
-        mix: { block: 'page-index', elem: this.ctx.counter }
+        mix: { block: 'club-footer', elem: this.ctx.counter }
       }
     ]
 });
