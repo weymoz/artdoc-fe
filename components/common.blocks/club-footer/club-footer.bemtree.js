@@ -47,7 +47,7 @@ block('club-footer').content()(function() {
         {
           elem: 'footer-item',
           content: [
-          { elem: 'title', mix: { block: 'font', mods: { family: 'helvetica-condensed', loaded: true } }, content: ['участники фестиваля'] },
+          { elem: 'title', mix: { block: 'font', mods: { family: 'helvetica-condensed', loaded: true } }, content: ['аккредитованные критики'] },
           { elem: 'party' }
           ]
         },
