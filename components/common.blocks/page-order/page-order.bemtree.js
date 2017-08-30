@@ -1,6 +1,31 @@
 block('page-order')(
 
   replace()( node => {
+    let ticket = node.data.api;
+    ticket.city = ticket.city[0];
+    ticket.tz = ticket.tz > 0 ? '+' + ticket.tz : ticket.tz;
+
+    // switch ( ticket.city_id ) {
+    //   case 1:
+    //     ticket.city.name = 'Москва';
+    //     break;
+    //   case 2:
+    //     ticket.city.name = 'Лос-Анджелес';
+    //     break;
+    //   case 3:
+    //     ticket.city.name = 'Нью-Йорк';
+    //     break;
+    //   case 4:
+    //     ticket.city.name = 'Лондон';
+    //     break;
+    //   case 5:
+    //     ticket.city.name = 'Токио';
+    //     break;
+    //   default:
+    //     ticket.city.name = 'Бобруйск';
+    //     break;
+    // }
+
     return [
       {
         elem: 'content',
@@ -23,67 +48,18 @@ block('page-order')(
             mods: {
               view: 'order'
             },
-            movie: node.data.api.movie
+            movie: ticket.movie
           },
           {
-            block: 'paragraph',
-            mix: [
-              { block: node.block, elem: 'ticket-left' },
-              { block: 'font', mods: { family: 'pt-mono', loaded: true } }
-            ],
-            content: 'Осталось билетов: ' + node.data.api.tickets_left
-          },
-          {
-            elem: 'section',
-            mix: { block: node.block, elem: 'order' },
-            content: [
-              {
-                block: node.block,
-                elem: 'aside',
-                content: [
-                  {
-                    block: 'calendar',
-                    mix: { block: node.block, elem: 'info' },
-                    mods: {
-                      view: 'ticket-case'
-                    },
-                    date: node.data.api.time_gmt3
-                  },
-                  {
-                    block: node.block,
-                    elem: 'info',
-                    content: {
-                      block: 'text',
-                      mods: {
-                        format: 'datetime'
-                      },
-                      format: 'HH:mm',
-                      content: node.data.api.time_gmt3 * 1000
-                    },
-                  },
-                  {
-                    block: node.block,
-                    elem: 'info',
-                    content: {
-                      html: node.data.api.price.price + '&nbsp;₽'
-                    }
-                  }
-                ]
-              },
-              {
-                block: 'form',
-                mix: { block: node.block, elem: 'form' },
-                mods: {
-                  view: 'order'
-                },
-                session: node.data.api.id,
-                csrf: node.data.csrf
-              }
-            ]
+            block: 'card-ticket',
+            mods: {
+              view: 'order'
+            },
+            ticket: ticket
           }
         ]
       }
     ];
-  })
+  } )
 
 )
