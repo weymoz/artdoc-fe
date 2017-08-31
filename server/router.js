@@ -250,18 +250,12 @@ module.exports = function( app ) {
 
   app.get( '/order/:transaction_id', ( req, res ) => {
     let data = Object.assign({}, global);
+    data.page = 'thanks';
+    data.title = 'Билет успешно оплачен';
     client.post( '/payment/provide/', { nonce: req.query.payment_nonce, transaction_id: req.params.transaction_id } )
       .then( response => {
         data.api = response.data;
-        if ( data.api.error ) {
-          data.page = 'error';
-          data.title = 'При оплате произошла ошибка';
-          render( req, res, data );
-        } else {
-          data.page = 'thanks';
-          data.title = 'Билет успешно оплачен';
-          render( req, res, data );
-        }
+        render( req, res, data );
       } )
       .catch(() => res.send('error') );
   });
