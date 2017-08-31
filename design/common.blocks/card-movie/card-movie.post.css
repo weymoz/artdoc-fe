@@ -256,6 +256,10 @@ block(card-movie) {
       width: 48px;
       height: 48px;
       background-color: #F3203B;
+      background-image: url(../../assets/img/static/icon_ticket.svg);
+      background-repeat: no-repeat;
+      -webkit-background-size: cover;
+      background-size: cover;
     }
 
     .elem(cover) {

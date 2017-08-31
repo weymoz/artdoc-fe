@@ -76,7 +76,12 @@ block('card-poster')(
         block: 'link',
         mix: { block: 'card-poster', elem: 'link' },
         url: '/cinema',
-        content: [ 'Смотреть все' ]
+        content: [
+        'Смотреть все',
+        {
+          elem: 'icon'
+        }
+        ]
       }
       ]
     }

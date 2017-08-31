@@ -14,9 +14,9 @@ block(slider) {
     cursor: pointer;
     background-image: url(../../assets/img/static/arrow_right_white.svg);
     background-repeat: no-repeat;
-    -webkit-background-size: 20%;
-    background-size: 20%;
-    background-position: center center;
+    -webkit-background-size: 30%;
+    background-size: 30%;
+    background-position: 55% 50%;
 
     mod(revert){
     }

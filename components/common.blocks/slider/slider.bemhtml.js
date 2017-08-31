@@ -16,8 +16,7 @@ block('slider')(
           {
             block: 'button',
             mods: {
-              disabled: true,
-              revert: true
+              disabled: true
             },
             mix: { block: 'slider', elem: 'prev' }
           },
