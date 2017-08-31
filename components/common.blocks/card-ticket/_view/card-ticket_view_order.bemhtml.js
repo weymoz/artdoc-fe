@@ -8,7 +8,7 @@ block('card-ticket').mod('view', 'order').content()( node => {
   if ( tzHours < 0 ) {
     tzHours = tzHours > -10 ? '-0' + tzHours * -1 : tzHours;
   } else {
-    tzHours = tzHours < 10 ? '0' + tzHours : tzHours;
+    tzHours = '+' + ( tzHours < 10 ? '0' + tzHours : tzHours );
   }
 
   let timezone = tzHours + ':' + tzMinutes;
