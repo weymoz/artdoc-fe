@@ -4,26 +4,26 @@ block('card-poster')(
     {
       elem: 'content',
       content: [
-      {
-        elem: 'control',
-        content:[
-        {
-          block: 'button',
-          mods: {
-            theme: 'artdoc',
-            disabled: true
-          },
-          mix: { block: 'card-poster', elem: 'prev' }
-        },
-        {
-          block: 'button',
-          mods: {
-            theme: 'artdoc'
-          },
-          mix: { block: 'card-poster', elem: 'next' }
-        }
-        ]
-      },
+      // {
+      //   elem: 'control',
+      //   content:[
+      //   {
+      //     block: 'button',
+      //     mods: {
+      //       theme: 'artdoc',
+      //       disabled: true
+      //     },
+      //     mix: { block: 'card-poster', elem: 'prev' }
+      //   },
+      //   {
+      //     block: 'button',
+      //     mods: {
+      //       theme: 'artdoc'
+      //     },
+      //     mix: { block: 'card-poster', elem: 'next' }
+      //   }
+      //   ]
+      // },
       {
         elem: 'preview',
         content: [

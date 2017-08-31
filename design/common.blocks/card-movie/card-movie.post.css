@@ -242,7 +242,7 @@ block(card-movie) {
     }
 
     .elem(cover) {
-      background: rgb(0, 0, 0, 0.8);
+      background: rgb(0, 0, 0, 0.4);
       display: flex;
       justify-content: flex-end;
       flex-direction: column;
@@ -374,7 +374,6 @@ block(card-movie) {
     top: 0;
     display: flex;
     flex-direction: column;
-
     padding: 56px 28px 40px;
     text-decoration: none;
   }

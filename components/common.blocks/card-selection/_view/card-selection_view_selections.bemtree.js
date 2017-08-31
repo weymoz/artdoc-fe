@@ -1,8 +1,6 @@
 block('card-selection').mod('view', 'selections')(
   content()( ( node, ctx ) => {
-
     var newMovie = ctx.selection.movies.slice();
-
     return [
       {
         elem: 'content',

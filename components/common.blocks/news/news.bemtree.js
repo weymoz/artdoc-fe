@@ -45,25 +45,25 @@ block('news').content()(function() {
           mix: { block: 'font', mods: { family: 'helvetica-condensed', loaded: true } },
           content: 'Новости и события'
       },
-      {
-        elem: 'control',
-        content:[
-        {
-          block: 'button',
-          mix: { block: 'news', elem: 'prev'},
-          mods: {
-            disabled: true
-          }
-        },
-        {
-          block: 'button',
-          mix: { block: 'news', elem: 'next'},
-          mods: {
-            disabled: true
-          }
-        }
-        ]
-      },
+      // {
+      //   elem: 'control',
+      //   content:[
+      //   {
+      //     block: 'button',
+      //     mix: { block: 'news', elem: 'prev'},
+      //     mods: {
+      //       disabled: true
+      //     }
+      //   },
+      //   {
+      //     block: 'button',
+      //     mix: { block: 'news', elem: 'next'},
+      //     mods: {
+      //       disabled: true
+      //     }
+      //   }
+      //   ]
+      // },
       ]
     },
     {
