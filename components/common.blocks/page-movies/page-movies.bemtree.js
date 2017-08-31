@@ -2,8 +2,6 @@ block('page-movies').replace()(function() {
 
   const _movies = this.data.api;
 
-
-
   return [
     {
       elem: 'content',
@@ -20,10 +18,15 @@ block('page-movies').replace()(function() {
       {
         elem: 'section',
         content: [
-        {
-          block: 'filters',
-          data: this.data
-        }
+          {
+            elem: 'content',
+            content: [
+              {
+                block: 'filters',
+                data: this.data
+              }
+            ]
+          }
         ]
       },
       {
