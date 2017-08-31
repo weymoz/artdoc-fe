@@ -6,7 +6,11 @@ block('card-selection').mod('view', 'selections')(
         elem: 'content',
         url: '/selection/' + node._code,
         content: [
-          { elem: 'preview' },
+          {
+            elem: 'preview',
+            width: 630,
+            height: 320
+          },
           {
             elem: 'preview-info',
               content: [

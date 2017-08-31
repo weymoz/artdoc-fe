@@ -62,7 +62,7 @@
 
 .card-selection_theme_artdoc.card-selection_view_selections .card-selection__name {
   color: white;
-  font-size: 2.6vw;
+  font-size: 40px;
   margin: 0;
   line-height: 48px;
   position: relative;
@@ -171,11 +171,17 @@
 
 .card-selection_theme_artdoc.card-selection_view_detail .card-selection__name {
   color: white;
-  font-size: 2.6em;
+  font-size: 56px;
   word-wrap: break-word;
   margin: 0;
   position: absolute;
   top: -50%;
+}
+
+@media (max-width: 1150px) {
+  .card-selection_theme_artdoc.card-selection_view_detail .card-selection__name {
+    font-size: 40px;
+  }
 }
 
 .card-selection_theme_artdoc.card-selection_view_detail .card-selection__name::after {

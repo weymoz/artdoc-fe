@@ -1,16 +1,16 @@
 block('page-club').content()(function() {
     return[
     {
-      elem: 'header',
-      content: [
-      {
-        block: 'breadcrumbs'
-      }
-      ]
-    },
-    {
       elem: 'content',
       content: [
+        {
+          elem: 'header',
+          content: [
+          {
+            block: 'breadcrumbs'
+          }
+          ]
+        },
         {
           elem: 'text-block',
           content: [

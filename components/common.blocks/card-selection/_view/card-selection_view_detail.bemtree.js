@@ -5,7 +5,11 @@ block('card-selection').mod('view', 'detail')(
           elem: 'content',
             content: [
               { block: 'breadcrumbs' },
-              { elem: 'preview' },
+              {
+                elem: 'preview',
+                width: 1024,
+                height: 500
+              },
               {
                 elem: 'preview-info',
                   content: [
@@ -24,9 +28,9 @@ block('card-selection').mod('view', 'detail')(
             return {
               block: 'card-movie',
               mods: {
-                  view: [ 'schedule' ]
+                  view: [ 'list' ]
               },
-              movie: item
+              movie: item,
             }
           } )
         ]

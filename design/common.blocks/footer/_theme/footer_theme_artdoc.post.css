@@ -19,6 +19,16 @@ block(footer).mod(theme artdoc) {
       width: 308px;
       height: 39.2px;
       margin-bottom: 26px;
+
+      @media (max-width: 1135px) {
+        width: 250px;
+        height: 35px;
+      }
+
+      @media (max-width: 1024px) {
+        width: 220px;
+        height: 35px;
+      }
     }
   }
 

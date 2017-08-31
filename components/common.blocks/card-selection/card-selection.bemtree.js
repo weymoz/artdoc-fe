@@ -4,7 +4,6 @@ block('card-selection')(
 
   def()( ( node, ctx ) => {
     const _selection = ctx.selection;
-    _selection.image = _selection.image ? '//preprod.artdoc.media' + _selection.image.path : '';
     _selection.url = _selection.code ? '/selection/' + _selection.code : null;
 
     return applyNext();
