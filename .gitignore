@@ -3,6 +3,7 @@ node_modules/
 .idea
 .project
 .svn
+.zip
 npm-debug.log
 
 static/*/*.min.*
