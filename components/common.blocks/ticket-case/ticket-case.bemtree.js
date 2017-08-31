@@ -1,7 +1,11 @@
 block('ticket-case').content()(function() {
 
-  const _schedules = this.ctx.movie.schedules.sort(function(a,b) {return (a.date_gmt3 > b.date_gmt3) ? 1 : ((b.date_gmt3 > a.date_gmt3) ? -1 : 0);} ),
+  const _schedules = this.ctx.movie.schedules,
         _code = this.ctx.movie.code;
+
+  _schedules.sort(function(a,b) {
+    return (a.date_gmt3 > b.date_gmt3) ? 1 : ((b.date_gmt3 > a.date_gmt3) ? -1 : 0);
+  } )
 
   let _sessions = {};
 
@@ -90,12 +94,13 @@ block('ticket-case').content()(function() {
                   {
                     block: 'select',
                     mods: {
+                      calendar: true,
                       mode: 'radio',
                       width: 'available',
                       size: 'm',
                       theme: 'artdoc-dark'
                     },
-                    val: 180,
+                    val: 0,
                     options: [
                       { text: 'UTC−11:00', val: (11 * 60 * -1) },
                       { text: 'UTC−10:00', val: (10 * 60 * -1) },

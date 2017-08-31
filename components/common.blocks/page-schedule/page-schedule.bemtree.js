@@ -10,7 +10,7 @@ block('page-schedule').replace()(function() {
      */
 
     // Fix 3 hours offset
-    let offset = 3;
+    let offset = ( new Date().getTimezoneOffset() / 60 );
     let dateFromServer = new Date( movie.date_gmt3 * 1000 );
     let dateUTC = dateFromServer.getTime() - ( dateFromServer.getTimezoneOffset() * 60000 );
     let correctDate = new Date( dateUTC + ( 3600000 * offset ) );

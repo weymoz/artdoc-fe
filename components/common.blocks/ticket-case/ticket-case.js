@@ -3,8 +3,8 @@
  */
 
 modules.define('ticket-case',
-  ['i-bem-dom', 'radio-group'],
-  function(provide, bemDom, radioGroup) {
+  ['i-bem-dom', 'radio-group', 'select', 'card-ticket'],
+  function(provide, bemDom, radioGroup, Select, Ticket) {
 
 /**
  * @exports
@@ -19,7 +19,17 @@ provide(bemDom.declBlock(this.name, {
 
         this._boxList = {};
         this._radioGroup = this.findChildElem('calendar').findMixedBlock( radioGroup );
+        let tickets = this.findChildBlocks( Ticket );
+        let timezoneSelect = this.findChildBlock( Select, 'calendar', true );
 
+        timezoneSelect._events().on( 'change', function() {
+          let timezone = this.getVal();
+          tickets.forEach( ticket => {
+            ticket.setTimeZone( timezone ).setDateTime( ticket.params.ticket.time_gmt3 );
+          } )
+        } );
+
+        timezoneSelect.setVal( new Date().getTimezoneOffset() * -1 );
 
         this._elems( 'list-tickets-set' ).forEach( function ( box ) {
           theTabs._boxList[ box.params.day ] = box;
