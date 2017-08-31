@@ -9,6 +9,7 @@ block('breadcrumbs').content()(function() {
           url: '/',
           content: 'Главная'
         };
+
       case 'cinema':
         return {
           elem: 'item',
@@ -35,6 +36,7 @@ block('breadcrumbs').content()(function() {
           },
           content: 'О проекте'
       };
+
       case 'club':
         return {
           elem: 'item',
@@ -43,6 +45,7 @@ block('breadcrumbs').content()(function() {
           },
           content: 'Клуб Artdoc'
       };
+
       case 'movie':
         return [
           {

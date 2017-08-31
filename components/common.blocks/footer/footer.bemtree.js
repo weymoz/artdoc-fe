@@ -103,14 +103,14 @@ block('footer').content()(function() {
                     content: 'Клуб artdoc.media'
                   }]
                 },
-                // { elem: 'item',
-                //   content: [
-                //   {
-                //     block: 'link',
-                //     url: '/selection',
-                //     content: 'Аккредитованные фестивали'
-                //   }]
-                // },
+                { elem: 'item',
+                  content: [
+                  {
+                    block: 'link',
+                    url: '/club#partners',
+                    content: 'Аккредитованные фестивали'
+                  }]
+                },
                 // { elem: 'item',
                 //   content: [
                 //   {
