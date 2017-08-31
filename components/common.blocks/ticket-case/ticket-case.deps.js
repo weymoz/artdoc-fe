@@ -13,7 +13,7 @@
     { block: 'list', mods: { type: 'inline' } },
     { block: 'form-field', mods: { type: 'select' } },
     { block: 'label' },                
-    { block: 'select', mods: { mode: 'radio', theme: 'artdoc-dark' } },
+    { block: 'select', mods: { calendar: true, mode: 'radio', theme: 'artdoc-dark' } },
     { block: 'calendar', mods: { view: 'ticket-case' } }
   ]
 })
