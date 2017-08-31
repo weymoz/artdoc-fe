@@ -10,7 +10,8 @@
       },
       'pagination',
       'club-footer',
-      'section'
+      'section',
+      'filters'
     ],
 
 }]

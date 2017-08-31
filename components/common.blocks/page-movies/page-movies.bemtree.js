@@ -2,6 +2,8 @@ block('page-movies').replace()(function() {
 
   const _movies = this.data.api;
 
+
+
   return [
     {
       elem: 'content',
@@ -12,6 +14,10 @@ block('page-movies').replace()(function() {
             size: 'xl'
           },
           content: this.data.title
+        },
+        {
+          block: 'filters',
+          data: this.data
         },
         _movies.map( item => {
           return {
