@@ -30,7 +30,7 @@ block('card-author')(
       block: 'image',
       mix: { block: 'card-author', elem: 'aside' },
       mods: { circle: true },
-      url: 'http://preprod.artdoc.media/upload/resize/' + node._image_id + '/' + node._size + '.jpg'
+      url: 'http://artdoc.media/upload/resize/' + node._image_id + '/' + node._size + '.jpg'
     }
   } ),
 
