@@ -15,6 +15,7 @@ block('news-block').content()(function() {
         this.ctx.content,
         this.ctx.image && {
           block: 'link',
+          attrs: {target: "_blank"},
           url: this.ctx.url,
           content: [
             {
@@ -40,6 +41,7 @@ block('news-block').content()(function() {
           block: 'link',
           mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } },
           url: this.ctx.url,
+          attrs: {target: "_blank"},
           content: this.ctx.linkname
         },
         {
