@@ -1,10 +1,10 @@
-modules.define('card-ticket', ['i-bem-dom'], function(provide, bemDom) {
+modules.define('card-ticket', ['i-bem-dom', 'link'], function(provide, bemDom, Link) {
 
 provide(bemDom.declBlock(this.name, {
   onSetMod: {
     js: {
       inited: function() {
-        
+        this._timeZoneOffset = 0;
       }
     }
   },
@@ -17,6 +17,10 @@ provide(bemDom.declBlock(this.name, {
     return this;
   },
 
+  getTimezoneOffset: function() {
+    return ( this._timeZoneOffset - ( new Date().getTimezoneOffset() * 60 ) ) / 60;
+  },
+
   setDateTime: function( timestamp ) {
     const datetime = new Date( ( timestamp + this._timeZoneOffset ) * 1000 );
     const time = datetime.toLocaleString( 'ru', { hour: 'numeric', minute: 'numeric' } );
@@ -24,7 +28,12 @@ provide(bemDom.declBlock(this.name, {
     
     bemDom.update( this._elem('user-time').domElem, time );
     bemDom.update( this._elem('user-date').domElem, date );
-    this.domElem.href = '' + window.location.href + '?code=' + this.params.ticket.code + '&tz=' + this._timeZoneOffset;
+
+    const link = this.findMixedBlock( Link );
+    console.log( this.getTimezoneOffset() );
+    if ( link ) {
+      link.setUrl( window.location.href + '?code=' + this.params.ticket.code + '&tz=' + this.getTimezoneOffset() );
+    }
   },
 
 

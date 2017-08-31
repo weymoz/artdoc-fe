@@ -1,4 +1,18 @@
-block('card-ticket').mod('view', 'order').content()( ( node, ctx ) => {
+block('card-ticket').mod('view', 'order').content()( node => {
+
+  let tzMinutes = node._tz % 60;
+  let tzHours = ( node._tz - tzMinutes ) / 60;
+
+  tzMinutes = tzMinutes < 10 ? '0' + tzMinutes : tzMinutes;
+
+  if ( tzHours < 0 ) {
+    tzHours = tzHours > -10 ? '-0' + tzHours * -1 : tzHours;
+  } else {
+    tzHours = tzHours < 10 ? '0' + tzHours : tzHours;
+  }
+
+  let timezone = tzHours + ':' + tzMinutes;
+
   return [
     {
       elem: 'header',
@@ -31,17 +45,17 @@ block('card-ticket').mod('view', 'order').content()( ( node, ctx ) => {
                     format: 'datetime',
                   },
                   format: 'DD[&nbsp;]MMMM[ с ]HH:mm[ до ]',
-                  content: ctx.ticket.time_gmt3
+                  content: node._time_gmt3
                 },
                 {
                   block: 'text',
                   mods: {
                     format: 'datetime',
                   },
-                  format: 'HH:mm[ (время UTC]',
-                  content: ctx.ticket.time_gmt3 + 60 * 60 * 3
+                  format: 'HH:mm[ (время&nbsp;UTC]',
+                  content: node._time_gmt3 + 60 * 60 * 3
                 },
-                ctx.ticket.tz,
+                timezone,
                 ').'
               ]
             },
@@ -53,7 +67,7 @@ block('card-ticket').mod('view', 'order').content()( ( node, ctx ) => {
               mods: {
                 view: 'order'
               },
-              session: ctx.ticket.id
+              session: node._id
             }
           ]
         }
