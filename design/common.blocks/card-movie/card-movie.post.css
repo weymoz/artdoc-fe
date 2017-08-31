@@ -100,6 +100,29 @@ block(card-movie) {
 
   }
 
+  .mod(view schedule) {
+
+    .elem(discussion) {
+      font-size: 13px;
+      line-height: 16px;
+      position: relative;
+    }
+
+    .elem(discussion):before {
+      content: '';
+      display: block;
+      width: 34px;
+      height: 32px;
+      background-image: url(../../assets/img/static/duscussion_icon.svg);
+      background-repeat: no-repeat;
+      -webkit-background-size: cover;
+      background-size: cover;
+      position: absolute;
+      left: -40px;
+    }
+
+  }
+
   .mod(view list).mod(theme artdoc) {
 
     .elem(aside) {
@@ -143,6 +166,7 @@ block(card-movie) {
       font-size: 13px;
       line-height: 16px;
     }
+
 
     .elem(show-more) {
       margin-top: 10px;

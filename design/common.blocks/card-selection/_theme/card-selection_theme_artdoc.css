@@ -181,6 +181,7 @@
 @media (max-width: 1150px) {
   .card-selection_theme_artdoc.card-selection_view_detail .card-selection__name {
     font-size: 40px;
+    margin-left: 15px;
   }
 }
 
