@@ -28,7 +28,10 @@ block('news-block').content()(function() {
               ]
             },
             {
-              elem: 'icon'
+              elem: 'icon',
+              elemMods: {
+                visible: true
+              }
             }
           ]
         }

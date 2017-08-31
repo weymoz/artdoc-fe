@@ -1,7 +1,10 @@
 block('card-selection').elem('preview')(
-    content()( ( ) => {
+    content()( ( node, ctx ) => {
         return [
-          { elem: 'cover' }
+          { elem: 'cover',
+            width: ctx.width,
+            height: ctx.height
+          }
         ];
     })
 );

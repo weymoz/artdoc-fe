@@ -49,7 +49,6 @@ block(card-poster) {
   elem(content) {
     flex: 1;
     height: 100%;
-    background-color: gray;
     position: relative;
 
     elem(preview) {
@@ -78,13 +77,25 @@ block(card-poster) {
     flex: 1;
   }
 
-  elem(link) {
+  block(link) {
     height: 48px;
     font-weight: bold;
     padding-left: 25px;
     color: white;
     cursor: pointer;
     text-decoration: none;
+    position: relative;
+
+    elem(icon) {
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      right: 30px;
+      bottom: 17px;
+      background-image: url('../../assets/img/static/arrow_btn.svg');
+      background-repeat: no-repeat;
+    }
+
   }
 
 

@@ -3,6 +3,7 @@ block(footer).mod(theme artdoc) {
   color: #a0a0ad;
   padding: 64px 56px 48px;
   box-sizing: border-box;
+  min-width: 1024px;
 
   .elem(content) {
     lost-center: 1316px;
@@ -19,6 +20,16 @@ block(footer).mod(theme artdoc) {
       width: 308px;
       height: 39.2px;
       margin-bottom: 26px;
+
+      @media (max-width: 1135px) {
+        width: 250px;
+        height: 35px;
+      }
+
+      @media (max-width: 1024px) {
+        width: 220px;
+        height: 35px;
+      }
     }
   }
 

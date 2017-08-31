@@ -10,6 +10,12 @@ block(card-movie) {
       lost-column: 15/47 0 0;
       margin-left: 56px;
     }
+
+    .elem(name){
+      @media (max-width: 1080px) {
+        font-size: 35px;
+      }
+    }
   }
 
   .mod(view order) {
@@ -84,6 +90,11 @@ block(card-movie) {
     .elem(buy) {
       @media (max-width: 1104px) {
         font-size: 14px;
+
+        block(button).elem(text){
+          display: inline;
+          vertical-align: baseline;
+        }
       }
     }
 
@@ -98,8 +109,6 @@ block(card-movie) {
     .elem(aside).mod(view action) {
       lost-column: 5/24 1 28px;
     }
-
-
   }
 
   .mod(view promo) {
@@ -136,8 +145,10 @@ block(card-movie) {
     }
 
     .elem(show-more) {
+      margin-top: 10px;
       lost-column: 1/2 1 28px;
       text-align: right;
+      width: 200px;
     }
 
     .elem(cover) {
@@ -245,6 +256,10 @@ block(card-movie) {
       width: 48px;
       height: 48px;
       background-color: #F3203B;
+      background-image: url(../../assets/img/static/icon_ticket.svg);
+      background-repeat: no-repeat;
+      -webkit-background-size: cover;
+      background-size: cover;
     }
 
     .elem(cover) {

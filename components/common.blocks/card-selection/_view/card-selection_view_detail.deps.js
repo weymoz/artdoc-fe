@@ -10,7 +10,7 @@
         {
             block: 'card-movie',
             mods: {
-                view: [ 'schedule' ]
+                view: [ 'list' ]
             }
         }
     ]

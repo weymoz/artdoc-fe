@@ -4,9 +4,12 @@ block(section).mod(theme artdoc) {
   box-sizing: border-box;
   padding-top: 2em;
   padding-bottom: 2em;
+  min-width: 1024px;
 
   .elem(content) {
     max-width: 1316px;
     margin: 0 auto;
+    padding: 0 56px;
+    box-sizing: border-box;
   }
 }

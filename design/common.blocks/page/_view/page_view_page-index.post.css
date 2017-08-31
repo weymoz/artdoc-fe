@@ -48,7 +48,7 @@ block(page).mod(view page-index) {
   }
 
   elem(club) {
-    padding: 0 56px;
+    min-width: 1024px;
     box-sizing: border-box;
   }
 

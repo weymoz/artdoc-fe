@@ -15,10 +15,20 @@ block('page-movies').replace()(function() {
           },
           content: this.data.title
         },
+      ]
+      },
+      {
+        elem: 'section',
+        content: [
         {
           block: 'filters',
           data: this.data
-        },
+        }
+        ]
+      },
+      {
+      elem: 'content',
+      content: [
         _movies.map( item => {
           return {
             block: 'card-movie',
