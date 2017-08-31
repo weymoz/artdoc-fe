@@ -1,9 +1,12 @@
 block(club-footer) {
   max-width: 1316px;
   margin: 0 auto;
+  min-width: 1024px;
 
 @media (max-width: 1320px) {
-  margin: 0 20px;
+  padding-left: 20px;
+  min-width: 1024px;
+  box-sizing: border-box;
 }
 
   elem(avatar) {
