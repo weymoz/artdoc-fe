@@ -81,6 +81,12 @@ block(card-movie) {
       margin-bottom: 10px;
     }
 
+    .elem(buy) {
+      @media (max-width: 1104px) {
+        font-size: 14px;
+      }
+    }
+
   }
 
   .mod(view list).mod(theme artdoc) {
@@ -602,12 +608,20 @@ block(card-movie) {
     font-size: 40px;
     font-weight: bold;
     line-height: 1;
+
+    @media (max-width: 1104px) {
+        font-size: 30px;
+    }
   }
 
   .elem(schedule-month) {
     font-size: 18px;
     font-weight: bold;
     line-height: 1.25;
+
+    @media (max-width: 1104px) {
+        font-size: 14px;
+    }
   }
 
   .elem(schedule-week-day) {

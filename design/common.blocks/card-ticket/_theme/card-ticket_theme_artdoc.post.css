@@ -22,6 +22,11 @@ block(card-ticket).mod(theme artdoc) {
       white-space: nowrap;
       overflow-x: hidden;
       text-overflow: ellipsis;
+
+      @media (max-width: 1150px) {
+        flex-direction: column;
+        font-size: 15px;
+      }
     }
 
     .elem(room) {
@@ -48,7 +53,11 @@ block(card-ticket).mod(theme artdoc) {
       font-size: 56px;
       line-height: 1.0;
       letter-spacing: -0.4px;
-      color: #23232c
+      color: #23232c;
+
+      @media (max-width: 1320px) {
+          font-size: 45px;
+      }
     }
 
     .elem(timezone) {
@@ -67,6 +76,10 @@ block(card-ticket).mod(theme artdoc) {
       padding: 16px;
       font-weight: bold;
       border-top: 1px solid #23232c;
+
+      @media (max-width: 1040px) {
+        font-size: 15px;
+      }
     }
 
     .elem(left) {
@@ -92,7 +105,7 @@ block(card-ticket).mod(theme artdoc) {
       font-weight: normal;
       line-height: 1;
     }
-  
+
     .elem(user-time),
     .elem(buy) {
       margin-top: 32px;

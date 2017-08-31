@@ -2,6 +2,10 @@ block(club-footer) {
   max-width: 1316px;
   margin: 0 auto;
 
+@media (max-width: 1320px) {
+  margin: 0 20px;
+}
+
   elem(avatar) {
     display: block;
     width: 48px;
@@ -48,6 +52,12 @@ block(club-footer) {
       width: 25%;
     }
 
+    @media (max-width: 1024px) {
+      elem(footer-item){
+        width: 35%;
+      }
+    }
+
     elem(title) {
       font-size: 17px;
       line-height: 24px;
@@ -65,14 +75,28 @@ block(club-footer) {
       elem(partner) {
         width: 100px;
         height: 100px;
+      }
 
-        elem(image) {
-          width: 64px;
-          height: 64px;
-          background-repeat: no-repeat;
-          -webkit-background-size: contain;
-          background-size: contain;
-          background-position: center center;
+      elem(image) {
+        width: 64px;
+        height: 64px;
+        background-repeat: no-repeat;
+        -webkit-background-size: contain;
+        background-size: contain;
+        background-position: center center;
+      }
+
+        @media (max-width: 1024px) {
+
+          elem(partner) {
+            width: 90px;
+            height: 90px;
+          }
+
+          elem(image) {
+            width: 54px;
+            height: 54px;
+          }
         }
 
       elem(partner_1){
@@ -110,7 +134,6 @@ block(club-footer) {
       elem(partner_9){
         background-image: url(../../assets/img/fests/fest_logo_white_9.png);
       }
-    }
   }
 
     elem(club-login){
@@ -136,6 +159,19 @@ block(club-footer) {
         -webkit-background-size: contain;
         background-size: contain;
         background-position: center center;
+      }
+
+      @media (max-width: 1024px) {
+
+        elem(maker) {
+          width: 90px;
+          height: 90px;
+        }
+
+        elem(image) {
+          width: 54px;
+          height: 54px;
+        }
       }
 
       elem(director_1){

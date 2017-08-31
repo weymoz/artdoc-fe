@@ -6,7 +6,7 @@ block(section).mod(theme artdoc) {
   padding-bottom: 2em;
 
   .elem(content) {
-    width: 1316px;
+    max-width: 1316px;
     margin: 0 auto;
   }
 }
