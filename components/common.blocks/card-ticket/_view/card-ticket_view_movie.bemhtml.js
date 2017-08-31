@@ -9,8 +9,10 @@ block('card-ticket').mod('view', 'movie')(
     addMix()( { block: 'link'} ),
 
     addAttrs()( ( node, ctx ) => {
-      return { 'href': '?code=' + ctx.ticket.code + '&tz=3&city=spb' } }
-    ),
+      return {
+        href: '?code=' + ctx.ticket.code
+      }
+    } ),
 
     addMods()( { status: 'active' } )
 

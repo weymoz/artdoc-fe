@@ -14,3 +14,4 @@ bundles/*/*/*
 bundles/*/*/*.tmpl.bemdecl.js
 !.bem/*
 .swp
+package-lock.json

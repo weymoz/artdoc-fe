@@ -6,7 +6,6 @@ block(filters) {
   width: 100%;
   max-width: 1360px;
 
-
   elem(filter-label) {
     line-height: 20px;
     vertical-align: top;
@@ -17,7 +16,6 @@ block(filters) {
     margin: 0;
     vertical-align: top;
   }
-
 
   block(checkbox) {
     vertical-align: top;
@@ -36,11 +34,9 @@ block(filters) {
 
     }
 
-    state(checked) {
+    .mod(state checked) {
       width: 100px;
     }
-
-
 
     elem(control) {
       vertical-align: top;
@@ -60,8 +56,8 @@ block(filters) {
 
         &::before {
           content: "✔";
+          /*background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='15' height='16'%3e%3cpath d='M13.5.5l-8 12L1.7 8l-1 1.6L5.6 15l9.1-13.4z'/%3e%3c/svg%3e");*/
         }
-        // qbackground-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='15' height='16'%3e%3cpath d='M13.5.5l-8 12L1.7 8l-1 1.6L5.6 15l9.1-13.4z'/%3e%3c/svg%3e");
       }
 
       &::before {
@@ -72,15 +68,12 @@ block(filters) {
         text-align: center;
         width: 18px;
         display: inline-block;
-
       }
     }
   }
 
   block(select) {
     font-family: 'Helvetica Neue Bold';
-
-
 
     block(button) {
       background: none;
@@ -106,12 +99,18 @@ block(filter-form) {
   width: calc(100%+20px);
   min-width:1024px;
 
-
   elem(filter-label) {
     margin-right:22px;
     display: inline-block;
     margin-bottom: 10px;
     padding: 5px;
+  }
+
+  block(button).mod(type submit) {
+    padding: 0 20px;
+    margin: 10px 100px;
+    float: right;
+
   }
 }
 

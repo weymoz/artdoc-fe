@@ -14,7 +14,7 @@ block(link).mod(theme artdoc-dark) {
 
     &:hover {
       background: #f4203b;
-      trastion: background 0.3s;
+      transition: background 0.3s;
     }
 
   }

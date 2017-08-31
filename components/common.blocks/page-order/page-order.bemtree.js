@@ -3,7 +3,6 @@ block('page-order')(
   replace()( node => {
     let ticket = node.data.api;
     ticket.city = ticket.city[0];
-    ticket.tz = ticket.tz > 0 ? '+' + ticket.tz : ticket.tz;
 
     // switch ( ticket.city_id ) {
     //   case 1:
