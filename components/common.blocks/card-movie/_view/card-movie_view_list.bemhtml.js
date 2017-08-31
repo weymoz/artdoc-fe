@@ -1,4 +1,4 @@
-block('card-movie').mod('view', 'schedule')(
+block('card-movie').mod('view', 'list')(
 
   def()( ( node, ctx ) => {
     const movie = node.mergeDeep( ctx.movie, {
@@ -70,7 +70,7 @@ block('card-movie').mod('view', 'schedule')(
         content: [
           { elem: 'discussion' },
           { elem: 'show-more' },
-          { elem: 'buy',  elemMods: { type: 'button' }  }
+          { elem: 'buy' }
         ]
       }
     ];

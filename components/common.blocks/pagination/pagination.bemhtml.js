@@ -4,6 +4,10 @@ block('pagination')(
 
     let params = this.ctx.params;
 
+    if (params['total_count'] <= params['per-page']) {
+      return [];
+    }
+
     params.params.set('page', params.page-1);
 
     let page_links = [{

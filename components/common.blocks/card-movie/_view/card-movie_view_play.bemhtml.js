@@ -1,7 +1,7 @@
 block('card-movie').mod('view', 'play')(
 
   def()( ( node, ctx ) => {
-    // console.log( node );
+    console.log( ctx );
     const movie = node.mergeDeep( ctx.movie, {
       cover: { width: 1316 },
       play: ctx.movie.play,
@@ -19,8 +19,6 @@ block('card-movie').mod('view', 'play')(
     } else if ( node._play ) {
       status = 'ready'
     }
-
-    status = 'finish';
 
     return [
       {

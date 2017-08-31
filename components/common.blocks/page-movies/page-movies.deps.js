@@ -4,13 +4,14 @@
         block: 'card-movie',
 
         mods: {
-          view: 'schedule'
+          view: 'list'
         }
 
       },
       'pagination',
       'club-footer',
-      'section'
+      'section',
+      'filters'
     ],
 
 }]

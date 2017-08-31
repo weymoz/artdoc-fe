@@ -72,7 +72,7 @@ block('card-movie').mod('view', 'promo')(
               { elem: 'show-more' }
             ]
           },
-          { elem: 'buy' },
+          { elem: 'buy', elemMods: { type: 'button' } },
         ]
       }
     ];

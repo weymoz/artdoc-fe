@@ -2,6 +2,8 @@ block('page-movies').replace()(function() {
 
   const _movies = this.data.api;
 
+
+
   return [
     {
       elem: 'content',
@@ -13,11 +15,15 @@ block('page-movies').replace()(function() {
           },
           content: this.data.title
         },
+        {
+          block: 'filters',
+          data: this.data
+        },
         _movies.map( item => {
           return {
             block: 'card-movie',
             mods: {
-              view: 'schedule'
+              view: 'list'
             },
             movie: item
           }

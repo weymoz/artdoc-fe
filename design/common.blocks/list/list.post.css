@@ -23,7 +23,7 @@ block(list) {
 
   .mod(delimiter vertical) {
     .elem(item) {
-      
+
       &:after {
         content: '';
         display: inline-block;
@@ -33,6 +33,7 @@ block(list) {
         height: 1.2857em;
         background-color: currentColor;
         margin-left: 12px;
+        margin-top:2px;
         vertical-align: top;
       }
 

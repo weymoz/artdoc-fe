@@ -37,7 +37,7 @@ block('card-movie').mod('view', 'slide')(
     return applyNext( { 'ctx.movie': movie } );
   }),
 
-  content()( (node, ctx) => {
+  content()( node => {
     return applyNext( { 'ctx.content': {
         elem: 'content',
         content: [

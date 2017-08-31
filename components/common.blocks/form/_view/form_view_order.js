@@ -41,6 +41,7 @@ provide(Form.declMod({ modName: 'view', modVal: 'order' }, {
         function() {
           const paymentForm = BEMHTML.apply({
             block: 'form',
+
             mods: {
               view: 'payment',
               theme: 'artdoc'
@@ -54,7 +55,7 @@ provide(Form.declMod({ modName: 'view', modVal: 'order' }, {
             container: '#payment-form',
             locale: data.locale
           }, function (createErr, instance) {
-            
+
             if (createErr) {
               console.error(createErr);
               return;
@@ -91,7 +92,7 @@ provide(Form.declMod({ modName: 'view', modVal: 'order' }, {
           });
         }
       );
-      
+
     });
   },
 
