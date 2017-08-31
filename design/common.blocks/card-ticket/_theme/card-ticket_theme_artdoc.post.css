@@ -133,6 +133,28 @@ block(card-ticket).mod(theme artdoc) {
     }
   }
 
+  .mod(view play) {
+    display: flex;
+    flex-wrap: nowrap;
+    text-transform: uppercase;
+    font-size: 17px;
+    line-height: 1.5;
+
+    .elem(header) {
+      margin-right: 40px;
+    }
+
+    .elem(content) {
+      display: flex;
+      flex: inherit;
+      margin-right: 40px;
+    }
+
+    .elem(city) {
+      margin-right: 40px;
+    }
+  }
+
   .mod(status active) {
     &:hover,
     &:focus {

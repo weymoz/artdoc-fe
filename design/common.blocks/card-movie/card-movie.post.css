@@ -100,6 +100,29 @@ block(card-movie) {
 
   }
 
+  .mod(view schedule) {
+
+    .elem(discussion) {
+      font-size: 13px;
+      line-height: 16px;
+      position: relative;
+    }
+
+    .elem(discussion):before {
+      content: '';
+      display: block;
+      width: 34px;
+      height: 32px;
+      background-image: url(../../assets/img/static/duscussion_icon.svg);
+      background-repeat: no-repeat;
+      -webkit-background-size: cover;
+      background-size: cover;
+      position: absolute;
+      left: -40px;
+    }
+
+  }
+
   .mod(view list).mod(theme artdoc) {
 
     .elem(aside) {
@@ -144,6 +167,7 @@ block(card-movie) {
       line-height: 16px;
     }
 
+
     .elem(show-more) {
       margin-top: 10px;
       lost-column: 1/2 1 28px;
@@ -183,12 +207,18 @@ block(card-movie) {
     .elem(aside) {
       lost-column: 13/47 1 0;
       background-color: #111;
+      display: flex;
+    }
+
+    .elem(cover) {
+      background: linear-gradient(180deg, #090822 0%, rgba(9,8,34,0) 100%);
     }
 
     .elem(discussion) {
       padding: 40px 28px;
       box-sizing: border-box;
       text-align: center;
+      margin: auto;
     }
   }
 
@@ -633,6 +663,11 @@ block(card-movie) {
     font-size: 18px;
     font-weight: bold;
     line-height: 1.25;
+
+
+    @media (max-width: 1280px) {
+      font-size: 16px;
+    }
 
     @media (max-width: 1104px) {
         font-size: 14px;

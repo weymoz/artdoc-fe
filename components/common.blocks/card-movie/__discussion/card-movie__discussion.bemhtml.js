@@ -1,15 +1,21 @@
 block('card-movie').elem('discussion')(
 
-  match( node => node._discuss_preview || node._discuss_link ).replace()( node => {
+  match( node => node._discuss_preview || node._discuss_link ).content()( node => {
     return [
       {
-        block: 'link',
-        mix: { block: node.block, elem: node.elem },
-        url: node._discuss_link,
-        attrs: {
-          title: node._discuss_preview
+        block: 'paragraph',
+        content: node._discuss_preview,
+      },
+      { tag: 'br' },
+      {
+        block: 'button',
+        mods: {
+          type: 'link',
+          width: 'available',
+          theme: 'artdoc-dark'
         },
-        content: node._discuss_preview
+        url: node._discuss_link,
+        text: 'Перейти к обсуждению'
       }
     ]
   })

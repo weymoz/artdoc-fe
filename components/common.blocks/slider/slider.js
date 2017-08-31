@@ -39,10 +39,22 @@ provide(bemDom.declBlock(this.name, {
                 })
 
                 this._domEvents('page-item').on('click', function( event ) {
+                  this._currentPage = event.bemTarget.params.index;
                   pages.setMod('visible', false);
                   pagination.setMod('active', false);
                   pages.get( event.bemTarget.params.index ).setMod('visible', true);
                   pagination.get( event.bemTarget.params.index ).setMod('active', true);
+
+                  if(event.bemTarget.params.index == this._pageCount - 1) {
+                    this._elem('next').findMixedBlock(Button).setMod('disabled', true);
+                    this._elem('prev').findMixedBlock(Button).setMod('disabled', false);
+                  } else if(event.bemTarget.params.index == 0) {
+                    this._elem('prev').findMixedBlock(Button).setMod('disabled', true);
+                    this._elem('next').findMixedBlock(Button).setMod('disabled', false);
+                  } else {
+                    this._elem('prev').findMixedBlock(Button).setMod('disabled', false);
+                    this._elem('next').findMixedBlock(Button).setMod('disabled', false);
+                  }
                 })
 
             }

@@ -53,7 +53,8 @@ block('page-schedule').replace()(function() {
         },
         {
           elem: 'title',
-          content: 'Онлайн-киносеансы'
+          content: 'Онлайн-киносеансы',
+          mix: { block: 'font', mods: { family: 'helvetica-condensed', loaded: true } },
         },
         promoBlock,
         schedule.map( item => {

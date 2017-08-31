@@ -1,6 +1,6 @@
 block('card-ticket').elem('user-date')(
 
-  match( node => node.mods.view === 'movie' ).content()( ( node, ctx ) => {
+  content()( ( node, ctx ) => {
     return [
       {
         block: 'text',
