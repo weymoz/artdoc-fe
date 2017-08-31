@@ -30,7 +30,6 @@ provide(bemDom.declBlock(this.name, {
     bemDom.update( this._elem('user-date').domElem, date );
 
     const link = this.findMixedBlock( Link );
-    console.log( this.getTimezoneOffset() );
     if ( link ) {
       link.setUrl( window.location.pathname + '?code=' + this.params.ticket.code + '&tz=' + this.getTimezoneOffset() );
     }

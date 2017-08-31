@@ -1,6 +1,0 @@
-block(page).mod(view, page-movies) {
-  elem(section){
-    background: unset;
-    padding: 0 20px;
-  }
-}

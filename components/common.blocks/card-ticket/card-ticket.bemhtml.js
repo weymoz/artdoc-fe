@@ -6,7 +6,9 @@ block('card-ticket')(
       return true;
     } );
 
-    node._time_gmt3 = node._time_gmt3 + ( new Date().getTimezoneOffset() * 60 ) + node._tz * 60;
+    node._time_gmt3 = node._tz
+      ? node._time_gmt3 + ( new Date().getTimezoneOffset() * 60 ) + node._tz * 60
+      : node._time_gmt3;
 
     return applyNext();
   } ),
