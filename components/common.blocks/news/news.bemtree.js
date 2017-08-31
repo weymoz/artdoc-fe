@@ -12,6 +12,7 @@ block('news').content()(function() {
         date: 1503923685,
         url: 'http://www.rigaiff.lv/2017/ru/category/films-cat/artdocfest-riga/',
         linkname: 'rigaiff.lv',
+        image: '/news/riga.png',
         title: 'В Риге в четвертый раз пройдет латвийская сессия Artdocfest/RigaIFF.',
         content: 'Фильмом открытия станет картина "Слишком свободный человек". В программе Артдокфеста помимо показов фильмов, запланировано четыре круглых стола и питчинг независимых проектов для авторов из стран бывшего СССР.'
       },
