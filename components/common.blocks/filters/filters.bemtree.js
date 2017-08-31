@@ -5,16 +5,31 @@ block('filters').content()(function() {
   // applied filters from get:
   let userFilter = this.data['filter'];
 
+  function sortWord(a, b) {
+    return a.value.localeCompare(b.value, 'ru');
+  }
+
+  function sortNumber(a, b) {
+    return parseInt(a.value) > parseInt(b.value)? 1: -1;
+  }
+
+  function sortNumberDesc(a, b) {
+    return parseInt(a.value) > parseInt(b.value)? -1: 1;
+  }
+
   let filtersMap = {
     category: {
       code: 'category',
       name: 'Категории',
       skip: true,
+      sort: sortWord,
+
     },
     full_movie: {
       code: 'full_movie',
       name: 'Только с видео',
       skip: true,
+
     },
     free: {
       code: 'free',
@@ -24,50 +39,63 @@ block('filters').content()(function() {
     rating: {
       name: 'Рейтинг artdoc.media',
       skip: false,
+      sort: sortNumberDesc,
     },
     year: {
       name: 'Год выхода',
       skip: false,
+      sort: sortNumberDesc,
+
     },
     country: {
       name: 'Страна производства',
       skip: false,
+      sort: sortWord,
     },
     studio: {
       skip: false,
-      name: 'Студия производства'
+      name: 'Студия производства',
+      sort: sortWord,
     },
     genre: {
       name: 'Жанры',
       skip: false,
+      sort: sortWord,
     },
     period: {
       name: 'Истрический период',
       skip: false,
+      sort: sortNumber,
     },
     action_country: {
       name: 'Страна действия',
       skip: false,
+      sort: sortWord,
     },
     action_city: {
       name: 'Место действия',
       skip: false,
+      sort: sortWord
     },
     language: {
       name: 'Язык',
-      skip: false
+      skip: false,
+      sort: sortWord
     },
     subs: {
       name: 'Субтитры',
-      skip: false
+      skip: false,
+      sort: sortWord
     },
     fin_type: {
       name: 'Финансирование',
-      skip: false
+      skip: false,
+      sort: sortWord,
     },
     nominations: {
       name: 'Номинации',
-      skip: false
+      skip: false,
+      sort: sortWord
     },
   }
 
@@ -100,10 +128,8 @@ block('filters').content()(function() {
             size: 'm',
             theme: 'artdoc-dark'
           },
-          options: element.values.sort(function (a, b) {
-            return a.value.localeCompare(b.value, 'ru');
-          }).map(function (option) {
-            return {val: option.id?option.id:option.value, text: option.value}
+          options: element.values.sort(filtersMap[element.code].sort).map(function (option) {
+            return {val: option.id?parseInt(option).id:option.value, text: option.value}
           })
         }
 
@@ -120,9 +146,6 @@ block('filters').content()(function() {
 
         break;
       case 'bool':
-
-        console.log('##$$%%', typeof userFilter[element.code]);
-
 
         d = {
 
@@ -146,8 +169,9 @@ block('filters').content()(function() {
 
   filter_fields.push({
     block: 'button',
-    mods: { type: 'submit'},
-    text: 'Применить'
+    mods: { type: 'submit' , theme: 'artdoc-dark'},
+    text: 'Применить',
+    mix: { block: 'font', mods: { family: 'helvetica-bold', loaded: true } },
   })
 
 

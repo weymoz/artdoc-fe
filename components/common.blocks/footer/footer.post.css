@@ -5,7 +5,7 @@ block(footer) {
   block(title) {
     text-transform: uppercase;
     color: #fff;
-    font-site: 17px;
+    font-size: 17px;
     line-height: 20px;
     margin-bottom: 24px;
   }
