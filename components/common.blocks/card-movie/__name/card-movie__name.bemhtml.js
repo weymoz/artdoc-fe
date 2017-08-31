@@ -6,7 +6,7 @@ block( 'card-movie' ).elem( 'name' )(
 
   content()( node => node._name ),
 
-  match( node => node._url && node.mods.view !== 'promo' ).content()( node => {
+  match( node => node._url && node.mods.view !== 'promo' && node.mods.view !== 'selection' ).content()( node => {
     return {
       block: 'link',
       mods: {

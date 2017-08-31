@@ -213,9 +213,12 @@ block('page-club').content()(function() {
         {
           elem: 'text-block',
           content: [
+
+
             {
               block: 'title',
-              mix: { block: 'font', mods: { family: 'helvetica-condensed', loaded: true } },
+              attrs: { id: 'partners' },
+              mix: { block: 'font', mods: { family: 'helvetica-condensed', loaded: true }},
               mods: {
                 size: 'l'
               },
@@ -224,6 +227,8 @@ block('page-club').content()(function() {
             {
               elem: 'partners'
             }
+
+
           ]
         }
       ]

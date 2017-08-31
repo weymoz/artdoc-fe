@@ -46,7 +46,7 @@
   height: 100%;
   box-sizing: border-box;
   padding: 20px 30px;
-  background-color: rgb(0, 0, 0, 0.5);
+  background-color: rgb(0, 0, 0, 0.4);
 }
 
 .card-selection_theme_artdoc.card-selection_view_selections .card-selection__name {
@@ -141,7 +141,7 @@
   position: absolute;
   top: 0;
   display: block;
-  background-color: rgb(0,0,0,0.5);
+  background-color: rgb(0,0,0,0.4);
   z-index: 1;
 }
 
