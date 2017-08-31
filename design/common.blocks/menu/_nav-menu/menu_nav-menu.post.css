@@ -3,6 +3,10 @@ block(menu).mod(nav-menu) {
   color: #fff;
   column-count: 6;
 
+  @media (max-width: 1024px) {
+    column-count: 5;
+  }
+
   &:before,
   &:after {
     content: none

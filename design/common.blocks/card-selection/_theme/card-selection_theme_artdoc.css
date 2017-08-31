@@ -28,6 +28,17 @@
   overflow: hidden;
 }
 
+
+
+@media (max-width: 1024px) {
+
+  .card-selection_theme_artdoc.card-selection_view_selections .card-selection__preview .image {
+    height: 100%;
+  }
+
+}
+
+
 .card-selection_theme_artdoc.card-selection_view_selections .card-selection__on-cover {
   top: 0;
   left: 0;
@@ -184,7 +195,6 @@
 .card-selection_theme_artdoc.card-selection_view_detail .card-selection__author .image {
   padding: 0;
 }
-
 
 .card-selection_theme_artdoc.card-selection_view_detail .card-author__content {
   margin-left: 10px;

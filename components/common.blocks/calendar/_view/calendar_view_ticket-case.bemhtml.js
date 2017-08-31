@@ -28,8 +28,6 @@ block('calendar').mod('view', 'ticket-case')(
       ]
     });
 
-    console.log( template );
-
     return [
       {
         block: 'text',
