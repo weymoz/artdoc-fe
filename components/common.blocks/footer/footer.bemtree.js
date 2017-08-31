@@ -148,7 +148,7 @@ block('footer').content()(function() {
                 type: 'unstyled'
               },
               content: [
-                { elem: 'item', mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } }, content: 'office@artdocfest.com' },
+                { elem: 'item', mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } }, content: 'media@artdocfest.com' },
                 { elem: 'item', mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } }, content: 'LV 1011 Latvia Riga Stabu 19-2' }
               ]
             }
