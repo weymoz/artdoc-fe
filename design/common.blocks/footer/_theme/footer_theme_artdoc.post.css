@@ -3,6 +3,7 @@ block(footer).mod(theme artdoc) {
   color: #a0a0ad;
   padding: 64px 56px 48px;
   box-sizing: border-box;
+  min-width: 1024px;
 
   .elem(content) {
     lost-center: 1316px;

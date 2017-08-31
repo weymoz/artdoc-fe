@@ -32,7 +32,7 @@ provide(bemDom.declBlock(this.name, {
     const link = this.findMixedBlock( Link );
     console.log( this.getTimezoneOffset() );
     if ( link ) {
-      link.setUrl( window.location.href + '?code=' + this.params.ticket.code + '&tz=' + this.getTimezoneOffset() );
+      link.setUrl( window.location.pathname + '?code=' + this.params.ticket.code + '&tz=' + this.getTimezoneOffset() );
     }
   },
 
