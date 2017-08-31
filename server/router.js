@@ -43,7 +43,7 @@ module.exports = function( app ) {
   // Expand
   let global = {};
 
-  global.title = 'ArtDocMedia';
+  global.title = 'Artdoc.Media';
   global.categoryByCode = {};
 
   request( { url: '/api/category/?per-page=0'} ).then( response => {
@@ -175,7 +175,7 @@ module.exports = function( app ) {
     url += '?per-page=' + data.pagination['per-page'] + '&page=' + data.pagination.page;
 
     data.page = 'selections';
-    data.title = 'Selections';
+    data.title = 'Авторские подборки';
       request( { url: url } )
         .then( response => {
           data.api = response.items;
@@ -220,13 +220,9 @@ module.exports = function( app ) {
       data.page = req.params[0]=='discuss'?'discuss':'play';
       request( { url: '/cinema/release/?id=' + req.query.id + '&hash=' + req.query.hash + '&sess_id=' + req.query.sess_id } )
         .then( response => {
-
           data.api = response;
 
           if (req.params[0]=='discuss') {
-
-
-
             if (typeof response.schedule != 'undefined') {
               if (response.schedule.discuss_link) {
                 return res.redirect(response.schedule.discuss_link);
@@ -238,7 +234,6 @@ module.exports = function( app ) {
             res.status(404);
             return render(req, res, { view: '404', page: 'index' });
           }
-
 
           render( req, res, data );
         } )

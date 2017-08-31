@@ -1,10 +1,10 @@
 block(filters) {
-  background-color: #23232C;
+/*  background-color: #23232C;
   margin: 0 calc(-50vw + 50%) -2px;
   max-width: 1360px;
-  padding: 30px calc(50vw - 50%);
-  width: 100%;
-  max-width: 1360px;
+  padding: 30px calc(50vw - 50%);*/
+  max-width: 100%;
+  /*max-width: 1360px;*/
 
   elem(filter-label) {
     line-height: 20px;

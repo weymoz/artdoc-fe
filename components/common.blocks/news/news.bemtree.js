@@ -2,9 +2,9 @@ block('news').content()(function() {
     this.ctx.items = [
       {
         date: 1503923685,
-        url: 'http://artdocfest.com/news/346',
-        //image: 'http://artdoc.media.com',
-        linkname: 'artdocfest.com',
+        url: 'https://www.youtube.com/embed/jybw_0ecl0s',
+        image: 'http://img.youtube.com/vi/jybw_0ecl0s/mqdefault.jpg',
+        linkname: 'youtube.com',
         title: 'Запуск artdoc.media',
         content: '1 сентября по адресу artdoc.media начинает работу синематека документального кино на русском языке. В момент запуска в архиве доступна информация о более чем  1000 фильмов со всего мира.'
       },

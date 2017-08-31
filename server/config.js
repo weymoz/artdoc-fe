@@ -1,6 +1,6 @@
 module.exports = {
   host: {
-    baseURL: 'http://preprod.artdoc.media:9999',
+    baseURL: 'http://artdoc.media:9999',
     auth: {
       username: 'artdocmedia',
       password: 'dev'
