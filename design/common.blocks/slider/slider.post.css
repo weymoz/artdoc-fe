@@ -2,12 +2,24 @@ block(slider) {
   width: 100%;
   margin: 20px auto;
 
+  elem(prev) {
+    transform: rotate(180deg);
+  }
+
   block(button) {
     width: 56px;
     height: 56px;
     border-radius: 50%;
     background-color: #111;
     cursor: pointer;
+    background-image: url(../../assets/img/static/arrow_right_white.svg);
+    background-repeat: no-repeat;
+    -webkit-background-size: 20%;
+    background-size: 20%;
+    background-position: center center;
+
+    mod(revert){
+    }
 
     mod(focused):before{
       background-color: unset;
