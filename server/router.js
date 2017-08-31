@@ -43,7 +43,7 @@ module.exports = function( app ) {
   // Expand
   let global = {};
 
-  global.title = 'ArtDocMedia';
+  global.title = 'Artdoc.Media';
   global.categoryByCode = {};
 
   request( { url: '/api/category/?per-page=0'} ).then( response => {
@@ -175,7 +175,7 @@ module.exports = function( app ) {
     url += '?per-page=' + data.pagination['per-page'] + '&page=' + data.pagination.page;
 
     data.page = 'selections';
-    data.title = 'Selections';
+    data.title = 'Авторские подборки';
       request( { url: url } )
         .then( response => {
           data.api = response.items;
