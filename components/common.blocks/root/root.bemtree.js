@@ -33,6 +33,7 @@ block('root').replace()(function() {
       { elem: 'meta', attrs: { name: 'description', content: meta.description } },
       { elem: 'meta', attrs: { property: 'og:title', content: og.title || data.title } },
       { elem: 'meta', attrs: { property: 'og:url', content: og.url } },
+      { elem: 'meta', attrs: { property: 'og:image', content: og.image } },
       { elem: 'meta', attrs: { property: 'og:site_name', content: og.siteName } },
       { elem: 'meta', attrs: { property: 'og:locale', content: og.locale || 'ru_RU' } },
       { elem: 'meta', attrs: { property: 'og:type', content: 'website' } }

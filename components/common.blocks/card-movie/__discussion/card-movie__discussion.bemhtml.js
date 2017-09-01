@@ -1,6 +1,6 @@
 block('card-movie').elem('discussion')(
 
-  match( node => node._discuss_preview || node._discuss_link ).content()( node => {
+  match( node => (node._discuss_preview || node._discuss_link) && node.mods.view === 'play' ).content()( node => {
     return [
       {
         block: 'paragraph',
