@@ -41,10 +41,17 @@ const request = options => {
 module.exports = function( app ) {
 
   // Expand
-  let global = {};
-
-  global.title = 'Artdoc.Media';
-  global.categoryByCode = {};
+  let global = {
+    title: 'Artdoc.Media',
+    meta: {
+      description: 'Артдокмедиа — это архив документального кино, независимого и актуального контента, в основном снятого на территории бывшего СССР с начала 2000-х годов. Ежедневно в кинозале 5 сеансов, с обсуждением фильма с авторами.',
+      og: {
+        siteName: 'Artdoc.Media',
+        image: '/assets/img/meta/artdocmedia.jpeg'
+      },
+    },
+    categoryByCode: {}
+  };
 
   request( { url: '/api/category/?per-page=0'} ).then( response => {
 
@@ -157,6 +164,9 @@ module.exports = function( app ) {
         .then( response => {
           data.api = response.items[0];
           data.title = response.items[0].name;
+          data.meta.og.image = response.items[0].cover && response.items[0].cover.id
+            ? '//artdoc.media/upload/resize/' + response.items[0].cover.id + '/640x360.jpg'
+            : data.meta.og.image;
           render( req, res, data );
         } )
         .catch(( error ) => res.send( error ) );
@@ -247,9 +257,9 @@ module.exports = function( app ) {
     }
   });
 
-  app.get( '/order/:transaction_id', ( req, res ) => {
+  app.get( '/order/:transaction_id/:payment_nonce', ( req, res ) => {
     let data = Object.assign({}, global);
-    client.post( '/payment/provide/', { nonce: req.query.payment_nonce, transaction_id: req.params.transaction_id } )
+    client.post( '/payment/provide/', { nonce: req.params.payment_nonce, transaction_id: req.params.transaction_id } )
       .then( response => {
         data.api = response.data;
         if ( data.api.error ) {
