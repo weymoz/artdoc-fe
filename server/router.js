@@ -257,9 +257,9 @@ module.exports = function( app ) {
     }
   });
 
-  app.get( '/order/:transaction_id', ( req, res ) => {
+  app.get( '/order/:transaction_id/:payment_nonce', ( req, res ) => {
     let data = Object.assign({}, global);
-    client.post( '/payment/provide/', { nonce: req.query.payment_nonce, transaction_id: req.params.transaction_id } )
+    client.post( '/payment/provide/', { nonce: req.params.payment_nonce, transaction_id: req.params.transaction_id } )
       .then( response => {
         data.api = response.data;
         if ( data.api.error ) {
