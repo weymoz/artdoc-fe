@@ -44,7 +44,7 @@ module.exports = function( app ) {
   let global = {
     title: 'Artdoc.Media',
     meta: {
-      description: '1 сентября по адресу artdoc.media начинает работу синематека документального кино на русском языке. В момент запуска в архиве доступна информация о более чем 1000 фильмов со всего мира.',
+      description: 'Артдокмедиа — это архив документального кино, независимого и актуального контента, в основном снятого на территории бывшего СССР с начала 2000-х годов. Ежедневно в кинозале 5 сеансов, с обсуждением фильма с авторами.',
       og: {
         siteName: 'Artdoc.Media',
         image: '/assets/img/meta/artdocmedia.jpeg'
@@ -257,9 +257,9 @@ module.exports = function( app ) {
     }
   });
 
-  app.get( '/order/:transaction_id', ( req, res ) => {
+  app.get( '/order/:transaction_id/:payment_nonce', ( req, res ) => {
     let data = Object.assign({}, global);
-    client.post( '/payment/provide/', { nonce: req.query.payment_nonce, transaction_id: req.params.transaction_id } )
+    client.post( '/payment/provide/', { nonce: req.params.payment_nonce, transaction_id: req.params.transaction_id } )
       .then( response => {
         data.api = response.data;
         if ( data.api.error ) {
