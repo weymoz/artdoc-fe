@@ -241,7 +241,7 @@ module.exports = function( app ) {
               if (response.schedule.discuss_link) {
                 return res.redirect(response.schedule.discuss_link);
               } else if (response.schedule.discuss_preview) {
-                render( req, res, data );
+                return render( req, res, data );
               }
             }
 
@@ -249,7 +249,7 @@ module.exports = function( app ) {
           }
 
 
-          render( req, res, data );
+          return render( req, res, data );
         } )
         .catch(() => {
           res.send('error')
