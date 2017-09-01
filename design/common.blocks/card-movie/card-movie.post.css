@@ -207,12 +207,18 @@ block(card-movie) {
     .elem(aside) {
       lost-column: 13/47 1 0;
       background-color: #111;
+      display: flex;
+    }
+
+    .elem(cover) {
+      background: linear-gradient(180deg, #090822 0%, rgba(9,8,34,0) 100%);
     }
 
     .elem(discussion) {
       padding: 40px 28px;
       box-sizing: border-box;
       text-align: center;
+      margin: auto;
     }
   }
 

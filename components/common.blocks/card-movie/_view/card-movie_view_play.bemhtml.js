@@ -3,9 +3,7 @@ block('card-movie').mod('view', 'play')(
   def()( ( node, ctx ) => {
     const movie = node.mergeDeep( ctx.movie, {
       cover: { width: 1316 },
-      play: ctx.movie.play,
-      discuss_link: '#',
-      discuss_preview: 'В 21:00 состоится обсуждение фильма с автором через Zoom.'
+      url: ctx.movie.code ? '/movie/' + ctx.movie.code : null,
     } );
 
     return applyNext( { 'ctx.movie': movie } );
@@ -13,7 +11,7 @@ block('card-movie').mod('view', 'play')(
 
   content()( node => {
     let status = 'finish';
-    if ( node.starts_in ) {
+    if ( node._starts_in ) {
       status = 'get'
     } else if ( node._play ) {
       status = 'ready'
@@ -44,7 +42,7 @@ block('card-movie').mod('view', 'play')(
               }
             ]
           },
-          status === 'finish' && {
+          status === 'finish' && ( node._discuss_link || node._discuss_preview ) && {
             elem: 'aside',
             content: [
               { elem: 'discussion' }

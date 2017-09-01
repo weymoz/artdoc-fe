@@ -129,7 +129,7 @@ block('filters').content()(function() {
             theme: 'artdoc-dark'
           },
           options: element.values.sort(filtersMap[element.code].sort).map(function (option) {
-            return {val: option.id?parseInt(option).id:option.value, text: option.value}
+            return {val: option.id?parseInt(option.id):option.value, text: option.value}
           })
         }
 

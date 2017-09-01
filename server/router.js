@@ -224,6 +224,9 @@ module.exports = function( app ) {
           data.api = response;
 
           if (req.params[0]=='discuss') {
+
+
+
             if (typeof response.schedule != 'undefined') {
               if (response.schedule.discuss_link) {
                 return res.redirect(response.schedule.discuss_link);
@@ -234,11 +237,13 @@ module.exports = function( app ) {
 
             return render(req, res, { view: '404', page: 'index' });
           }
+
+
           render( req, res, data );
         } )
         .catch(() => {
           res.send('error')
-        });
+        } );
     }
   });
 

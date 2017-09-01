@@ -8,18 +8,34 @@ block('page-play')(
 
   replace()( node => {
     // Move start timer to movie object
-    const movie = node.mergeDeep( node.data.api.movie, {
-      starts_in: node.data.api.starts_in,
-      play: node.data.api.link
+    const api = node.data.api;
+    // console.log( node.data.url.query );
+    const movie = node.mergeDeep( api.movie, {
+      starts_in: api.starts_in,
+      play: api.link,
+      discuss_link: '/cinema/discuss/' + node.data.url.search,
+      discuss_preview: api.schedule.discuss_preview
     } );
+
+    let ticket = api.session;
+    ticket.city = ticket.city[0];
 
     return [
       {
         elem: 'content',
         content: [
           {
-            block: 'breadcrumbs'
-          },
+            block: 'card-ticket',
+            mods: {
+              view: 'play'
+            },
+            ticket: ticket
+          }
+        ]
+      },
+      {
+        elem: 'content',
+        content: [
           {
             block: 'card-movie',
             mods: {
