@@ -235,13 +235,11 @@ module.exports = function( app ) {
 
           if (req.params[0]=='discuss') {
 
-
-
             if (typeof response.schedule != 'undefined') {
               if (response.schedule.discuss_link) {
                 return res.redirect(response.schedule.discuss_link);
               } else if (response.schedule.discuss_preview) {
-                render( req, res, data );
+                return render( req, res, data );
               }
             }
 
@@ -249,7 +247,7 @@ module.exports = function( app ) {
           }
 
 
-          render( req, res, data );
+          return render( req, res, data );
         } )
         .catch(() => {
           res.send('error')
@@ -282,7 +280,14 @@ module.exports = function( app ) {
       .then( api => {
         if ( api.data.payment_url ) {
           request( { url: api.data.payment_url } )
-            .then( response => render( req, res, { page: 'payment', api: response } ) )
+            .then( response => {
+              if (typeof response.type && response.type == 'free') {
+                // meduza promo !
+              } else {
+                render( req, res, { page: 'payment', api: response } );
+              }
+
+            } )
             .catch(() => res.send('error') );
         }
       })
