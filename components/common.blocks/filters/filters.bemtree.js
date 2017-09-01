@@ -63,7 +63,7 @@ block('filters').content()(function() {
       sort: sortWord,
     },
     period: {
-      name: 'Истрический период',
+      name: 'Исторический период',
       skip: false,
       sort: sortNumber,
     },
