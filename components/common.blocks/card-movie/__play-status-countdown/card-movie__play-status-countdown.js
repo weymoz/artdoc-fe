@@ -1,4 +1,4 @@
-modules.define('card-movie__play-status-countdown', ['i-bem-dom'], function(provide, bemDom) {
+modules.define('card-movie__play-status-countdown', ['i-bem-dom', 'BEMHTML'], function(provide, bemDom, BEMHTML) {
 
 provide(bemDom.declElem('card-movie', 'play-status-countdown', {
     onSetMod: {
@@ -14,12 +14,32 @@ provide(bemDom.declElem('card-movie', 'play-status-countdown', {
                 var minute = 1000 * 60;
                 var hour = minute * 60;
 
-                // var days = Math.floor( distance / ( 24 * hour ) );
+                var days = Math.floor( distance / ( 24 * hour ) );
                 var hours = Math.floor( ( distance % ( 24 * hour ) ) / hour );
                 var minutes = this.fixZero( Math.floor( ( distance % hour ) / minute ) );
                 var seconds = this.fixZero( Math.floor( ( distance % minute ) / 1000 ) );
 
-                timerContainer.innerHTML = hours + ':' + minutes + ':' + seconds;
+                if ( days > 0 ) {
+                  days = [
+                    days,
+                    ' ',
+                    BEMHTML.apply({
+                      block : 'text',
+                      mods: {
+                        plural: true
+                      },
+                      content : {
+                        number: days,
+                        one: 'день',
+                        two: 'дня',
+                        five: 'дней'
+                      }
+                    }),
+                    ', '
+                  ].join('')
+                }
+
+                timerContainer.innerHTML = days + hours + ':' + minutes + ':' + seconds;
 
                 if ( distance < 0 ) {
                   clearInterval( timer );
