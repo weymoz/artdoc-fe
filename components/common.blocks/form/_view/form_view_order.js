@@ -85,7 +85,7 @@ provide(Form.declMod({ modName: 'view', modVal: 'order' }, {
                   console.error(err);
                 } else {
                   bemDom.destruct( button.domElem );
-                  window.location.href = '/order/' + data.transaction_id + '?payment_nonce=' + payload.nonce;
+                  window.location.href = '/order/' + data.transaction_id + '/' + payload.nonce;
                 }
               });
             });

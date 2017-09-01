@@ -14,11 +14,13 @@ block('page-play')(
       starts_in: api.starts_in,
       play: api.link,
       discuss_link: '/cinema/discuss/' + node.data.url.search,
-      discuss_preview: api.schedule.discuss_preview
+      discuss_preview: api.schedule ? api.schedule.discuss_preview : ''
     } );
 
-    let ticket = api.session;
-    ticket.city = ticket.city[0];
+    let ticket =  api.session;
+    if ( ticket ) {
+      ticket.city = ticket.city[0];
+    }
 
     return [
       {
