@@ -5,6 +5,10 @@ block('card-movie').elem('slider')(
   content()( node => {
     let slides = node._screenshots;
 
+    if ( node._cover ) {
+      slides.unshift( { id: node._cover.id, type: 'image' } );
+    }
+
     if ( node._trailer ) {
       slides.splice( 1, 0, { id: node._screenshots[0].id, type: 'video' } );
     }
