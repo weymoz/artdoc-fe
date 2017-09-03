@@ -37,7 +37,7 @@ provide(Form.declMod({ modName: 'view', modVal: 'order' }, {
 
       const data = JSON.parse( response );
 
-      loader('//js.braintreegateway.com/web/dropin/1.4.0/js/dropin.min.js',
+      loader('https://js.braintreegateway.com/web/dropin/1.4.0/js/dropin.min.js',
         function() {
           const paymentForm = BEMHTML.apply({
             block: 'form',
