@@ -271,26 +271,40 @@ module.exports = function( app ) {
         }
       } )
       .catch(() => res.send('error') );
-  });
+  });  
 
-  // API
+  /*
+   *  API Proxy
+   *
+   ***************************/
+
   app.get( '/api/order/:session_id', ( req, res ) => {
-    // let data = Object.assign({}, global);
-    client.post( '/cinema/booking/booking/', { CinemaTicketModel: { email: req.query.email }, session_id: req.params.session_id } )
-      .then( api => {
+    client.post( '/cinema/booking/booking/', { 
+      CinemaTicketModel: { email: req.query.email }, 
+      session_id: req.params.session_id,
+      promoCode:  req.params.promo, // <-- Meduza promo
+    } ).then( api => {
         if ( api.data.payment_url ) {
           request( { url: api.data.payment_url } )
             .then( response => {
-              if (typeof response.type && response.type == 'free') {
-                // meduza promo !
-              } else {
-                render( req, res, { page: 'payment', api: response } );
-              }
-
+              render( req, res, { page: 'api', api: response } );
             } )
             .catch(() => res.send('error') );
         }
       })
+      .catch(() => res.send('error') );
+  });
+
+  app.get( '/api/payment/:transaction_id', ( req, res ) => {
+    client.post( '/payment/provide/', { nonce: req.query.payment_nonce, transaction_id: req.params.transaction_id } )
+      .then( api => {
+        render( req, res, { page: 'api', api: api.data } );
+        if ( api.data.api.error ) {
+          // При оплате произошла ошибка
+        } else {
+          // Билет успешно оплачен
+        }
+      } )
       .catch(() => res.send('error') );
   });
 
