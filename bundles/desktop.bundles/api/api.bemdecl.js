@@ -1,4 +1,4 @@
 exports.blocks = [
   { name: 'root' },
-  { name: 'page-payment' }
+  { name: 'page-api' }
 ];

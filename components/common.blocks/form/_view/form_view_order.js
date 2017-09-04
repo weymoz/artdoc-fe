@@ -21,7 +21,7 @@ provide(Form.declMod({ modName: 'view', modVal: 'order' }, {
   _onFormSuccess: function() {
     var _this = this;
 
-    var settings = {
+    var apiSettings = {
       'async': true,
       'url': '/api/order/' + _this.params.session_id,
       'method': 'GET',
@@ -33,7 +33,7 @@ provide(Form.declMod({ modName: 'view', modVal: 'order' }, {
       }
     }
 
-    $.ajax(settings).done(function (response) {
+    $.ajax(apiSettings).done(function (response) {
 
       const data = JSON.parse( response );
 
@@ -41,30 +41,32 @@ provide(Form.declMod({ modName: 'view', modVal: 'order' }, {
         function() {
           const paymentForm = BEMHTML.apply({
             block: 'form',
-
             mods: {
               view: 'payment',
               theme: 'artdoc'
-            },
+            }
           });
 
-          _this._modal.setContent( '' ).setMod('visible').setContent( paymentForm );
+          _this._modal
+            .setContent( '' )       // Move modal to end of page,
+            .setMod( 'visible' )    // because we have form inside form
+            .setContent( paymentForm );
 
           braintree.dropin.create({
             authorization: data.clientToken,
             container: '#payment-form',
             locale: data.locale
-          }, function (createErr, instance) {
+          }, function ( createErr, instance ) {
 
             if (createErr) {
-              console.error(createErr);
+              console.error( createErr );
               return;
             }
 
-            _this._paymentForm = _this._modal.findChildBlock({ block: Form, modName: 'view', modVal: 'payment' });
+            let paymentFormElem = _this._modal.findChildBlock( { block: Form, modName: 'view', modVal: 'payment' } );
 
             bemDom.append(
-              _this._paymentForm.domElem,
+              paymentFormElem.domElem,
               BEMHTML.apply({
                 block: 'button',
                 mods: {
@@ -80,12 +82,32 @@ provide(Form.declMod({ modName: 'view', modVal: 'order' }, {
             const button = _this._modal.findChildBlock(Button);
 
             _this._domEvents(button).on('click', function () {
-              instance.requestPaymentMethod(function (err, payload) {
+              instance.requestPaymentMethod( function (err, payload) {
                 if (err){
                   console.error(err);
                 } else {
                   bemDom.destruct( button.domElem );
-                  window.location.href = '/order/' + data.transaction_id + '/' + payload.nonce;
+
+                  apiSettings.url = '/api/payment/' + data.transaction_id;
+                  apiSettings.data = {
+                    payment_nonce: payload.nonce
+                  };
+
+                  console.log(apiSettings);
+
+                  $.ajax( apiSettings ).done( function ( apiResponse ) {
+                    apiResponse = JSON.parse( apiResponse );
+                    if ( apiResponse.error ) {
+                      bemDom.append(
+                        paymentFormElem.domElem,
+                        '<p class="paragraph text text_state_error">Произошла ошибка: ' + apiResponse.error + '</p>'
+                      );
+                    } else {
+                      console.log( apiResponse );
+                      window.location.href = '/order/' + data.transaction_id + '?payment_nonce=' + payload.nonce;
+                    }
+                  } );
+
                 }
               });
             });
