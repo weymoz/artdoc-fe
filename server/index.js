@@ -23,7 +23,7 @@ var fs = require('fs'),
     render = Render.render,
     dropCache = Render.dropCache, // eslint-disable-line no-unused-vars
 
-    port = process.env.PORT || config.defaultPort,
+    port = config.defaultPort,
     isSocket = isNaN(port),
     isDev = process.env.NODE_ENV === 'development';
 

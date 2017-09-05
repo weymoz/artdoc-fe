@@ -1,61 +1,22 @@
 module.exports = {
   host: {
-    baseURL: 'http://artdoc.media:9999',
+    baseURL: process.env.API || 'http://artdoc.media:9999',
     auth: {
-      username: 'artdocmedia',
-      password: 'dev'
+      username: process.env.USER || 'artdocmedia',
+      password: process.env.PASS || 'dev'
     }
   },
-  /*
-  route: [
-    {
-      page: 'index',
-      content: [
-        {
-          page: 'cinema',
-          request: '/api/movie/',
-          content: [
-            {
-              page: 'category',
-              params: ':category',
-              request: '???',
-              content: [
-                {
-                  page: 'movie',
-                  params: ':name',
-                  request: '/api/movie/?expand=schedules,sessions&code=' + req.params.name,
-                  query: [
-                    {
-                      page: 'play',
-                      query: [ 'id', 'hash', 'sess_id' ],
-                      request: '/cinema/release/?id=' + req.query.id + '&hash=' + req.query.hash + '&sess_id=' + req.query.sess_id,
-                    },
-                    {
-                      page: 'order',
-                      query: [ 'id' ],
-                      request: '/api/session/?expand=movie&id=' + req.query.id
-                    },
-                  ]
-                }
-              ]
-            },
-          ]
-        },
-        {
-          page: 'schedule',
-          request: '/api/schedule/?expand=sessions,movie&sort=date_gmt3'
-        },
-        {
-          page: 'thanks',
-          query: [ 'code' ],
-          request: '/api/movie/?code=' + req.query.code
-        }
-      ]
-    }
-  ],
-  */
+  promo: {
+    meduza: [
+      'under_the_sun_1504645200_15047172001504079120',
+      'under_the_sun_1504645200_15047352001504079120',
+      'under_the_sun_1504645200_15047460001504079120',
+      'kruzenshtern__1504731600_15047748001504083027',
+      'kruzenshtern__1504731600_15047964001504083027'
+    ]
+  },
   staticFolder: 'static',
-  defaultPort: 3000,
+  defaultPort: process.env.PORT || 3000,
   cacheTTL: 30000,
-  sessionSecret: 'REPLACE_ME_WITH_RANDOM_STRING'
+  sessionSecret: 'Exegi_monumentum_aere_perennius'
 };
