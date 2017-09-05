@@ -300,7 +300,7 @@ module.exports = function( app ) {
         if ( api.data.payment_url ) {
           request( { url: api.data.payment_url } )
             .then( response => {
-              render( req, res, { page: 'api', api: response } );
+              res.send( JSON.stringify( response, null, 2 ) );
             } )
             .catch(() => res.send('error') );
         }
@@ -311,7 +311,7 @@ module.exports = function( app ) {
   app.get( '/api/payment/:transaction_id', ( req, res ) => {
     client.post( '/payment/provide/', { nonce: req.query.payment_nonce, transaction_id: req.params.transaction_id } )
       .then( api => {
-        render( req, res, { page: 'api', api: api.data } );
+        res.send( JSON.stringify( api.data, null, 2 ) );
         if ( api.data.api.error ) {
           // При оплате произошла ошибка
         } else {
