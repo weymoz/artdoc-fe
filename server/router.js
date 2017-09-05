@@ -39,17 +39,8 @@ const request = options => {
 module.exports = function( app ) {
 
   // Expand
-  let global = {
-    title: 'Artdoc.Media',
-    meta: {
-      description: 'Артдокмедиа — это архив документального кино, независимого и актуального контента, в основном снятого на территории бывшего СССР с начала 2000-х годов. Ежедневно в кинозале 5 сеансов, с обсуждением фильма с авторами.',
-      og: {
-        siteName: 'Artdoc.Media',
-        image: '/assets/img/meta/artdocmedia.jpeg'
-      },
-    },
-    categoryByCode: {}
-  };
+  let global = config.site;
+  global.categoryByCode = {};
 
   request( { url: '/api/category/?per-page=0'} ).then( response => {
     global.category = response.items.sort(function (a,b) {
