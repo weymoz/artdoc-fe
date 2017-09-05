@@ -38,6 +38,35 @@ const request = options => {
 
 module.exports = function( app ) {
 
+  // Promo
+  app.use( (req, res, next) => {
+    // Check if `req.query.promo` contains in promo's list;
+    const actions = config.promo.filter( promo => req.query.promo === promo.name );
+    actions.forEach( promo => {
+      Object.keys( promo.cookie ).forEach( action => {
+        let newCookie = promo.cookie[ action ];
+        let value = newCookie.value;
+        delete newCookie.value;
+        let params = {};
+        Object.keys( newCookie ).forEach( key => {
+          console.log( key );
+          switch ( key ) {
+            case 'expire':
+              params.expire = ( new Date( newCookie.expire * 1000 ).toUTCString() );
+              break;
+            default:
+              params[ key ] = newCookie[ key ];
+              break;
+          }
+        } );
+        console.log( params );
+        
+        res.cookie( action, value, params );
+      } )
+    } );
+    next();
+  } );
+
   // Expand
   let global = config.site;
   global.categoryByCode = {};
@@ -154,6 +183,7 @@ module.exports = function( app ) {
           data.meta.og.image = response.items[0].cover && response.items[0].cover.id
             ? '//artdoc.media/upload/resize/' + response.items[0].cover.id + '/640x360.jpg'
             : data.meta.og.image;
+
           render( req, res, data );
         } )
         .catch(( error ) => res.send( error ) );
@@ -265,6 +295,26 @@ module.exports = function( app ) {
       .catch(() => res.send('error') );
   });  
 
+  // Promo activate
+  app.get( '/payment/freeactivate/', ( req, res ) => {
+    let data = Object.assign({}, global);
+    request( { url: '/payment/freeactivate/?' + Object.keys( req.query ).map( key => key + '=' + encodeURIComponent( req.query[ key ] ) ).join('&') } )
+      .then( response => {
+        data.api = response.data;
+        if ( data.api.error ) {
+          data.page = 'error';
+          data.title = 'При активации произошла ошибка';
+          render( req, res, data );
+        } else {
+          data.page = 'thanks';
+          data.title = 'Билет успешно активирован';
+          render( req, res, data );
+        }
+
+      } )
+      .catch(() => res.send('error') );
+  });  
+
   /*
    *  API Proxy
    *
@@ -272,22 +322,26 @@ module.exports = function( app ) {
 
   app.get( '/api/order/:session_id', ( req, res ) => {
 
-    const cookie = '';
+    let cookie = false;
     let promo_code = '';
 
-    if ( cookie && config.promo.meduza.includes( req.params.session_id ) ) {
-      promo_code = 'artdocmedia_free'
+    Object.keys( config.promo.meduza.cookie ).map( key => {
+      cookie = req.cookies[ key ] === config.promo.meduza.cookie[ key ];
+      return true;
+    } );
+
+    if ( cookie && config.promo.meduza.sessionId.includes( req.params.session_id ) ) {
+      promo_code = 'artdocmedia_free';
     }
 
-    client.post( '/cinema/booking/booking/?promo='+promo_code, { 
+    client.post( '/cinema/booking/booking/?promo=' + promo_code, { 
       CinemaTicketModel: { email: req.query.email }, 
       session_id: req.params.session_id,
 
       // promo:  req.params.promo, // <-- Meduza promo "artdocmedia_free"
       promo: promo_code
     } ).then( api => {
-        console.log( api );
-        console.log('^^^^^^^^^^^^');
+
         if ( api.data.payment_url ) {
           request( { url: api.data.payment_url } )
             .then( response => {
