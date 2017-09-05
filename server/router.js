@@ -38,19 +38,22 @@ const request = options => {
 
 module.exports = function( app ) {
 
+  // Expand
+  let global = config.site;
+  global.categoryByCode = {};
+
   // Promo
   app.use( (req, res, next) => {
     // Check if `req.query.promo` contains in promo's list;
     const actions = config.promo.filter( promo => req.query.promo === promo.name );
     actions.forEach( promo => {
-      Object.keys( promo.cookie ).forEach( action => {
-        let newCookie = promo.cookie[ action ];
-        let value = newCookie.value;
-        delete newCookie.value;
-        let params = {};
+      Object.keys( promo.cookies ).forEach( action => {
+        let newCookie = promo.cookies[ action ],
+            params = {};
         Object.keys( newCookie ).forEach( key => {
-          console.log( key );
           switch ( key ) {
+            case 'value':
+              break;
             case 'expire':
               params.expire = ( new Date( newCookie.expire * 1000 ).toUTCString() );
               break;
@@ -59,17 +62,15 @@ module.exports = function( app ) {
               break;
           }
         } );
-        console.log( params );
-        
-        res.cookie( action, value, params );
+        if ( req.cookies[ action ] !== newCookie.value ) {
+          res.cookie( action, newCookie.value, params );
+          req.cookies[ action ] = newCookie.value
+        }
       } )
     } );
+
     next();
   } );
-
-  // Expand
-  let global = config.site;
-  global.categoryByCode = {};
 
   request( { url: '/api/category/?per-page=0'} ).then( response => {
     global.category = response.items.sort(function (a,b) {
@@ -163,7 +164,17 @@ module.exports = function( app ) {
   app.get( '/movie/:name', ( req, res ) => {
     let data = Object.assign({}, global);
 
-    if ( req.query.hasOwnProperty( 'code' ) ) {
+    // Check promo
+    data.promo = {};
+    config.promo.forEach( promo => {
+      data.promo[ promo.name ] = Object.keys( promo.cookies ).every( key => {
+          return promo.cookies[ key ].value == req.cookies[ key ];
+        } )
+        ? promo.data
+        : false
+    } );
+
+    if ( req.query.hasOwnProperty( 'code' ) ) {      
       data.page = 'order';
       request( { url: '/api/session/?expand=movie,category,city&code=' + encodeURIComponent(req.query.code) } )
         .then( response => {
@@ -183,7 +194,6 @@ module.exports = function( app ) {
           data.meta.og.image = response.items[0].cover && response.items[0].cover.id
             ? '//artdoc.media/upload/resize/' + response.items[0].cover.id + '/640x360.jpg'
             : data.meta.og.image;
-
           render( req, res, data );
         } )
         .catch(( error ) => res.send( error ) );
