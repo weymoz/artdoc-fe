@@ -1,6 +1,6 @@
 block('page-thanks')(
 
-  replace()( node => {
+  match( node => node.data.api.ticket && node.data.api.session && node.data.api.movie ).replace()( node => {
     return [
       {
         elem: 'content',
@@ -57,6 +57,46 @@ block('page-thanks')(
               'В случае неиспользованного билета, деньги не возвращаются'
             ]
           }
+        ]
+      },
+      {
+        block: 'section',
+        content: [
+        {
+          block: 'club-footer',
+          mix: { block: 'page', elem: 'club' }
+        }
+        ]
+      }
+    ]
+  } ),
+
+  match( node => node.data.api[ 0 ] === 'mail send' && node.data.api.result === 'ok' ).replace()( () => {
+    return [
+      {
+        elem: 'content',
+        elemMods: { view: 'narrow' },
+        content: [
+          {
+            elem: 'header',
+            content: [
+              {
+                elem: 'title',
+                content: 'Ваш промо-билет успешно активирован'
+              },
+            ]
+          },
+          { tag: 'br' },
+          {
+            block: 'paragraph',
+            content: 'Активация прошла успешно! На вашу почту выслано письмо со ссылкой на страницу просмотра фильма. Приятного киносеанса!'
+          },
+          { tag: 'br' },
+          { tag: 'br' },
+          { tag: 'br' },
+          { tag: 'br' },
+          { tag: 'br' },
+          { tag: 'br' }
         ]
       },
       {

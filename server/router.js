@@ -310,14 +310,15 @@ module.exports = function( app ) {
     let data = Object.assign({}, global);
     request( { url: '/payment/freeactivate/?' + Object.keys( req.query ).map( key => key + '=' + encodeURIComponent( req.query[ key ] ) ).join('&') } )
       .then( response => {
-        data.api = response.data;
-        if ( data.api.error ) {
-          data.page = 'error';
-          data.title = 'При активации произошла ошибка';
-          render( req, res, data );
-        } else {
+        console.log( response );
+        data.api = response;
+        if ( !data.api.error ) {
           data.page = 'thanks';
           data.title = 'Билет успешно активирован';
+          render( req, res, data );
+        } else {
+          data.page = 'error';
+          data.title = 'При активации произошла ошибка';
           render( req, res, data );
         }
 
@@ -332,29 +333,37 @@ module.exports = function( app ) {
 
   app.get( '/api/order/:session_id', ( req, res ) => {
 
-    let cookie = false;
     let promo_code = '';
 
-    Object.keys( config.promo.meduza.cookie ).map( key => {
-      cookie = req.cookies[ key ] === config.promo.meduza.cookie[ key ];
-      return true;
+    // Check promo
+    let promoCode = {};
+    config.promo.forEach( promo => {
+      promoCode[ promo.name ] = Object.keys( promo.cookies ).every( key => {
+          console.log( req.cookies[ key ] );
+          return promo.cookies[ key ].value == req.cookies[ key ];
+        } )
+        ? promo.data
+        : false
     } );
 
-    if ( cookie && config.promo.meduza.sessionId.includes( req.params.session_id ) ) {
+    console.log( promoCode.meduza );
+
+    if ( promoCode.meduza ) {
       promo_code = 'artdocmedia_free';
     }
+
+    console.log( promo_code );
+    console.log('^^^^^^^^^^');
 
     client.post( '/cinema/booking/booking/?promo=' + promo_code, { 
       CinemaTicketModel: { email: req.query.email }, 
       session_id: req.params.session_id,
-
-      // promo:  req.params.promo, // <-- Meduza promo "artdocmedia_free"
       promo: promo_code
     } ).then( api => {
-
         if ( api.data.payment_url ) {
           request( { url: api.data.payment_url } )
             .then( response => {
+              console.log( api.data );
               res.send( JSON.stringify( response, null, 2 ) );
             } )
             .catch(() => res.send('error') );
