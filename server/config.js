@@ -9,7 +9,7 @@ module.exports = {
   promo: [
     {
       name: 'meduza',                    // wait link with url: /movie/:name?promo=meduza
-      cookie: {
+      cookies: {
         fire_in_the: {                   // then will set this cookies
           value: 'hole',
           expire: 1504796400            // with this experation date
@@ -19,12 +19,12 @@ module.exports = {
           maxAge: 900000                 // or maxAge
         } 
       },                                  
-      sessionCode: [
-        'under_the_sun_1504645200_15047172001504079120',
-        'under_the_sun_1504645200_15047352001504079120',
-        'under_the_sun_1504645200_15047460001504079120',
-        'kruzenshtern__1504731600_15047748001504083027',
-        'kruzenshtern__1504731600_15047964001504083027'
+      data: [
+        238,
+        239,
+        240,
+        241,
+        242
       ]
     }
   ],
