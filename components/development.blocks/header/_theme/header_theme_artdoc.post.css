@@ -1,0 +1,5 @@
+block(header).mod(theme artdoc) {
+  .elem(logo) {
+    background-color: #465cce;
+  }
+}
