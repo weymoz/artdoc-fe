@@ -42,6 +42,20 @@ block(page) {
     }
   }
 
+  .elem(title) {
+    font-size: 56px;
+    font-weight: bold;
+    color: #23232c;
+    line-height: 64px;
+
+    &:after {
+      content: '';
+      display: inline-block;
+      width: 0.2em;
+      height: 0.2em;
+      background-color: #f3203b;
+    }
+  }
 
   .mod(view page-index) {
 

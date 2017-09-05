@@ -117,7 +117,7 @@ provide(Form.declMod({ modName: 'view', modVal: 'order' }, {
         _this._modal
           .setContent( '' )       // Move modal to end of page,
           .setMod( 'visible' )    // because we have form inside form
-          .setContent( 'На вашу почту отправлено письмо с ссылкой для активации' );
+          .setContent( '<p class="paragraph paragraph_lead text text_align_center">На вашу почту отправлено письмо<br>со ссылкой для активации</p>' );
       } else {
         _this._modal
           .setContent( '' )       // Move modal to end of page,

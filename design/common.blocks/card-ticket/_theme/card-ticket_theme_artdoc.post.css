@@ -80,6 +80,16 @@ block(card-ticket).mod(theme artdoc) {
       @media (max-width: 1040px) {
         font-size: 15px;
       }
+
+      .mod(promo meduza) {
+        font-size: 14px;
+        line-height: 18px;
+        padding: 10px 16px;
+        color: #b88b58 ;
+        background: #262626 ;
+        border: 1px solid;
+        border-top: 1px solid #23232c;
+      }
     }
 
     .elem(left) {
@@ -109,6 +119,12 @@ block(card-ticket).mod(theme artdoc) {
     .elem(user-time),
     .elem(buy) {
       margin-top: 32px;
+    }
+
+    .elem(buy) {
+      font-size: 16px;
+      line-height: 1.5;
+      font-weight: bold;
     }
 
     .elem(section) {
