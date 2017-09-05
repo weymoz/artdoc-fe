@@ -1,8 +1,16 @@
 block('page-order')(
 
+
   replace()( node => {
     let ticket = node.data.api;
     ticket.city = ticket.city[0];
+
+    const promo = node.data.promo;
+    if ( promo.meduza && promo.meduza.includes( ticket.id ) ) {
+      ticket.promo = 'meduza'
+    } else {
+      ticket.promo = null;
+    }
 
     // switch ( ticket.city_id ) {
     //   case 1:
