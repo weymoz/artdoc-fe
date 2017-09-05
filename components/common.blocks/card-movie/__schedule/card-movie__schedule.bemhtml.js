@@ -37,45 +37,20 @@ block( 'card-movie' ).elem( 'schedule' )(
         elem: 'schedule-month',
         content: ']MMMM['
       },
-      ctx['show-week-day'] && {
+      node.elemMods.period && {
         block: node.block,
         elem: 'schedule-week-day',
         content: ']dd['
       }      
     ]);
 
-    return [
-      {
-        block: 'text',
-        mods: { format: 'datetime' },
-        format: '[' + template + ']',
-        content: ctx.content
-      },
-    ]
-  } ),
+    console.log( ctx.content );
 
-  match( node => { return node._schedules && node._schedules.length } ).def()( node => {
-    const isPeriod = node._schedules.length > 1;
-    const prefix = isPeriod ? 'c ' : '';
-    return [
-      applyNext( {
-        elemMods: { period: isPeriod },
-        ctx: {
-          prefix: prefix,
-          'show-week-day': !isPeriod,
-          content: node._schedules[ 0 ].date
-        }
-      } ),
-      isPeriod
-        ? applyNext( {
-          elemMods: { period: true },
-          ctx: {
-            prefix: 'по ',
-            content: node._schedules[ node._schedules.length - 1 ].date
-          }
-        } )
-        : ''
-    ].join('');
+    return {
+      block: 'text',
+      mods: { format: 'datetime' },
+      format: '[' + template + ']',
+      content: ctx.content
+    }
   } )
-
 )
