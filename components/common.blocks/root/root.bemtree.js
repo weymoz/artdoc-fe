@@ -14,7 +14,7 @@ block('root').replace()(function() {
     styles: [
       {
         elem: 'css',
-        url: '/' + bundle + '/' + data.page + '.min.css'
+        url: '/assets/css/' + bundle + '/' + data.page + '.min.css'
       }
     ],
     scripts: [
@@ -24,7 +24,7 @@ block('root').replace()(function() {
       },
       {
         elem: 'js',
-        url: '/' + bundle + '/' + data.page + '.min.js'
+        url: '/assets/js/' + bundle + '/' + data.page + '.min.js'
       }
     ],
     head: [

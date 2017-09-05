@@ -88,7 +88,7 @@
     "watch": "chokidar 'components/**' --initial -c 'enb make && notify -t bem-express -m Built'",
     "test": "npm run lint",
     "lint": "eslint . && bemhint .",
-    "stylelint": "stylelint static/**/*.css"
+    "stylelint": "stylelint static/assets/css/**/*.css",
   },
   "pre-commit": [
     "test"

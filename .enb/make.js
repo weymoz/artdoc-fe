@@ -12,8 +12,10 @@ module.exports = function(config) {
   var platforms = Object.keys(SETS);
 
   platforms.forEach(function(platform) {
-    pathToStatic = path.resolve( 'static', platform );
-    fs.existsSync(pathToStatic) || fs.mkdirSync(pathToStatic);
+    [ 'css', 'js' ].forEach( catalog => {
+      pathToStatic = path.resolve( 'static', 'assets', catalog, platform );
+      fs.existsSync(pathToStatic) || fs.mkdirSync(pathToStatic);
+    } );
 
     var levels = getSourceLevels(platform);
     isProd || levels.push({ path: path.join('components', 'development.blocks'), check: true });
@@ -92,15 +94,15 @@ module.exports = function(config) {
         [techs.borschik, { source: '?.js', target: '?.min.js', minify: isProd }],
         [techs.borschik, { source: '?.css', target: '?.min.css', minify: isProd }],
 
-        [techs.fileCopy, { source: '?.min.js', target: '../../../static/' + platform + '/?.min.js' }],
-        [techs.fileCopy, { source: '?.min.css', target: '../../../static/' + platform + '/?.min.css' }]
+        [techs.fileCopy, { source: '?.min.js', target: '../../../static/assets/js/' + platform + '/?.min.js' }],
+        [techs.fileCopy, { source: '?.min.css', target: '../../../static/assets/css/' + platform + '/?.min.css' }]
       ]);
 
       nodeConfig.addTargets([
         '?.bemtree.js',
         '?.bemhtml.js',
-        '../../../static/' + platform + '/?.min.js',
-        '../../../static/' + platform + '/?.min.css'
+        '../../../static/assets/js/' + platform + '/?.min.js',
+        '../../../static/assets/css/' + platform + '/?.min.css'
       ]);
     });
   });
