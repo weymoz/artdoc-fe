@@ -16,7 +16,7 @@ module.exports = {
         },
         foo: {
           value: 'bar',
-          maxAge: 900000                 // or maxAge
+          // maxAge: 900000                 // or maxAge
         } 
       },                                  
       data: [

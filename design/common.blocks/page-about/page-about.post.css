@@ -132,7 +132,7 @@ block(page-about) {
         width: 114px;
         height: 114px;
         border-radius: 50%;
-        background-image: url(../../assets/img/static/userpic_Manskiy.png);
+        background-image: url(../../../static/assets/img/static/userpic_Manskiy.png);
         -webkit-background-size: cover;
         background-size: cover;
       }

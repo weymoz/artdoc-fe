@@ -71,7 +71,7 @@ block('page-thanks')(
     ]
   } ),
 
-  match( node => node.data.api[ 0 ] === 'mail send' && node.data.api.result === 'ok' ).replace()( () => {
+  match( node => node.data.api.message === 'mail send' && node.data.api.mode === 'free' ).replace()( () => {
     return [
       {
         elem: 'content',

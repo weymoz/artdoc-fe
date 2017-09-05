@@ -346,14 +346,9 @@ module.exports = function( app ) {
         : false
     } );
 
-    console.log( promoCode.meduza );
-
     if ( promoCode.meduza ) {
       promo_code = 'artdocmedia_free';
     }
-
-    console.log( promo_code );
-    console.log('^^^^^^^^^^');
 
     client.post( '/cinema/booking/booking/?promo=' + promo_code, { 
       CinemaTicketModel: { email: req.query.email }, 
@@ -363,7 +358,6 @@ module.exports = function( app ) {
         if ( api.data.payment_url ) {
           request( { url: api.data.payment_url } )
             .then( response => {
-              console.log( api.data );
               res.send( JSON.stringify( response, null, 2 ) );
             } )
             .catch(() => res.send('error') );

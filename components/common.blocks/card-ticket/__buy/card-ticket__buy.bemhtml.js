@@ -8,5 +8,5 @@ block('card-ticket').elem('buy')(
 
   match( node => node.mods.view === 'movie' ).prependContent()('Купить '),
 
-  match( node => node._promo === 'meduza' ).content()('Бесплатно для подписчиков Meduza')
+  match( node => node._promo === 'meduza' ).content()( 'Бесплатно для читателей Meduza' )
 )

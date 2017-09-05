@@ -94,8 +94,6 @@ provide(Form.declMod({ modName: 'view', modVal: 'order' }, {
                       payment_nonce: payload.nonce
                     };
 
-                    console.log(apiSettings);
-
                     $.ajax( apiSettings ).done( function ( apiResponse ) {
                       apiResponse = JSON.parse( apiResponse );
                       if ( apiResponse.error ) {
@@ -115,13 +113,17 @@ provide(Form.declMod({ modName: 'view', modVal: 'order' }, {
             });
           }
         );
-      } else if ( data.result === 'ok' && data.message === 'email send' ) {
+      } else if ( data.message === 'email send' ) {
         _this._modal
           .setContent( '' )       // Move modal to end of page,
           .setMod( 'visible' )    // because we have form inside form
           .setContent( 'На вашу почту отправлено письмо с ссылкой для активации' );
+      } else {
+        _this._modal
+          .setContent( '' )       // Move modal to end of page,
+          .setMod( 'visible' )    // because we have form inside form
+          .setContent( 'Error: ' + data.message || data.error );
       }
-
 
     });
   },
