@@ -6,5 +6,7 @@ block('card-ticket').elem('buy')(
     return node._price.price + ' ₽'
   }),
 
-  match( node => node.mods.view === 'movie' ).prependContent()('Купить ')
+  match( node => node.mods.view === 'movie' ).prependContent()('Купить '),
+
+  match( node => node._promo === 'meduza' ).content()('Бесплатно для подписчиков Meduza')
 )

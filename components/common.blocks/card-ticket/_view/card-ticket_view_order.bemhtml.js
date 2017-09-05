@@ -26,7 +26,7 @@ block('card-ticket').mod('view', 'order').content()( node => {
             { elem: 'city' },
             { elem: 'user-time' },
             { elem: 'buy' },
-            'Оплата картой'
+            node._promo ? '' : 'Оплата картой'
           ]
         },
         {

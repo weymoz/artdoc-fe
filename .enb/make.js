@@ -1,5 +1,6 @@
 var fs = require('fs'),
     path = require('path'),
+    mkdirp = require('mkdirp'),
     techs = require('./techs'),
     SETS = {
       'desktop': ['common', 'desktop'],
@@ -14,7 +15,7 @@ module.exports = function(config) {
   platforms.forEach(function(platform) {
     [ 'css', 'js' ].forEach( catalog => {
       pathToStatic = path.resolve( 'static', 'assets', catalog, platform );
-      fs.existsSync(pathToStatic) || fs.mkdirSync(pathToStatic);
+      fs.existsSync(pathToStatic) || mkdirp(pathToStatic);
     } );
 
     var levels = getSourceLevels(platform);
