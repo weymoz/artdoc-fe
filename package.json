@@ -88,7 +88,8 @@
     "watch": "chokidar 'components/**' --initial -c 'enb make && notify -t bem-express -m Built'",
     "test": "npm run lint",
     "lint": "eslint . && bemhint .",
-    "stylelint": "stylelint static/**/*.css"
+    "stylelint": "stylelint static/assets/css/**/*.css",
+    "prod": "npm run drop-cache && YENV=production npm run make"
   },
   "pre-commit": [
     "test"

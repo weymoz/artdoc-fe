@@ -87,19 +87,19 @@ elem(content) {
       }
 
       elem(count_1) {
-        background-image: url(../../assets/img/static/club_icon_1.svg);
+        background-image: url(../../../static/assets/img/static/club_icon_1.svg);
       }
 
       elem(count_2) {
-        background-image: url(../../assets/img/static/club_icon_2.svg);
+        background-image: url(../../../static/assets/img/static/club_icon_2.svg);
       }
 
       elem(count_3) {
-        background-image: url(../../assets/img/static/club_icon_3.svg);
+        background-image: url(../../../static/assets/img/static/club_icon_3.svg);
       }
 
       elem(count_4) {
-        background-image: url(../../assets/img/static/club_icon_4.svg);
+        background-image: url(../../../static/assets/img/static/club_icon_4.svg);
       }
     }
 
@@ -140,71 +140,71 @@ elem(party) {
     }
 
     elem(director_1) {
-      background-image: url(../../assets/img/filmmaker/userpic_Solnceva.png);
+      background-image: url(../../../static/assets/img/filmmaker/userpic_Solnceva.png);
     }
 
     elem(director_2) {
-      background-image: url(../../assets/img/filmmaker/userpic_Arxangel.png);
+      background-image: url(../../../static/assets/img/filmmaker/userpic_Arxangel.png);
     }
 
     elem(director_3) {
-      background-image: url(../../assets/img/filmmaker/userpic_Plaxov.png);
+      background-image: url(../../../static/assets/img/filmmaker/userpic_Plaxov.png);
     }
 
     elem(director_4) {
-      background-image: url(../../assets/img/filmmaker/userpic_Zhemyakin.png);
+      background-image: url(../../../static/assets/img/filmmaker/userpic_Zhemyakin.png);
     }
 
     elem(director_5) {
-      background-image: url(../../assets/img/filmmaker/userpic_Dolin.png);
+      background-image: url(../../../static/assets/img/filmmaker/userpic_Dolin.png);
     }
 
     elem(director_6) {
-      background-image: url(../../assets/img/filmmaker/userpic_Korezkiy.png);
+      background-image: url(../../../static/assets/img/filmmaker/userpic_Korezkiy.png);
     }
 
     elem(director_7) {
-      background-image: url(../../assets/img/filmmaker/userpic_Matizen.png);
+      background-image: url(../../../static/assets/img/filmmaker/userpic_Matizen.png);
     }
 
     elem(director_8) {
-      background-image: url(../../assets/img/filmmaker/userpic_Zhavlovskiy.png);
+      background-image: url(../../../static/assets/img/filmmaker/userpic_Zhavlovskiy.png);
     }
 
     elem(director_9) {
-      background-image: url(../../assets/img/filmmaker/userpic_Smirnova.png);
+      background-image: url(../../../static/assets/img/filmmaker/userpic_Smirnova.png);
     }
 
     elem(director_10) {
-      background-image: url(../../assets/img/filmmaker/userpic_Stishova.png);
+      background-image: url(../../../static/assets/img/filmmaker/userpic_Stishova.png);
     }
 
     elem(director_11) {
-      background-image: url(../../assets/img/filmmaker/userpic_Abdulaeva.png);
+      background-image: url(../../../static/assets/img/filmmaker/userpic_Abdulaeva.png);
     }
 
     elem(director_12) {
-      background-image: url(../../assets/img/filmmaker/userpic_Malukova.png);
+      background-image: url(../../../static/assets/img/filmmaker/userpic_Malukova.png);
     }
 
     elem(director_13) {
-      background-image: url(../../assets/img/filmmaker/userpic_Karcev.png);
+      background-image: url(../../../static/assets/img/filmmaker/userpic_Karcev.png);
     }
 
     elem(director_14) {
-      background-image: url(../../assets/img/filmmaker/userpic_Arkus.png);
+      background-image: url(../../../static/assets/img/filmmaker/userpic_Arkus.png);
     }
 
     elem(director_15) {
-      background-image: url(../../assets/img/filmmaker/userpic_Galitskay.png);
+      background-image: url(../../../static/assets/img/filmmaker/userpic_Galitskay.png);
     }
 
     elem(director_16) {
-      background-image: url(../../assets/img/filmmaker/userpic_Sherwood.png);
+      background-image: url(../../../static/assets/img/filmmaker/userpic_Sherwood.png);
     }
 
     elem(director_17) {
-      background-image: url(../../assets/img/filmmaker/userpic_Ershova.png);
+      background-image: url(../../../static/assets/img/filmmaker/userpic_Ershova.png);
     }
 
 
@@ -253,51 +253,51 @@ elem(party) {
     }
 
     elem(partner_1) {
-      background-image: url(../../assets/img/fests/fest_logo_black_1.svg);
+      background-image: url(../../../static/assets/img/fests/fest_logo_black_1.svg);
     }
 
     elem(partner_2) {
-      background-image: url(../../assets/img/fests/fest_logo_black_2.svg);
+      background-image: url(../../../static/assets/img/fests/fest_logo_black_2.svg);
     }
 
     elem(partner_3) {
-      background-image: url(../../assets/img/fests/fest_logo_black_3.svg);
+      background-image: url(../../../static/assets/img/fests/fest_logo_black_3.svg);
     }
 
     elem(partner_4) {
-      background-image: url(../../assets/img/fests/fest_logo_black_4.svg);
+      background-image: url(../../../static/assets/img/fests/fest_logo_black_4.svg);
     }
 
     elem(partner_5) {
-      background-image: url(../../assets/img/fests/fest_logo_black_5.svg);
+      background-image: url(../../../static/assets/img/fests/fest_logo_black_5.svg);
     }
 
     elem(partner_6) {
-      background-image: url(../../assets/img/fests/fest_logo_black_6.svg);
+      background-image: url(../../../static/assets/img/fests/fest_logo_black_6.svg);
     }
 
     elem(partner_7) {
-      background-image: url(../../assets/img/fests/fest_logo_black_7.svg);
+      background-image: url(../../../static/assets/img/fests/fest_logo_black_7.svg);
     }
 
     elem(partner_8) {
-      background-image: url(../../assets/img/fests/fest_logo_black_8.svg);
+      background-image: url(../../../static/assets/img/fests/fest_logo_black_8.svg);
     }
 
     elem(partner_9) {
-      background-image: url(../../assets/img/fests/fest_logo_black_9.png);
+      background-image: url(../../../static/assets/img/fests/fest_logo_black_9.png);
     }
 
     elem(partner_10) {
-      background-image: url(../../assets/img/fests/fest_logo_black_10.png);
+      background-image: url(../../../static/assets/img/fests/fest_logo_black_10.png);
     }
 
     elem(partner_11) {
-      background-image: url(../../assets/img/fests/fest_logo_black_11.svg);
+      background-image: url(../../../static/assets/img/fests/fest_logo_black_11.svg);
     }
 
     elem(partner_12) {
-      background-image: url(../../assets/img/fests/fest_logo_black_12.svg);
+      background-image: url(../../../static/assets/img/fests/fest_logo_black_12.svg);
     }
   }
 
@@ -328,7 +328,7 @@ elem(party) {
       margin: 0 auto 24px;
       -webkit-background-size: cover;
       background-size: cover;
-      background-image: url(../../assets/img/static/club_card_icon.svg);
+      background-image: url(../../../static/assets/img/static/club_card_icon.svg);
     }
 
     elem(footer-content) {
