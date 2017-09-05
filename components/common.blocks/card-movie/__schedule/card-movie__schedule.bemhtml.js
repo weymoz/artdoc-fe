@@ -44,8 +44,6 @@ block( 'card-movie' ).elem( 'schedule' )(
       }      
     ]);
 
-    console.log( ctx.content );
-
     return {
       block: 'text',
       mods: { format: 'datetime' },
