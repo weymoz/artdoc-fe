@@ -117,12 +117,23 @@ provide(Form.declMod({ modName: 'view', modVal: 'order' }, {
         _this._modal
           .setContent( '' )       // Move modal to end of page,
           .setMod( 'visible' )    // because we have form inside form
-          .setContent( '<p class="paragraph paragraph_lead text text_align_center">На вашу почту отправлено письмо<br>со ссылкой для активации</p>' );
+          .setContent([
+            '<div style="padding: 20px">',
+              '<p class="paragraph paragraph_lead text text_align_center">На вашу почту отправлено письмо<br>со ссылкой для активации</p>',
+              '<p class="paragraph paragraph_lead text text_align_center">Билет забронирован на 10 минут. Пожалуйста, подтвердите бронирование в течение этого времени, перейдя по ссылке из письма.',
+              '<p class="paragraph paragraph_lead text text_align_center">На один адрес электронной почты можно активировать только один билет.</p>'
+            '<div>'
+          ].join(''));
       } else {
+        console.log( data );
         _this._modal
           .setContent( '' )       // Move modal to end of page,
           .setMod( 'visible' )    // because we have form inside form
-          .setContent( 'Error: ' + data.message || data.error );
+          .setContent([
+            '<div style="padding: 20px">',
+              '<p class="paragraph paragraph_lead text text_align_center">Произошла ошибка: ' + data.message || data.error + '</p>',
+            '<div>'
+          ].join(''));
       }
 
     });

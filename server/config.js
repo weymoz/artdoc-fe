@@ -10,13 +10,9 @@ module.exports = {
     {
       name: 'meduza',                    // wait link with url: /movie/:name?promo=meduza
       cookies: {
-        fire_in_the: {                   // then will set this cookies
-          value: 'hole',
+        meduza: {                   // then will set this cookies
+          value: 'promo',
           expire: 1504796400            // with this experation date
-        },
-        foo: {
-          value: 'bar',
-          // maxAge: 900000                 // or maxAge
         } 
       },                                  
       data: [

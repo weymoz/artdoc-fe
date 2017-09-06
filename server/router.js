@@ -358,9 +358,11 @@ module.exports = function( app ) {
         if ( api.data.payment_url ) {
           request( { url: api.data.payment_url } )
             .then( response => {
-              res.send( JSON.stringify( response, null, 2 ) );
+              res.send( JSON.stringify( response ) );
             } )
             .catch(() => res.send('error') );
+        } else {
+          res.send( JSON.stringify( api.data ) );
         }
       })
       .catch(() => res.send('error') );

@@ -59,7 +59,8 @@ block('card-ticket').mod('view', 'order').content()( node => {
               mods: {
                 view: 'order'
               },
-              session: node._id
+              session: node._id,
+              submitLabel: node._promo ? 'Получить' : 'Купить'
             }
           ]
         }

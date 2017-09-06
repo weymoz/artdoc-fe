@@ -6,6 +6,7 @@ block('page-order')(
     ticket.city = ticket.city[0];
 
     const promo = node.data.promo;
+    console.log( promo );
     if ( promo.meduza && promo.meduza.includes( ticket.id ) ) {
       ticket.promo = 'meduza'
     } else {
@@ -48,7 +49,10 @@ block('page-order')(
             mods: {
               size: 'm'
             },
-            content: 'Покупка билета на онлайн-сеанс'
+            content: [
+              ticket.promo === 'meduza' ? 'Получение' : 'Покупка',
+              ' билета на онлайн-сеанс'
+            ]
           },
           {
             block: 'card-movie',

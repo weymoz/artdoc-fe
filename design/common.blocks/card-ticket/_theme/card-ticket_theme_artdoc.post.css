@@ -178,6 +178,10 @@ block(card-ticket).mod(theme artdoc) {
         background-color: #f3203b;
         color: #fff;
         border-top-color: #f3203b;
+
+        .mod(promo meduza) {
+          border-color: transparent;
+        }
       }
     }
   }
