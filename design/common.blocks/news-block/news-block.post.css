@@ -50,7 +50,7 @@ block(news-block) {
         position: absolute;
         bottom: 0;
         right: 0;
-        background-image: url(../../assets/img/static/play_news_icon.svg);
+        background-image: url(../../../static/assets/img/static/play_news_icon.svg);
         background-repeat: no-repeat;
         -webkit-background-size: cover;
         background-size: cover;

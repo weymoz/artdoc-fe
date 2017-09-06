@@ -37,83 +37,104 @@ provide(Form.declMod({ modName: 'view', modVal: 'order' }, {
 
       const data = JSON.parse( response );
 
-      loader('https://js.braintreegateway.com/web/dropin/1.4.0/js/dropin.min.js',
-        function() {
-          const paymentForm = BEMHTML.apply({
-            block: 'form',
-            mods: {
-              view: 'payment',
-              theme: 'artdoc'
-            }
-          });
+      if ( data.clientToken ) {
+        loader('https://js.braintreegateway.com/web/dropin/1.4.0/js/dropin.min.js',
+          function() {
+            const paymentForm = BEMHTML.apply({
+              block: 'form',
+              mods: {
+                view: 'payment',
+                theme: 'artdoc'
+              }
+            });
 
-          _this._modal
-            .setContent( '' )       // Move modal to end of page,
-            .setMod( 'visible' )    // because we have form inside form
-            .setContent( paymentForm );
+            _this._modal
+              .setContent( '' )       // Move modal to end of page,
+              .setMod( 'visible' )    // because we have form inside form
+              .setContent( paymentForm );
 
-          braintree.dropin.create({
-            authorization: data.clientToken,
-            container: '#payment-form',
-            locale: data.locale
-          }, function ( createErr, instance ) {
+            braintree.dropin.create({
+              authorization: data.clientToken,
+              container: '#payment-form',
+              locale: data.locale
+            }, function ( createErr, instance ) {
 
-            if (createErr) {
-              console.error( createErr );
-              return;
-            }
+              if (createErr) {
+                console.error( createErr );
+                return;
+              }
 
-            let paymentFormElem = _this._modal.findChildBlock( { block: Form, modName: 'view', modVal: 'payment' } );
+              let paymentFormElem = _this._modal.findChildBlock( { block: Form, modName: 'view', modVal: 'payment' } );
 
-            bemDom.append(
-              paymentFormElem.domElem,
-              BEMHTML.apply({
-                block: 'button',
-                mods: {
-                  type: 'submit',
-                  width: 'available',
-                  size: 'xxl',
-                  theme: 'artdoc'
-                },
-                text: 'Отправить'
-              })
-            );
+              bemDom.append(
+                paymentFormElem.domElem,
+                BEMHTML.apply({
+                  block: 'button',
+                  mods: {
+                    type: 'submit',
+                    width: 'available',
+                    size: 'xxl',
+                    theme: 'artdoc'
+                  },
+                  text: 'Отправить'
+                })
+              );
 
-            const button = _this._modal.findChildBlock(Button);
+              const button = _this._modal.findChildBlock(Button);
 
-            _this._domEvents(button).on('click', function () {
-              instance.requestPaymentMethod( function (err, payload) {
-                if (err){
-                  console.error(err);
-                } else {
-                  bemDom.destruct( button.domElem );
+              _this._domEvents(button).on('click', function () {
+                instance.requestPaymentMethod( function (err, payload) {
+                  if (err){
+                    console.error(err);
+                  } else {
+                    bemDom.destruct( button.domElem );
 
-                  apiSettings.url = '/api/payment/' + data.transaction_id;
-                  apiSettings.data = {
-                    payment_nonce: payload.nonce
-                  };
+                    apiSettings.url = '/api/payment/' + data.transaction_id;
+                    apiSettings.data = {
+                      payment_nonce: payload.nonce
+                    };
 
-                  console.log(apiSettings);
+                    $.ajax( apiSettings ).done( function ( apiResponse ) {
+                      apiResponse = JSON.parse( apiResponse );
+                      if ( apiResponse.error ) {
+                        bemDom.append(
+                          paymentFormElem.domElem,
+                          '<p class="paragraph text text_state_error">Произошла ошибка: ' + apiResponse.error + '</p>'
+                        );
+                      } else {
+                        console.log( apiResponse );
+                        window.location.href = '/order/' + data.transaction_id + '?payment_nonce=' + payload.nonce;
+                      }
+                    } );
 
-                  $.ajax( apiSettings ).done( function ( apiResponse ) {
-                    apiResponse = JSON.parse( apiResponse );
-                    if ( apiResponse.error ) {
-                      bemDom.append(
-                        paymentFormElem.domElem,
-                        '<p class="paragraph text text_state_error">Произошла ошибка: ' + apiResponse.error + '</p>'
-                      );
-                    } else {
-                      console.log( apiResponse );
-                      window.location.href = '/order/' + data.transaction_id + '?payment_nonce=' + payload.nonce;
-                    }
-                  } );
-
-                }
+                  }
+                });
               });
             });
-          });
-        }
-      );
+          }
+        );
+      } else if ( data.message === 'email send' ) {
+        _this._modal
+          .setContent( '' )       // Move modal to end of page,
+          .setMod( 'visible' )    // because we have form inside form
+          .setContent([
+            '<div style="padding: 20px">',
+              '<p class="paragraph paragraph_lead text text_align_center">На вашу почту отправлено письмо<br>со ссылкой для активации</p>',
+              '<p class="paragraph paragraph_lead text text_align_center">Билет забронирован на 10 минут. Пожалуйста, подтвердите бронирование в течение этого времени, перейдя по ссылке из письма.',
+              '<p class="paragraph paragraph_lead text text_align_center">На один адрес электронной почты можно активировать только один билет.</p>',
+            '<div>'
+          ].join(''));
+      } else {
+        console.log( data );
+        _this._modal
+          .setContent( '' )       // Move modal to end of page,
+          .setMod( 'visible' )    // because we have form inside form
+          .setContent([
+            '<div style="padding: 20px">',
+              '<p class="paragraph paragraph_lead text text_align_center">Произошла ошибка: ' + data.message || data.error + '</p>',
+            '<div>'
+          ].join(''));
+      }
 
     });
   },

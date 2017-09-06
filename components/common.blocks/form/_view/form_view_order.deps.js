@@ -1,7 +1,8 @@
 [{
   shouldDeps: [
-    'paragraph',
-    'link',
+    { block: 'link' },
+    { block: 'paragraph' },
+    { block: 'text', mods: { align: 'center' } },
     { block: 'modal', mods: { autoclosable: true, 'has-close': true } },
     { block: 'fieldset' },
     {
@@ -14,7 +15,7 @@
       }
     },
     { block: 'list', mods: { type: 'numeric' } },
-    { block: 'button', mods: { type: 'submit', width: 'available' } },
+    { block: 'button', mods: { type: 'submit', width: 'available' } }
   ]
 },{
   tech: 'js',

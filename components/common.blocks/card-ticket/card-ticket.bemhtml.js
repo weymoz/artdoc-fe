@@ -12,6 +12,12 @@ block('card-ticket')(
 
     return applyNext();
   } ),
+
+  addMods()( node => {
+    return {
+      promo: node._promo
+    }
+  } ),
   
   tag()('article')
 

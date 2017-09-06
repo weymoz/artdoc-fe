@@ -1,61 +1,41 @@
 module.exports = {
   host: {
-    baseURL: 'http://artdoc.media:9999',
+    baseURL: process.env.API || 'http://artdoc.media:9999',
     auth: {
-      username: 'artdocmedia',
-      password: 'dev'
+      username: process.env.USER || 'artdocmedia',
+      password: process.env.PASS || 'dev'
     }
   },
-  /*
-  route: [
+  promo: [
     {
-      page: 'index',
-      content: [
-        {
-          page: 'cinema',
-          request: '/api/movie/',
-          content: [
-            {
-              page: 'category',
-              params: ':category',
-              request: '???',
-              content: [
-                {
-                  page: 'movie',
-                  params: ':name',
-                  request: '/api/movie/?expand=schedules,sessions&code=' + req.params.name,
-                  query: [
-                    {
-                      page: 'play',
-                      query: [ 'id', 'hash', 'sess_id' ],
-                      request: '/cinema/release/?id=' + req.query.id + '&hash=' + req.query.hash + '&sess_id=' + req.query.sess_id,
-                    },
-                    {
-                      page: 'order',
-                      query: [ 'id' ],
-                      request: '/api/session/?expand=movie&id=' + req.query.id
-                    },
-                  ]
-                }
-              ]
-            },
-          ]
-        },
-        {
-          page: 'schedule',
-          request: '/api/schedule/?expand=sessions,movie&sort=date_gmt3'
-        },
-        {
-          page: 'thanks',
-          query: [ 'code' ],
-          request: '/api/movie/?code=' + req.query.code
-        }
+      name: 'meduza',                    // wait link with url: /movie/:name?promo=meduza
+      cookies: {
+        meduza: {                   // then will set this cookies
+          value: 'promo',
+          expire: 1504796400            // with this experation date
+        } 
+      },                                  
+      data: [
+        238,
+        239,
+        240,
+        241,
+        242
       ]
     }
   ],
-  */
+  site: {
+    title: 'Artdoc.Media',
+    meta: {
+      description: 'Артдокмедиа — это архив документального кино, независимого и актуального контента, в основном снятого на территории бывшего СССР с начала 2000-х годов. Ежедневно в кинозале 5 сеансов, с обсуждением фильма с авторами.',
+      og: {
+        siteName: 'Artdoc.Media',
+        image: '/assets/img/meta/artdocmedia.jpeg'
+      },
+    }
+  },
   staticFolder: 'static',
-  defaultPort: 3000,
+  defaultPort: process.env.PORT || 3000,
   cacheTTL: 30000,
-  sessionSecret: 'REPLACE_ME_WITH_RANDOM_STRING'
+  sessionSecret: 'Exegi_monumentum_aere_perennius'
 };

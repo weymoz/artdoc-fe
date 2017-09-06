@@ -14,17 +14,21 @@ block('root').replace()(function() {
     styles: [
       {
         elem: 'css',
-        url: '/' + bundle + '/' + data.page + '.min.css'
+        url: '/assets/css/' + bundle + '/' + data.page + '.min.css'
       }
     ],
     scripts: [
+      {
+        elem: 'js',
+        content: '(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({\'gtm.start\':new Date().getTime(),event:\'gtm.js\'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!=\'dataLayer\'?\'&l=\'+l:\'\';j.async=true;j.src=\'https://www.googletagmanager.com/gtm.js?id=\'+i+dl;f.parentNode.insertBefore(j,f);})(window,document,\'script\',\'dataLayer\',\'GTM-MKD3FG5\');'
+      },
       {
         elem: 'js',
         url: 'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js'
       },
       {
         elem: 'js',
-        url: '/' + bundle + '/' + data.page + '.min.js'
+        url: '/assets/js/' + bundle + '/' + data.page + '.min.js'
       }
     ],
     head: [

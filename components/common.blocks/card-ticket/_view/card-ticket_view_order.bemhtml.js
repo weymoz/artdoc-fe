@@ -1,17 +1,14 @@
 block('card-ticket').mod('view', 'order').content()( node => {
 
-  let tzMinutes = node._tz % 60;
-  let tzHours = ( node._tz - tzMinutes ) / 60;
+  const tzMinutes = node._tz % 60;
+  const tzHours = ( node._tz - tzMinutes ) / 60;
 
-  tzMinutes = tzMinutes < 10 ? '0' + tzMinutes : tzMinutes;
-
-  if ( tzHours < 0 ) {
-    tzHours = tzHours > -10 ? '-0' + tzHours * -1 : tzHours;
-  } else {
-    tzHours = '+' + ( tzHours < 10 ? '0' + tzHours : tzHours );
+  function fixZero ( number ) {
+    number = Math.abs( number );
+    return number < 10 ? '0' + number : number;
   }
 
-  let timezone = tzHours + ':' + tzMinutes;
+  const timezone = ( tzHours > 0 ? '+' : '-' ) + fixZero( tzHours ) + ':' + fixZero( tzMinutes );
 
   return [
     {
@@ -29,7 +26,7 @@ block('card-ticket').mod('view', 'order').content()( node => {
             { elem: 'city' },
             { elem: 'user-time' },
             { elem: 'buy' },
-            'Оплата картой'
+            node._promo ? '' : 'Оплата картой'
           ]
         },
         {
@@ -38,20 +35,17 @@ block('card-ticket').mod('view', 'order').content()( node => {
             {
               block: 'paragraph',
               content: [
-                'Мы отправим на вашу электронную почту ссылку на страницу сеанса после оплаты. Фильм будет доступен к просмотру ',
+                'Мы отправим на вашу электронную почту ссылку на страницу ',
+                'сеанса после оплаты. Фильм будет доступен к просмотру ',
                 {
                   block: 'text',
-                  mods: {
-                    format: 'datetime',
-                  },
+                  mods: { format: 'datetime' },
                   format: 'DD[&nbsp;]MMMM[ с ]HH:mm[ до ]',
                   content: node._time_gmt3
                 },
                 {
                   block: 'text',
-                  mods: {
-                    format: 'datetime',
-                  },
+                  mods: { format: 'datetime' },
                   format: 'HH:mm[ (время&nbsp;UTC]',
                   content: node._time_gmt3 + 60 * 60 * 3
                 },
@@ -59,19 +53,24 @@ block('card-ticket').mod('view', 'order').content()( node => {
                 ').'
               ]
             },
-            {
-              tag: 'br'
-            },
+            { tag: 'br' },
             {
               block: 'form',
               mods: {
                 view: 'order'
               },
-              session: node._id
+              session: node._id,
+              submitLabel: node._promo ? 'Получить' : 'Купить'
             }
           ]
         }
       ]
-    }
+    },
+    { tag: 'br' },
+    { tag: 'br' },
+    { tag: 'br' },
+    { tag: 'br' },
+    { tag: 'br' },
+    { tag: 'br' }
   ]
 });

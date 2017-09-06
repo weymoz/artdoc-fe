@@ -5,7 +5,7 @@ block('card-movie').elem('slider')(
   content()( node => {
     let slides = node._screenshots;
 
-    if ( node._cover ) {
+    if ( node._cover && node._cover.id !== node._screenshots[0].id ) {
       slides.unshift( { id: node._cover.id, type: 'image' } );
     }
 

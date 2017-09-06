@@ -1,6 +1,16 @@
-block('page-movie').replace()(function() {
+block('page-movie').replace()( node => {
 
-  const _movie = this.data.api;
+  const _movie = node.data.api;
+
+  // Add promo
+  const promo = node.data.promo;
+  _movie.sessions.forEach( session => {
+    if ( promo.meduza && promo.meduza.includes( session.session.id ) ) {
+      session.session.promo = 'meduza'
+    } else {
+      session.session.promo = null;
+    }
+  } );
 
   return [
     {
