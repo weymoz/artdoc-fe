@@ -91,7 +91,7 @@ module.exports = function( app ) {
   app.get( '/', function( req, res ) {
     axios.all([
       request( { url: '/api/authorcompilation/?per-page=3&page=1' } ),
-      request( { url: '/api/schedule/?expand=sessions,movie&per-page=4&unique=1&date_from=' + (Date.now() / 1000 - (31 * 60 * 60)) } )
+      request( { url: '/api/schedule/?expand=sessions,movie&per-page=4&unique=1&date_from=' + (Math.floor((Date.now() / 1000) /3600 ) * 3600 - (31 * 60 * 60)) } )
     ]).then( (response) => {
       let data = Object.assign({}, global, {api: response[0].items}, {poster: response[1]});
       data.page = 'index';
@@ -174,7 +174,7 @@ module.exports = function( app ) {
         : false
     } );
 
-    if ( req.query.hasOwnProperty( 'code' ) ) {      
+    if ( req.query.hasOwnProperty( 'code' ) ) {
       data.page = 'order';
       request( { url: '/api/session/?expand=movie,category,city&code=' + encodeURIComponent(req.query.code) } )
         .then( response => {
@@ -244,7 +244,7 @@ module.exports = function( app ) {
     let data = Object.assign({}, global);
     data.page = 'schedule';
     data.title = 'Расписание онлайн-киносеансов';
-    request( { url: '/api/schedule/?expand=sessions,movie&sort=date_gmt&per-page=100&date_from=' + (Date.now() / 1000 - (31 * 60 * 60)) } )
+    request( { url: '/api/schedule/?expand=sessions,movie&sort=date_gmt&per-page=100&date_from=' + (Math.floor((Date.now() / 1000) /3600 ) * 3600 - (31 * 60 * 60)) } )
       .then( response => {
         data.api = response.items;
           render( req, res, data );
@@ -303,7 +303,7 @@ module.exports = function( app ) {
 
       } )
       .catch(() => res.send('error') );
-  });  
+  });
 
   // Promo activate
   app.get( '/payment/freeactivate/', ( req, res ) => {
@@ -324,7 +324,7 @@ module.exports = function( app ) {
 
       } )
       .catch(() => res.send('error') );
-  });  
+  });
 
   /*
    *  API Proxy
@@ -350,8 +350,8 @@ module.exports = function( app ) {
       promo_code = 'artdocmedia_free';
     }
 
-    client.post( '/cinema/booking/booking/?promo=' + promo_code, { 
-      CinemaTicketModel: { email: req.query.email }, 
+    client.post( '/cinema/booking/booking/?promo=' + promo_code, {
+      CinemaTicketModel: { email: req.query.email },
       session_id: req.params.session_id,
       promo: promo_code
     } ).then( api => {
