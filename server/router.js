@@ -362,6 +362,7 @@ module.exports = function( app ) {
             } )
             .catch(() => res.send('error') );
         } else {
+          console.log(api);
           res.send( JSON.stringify( api.data ) );
         }
       })

@@ -131,7 +131,7 @@ provide(Form.declMod({ modName: 'view', modVal: 'order' }, {
           .setMod( 'visible' )    // because we have form inside form
           .setContent([
             '<div style="padding: 20px">',
-              '<p class="paragraph paragraph_lead text text_align_center">Произошла ошибка: ' + data.message || data.error + '</p>',
+              '<p class="paragraph paragraph_lead text text_align_center">Произошла ошибка: ' + ( data.message || data.error ) + '</p>',
             '<div>'
           ].join(''));
       }
