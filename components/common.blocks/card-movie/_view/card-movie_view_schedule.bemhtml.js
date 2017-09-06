@@ -9,14 +9,28 @@ block('card-movie').mod('view', 'schedule')(
     return applyNext( { 'ctx.movie': movie } );
   }),
 
-  content()( ( node, ctx ) => {
+  content()( node => {
+    const isPeriod = node._schedules.length > 1;
+    const prefix = isPeriod ? 'c ' : '';
+
     return [
-      ctx.movie.schedules && {
+      node._schedules && {
         elem: 'aside',
         elemMods: { view: 'schedule' },
         content: [
           { elem: 'schedule-duration' },
-          { elem: 'schedule' }
+          {
+            elem: 'schedule',
+            elemMods: { period: isPeriod },
+            prefix: prefix,
+            content: node._schedules[ 0 ].date
+          },
+          isPeriod && {
+            elem: 'schedule',
+            elemMods: { period: true },
+            prefix: 'по ',
+            content: node._schedules[ node._schedules.length - 1 ].date
+          }
         ]
       },
       {

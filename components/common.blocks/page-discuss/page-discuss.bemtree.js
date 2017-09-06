@@ -4,7 +4,7 @@ block( 'page' ).def()( ( node ) => {
     elem: 'meta',
     attrs: {
       'http-equiv': 'refresh',
-      content: "5"
+      content: "55"
     }
   });
   return applyNext( { 'ctx.mods.theme': 'artdoc-dark' } )
@@ -34,7 +34,7 @@ block('page-discuss')(
           },
           {
             block: 'paragraph',
-            content: schedule.discuss_preview
+            content: schedule.discuss_preview.replace('Пройдите по ссылке.','')
           },
           {
             block: 'paragraph',

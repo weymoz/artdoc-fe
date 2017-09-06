@@ -21,7 +21,7 @@ provide(Form.declMod({ modName: 'view', modVal: 'order' }, {
   _onFormSuccess: function() {
     var _this = this;
 
-    var settings = {
+    var apiSettings = {
       'async': true,
       'url': '/api/order/' + _this.params.session_id,
       'method': 'GET',
@@ -33,65 +33,108 @@ provide(Form.declMod({ modName: 'view', modVal: 'order' }, {
       }
     }
 
-    $.ajax(settings).done(function (response) {
+    $.ajax(apiSettings).done(function (response) {
 
       const data = JSON.parse( response );
 
-      loader('//js.braintreegateway.com/web/dropin/1.4.0/js/dropin.min.js',
-        function() {
-          const paymentForm = BEMHTML.apply({
-            block: 'form',
+      if ( data.clientToken ) {
+        loader('https://js.braintreegateway.com/web/dropin/1.4.0/js/dropin.min.js',
+          function() {
+            const paymentForm = BEMHTML.apply({
+              block: 'form',
+              mods: {
+                view: 'payment',
+                theme: 'artdoc'
+              }
+            });
 
-            mods: {
-              view: 'payment',
-              theme: 'artdoc'
-            },
-          });
+            _this._modal
+              .setContent( '' )       // Move modal to end of page,
+              .setMod( 'visible' )    // because we have form inside form
+              .setContent( paymentForm );
 
-          _this._modal.setContent( '' ).setMod('visible').setContent( paymentForm );
+            braintree.dropin.create({
+              authorization: data.clientToken,
+              container: '#payment-form',
+              locale: data.locale
+            }, function ( createErr, instance ) {
 
-          braintree.dropin.create({
-            authorization: data.clientToken,
-            container: '#payment-form',
-            locale: data.locale
-          }, function (createErr, instance) {
+              if (createErr) {
+                console.error( createErr );
+                return;
+              }
 
-            if (createErr) {
-              console.error(createErr);
-              return;
-            }
+              let paymentFormElem = _this._modal.findChildBlock( { block: Form, modName: 'view', modVal: 'payment' } );
 
-            _this._paymentForm = _this._modal.findChildBlock({ block: Form, modName: 'view', modVal: 'payment' });
+              bemDom.append(
+                paymentFormElem.domElem,
+                BEMHTML.apply({
+                  block: 'button',
+                  mods: {
+                    type: 'submit',
+                    width: 'available',
+                    size: 'xxl',
+                    theme: 'artdoc'
+                  },
+                  text: 'Отправить'
+                })
+              );
 
-            bemDom.append(
-              _this._paymentForm.domElem,
-              BEMHTML.apply({
-                block: 'button',
-                mods: {
-                  type: 'submit',
-                  width: 'available',
-                  size: 'xxl',
-                  theme: 'artdoc'
-                },
-                text: 'Отправить'
-              })
-            );
+              const button = _this._modal.findChildBlock(Button);
 
-            const button = _this._modal.findChildBlock(Button);
+              _this._domEvents(button).on('click', function () {
+                instance.requestPaymentMethod( function (err, payload) {
+                  if (err){
+                    console.error(err);
+                  } else {
+                    bemDom.destruct( button.domElem );
 
-            _this._domEvents(button).on('click', function () {
-              instance.requestPaymentMethod(function (err, payload) {
-                if (err){
-                  console.error(err);
-                } else {
-                  bemDom.destruct( button.domElem );
-                  window.location.href = '/order/' + data.transaction_id + '/' + payload.nonce;
-                }
+                    apiSettings.url = '/api/payment/' + data.transaction_id;
+                    apiSettings.data = {
+                      payment_nonce: payload.nonce
+                    };
+
+                    $.ajax( apiSettings ).done( function ( apiResponse ) {
+                      apiResponse = JSON.parse( apiResponse );
+                      if ( apiResponse.error ) {
+                        bemDom.append(
+                          paymentFormElem.domElem,
+                          '<p class="paragraph text text_state_error">Произошла ошибка: ' + apiResponse.error + '</p>'
+                        );
+                      } else {
+                        console.log( apiResponse );
+                        window.location.href = '/order/' + data.transaction_id + '?payment_nonce=' + payload.nonce;
+                      }
+                    } );
+
+                  }
+                });
               });
             });
-          });
-        }
-      );
+          }
+        );
+      } else if ( data.message === 'email send' ) {
+        _this._modal
+          .setContent( '' )       // Move modal to end of page,
+          .setMod( 'visible' )    // because we have form inside form
+          .setContent([
+            '<div style="padding: 20px">',
+              '<p class="paragraph paragraph_lead text text_align_center">На вашу почту отправлено письмо<br>со ссылкой для активации</p>',
+              '<p class="paragraph paragraph_lead text text_align_center">Билет забронирован на 10 минут. Пожалуйста, подтвердите бронирование в течение этого времени, перейдя по ссылке из письма.',
+              '<p class="paragraph paragraph_lead text text_align_center">На один адрес электронной почты можно активировать только один билет.</p>',
+            '<div>'
+          ].join(''));
+      } else {
+        console.log( data );
+        _this._modal
+          .setContent( '' )       // Move modal to end of page,
+          .setMod( 'visible' )    // because we have form inside form
+          .setContent([
+            '<div style="padding: 20px">',
+              '<p class="paragraph paragraph_lead text text_align_center">Произошла ошибка: ' + ( data.message || data.error ) + '</p>',
+            '<div>'
+          ].join(''));
+      }
 
     });
   },

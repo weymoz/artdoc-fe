@@ -3,8 +3,6 @@ const config = require('./config'),
       axios = require('axios'),
       { URL } = require('url');
 
-
-
 const client = axios.create( config.host );
 
 const request = options => {
@@ -41,20 +39,40 @@ const request = options => {
 module.exports = function( app ) {
 
   // Expand
-  let global = {
-    title: 'Artdoc.Media',
-    meta: {
-      description: 'Артдокмедиа — это архив документального кино, независимого и актуального контента, в основном снятого на территории бывшего СССР с начала 2000-х годов. Ежедневно в кинозале 5 сеансов, с обсуждением фильма с авторами.',
-      og: {
-        siteName: 'Artdoc.Media',
-        image: '/assets/img/meta/artdocmedia.jpeg'
-      },
-    },
-    categoryByCode: {}
-  };
+  let global = config.site;
+  global.categoryByCode = {};
+
+  // Promo
+  app.use( (req, res, next) => {
+    // Check if `req.query.promo` contains in promo's list;
+    const actions = config.promo.filter( promo => req.query.promo === promo.name );
+    actions.forEach( promo => {
+      Object.keys( promo.cookies ).forEach( action => {
+        let newCookie = promo.cookies[ action ],
+            params = {};
+        Object.keys( newCookie ).forEach( key => {
+          switch ( key ) {
+            case 'value':
+              break;
+            case 'expire':
+              params.expire = ( new Date( newCookie.expire * 1000 ).toUTCString() );
+              break;
+            default:
+              params[ key ] = newCookie[ key ];
+              break;
+          }
+        } );
+        if ( req.cookies[ action ] !== newCookie.value ) {
+          res.cookie( action, newCookie.value, params );
+          req.cookies[ action ] = newCookie.value
+        }
+      } )
+    } );
+
+    next();
+  } );
 
   request( { url: '/api/category/?per-page=0'} ).then( response => {
-
     global.category = response.items.sort(function (a,b) {
       return a.name.localeCompare(b.name, 'ru');
     });
@@ -62,16 +80,19 @@ module.exports = function( app ) {
     for ( let i = global.category.length - 1; i >= 0; i-- ) {
       global.categoryByCode[ global.category[i].code ] = global.category[i];
     }
+  }).catch( () => 'Fail for get category' );
 
-  } ).catch( () => 'Fail for get category' );
+  /*
+   *  Routing
+   *
+   ***************************/
 
-  //Pages
+  // Index
   app.get( '/', function( req, res ) {
     axios.all([
       request( { url: '/api/authorcompilation/?per-page=3&page=1' } ),
-      request( { url: '/api/schedule/?expand=sessions,movie&per-page=4&unique=1&date_from=' + (Date.now() / 1000 - (31 * 60 * 60)) } )
+      request( { url: '/api/schedule/?expand=sessions,movie&per-page=4&unique=1&date_from=' + (Math.floor((Date.now() / 1000) /3600 ) * 3600 - (31 * 60 * 60)) } )
     ]).then( (response) => {
-
       let data = Object.assign({}, global, {api: response[0].items}, {poster: response[1]});
       data.page = 'index';
       //data.bundle = isCallerMobile( req ) ? 'touch' : 'desktop';
@@ -80,26 +101,24 @@ module.exports = function( app ) {
   });
 
   // About
-  app.get('/about', function(req, res) {
+  app.get( '/about', function(req, res) {
     let data = Object.assign({}, global);
     data.page = 'about';
     render( req, res, data );
   });
 
   // Club
-  app.get('/club', function(req, res) {
+  app.get( '/club', function(req, res) {
     let data = Object.assign({}, global);
     data.page = 'club';
     render( req, res, data );
   });
 
-
-  //Catalog
-  app.get( ['/movie/category-:category', '/movie/tag-:tag', '/movie'], function( req, res ) {
+  // Catalog
+  app.get( [ '/movie/category-:category', '/movie/tag-:tag', '/movie' ], function( req, res ) {
     let req_url = new URL(req.protocol + '://' + req.get('host') + req.originalUrl);
     let data = Object.assign({}, global);
     let filter = Object.assign({}, req.query.filter);
-
 
     data.page = 'movies';
     data.currentCategoryCode = 'all';
@@ -111,8 +130,6 @@ module.exports = function( app ) {
     };
 
     let url = '/api/movie/filter/?sort=-rating&';
-
-
 
     if (typeof req.params.category !== 'undefined') {
       filter['category'] = [global.categoryByCode[ req.params.category ].id];
@@ -141,11 +158,21 @@ module.exports = function( app ) {
       data.page = 'movies';
       render( req, res, data );
     } ).catch((e) => { console.log(e); res.send('error');  });
-
   });
 
-  app.get( [ '/movie/:name' ], ( req, res ) => {
+  // Movie
+  app.get( '/movie/:name', ( req, res ) => {
     let data = Object.assign({}, global);
+
+    // Check promo
+    data.promo = {};
+    config.promo.forEach( promo => {
+      data.promo[ promo.name ] = Object.keys( promo.cookies ).every( key => {
+          return promo.cookies[ key ].value == req.cookies[ key ];
+        } )
+        ? promo.data
+        : false
+    } );
 
     if ( req.query.hasOwnProperty( 'code' ) ) {
       data.page = 'order';
@@ -173,8 +200,8 @@ module.exports = function( app ) {
     }
   });
 
-  //Selections
-  app.get( ['/selection'], function( req, res ) {
+  // Collections
+  app.get( '/selection', function( req, res ) {
     let data = Object.assign({}, global);
     data.pagination = {
       'per-page' : 20,
@@ -193,7 +220,8 @@ module.exports = function( app ) {
         }).catch(() => res.send('error') );
   });
 
-  app.get( ['/selection/:code'], function( req, res ) {
+  // Collection
+  app.get( '/selection/:code', function( req, res ) {
     let data = Object.assign({}, global);
     data.pagination = {
       'per-page' : 20,
@@ -211,23 +239,25 @@ module.exports = function( app ) {
       }).catch(() => res.send('error') );
   });
 
-  //Cinema
+  // Cinema's catalog
   app.get( '/cinema', function( req, res ) {
     let data = Object.assign({}, global);
     data.page = 'schedule';
     data.title = 'Расписание онлайн-киносеансов';
-    request( { url: '/api/schedule/?expand=sessions,movie&sort=date_gmt&per-page=100&date_from=' + (Date.now() / 1000 - (31 * 60 * 60)) } )
-        .then( response => {
-          data.api = response.items;
-            render( req, res, data );
-        } )
-        .catch(() => res.send('error') );
+    request( { url: '/api/schedule/?expand=sessions,movie&sort=date_gmt&per-page=100&date_from=' + (Math.floor((Date.now() / 1000) /3600 ) * 3600 - (31 * 60 * 60)) } )
+      .then( response => {
+        data.api = response.items;
+          render( req, res, data );
+      } )
+      .catch(() => res.send('error') );
   });
 
-  app.get(/cinema\/(release|discuss)/, function ( req, res ) {
+  // Cinema's play or discuss
+  app.get( /cinema\/(release|discuss)/, function ( req, res ) {
     let data = Object.assign({}, global);
+
     if ( req.query.hasOwnProperty( 'hash' ) && req.query.hasOwnProperty( 'sess_id' ) && req.query.hasOwnProperty( 'id' ) ) {
-      data.page = req.params[0]=='discuss'?'discuss':'play';
+      data.page = req.params[0]=='discuss' ? 'discuss' : 'play';
       request( { url: '/cinema/release/?id=' + req.query.id + '&hash=' + req.query.hash + '&sess_id=' + req.query.sess_id } )
         .then( response => {
 
@@ -235,21 +265,18 @@ module.exports = function( app ) {
 
           if (req.params[0]=='discuss') {
 
-
-
             if (typeof response.schedule != 'undefined') {
               if (response.schedule.discuss_link) {
                 return res.redirect(response.schedule.discuss_link);
               } else if (response.schedule.discuss_preview) {
-                render( req, res, data );
+                return render( req, res, data );
               }
             }
 
             return render(req, res, { view: '404', page: 'index' });
           }
 
-
-          render( req, res, data );
+          return render( req, res, data );
         } )
         .catch(() => {
           res.send('error')
@@ -257,12 +284,12 @@ module.exports = function( app ) {
     }
   });
 
-
   app.get( '/order/:transaction_id/:payment_nonce', ( req, res ) => {
     let data = Object.assign({}, global);
     client.post( '/payment/provide/', { nonce: req.params.payment_nonce, transaction_id: req.params.transaction_id } )
       .then( response => {
         data.api = response.data;
+
         if ( data.api.error ) {
           data.page = 'error';
           data.title = 'При оплате произошла ошибка';
@@ -272,22 +299,79 @@ module.exports = function( app ) {
           data.title = 'Билет успешно оплачен';
           render( req, res, data );
         }
+
       } )
       .catch(() => res.send('error') );
   });
 
+  app.get( '/payment/freeactivate/', ( req, res ) => {
+    let data = Object.assign({}, global);
+    request( { url: '/payment/freeactivate/?' + Object.keys( req.query ).map( key => key + '=' + encodeURIComponent( req.query[ key ] ) ).join('&') } )
+      .then( response => {
+        console.log( response );
+        data.api = response;
+        if ( !data.api.error ) {
+          data.page = 'thanks';
+          data.title = 'Билет успешно активирован';
+          render( req, res, data );
+        } else {
+          data.page = 'error';
+          data.title = 'При активации произошла ошибка';
+          render( req, res, data );
+        }
 
-  // API
+      } )
+      .catch(() => res.send('error') );
+  });
+
   app.get( '/api/order/:session_id', ( req, res ) => {
-    // let data = Object.assign({}, global);
-    client.post( '/cinema/booking/booking/', { CinemaTicketModel: { email: req.query.email }, session_id: req.params.session_id } )
-      .then( api => {
+
+    let promo_code = '';
+
+    // Check promo
+    let promoCode = {};
+    config.promo.forEach( promo => {
+      promoCode[ promo.name ] = Object.keys( promo.cookies ).every( key => {
+          console.log( req.cookies[ key ] );
+          return promo.cookies[ key ].value == req.cookies[ key ];
+        } )
+        ? promo.data
+        : false
+    } );
+
+    if ( promoCode.meduza ) {
+      promo_code = 'artdocmedia_free';
+    }
+
+    client.post( '/cinema/booking/booking/?promo=' + promo_code, {
+      CinemaTicketModel: { email: req.query.email },
+      session_id: req.params.session_id,
+      promo: promo_code
+    } ).then( api => {
         if ( api.data.payment_url ) {
           request( { url: api.data.payment_url } )
-            .then( response => render( req, res, { page: 'payment', api: response } ) )
+            .then( response => {
+              res.send( JSON.stringify( response ) );
+            } )
             .catch(() => res.send('error') );
+        } else {
+          console.log(api);
+          res.send( JSON.stringify( api.data ) );
         }
       })
+      .catch(() => res.send('error') );
+  });
+
+  app.get( '/api/payment/:transaction_id', ( req, res ) => {
+    client.post( '/payment/provide/', { nonce: req.query.payment_nonce, transaction_id: req.params.transaction_id } )
+      .then( api => {
+        res.send( JSON.stringify( api.data, null, 2 ) );
+        if ( api.data.api.error ) {
+          // При оплате произошла ошибка
+        } else {
+          // Билет успешно оплачен
+        }
+      } )
       .catch(() => res.send('error') );
   });
 

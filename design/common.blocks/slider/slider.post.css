@@ -12,7 +12,7 @@ block(slider) {
     border-radius: 50%;
     background-color: #111;
     cursor: pointer;
-    background-image: url(../../assets/img/static/arrow_right_white.svg);
+    background-image: url(../../../static/assets/img/static/arrow_right_white.svg);
     background-repeat: no-repeat;
     -webkit-background-size: 30%;
     background-size: 30%;

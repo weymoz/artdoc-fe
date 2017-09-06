@@ -121,7 +121,7 @@ block('form').mod('view', 'order')(
               size: 'l',
               theme: 'artdoc-dark'
             },
-            text: 'Купить онлайн-билет'
+            text: ctx.submitLabel + ' онлайн-билет'
           }
         ]
       },

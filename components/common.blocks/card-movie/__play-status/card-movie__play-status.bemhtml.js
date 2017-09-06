@@ -23,7 +23,7 @@ block('card-movie').elem('play-status')(
         elem: 'play-status-header',
         content: 'Сеанс окончен'
       },
-      {
+      node._url && {
         block: 'button',
         mods: {
           type: 'link',
