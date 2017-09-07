@@ -82,7 +82,7 @@ block('page-thanks')(
             content: [
               {
                 elem: 'title',
-                content: 'Ваш промо-билет успешно активирован'
+                content: 'Ваш билет успешно активирован'
               },
             ]
           },

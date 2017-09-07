@@ -37,7 +37,7 @@ block( 'card-movie' ).elem( 'schedule' )(
         elem: 'schedule-month',
         content: ']MMMM['
       },
-      node.elemMods.period && {
+      !node.elemMods.period && {
         block: node.block,
         elem: 'schedule-week-day',
         content: ']dd['
