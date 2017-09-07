@@ -9,11 +9,16 @@ block('card-author')(
 
     switch ( node.mods.size ) {
       case 'xs':
-        node._size = '48x48';
+        node.width = 48;
+        node.height = 48;
+
         break;
 
       default:
-        node._size = '84x84';
+        node.width = 84;
+        node.height = 84;
+
+
     }
 
     return applyNext();
@@ -30,7 +35,9 @@ block('card-author')(
       block: 'image',
       mix: { block: 'card-author', elem: 'aside' },
       mods: { circle: true },
-      url: 'http://artdoc.media/upload/resize/' + node._image_id + '/' + node._size + '.jpg'
+      width: node.width,
+      height: node.height,
+      url: node._image_id,
     }
   } ),
 

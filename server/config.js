@@ -2,8 +2,8 @@ module.exports = {
   host: {
     baseURL: process.env.API || 'http://artdoc.media:9999',
     auth: {
-      username: process.env.USER || 'artdocmedia',
-      password: process.env.PASS || 'dev'
+      username: 'artdocmedia',
+      password: 'dev'
     }
   },
   promo: [
@@ -13,8 +13,8 @@ module.exports = {
         meduza: {                   // then will set this cookies
           value: 'promo',
           expire: 1504796400            // with this experation date
-        } 
-      },                                  
+        }
+      },
       data: [
         238,
         239,
