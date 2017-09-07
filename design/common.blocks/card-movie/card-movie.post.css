@@ -100,6 +100,12 @@ block(card-movie) {
 
   }
 
+  .mod(view list) {
+    .elem(rating):before {
+      content: none;
+    }
+  }
+
   .mod(view schedule) {
 
     .elem(discussion) {
@@ -548,6 +554,7 @@ block(card-movie) {
       display: block;
       width: 10px;
       height: 10px;
+      background-color: #f3203b;
     }
   }
 
