@@ -34,7 +34,7 @@ block('filters').content()(function() {
     free: {
       code: 'free',
       name: 'Только бесплатные',
-      skip: true,
+      skip: false,
     },
     rating: {
       name: 'Рейтинг artdoc.media',
