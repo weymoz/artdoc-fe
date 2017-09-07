@@ -1,5 +1,10 @@
 block('breadcrumbs').content()(function() {
   const path = this.data.url.pathname.split( '/' );
+  
+  // Fix ended `/` in URL
+  if ( path[ path.length - 1 ] === '' ) {
+    path.pop();
+  }
 
   return path.map( page => {
     switch (page) {
