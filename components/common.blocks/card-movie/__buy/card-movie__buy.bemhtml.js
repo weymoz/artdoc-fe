@@ -1,6 +1,29 @@
 block('card-movie').elem('buy')(
 
-  match( node => !node._schedules || !node._schedules.length ).def()(''),
+  content()({
+      block: 'paragraph',
+      mix: { block: 'font', mods: { family: 'pt-mono' } },
+      attrs: {
+        style: 'padding: 20px; background-color: #eee; color: #000;'
+      },
+      content: {
+        html: 'После одобрения правообладателем фильм&nbsp;будет доступен для просмотра'
+      }
+  }),
+
+  match( node => node._status === 20 /*&& node._price && node._price.price === 0*/ ).replace()( node => {
+    return {
+      block: 'button',
+      mix: [{ block: node.block, elem: node.elem },  { block: 'font', mods: { family: 'helvetica-bold', loaded: true } }],
+      mods: {
+        type: 'link',
+        width: 'available',
+        size: 'l'
+      },
+      url: '/movie/' + node._code + '/watch',
+      text: 'Смотреть бесплатно'
+    }    
+  } ),
 
   match( node => node._schedules && node._schedules.length ).replace()( node => {
     let type, size, text;
@@ -16,8 +39,6 @@ block('card-movie').elem('buy')(
         text = 'Купить онлайн-билет';
         break;
     }
-
-
 
     return {
       block: node.elemMods.type || 'checkbox',

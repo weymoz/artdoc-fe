@@ -26,7 +26,7 @@ block('card-movie').mod('view', 'list')(
           {
             elem: 'header',
             content: [
-              { elem: 'is-premiere' },
+              { elem: 'rating' },
               { elem: 'awards' }
             ]
           },

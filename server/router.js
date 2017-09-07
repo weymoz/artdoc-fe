@@ -310,8 +310,8 @@ module.exports = function( app ) {
     let data = Object.assign({}, global);
     request( { url: '/payment/freeactivate/?' + Object.keys( req.query ).map( key => key + '=' + encodeURIComponent( req.query[ key ] ) ).join('&') } )
       .then( response => {
-        console.log( response );
         data.api = response;
+        
         if ( !data.api.error ) {
           data.page = 'thanks';
           data.title = 'Билет успешно активирован';
@@ -319,6 +319,23 @@ module.exports = function( app ) {
         } else {
           data.page = 'error';
           data.title = 'При активации произошла ошибка';
+          render( req, res, data );
+        }
+
+      } )
+      .catch(() => res.send('error') );
+  });
+
+  // Free movie
+  app.get( '/movie/:name/watch', ( req, res ) => {
+    let data = Object.assign({}, global);
+    request( { url: '/ondemand/release/?movie_code=' + req.params.name } )
+      .then( response => {
+        data.api = response;
+        
+        if ( !data.api.error ) {
+          data.page = 'play';
+          data.title = 'Просмотр фильма';
           render( req, res, data );
         }
 
