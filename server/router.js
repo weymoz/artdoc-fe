@@ -284,6 +284,7 @@ module.exports = function( app ) {
     }
   });
 
+  // Order
   app.get( '/order/:transaction_id/:payment_nonce', ( req, res ) => {
     let data = Object.assign({}, global);
     client.post( '/payment/provide/', { nonce: req.params.payment_nonce, transaction_id: req.params.transaction_id } )
@@ -304,12 +305,13 @@ module.exports = function( app ) {
       .catch(() => res.send('error') );
   });
 
+  // Promo activate
   app.get( '/payment/freeactivate/', ( req, res ) => {
     let data = Object.assign({}, global);
     request( { url: '/payment/freeactivate/?' + Object.keys( req.query ).map( key => key + '=' + encodeURIComponent( req.query[ key ] ) ).join('&') } )
       .then( response => {
-        console.log( response );
         data.api = response;
+        
         if ( !data.api.error ) {
           data.page = 'thanks';
           data.title = 'Билет успешно активирован';
@@ -323,6 +325,28 @@ module.exports = function( app ) {
       } )
       .catch(() => res.send('error') );
   });
+
+  // Free movie
+  app.get( '/movie/:name/watch', ( req, res ) => {
+    let data = Object.assign({}, global);
+    request( { url: '/ondemand/release/?movie_code=' + req.params.name } )
+      .then( response => {
+        data.api = response;
+        
+        if ( !data.api.error ) {
+          data.page = 'play';
+          data.title = 'Просмотр фильма';
+          render( req, res, data );
+        }
+
+      } )
+      .catch(() => res.send('error') );
+  });
+
+  /*
+   *  API Proxy
+   *
+   ***************************/
 
   app.get( '/api/order/:session_id', ( req, res ) => {
 
@@ -355,7 +379,6 @@ module.exports = function( app ) {
             } )
             .catch(() => res.send('error') );
         } else {
-          console.log(api);
           res.send( JSON.stringify( api.data ) );
         }
       })
