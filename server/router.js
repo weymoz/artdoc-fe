@@ -356,16 +356,15 @@ module.exports = function( app ) {
     let promoCode = {};
     config.promo.forEach( promo => {
       promoCode[ promo.name ] = Object.keys( promo.cookies ).every( key => {
-          console.log( req.cookies[ key ] );
           return promo.cookies[ key ].value == req.cookies[ key ];
         } )
         ? promo.data
         : false
     } );
 
-    if ( promoCode.meduza ) {
-      promo_code = 'artdocmedia_free';
-    }
+    // if ( promoCode.meduza ) {
+    //   promo_code = 'artdocmedia_free';
+    // }
 
     client.post( '/cinema/booking/booking/?promo=' + promo_code, {
       CinemaTicketModel: { email: req.query.email },
