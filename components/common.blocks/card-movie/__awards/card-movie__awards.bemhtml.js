@@ -1,6 +1,6 @@
 block('card-movie').elem('awards')(
 
-  match( node => node._fests && node._nominations ).content()( node => {
+  match( node => node._fests && node._nominations ).def()( node => {
     let fests = {};
     node._fests.map( fest => {
       let name = '';
@@ -11,19 +11,25 @@ block('card-movie').elem('awards')(
         case 'Премия Лавр':
           name = 'lavr';
           break;
+        // case 'Призер Международных фестивалей':
+        //   name = 'world';
+        //   break;
+        // case 'Призер Российских фестивалей':
+        //   name = 'russian';
+        //   break;
         default:
-          name = 'unknown';
+          name = 'other';
           break;
       }
-      fests[ name ] = fests[ name ] || {};
-      fests[ name ][ fest.year ] = fest;
-      fests[ name ][ fest.year ].nominations = node._nominations.filter( nomination => nomination.fest_id === fest.id )
+
+      fests[ name ] = node._nominations.filter( nomination => nomination.fest_id === fest.id );
       return true;
     } )
-    // console.log( '' );
-    // console.log( fests );
-    // console.log( '' );
-    // console.log( node._name + ': ' + node._fests.map( fest => fest.name + ' (' + fest.year + ')' ).join(', ') );
+
+    return Object.keys( fests ).sort().map( name => {
+      
+      return applyNext( { elemMods: { type: name } } )
+    } ).join('')
   })
 
 )

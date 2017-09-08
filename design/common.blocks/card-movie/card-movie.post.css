@@ -11,6 +11,11 @@ block(card-movie) {
       margin-left: 56px;
     }
 
+    .elem(rating) {
+      font-size: 32px;
+      line-height: 48px;
+    }
+
     .elem(name){
       @media (max-width: 1080px) {
         font-size: 35px;
@@ -44,7 +49,8 @@ block(card-movie) {
     }
   }
 
-  .mod(view schedule), .mod(view list) {
+  .mod(view schedule),
+  .mod(view list) {
     align-items: flex-start;
     padding-top: 40px;
     padding-bottom: 40px;
@@ -74,6 +80,16 @@ block(card-movie) {
       align-items: flex-end;
     }
 
+    .elem(rating) {
+      width: 32px;
+      line-height: 32px;
+      font-size: 16px;
+      font-weight: bold;
+
+      &:before {
+        content: none;
+      }
+    }
 
     .elem(description) {
       color: #5F5F5F;
@@ -97,13 +113,6 @@ block(card-movie) {
         }
       }
     }
-
-  }
-
-  .mod(view list) {
-    .elem(rating):before {
-      content: none;
-    }
   }
 
   .mod(view schedule) {
@@ -126,10 +135,9 @@ block(card-movie) {
       position: absolute;
       left: -40px;
     }
-
   }
 
-  .mod(view list).mod(theme artdoc) {
+  .mod(view list) {
 
     .elem(aside) {
       lost-column: 11/24 0 28px;
@@ -254,7 +262,7 @@ block(card-movie) {
     }
   }
 
-  .mod( view slide ) {
+  .mod(view slide) {
     height: 100%;
 
     .elem(content) {
@@ -337,6 +345,50 @@ block(card-movie) {
     }
   }
 
+  .mod(view selection) {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid black;
+
+    .block(image) {
+      height: 110px;
+    }
+
+    .elem(content) {
+      text-decoration: none;
+    }
+
+    .elem(name) {
+      font-size: 16px;
+    }
+
+    .elem(cover) {
+      height: 110px;
+    }
+
+    .elem(content):before {
+      padding-bottom: 0;
+    }
+
+    .elem(director) {
+      display: block;
+      color: #676770;
+      font-size: 14px;
+      margin: 10px 0;
+    }
+
+    .elem(aside) {
+      margin-bottom: 10px;
+    }
+
+    .elem(year),
+    .elem(countries) {
+      display: block;
+      font-size: 12px;
+      margin-bottom: 5px;
+    }
+  }
+
   .elem(play-status) {
     display: flex;
     flex-direction: column;
@@ -415,21 +467,12 @@ block(card-movie) {
   }
 
   .elem(cover) {
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-  }
-
-  .elem(cover) {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    top: 0;
     display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     flex-direction: column;
     padding: 56px 28px 40px;
     text-decoration: none;
@@ -466,7 +509,6 @@ block(card-movie) {
     .mod(visible) {
       z-index: 1;
     }
-
   }
 
   .elem(video) {
@@ -527,22 +569,23 @@ block(card-movie) {
   }
 
   .elem(rating) {
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: relative;
     display: inline-block;
-    font-size: 2rem;
-    padding: 0 10px;
-    box-sizing: border-box;
+    text-align: center;
     opacity: .8;
     z-index: 1;
-    line-height: 3rem;
+    padding-right: .375em;
+    padding-left: .375em;
+    box-sizing: border-box;
+    margin-right: 1px;
+    float: left;
 
     &:before {
       content: attr(data-title);
       font-size: 12px;
       line-height: 1.17;
       display: inline-block;
+      text-align: left;
       width: 54px;
     }
 
@@ -552,9 +595,35 @@ block(card-movie) {
       top: 0;
       right: 0;
       display: block;
-      width: 10px;
-      height: 10px;
+      width: .3125em;
+      height: .3125em;
       background-color: #f3203b;
+    }
+  }
+
+  .elem(awards) {
+    color: #fff;
+    background-color: rgba(17, 17, 17, .8);
+    display: inline-block;
+    width: 48px;
+    height: 48px;
+    opacity: .8;
+    z-index: 1;
+    padding: .5em;
+    box-sizing: border-box;
+    margin-right: 1px;
+    float: left;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-origin: content-box;
+    background-image: svg-load('./__awards/card-movie__awards.svg');
+
+    .mod(type lavr) {
+      background-image: svg-load('./__awards/_type/card-movie__awards_type_lavr.svg')
+    }
+
+    .mod(type artdocfest) {
+      background-image: svg-load('./__awards/_type/card-movie__awards_type_artdocfest.svg')
     }
   }
 
@@ -699,51 +768,5 @@ block(card-movie) {
       content: '>';
       margin-left: 12px;
     }
-  }
-
-
-  .mod(view selection) {
-    display: flex;
-    flex-direction: column;
-    border-bottom: 1px solid black;
-
-    .block(image) {
-      height: 110px;
-    }
-
-    .elem(content) {
-      text-decoration: none;
-    }
-
-    .elem(name) {
-      font-size: 16px;
-    }
-
-    .elem(cover) {
-      height: 110px;
-    }
-
-    .elem(content):before {
-      padding-bottom: 0;
-    }
-
-    .elem(director) {
-      display: block;
-      color: #676770;
-      font-size: 14px;
-      margin: 10px 0;
-    }
-
-    .elem(aside) {
-      margin-bottom: 10px;
-    }
-
-    .elem(year),
-    .elem(countries) {
-      display: block;
-      font-size: 12px;
-      margin-bottom: 5px;
-    }
-
   }
 }
