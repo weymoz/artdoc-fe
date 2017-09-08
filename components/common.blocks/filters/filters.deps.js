@@ -8,7 +8,7 @@
     { block: 'form-field', mods: { type: 'select' } },
     { block: 'label' },
     { block: 'checkbox', mods: { mode: 'checkbox', theme: 'artdoc-dark' } },
-    { block: 'select', mods: { mode: 'check', theme: 'artdoc-dark' } },
+    { block: 'select', mods: { mode: 'check', type: 'suggest', theme: 'artdoc-dark' } },
 
   ]
 })

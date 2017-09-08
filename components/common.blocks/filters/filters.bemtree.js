@@ -124,6 +124,7 @@ block('filters').content()(function() {
           text: filtersMap[element.code].name,
           mix: { block: 'button',    mods: { family: 'helvetica-bold', loaded: true } },
           mods: {
+            type: 'suggest',
             mode: 'check',
             size: 'm',
             theme: 'artdoc-dark'
