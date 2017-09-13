@@ -64,7 +64,7 @@ block(card-movie).mod(theme artdoc) {
 
   .elem(rating) {
     color: #fff;
-    background-color: rgba(17, 17, 17, .8);
+    background-color: #23232c;
   }
 
 }

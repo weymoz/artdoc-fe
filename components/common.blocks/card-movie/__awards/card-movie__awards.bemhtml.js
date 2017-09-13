@@ -1,5 +1,7 @@
 block('card-movie').elem('awards')(
 
+  match( node => !node._fests || !node._nominations ).def()(''),
+
   match( node => node._fests && node._nominations ).def()( node => {
     let fests = {};
     node._fests.map( fest => {
@@ -27,7 +29,6 @@ block('card-movie').elem('awards')(
     } )
 
     return Object.keys( fests ).sort().map( name => {
-      
       return applyNext( { elemMods: { type: name } } )
     } ).join('')
   })

@@ -4,7 +4,7 @@ block(select) {
 
   @each $size, $fontSize, $lineHeight in
     (xs, s, m, l, xl, xxl),
-    (10px, 12px, 16px, 18px, 22px, 32px),
+    (10px, 14px, 16px, 18px, 22px, 32px),
     (1.5, 1.5, 1.5, 3.11, 1.5, 1.5) {
     .mod(size $size) {
       font-size: $fontSize;
@@ -74,23 +74,29 @@ block(select) {
   }
 
   .elem(clear) {
-    display: inline-block;
-    width: 1.5em;
-    height: 1.5em;
-    background-image: svg-load('../icon/_symbol/icon_symbol_times.svg', fill: #fff);
+    display: none;
+    width: 2em;
+    height: 2em;
+    margin-left: 1px;
+    background-color: #e0e0e9;
+    box-sizing: border-box;
+    padding: .5em;
+    background-image: svg-load('../icon/_symbol/icon_symbol_times.svg', fill: #000);
     background-position: 50% 50%;
     background-repeat: no-repeat;
+    background-origin: content-box;
     background-size: cover;
     cursor: pointer;
     opacity: 0;
     transition: opacity 0.1s ease-out;
 
     .mod(visible) {
-      opacity: 0.3;
+      cursor: pointer;
+      opacity: 1;
+      display: table;
 
       &:hover {
-        cursor: pointer;
-        opacity: 1
+        background-color: #bdbdbd;
       }
     }
   }

@@ -92,7 +92,7 @@ block(card-movie) {
     }
 
     .elem(description) {
-      color: #5F5F5F;
+      color: #5f5f5f;
       font-size: 13px;
       line-height: 20px;
     }
@@ -112,6 +112,12 @@ block(card-movie) {
           vertical-align: baseline;
         }
       }
+    }
+
+    .elem(awards) {
+      width: 32px;
+      height: 32px;
+      padding: .35em;
     }
   }
 
@@ -143,12 +149,6 @@ block(card-movie) {
 
     .elem(aside).mod(view action) {
       lost-column: 5/24 1 28px;
-    }
-
-    .elem(awards) {
-      width: 32px;
-      height: 32px;
-      padding: .35em;
     }
   }
 
@@ -196,6 +196,12 @@ block(card-movie) {
     .elem(cover) {
       padding: 56px 28px 40px;
       background-color: hsla(0, 0%, 0%, 0.4);
+    }
+
+    .elem(awards) {
+      width: 32px;
+      height: 32px;
+      padding: .35em;
     }
   }
 
@@ -458,6 +464,7 @@ block(card-movie) {
     padding: .393em .785em;
     box-sizing: border-box;
     float: left;
+    margin-right: 1px;
   }
 
   .elem(image) {
@@ -576,7 +583,6 @@ block(card-movie) {
     position: relative;
     display: inline-block;
     text-align: center;
-    opacity: .8;
     z-index: 1;
     padding-right: .375em;
     padding-left: .375em;
