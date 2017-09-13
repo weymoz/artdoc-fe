@@ -124,11 +124,13 @@ block('filters').content()(function() {
           text: filtersMap[element.code].name,
           mix: { block: 'button',    mods: { family: 'helvetica-bold', loaded: true } },
           mods: {
+            'has-clear': true,
             type: 'suggest',
             mode: 'check',
             size: 'm',
             theme: 'artdoc-dark'
           },
+          optionsMaxHeight: 320,
           options: element.values.sort(filtersMap[element.code].sort).map(function (option) {
             return {val: option.id?parseInt(option.id):option.value, text: option.value}
           })

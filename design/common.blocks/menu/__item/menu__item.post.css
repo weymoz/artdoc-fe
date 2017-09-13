@@ -19,6 +19,7 @@ block(menu).elem(item) {
 
   .mod(hovered) {
     cursor: pointer;
+    background-color: #eee;
   }
 
   .mod(type link) {
