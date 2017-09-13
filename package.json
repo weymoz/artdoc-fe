@@ -1,7 +1,7 @@
 {
   "author": "Roman @Realetive Ganin",
   "name": "artdoc-site",
-  "version": "2.5.0",
+  "version": "2.6.0",
   "repository": {
     "type": "git",
     "url": "git@bitbucket.org:artdocfest/frontend.git"
@@ -20,6 +20,7 @@
     "bem-components": "^6.0.1",
     "bem-core": "^4.2.1",
     "bem-forms": "github:realetive/bem-forms#feature/xjst-v8",
+    "bem-history": "^4.0.0",
     "moment": "^2.18.1",
     "ym": "^0.1.2"
   },
@@ -85,7 +86,7 @@
     "postinstall": "npm run drop-cache && npm run make",
     "make": "enb make",
     "drop-cache": "rm -rf .enb/tmp",
-    "dev": "npm run make && nodemon",
+    "dev": "npm run drop-cache && npm run make && nodemon",
     "watch": "chokidar 'components/**' --initial -c 'enb make && notify -t bem-express -m Built'",
     "test": "npm run lint",
     "lint": "eslint . && bemhint .",

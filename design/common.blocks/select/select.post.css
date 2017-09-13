@@ -2,39 +2,9 @@ block(select) {
   max-width: 100%;
   vertical-align: bottom;
 
-  .elem(button) {
-    width: 100%;
-    vertical-align: top;
-    text-align: left;
-  }
-
-  block(button).elem(text) {
-    display: block;
-    padding-right: 2em;
-
-    &:empty:before {
-      content: '\00a0'
-    }
-  }
-
-  .elem(tick) {
-    position: absolute;
-    top: 50%;
-    margin-top: -0.75em;
-    bottom: 0;
-    right: 0;
-    transition: transform 0.1s ease-out;
-    width: 2em;
-    padding: .5em;
-
-    &:empty:after {
-      content: none
-    }
-  }
-
   @each $size, $fontSize, $lineHeight in
     (xs, s, m, l, xl, xxl),
-    (10px, 12px, 16px, 18px, 22px, 32px),
+    (10px, 14px, 16px, 18px, 22px, 32px),
     (1.5, 1.5, 1.5, 3.11, 1.5, 1.5) {
     .mod(size $size) {
       font-size: $fontSize;
@@ -53,6 +23,81 @@ block(select) {
   .mod(has-error) {
     block(button) {
       border-color: red
+    }
+  }
+
+  .mod(has-clear) {
+    display: flex;
+  }
+
+  .elem(button) {
+    width: 100%;
+    vertical-align: top;
+    text-align: left;
+  }
+
+
+  block(button).elem(text) {
+    display: block;
+    padding-right: 2em;
+
+    &:empty:before {
+      content: '\00a0'
+    }
+  }
+
+  .elem(header) {
+    padding: 1em;
+    box-sizing: border-box;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .elem(footer) {
+    padding: 1em;
+    box-sizing: border-box;
+    border-top: 1px solid #ddd;
+  }
+
+  .elem(tick) {
+    position: absolute;
+    top: 50%;
+    margin-top: -0.75em;
+    bottom: 0;
+    right: 0;
+    transition: transform 0.1s ease-out;
+    width: 2em;
+    padding: .5em;
+
+    &:empty:after {
+      content: none
+    }
+  }
+
+  .elem(clear) {
+    display: none;
+    width: 2em;
+    height: 2em;
+    margin-left: 1px;
+    background-color: #e0e0e9;
+    box-sizing: border-box;
+    padding: .5em;
+    background-image: svg-load('../icon/_symbol/icon_symbol_times.svg', fill: #000);
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-origin: content-box;
+    background-size: cover;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.1s ease-out;
+
+    .mod(visible) {
+      cursor: pointer;
+      opacity: 1;
+      display: table;
+
+      &:hover {
+        background-color: #bdbdbd;
+      }
     }
   }
 }

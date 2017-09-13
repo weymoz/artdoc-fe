@@ -68,9 +68,7 @@ block('card-movie').mod('view', 'list')(
         elem: 'aside',
         elemMods: { view: 'action' },
         content: [
-          { elem: 'discussion' },
-          // { elem: 'show-more' },
-          { elem: 'buy' }
+          { elem: 'discussion' }
         ]
       }
     ];
