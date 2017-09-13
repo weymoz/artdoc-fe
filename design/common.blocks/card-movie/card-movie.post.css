@@ -92,7 +92,7 @@ block(card-movie) {
     }
 
     .elem(description) {
-      color: #5F5F5F;
+      color: #5f5f5f;
       font-size: 13px;
       line-height: 20px;
     }
@@ -583,7 +583,6 @@ block(card-movie) {
     position: relative;
     display: inline-block;
     text-align: center;
-    opacity: .8;
     z-index: 1;
     padding-right: .375em;
     padding-left: .375em;
