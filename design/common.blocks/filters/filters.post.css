@@ -1,117 +1,42 @@
 block(filters) {
-/*  background-color: #23232C;
-  margin: 0 calc(-50vw + 50%) -2px;
-  max-width: 1360px;
-  padding: 30px calc(50vw - 50%);*/
   max-width: 100%;
-  /*max-width: 1360px;*/
 
-  elem(filter-label) {
-    line-height: 20px;
-    vertical-align: top;
-  }
-
-  * {
-    padding: 0;
-    margin: 0;
-    vertical-align: top;
+  .elem(item) {
+    display: inline-block;
+    margin-right: 32px;
+    margin-bottom: 10px;
   }
 
   block(checkbox) {
-    vertical-align: top;
-    padding-left: 28px;
-    height: 24px;
-    display: inline-block;
-    position: relative;
-
-
-    elem(text) {
-      vertical-align: top;
-      color: #fff;
-      font-size: 14px;
-      line-height: 20px;
-      font-family: 'Helvetica Neue Bold';
-
-    }
 
     .mod(state checked) {
-      width: 100px;
     }
 
-    elem(control) {
-      vertical-align: top;
-      position: absolute;
-      left: 0;
-      top: 0;
-      border: 1px solid #A0A0AC;
-      background: none;
-      display: inline-block;
-      -webkit-appearance: square-button;
-      width: 20px;
-      height: 20px;
+    .elem(text) {
+    }
 
-      &:checked {
-        background: #F3203B;
-        color: #fff;
-
-        &::before {
-          content: "✔";
-          /*background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='15' height='16'%3e%3cpath d='M13.5.5l-8 12L1.7 8l-1 1.6L5.6 15l9.1-13.4z'/%3e%3c/svg%3e");*/
-        }
-      }
-
-      &::before {
-        content: "\00a0";
-        color: #fff;
-        font-size: 17px;
-        line-height: 18px;
-        text-align: center;
-        width: 18px;
-        display: inline-block;
-      }
+    .elem(control) {
     }
   }
 
   block(select) {
-    font-family: 'Helvetica Neue Bold';
 
     block(button) {
-      background: none;
-      color: #fff;
-      font-size: 14px;
+    }
+  }
+
+}
+
+block(select) {
+
+  .elem(menu) {
+    width: 252px;
+
+    .block(menu).elem(item) {
+      white-space: normal;
       line-height: 20px;
-      font-family: 'Helvetica Neue Bold';
+      padding-top: 4px;
+      padding-bottom: 4px;
     }
   }
 }
-
-
-block(menu) {
-  elem(item) {
-    padding: 0 10px 0 28px;
-  }
-}
-
-
-block(filter-form) {
-  margin: 0 -10px;
-  max-width: 1360px;
-  width: calc(100%+20px);
-  min-width:1024px;
-
-  elem(filter-label) {
-    margin-right:22px;
-    display: inline-block;
-    margin-bottom: 10px;
-    padding: 5px;
-  }
-
-  block(button).mod(type submit) {
-    padding: 0 20px;
-    margin: 10px 100px;
-    float: right;
-
-  }
-}
-
-

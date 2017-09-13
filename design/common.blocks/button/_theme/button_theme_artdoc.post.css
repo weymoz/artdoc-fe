@@ -1,14 +1,13 @@
 block(button).mod(theme artdoc) {
   color: #fff;
-  background-color: #111;
+  background-color: transparent;
   /*-webkit-tap-highlight-color: rgba(0, 0, 0, 0);*/
   box-shadow: none;
   -webkit-box-shadow: none;
   transition: background 0.4s;
 
   .elem(text) {
-    color: #fff;
-
+    color: inherit;
   }
 
   &:hover {
@@ -42,6 +41,7 @@ block(button).mod(theme artdoc) {
   }
 
   .mod(checked) {
-    background-color: red;
+    background-color: #fff;
+    color: #111111;
   }
 }

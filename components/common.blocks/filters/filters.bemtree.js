@@ -104,31 +104,25 @@ block('filters').content()(function() {
     if (typeof filtersMap[element.code] == 'undefined' || filtersMap[element.code].skip) {
       return [];
     }
+
     let d = {};
     let result = {
-      elem: 'filter-label',
-      mods: {
-        type: 'select',
-        size: 'l',
-      },
-      tag: 'label',
+      elem: 'item',
       content: []
     }
 
     switch (element.type) {
       case 'int':
-
         d = {
           block: 'select',
           name: 'filter[' + element.code + '][]',
           text: filtersMap[element.code].name,
-          mix: { block: 'button',    mods: { family: 'helvetica-bold', loaded: true } },
+          mix: { block: 'font', mods: { family: 'helvetica-bold', loaded: true } },
           mods: {
-            'has-clear': true,
-            type: 'suggest',
             mode: 'check',
-            size: 'm',
-            theme: 'artdoc-dark'
+            type: 'suggest',
+            'has-clear': true,
+            size: 's'
           },
           optionsMaxHeight: 320,
           options: element.values.sort(filtersMap[element.code].sort).map(function (option) {
@@ -137,7 +131,6 @@ block('filters').content()(function() {
         }
 
         if (typeof userFilter[element.code] != 'undefined') {
-
           d.val = userFilter[element.code].map(
             function (id) {
               return parseInt(id);
@@ -146,18 +139,14 @@ block('filters').content()(function() {
         }
 
         result.content.push( d );
-
         break;
       case 'bool':
-
         d = {
-
           block: 'checkbox',
-          tag: 'div',
           mix: { block: 'font', mods: { family: 'helvetica-bold', loaded: true } },
           name: 'filter[' + element.code + '][]',
           mods: {
-            checked: typeof userFilter[element.code] != 'undefined' ? true : false,
+            checked: typeof userFilter[element.code] != 'undefined' ? true : false
           },
           text: filtersMap[element.code].name,
         }
@@ -166,31 +155,9 @@ block('filters').content()(function() {
         result.content.push(d)
         break;
     }
+
     return result;
   });
 
-
-  filter_fields.push({
-    block: 'button',
-    mods: { type: 'submit' , theme: 'artdoc-dark'},
-    text: 'Применить',
-    mix: { block: 'font', mods: { family: 'helvetica-bold', loaded: true } },
-  })
-
-
-  return [
-    {
-
-    },
-    {
-      block: 'filter-form',
-      tag: 'form',
-      attrs: {
-        method: 'get'
-      },
-      content: filter_fields
-    }
-
-   ];
-
+  return filter_fields;
 });
