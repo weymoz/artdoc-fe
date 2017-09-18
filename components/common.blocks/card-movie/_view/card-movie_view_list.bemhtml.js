@@ -1,10 +1,9 @@
 block('card-movie').mod('view', 'list')(
 
   def()( ( node, ctx ) => {
-    const movie = node.mergeDeep( ctx.movie, {
-      cover: { width: 421 },
-      url: ctx.movie.code ? '/movie/' + ctx.movie.code : null
-    } );
+    let movie = Object.assign( {}, ctx.movie );
+    movie.cover.width = 421;
+    movie.url = ctx.movie.code ? '/movie/' + ctx.movie.code : null;
 
     return applyNext( { 'ctx.movie': movie } );
   }),
