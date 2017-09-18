@@ -109,19 +109,8 @@ block('page-index').replace()(function() {
       ]
     },
     {
-      block: 'section',
-      content: [
-      {
-        block: 'club-footer',
-        mix: { block: 'page', elem: 'club' }
-      }
-      ]
+      block: 'club-footer'
     }
   ]
 
 })
-
-
-
-
-

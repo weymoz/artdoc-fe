@@ -25,7 +25,8 @@ block('nav-menu').content()( node => {
         content: 'Фильмы'
       },
       popup: {
-        block: 'section',
+        block: 'page',
+        elem: 'section',
         content: {
           elem: 'content',
           content: {
