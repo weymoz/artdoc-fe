@@ -1,12 +1,7 @@
 block(card-movie).mod(theme artdoc) {
 
   .mod(view schedule), .mod(view list) {
-    box-shadow: inset 0px 1px 0px 0px #23232C,
-                inset 0px -1px 0px 0px #23232C;
-
-    & + & {
-      box-shadow: inset 0px -1px 0px 0px #23232C
-    }
+    box-shadow: inset 0px -1px 0px 0px #23232C;
   }
 
   .mod(view promo) {
@@ -36,10 +31,6 @@ block(card-movie).mod(theme artdoc) {
   .elem(tvpg) {
     box-shadow: inset 0 0 0 1px #c4c4c4;
   }
-
-  /*.elem(description) {
-    color: #23232c;
-  }*/
 
   .elem(schedule-duration) {
     background-color: #23232c;

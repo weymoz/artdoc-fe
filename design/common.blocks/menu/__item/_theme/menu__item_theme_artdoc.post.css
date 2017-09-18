@@ -1,5 +1,5 @@
 block(menu).elem(item).mod(theme artdoc) {
   .mod(hovered) {
-    background-color: #ffeba0;
+    background-color: #eeeef2;
   }
 }

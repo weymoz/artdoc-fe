@@ -26,6 +26,46 @@ block(select) {
     }
   }
 
+  block(button) {
+    &:focus,
+    .mod(focused) {
+      color: #f3203b;
+      background-color: transparent;
+
+      &:before {
+        background-color: transparent;
+      }
+    }
+
+    .mod(checked) {
+      background-color: #fff;
+      color: #111;
+
+      .mod(focused) {
+        background-color: #fff;
+        color: #111;
+      }
+
+      .elem(text) {
+        padding-right: .25em;
+      }
+
+      block(select).elem(tick) {
+        display: none;
+      }
+    }
+
+    .elem(text) {
+      display: block;
+      padding-right: 2em;
+      text-overflow: ellipsis;
+
+      &:empty:before {
+        content: '\00a0'
+      }
+    }
+  }
+
   .mod(has-clear) {
     display: flex;
   }
@@ -34,16 +74,8 @@ block(select) {
     width: 100%;
     vertical-align: top;
     text-align: left;
-  }
-
-
-  block(button).elem(text) {
-    display: block;
-    padding-right: 2em;
-
-    &:empty:before {
-      content: '\00a0'
-    }
+    max-width: 252px;
+    white-space: nowrap;
   }
 
   .elem(header) {

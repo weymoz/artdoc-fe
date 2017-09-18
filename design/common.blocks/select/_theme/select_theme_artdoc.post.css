@@ -1,28 +1,31 @@
 block(select).mod(theme artdoc) {    
 
   .elem(button) {
-    
-  }
-
-  block(button).elem(text) {
-    
+    &:hover,
+    .mod(hovered) {
+      background-color: transparent;
+      color: #f3203b;
+    }
   }
 
   .elem(tick) {
-    background-image: svg-load('../../icon/_symbol/icon_symbol_chevron-down.svg', fill="#000");
+    background-image: svg-load('../../icon/_symbol/icon_symbol_chevron-down.svg', fill="#fff");
   }
 
   .mod(opened) .elem(tick) {
-    
+    background-image: svg-load('../../icon/_symbol/icon_symbol_chevron-down.svg', fill="#f3203b");
   }
 
   .mod(width available) {
     
   }
 
-  .mod(has-error) {
-    block(button) {
-      
+  block(button) {
+    &:hover,
+    .mod(hovered) {
+      block(icon) {
+        background-image: svg-load('../../icon/_symbol/icon_symbol_chevron-down.svg', fill="#f3203b");
+      }
     }
   }
 }

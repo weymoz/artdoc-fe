@@ -6,6 +6,7 @@ block(button) {
   box-shadow: none;
   outline: none;
   line-height: 1.5;
+  border-radius: 0;
 
   align-items: stretch;
   vertical-align: middle;
