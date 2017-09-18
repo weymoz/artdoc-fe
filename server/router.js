@@ -118,14 +118,14 @@ module.exports = function( app ) {
   app.get( [ '/movie/category-:category', '/movie/tag-:tag', '/movie' ], function( req, res ) {
     let req_url = new URL(req.protocol + '://' + req.get('host') + req.originalUrl);
     let data = Object.assign({}, global);
-    let filter = Object.assign({}, req.query.filter);
+    let filter = Object.assign({}, req.query);
 
     data.page = 'movies';
     data.currentCategoryCode = 'all';
     data.title = req.params.category ? global.categoryByCode[ req.params.category ].name : 'Все фильмы';
     data.pagination = {
       'per-page' : 20,
-      page: req.query.page ? req.query.page : 1,
+      page: req.query.page || 1,
       params: req_url.searchParams
     };
 
@@ -141,7 +141,8 @@ module.exports = function( app ) {
     }
 
     Object.keys(filter).map(function (key) {
-      url += encodeURIComponent('filter['+key+']')+'=' + filter[key].join(',') + '&';
+      console.log( key );
+      url += encodeURIComponent('filter['+key+']')+'=' + filter[key] + '&';
       return filter[key];
     })
 
@@ -395,6 +396,16 @@ module.exports = function( app ) {
         }
       } )
       .catch(() => res.send('error') );
+  });
+
+  app.get( '/api/filter/', ( req, res ) => {
+    const page = req.query.page || 1;
+    const filters = Object.keys( req.query.filters ).map( filter => req.query.filters[ filter ] ? 'filter[' + filter + ']=' + req.query.filters[ filter ] : '' ).join('&');
+    request( { url: '/api/movie/filter/?sort=-rating&page=' + page + '&' + filters } )
+      .then( api => {
+        res.send( JSON.stringify( api, null, 2 ) )
+      } )
+      .catch( () => res.send('error') )
   });
 
 };

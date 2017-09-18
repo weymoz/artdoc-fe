@@ -34,7 +34,7 @@ provide(Select.declMod({ modName: 'type', modVal: 'suggest' }, {
         this.params.text +
         ( checkedItems.size() === 1
           ? ': ' + checkedItems.get( 0 ).getText() // one checked
-          : checkedItems.size() ? ': (' + checkedItems.size() + ' выбрано)' // many checked
+          : checkedItems.size() ? ': ' + checkedItems.size() // many checked
           : '') ); // none checked
   },
 
