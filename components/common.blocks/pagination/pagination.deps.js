@@ -1,8 +1,5 @@
-({
+[{
     shouldDeps: [
-      {
-        block: 'link'
-      },
-
+      { block: 'link' }
     ]
-})
+}]
