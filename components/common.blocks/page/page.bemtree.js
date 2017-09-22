@@ -1,7 +1,4 @@
 block('page')(
-
-  //addMix()({ block: 'font', mods: { family: 'helvetica-neue', loaded: true } }),
-
   content()( node => {
     return [
       {

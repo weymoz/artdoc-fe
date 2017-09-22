@@ -16,7 +16,10 @@ block('page-movie').replace()( node => {
     {
       elem: 'content',
       content: [
-        { block: 'breadcrumbs' },
+        {
+          block: 'breadcrumbs',
+          mix: { block: 'page', elem: 'breadcrumbs' }
+        },
         {
           block: 'card-movie',
           mods: { view: 'full' },

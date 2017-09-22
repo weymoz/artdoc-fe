@@ -4,20 +4,10 @@
   ],
   shouldDeps: [
     {
-      mods: {
-        view: ['404'],
-        theme: '*'
-      },
+      mods: { view: ['404'], theme: '*' },
       elems: [ 'title' ]
     },
     { block: 'header' },
-    { block: 'footer' },
-    {
-      block: 'font',
-      mods: {
-          family: '*',
-          loaded: true
-      }
-    }
+    { block: 'footer' }
   ]
 })

@@ -36,9 +36,7 @@ block('page-schedule').replace()(function() {
   const promoBlock = schedule[0].schedules.filter( movie => ( new Date ( movie.date * 1000 ).getDate() === today ) )
     ? {
       block: 'card-movie',
-      mods: {
-        view: 'promo'
-      },
+      mods: { view: 'promo' },
       movie: schedule.shift()
     }
     : '';
@@ -47,34 +45,18 @@ block('page-schedule').replace()(function() {
     {
       elem: 'content',
       content: [
-        {
-          block: 'breadcrumbs'
-        },
-        {
-          elem: 'title',
-          content: 'Онлайн-киносеансы',
-          mix: { block: 'font', mods: { family: 'helvetica-condensed', loaded: true } },
-        },
+        { block: 'breadcrumbs' },
+        { elem: 'title', elemMods: 'xxl', content: 'Онлайн-киносеансы' },
         promoBlock,
         schedule.map( item => {
           return {
             block: 'card-movie',
-            mods: {
-              view: 'schedule'
-            },
+            mods: { view: 'schedule' },
             movie: item
           }
         } )
       ]
     },
-    {
-      block: 'section',
-      content: [
-      {
-        block: 'club-footer',
-        mix: { block: 'page', elem: 'club' }
-      }
-      ]
-    }
+    { block: 'club-footer' }
   ];
 });

@@ -56,34 +56,24 @@ block('page-index').replace()(function() {
       content: [
         {
           elem: 'title',
-          elemMods: {
-            size: 'xl'
-          },
-          mix: { block: 'font', mods: { family: 'helvetica-condensed', loaded: true } },
+          elemMods: { size: 'xl' },
+          mix: { block: 'heading', mods: { caps: true, align: 'center', size: 'l' } },
           content:  'Архив и онлайн-сеансы документального кино на русском языке'
         },
         { block: 'slider', content: slider },
         { block: 'card-poster', poster: poster },
         {
-          block: 'slider',
-          content: slider
+          elem: 'title',
+          elemMods: { size: 'xl' },
+          mix: { block: 'heading', mods: { caps: true, align: 'center', size: 'l' } },
+          content: 'Новости и события'
         },
+        { block: 'news' },
         {
-          block: 'card-poster',
-          poster: poster,
-          mix: { block: 'page', elem: 'poster' }
-        },
-        {
-          block: 'news',
-          mix: { block: 'page', elem: 'news' }
-        },
-        {
-            elem: 'title',
-            elemMods: {
-            size: 'xl'
-            },
-            mix: { block: 'font', mods: { family: 'helvetica-condensed', loaded: true } },
-            content: 'Авторские подборки'
+          elem: 'title',
+          elemMods: { size: 'xl' },
+          mix: { block: 'heading', mods: { caps: true, align: 'center', size: 'l' } },
+          content: 'Авторские подборки'
         },
         {
           elem: 'collections',
@@ -91,40 +81,35 @@ block('page-index').replace()(function() {
             return {
               block: 'card-selection',
               mods: {
-                view: [ 'selections' ],
+                view: 'selections',
                 theme: item.image ? 'artdoc' : 'artdoc-dark'
               },
               selection: item
             }
           } )
         },
+      ]
+    },
+    {
+      elem: 'content',
+      elemMods: { width: 'tiny' },
+      content: [
         {
-            elem: 'title',
-            elemMods: {
-            size: 'xl'
-            },
-            mix: { block: 'font', mods: { family: 'helvetica-condensed', loaded: true } },
-            content: 'О проекте'
+          elem: 'title',
+          elemMods: { size: 'xl' },
+          mix: { block: 'heading', mods: { caps: true, align: 'center', size: 'l' } },
+          content: 'О проекте'
         },
         {
-          block: 'info',
-          content: [
-          {
-            elem: 'content',
-            content: 'Артдокмедиа — это архив документального кино, независимого и актуального контента, снятого в основном на территории бывшего СССР с начала 2000-х годов. Наш киноархив устроен по классическому принципу синематеки: доступная база с информацией о фильмах, возможности просмотров, ретроспективы, тематические циклы. Большая часть нашей коллекции состоит из фильмов, снятых без государственного участия, а, значит, не находящихся в каких-либо архивах и фондовых хранилищах. Немало студий, производивших эти фильмы, на сегодняшний день прекратили свое существование. И для многих фильмов наш архив является единственным местом, сохраняющим эти картины для зрителя и для истории.'
-          },
-          {
-            block: 'button',
-            mix: { block: 'info', elem: 'show-more' },
-            mods: {
-              type: 'link',
-              theme: 'artdoc'
-            },
-            text: 'Подробнее',
-            url: '/about'
-          }
-          ]
+          block: 'paragraph',
+          content: 'Артдокмедиа — это архив документального кино, независимого и актуального контента, снятого в основном на территории бывшего СССР с начала 2000-х годов. Наш киноархив устроен по классическому принципу синематеки: доступная база с информацией о фильмах, возможности просмотров, ретроспективы, тематические циклы. Большая часть нашей коллекции состоит из фильмов, снятых без государственного участия, а, значит, не находящихся в каких-либо архивах и фондовых хранилищах. Немало студий, производивших эти фильмы, на сегодняшний день прекратили свое существование. И для многих фильмов наш архив является единственным местом, сохраняющим эти картины для зрителя и для истории.'
         },
+        {
+          block: 'button',
+          mods: { type: 'link' },
+          text: 'Подробнее',
+          url: '/about'
+        }
       ]
     },
     {

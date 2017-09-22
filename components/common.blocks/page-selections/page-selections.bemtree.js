@@ -5,7 +5,8 @@ block('page-selections').replace()(function() {
       elem: 'content',
       content: [
         {
-          block: 'breadcrumbs'
+          block: 'breadcrumbs',
+          mix: { block: 'page', elem: 'breadcrumbs' }
         },
         {
           elem: 'title',
@@ -16,8 +17,7 @@ block('page-selections').replace()(function() {
           return {
             block: 'card-selection',
             mods: {
-              view: [ 'selections' ],
-              theme: item.image ? 'artdoc' : 'artdoc-dark'
+              view: 'selections'
             },
             selection: item
           }
