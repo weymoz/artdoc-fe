@@ -1,6 +1,6 @@
 block('club-footer')(
   addMix()({ block: 'page', elem: 'content' }),
-  content()(function() {
+  content()( node => {
       return [
         {
           elem: 'aside',
@@ -48,10 +48,17 @@ block('club-footer')(
           },
           {
             elem: 'footer-item',
-            content: [
-              { elem: 'title', mix: { block: 'font', mods: { family: 'helvetica-condensed', loaded: true } }, content: ['вход для участников'] },
-              { elem: 'club-login', content: 'Открытие клуба 15 сентября' }
-            ]
+            content: node.user
+            ? 'Вы авторизованы'
+            : [
+                { elem: 'title', mix: { block: 'font', mods: { family: 'helvetica-condensed', loaded: true } }, content: ['вход для участников'] },
+                {
+                  block: 'form',
+                  mods: { view: 'auth' },
+                  mix: { block: 'club-footer', elem: 'club-login' },
+                  method : 'POST',
+                }
+              ]
           }
           ]
         }

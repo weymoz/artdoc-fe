@@ -1,20 +1,16 @@
 [{
   shouldDeps: [
     { mods: { theme: '*' },
-      elem: [
+      elems: [
         'title',
         'party',
         'maker',
         'partners'
-      ] },
-    {
-      block: 'font',
-      mods: {
-        family: 'pt-mono',
-        loaded: true
-      }
+      ]
     },
-    'image',
-    'paragrapgh'
+    { block: 'font', mods: { family: 'pt-mono' } },
+    { block: 'form', mods: { view: 'auth' } },
+    { block: 'image' },
+    { block: 'paragrapgh' }
   ]
 }]
