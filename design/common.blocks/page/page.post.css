@@ -1,11 +1,12 @@
 block(page) {
   padding: 0;
   margin: 0;
+  font-size: 16px;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 
   .elem(content) {
     lost-center: 1316px;
-    min-width: 960px;
 
     @media (max-width: 1320px) {
       lost-center: 1200px;
@@ -15,8 +16,12 @@ block(page) {
       lost-center: 960px;
     }
 
-    .mod(view narrow) {
+    .mod(width narrow) {
       lost-center: 870px;
+    }
+
+    .mod(width tiny) {
+      lost-center: 644px;
     }
   }
 

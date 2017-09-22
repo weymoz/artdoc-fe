@@ -6,7 +6,7 @@ block('page-order')(
     ticket.city = ticket.city[0];
 
     const promo = node.data.promo;
-    console.log( promo );
+
     if ( promo.meduza && promo.meduza.includes( ticket.id ) ) {
       ticket.promo = 'meduza'
     } else {
@@ -37,9 +37,7 @@ block('page-order')(
     return [
       {
         elem: 'content',
-        elemMods: {
-          view: 'narrow'
-        },
+        elemMods: { width: 'narrow' },
         content: [
           {
             block: 'breadcrumbs'
