@@ -1,15 +1,15 @@
-@import url("https://fast.fonts.net/lt/1.css?apiType=css&c=c20d4c2b-d38c-4d42-9749-ae6773d410d7&fontids=1489180,1489204,1489294");
-
 block(font).mod(family helvetica-bold).mod(loaded) {
-  font-family: 'Helvetica Neue Bold';
+  font-family: 'Helvetica Neue';
+  font-weight: bold;
 }
 
-@font-face{
-        font-family:"Helvetica Neue Bold";
-        src:url("../Fonts/1489204/222eae4d-adeb-4c8a-899b-4b02f1772da4.eot?#iefix");
-        src:url("../Fonts/1489204/222eae4d-adeb-4c8a-899b-4b02f1772da4.eot?#iefix") format("eot"),
-            url("../Fonts/1489204/0b13cd59-8ea2-42c2-96cb-2fe4e0467403.woff2") format("woff2"),
-            url("../Fonts/1489204/5ee0b02b-bde0-48ef-b43a-810708497cad.woff") format("woff"),
-            url("../Fonts/1489204/7ccf68e8-4929-4d3f-8703-0f5092bc0379.ttf") format("truetype");
-    }
+@font-face {
+  font-family: 'Helvetica Neue';
+  font-weight: bold;
+  src: url('font_family_helvetica-bold.eot?#iefix');
+  src: url('font_family_helvetica-bold.eot?#iefix') format('eot'),
+       url('font_family_helvetica-bold.woff2') format('woff2'),
+       url('font_family_helvetica-bold.woff') format('woff'),
+       url('font_family_helvetica-bold.ttf') format('truetype');
+}
 
