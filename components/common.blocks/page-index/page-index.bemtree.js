@@ -1,8 +1,5 @@
 block('page-index').replace()(function() {
 
-  // Функции для постера
-  const poster = this.data.poster;
-
   // Функция для слайдера
   let slider = [];
   const linkPerSlide = 20;
@@ -23,15 +20,35 @@ block('page-index').replace()(function() {
       let currentLink = categories[ categories.length - links ]
       slider[ slidePage ][ linkCount ] = {
         block: 'link',
-        mods: {
-          view: 'tag'
-        },
+        mods: { view: 'tag' },
         mix: { block: 'slider', elem: 'link' },
         url: currentLink.id ? '/movie/category-' + currentLink.code : '/movie',
         content: currentLink.name
       };
     }
   }
+
+  const poster = this.data.poster.items.map( movie => {
+    /*
+     * Normalization
+     */
+
+    // Fix 3 hours offset
+    let offset = ( new Date().getTimezoneOffset() / 60 );
+    let dateFromServer = new Date( movie.date_gmt3 * 1000 );
+    let dateUTC = dateFromServer.getTime() - ( dateFromServer.getTimezoneOffset() * 60000 );
+    let correctDate = new Date( dateUTC + ( 3600000 * offset ) );
+    movie.date_gmt3 = correctDate.getTime() / 1000;
+
+    // // Folding
+    return Object.assign( {}, movie.movie[0], { schedules: movie.sessions }, {
+      date: movie.date_gmt3,
+      discuss_link: movie.discuss_link,
+      discuss_preview: movie.discuss_preview,
+      premiere: movie.discuss_preview,
+    } );
+  } );
+
 
   return [
     {
@@ -45,6 +62,8 @@ block('page-index').replace()(function() {
           mix: { block: 'font', mods: { family: 'helvetica-condensed', loaded: true } },
           content:  'Архив и онлайн-сеансы документального кино на русском языке'
         },
+        { block: 'slider', content: slider },
+        { block: 'card-poster', poster: poster },
         {
           block: 'slider',
           content: slider
