@@ -1,8 +1,0 @@
-block(page).mod(view page-selection) {
-  .elem(content) {
-    padding: 0;
-    max-width: 100%;
-  }
-
-}
-
