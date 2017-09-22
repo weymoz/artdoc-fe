@@ -1,6 +1,5 @@
 block(slider) {
   width: 100%;
-  margin: 20px auto;
 
   elem(prev) {
     transform: rotate(180deg);
