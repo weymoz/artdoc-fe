@@ -1,19 +1,29 @@
-block('page').elem('title')
-  .elemMod('size', 'xl')
-  .tag()('h1');
+block('page').elem('title')(
+  addMix()([
+    { block: 'font', mods: { family: 'helvetica-condensed', loaded: true } }
+  ]),
 
-block('page').elem('title')
-  .elemMod('size', 'l')
-  .tag()('h2');
+  elemMod('size', 'xxl')(
+    tag()('h1')
+  ),
 
-block('page').elem('title')
-  .elemMod('size', 'm')
-  .tag()('h3');
+  elemMod('size', 'xl')(
+    tag()('h2')
+  ),
 
-block('page').elem('title')
-  .elemMod('size', 's')
-  .tag()('h4');
+  elemMod('size', 'l')(
+    tag()('h3')
+  ),
 
-block('page').elem('title')
-  .elemMod('size', 'xs')
-  .tag()('h5');
+  elemMod('size', 'm')(
+    tag()('h4')
+  ),
+
+  elemMod('size', 's')(
+    tag()('h5')
+  ),
+
+  elemMod('size', 'xs')(
+    tag()('h6')
+  )
+)
