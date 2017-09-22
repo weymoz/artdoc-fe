@@ -349,7 +349,7 @@ module.exports = function( app ) {
    *
    ***************************/
 
-  app.get( '/api/order/:session_id', ( req, res ) => {
+  app.post( '/api/order/:session_id', ( req, res ) => {
 
     let promo_code = '';
 
