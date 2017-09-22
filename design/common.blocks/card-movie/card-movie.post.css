@@ -339,27 +339,14 @@ block(card-movie) {
     .elem(countries) {
       color: white;
     }
-
-    .elem(buy-button) {
-      max-width: 234px;
-      margin-top: 30px;
-    }
-
-    block(button) {
-      display: block;
-      padding: 15px 30px;
-      background-color: #fff;
-
-      .elem(text) {
-        color: black!important;
-      }
-    }
   }
 
   .mod(view selection) {
     display: flex;
     flex-direction: column;
-    border-bottom: 1px solid black;
+    height: 100%;
+    justify-content: space-between;
+    box-shadow: inset 0 -1px #000;
 
     .block(image) {
       height: 110px;

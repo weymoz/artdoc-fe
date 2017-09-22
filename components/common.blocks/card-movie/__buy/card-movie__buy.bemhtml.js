@@ -1,10 +1,9 @@
 block('card-movie').elem('buy')(
-
   content()({
       block: 'paragraph',
       mix: { block: 'font', mods: { family: 'pt-mono' } },
       attrs: {
-        style: 'padding: 20px; background-color: #eee; color: #000;'
+        style: 'background-color: #eee; color: #000; padding: 20px; box-sizing: border-box;'
       },
       content: {
         html: 'После одобрения правообладателем фильм&nbsp;будет доступен для просмотра'
@@ -18,7 +17,8 @@ block('card-movie').elem('buy')(
       mods: {
         type: 'link',
         width: 'available',
-        size: 'l'
+        size: 'l',
+        theme: node.mods.theme
       },
       url: '/movie/' + node._code + '/watch',
       text: 'Смотреть бесплатно'
@@ -42,13 +42,17 @@ block('card-movie').elem('buy')(
 
     return {
       block: node.elemMods.type || 'checkbox',
-      mix: [{ block: node.block, elem: node.elem },  { block: 'font', mods: { family: 'helvetica-bold', loaded: true } }],
+      mix: [
+        { block: node.block, elem: node.elem },
+        { block: 'font', mods: { family: 'helvetica-bold', loaded: true } }
+      ],
       mods: {
         type: type,
         width: 'available',
-        size: size
+        size: size,
+        theme: node.mods.theme
       },
-      url: (typeof node.attrs.href != 'undefined' ? node.attrs.href : '' ) + '#schedule',
+      url: ( typeof node.attrs.href != 'undefined' ? node.attrs.href : '' ) + '#schedule',
       text: text
     }
   })

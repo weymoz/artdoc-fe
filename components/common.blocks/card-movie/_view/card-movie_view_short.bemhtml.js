@@ -15,13 +15,12 @@ block('card-movie').mod('view', 'short')(
   } ),
 
   content()( ( node, ctx ) => {
-    const _session = ctx.session;
+    const _session = ctx.movie.schedules[0];
+    
     return [
       {
         elem: 'content',
-        content: [
-          { elem: 'image' },
-        ]
+        content: { elem: 'image' }
       },
       {
         elem: 'aside',
@@ -30,36 +29,26 @@ block('card-movie').mod('view', 'short')(
             elem: 'date',
             mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } },
             content: [
-            {
-              block: 'text',
-              mods: {
-                format: 'datetime'
-              },
-              format: 'DD MMMM',
-              content: _session.time_gmt3
-            },
-            ', ',
-            {
-              block: 'text',
-              mods: {
-                caps: true
-              },
-              content: [
               {
                 block: 'text',
-                mods: {
-                  format: 'datetime',
-                },
-                format: 'dd',
+                mods: { format: 'datetime' },
+                format: 'DD MMMM',
                 content: _session.time_gmt3
+              },
+              ', ',
+              {
+                block: 'text',
+                mods: { caps: true },
+                content: {
+                  block: 'text',
+                  mods: { format: 'datetime' },
+                  format: 'dd',
+                  content: _session.time_gmt3
+                }
               }
-              ]
-            }
             ]
           },
-          {
-            elem: 'name'
-          }
+          { elem: 'name' }
         ]
       }
     ]
