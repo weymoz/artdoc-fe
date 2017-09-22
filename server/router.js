@@ -1,6 +1,7 @@
 const config = require('./config'),
       render = require('./render').render,
       axios = require('axios'),
+      passport = require('passport'),
       { URL } = require('url');
 
 const client = axios.create( config.host );
@@ -69,6 +70,11 @@ module.exports = function( app ) {
       } )
     } );
 
+    next();
+  } );
+
+  app.use( ( req, res, next ) => {
+    global.user = req.isAuthenticated() ? req.user : false;
     next();
   } );
 
@@ -141,7 +147,6 @@ module.exports = function( app ) {
     }
 
     Object.keys(filter).map(function (key) {
-      console.log( key );
       url += encodeURIComponent('filter['+key+']')+'=' + filter[key] + '&';
       return filter[key];
     })
@@ -368,7 +373,7 @@ module.exports = function( app ) {
     // }
 
     client.post( '/cinema/booking/booking/?promo=' + promo_code, {
-      CinemaTicketModel: { email: req.query.email },
+      CinemaTicketModel: { email: req.body.email },
       session_id: req.params.session_id,
       promo: promo_code
     } ).then( api => {
@@ -388,7 +393,7 @@ module.exports = function( app ) {
   app.get( '/api/payment/:transaction_id', ( req, res ) => {
     client.post( '/payment/provide/', { nonce: req.query.payment_nonce, transaction_id: req.params.transaction_id } )
       .then( api => {
-        res.send( JSON.stringify( api.data, null, 2 ) );
+        res.send( JSON.stringify( api.data ) );
         if ( api.data.api.error ) {
           // При оплате произошла ошибка
         } else {
@@ -403,9 +408,37 @@ module.exports = function( app ) {
     const filters = Object.keys( req.query.filters ).map( filter => req.query.filters[ filter ] ? 'filter[' + filter + ']=' + req.query.filters[ filter ] : '' ).join('&');
     request( { url: '/api/movie/filter/?sort=-rating&page=' + page + '&' + filters } )
       .then( api => {
-        res.send( JSON.stringify( api, null, 2 ) )
+        res.send( JSON.stringify( api ) )
       } )
       .catch( () => res.send('error') )
   });
+
+  app.post( '/api/user/login', ( req, res, next ) => {
+    passport.authenticate( 'local', ( err, user, info ) => {
+      delete info;
+      return err
+        ? next( err )
+        : user
+          ? req.logIn( user, function( fail ) {
+              return fail
+                ? next( fail )
+                : res.send( JSON.stringify( user ) )
+            } )
+          : res.send( JSON.stringify( user ) )
+    } )(req, res, next);
+  });
+
+  app.get( '/test/', ( req, res ) => {
+    request( {
+        url: '/auth/auth/',
+        headers: {
+         Cookie: (req.user && req.user.cookies) ? req.user.cookies.join('') : ''
+        }
+      } )
+      .then( api => {
+        res.send( '<pre>' + JSON.stringify( api, null, 2 ) + '</pre>' )
+      } )
+      .catch( () => res.send('error') )
+  } )
 
 };

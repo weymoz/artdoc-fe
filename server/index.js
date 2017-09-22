@@ -12,12 +12,14 @@ var fs = require('fs'),
     expressSession = require('express-session'),
     slashes = require('connect-slashes'),
     passport = require('passport'),
-    // LocalStrategy = require('passport-local').Strategy,
+    LocalStrategy = require('passport-local').Strategy,
+    axios = require('axios'),
     // csrf = require('csurf'),
     compression = require('compression'),
 
     config = require('./config'),
     staticFolder = config.staticFolder,
+    client = axios.create( config.host ),
 
     Render = require('./render'),
     render = Render.render,
@@ -50,6 +52,22 @@ app
 // NOTE: conflicts with livereload
 isDev || app.use(slashes());
 
+passport.use(new LocalStrategy({
+  usernameField: 'username',
+  passwordField: 'password'
+}, function( username, password, done ) {
+  client.post( '/auth/auth/login/', { username: username, password: password } )
+    .then( api => {
+      return api.data.error
+        ? done( null, false, api.data.error )
+        : done( null, {
+          status: api.data.status,
+          cookies: api.headers['set-cookie']
+        } )
+    } )
+    .catch( () => console.log('Passport error') )
+}));
+
 passport.serializeUser(function(user, done) {
   done(null, JSON.stringify(user));
 });
@@ -58,11 +76,11 @@ passport.deserializeUser(function(user, done) {
   done(null, JSON.parse(user));
 });
 
+require('./router')(app);
+
 app.get('/ping/', function(req, res) {
   res.send('ok');
 });
-
-require('./router')(app);
 
 isDev && require('./rebuild')(app);
 

@@ -1,4 +1,7 @@
 block('page')(
+  def()( node => {
+    return applyNext( { 'ctx.user': node.data.user } )
+  } ),
   content()( node => {
     return [
       {
@@ -20,5 +23,4 @@ block('page')(
       }
     ];
   } )
-
 )
