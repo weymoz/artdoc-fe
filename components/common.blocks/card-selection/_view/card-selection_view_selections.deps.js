@@ -1,15 +1,5 @@
 ({
-    shouldDeps: [
-        {
-            elems: [
-                'preview'
-            ]
-        },
-        {
-            block: 'card-movie',
-            mods: {
-                view: 'selection'
-            }
-        }
-    ]
+  shouldDeps: [
+    { block: 'card-movie', mods: { view: 'selection' } }
+  ]
 })
