@@ -1,5 +1,5 @@
-block('news').content()(function() {
-    this.ctx.items = [
+block('news').content()( node => {
+    const news = [
       {
         date: 1503923685,
         url: '//www.youtube.com/embed/jybw_0ecl0s',
@@ -35,56 +35,15 @@ block('news').content()(function() {
     ]
 
     return [
-    {
-      elem: 'header',
-      content: [
       {
-          elem: 'title',
-          elemMods: {
-          size: 'xl'
-          },
-          mix: { block: 'font', mods: { family: 'helvetica-condensed', loaded: true } },
-          content: 'Новости и события'
-      },
-      // {
-      //   elem: 'control',
-      //   content:[
-      //   {
-      //     block: 'button',
-      //     mix: { block: 'news', elem: 'prev'},
-      //     mods: {
-      //       disabled: true
-      //     }
-      //   },
-      //   {
-      //     block: 'button',
-      //     mix: { block: 'news', elem: 'next'},
-      //     mods: {
-      //       disabled: true
-      //     }
-      //   }
-      //   ]
-      // },
-      ]
-    },
-    {
-      elem: 'content',
-      content: this.ctx.items.map( item => {
-        return {
-          elem: 'item',
-          content: [
-            {
-              block: 'news-block',
-              title: item.title,
-              content: item.content,
-              date: item.date,
-              url: item.url,
-              linkname: item.linkname,
-              image: item.image
-            }
-          ]
-        }
-      })
-    }
-  ]
+        elem: 'content',
+        content: news.map( item => {
+          return {
+            block: 'news-block',
+            mix: { block: node.block, elem: 'item' },
+            news: item
+          }
+        })
+      }
+    ]
 });
