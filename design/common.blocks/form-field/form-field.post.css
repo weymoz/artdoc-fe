@@ -1,0 +1,12 @@
+block(form-field) {
+  /* display: inline-block; */
+  position: relative;
+  box-sizing: border-box;
+  vertical-align: middle;
+  /*font-size: 0;*/
+  overflow: auto;
+
+  & + & {
+    margin-top: 1em;
+  }
+}

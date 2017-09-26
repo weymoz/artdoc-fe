@@ -8,4 +8,8 @@ block(form).mod(theme artdoc) {
     margin-bottom: 24px;
   }
 
+  .elem(footer) {
+    margin-top: 1em;
+  }
+
 }
