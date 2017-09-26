@@ -78,6 +78,11 @@ block(filters) {
   .elem(item) {
     display: inline-block;
     margin-right: 32px;
+    vertical-align: middle;
+
+    & + & {
+      margin-top: 0;
+    }
   }
 
   .elem(params) {
