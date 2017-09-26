@@ -14,6 +14,10 @@ block('form').mod('view', 'auth')(
               elem: 'control',
               content: {
                 block: 'input',
+                mods: {
+                  width: 'available',
+                  size: 'xl'
+                },
                 placeholder: 'Эл. почта'
               }
             }
@@ -28,6 +32,10 @@ block('form').mod('view', 'auth')(
               elem: 'control',
               content: {
                 block: 'input',
+                mods: {
+                  width: 'available',
+                  size: 'xl'
+                },
                 placeholder: 'Пароль'
               }
             }
@@ -41,7 +49,8 @@ block('form').mod('view', 'auth')(
           mods: {
             width: 'available',
             type: 'submit',
-            view : 'action'
+            view : 'action',
+            size: 'xl'
           },
           text: 'Войти'
         }
