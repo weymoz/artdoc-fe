@@ -3,7 +3,7 @@ block(filters) {
 
   .elem(header) {
     display: flex;
-    padding-top: 16px;
+    padding-top: 48px;
     padding-bottom: 28px;
     align-items: center;
     box-shadow: 0 1px #23232c;
