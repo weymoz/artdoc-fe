@@ -46,7 +46,12 @@ block('page-schedule').replace()(function() {
       elem: 'content',
       content: [
         { block: 'breadcrumbs' },
-        { elem: 'title', elemMods: 'xxl', content: 'Онлайн-киносеансы' },
+        {
+          elem: 'title',
+          elemMods: { size: 'xl' },
+          mix: { block: 'heading', mods: { caps: true, align: 'center', size: 'l' } },
+          content: 'Онлайн-киносеансы'
+        },
         promoBlock,
         schedule.map( item => {
           return {

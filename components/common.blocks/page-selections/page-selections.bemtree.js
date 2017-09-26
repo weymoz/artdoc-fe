@@ -10,7 +10,8 @@ block('page-selections').replace()(function() {
         },
         {
           elem: 'title',
-          mix: { block: 'font', mods: { family: 'helvetica-condensed', loaded: true } },
+          elemMods: { size: 'xl' },
+          mix: { block: 'heading', mods: { caps: true, align: 'center', size: 'l' } },
           content: 'Авторские подборки'
         },
         selections.map( item => {

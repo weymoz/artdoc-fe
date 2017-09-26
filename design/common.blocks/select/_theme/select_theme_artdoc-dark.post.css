@@ -1,28 +1,7 @@
 block(select).mod(theme artdoc-dark) {
-
-  .elem(button) {
-    
-  }
-
-  block(button).elem(text) {
-    
-  }
+  color: #fff;
 
   .elem(tick) {
-    background-image: svg-load('../../icon/_symbol/icon_symbol_chevron-down.svg', fill="#000");
-  }
-
-  .mod(opened) .elem(tick) {
-    
-  }
-
-  .mod(width available) {
-    
-  }
-
-  .mod(has-error) {
-    block(button) {
-      
-    }
+    background-image: svg-load('../../icon/_symbol/icon_symbol_chevron-down.svg', fill="#fff");
   }
 }

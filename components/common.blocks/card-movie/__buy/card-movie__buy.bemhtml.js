@@ -13,7 +13,7 @@ block('card-movie').elem('buy')(
   match( node => node._status === 20 /*&& node._price && node._price.price === 0*/ ).replace()( node => {
     return {
       block: 'button',
-      mix: [{ block: node.block, elem: node.elem },  { block: 'font', mods: { family: 'helvetica-bold', loaded: true } }],
+      mix: { block: node.block, elem: node.elem },
       mods: {
         type: 'link',
         width: 'available',
@@ -42,13 +42,10 @@ block('card-movie').elem('buy')(
 
     return {
       block: node.elemMods.type || 'checkbox',
-      mix: [
-        { block: node.block, elem: node.elem },
-        { block: 'font', mods: { family: 'helvetica-bold', loaded: true } }
-      ],
+      mix: { block: node.block, elem: node.elem },
       mods: {
         type: type,
-        width: 'available',
+        // width: 'available',
         size: size,
         theme: node.mods.theme
       },

@@ -120,12 +120,12 @@ block('filters').def()( ( node, ctx ) => {
         d = {
           block: 'select',
           text: filtersMap[element.code].name,
-          mix: { block: 'font', mods: { family: 'helvetica-bold', loaded: true } },
           mods: {
             mode: 'check',
             type: 'suggest',
             'has-clear': true,
-            size: 's'
+            size: 's',
+            theme: 'artdoc-dark'
           },
           optionsMaxHeight: 320,
           options: element.values.sort(filtersMap[element.code].sort).map(function (option) {
@@ -142,20 +142,22 @@ block('filters').def()( ( node, ctx ) => {
 
         result.content.push( d );
         break;
+
       case 'bool':
         result.mods.type = 'checkbox';
         d = {
           block: 'checkbox',
           mix: { block: 'font', mods: { family: 'helvetica-bold', loaded: true } },
           mods: {
-            checked: typeof userFilter[element.code] != 'undefined' ? true : false
+            checked: typeof userFilter[element.code] != 'undefined' ? true : false,
+            theme: 'artdoc-dark'
           },
           text: filtersMap[element.code].name,
         }
 
-        //return d;
-        result.content.push(d)
+        result.content.push( d )
         break;
+
       default: 
         return []
     }

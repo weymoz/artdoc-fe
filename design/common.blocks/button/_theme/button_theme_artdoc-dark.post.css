@@ -1,37 +1,25 @@
 block(button).mod(theme artdoc-dark) {
-  color: #23232C;
+  color: #23232c;
   background-color: #fff;
 
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  transition: color  0.4s, background 0.4s;
-
-  &:hover {
-    background-color: #F3203B;
-    transition: color  0.2s, background 0.2s;
+  .mod(hovered) {
     color: #fff;
-  }
-
-  &:active {
-    background-color: #CE1B32;
-    color: #fff;
-  }
-
-  .mod(type link) .elem(text){
-    color: blue;
+    background-color: #f3203b;
   }
 
   .mod(focused) {
-    &:before {
-    }
+    color: #fff;
+    background-color: #f3203b;
   }
 
   .mod(active) {
-    &:before {
-      background-color: black;
-    }
+    color: #fff;
+    background-color: #f3203b;
   }
 
   .mod(checked) {
-    background-color: red;
+    background-color: #eeeef2;
+    color: #23232c;
   }
+
 }

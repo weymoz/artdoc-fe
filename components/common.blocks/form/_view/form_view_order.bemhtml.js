@@ -76,8 +76,7 @@ block('form').mod('view', 'order')(
                   block: 'input',
                   mods: {
                     width: 'available',
-                    size: 'l',
-                    theme: 'islands'
+                    size: 'xl'
                   }
                 }
               }
@@ -97,8 +96,7 @@ block('form').mod('view', 'order')(
               {
                 block: 'checkbox',
                 mods: {
-                  size: 'l',
-                  theme: 'islands'
+                  size: 'l'
                 },
                 text: [
                   'Я принимаю ',
@@ -118,7 +116,7 @@ block('form').mod('view', 'order')(
             mods: {
               type: 'submit',
               width: 'available',
-              size: 'l',
+              size: 'xl',
               theme: 'artdoc-dark'
             },
             text: ctx.submitLabel + ' онлайн-билет'

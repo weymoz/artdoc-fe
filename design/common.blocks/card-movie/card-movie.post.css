@@ -104,17 +104,6 @@ block(card-movie) {
       margin-bottom: 10px;
     }
 
-    .elem(buy) {
-      @media (max-width: 1104px) {
-        font-size: 14px;
-
-        block(button).elem(text){
-          display: inline;
-          vertical-align: baseline;
-        }
-      }
-    }
-
     .elem(awards) {
       width: 32px;
       height: 32px;
@@ -322,6 +311,7 @@ block(card-movie) {
       display: flex;
       justify-content: flex-end;
       flex-direction: column;
+      align-items: flex-start;
     }
 
     .elem(director) {
@@ -475,6 +465,10 @@ block(card-movie) {
     flex-direction: column;
     padding: 56px 28px 40px;
     text-decoration: none;
+  }
+
+  .elem(buy) {
+    margin-top: 1em;
   }
 
   .elem(is-today) {
@@ -659,35 +653,6 @@ block(card-movie) {
     line-height: 2;
     padding: 0 5px;
     box-sizing: border-box;
-  }
-
-  .elem(buy) {
-    margin-top: 1em;
-    display: block;
-    width: 100%;
-    background: #111;
-    color: #fff;
-
-    block(button) {
-      line-height: 48px;
-      font-weight: bold;
-      background-color: #111;
-      color: #fff;
-      display: block;
-      width: 100%;
-
-      .block(icon) {
-        background-color: #f4203b;
-        width: 2em;
-      }
-    }
-
-    &.block(checkbox).mod(checked) {
-      block(button) {
-        background-color: #eeeef2;
-        color: #111;
-      }
-    }
   }
 
   .elem(description) {

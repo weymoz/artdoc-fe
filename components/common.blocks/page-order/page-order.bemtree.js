@@ -44,9 +44,8 @@ block('page-order')(
           },
           {
             elem: 'title',
-            mods: {
-              size: 'm'
-            },
+            elemMods: { size: 'xl' },
+            mix: { block: 'heading', mods: { caps: true, size: 'l' } },
             content: [
               ticket.promo === 'meduza' ? 'Получение' : 'Покупка',
               ' билета на онлайн-сеанс'
