@@ -48,4 +48,10 @@ block(page) {
   .elem(breadcrumbs) {
     margin-bottom: 32px;
   }
+
+  mod(view page-index) {
+    .elem(slider) {
+      margin-bottom: 80px;
+    }
+  }
 }

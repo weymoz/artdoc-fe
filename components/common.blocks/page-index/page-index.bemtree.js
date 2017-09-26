@@ -1,4 +1,4 @@
-block('page-index').replace()(function() {
+block('page-index').replace()( node => {
 
   // Функция для слайдера
   let slider = [];
@@ -9,7 +9,7 @@ block('page-index').replace()(function() {
       id: null,
       code: 'all',
     },
-    ...this.data.category
+    ...node.data.category
   ];
   let links = categories.length;
   const slidesCount = ( ( links - ( links % linkPerSlide ) ) / linkPerSlide ) + ( links % linkPerSlide ? 1 : 0 );
@@ -28,7 +28,7 @@ block('page-index').replace()(function() {
     }
   }
 
-  const poster = this.data.poster.items.map( movie => {
+  const poster = node.data.poster.items.map( movie => {
     /*
      * Normalization
      */
@@ -60,7 +60,9 @@ block('page-index').replace()(function() {
           mix: { block: 'heading', mods: { caps: true, align: 'center', size: 'l' } },
           content:  'Архив и онлайн-сеансы документального кино на русском языке'
         },
-        { block: 'slider', content: slider },
+        {
+          block: 'slider',
+          mix: { block: 'page', elem: 'slider' }, content: slider },
         { block: 'card-poster', poster: poster },
         {
           elem: 'title',
@@ -77,7 +79,7 @@ block('page-index').replace()(function() {
         },
         {
           elem: 'collections',
-          content: this.data.api.slice(0, 3).map( item => {
+          content: node.data.api.slice(0, 3).map( item => {
             return {
               block: 'card-selection',
               mods: {
