@@ -1,7 +1,17 @@
 block(paragraph) {
+  & + & {
+    margin-top: 1.5em;
+  }
+
   .mod(lead) {
     font-size: 1.2em;
     padding: 20px 0;
     box-sizing: border-box;
+  }
+
+  @each $align in (left, center, right) {
+    .mod(align $align) {
+      text-align: $align;
+    }
   }
 }
