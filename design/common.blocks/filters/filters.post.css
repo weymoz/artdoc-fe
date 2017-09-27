@@ -3,7 +3,7 @@ block(filters) {
 
   .elem(header) {
     display: flex;
-    padding-top: 16px;
+    padding-top: 48px;
     padding-bottom: 28px;
     align-items: center;
     box-shadow: 0 1px #23232c;
@@ -78,6 +78,11 @@ block(filters) {
   .elem(item) {
     display: inline-block;
     margin-right: 32px;
+    vertical-align: middle;
+
+    & + & {
+      margin-top: 0;
+    }
   }
 
   .elem(params) {
@@ -125,6 +130,36 @@ block(filters) {
 
   .elem(content).mod(loading) {
     opacity: .5;
+  }
+
+  .elem(close) {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: block;
+    height: 32px;
+    width: 32px;
+    border-radius: 16px;
+    background-color: #333;
+    transition: background-color .2s;
+
+    &:after {
+      content: '×';
+      color: #fff;
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      display: block;
+      text-align: center;
+      font-size: 32px;
+      line-height: 0.85;
+    }
+
+    &:hover {
+      background-color: #666;
+    }
   }
 }
 

@@ -141,7 +141,6 @@ block(club-footer) {
 
     elem(club-login){
       color: white;
-      font-weight: bold;
     }
 
     elem(party) {

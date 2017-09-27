@@ -172,14 +172,14 @@ block(input) {
 }
 
 block(control-group) {
-  block(input).mod(theme artdoc) {
+  block(input) {
     &:before {
       right: 0
     }
   }
 
-  > block(input).mod(theme artdoc):last-child,
-  > :last-child block(input).mod(theme artdoc) {
+  > block(input):last-child,
+  > :last-child block(input) {
     &:before {
       right: 1px
     }

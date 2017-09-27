@@ -25,8 +25,10 @@ provide(Form.declMod({ modName: 'view', modVal: 'auth' }, {
     }
 
     $.ajax(apiSettings).done(function (response) {
-      console.log( response );
-      console.log( JSON.parse( response ) );
+      let msg = JSON.parse( response );
+      if (!msg) {
+        _this.setMessageVal('Ошибка авторизации')
+      }
     });
   },
 

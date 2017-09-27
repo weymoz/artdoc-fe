@@ -70,11 +70,14 @@ block('filters')(
         mix: { block: node.block, elem: node.elem },
         content: {
           elem: 'content',
-          content: {
-            block: 'form',
-            mods: { view: node.block },
-            content: node._api.fields
-          }
+          content: [
+            { block: node.block, elem: 'close' },
+            {
+              block: 'form',
+              mods: { view: node.block },
+              content: node._api.fields
+            }
+          ]
         }
       }
     })
