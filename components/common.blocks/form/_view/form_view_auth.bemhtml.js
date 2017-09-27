@@ -1,4 +1,8 @@
 block('form').mod('view', 'auth')(
+  addMods()({
+    'has-validation': true,
+    message: 'popup'
+  }),
   content()( () => {
     return [
       {
@@ -7,7 +11,14 @@ block('form').mod('view', 'auth')(
           {
             block: 'form-field',
             mods: {
-              type: 'input'
+              type: 'input',
+              required: true,
+              message: 'popup'
+            },
+            js: {
+              required: {
+                message: 'Это поле обязательно!'
+              }
             },
             name: 'username',
             content: {
@@ -25,7 +36,14 @@ block('form').mod('view', 'auth')(
           {
             block: 'form-field',
             mods: {
-              type: 'input'
+              type: 'password',
+              required: true,
+              message: 'popup'
+            },
+            js: {
+              required: {
+                message: 'Это поле обязательно!'
+              }
             },
             name: 'password',
             content: {
@@ -49,11 +67,16 @@ block('form').mod('view', 'auth')(
           mods: {
             width: 'available',
             type: 'submit',
-            view : 'action',
+            view: 'action',
             size: 'xl'
           },
           text: 'Войти'
         }
+      },
+      {
+        elem: 'message',
+        mix: { block: 'message', mods: { type: 'text' } },
+        content: 'Неверный логин или пароль'
       }
     ]
   })

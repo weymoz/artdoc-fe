@@ -1,0 +1,8 @@
+block(message) {
+  .mod(type text) {
+    box-sizing: border-box;
+    padding: .5em;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+  }
+}
