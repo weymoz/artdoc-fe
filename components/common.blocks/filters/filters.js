@@ -8,7 +8,10 @@ provide(bemDom.declBlock(this.name, {
       inited: function() {
         this._toggle = this._elem('toggle').findMixedBlock( Button );
         this._toggle.target = this._elem('form');
-        this._events( this._toggle ).on('click', this._onToggle, this._toggle );
+        this._domEvents( this._toggle ).on('click', this._onToggle );
+
+        this._close = this._elem('close');
+        this._domEvents( this._elem('close') ).on('click', this._onToggle );
 
         this._form = this._elem('form').findChildBlock( Form );
         this._form.initialVal = this._form.getVal();
@@ -23,7 +26,7 @@ provide(bemDom.declBlock(this.name, {
   },
 
   _onToggle: function() {
-    this.target.setMod( 'show', !!this.hasMod('checked') );
+    this._toggle.target.setMod( 'show', !this._toggle.hasMod('checked') );
   },
 
   _onChange: function() {
