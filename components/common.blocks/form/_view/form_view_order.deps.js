@@ -1,5 +1,6 @@
 [{
   shouldDeps: [
+    { mods: { 'has-validation': true, message: 'popup' } },
     { block: 'link' },
     { block: 'paragraph' },
     { block: 'text', mods: { align: 'center' } },
@@ -9,9 +10,9 @@
       block: 'form-field',
       mods: {
         type: [ 'input', 'checkbox' ],
-        message : ['popup'],
+        message : 'popup',
         required: true,
-        validate: [ 'email' ]
+        validate: 'email'
       }
     },
     { block: 'list', mods: { type: 'numeric' } },

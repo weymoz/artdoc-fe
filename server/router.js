@@ -368,10 +368,6 @@ module.exports = function( app ) {
         : false
     } );
 
-    // if ( promoCode.meduza ) {
-    //   promo_code = 'artdocmedia_free';
-    // }
-
     client.post( '/cinema/booking/booking/?promo=' + promo_code, {
       CinemaTicketModel: { email: req.body.email },
       session_id: req.params.session_id,
@@ -390,8 +386,8 @@ module.exports = function( app ) {
       .catch(() => res.send('error') );
   });
 
-  app.get( '/api/payment/:transaction_id', ( req, res ) => {
-    client.post( '/payment/provide/', { nonce: req.query.payment_nonce, transaction_id: req.params.transaction_id } )
+  app.post( '/api/payment/:transaction_id', ( req, res ) => {
+    client.post( '/payment/provide/', { nonce: req.body.payment_nonce, transaction_id: req.params.transaction_id } )
       .then( api => {
         res.send( JSON.stringify( api.data ) );
         if ( api.data.api.error ) {
