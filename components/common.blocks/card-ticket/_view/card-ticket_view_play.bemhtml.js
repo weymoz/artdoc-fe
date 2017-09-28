@@ -1,6 +1,6 @@
 block('card-ticket').mod('view', 'play')(
 
-  addMix()({ block: 'font', mods: { family: 'helvetica-condensed', loaded: true }  }),
+  addMix()({ block: 'font', mods: { family: 'helvetica-neue-condensed', loaded: true }  }),
 
   content()( node => {
     return [

@@ -1,3 +1,3 @@
 block('button')(
-  addMix()({ block: 'font', mods: { family: 'helvetica-bold', loaded: true } })
+  addMix()({ block: 'font', mods: { family: 'helvetica-neue-bold', loaded: true } })
 )

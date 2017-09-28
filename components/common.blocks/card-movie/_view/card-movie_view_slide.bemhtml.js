@@ -47,7 +47,7 @@ block('card-movie').mod('view', 'slide')(
               { elem: 'icon' },
               {
                 elem: 'title',
-                mix: { block: 'font', mods: { family: 'helvetica-condensed', loaded: true } },
+                mix: { block: 'font', mods: { family: 'helvetica-neue-condensed', loaded: true } },
                 content: 'Сегодня в онлайн-киносеансах'
               }
             ]

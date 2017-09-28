@@ -112,7 +112,7 @@ block('form').mod('view', 'order')(
           },
           {
             block: 'button',
-            mix: [{ block: node.block, elem: 'section' },  { block: 'font', mods: { family: 'helvetica-bold', loaded: true } }],
+            mix: { block: node.block, elem: 'section' },
             mods: {
               type: 'submit',
               width: 'available',

@@ -24,7 +24,7 @@ block('footer').content()( ( node, ctx ) => {
           content: [
             {
               block: 'title',
-              mix: { block: 'font', mods: { family: 'helvetica-condensed', loaded: true } },
+              mix: { block: 'font', mods: { family: 'helvetica-neue-condensed', loaded: true } },
               mods: {
                 size: 'm'
               },
@@ -85,7 +85,7 @@ block('footer').content()( ( node, ctx ) => {
           content: [
             {
               block: 'title',
-              mix: { block: 'font', mods: { family: 'helvetica-condensed', loaded: true } },
+              mix: { block: 'font', mods: { family: 'helvetica-neue-condensed', loaded: true } },
               mods: {
                 size: 'm'
               },

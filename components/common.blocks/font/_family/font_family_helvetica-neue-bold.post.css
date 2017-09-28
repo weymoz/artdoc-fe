@@ -1,0 +1,15 @@
+block(font).mod(family helvetica-neue-bold).mod(loaded) {
+  font-family: 'Helvetica Neue';
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'Helvetica Neue';
+  font-weight: bold;
+  src: url('font_family_helvetica-neue-bold.eot?#iefix');
+  src: url('font_family_helvetica-neue-bold.eot?#iefix') format('eot'),
+       url('font_family_helvetica-neue-bold.woff2') format('woff2'),
+       url('font_family_helvetica-neue-bold.woff') format('woff'),
+       url('font_family_helvetica-neue-bold.ttf') format('truetype');
+}
+

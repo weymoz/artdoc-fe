@@ -1,10 +1,5 @@
 ({
   mustDeps: [
-    {
-      block: 'font',
-      mods: {
-        family: 'pt-mono'
-      }
-    }
+    { block: 'font', mods: { family: 'helvetica-neue' } }
   ]
 })

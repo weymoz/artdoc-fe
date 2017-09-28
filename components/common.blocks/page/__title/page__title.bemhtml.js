@@ -24,10 +24,10 @@ block('page').elem('title')(
   ),
 
   elemMod('view', 'bold')(
-    addMix()( { block: 'font', mods: { family: 'helvetica-bold', loaded: true } } )
+    addMix()( { block: 'font', mods: { family: 'helvetica-neue-bold', loaded: true } } )
   ),
 
   elemMod('view', 'condensed-bold')(
-    addMix()( { block: 'font', mods: { family: 'helvetica-condensed-bold', loaded: true } } )
+    addMix()( { block: 'font', mods: { family: 'helvetica-neue-condensed-bold', loaded: true } } )
   )
 )

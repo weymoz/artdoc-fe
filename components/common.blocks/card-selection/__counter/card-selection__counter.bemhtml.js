@@ -1,6 +1,6 @@
 block( 'card-selection' ).elem( 'counter' )(
   match( function () { return !this._name } ).def()(''),
-  addMix()({ block: 'font', mods: { family: 'helvetica-bold', loaded: true } }),
+  addMix()({ block: 'font', mods: { family: 'helvetica-neue-bold', loaded: true } }),
   match( node => node._movies && node._movies.length ).content()( node => {
     return [
       {

@@ -147,7 +147,7 @@ block('filters').def()( ( node, ctx ) => {
         result.mods.type = 'checkbox';
         d = {
           block: 'checkbox',
-          mix: { block: 'font', mods: { family: 'helvetica-bold', loaded: true } },
+          mix: { block: 'font', mods: { family: 'helvetica-neue-bold', loaded: true } },
           mods: {
             checked: typeof userFilter[element.code] != 'undefined' ? true : false,
             theme: 'artdoc-dark'

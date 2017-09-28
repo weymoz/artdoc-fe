@@ -7,13 +7,13 @@ block('club-footer')(
           content: [
             {
               elem: 'footer-title',
-              mix: { block: 'font', mods: { family: 'helvetica-condensed', loaded: true } },
+              mix: { block: 'font', mods: { family: 'helvetica-neue-condensed', loaded: true } },
               content: [
                   { elem: 'avatar' },
                   {
                     elem: 'title',
                     elemMods: { size: 'xl' },
-                    mix: { block: 'font', mods: { family: 'helvetica-condensed', loaded: true } },
+                    mix: { block: 'font', mods: { family: 'helvetica-neue-condensed', loaded: true } },
                     content: 'Клуб '
                   },
                   {
@@ -35,14 +35,14 @@ block('club-footer')(
           {
             elem: 'footer-item',
             content: [
-            { elem: 'title', mix: { block: 'font', mods: { family: 'helvetica-condensed', loaded: true } }, content: ['партнерские фестивали'] },
+            { elem: 'title', mix: { block: 'font', mods: { family: 'helvetica-neue-condensed', loaded: true } }, content: ['партнерские фестивали'] },
             { elem: 'partners' }
             ]
           },
           {
             elem: 'footer-item',
             content: [
-            { elem: 'title', mix: { block: 'font', mods: { family: 'helvetica-condensed', loaded: true } }, content: ['аккредитованные критики'] },
+            { elem: 'title', mix: { block: 'font', mods: { family: 'helvetica-neue-condensed', loaded: true } }, content: ['аккредитованные критики'] },
             { elem: 'party' }
             ]
           },
@@ -51,7 +51,7 @@ block('club-footer')(
             content: node.user
             ? 'Вы авторизованы'
             : [
-                { elem: 'title', mix: { block: 'font', mods: { family: 'helvetica-condensed', loaded: true } }, content: ['вход для участников'] },
+                { elem: 'title', mix: { block: 'font', mods: { family: 'helvetica-neue-condensed', loaded: true } }, content: ['вход для участников'] },
                 { block: 'form', mods: { view: 'auth' }, mix: { block: 'club-footer', elem: 'club-login' } }
               ]
           }

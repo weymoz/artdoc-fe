@@ -53,27 +53,33 @@ block('page-index').replace()( node => {
   return [
     {
       elem: 'content',
+      elemMods: { width: 'narrow' },
+      content: {
+        elem: 'title',
+        elemMods: { view: 'condensed-bold', size: 'xl' },
+        mix: { block: 'heading', mods: { caps: true, align: 'center', size: 'l' } },
+        content: {
+          html: 'Архив и онлайн-сеансы документального кино на&nbsp;русском языке'
+        }
+      }
+    },
+    {
+      elem: 'content',
       content: [
-        {
-          elem: 'title',
-          elemMods: { size: 'xl' },
-          mix: { block: 'heading', mods: { caps: true, align: 'center', size: 'l' } },
-          content:  'Архив и онлайн-сеансы документального кино на русском языке'
-        },
         {
           block: 'slider',
           mix: { block: 'page', elem: 'slider' }, content: slider },
         { block: 'card-poster', poster: poster },
         {
           elem: 'title',
-          elemMods: { size: 'xl' },
+          elemMods: { view: 'condensed-bold', size: 'xl' },
           mix: { block: 'heading', mods: { caps: true, align: 'center', size: 'l' } },
           content: 'Новости и события'
         },
         { block: 'news' },
         {
           elem: 'title',
-          elemMods: { size: 'xl' },
+          elemMods: { view: 'condensed-bold', size: 'xl' },
           mix: { block: 'heading', mods: { caps: true, align: 'center', size: 'l' } },
           content: 'Авторские подборки'
         },
@@ -98,7 +104,7 @@ block('page-index').replace()( node => {
       content: [
         {
           elem: 'title',
-          elemMods: { size: 'xl' },
+          elemMods: { view: 'condensed-bold', size: 'xl' },
           mix: { block: 'heading', mods: { caps: true, align: 'center', size: 'l' } },
           content: 'О проекте'
         },
