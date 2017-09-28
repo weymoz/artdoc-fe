@@ -48,7 +48,7 @@ block('card-movie').elem('buy')(
         size: size,
         theme: node.mods.theme
       },
-      url: '/movie/' + node._code + ( typeof node.attrs.href != 'undefined' ? node.attrs.href : '' ) + '#schedule',
+      url: '/movie/' + node._code + '#schedule',
       text: text
     }
   })
