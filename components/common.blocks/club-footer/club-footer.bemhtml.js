@@ -52,12 +52,7 @@ block('club-footer')(
             ? 'Вы авторизованы'
             : [
                 { elem: 'title', mix: { block: 'font', mods: { family: 'helvetica-condensed', loaded: true } }, content: ['вход для участников'] },
-                {
-                  block: 'form',
-                  mods: { view: 'auth' },
-                  mix: { block: 'club-footer', elem: 'club-login' },
-                  method : 'POST',
-                }
+                { block: 'form', mods: { view: 'auth' }, mix: { block: 'club-footer', elem: 'club-login' } }
               ]
           }
           ]

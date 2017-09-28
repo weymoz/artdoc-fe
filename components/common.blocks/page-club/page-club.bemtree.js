@@ -1,270 +1,145 @@
-block('page-club').content()(function() {
+block('page-club').replace()(function() {
     return[
-    {
-      elem: 'content',
-      content: [
-        {
-          elem: 'header',
-          content: [
+      {
+        elem: 'content',
+        elemMods: { width: 'narrow' },
+        content: [
+          { block: 'breadcrumbs' },
           {
-            block: 'breadcrumbs'
-          }
-          ]
-        },
-        {
-          elem: 'text-block',
-          content: [
-          {
-            block: 'title',
-            mix: [
-            {
-              block: 'page-club', elem: 'main-title'
-            },
-            {
-             block: 'font', mods: { family: 'helvetica-bold', loaded: true }
-            }],
-            mods: {
-              size: 'xl'
-            },
+            elem: 'title',
+            elemMods: { size: 'l' },
+            mix: { block: 'heading', mods: { 'has-dot': true, size: 'xxl' } },
             content: 'Клуб Артдок'
           },
           {
             block: 'paragraph',
+            mods: { lead: true },
             content: 'Клуб Артдок — это закрытое сообщество профессионалов документального кино. В клуб входят представители киноиндустрии: директора и члены отборочных комиссий международных фестивалей, дистрибьюторы неигрового кино, сотрудники телеканалов и СМИ, отвечающие за покупку неигрового кино, руководители культурных клубов и центров, кинокритики и журналисты, пишущие для СМИ о неигровом кино.'
-          }
-        ]},
-        {
-          elem: 'text-block',
-          content: [
+          },
           {
-            block: 'title',
-            mix: { block: 'font', mods: { family: 'helvetica-condensed', loaded: true } },
-            mods: {
-              size: 'l'
-            },
+            elem: 'title',
+            elemMods: { size: 'xl' },
+            mix: { block: 'heading', mods: { caps: true, size: 'l' } },
             content: 'Привилегии участников клуба'
           },
           {
-            elem: 'rate-list',
+            block: 'list',
+            mods: {
+              type: 'numeric'
+            },
             content: [
-            {
-              block: 'rate-card',
-              mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } },
-              content:[
-              {
-                elem: 'image',
-                mix: [
-                { block: 'rate-card', elem: 'count'   },
-                { block: 'rate-card', elem: 'count_1' }
-                ]
-              },
-              'Бесплатный просмотр всех фильмов на сайте АртдокМедиа, кроме премьер текущего года '
-              ]
-            },
-            {
-              block: 'rate-card',
-              mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } },
-              content:[
-              {
-                elem: 'image',
-                mix: [
-                { block: 'rate-card', elem: 'count'  },
-                { block: 'rate-card', elem: 'count_2'}
-                ]
-              },
-              'Бесплатные билеты на любые онлайн-киносеансы АртдокМедиа'
-              ]
-            },
-            {
-              block: 'rate-card',
-              mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } },
-              content:[
-              {
-                elem: 'image',
-                mix: [
-                { block: 'rate-card', elem: 'count'   },
-                { block: 'rate-card', elem: 'count_3' }
-                ]
-              },
-              'Пригласительные билеты на церемонию открытия и закрытия фестиваля Артдокфест'
-              ]
-            },
-            {
-              block: 'rate-card',
-              mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } },
-              content:[
-              {
-                elem: 'image',
-                mix: [
-                { block: 'rate-card', elem: 'count'   },
-                { block: 'rate-card', elem: 'count_4' }
-                ]
-              },
-              'Посещение всех показов и мероприятий Артдокфеста в России в течение года'
-              ]
-            }
+              { elem: 'item', content: 'Бесплатный просмотр всех фильмов на сайте АртдокМедиа, кроме премьер текущего года' },
+              { elem: 'item', content: 'Бесплатные билеты на любые онлайн-киносеансы АртдокМедиа' },
+              { elem: 'item', content: 'Пригласительные билеты на церемонию открытия и закрытия фестиваля Артдокфест' },
+              { elem: 'item', content: 'Посещение всех показов и мероприятий Артдокфеста в России в течение года' }              
             ]
           }
-        ]}
-      ]
-    },
-    {
-      elem: 'footer',
-      content: [
+        ]
+      },
       {
-        elem: 'text-block',
-        mix: { block: 'page-club', elem: 'footer-content' },
+        elem: 'section',
         content: [
           {
-            block: 'title',
-            mix: { block: 'font', mods: { family: 'helvetica-condensed', loaded: true } },
-            mods: {
-              size: 'l'
-            },
-            content: 'Вступить в клуб'
-          },
+            elem: 'content',
+            elemMods: { width: 'narrow' },
+            content: [
+              {
+                elem: 'title',
+                elemMods: { size: 'xl' },
+                mix: { block: 'heading', mods: { caps: true, align: 'center', size: 'l' } },
+                content: 'Вступить в клуб'
+              },
+              {
+                block: 'paragraph',
+                content: 'Вступление в клуб для представителей киноиндустрии бесплатно и осуществляется только по заявкам.'
+              },
+              {
+                block: 'button',
+                mods: {
+                  type: 'link',
+                  size: 'xl'
+                },
+                text: 'Оставить заявку',
+                url: 'mailto:media@artdocfest.com'
+              },
+              {
+                elem: 'title',
+                elemMods: { size: 'xl' },
+                mix: { block: 'heading', mods: { caps: true, align: 'center', size: 'l' } },
+                content: 'Клубная карта'
+              },
+              {
+                block: 'paragraph',
+                content: [
+                  'Для вступления в клуб необязательно быть представителем киноиндустрии. Человек или организация, готовые оказать поддержку Артдокфесту может стать членом клуба Artdoc — для этого мы выпускаем 100 карт «Партнёр Артдокфеста» сроком на один год. Обладатели карты имеют все привелегии участников клуба. ',
+                  {
+                    block: 'link',
+                    content: 'Напишите нам',
+                    url: 'mailto:media@artdocfest.com'
+                  },
+                  ' чтобы, узнать подробности о приобретении карты.'
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        elem: 'content',
+        elemMods: { width: 'narrow' },
+        content: [
           {
-            block: 'paragraph',
-            content: 'Вступление в клуб для представителей киноиндустрии бесплатно и осуществляется только по заявкам.'
+            elem: 'title',
+            elemMods: { size: 'xl' },
+            mix: { block: 'heading', mods: { caps: true, size: 'l' } },
+            content: 'Участники клуба Артдок'
           },
           {
             block: 'button',
-            mix: {block: 'page-club', elem: 'get-card'},
             mods: {
-              type: 'link',
-              theme: 'artdoc'
+              width: 'available',
+              size: 'xl'
             },
-            text: 'Оставить заявку',
-            url: ''
+            text: 'Показать/Скрыть участников'
           },
-      ]
+          {
+            elem: 'title',
+            elemMods: { size: 'xl' },
+            mix: { block: 'heading', mods: { caps: true, size: 'l' } },
+            content: 'Партнёрские фестивали'
+          }
+        ]
       },
       {
-        elem: 'text-block',
-        mix: { block: 'page-club', elem: 'footer-content' },
+        elem: 'section',
         content: [
           {
-            block: 'title',
-            mix: { block: 'font', mods: { family: 'helvetica-condensed', loaded: true } },
-            mods: {
-              size: 'l'
-            },
-            content: 'Клубная карта'
-          },
-          {
-            elem: 'image',
-            mix: { block: 'page-club', elem: 'card-image' }
-          },
-          {
-            block: 'paragraph',
+            elem: 'content',
+            elemMods: { width: 'narrow' },
             content: [
-            'Для вступления в клуб необязательно быть представителем киноиндустрии. Человек или организация, готовые оказать поддержку Артдокфесту может стать членом клуба Artdoc — для этого мы выпускаем 100 карт «Партнёр Артдокфеста» сроком на один год. Обладатели карты имеют все привелегии участников клуба. ',
-            { block: 'link',
-              url: '',
-              mix: { block: 'page-club', elem: 'link' },
-              content: 'Напишите нам'
-            },
-            ' чтобы, узнать подробности о приобретении карты.'
+              {
+                elem: 'title',
+                elemMods: { size: 'xl' },
+                mix: { block: 'heading', mods: { caps: true, size: 'l' } },
+                content: 'Всего 200 участников'
+              },
+              {
+                block: 'paragraph',
+                content: 'В клубе Артдок 100 мест для представителей индустрии и 100 мест для обладателей годовой карты «Партнер Артдокфеста». Хотите присоединиться — оставьте заявку.'
+              },
+              {
+                block: 'button',
+                mods: {
+                  type: 'link',
+                  size: 'xl'
+                },
+                text: 'Оставить заявку',
+                url: 'mailto:media@artdocfest.com'
+              }
             ]
           }
-      ]
+        ]
       }
-      ]
-    },
 
-    {
-      elem: 'content',
-      content: [
-        {
-          elem: 'text-block',
-          content: [
-            {
-              block: 'title',
-              mix: { block: 'font', mods: { family: 'helvetica-condensed', loaded: true } },
-              mods: {
-                size: 'l'
-              },
-              content: 'Аккредитованные кинокритики'
-            },
-            {
-             elem: 'party',
-            },
-            {
-              elem: 'hidden',
-              elemMods: {
-                    hide: true
-              },
-              content: [
-                {
-                  elem: 'party',
-                  elemMods: {
-                    hide: true
-                  }
-                }
-              ]
-            },
-            {
-              block: 'button',
-              mix: { block: 'page-club', elem: 'make-party' },
-              text: 'Показать ещё'
-            }
-          ]
-        },
-        {
-          elem: 'text-block',
-          content: [
-
-
-            {
-              block: 'title',
-              attrs: { id: 'partners' },
-              mix: { block: 'font', mods: { family: 'helvetica-condensed', loaded: true }},
-              mods: {
-                size: 'l'
-              },
-              content: 'Партнерские фестивали'
-            },
-            {
-              elem: 'partners'
-            }
-
-
-          ]
-        }
-      ]
-    },
-    {
-      elem: 'footer',
-      content: [
-        {
-          elem: 'text-block',
-          mix: { block: 'page-club', elem: 'footer-content' },
-          content: [
-            {
-              block: 'title',
-              mix: { block: 'font', mods: { family: 'helvetica-condensed', loaded: true } },
-              mods: {
-                size: 'l'
-              },
-              content: 'Всего 200 участников'
-            },
-              {
-              block: 'paragraph',
-              content: 'В клубе Артдок 100 мест для представителей индустрии и 100 мест для обладателей годовой карты «Партнер Артдокфеста». Хотите присоединиться — оставьте заявку.'
-            },
-            {
-              block: 'button',
-              mix: { block: 'page-club', elem: 'get-card' },
-              mods: {
-                type: 'link',
-                theme: 'artdoc'
-              },
-              text: 'Оставить заявку',
-              url: ''
-            }
-          ]
-        }
-      ]
-    }
     ]
   });
