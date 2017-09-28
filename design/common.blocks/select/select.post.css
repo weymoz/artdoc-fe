@@ -41,6 +41,8 @@ block(select) {
 
   .elem(clear) {
     display: none;
+    position: relative;
+    z-index: 1;
     width: 2em;
     height: 2em;
     margin-left: 1px;
@@ -94,6 +96,7 @@ block(select) {
 
   block(button) {
     .elem(text) {
+      padding: 0;
       padding-right: 2em;
       text-overflow: ellipsis;
 
@@ -104,13 +107,25 @@ block(select) {
 
     .mod(checked) {
       .elem(text) {
+        padding: 4px 12px;
         padding-right: .25em;
+        background-color: #fff;
+        color: #000;
       }
 
       block(select).elem(tick) {
         display: none;
       }
     }
+    
+    .mod(hovered),
+    .mod(focused) {
+      background-color: transparent;
+      color: #f3203b;
 
+      block(select).elem(tick) {
+        background-image: svg-load('../icon/_symbol/icon_symbol_chevron-down.svg', fill="#f3203b");
+      }
+    }
   }
 }

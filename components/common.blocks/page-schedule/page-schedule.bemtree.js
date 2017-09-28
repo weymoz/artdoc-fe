@@ -45,10 +45,13 @@ block('page-schedule').replace()(function() {
     {
       elem: 'content',
       content: [
-        { block: 'breadcrumbs' },
+        {
+          block: 'breadcrumbs',
+          mix: { block: 'page', elem: 'breadcrumbs' }
+        },
         {
           elem: 'title',
-          elemMods: { size: 'xl' },
+          elemMods: { view: 'condensed-bold', size: 'xl' },
           mix: { block: 'heading', mods: { caps: true, align: 'center', size: 'l' } },
           content: 'Онлайн-киносеансы'
         },

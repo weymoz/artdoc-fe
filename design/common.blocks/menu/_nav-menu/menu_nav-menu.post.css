@@ -24,13 +24,13 @@ block(menu).mod(nav-menu) {
       position: relative;
       color: #f3203b;
 
-      padding-left: 33px;
+      padding-left: 20px;
       box-sizing: border-box;
 
       &:before {
         content: '';
         position: absolute;
-        left: 14px;
+        left: 0;
         top: 6px;
         display: block;
         width: 12px;

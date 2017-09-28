@@ -10,7 +10,7 @@ block('page-selections').replace()(function() {
         },
         {
           elem: 'title',
-          elemMods: { size: 'xl' },
+          elemMods: { view: 'condensed-bold', size: 'xl' },
           mix: { block: 'heading', mods: { caps: true, align: 'center', size: 'l' } },
           content: 'Авторские подборки'
         },
