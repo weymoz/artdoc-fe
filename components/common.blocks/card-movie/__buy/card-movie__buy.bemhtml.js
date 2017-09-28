@@ -30,7 +30,7 @@ block('card-movie').elem('buy')(
     switch ( node.elemMods.type ) {
       case 'button':
         type = 'link';
-        size = 'l';
+        size = 'xl';
         text = 'Купить онлайн-билет';
         break;
       default: // checkbox
@@ -45,11 +45,10 @@ block('card-movie').elem('buy')(
       mix: { block: node.block, elem: node.elem },
       mods: {
         type: type,
-        // width: 'available',
         size: size,
         theme: node.mods.theme
       },
-      url: ( typeof node.attrs.href != 'undefined' ? node.attrs.href : '' ) + '#schedule',
+      url: '/movie/' + node._code + ( typeof node.attrs.href != 'undefined' ? node.attrs.href : '' ) + '#schedule',
       text: text
     }
   })
