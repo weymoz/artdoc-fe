@@ -8,7 +8,7 @@ block('breadcrumbs')(
 
   tag()('nav'),
 
-  match( node => node._url ).content()( node => {
+  match( node => node._url ).content()( ( node, ctx ) => {
     const path = node._url.split( '/' );
     
     // Fix ended `/` in URL
@@ -50,7 +50,7 @@ block('breadcrumbs')(
               active: 'true'
             },
             content: 'О проекте'
-        };
+          };
 
         case 'club':
           return {
@@ -59,7 +59,7 @@ block('breadcrumbs')(
               active: 'true'
             },
             content: 'Клуб Artdoc'
-        };
+          };
 
         case 'movie':
           return [
@@ -68,12 +68,10 @@ block('breadcrumbs')(
               url: '/movie',
               content: 'Все фильмы'
             },
-            {
+            ctx.title && {
               elem: 'item',
-              elemMods: {
-                active: true
-              },
-              content: this.data.title
+              elemMods: { active: true },
+              content: ctx.title
             }
           ];
       }

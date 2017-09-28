@@ -18,7 +18,8 @@ block('page-movie').replace()( node => {
       content: [
         {
           block: 'breadcrumbs',
-          mix: { block: 'page', elem: 'breadcrumbs' }
+          mix: { block: 'page', elem: 'breadcrumbs' },
+          title: _movie.name
         },
         {
           block: 'card-movie',
