@@ -4,7 +4,8 @@ block('heading')(
   ),
 
   mod('size', 'l')(
-    tag()('h2')
+    tag()('h2'),
+    addMix()( { block: 'font', mods: { family: 'helvetica-condenced-bold' } } )
   ),
 
   mod('size', 'm')(

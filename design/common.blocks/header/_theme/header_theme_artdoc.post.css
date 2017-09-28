@@ -6,7 +6,6 @@ block(header).mod(theme artdoc) {
   line-height: 4em;
   background-color: #111;
   color: #fff;
-  min-width: 1024px;
 
   .elem(logo),
   .elem(user) {
@@ -52,7 +51,17 @@ block(header).mod(theme artdoc) {
     background-color: #cccfff;
   }
 
+  .elem(social),
   .elem(user) {
-    background-color: #ccc;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    box-shadow: -13px 0 0 -12px #3d3d42;
+  }
+
+  .elem(social) {
+    box-sizing: border-box;
+    padding: 0 7px;
   }
 }
