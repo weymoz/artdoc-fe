@@ -64,4 +64,8 @@ block(button) {
       content: none;
     }
   }
+
+  .mod(disabled) {
+    opacity: .5;
+  }
 }

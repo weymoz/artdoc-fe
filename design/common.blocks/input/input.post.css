@@ -67,7 +67,7 @@ block(input) {
     &:-webkit-autofill {
       border: 1px solid transparent;
       background-color: transparent;
-      box-shadow: 0 0 0 1em var(--background-color) inset;
+      box-shadow: 0 0 0 1em #fff inset;
       background-clip: padding-box;
     }
 
@@ -79,7 +79,7 @@ block(input) {
     bottom: 0;
     right: 0;
     width: 2em;
-    background-image: svg-load('../../icon/_symbol/icon_symbol_times.svg', fill: #000);
+    background-image: svg-load('../icon/_symbol/icon_symbol_times.svg', fill: #000);
     background-position: 50% 50%;
     background-repeat: no-repeat;
     background-size: cover;
@@ -130,7 +130,7 @@ block(input) {
     z-index: 1;
 
     &:before {
-      box-shadow: var(--border-color_focus)
+      box-shadow: #969;
     }
 
     .elem(control) {

@@ -29,16 +29,15 @@ block('filters')(
   ),
 
   elem('title')(
-    // addMix()({ block: 'page', elem: 'title', elemMods: { size: 'xl' } }),
-    content()( node => {
-      return [
-        node._api.title,
-        {
-          elem: 'result-count',
-          content: node._api.pagination.total_count
-        }
-      ]
-    } )
+    addMix()({ block: 'heading', mods: { size: 'xl' } }),
+    content()( node => [
+      node._api.title,
+      { elem: 'result-count' },
+    ] )
+  ),
+
+  elem('result-count')(
+    content()( node => node._api.pagination.total_count )
   ),
 
   elem('actions')(

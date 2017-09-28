@@ -1,11 +1,16 @@
 modules.define('filters',
-[ 'i-bem-dom', 'form', 'jquery', 'BEMHTML', 'button', 'history', 'uri__querystring' ],
-function(provide, bemDom, Form, $, BEMHTML, Button, History, Querystring ) {
+[ 'i-bem-dom', 'form', 'jquery', 'BEMHTML', 'button', 'history', 'uri__querystring', 'page', 'header', 'dropdown' ],
+function(provide, bemDom, Form, $, BEMHTML, Button, History, Querystring, Page, Header, navMenu ) {
 
 provide(bemDom.declBlock(this.name, {
   onSetMod: {
     js: {
       inited: function() {
+        this._menu = this.findParentBlock( Page )
+          .findChildBlock( Header )
+          .findChildBlock( { block: navMenu, modName: 'nav-menu', modVal: true } );
+        this._domEvents( this._elem('title') ).on('click', this._openMenu );        
+        
         this._toggle = this._elem('toggle').findMixedBlock( Button );
         this._toggle.target = this._elem('form');
         this._domEvents( this._toggle ).on('click', this._onToggle );
@@ -23,6 +28,10 @@ provide(bemDom.declBlock(this.name, {
         this._events( this._form ).on('change', this._onChange, this._form );
       }
     }
+  },
+
+  _openMenu: function () {
+    this._menu.toggleMod('opened');
   },
 
   _onToggle: function() {

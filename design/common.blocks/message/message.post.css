@@ -1,5 +1,6 @@
 block(message) {
   .mod(type text) {
+    width: 100%;
     box-sizing: border-box;
     padding: .5em;
     border-radius: 4px;

@@ -1,8 +1,4 @@
 block('page').elem('title')(
-  addMix()([
-    { block: 'font', mods: { family: 'helvetica-condensed', loaded: true } }
-  ]),
-
   elemMod('size', 'xxl')(
     tag()('h1')
   ),
@@ -25,5 +21,13 @@ block('page').elem('title')(
 
   elemMod('size', 'xs')(
     tag()('h6')
+  ),
+
+  elemMod('view', 'bold')(
+    addMix()( { block: 'font', mods: { family: 'helvetica-bold', loaded: true } } )
+  ),
+
+  elemMod('view', 'condensed-bold')(
+    addMix()( { block: 'font', mods: { family: 'helvetica-condensed-bold', loaded: true } } )
   )
 )

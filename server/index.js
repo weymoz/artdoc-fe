@@ -59,11 +59,11 @@ passport.use(new LocalStrategy({
   client.post( '/auth/auth/login/', { username: username, password: password } )
     .then( api => {
       return api.data.error
-        ? done( null, false, api.data.error )
+        ? done( null, false, api.data )
         : done( null, {
-          status: api.data.status,
-          cookies: api.headers['set-cookie']
-        } )
+            status: api.data.status,
+            cookies: api.headers['set-cookie']
+          } )
     } )
     .catch( () => console.log('Passport error') )
 }));

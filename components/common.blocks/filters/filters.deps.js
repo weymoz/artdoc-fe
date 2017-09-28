@@ -1,5 +1,7 @@
 [{
   shouldDeps: [
+    { block: 'page' },
+    { block: 'heading', mods: { size: 'xl' } },
     { block: 'button', mods: { togglable: 'check', theme: 'artdoc-dark' } },
     { block: 'radio-group', mods: { type: ['button', 'line'] } },        
     { block: 'form' },
@@ -10,7 +12,9 @@
     { block: 'pagination' },
     { block: 'history' },
     { block: 'location' },
-    { block: 'uri', elem: 'querystring' }
+    { block: 'uri', elem: 'querystring' },
+    { block: 'header' },
+    { block: 'dropdown', mods: { 'nav-menu': true } }
   ]
 },{
   tech: 'js',

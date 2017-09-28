@@ -1,7 +1,16 @@
 block('form').mod('view', 'auth')(
+  def()( () => {
+    return applyNext( { ctx: {
+      directions: [ 'right-top' ],
+      method: 'POST',
+      action: '/api/user/login'
+    } } )
+  } ),
   addMods()({
     'has-validation': true,
-    message: 'popup'
+    message: 'text',
+    size: 'm',
+    theme: 'artdoc-dark'
   }),
   content()( () => {
     return [
@@ -13,12 +22,13 @@ block('form').mod('view', 'auth')(
             mods: {
               type: 'input',
               required: true,
-              message: 'popup'
+              message: 'popup',
+              size: 'm',
+              theme: 'artdoc-dark'
             },
+            directions: [ 'top-left' ],
             js: {
-              required: {
-                message: 'Это поле обязательно!'
-              }
+              required: { message: 'Это поле обязательно!' }
             },
             name: 'username',
             content: {
@@ -36,14 +46,15 @@ block('form').mod('view', 'auth')(
           {
             block: 'form-field',
             mods: {
-              type: 'password',
+              type: 'input',
               required: true,
-              message: 'popup'
+              message: 'popup',
+              size: 'm',
+              theme: 'artdoc-dark'
             },
+            directions: [ 'top-left' ],
             js: {
-              required: {
-                message: 'Это поле обязательно!'
-              }
+              required: { message: 'Это поле обязательно!' }
             },
             name: 'password',
             content: {
@@ -51,6 +62,7 @@ block('form').mod('view', 'auth')(
               content: {
                 block: 'input',
                 mods: {
+                  type: 'password',
                   width: 'available',
                   size: 'xl'
                 },
@@ -65,18 +77,16 @@ block('form').mod('view', 'auth')(
         content: {
           block: 'button',
           mods: {
+            disabled: true,
             width: 'available',
             type: 'submit',
             view: 'action',
-            size: 'xl'
+            size: 'xl',
+            theme: 'artdoc-dark'
           },
+          mix: { block: 'form', elem: 'submit' },
           text: 'Войти'
         }
-      },
-      {
-        elem: 'message',
-        mix: { block: 'message', mods: { type: 'text' } },
-        content: 'Неверный логин или пароль'
       }
     ]
   })

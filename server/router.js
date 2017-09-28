@@ -415,7 +415,6 @@ module.exports = function( app ) {
 
   app.post( '/api/user/login', ( req, res, next ) => {
     passport.authenticate( 'local', ( err, user, info ) => {
-      delete info;
       return err
         ? next( err )
         : user
@@ -424,7 +423,7 @@ module.exports = function( app ) {
                 ? next( fail )
                 : res.send( JSON.stringify( user ) )
             } )
-          : res.send( JSON.stringify( user ) )
+          : res.send( JSON.stringify( info ) )
     } )(req, res, next);
   });
 

@@ -1,4 +1,4 @@
-modules.define('form', ['jquery'], function(provide, $, Form) {
+modules.define('form', [ 'jquery', 'i-bem-dom' ], function( provide, $, bemDom, Form ) {
 
 provide(Form.declMod({ modName: 'view', modVal: 'auth' }, {
   onSetMod: {
@@ -12,22 +12,21 @@ provide(Form.declMod({ modName: 'view', modVal: 'auth' }, {
   },
 
   _onFormSuccess: function() {
-    var _this = this;
-
-    var apiSettings = {
+    const apiSettings = {
       'async': true,
-      'url': '/api/user/login',
-      'method': 'POST',
-      'headers': {
-        'content-type': 'application/x-www-form-urlencoded',
-      },
-      'data': _this.getVal()
+      'url': this.domElem[0].action,
+      'method': 'post',
+      'headers': { 'content-type': 'application/x-www-form-urlencoded' },
+      'data': this.getVal()
     }
 
-    $.ajax(apiSettings).done(function (response) {
-      let msg = JSON.parse( response );
-      if (!msg) {
-        _this.setMessageVal('Ошибка авторизации')
+    $.ajax(apiSettings).done( response => {
+      const msg = JSON.parse( response );
+      if ( msg.error ) {
+        this.setMessageVal('Ошибка авторизации');
+        this.getMessage().show();
+      } else {
+        window.location.href = window.location.href;
       }
     });
   },
