@@ -23,7 +23,7 @@ block('card-poster')(
           {
             elem: 'title',
             mix: [
-              { block: 'font', mods: { family: 'helvetica-neue-condensed', loaded: true } },
+              { block: 'font', mods: { family: 'helvetica-neue-condensed-bold', loaded: true } },
               { block: 'card-poster', elem: 'aside_title' }
             ],
             content: 'Будущие киносеансы'

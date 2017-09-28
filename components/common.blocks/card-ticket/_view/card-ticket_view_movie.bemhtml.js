@@ -24,7 +24,7 @@ block('card-ticket').mod('view', 'movie')(
     return [
       {
         elem: 'header',
-        mix: { block: 'font', mods: { family: 'helvetica-neue-condensed', loaded: true }  },
+        mix: { block: 'font', mods: { family: 'helvetica-neue-condensed-bold', loaded: true }  },
         content: [
           { elem: 'room' },
           { elem: 'city' },

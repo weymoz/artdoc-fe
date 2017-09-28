@@ -36,16 +36,8 @@ block(footer) {
   .block(list){
 
     elem(item){
-      color: #A0A0AC;
+      color: #a0a0ac;
       cursor: pointer;
-
-      block(link) {
-        text-decoration: none;
-      }
-
-      block(link):hover {
-        color: unset;
-      }
     }
   }
 
@@ -65,10 +57,14 @@ block(footer) {
     lost-column: 11/47 0 0;
 
     block(list){
-        elem(item) {
-          font-size: 14px;
+      elem(item) {
+        font-size: 14px;
       }
     }
+  }
+
+  .elem(title) {
+    margin-bottom: 24px;
   }
 
   .elem(social) {
@@ -78,6 +74,10 @@ block(footer) {
   .elem(social-item) {
     border: 1px solid #fff;
     border-radius: 2em;
+
+    &:hover {
+      border-color: transparent;
+    }
 
     & + & {
       margin-left: .5em;

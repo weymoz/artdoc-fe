@@ -23,55 +23,57 @@ block('footer').content()( ( node, ctx ) => {
           elem: 'for-viewers',
           content: [
             {
-              block: 'title',
-              mix: { block: 'font', mods: { family: 'helvetica-neue-condensed', loaded: true } },
-              mods: {
-                size: 'm'
-              },
+              block: 'heading',
+              mods: { caps: true, size: 'xs', theme: 'artdoc-dark' },
+              mix: [{ block: node.block, elem: 'title' }, { block: 'font', mods: { family: 'helvetica-neue-condensed-bold', loaded: true } }],
               content: 'Зрителям'
             },
             {
               block: 'list',
-              mods: {
-                type: 'unstyled'
-              },
+              mods: { type: 'unstyled' },
               content: [
-                { elem: 'item',
-                  content: [
-                  {
+                {
+                  elem: 'item',
+                  content: {
                     block: 'link',
+                    mods: { view: 'text' },
                     url: '/about',
                     content: 'О проекте'
-                  }]
+                  }
                 },
-                { elem: 'item',
-                  content: [
-                  {
+                {
+                  elem: 'item',
+                  content: {
                     block: 'link',
+                    mods: { view: 'text' },
                     url: '/selection',
                     content: 'Подборки'
-                  }]
+                  }
                 },
-                { elem: 'item',
-                  content: [
-                  {
+                {
+                  elem: 'item',
+                  content: {
                     block: 'link',
+                    mods: { view: 'text' },
                     url: '/cinema',
                     content: 'Онлайн-киносеансы'
-                  }]
+                  }
                 },
-                { elem: 'item',
-                  content: [
-                  {
+                {
+                  elem: 'item',
+                  content: {
                     block: 'link',
+                    mods: { view: 'text' },
                     url: '/movie',
                     content: 'Все фильмы'
-                  }]
+                  }
                 },
-                // { elem: 'item',
+                // {
+                //   elem: 'item',
                 //   content: [
                 //   {
                 //     block: 'link',
+                //     mods: { view: 'text' },
                 //     url: '',
                 //     content: 'Помощь'
                 //   }]
@@ -84,11 +86,9 @@ block('footer').content()( ( node, ctx ) => {
           elem: 'for-professionals',
           content: [
             {
-              block: 'title',
-              mix: { block: 'font', mods: { family: 'helvetica-neue-condensed', loaded: true } },
-              mods: {
-                size: 'm'
-              },
+              block: 'heading',
+              mods: { caps: true, size: 'xs', theme: 'artdoc-dark' },
+              mix: [{ block: node.block, elem: 'title' }, { block: 'font', mods: { family: 'helvetica-neue-condensed-bold', loaded: true } }],
               content: 'Профессионалам кино'
             },
             {
@@ -98,25 +98,26 @@ block('footer').content()( ( node, ctx ) => {
               },
               content: [
                 { elem: 'item',
-                  content: [
-                  {
+                  content: {
                     block: 'link',
+                    mods: { view: 'text' },
                     url: '/club',
                     content: 'Клуб artdoc.media'
-                  }]
+                  }
                 },
                 { elem: 'item',
-                  content: [
-                  {
+                  content: {
                     block: 'link',
+                    mods: { view: 'text' },
                     url: '/club#partners',
                     content: 'Аккредитованные фестивали'
-                  }]
+                  }
                 },
                 // { elem: 'item',
                 //   content: [
                 //   {
                 //     block: 'link',
+                //     mods: { view: 'text' },
                 //     url: '/cinema',
                 //     content: 'Аккредитованная пресса'
                 //   }]
@@ -125,6 +126,7 @@ block('footer').content()( ( node, ctx ) => {
                 //   content: [
                 //   {
                 //     block: 'link',
+                //     mods: { view: 'text' },
                 //     url: '/movie',
                 //     content: 'Ретроспективы'
                 //   }]
@@ -133,6 +135,7 @@ block('footer').content()( ( node, ctx ) => {
                 //   content: [
                 //   {
                 //     block: 'link',
+                //     mods: { view: 'text' },
                 //     url: '',
                 //     content: 'Предложить фильм'
                 //   }]

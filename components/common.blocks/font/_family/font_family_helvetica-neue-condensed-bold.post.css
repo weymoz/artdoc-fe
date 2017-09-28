@@ -1,5 +1,6 @@
 block(font).mod(family helvetica-neue-condensed-bold).mod(loaded) {
   font-family: 'Helvetica Neue Condensed Bold';
+  font-weight: bold;
 }
 
 @font-face {

@@ -1,6 +1,5 @@
 [{
-  shouldDeps: [
-    { mods: { theme: '*' } },
+  mustDeps: [
     { block: 'font', mods: { family: 'pt-mono' } }
   ]
 }]

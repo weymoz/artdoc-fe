@@ -1,6 +1,11 @@
 [{
+  mustDeps: [
+    { block: 'font', mods: { family: 'helvetica-neue-condensed-bold' } },
+  ]
+},{
   shouldDeps: [
-    { mods: { theme: '*' },
+    {
+      mods: { theme: '*' },
       elems: [
         'title',
         'party',
@@ -8,7 +13,6 @@
         'partners'
       ]
     },
-    { block: 'font', mods: { family: 'pt-mono' } },
     { block: 'form', mods: { view: 'auth' } },
     { block: 'image' },
     { block: 'paragrapgh' }

@@ -1,6 +1,6 @@
 [{
   shouldDeps: [
     { mods: { theme: '*' } },
-    { block: 'font', mods: { family: 'helvetica-neue-condensed' } }
+    { block: 'font', mods: { family: 'helvetica-neue-condensed-bold' } }
   ]
 }]
