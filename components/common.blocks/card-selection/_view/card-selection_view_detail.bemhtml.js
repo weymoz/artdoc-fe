@@ -4,7 +4,7 @@ block('card-selection').mod('view', 'detail')(
     return applyNext({ author_image: 'l' });
   }),
 
-  content()( node => {
+  content()( () => {
     return [
         {
           elem: 'content',
@@ -14,14 +14,14 @@ block('card-selection').mod('view', 'detail')(
                 width: 1024,
                 height: 250,
                 content: [
-                  {
-                    block: 'breadcrumbs',
-                    mix: [
-                      { block: 'page', elem: 'content' },
-                      { block: node.block, elem: 'header' },
-                    ],
-                    url: '/selection/' + node._code
-                  },
+                  // {
+                  //   block: 'breadcrumbs',
+                  //   mix: [
+                  //     { block: 'page', elem: 'content' },
+                  //     { block: node.block, elem: 'header' },
+                  //   ],
+                  //   url: '/selection/' + node._code
+                  // },
                   {
                     elem: 'footer',
                     mix: { block: 'page', elem: 'content' },
