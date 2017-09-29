@@ -12,6 +12,7 @@ block('footer').content()( ( node, ctx ) => {
             },
             {
               block: 'paragraph',
+              mods: { size: 's' },
               mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } },
               content: {
                 html: 'Самый большой архив документального кино&nbsp;на русском языке'
@@ -37,6 +38,7 @@ block('footer').content()( ( node, ctx ) => {
                   content: {
                     block: 'link',
                     mods: { view: 'text' },
+                    mix: { block: node.block, elem: 'nav-item' },
                     url: '/about',
                     content: 'О проекте'
                   }
@@ -46,6 +48,7 @@ block('footer').content()( ( node, ctx ) => {
                   content: {
                     block: 'link',
                     mods: { view: 'text' },
+                    mix: { block: node.block, elem: 'nav-item' },
                     url: '/selection',
                     content: 'Подборки'
                   }
@@ -55,6 +58,7 @@ block('footer').content()( ( node, ctx ) => {
                   content: {
                     block: 'link',
                     mods: { view: 'text' },
+                    mix: { block: node.block, elem: 'nav-item' },
                     url: '/cinema',
                     content: 'Онлайн-киносеансы'
                   }
@@ -64,6 +68,7 @@ block('footer').content()( ( node, ctx ) => {
                   content: {
                     block: 'link',
                     mods: { view: 'text' },
+                    mix: { block: node.block, elem: 'nav-item' },
                     url: '/movie',
                     content: 'Все фильмы'
                   }
@@ -74,6 +79,7 @@ block('footer').content()( ( node, ctx ) => {
                 //   {
                 //     block: 'link',
                 //     mods: { view: 'text' },
+                //     mix: { block: node.block, elem: 'nav-item' },
                 //     url: '',
                 //     content: 'Помощь'
                 //   }]
@@ -101,6 +107,7 @@ block('footer').content()( ( node, ctx ) => {
                   content: {
                     block: 'link',
                     mods: { view: 'text' },
+                    mix: { block: node.block, elem: 'nav-item' },
                     url: '/club',
                     content: 'Клуб artdoc.media'
                   }
@@ -109,6 +116,7 @@ block('footer').content()( ( node, ctx ) => {
                   content: {
                     block: 'link',
                     mods: { view: 'text' },
+                    mix: { block: node.block, elem: 'nav-item' },
                     url: '/club#partners',
                     content: 'Аккредитованные фестивали'
                   }
@@ -118,6 +126,7 @@ block('footer').content()( ( node, ctx ) => {
                 //   {
                 //     block: 'link',
                 //     mods: { view: 'text' },
+                //     mix: { block: node.block, elem: 'nav-item' },
                 //     url: '/cinema',
                 //     content: 'Аккредитованная пресса'
                 //   }]
@@ -127,6 +136,7 @@ block('footer').content()( ( node, ctx ) => {
                 //   {
                 //     block: 'link',
                 //     mods: { view: 'text' },
+                //     mix: { block: node.block, elem: 'nav-item' },
                 //     url: '/movie',
                 //     content: 'Ретроспективы'
                 //   }]
@@ -136,6 +146,7 @@ block('footer').content()( ( node, ctx ) => {
                 //   {
                 //     block: 'link',
                 //     mods: { view: 'text' },
+                //     mix: { block: node.block, elem: 'nav-item' },
                 //     url: '',
                 //     content: 'Предложить фильм'
                 //   }]
