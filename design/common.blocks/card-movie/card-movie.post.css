@@ -26,6 +26,10 @@ block(card-movie) {
         font-size: 35px;
       }
     }
+
+    .elem(buy) {
+      width: 100%;
+    }
   }
 
   .mod(view order) {
@@ -248,7 +252,7 @@ block(card-movie) {
     box-shadow: 0px 28px 0px -27px rgb(255, 255, 255, 0.1);
 
     .elem(aside) {
-      lost-column: 16/26 0 0;
+      lost-column: 16/26 0 14px;
       margin-left: 14px;
     }
 
@@ -271,6 +275,10 @@ block(card-movie) {
 
     .elem(content) {
       position: relative;
+
+      @media (max-width: 1280px) {
+        min-height: 460px; /* костыль, пока нет моб. версии */
+      }
     }
 
     .elem(orig-name) {
@@ -278,10 +286,7 @@ block(card-movie) {
     }
 
     .elem(name) {
-      font-weight: bold;
-      font-size: 40px;
-      line-height: 48px;
-      color: white;
+      margin-bottom: 24px;
     }
 
     .elem(info) {
