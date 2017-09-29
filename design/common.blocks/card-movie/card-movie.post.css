@@ -11,6 +11,10 @@ block(card-movie) {
       margin-left: 56px;
     }
 
+    .elem(content) {
+      padding-bottom: 80px; /* место под слайдер */
+    }
+
     .elem(rating) {
       font-size: 32px;
       line-height: 48px;
@@ -538,6 +542,7 @@ block(card-movie) {
     right: 0;
     white-space: nowrap;
     overflow: auto;
+    padding-top: 10px;
     padding-bottom: 10px;
   }
 
