@@ -1,4 +1,4 @@
-block(menu).mod(theme artdoc) {
+block(menu) {
   box-sizing: border-box;
   user-select: none;
   outline: 0;
