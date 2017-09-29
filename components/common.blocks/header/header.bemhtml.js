@@ -74,25 +74,25 @@ block('header')(
           }
         } )
       },
-      {
-        elem: 'user',
-        content: {
-          block: 'button',
-          mods: {
-            // type: 'link',
-            view: 'plain',
-            size: 'xxl'
-          },
-          icon: {
-            block: 'icon',
-            mods: {
-              symbol: 'user',
-              size: 'xxl'
-            }
-          },
-          url: '/login'
-        }
-      }
+      // {
+      //   elem: 'user',
+      //   content: {
+      //     block: 'button',
+      //     mods: {
+      //       // type: 'link',
+      //       view: 'plain',
+      //       size: 'xxl'
+      //     },
+      //     icon: {
+      //       block: 'icon',
+      //       mods: {
+      //         symbol: 'user',
+      //         size: 'xxl'
+      //       }
+      //     },
+      //     url: '/login'
+      //   }
+      // }
     ];
   })
 )
