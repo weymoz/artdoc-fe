@@ -2,8 +2,6 @@ block( 'card-movie' ).elem( 'name' )(
 
   match( node => !node._name ).def()(''),
 
-  tag()('h2'),
-
   content()( node => node._name ),
 
   match( node => node._url && node.mods.view !== 'promo' && node.mods.view !== 'selection' ).content()( node => {
