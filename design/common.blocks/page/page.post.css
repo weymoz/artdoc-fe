@@ -5,16 +5,21 @@ block(page) {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 
+  min-width: 960px; /* костыль, пока нет моб. версии */
+
   .elem(content) {
-    lost-center: 1316px;
+    lost-center: 1428px;
     position: relative;
+    box-sizing: border-box;
+    padding-left: 56px;
+    padding-right: 56px;
 
     @media (max-width: 1400px) {
-      lost-center: 1200px;
+      lost-center: 1288px;
     }
 
     @media (max-width: 1280px) {
-      lost-center: 960px;
+      lost-center: 1232px;
     }
 
     .mod(width narrow) {
@@ -42,17 +47,18 @@ block(page) {
   }
 
   .elem(title) {
+    margin-top: 80px;
     margin-bottom: 32px;
   }
+
+  /* Всякие отступы */
 
   .elem(breadcrumbs) {
     margin-top: 32px;
     margin-bottom: 32px;
   }
 
-  mod(view page-index) {
-    .elem(slider) {
-      margin-bottom: 80px;
-    }
+  .elem(slider) {
+    margin-bottom: 74px;
   }
 }
