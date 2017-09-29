@@ -9,32 +9,27 @@ block( 'card-selection' ).elem( 'author' )(
     let author = node._author[0];
     return {
         block: 'card-author',
-        mods: {
-          size: node.author_image
-        },
+        mods: { size: node.author_image },
         author: author,
-        content: [
+        content: {
+          block: 'list',
+          content: [
             {
-              block: 'list',
+              elem: 'date',
+              mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } },
               content: [
-                {
-                  elem: 'date',
-                  mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } },
-                  content: [
-                  {
-                    block: 'text',
-                    mods: {
-                      format: 'datetime'
-                    },
-                    format: 'DD MMMM YYYY',
-                    content: node._created_at
-                  }
-                  ]
-                }
+              {
+                block: 'text',
+                mods: {
+                  format: 'datetime'
+                },
+                format: 'DD MMMM YYYY',
+                content: node._created_at
+              }
               ]
             }
-
-        ]
-    }
+          ]
+        }
+      }
   } )
 );
