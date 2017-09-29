@@ -5,7 +5,7 @@ block(news-block) {
   flex-direction: column;
 
   .elem(title) {
-    margin-bottom: 15px;
+    margin-bottom: 16px;
   }
 
   .elem(content) {
@@ -17,7 +17,7 @@ block(news-block) {
   .elem(preview) {
     position: relative;
     display: block;
-    margin-right: 112px;
+    margin-right: 36%;
     margin-top: 16px;
 
     .mod(has-icon):after {

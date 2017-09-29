@@ -7,7 +7,7 @@ block(ticket-case).mod(theme artdoc) {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
+    margin-bottom: 24px;
   }
 
   .elem(title) {

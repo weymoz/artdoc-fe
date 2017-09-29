@@ -1,0 +1,8 @@
+block(list).mod(view club-performers) {
+  lost-center: 100%;
+
+  .elem(item) {
+    lost-column: 1/4 4 28px;
+    margin-bottom: 32px;
+  }
+}

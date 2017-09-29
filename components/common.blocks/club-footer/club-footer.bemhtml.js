@@ -35,15 +35,29 @@ block('club-footer')(
           {
             elem: 'footer-item',
             content: [
-            { elem: 'title', mix: { block: 'font', mods: { family: 'helvetica-neue-condensed-bold', loaded: true } }, content: ['партнерские фестивали'] },
-            { elem: 'partners' }
+              {
+                elem: 'title',
+                mix: [
+                  { block: 'heading', mods: { caps: true, size: 'xs' } },
+                  { block: 'font', mods: { family: 'helvetica-neue-condensed-bold', loaded: true } }
+                ],
+                content: 'Партнёрские фестивали'
+              },
+              { elem: 'partners' }
             ]
           },
           {
             elem: 'footer-item',
             content: [
-            { elem: 'title', mix: { block: 'font', mods: { family: 'helvetica-neue-condensed-bold', loaded: true } }, content: ['аккредитованные критики'] },
-            { elem: 'party' }
+              {
+                elem: 'title',
+                mix: [
+                  { block: 'heading', mods: { caps: true, size: 'xs' } },
+                  { block: 'font', mods: { family: 'helvetica-neue-condensed-bold', loaded: true } }
+                ],
+                content: 'Аккредитованные критики'
+              },
+              { elem: 'party' }
             ]
           },
           {
@@ -51,7 +65,14 @@ block('club-footer')(
             content: node.user
             ? 'Вы авторизованы'
             : [
-                { elem: 'title', mix: { block: 'font', mods: { family: 'helvetica-neue-condensed-bold', loaded: true } }, content: ['вход для участников'] },
+                {
+                  elem: 'title',
+                  mix: [
+                    { block: 'heading', mods: { caps: true, size: 'xs' } },
+                    { block: 'font', mods: { family: 'helvetica-neue-condensed-bold', loaded: true } }
+                  ],
+                  content: 'Вход для участников'
+                },
                 { block: 'form', mods: { view: 'auth' }, mix: { block: 'club-footer', elem: 'club-login' } }
               ]
           }

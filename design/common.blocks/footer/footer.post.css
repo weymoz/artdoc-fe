@@ -33,14 +33,11 @@ block(footer) {
     }
   }
 
-  .block(list){
-
-    elem(item){
-      color: #a0a0ac;
-      cursor: pointer;
-    }
+  .elem(nav-item){
+    color: #a0a0ac;
+    line-height: 2;
   }
-
+  
   .elem(for-viewers) {
     lost-column: 8/47 0 0;
     padding-right: 56px;
