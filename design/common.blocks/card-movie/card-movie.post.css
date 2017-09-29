@@ -533,8 +533,12 @@ block(card-movie) {
   }
 
   .elem(slider) {
-    margin-top: 10px;
+    position: absolute;
+    left: 0;
+    right: 0;
     white-space: nowrap;
+    overflow: auto;
+    padding-bottom: 10px;
   }
 
   .elem(slider-item) {
