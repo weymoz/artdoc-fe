@@ -17,13 +17,13 @@ block('page-movie').replace()( node => {
       elem: 'content',
       content: [
         {
-          block: 'breadcrumbs'
+          block: 'breadcrumbs',
+          mix: { block: 'page', elem: 'breadcrumbs' },
+          title: _movie.name
         },
         {
           block: 'card-movie',
-          mods: {
-            view: 'full'
-          },
+          mods: { view: 'full' },
           movie: _movie
         }
       ]
@@ -45,20 +45,7 @@ block('page-movie').replace()( node => {
         movie: _movie
       }
     },
-    {
-      elem: 'content',
-      content: {
-        block: 'rewards'
-      }
-    },
-    {
-      block: 'section',
-      content: [
-      {
-        block: 'club-footer',
-        mix: { block: 'page', elem: 'club' }
-      }
-      ]
-    }
+    { elem: 'content', content: { block: 'rewards' } },
+    { block: 'club-footer' }
   ];
 });

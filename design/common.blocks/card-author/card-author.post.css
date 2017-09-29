@@ -6,12 +6,13 @@ block(card-author) {
     margin-left: .5em;
   }
 
-  @each $size, $fontSize in
+  @each $size, $width in
     (xs, s, m, l, xl, xxl),
-    (9px, 12px, 16px, 18px, 22px, 32px) {
+    (24px, 32px, 48px, 86px, 112px, 312px) {
     .mod(size $size) {
       .elem(aside) {
-        font-size: $fontSize;
+        width: $width;
+        height: $width;
       }
     }
   }
@@ -19,12 +20,16 @@ block(card-author) {
   .elem(content) {
     padding-right: .5em;
     box-sizing: border-box;
+    font-size: 14px;
+    line-height: 20px;
   }
 
   .elem(aside) {
     margin-right: .5em;
-    width: 5.25em;
-    height: 5.25em;
   }
 
+  .mod(view club-performer) {
+    display: flex;
+    flex-direction: column;
+  }
 }

@@ -26,9 +26,8 @@ block('form').mod('view', 'order')(
     return [
       {
         block : 'fieldset',
-        attrs: {
-          disabled: !ctx.session
-        },
+        attrs: { disabled: !ctx.session },
+        mix: { block: node.block, elem: 'content' },
         content : [
           {
             tag: 'input',
@@ -57,9 +56,7 @@ block('form').mod('view', 'order')(
             },
             directions: ['right-top'],
             js: {
-              required: {
-                message: 'Shit!'
-              }
+              required: { message: 'Это поле обязательно!' }
             },
             name: 'email',
             content: [
@@ -76,8 +73,7 @@ block('form').mod('view', 'order')(
                   block: 'input',
                   mods: {
                     width: 'available',
-                    size: 'l',
-                    theme: 'islands'
+                    size: 'xl'
                   }
                 }
               }
@@ -91,15 +87,15 @@ block('form').mod('view', 'order')(
               required: true,
               message: 'popup',
             },
+            js: {
+              required: { message: 'Это поле обязательно!' }
+            },
             directions: ['right-top'],
             name: 'term',
             content: [
               {
                 block: 'checkbox',
-                mods: {
-                  size: 'l',
-                  theme: 'islands'
-                },
+                mods: { size: 'l' },
                 text: [
                   'Я принимаю ',
                   {
@@ -112,18 +108,21 @@ block('form').mod('view', 'order')(
               }
             ]
           },
-          {
-            block: 'button',
-            mix: [{ block: node.block, elem: 'section' },  { block: 'font', mods: { family: 'helvetica-bold', loaded: true } }],
-            mods: {
-              type: 'submit',
-              width: 'available',
-              size: 'l',
-              theme: 'artdoc-dark'
-            },
-            text: ctx.submitLabel + ' онлайн-билет'
-          }
         ]
+      },
+      {
+        elem: 'footer',
+        content: {
+          block: 'button',
+          mix: { block: node.block, elem: 'submit' },
+          mods: {
+            type: 'submit',
+            width: 'available',
+            size: 'xl',
+            theme: 'artdoc-dark'
+          },
+          text: ctx.submitLabel + ' онлайн-билет'
+        }
       },
       {
         block: 'modal',

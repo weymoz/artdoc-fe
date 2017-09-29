@@ -1,7 +1,4 @@
-block('page-index').replace()(function() {
-
-  // Функции для постера
-  const poster = this.data.poster;
+block('page-index').replace()( node => {
 
   // Функция для слайдера
   let slider = [];
@@ -12,7 +9,7 @@ block('page-index').replace()(function() {
       id: null,
       code: 'all',
     },
-    ...this.data.category
+    ...node.data.category
   ];
   let links = categories.length;
   const slidesCount = ( ( links - ( links % linkPerSlide ) ) / linkPerSlide ) + ( links % linkPerSlide ? 1 : 0 );
@@ -23,9 +20,7 @@ block('page-index').replace()(function() {
       let currentLink = categories[ categories.length - links ]
       slider[ slidePage ][ linkCount ] = {
         block: 'link',
-        mods: {
-          view: 'tag'
-        },
+        mods: { view: 'tag' },
         mix: { block: 'slider', elem: 'link' },
         url: currentLink.id ? '/movie/category-' + currentLink.code : '/movie',
         content: currentLink.name
@@ -33,95 +28,109 @@ block('page-index').replace()(function() {
     }
   }
 
+  const poster = node.data.poster.items.map( movie => {
+    /*
+     * Normalization
+     */
+
+    // Fix 3 hours offset
+    let offset = ( new Date().getTimezoneOffset() / 60 );
+    let dateFromServer = new Date( movie.date_gmt3 * 1000 );
+    let dateUTC = dateFromServer.getTime() - ( dateFromServer.getTimezoneOffset() * 60000 );
+    let correctDate = new Date( dateUTC + ( 3600000 * offset ) );
+    movie.date_gmt3 = correctDate.getTime() / 1000;
+
+    // // Folding
+    return Object.assign( {}, movie.movie[0], { schedules: movie.sessions }, {
+      date: movie.date_gmt3,
+      discuss_link: movie.discuss_link,
+      discuss_preview: movie.discuss_preview,
+      premiere: movie.discuss_preview,
+    } );
+  } );
+
+
   return [
+    {
+      elem: 'content',
+      elemMods: { width: 'narrow' },
+      content: {
+        elem: 'title',
+        elemMods: { view: 'condensed-bold', size: 'xl' },
+        mix: { block: 'heading', mods: { caps: true, align: 'center', size: 'l' } },
+        content: {
+          html: 'Архив и онлайн-сеансы документального кино на&nbsp;русском языке'
+        }
+      }
+    },
     {
       elem: 'content',
       content: [
         {
-          elem: 'title',
-          elemMods: {
-            size: 'xl'
-          },
-          mix: { block: 'font', mods: { family: 'helvetica-condensed', loaded: true } },
-          content:  'Архив и онлайн-сеансы документального кино на русском языке'
-        },
-        {
           block: 'slider',
-          content: slider
-        },
+          mix: { block: 'page', elem: 'slider' }, content: slider },
+        { block: 'card-poster', poster: poster },
         {
-          block: 'card-poster',
-          poster: poster,
-          mix: { block: 'page', elem: 'poster' }
+          elem: 'title',
+          elemMods: { view: 'condensed-bold', size: 'xl' },
+          mix: { block: 'heading', mods: { caps: true, align: 'center', size: 'l' } },
+          content: 'Новости и события'
         },
+        { block: 'news' },
         {
-          block: 'news',
-          mix: { block: 'page', elem: 'news' }
-        },
-        {
-            elem: 'title',
-            elemMods: {
-            size: 'xl'
-            },
-            mix: { block: 'font', mods: { family: 'helvetica-condensed', loaded: true } },
-            content: 'Авторские подборки'
+          elem: 'title',
+          elemMods: { view: 'condensed-bold', size: 'xl' },
+          mix: { block: 'heading', mods: { caps: true, align: 'center', size: 'l' } },
+          content: 'Авторские подборки'
         },
         {
           elem: 'collections',
-          content: this.data.api.slice(0, 3).map( item => {
+          content: node.data.api.slice(0, 3).map( item => {
             return {
               block: 'card-selection',
               mods: {
-                view: [ 'selections' ],
+                view: 'selections',
                 theme: item.image ? 'artdoc' : 'artdoc-dark'
               },
               selection: item
             }
           } )
         },
+      ]
+    },
+    {
+      elem: 'content',
+      elemMods: { width: 'tiny' },
+      content: [
         {
-            elem: 'title',
-            elemMods: {
-            size: 'xl'
-            },
-            mix: { block: 'font', mods: { family: 'helvetica-condensed', loaded: true } },
-            content: 'О проекте'
+          elem: 'title',
+          elemMods: { view: 'condensed-bold', size: 'xl' },
+          mix: { block: 'heading', mods: { caps: true, align: 'center', size: 'l' } },
+          content: 'О проекте'
         },
         {
-          block: 'info',
-          content: [
-          {
-            elem: 'content',
-            content: 'Артдокмедиа — это архив документального кино, независимого и актуального контента, снятого в основном на территории бывшего СССР с начала 2000-х годов. Наш киноархив устроен по классическому принципу синематеки: доступная база с информацией о фильмах, возможности просмотров, ретроспективы, тематические циклы. Большая часть нашей коллекции состоит из фильмов, снятых без государственного участия, а, значит, не находящихся в каких-либо архивах и фондовых хранилищах. Немало студий, производивших эти фильмы, на сегодняшний день прекратили свое существование. И для многих фильмов наш архив является единственным местом, сохраняющим эти картины для зрителя и для истории.'
-          },
-          {
+          block: 'paragraph',
+          mods: { align: 'center' },
+          content: 'Артдокмедиа — это архив документального кино, независимого и актуального контента, снятого в основном на территории бывшего СССР с начала 2000-х годов. Наш киноархив устроен по классическому принципу синематеки: доступная база с информацией о фильмах, возможности просмотров, ретроспективы, тематические циклы. Большая часть нашей коллекции состоит из фильмов, снятых без государственного участия, а, значит, не находящихся в каких-либо архивах и фондовых хранилищах. Немало студий, производивших эти фильмы, на сегодняшний день прекратили свое существование. И для многих фильмов наш архив является единственным местом, сохраняющим эти картины для зрителя и для истории.'
+        },
+        {
+          block: 'paragraph',
+          mods: { align: 'center' },
+          content: {
             block: 'button',
-            mix: { block: 'info', elem: 'show-more' },
             mods: {
               type: 'link',
-              theme: 'artdoc'
+              size: 'xxl'
             },
             text: 'Подробнее',
             url: '/about'
           }
-          ]
         },
       ]
     },
     {
-      block: 'section',
-      content: [
-      {
-        block: 'club-footer',
-        mix: { block: 'page', elem: 'club' }
-      }
-      ]
+      block: 'club-footer'
     }
   ]
 
 })
-
-
-
-
-

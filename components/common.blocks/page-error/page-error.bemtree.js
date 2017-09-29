@@ -19,9 +19,7 @@ block('page-error').replace()( node => {
     },
     {
       elem: 'content',
-      elemMods: {
-        view: 'narrow'
-      },
+      elemMods: { width: 'narrow' },
       content: [
         {
           block: 'paragraph',

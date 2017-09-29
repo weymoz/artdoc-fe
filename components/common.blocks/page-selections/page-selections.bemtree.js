@@ -5,19 +5,20 @@ block('page-selections').replace()(function() {
       elem: 'content',
       content: [
         {
-          block: 'breadcrumbs'
+          block: 'breadcrumbs',
+          mix: { block: 'page', elem: 'breadcrumbs' }
         },
         {
           elem: 'title',
-          mix: { block: 'font', mods: { family: 'helvetica-condensed', loaded: true } },
+          elemMods: { view: 'condensed-bold', size: 'xl' },
+          mix: { block: 'heading', mods: { caps: true, align: 'center', size: 'l' } },
           content: 'Авторские подборки'
         },
         selections.map( item => {
           return {
             block: 'card-selection',
             mods: {
-              view: [ 'selections' ],
-              theme: item.image ? 'artdoc' : 'artdoc-dark'
+              view: 'selections'
             },
             selection: item
           }

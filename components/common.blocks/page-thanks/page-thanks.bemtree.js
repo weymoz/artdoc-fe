@@ -4,7 +4,7 @@ block('page-thanks')(
     return [
       {
         elem: 'content',
-        elemMods: { view: 'narrow' },
+        elemMods: { width: 'narrow' },
         content: [
           {
             elem: 'header',
@@ -75,7 +75,7 @@ block('page-thanks')(
     return [
       {
         elem: 'content',
-        elemMods: { view: 'narrow' },
+        elemMods: { width: 'narrow' },
         content: [
           {
             elem: 'header',

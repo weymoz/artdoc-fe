@@ -1,11 +1,11 @@
 block('page')(
-
-  //addMix()({ block: 'font', mods: { family: 'helvetica-neue', loaded: true } }),
-
+  def()( node => {
+    return applyNext( { 'ctx.user': node.data.user } )
+  } ),
   content()( node => {
     return [
-      {
-        tag: 'noscript', // Google Tag Manager
+      { // Google Tag Manager
+        tag: 'noscript',
         content: {
           html: '<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MKD3FG5" height="0" width="0" style="display:none;visibility:hidden"></iframe>'
         }
@@ -23,5 +23,4 @@ block('page')(
       }
     ];
   } )
-
 )

@@ -1,8 +1,5 @@
-@import url("https://fast.fonts.net/lt/1.css?apiType=css&c=c20d4c2b-d38c-4d42-9749-ae6773d410d7&fontids=1489180,1489204,1489294");
-
 block(font) {
-  font-family:  'Helvetica Neue Regular',
-                -apple-system,
+  font-family:  -apple-system,
                 BlinkMacSystemFont,
                 Segoe UI,
                 Roboto,
@@ -14,9 +11,3 @@ block(font) {
                 Helvetica Neue,
                 sans-serif
 }
-@font-face{
-    font-family:"Helvetica Neue Regular";
-    src:url("Fonts/1489180/9c4e9a25-0ac9-484d-bdb3-6b1796284fd2.eot?#iefix");
-    src:url("Fonts/1489180/9c4e9a25-0ac9-484d-bdb3-6b1796284fd2.eot?#iefix") format("eot"),url("Fonts/1489180/24df3ebe-5cf3-4837-b2b4-3d8a8a828ceb.woff2") format("woff2"),url("Fonts/1489180/24aa46ca-2f27-4ad9-9ccf-a11760067406.woff") format("woff"),url("Fonts/1489180/d44e416e-85fc-4570-b097-900d5fa1b9ec.ttf") format("truetype");
-  }
-

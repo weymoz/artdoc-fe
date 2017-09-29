@@ -1,10 +1,9 @@
 block('card-movie').elem('buy')(
-
   content()({
       block: 'paragraph',
       mix: { block: 'font', mods: { family: 'pt-mono' } },
       attrs: {
-        style: 'padding: 20px; background-color: #eee; color: #000;'
+        style: 'background-color: #eee; color: #000; padding: 20px; box-sizing: border-box;'
       },
       content: {
         html: 'После одобрения правообладателем фильм&nbsp;будет доступен для просмотра'
@@ -14,11 +13,12 @@ block('card-movie').elem('buy')(
   match( node => node._status === 20 /*&& node._price && node._price.price === 0*/ ).replace()( node => {
     return {
       block: 'button',
-      mix: [{ block: node.block, elem: node.elem },  { block: 'font', mods: { family: 'helvetica-bold', loaded: true } }],
+      mix: { block: node.block, elem: node.elem },
       mods: {
         type: 'link',
         width: 'available',
-        size: 'l'
+        size: 'l',
+        theme: node.mods.theme
       },
       url: '/movie/' + node._code + '/watch',
       text: 'Смотреть бесплатно'
@@ -30,7 +30,7 @@ block('card-movie').elem('buy')(
     switch ( node.elemMods.type ) {
       case 'button':
         type = 'link';
-        size = 'l';
+        size = 'xl';
         text = 'Купить онлайн-билет';
         break;
       default: // checkbox
@@ -42,13 +42,13 @@ block('card-movie').elem('buy')(
 
     return {
       block: node.elemMods.type || 'checkbox',
-      mix: [{ block: node.block, elem: node.elem },  { block: 'font', mods: { family: 'helvetica-bold', loaded: true } }],
+      mix: { block: node.block, elem: node.elem },
       mods: {
         type: type,
-        width: 'available',
-        size: size
+        size: size,
+        theme: node.mods.theme
       },
-      url: (typeof node.attrs.href != 'undefined' ? node.attrs.href : '' ) + '#schedule',
+      url: '/movie/' + node._code + '#schedule',
       text: text
     }
   })

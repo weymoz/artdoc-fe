@@ -1,4 +1,4 @@
-block(menu).mod(theme artdoc) {
+block(menu) {
   box-sizing: border-box;
   user-select: none;
   outline: 0;
@@ -12,9 +12,9 @@ block(menu).mod(theme artdoc) {
   @each $size, $fontSize, $lineHeight, $paddingVert, $paddingHor in
     (s,    m,    l,    xl),
     (13px, 13px, 15px, 15px),  /* fontSize */
-    (24px, 24px, 28px, 32px,), /* lineHeight */
-    (3px,  4px,  5px,  6px),   /* paddingVer */
-    (10px, 13px, 15px, 20px)   /* paddingHor */ {
+    (24px, 24px, 28px, 32px),  /* lineHeight */
+    ( 3px,  4px,  5px,  6px),  /* paddingVer */
+    (10px, 13px, 15px, 20px) { /* paddingHor */
     .mod(size $size) {
       font-size: $fontSize;
       line-height: $lineHeight;

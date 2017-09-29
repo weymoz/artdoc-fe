@@ -33,6 +33,10 @@ module.exports = {
         siteName: 'Artdoc.Media',
         image: '/assets/img/meta/artdocmedia.jpeg'
       },
+      social: {
+        'facebook': '//www.facebook.com/artdoc.media/',
+        'vkontakte': '//vk.com/artdoc.media'
+      }
     }
   },
   staticFolder: 'static',

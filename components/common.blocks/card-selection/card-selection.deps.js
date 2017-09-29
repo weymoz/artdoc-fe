@@ -2,7 +2,13 @@
   shouldDeps: [
     {
       mods: { theme: '*' },
-      elems: [ 'content' ]
+      elems: [
+        'author',
+        'content',
+        'counter',
+        'cover',
+        'name'
+      ]
     }
   ]
 })

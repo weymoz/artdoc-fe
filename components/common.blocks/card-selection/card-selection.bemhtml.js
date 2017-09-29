@@ -7,7 +7,11 @@ block( 'card-selection' )(
       node[ '_' + key ] = ctx.selection[ key ];
       return true;
     } );
-    return applyNext();
+
+    return applyNext( {
+      _url: node._code ? '/selection/' + node._code : null,
+      'mods.theme': ctx.selection.image ? 'artdoc-dark' : 'artdoc'
+    } );
   } ),
 
   tag()( 'article' )

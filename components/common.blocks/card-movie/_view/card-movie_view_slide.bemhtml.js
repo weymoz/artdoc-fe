@@ -37,21 +37,19 @@ block('card-movie').mod('view', 'slide')(
     return applyNext( { 'ctx.movie': movie } );
   }),
 
-  content()( node => {
+  content()( () => {
     return applyNext( { 'ctx.content': {
         elem: 'content',
         content: [
           {
             elem: 'info',
             content: [
-            {
-              elem: 'icon',
-            },
-            {
-              elem: 'title',
-              mix: { block: 'font', mods: { family: 'helvetica-condensed', loaded: true } },
-              content: 'Сегодня в онлайн-киносеансах'
-            }
+              { elem: 'icon' },
+              {
+                elem: 'title',
+                mix: { block: 'font', mods: { family: 'helvetica-neue-condensed-bold', loaded: true } },
+                content: 'Сегодня в онлайн-киносеансах'
+              }
             ]
           },
           { elem: 'image' },
@@ -72,19 +70,17 @@ block('card-movie').mod('view', 'slide')(
                 ]
               },
               { elem: 'description', elemMods: { 'short': true } },
-              {
-                block: 'button',
-                mix: { block: 'card-movie', elem: 'buy-button' },
-                mods: {
-                  type: 'link'
-                },
-                text: 'Купить онлайн-билет',
-                url: '/movie/' + node._code + '#schedule'
-              }
+              { elem: 'buy', elemMods: { type: 'button' } }
             ]
           },
         ]
       }
     } );
-  })
+  }),
+
+  elem('name')(
+    addMix()( node => {
+      return { block: 'heading', mods: { 'has-dot': true, size: 'xl', theme: node.mods.theme } }
+    } )
+  )
 );

@@ -1,9 +1,9 @@
-block('filters').content()(function() {
+block('filters').def()( ( node, ctx ) => {
   // data from api
-  let filters = this.data.filters;
+  let filters = node.data.filters;
 
   // applied filters from get:
-  let userFilter = this.data['filter'];
+  let userFilter = node.data.filter;
 
   function sortWord(a, b) {
     return a.value.localeCompare(b.value, 'ru');
@@ -100,64 +100,71 @@ block('filters').content()(function() {
   }
 
   let filter_fields = filters.map(function (element) {
-
     if (typeof filtersMap[element.code] == 'undefined' || filtersMap[element.code].skip) {
       return [];
     }
 
     let d = {};
     let result = {
-      elem: 'item',
+      block: 'form-field',
+      mods: {},
+      mix: { block: 'filters', elem: 'item' },
+      id: element.code,
+      name: element.code,
       content: []
     }
 
     switch (element.type) {
       case 'int':
+        result.mods.type = 'select';
         d = {
           block: 'select',
-          name: 'filter[' + element.code + '][]',
           text: filtersMap[element.code].name,
-          mix: { block: 'font', mods: { family: 'helvetica-bold', loaded: true } },
           mods: {
             mode: 'check',
             type: 'suggest',
             'has-clear': true,
-            size: 's'
+            size: 's',
+            theme: 'artdoc-dark'
           },
           optionsMaxHeight: 320,
           options: element.values.sort(filtersMap[element.code].sort).map(function (option) {
-            return {val: option.id?parseInt(option.id):option.value, text: option.value}
+            return {
+              val: option.id ? parseInt(option.id) : option.value,
+              text: option.value
+            }
           })
         }
 
         if (typeof userFilter[element.code] != 'undefined') {
-          d.val = userFilter[element.code].map(
-            function (id) {
-              return parseInt(id);
-            }
-          );
+          d.val = userFilter[element.code];
         }
 
         result.content.push( d );
         break;
+
       case 'bool':
+        result.mods.type = 'checkbox';
         d = {
           block: 'checkbox',
-          mix: { block: 'font', mods: { family: 'helvetica-bold', loaded: true } },
-          name: 'filter[' + element.code + '][]',
+          mix: { block: 'font', mods: { family: 'helvetica-neue-bold', loaded: true } },
           mods: {
-            checked: typeof userFilter[element.code] != 'undefined' ? true : false
+            checked: typeof userFilter[element.code] != 'undefined' ? true : false,
+            theme: 'artdoc-dark'
           },
           text: filtersMap[element.code].name,
         }
 
-        //return d;
-        result.content.push(d)
+        result.content.push( d )
         break;
+
+      default: 
+        return []
     }
 
     return result;
   });
 
-  return filter_fields;
+  ctx.data.fields = filter_fields;
+  return applyNext();
 });

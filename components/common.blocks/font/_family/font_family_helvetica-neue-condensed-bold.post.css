@@ -1,0 +1,13 @@
+block(font).mod(family helvetica-neue-condensed-bold).mod(loaded) {
+  font-family: 'Helvetica Neue Condensed Bold';
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'Helvetica Neue Condensed Bold';
+  src:url('font_family_helvetica-neue-condensed-bold.eot?#iefix');
+  src:url('font_family_helvetica-neue-condensed-bold.eot?#iefix') format('eot'),
+      url('font_family_helvetica-neue-condensed-bold.woff2') format('woff2'),
+      url('font_family_helvetica-neue-condensed-bold.woff') format('woff'),
+      url('font_family_helvetica-neue-condensed-bold.ttf') format('truetype');
+}

@@ -1,27 +1,21 @@
 block('page-selection').replace()( node => {
   return [
     {
+      block: 'card-selection',
+      mods: { view: 'detail' },
+      selection: node.data.api
+    },
+    {
       elem: 'content',
-      content: [
-        {
-          block: 'card-selection',
-          mods: {
-            view: [ 'detail' ],
-            theme: node.data.api.image ? 'artdoc' : 'artdoc-dark'
-          },
-          selection: node.data.api
+      content: node.data.api.movies.map( item => {
+        return {
+          block: 'card-movie',
+          mods: { view: 'list' },
+          movie: item,
         }
-      ]
+      } ),
     },
     { block: 'pagination', params: node.data.pagination },
-    {
-      block: 'section',
-      content: [
-      {
-        block: 'club-footer',
-        mix: { block: 'page-selection', elem: 'club' }
-      }
-      ]
-    }
+    { block: 'club-footer' }
   ];
 });

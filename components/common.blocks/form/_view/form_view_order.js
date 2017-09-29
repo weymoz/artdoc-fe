@@ -24,7 +24,7 @@ provide(Form.declMod({ modName: 'view', modVal: 'order' }, {
     var apiSettings = {
       'async': true,
       'url': '/api/order/' + _this.params.session_id,
-      'method': 'GET',
+      'method': 'POST',
       'headers': {
         'content-type': 'application/x-www-form-urlencoded',
       },

@@ -13,8 +13,10 @@ block(menu).elem(item) {
   }
 
   .mod(checked) {
-    background-image: url(../../icon/_symbol/icon_symbol_tip.svg);
+    background-image: svg-load('../../icon/_symbol/icon_symbol_tip.svg', fill="#f3203b");
     background-repeat: no-repeat;
+    background-origin: padding-box;
+    color: #f3203b;
   }
 
   .mod(hovered) {
@@ -52,9 +54,10 @@ block(menu).elem(item) {
   block(menu).mod(size $size) {
     .elem(item) {
       padding: 0 $paddingHor;
+      padding-left: $paddingLeft;
 
       background-size: $tipSize $tipSize;
-      background-position: right 50%;
+      background-position: 9px 50%;
     }
 
     .elem(group) + .elem(item) {

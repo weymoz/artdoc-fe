@@ -1,19 +1,33 @@
-block('page').elem('title')
-  .elemMod('size', 'xl')
-  .tag()('h1');
+block('page').elem('title')(
+  elemMod('size', 'xxl')(
+    tag()('h1')
+  ),
 
-block('page').elem('title')
-  .elemMod('size', 'l')
-  .tag()('h2');
+  elemMod('size', 'xl')(
+    tag()('h2')
+  ),
 
-block('page').elem('title')
-  .elemMod('size', 'm')
-  .tag()('h3');
+  elemMod('size', 'l')(
+    tag()('h3')
+  ),
 
-block('page').elem('title')
-  .elemMod('size', 's')
-  .tag()('h4');
+  elemMod('size', 'm')(
+    tag()('h4')
+  ),
 
-block('page').elem('title')
-  .elemMod('size', 'xs')
-  .tag()('h5');
+  elemMod('size', 's')(
+    tag()('h5')
+  ),
+
+  elemMod('size', 'xs')(
+    tag()('h6')
+  ),
+
+  elemMod('view', 'bold')(
+    addMix()( { block: 'font', mods: { family: 'helvetica-neue-bold', loaded: true } } )
+  ),
+
+  elemMod('view', 'condensed-bold')(
+    addMix()( { block: 'font', mods: { family: 'helvetica-neue-condensed-bold', loaded: true } } )
+  )
+)

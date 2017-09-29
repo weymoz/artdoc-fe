@@ -9,34 +9,10 @@
         'partners'
       ]
     },
-    'breadcrumbs',
-    'paragraph',
-    'link',
-    {
-      block: 'title',
-      mods: {
-        size: '*',
-      }
-    },
-    {
-      block: 'font',
-      mods: {
-        family: '*',
-        loaded: true
-      }
-    },
-    {
-      block: 'page',
-      mods: {
-        view: 'page-club'
-      }
-    },
-    {
-      block: 'button',
-      mods: {
-        type: 'link',
-        theme: 'artdoc'
-      }
-    }
+    { block: 'breadcrumbs' },
+    { block: 'paragraph' },
+    { block: 'link' },
+    { block: 'button', mods: { width: 'available', type: 'link', } },
+    { block: 'list', mods: { type: 'unstyled', view: 'club-performers' } }
   ]
 }]

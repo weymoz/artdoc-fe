@@ -17,13 +17,6 @@
           view: [ 'selections' ],
           theme: '*'
         }
-      },
-      {
-        block: 'font',
-        mods: {
-          family: 'helvetica-condensed',
-          loaded: true
-        }
       }
     ]
 })

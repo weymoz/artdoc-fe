@@ -1,33 +1,21 @@
 block(button) {
-  display: inline-flex;
-  position: relative;
-  z-index: 1;
-  text-decoration: none;
-  box-shadow: none;
-  outline: none;
-  line-height: 1.5;
-
-  align-items: stretch;
-  vertical-align: middle;
-  text-align: center;
-  border: 0;
-  padding: 0;
+  display         : inline-block;
+  position        : relative;
+  border-radius   : 0;
+  border          : 0;
+  padding         : 0;
+  text-decoration : none;
+  box-shadow      : none;
+  outline         : none;
+  vertical-align  : middle;
+  text-align      : center;
+  transition      : color .2s,
+                    background-color .2s;
+  -webkit-tap-highlight-color : rgba(0, 0, 0, 0);
 
   &::-moz-focus-inner {
-    padding: 0;
-    border: 0
-  }
-
-  &:before {
-    content: '';
-    display: block;
-    position: absolute;
-    top: 1px;
-    left: 1px;
-    bottom: 1px;
-    right: 1px;
-    z-index: -1;
-    background-color: transparent;
+    padding : 0;
+    border  : 0;
   }
 
   .elem(text) {
@@ -41,8 +29,7 @@ block(button) {
     box-sizing     : border-box;
     margin         : 0;
     border         : 0;
-    padding        : 0 .25em;
-    overflow       : hidden;          /* Для текста, который всё же выходит за края */
+    overflow       : hidden; /* Для текста, который всё же выходит за края */
   }
 
   block(icon) + block(button).elem(text) {
@@ -50,34 +37,22 @@ block(button) {
     padding-left: 0;
   }
 
-  @each $size, $fontSize, $lineHeight in
-    (xs, s, m, l, xl, xxl),
-    (12px, 14px, 16px, 18px, 22px, 32px),
-    (1.5, 2, 2.5, 3.11, 1.5, 1.5) {
+  @each $size,
+    $fontSize,
+    $lineHeight,
+    $paddingVertical,
+    $paddingHorizontal in
+    (  xs,    s,    m,    l,   xl,  xxl),
+    (14px, 14px, 14px, 16px, 16px, 18px),
+    (20px, 20px, 20px, 20px, 20px, 24px),
+    ( 2px,  4px,  6px, 10px, 14px, 16px),
+    (46px, 12px, 46px, 32px, 32px, 40px) {
     .mod(size $size) {
       font-size: $fontSize;
       line-height: $lineHeight;
-    }
-  }
 
-  .mod(vertical) {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    padding: 0;
-
-    block(icon) {
-      padding-bottom: 0;
-
-      &:only-child {
-        padding: .75rem;
-      }
-
-      & + block(button).elem(text) {
-        text-align: center;
-        padding-left: .375em;
+      .elem(text) {
+        padding: $paddingVertical $paddingHorizontal;
       }
     }
   }
@@ -91,14 +66,7 @@ block(button) {
     }
   }
 
-  .mod(focused) {
-    outline: none;
+  .mod(disabled) {
+    opacity: .5;
   }
-
-  .mod(togglable radio) {
-    &:before {
-      box-shadow: none;
-    }
-  }
-
 }

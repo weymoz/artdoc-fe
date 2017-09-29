@@ -1,13 +1,8 @@
 block(club-footer) {
-  max-width: 1316px;
-  margin: 0 auto;
-  min-width: 1024px;
-
-@media (max-width: 1320px) {
-  padding-left: 20px;
-  min-width: 1024px;
+  padding-top: 2em;
   box-sizing: border-box;
-}
+  margin-top: 104px;
+  color: #fff;
 
   elem(avatar) {
     display: block;
@@ -68,12 +63,7 @@ block(club-footer) {
     }
 
     elem(title) {
-      font-size: 17px;
-      line-height: 24px;
-      color: white;
       margin-bottom: 40px;
-      text-transform: uppercase;
-      margin-left: 10px;
     }
 
     elem(partners) {
@@ -147,8 +137,6 @@ block(club-footer) {
 
     elem(club-login){
       color: white;
-      line-height: 250px;
-      font-weight: bold;
     }
 
     elem(party) {
@@ -157,8 +145,8 @@ block(club-footer) {
       justify-content: space-around;
 
       elem(maker) {
-        width: 100px;
-        height: 100px;
+        margin-right: 32px;
+        margin-bottom: 30px;
       }
 
       elem(image) {

@@ -1,38 +1,42 @@
 block(page) {
   padding: 0;
   margin: 0;
+  font-size: 16px;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 
+  min-width: 960px; /* костыль, пока нет моб. версии */
+
   .elem(content) {
-    lost-center: 1316px;
-    padding-top: 2em;
+    lost-center: 1428px;
+    position: relative;
     box-sizing: border-box;
-    min-width: 960px;
+    padding-left: 56px;
+    padding-right: 56px;
 
-    @media (max-width: 1320px) {
-      lost-center: 1200px;
-      margin: 0 20px;
+    @media (max-width: 1400px) {
+      lost-center: 1288px;
     }
 
-    @media (max-width: 1024px) {
-      lost-center: 960px;
-      margin: 0 20px;
+    @media (max-width: 1280px) {
+      lost-center: 1232px;
     }
 
-    .mod(view narrow) {
+    .mod(width narrow) {
       lost-center: 870px;
     }
 
+    .mod(width tiny) {
+      lost-center: 644px;
+    }
   }
 
   .elem(section) {
-    lost-center: 100%;
+    width: 100vw;
     background-color: #23232c;
     color: #a0a0ad;
     padding-left: 4em;
-    padding-top: 2em;
     padding-right: 4em;
-    padding-bottom: 4em;
     box-sizing: border-box;
 
     @media (max-width: 1320px) {
@@ -43,28 +47,18 @@ block(page) {
   }
 
   .elem(title) {
-    font-size: 56px;
-    font-weight: bold;
-    color: #23232c;
-    line-height: 64px;
-
-    &:after {
-      content: '';
-      display: inline-block;
-      width: 0.2em;
-      height: 0.2em;
-      background-color: #f3203b;
-    }
+    margin-top: 80px;
+    margin-bottom: 32px;
   }
 
-  .mod(view page-index) {
+  /* Всякие отступы */
 
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  .elem(breadcrumbs) {
+    margin-top: 32px;
+    margin-bottom: 32px;
+  }
 
-    .block(page-index) {
-      margin: auto;
-    }
+  .elem(slider) {
+    margin-bottom: 74px;
   }
 }

@@ -67,7 +67,6 @@ block(card-poster) {
 
   elem(aside){
     lost-column: 15/47 0 0;
-    height: 100%;
     background-color: #23232C;
     display: flex;
     flex-direction: column;

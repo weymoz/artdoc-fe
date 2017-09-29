@@ -1,0 +1,19 @@
+block(form) {
+
+  .mod(view payment) {
+    padding: 0 40px 40px;
+  }
+  
+  .elem(section) {
+    margin-bottom: 24px;
+  }
+
+  .elem(footer) {
+    margin-top: 1em;
+  }
+
+  .elem(message) {
+    margin-top: 1em;
+  }
+
+}
