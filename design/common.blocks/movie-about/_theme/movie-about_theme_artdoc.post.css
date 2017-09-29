@@ -6,19 +6,14 @@
 
 block(movie-about).mod(theme artdoc) {
   lost-center: 100%;
+  padding-top: 80px;
 
   .elem(section) {
     lost-column: 1/2;
   }
 
   .elem(title) {
-    font-size: 17px;
-    font-weight: bold;
-    font-stretch: condensed;
-    line-height: 1.41;
-    color: #23232c;
     border-top: 1px solid #23232c;
-    text-transform: uppercase;
     padding-top: 3px;
     margin-bottom: 16px;
   }
