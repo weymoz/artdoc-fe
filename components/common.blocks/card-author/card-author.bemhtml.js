@@ -48,7 +48,7 @@ block('card-author')(
   ),
 
   match( node => node._meta )(
-    elem('content').appendContent()( ( node, ctx ) => node._meta )
+    elem('content').appendContent()( node => node._meta )
   )
 
 )
