@@ -20,36 +20,39 @@ block('ticket-case').content()(function() {
     {
       elem: 'header',
       content: [
-      {
-        elem: 'title',
-        content: 'Ближайшие онлайн-киносеансы'
-      },
-      {
-        elem: 'pagination',
-        content: [
         {
-          block: 'icon',
-          mods: {
-            symbol: 'chevron-left',
-            circle: true,
-            size: 'xxl'
-          }
+          elem: 'title',
+          content: 'Выберите день и время онлайн-сеанса'
         },
         {
-          block: 'icon',
-          mods: {
-            symbol: 'chevron-right',
-            circle: true,
-            size: 'xxl'
+          elem: 'pagination',
+          content: [
+          {
+            block: 'icon',
+            mods: {
+              symbol: 'chevron-left',
+              circle: true,
+              size: 'xxl'
+            }
+          },
+          {
+            block: 'icon',
+            mods: {
+              symbol: 'chevron-right',
+              circle: true,
+              size: 'xxl'
+            }
           }
+          ]
         }
-        ]
-      },
       ]
     },
     {
       block: 'radio-group',
-      mix: { block: 'ticket-case', elem: 'calendar' },
+      mix: [
+        { block: 'ticket-case', elem: 'calendar' },
+        { block: 'font', mods: { family: 'helvetica-neue-condensed' } }
+      ],
       mods: {
         type: 'line',
         size: 'l'
@@ -97,7 +100,7 @@ block('ticket-case').content()(function() {
                       calendar: true,
                       mode: 'radio',
                       width: 'available',
-                      size: 'm',
+                      size: 'l',
                       theme: 'artdoc-dark'
                     },
                     val: 0,
@@ -169,6 +172,7 @@ block('ticket-case').content()(function() {
           },
           {
             block: 'paragraph',
+            mods: { bold: true, size: 's' },
             content: 'Онлайн-сеансы начинаются в 18:00 по местному времени пяти мировых центров культуры.'
           }
           ]
