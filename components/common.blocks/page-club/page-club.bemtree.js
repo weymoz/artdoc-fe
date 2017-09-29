@@ -1,5 +1,5 @@
 block('page-club').replace()(function() {
-    return[
+    return [
       {
         elem: 'content',
         elemMods: { width: 'narrow' },
@@ -7,7 +7,7 @@ block('page-club').replace()(function() {
           { block: 'breadcrumbs' },
           {
             elem: 'title',
-            elemMods: { size: 'l' },
+            elemMods: { view: 'bold', size: 'l' },
             mix: { block: 'heading', mods: { 'has-dot': true, size: 'xxl' } },
             content: 'Клуб Артдок'
           },
@@ -18,7 +18,7 @@ block('page-club').replace()(function() {
           },
           {
             elem: 'title',
-            elemMods: { size: 'xl' },
+            elemMods: { view: 'condensed-bold', size: 'xl' },
             mix: { block: 'heading', mods: { caps: true, size: 'l' } },
             content: 'Привилегии участников клуба'
           },
@@ -45,35 +45,53 @@ block('page-club').replace()(function() {
             content: [
               {
                 elem: 'title',
-                elemMods: { size: 'xl' },
+                elemMods: { view: 'condensed-bold', size: 'xl' },
                 mix: { block: 'heading', mods: { caps: true, align: 'center', size: 'l' } },
                 content: 'Вступить в клуб'
               },
               {
                 block: 'paragraph',
+                mods: { lead: true, align: 'center' },
                 content: 'Вступление в клуб для представителей киноиндустрии бесплатно и осуществляется только по заявкам.'
               },
               {
-                block: 'button',
-                mods: {
-                  type: 'link',
-                  size: 'xl'
-                },
-                text: 'Оставить заявку',
-                url: 'mailto:media@artdocfest.com'
-              },
+                block: 'paragraph',
+                mods: { align: 'center' },
+                content: {
+                  block: 'button',
+                  mods: {
+                    type: 'link',
+                    size: 'xxl',
+                    theme: 'artdoc-dark'
+                  },
+                  text: 'Оставить заявку',
+                  url: 'mailto:media@artdocfest.com'
+                }
+              },            
               {
                 elem: 'title',
-                elemMods: { size: 'xl' },
+                elemMods: { view: 'condensed-bold', size: 'xl' },
                 mix: { block: 'heading', mods: { caps: true, align: 'center', size: 'l' } },
                 content: 'Клубная карта'
               },
               {
                 block: 'paragraph',
+                mods: { align: 'center' },
+                content: {
+                  block: 'image',
+                  // width: 88,
+                  // height: 56,
+                  url: 'assets/img/static/club_card_icon.svg'
+                }
+              },
+              {
+                block: 'paragraph',
+                mods: { lead: true, align: 'center' },
                 content: [
                   'Для вступления в клуб необязательно быть представителем киноиндустрии. Человек или организация, готовые оказать поддержку Артдокфесту может стать членом клуба Artdoc — для этого мы выпускаем 100 карт «Партнёр Артдокфеста» сроком на один год. Обладатели карты имеют все привелегии участников клуба. ',
                   {
                     block: 'link',
+                    mods: { view: 'text' },
                     content: 'Напишите нам',
                     url: 'mailto:media@artdocfest.com'
                   },
@@ -90,21 +108,38 @@ block('page-club').replace()(function() {
         content: [
           {
             elem: 'title',
-            elemMods: { size: 'xl' },
+            elemMods: { view: 'condensed-bold', size: 'xl' },
             mix: { block: 'heading', mods: { caps: true, size: 'l' } },
-            content: 'Участники клуба Артдок'
+            content: 'Участники клуба АртДок'
           },
           {
-            block: 'button',
+            block: 'list',
             mods: {
-              width: 'available',
-              size: 'xl'
-            },
-            text: 'Показать/Скрыть участников'
+              type: 'unstyled',
+              view: 'club-performers'
+            }
           },
+          {
+            block: 'paragraph',
+            mods: { align: 'center' },
+            content: {
+              block: 'button',
+              mods: {
+                width: 'available',
+                size: 'xxl'
+              },
+              text: 'Показать/Скрыть участников'
+            }
+          }
+        ]
+      },
+      {
+        elem: 'content',
+        elemMods: { width: 'narrow' },
+        content: [
           {
             elem: 'title',
-            elemMods: { size: 'xl' },
+            elemMods: { view: 'condensed-bold', size: 'xl' },
             mix: { block: 'heading', mods: { caps: true, size: 'l' } },
             content: 'Партнёрские фестивали'
           }
@@ -119,23 +154,29 @@ block('page-club').replace()(function() {
             content: [
               {
                 elem: 'title',
-                elemMods: { size: 'xl' },
-                mix: { block: 'heading', mods: { caps: true, size: 'l' } },
+                elemMods: { view: 'condensed-bold', size: 'xl' },
+                mix: { block: 'heading', mods: { caps: true, align: 'center', size: 'l' } },
                 content: 'Всего 200 участников'
               },
               {
                 block: 'paragraph',
+                mods: { lead: true, align: 'center' },
                 content: 'В клубе Артдок 100 мест для представителей индустрии и 100 мест для обладателей годовой карты «Партнер Артдокфеста». Хотите присоединиться — оставьте заявку.'
               },
               {
-                block: 'button',
-                mods: {
-                  type: 'link',
-                  size: 'xl'
-                },
-                text: 'Оставить заявку',
-                url: 'mailto:media@artdocfest.com'
-              }
+                block: 'paragraph',
+                mods: { align: 'center' },
+                content: {
+                  block: 'button',
+                  mods: {
+                    type: 'link',
+                    size: 'xxl',
+                    theme: 'artdoc-dark'
+                  },
+                  text: 'Оставить заявку',
+                  url: 'mailto:media@artdocfest.com'
+                }
+              },
             ]
           }
         ]
