@@ -9,18 +9,6 @@ block(link) {
     }
   }  
 
-  .mod(view text) {
-
-    &,
-    .mod(hovered),
-    .mod(focused) {
-      color: inherit;
-      font-size: inherit;
-      /*line-height: inherit;*/
-      text-decoration: inherit;
-    }
-  }
-
   .mod(view tag) {
     display: inline-block;
     border-radius: 2em;
