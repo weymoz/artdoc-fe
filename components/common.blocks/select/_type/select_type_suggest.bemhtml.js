@@ -8,8 +8,7 @@ block('select').mod('type', 'suggest')(
           mods: {
             type: 'suggest',
             width: 'available',
-            size: node.mods.size,
-            theme: 'islands'
+            size: node.mods.size
           }
         }
       }) : '',

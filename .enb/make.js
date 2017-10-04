@@ -59,7 +59,6 @@ module.exports = function(config) {
               commonJS: 'moment/locale/ru'
             }
           }
-
         }],
 
         // client templates
@@ -115,29 +114,10 @@ function getSourceLevels(platform) {
 
   platformNames.forEach(function(name) {
     levels.push({ path: path.join('node_modules', 'bem-core', name + '.blocks'), check: false });
-  });
-
-  platformNames.forEach(function(name) {
     levels.push({ path: path.join('node_modules', 'bem-components', name + '.blocks'), check: false });
-  });
-
-  platformNames.forEach(function(name) {
-    levels.push({ path: path.join('node_modules', 'bem-components', 'design', name + '.blocks'), check: false });
-  });
-
-  platformNames.forEach(function(name) {
     levels.push({ path: path.join('node_modules', 'bem-forms', name + '.blocks'), check: false });
-  });
-
-  platformNames.forEach(function(name) {
     levels.push({ path: path.join('node_modules', 'bem-history', name + '.blocks'), check: false });
-  });
-
-  platformNames.forEach(function(name) {
     levels.push({ path: path.join('components', name + '.blocks'), check: true });
-  });
-
-  platformNames.forEach(function(name) {
     levels.push({ path: path.join('design', name + '.blocks'), check: true });
   });
 

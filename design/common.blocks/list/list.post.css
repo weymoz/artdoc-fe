@@ -1,9 +1,9 @@
 block(list) {
 
   @each $size, $fontSize, $lineHeight in
-    (xs, s, m, l, xl, xxl),
+    (  xs,    s,    m,    l,   xl,  xxl),
     (10px, 14px, 16px, 18px, 22px, 32px),
-    (1.5, 16px, 1.5, 1.5, 1.5, 1.5) {
+    ( 1.5,  1.5,  1.5,  1.5,  1.5,  1.5) {
     .mod(size $size) {
       font-size: $fontSize;
       line-height: $lineHeight;
@@ -30,10 +30,10 @@ block(list) {
         font-size: inherit;
         line-height: inherit;
         width: 1px;
-        height: 1.2857em;
+        height: 1.5em;
         background-color: currentColor;
         margin-left: 12px;
-        margin-top:2px;
+        margin-top: -1px;
         vertical-align: top;
       }
 

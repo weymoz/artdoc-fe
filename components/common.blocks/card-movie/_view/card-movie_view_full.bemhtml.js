@@ -1,11 +1,7 @@
 block('card-movie').mod('view', 'full')(
 
-  def()( ( node, ctx ) => {
-    const movie = node.mergeDeep( ctx.movie, {
-      cover: { width: 843 }
-    } );
-
-    return applyNext( { 'ctx.movie': movie } );
+  def()( () => {
+    return applyNext( { 'ctx.movie.cover.width': 843 } );
   }),
 
   js()( true ),
@@ -31,12 +27,10 @@ block('card-movie').mod('view', 'full')(
         elem: 'aside',
         content: [
           { elem: 'orig-name' },
-          { elem: 'name' },
+          { elem: 'name', elemMods: { 'has-dot': true, size: 'xl' } },
           {
             elem: 'list',
-            elemMods: {
-              delimiter: 'vertical'
-            },
+            elemMods: { delimiter: 'vertical' },
             content: [
               { elem: 'director' },
               { elem: 'countries' },

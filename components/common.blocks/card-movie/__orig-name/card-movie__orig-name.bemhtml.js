@@ -1,7 +1,11 @@
 block( 'card-movie' ).elem( 'orig-name' )(
+
   match( node => { return !node._orig_name || node._orig_name === node._name } ).def()( '' ),
-  content()( node => {
-    return node._orig_name
-  } ),
-  tag()( 'small' )
+
+  tag()( 'small' ),
+
+  addMix()( { block: 'font', mods: { family: 'helvetica-neue-bold', loaded: true } } ),
+
+  content()( node => node._orig_name )
+
 )
