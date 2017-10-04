@@ -36,7 +36,7 @@ block('card-movie').mod('view', 'list')(
         elem: 'aside',
         content: [
           { elem: 'orig-name' },
-          { elem: 'name' },
+          { elem: 'name', elemMods: { link: true, size: 'm' } },
           {
             elem: 'list',
             elemMods: { delimiter: 'vertical' },

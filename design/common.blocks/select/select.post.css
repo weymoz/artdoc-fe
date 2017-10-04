@@ -3,40 +3,12 @@ block(select) {
   vertical-align: bottom;
 
   .elem(button) {
-    background-color: transparent;
+    display: inline-flex;
     width: 100%;
     vertical-align: top;
     text-align: left;
     max-width: 252px;
     white-space: nowrap;
-    color: inherit;
-  }
-
-  .elem(header) {
-    padding: 1em;
-    box-sizing: border-box;
-    border-bottom: 1px solid #ddd;
-  }
-
-  .elem(footer) {
-    padding: 1em;
-    box-sizing: border-box;
-    border-top: 1px solid #ddd;
-  }
-
-  .elem(tick) {
-    position: absolute;
-    top: 50%;
-    margin-top: -0.75em;
-    bottom: 0;
-    right: 0;
-    transition: transform 0.1s ease-out;
-    width: 2em;
-    padding: .5em;
-
-    &:empty:after {
-      content: none
-    }
   }
 
   .elem(clear) {
@@ -69,6 +41,53 @@ block(select) {
     }
   }
 
+  .elem(footer) {
+    padding: 1em;
+    box-sizing: border-box;
+    border-top: 1px solid #ddd;
+  }
+
+  .elem(header) {
+    padding: 1em;
+    box-sizing: border-box;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .elem(tick) {
+    position: absolute;
+    top: 50%;
+    margin-top: -0.75em;
+    bottom: 0;
+    right: 0;
+    transition: transform 0.1s ease-out;
+    width: 2em;
+    padding: .5em;
+
+    &:empty:after {
+      content: none
+    }
+  }
+
+  block(button) {
+    box-shadow: inset 0 0 0 1px;
+
+    .elem(text) {
+      padding-left: 12px;
+      padding-right: 2em;
+      text-overflow: ellipsis;
+
+      &:empty:before {
+        content: '\00a0'
+      }
+    }
+
+    .mod(checked) {
+      .elem(text) {
+        padding-right: .25em;
+      }
+    }    
+  }
+
   @each $size, $fontSize in
     (  xs,    s,    m,    l,   xl,  xxl),
     (14px, 14px, 14px, 16px, 16px, 18px) {
@@ -94,26 +113,6 @@ block(select) {
     width: 100%
   }
 
-  block(button) {
-    box-shadow: inset 0 0 0 1px;
-
-    .elem(text) {
-      padding-left: 12px;
-      padding-right: 2em;
-      text-overflow: ellipsis;
-
-      &:empty:before {
-        content: '\00a0'
-      }
-    }
-
-    .mod(checked) {
-      .elem(text) {
-        padding-right: .25em;
-      }
-    }    
-  }
-
   .mod(type suggest) {
 
     block(button) {
@@ -133,20 +132,6 @@ block(select) {
 
         block(select).elem(tick) {
           display: none;
-        }
-      }
-      
-      .mod(hovered),
-      .mod(focused) {
-        background-color: transparent;
-        color: #f3203b;
-
-        .mod(checked) {
-          background-color: #fff;
-        }
-
-        block(select).elem(tick) {
-          background-image: svg-load('../icon/_symbol/icon_symbol_chevron-down.svg', fill="#f3203b");
         }
       }
     }

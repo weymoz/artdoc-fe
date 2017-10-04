@@ -7,13 +7,13 @@ block('page-thanks')(
         elemMods: { width: 'narrow' },
         content: [
           {
-            elem: 'header',
-            content: [
-              {
-                elem: 'title',
-                content: 'Спасибо за покупку билета!'
-              },
-            ]
+            elem: 'title',
+            elemMods: { size: 'xxl' },
+            mix: [
+              { block: 'heading', mods: { align: 'center', caps: true } },
+              { block: 'font', mods: { family: 'helvetica-neue-condensed-bold', loaded: true } }
+            ],
+            content: 'Спасибо за покупку билета!'
           },
           {
             block: 'paragraph',
@@ -22,35 +22,31 @@ block('page-thanks')(
           {
             block: 'layout',
             mix: { block: 'paragraph' },
-            content: [
-              {
-                elem: 'aside',
-                content: 'icon'
-              },
-              {
-                elem: 'content',
-                content: 'В 20:00 состоится обсуждение фильма с автором в закрытой группе Facebook. Ссылка на обсуждение будет доступна на странице просмотра фильма.'
-              }
-            ]
+            // content: [
+            //   {
+            //     elem: 'aside',
+            //     content: 'icon'
+            //   },
+            //   {
+            //     elem: 'content',
+            //     content: 'В 20:00 состоится обсуждение фильма с автором в закрытой группе Facebook. Ссылка на обсуждение будет доступна на странице просмотра фильма.'
+            //   }
+            // ]
           },
           {
             block: 'card-ticket',
-            // code: _code,
             ticket: node.data.api.session,
             js: { ticket: node.data.api.session, timezoneOffset: 0 }
           },
           {
             block: 'card-movie',
-            mods: {
-              view: 'ticket'
-            },
+            mods: { view: 'ticket' },
             movie: node.data.api.movie
           },
+          { tag: 'br' },
           {
             block: 'list',
-            mods: {
-              type: 'numeric'
-            },
+            mods: { type: 'numeric' },
             items: [
               'Фильм доступен к просмотру 3 часа с момента начала онлайн-сеанса. По окончании 3 часов показ прекращается.',
               'Просмотр фильма индивидуальный и доступен только на одном устройстве в один момент времени. Не для массового показа.',

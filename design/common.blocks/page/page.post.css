@@ -23,11 +23,11 @@ block(page) {
     }
 
     .mod(width narrow) {
-      lost-center: 870px;
+      lost-center: 982px;
     }
 
     .mod(width tiny) {
-      lost-center: 644px;
+      lost-center: 756px;
     }
   }
 

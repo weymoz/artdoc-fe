@@ -2,25 +2,16 @@ block('page-error').replace()( node => {
   return [
     {
       elem: 'content',
-      content: [
-        {
-          block: 'breadcrumbs'
-        }
-      ]
-    },
-    {
-      elem: 'content',
+      elemMods: { width: 'narrow' },
       content: [
         {
           elem: 'title',
-          content: 'Что-то пошло не так…'
-        }
-      ]
-    },
-    {
-      elem: 'content',
-      elemMods: { width: 'narrow' },
-      content: [
+          elemMods: { size: 'xxl' },
+          mix: [
+            { block: 'heading', mods: { 'has-dot': true, size: 'xxl' } },
+          ],
+          content: 'Что-то пошло не так'
+        },
         {
           block: 'paragraph',
           content: [
@@ -33,7 +24,7 @@ block('page-error').replace()( node => {
           block: 'button',
           mods: {
             type: 'link',
-            size: 'l'
+            size: 'xl'
           },
           url: 'javascript:history.back()',
           text: 'Повторить платёж'

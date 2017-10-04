@@ -47,6 +47,8 @@ block(menu).mod(nav-menu) {
 
     block(link) {
       font-size: 14px;
+      text-decoration: none;
+      color: inherit;
     }
   }
 }

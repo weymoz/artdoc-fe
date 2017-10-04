@@ -1,11 +1,7 @@
 block('card-movie').mod('view', 'short')(
 
-  def()( ( node, ctx ) => {
-    const movie = node.mergeDeep( ctx.movie, {
-      cover: { width: 130 }
-    } );
-
-    return applyNext( { 'ctx.movie': movie } );
+  def()( () => {
+    return applyNext( { 'ctx.movie.cover.width': 130 } );
   }),
 
   js()( ( node, ctx ) => {
@@ -48,7 +44,7 @@ block('card-movie').mod('view', 'short')(
               }
             ]
           },
-          { elem: 'name' }
+          { elem: 'name', elemMods: { size: 'xs' } }
         ]
       }
     ]

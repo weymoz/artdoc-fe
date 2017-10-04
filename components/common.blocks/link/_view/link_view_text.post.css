@@ -1,0 +1,15 @@
+block(link).mod(view text) {
+  color: inherit;
+  font-size: inherit;
+  text-decoration: inherit;
+
+  &,
+  .mod(hovered),
+  .mod(focused) {
+    /*color: inherit;*/
+    /*font-size: inherit;*/
+    /*line-height: inherit;*/
+    /*text-decoration: inherit;*/
+  }
+}
+
