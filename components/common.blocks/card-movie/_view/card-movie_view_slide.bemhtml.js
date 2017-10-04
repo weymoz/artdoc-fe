@@ -1,40 +1,7 @@
-oninit(function(exports, shared) {
-
-  function isObject(item) {
-    return ( item && typeof item === 'object' && !Array.isArray( item ) );
-  }
-
-  function mergeDeep ( target, source ) {
-    let output = Object.assign( {}, target );
-
-    if ( isObject( target ) && isObject( source ) ) {
-      Object.keys( source ).forEach( key => {
-        if ( isObject( source[ key ] ) ) {
-          if ( !( key in target ) ) {
-            Object.assign( output, { [ key ]: source[ key ] } );
-          } else {
-            output[ key ] = mergeDeep( target[ key ], source[ key ] );
-          }
-        } else {
-          Object.assign( output, { [ key ]: source[ key ] } );
-        }
-      });
-    }
-
-    return output;
-  }
-
-  shared.BEMContext.prototype.mergeDeep = mergeDeep;
-});
-
 block('card-movie').mod('view', 'slide')(
 
-  def()( ( node, ctx ) => {
-    const movie = node.mergeDeep( ctx.movie, {
-      cover: { width: 896 },
-    } );
-
-    return applyNext( { 'ctx.movie': movie } );
+  def()( () => {
+    return applyNext( { 'ctx.movie.cover.width': 896 } );
   }),
 
   content()( () => {
@@ -57,12 +24,10 @@ block('card-movie').mod('view', 'slide')(
             elem: 'cover',
             content: [
               { elem: 'orig-name' },
-              { elem: 'name' },
+              { elem: 'name', elemMods: { 'has-dot': true, size: 'xl' } },
               {
                 elem: 'list',
-                elemMods: {
-                  delimiter: 'vertical'
-                },
+                elemMods: { delimiter: 'vertical' },
                 content: [
                   { elem: 'director' },
                   { elem: 'countries' },
@@ -79,8 +44,6 @@ block('card-movie').mod('view', 'slide')(
   }),
 
   elem('name')(
-    addMix()( node => {
-      return { block: 'heading', mods: { 'has-dot': true, size: 'xl', theme: node.mods.theme } }
-    } )
+    addMix()( { block: 'heading', mods: {  } } )
   )
 );

@@ -1,12 +1,10 @@
 block('card-movie').mod('view', 'selection')(
 
   def()( ( node, ctx ) => {
-    const movie = node.mergeDeep( ctx.movie, {
-      cover: { width: 196 },
-      url: ctx.movie.code ? '/movie/' + ctx.movie.code : null
+    return applyNext( {
+      'ctx.movie.cover.width': 196,
+      'ctx.movie.url': ctx.movie.code ? '/movie/' + ctx.movie.code : null
     } );
-
-    return applyNext( { 'ctx.movie': movie } );
   }),
 
   content()( () => {
@@ -17,7 +15,7 @@ block('card-movie').mod('view', 'selection')(
         content: [
           { elem: 'image' },
           { elem: 'director', mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } } },
-          { elem: 'name' }
+          { elem: 'name', elemMods: { size: 'xs' } }
         ]
       },
       {
