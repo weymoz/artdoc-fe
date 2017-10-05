@@ -8,7 +8,7 @@
     { block: 'form-field', mods: { type: [ 'checkbox', 'select' ] } },
     { block: 'checkbox' },
     { block: 'select', mods: { mode: 'check', type: 'suggest', 'has-clear': true } },
-    { block: 'card-movie', mods: { view: 'list' } },
+    { block: 'card-movie', mods: { view: [ 'list', 'grid' ] } },
     { block: 'pagination' },
     { block: 'history' },
     { block: 'location' },
@@ -19,7 +19,7 @@
 },{
   tech: 'js',
   shouldDeps: [
-    { tech: 'bemhtml', block: 'card-movie', mods: { view: 'list' } },
+    { tech: 'bemhtml', block: 'card-movie', mods: { view: [ 'list', 'grid' ] } },
     { tech: 'bemhtml', block: 'pagination' },
     { tech: 'bemhtml', block: 'root' },
     { tech: 'bemhtml', block: 'text', mods: { plural: true } },

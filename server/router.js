@@ -161,6 +161,7 @@ module.exports = function( app ) {
       data.filters = response[1];
       data.filter = filter;
       data.pagination = Object.assign(response[0].meta, data.pagination);
+      data.pagination.view = req.query.view || 'list';
       data.page = 'movies';
       render( req, res, data );
     } ).catch((e) => { console.log(e); res.send('error');  });

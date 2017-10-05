@@ -9,11 +9,13 @@ block('filters')(
 
   js()( true ),
 
+  addMods()( node => { return { result: node._api.pagination.view || 'list' } } ),
+
   content()( () => {
     return [
       { elem: 'header'  }, // header with actions
       { elem: 'form'    }, // filter's form
-      // { elem: 'params'  }, // sorting and view params
+      { elem: 'params'  }, // sorting and view params
       { elem: 'content' }, // search result
       { elem: 'footer'  }  // pagination
     ]
@@ -163,8 +165,9 @@ block('filters')(
         return {
           block: 'card-movie',
           mods: {
-            view: 'list'
+            view: node._api.pagination.view || 'list'
           },
+          mix: { block: 'filters', elem: 'result-item' },
           movie: movie
         }
       } )

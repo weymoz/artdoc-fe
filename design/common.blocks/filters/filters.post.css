@@ -165,6 +165,17 @@ block(filters) {
       background-color: #666;
     }
   }
+
+  .mod(result grid) {
+
+    .elem(content) {
+      padding-top: 56px;
+    }
+
+    .elem(result-item) {
+      lost-column: 1/4;
+    }
+  }
 }
 
 block(select) {

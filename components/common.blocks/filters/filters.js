@@ -58,6 +58,7 @@ provide(bemDom.declBlock(this.name, {
     );
 
     let uri = Querystring.Uri.parse(window.location.href);
+    let view = uri.getParam('view') || 'list';
 
     let hash = {};
     selectedFields.forEach( filter => {
@@ -66,6 +67,7 @@ provide(bemDom.declBlock(this.name, {
 
     uri.setQuery(''); // reset all filters
     uri.replaceParam( 'page', 1 ); // reset pagination
+    uri.replaceParam( 'view', view );
     Object.keys( hash ).forEach( filter => {
       uri.addParam( filter, hash[ filter ] );
     } );
@@ -92,7 +94,8 @@ provide(bemDom.declBlock(this.name, {
         BEMHTML.apply( data.items.map( movie => {
           return {
             block: 'card-movie',
-            mods: { view: 'list', size: 'm', theme: 'artdoc' },
+            mods: { view: view, size: 'm', theme: 'artdoc' },
+            mix: { block: 'filters', elem: 'result-item' },
             movie: movie
           }
         } ) )
