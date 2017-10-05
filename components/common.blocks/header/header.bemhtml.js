@@ -41,9 +41,7 @@ block('header')(
               content: [
                 {
                   block: 'form',
-                  mods: {
-                    view: 'search'
-                  },
+                  mods: { view: 'search' },
                   method: 'GET',
                   action: '/search',
                   content: [
@@ -56,7 +54,7 @@ block('header')(
                         mods: {
                           type: 'input'
                         },
-                        name: 'query',
+                        name: 'q',
                         content: {
                           elem: 'control',
                           content: {
