@@ -349,6 +349,23 @@ module.exports = function( app ) {
       .catch(() => res.send('error') );
   });
 
+  // Search
+  app.get( '/search', ( req, res ) => {
+    let data = Object.assign({}, global);
+    request( { url: '/search/search/?q=' + encodeURIComponent( req.query.q ) } )
+      .then( response => {
+        data.api = response;
+        data.page = 'search';
+        data.title = 'Результаты поиска';
+        
+        if ( !data.api.error ) {
+          render( req, res, data );
+        }
+
+      } )
+      .catch(() => res.send('error') );
+  });
+
   /*
    *  API Proxy
    *

@@ -47,10 +47,6 @@ block(header).mod(theme artdoc) {
     background-color: #ccc;
   }
 
-  .elem(search) {
-    background-color: #cccfff;
-  }
-
   .elem(social),
   .elem(user) {
     display: flex;
@@ -63,5 +59,13 @@ block(header).mod(theme artdoc) {
   .elem(social) {
     box-sizing: border-box;
     padding: 0 7px;
+  }
+
+  .elem(search) {
+    align-self: center;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 0 23px;
+    color: #fff;
   }
 }
