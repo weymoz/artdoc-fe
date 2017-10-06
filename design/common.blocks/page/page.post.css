@@ -32,18 +32,9 @@ block(page) {
   }
 
   .elem(section) {
-    width: 100vw;
+    min-width: 100vw;
     background-color: #23232c;
     color: #a0a0ad;
-    padding-left: 4em;
-    padding-right: 4em;
-    box-sizing: border-box;
-
-    @media (max-width: 1320px) {
-      padding-left: 0;
-      padding-right: 0;
-      min-width: 1024px;
-    }
   }
 
   .elem(title) {
