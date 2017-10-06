@@ -405,6 +405,27 @@ block(card-movie) {
       height: 32px;
       padding: .35em;
     }
+
+    .elem(director) {
+      display: block;
+      font-size: 14px;
+    }
+
+    .elem(countries) {
+      font-size: 12px;
+      color: #676770;
+
+      & + .elem(year):before {
+        content: ', ';
+      }
+    }
+
+    .elem(year) {
+      font-size: 12px;
+      color: #676770;
+    }
+
+    
   }
 
   .mod(view order) {
@@ -570,7 +591,7 @@ block(card-movie) {
 
     .elem(cover) {
       padding: 56px 28px 40px;
-      background-color: hsla(0, 0%, 0%, 0.4);
+      background: linear-gradient(270deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.7) 100%);
     }
 
     .elem(awards) {
@@ -693,7 +714,7 @@ block(card-movie) {
     }
 
     .elem(cover) {
-      background: rgb(0, 0, 0, 0.4);
+      background: linear-gradient(270deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.7) 100%);
       display: flex;
       justify-content: flex-end;
       flex-direction: column;
