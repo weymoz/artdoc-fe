@@ -98,7 +98,7 @@ block('filters')(
         block: 'radio-group',
         mods: { type: 'line' },
         mix: { block: node.block, elem: node.elem },
-        val: '-rating',
+        val: node._api.pagination.sort || '-rating',
         name: 'sort',
         options: [
           {

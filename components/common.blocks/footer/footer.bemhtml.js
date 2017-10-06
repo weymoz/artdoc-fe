@@ -2,6 +2,7 @@ block('footer').content()( ( node, ctx ) => {
   return [
     {
       elem: 'content',
+      mix: { block: 'page', elem: 'content' },
       content: [
         {
           elem: 'about',
