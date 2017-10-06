@@ -1,6 +1,8 @@
 block('card-movie').mod('view', 'play')(
 
   def()( ( node, ctx ) => {
+    ctx.movie.cover = ctx.movie.cover || {};
+
     return applyNext( {
       'ctx.movie.cover.width': 1316,
       'ctx.movie.url': ctx.movie.code ? '/movie/' + ctx.movie.code : null

@@ -62,7 +62,8 @@ block('header')(
                             mods: {
                               type: 'search',
                               width: 'available'
-                            }
+                            },
+                            placeholder: 'Поиск'
                           }
                         }
                       }

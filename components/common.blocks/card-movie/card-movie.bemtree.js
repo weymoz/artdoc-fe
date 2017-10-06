@@ -5,8 +5,6 @@ block('card-movie').def()( ( node, ctx ) => {
    * Normalization
    */
 
-  _movie.cover = _movie.cover || {};
-
   // If shedule has discussion data or premiere, move first concurrence to movie's object
   if ( _movie.schedules ) {
     let discuss_link, discuss_preview, premiere;

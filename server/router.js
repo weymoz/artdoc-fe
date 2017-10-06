@@ -135,7 +135,9 @@ module.exports = function( app ) {
       params: req_url.searchParams
     };
 
-    let url = '/api/movie/filter/?sort=-rating&';
+    let sortBy = req.query.sort || '-rating';
+
+    let url = '/api/movie/filter/?sort=' + sortBy + '&';
 
     if (typeof req.params.category !== 'undefined') {
       filter['category'] = [global.categoryByCode[ req.params.category ].id];
@@ -161,7 +163,7 @@ module.exports = function( app ) {
       data.filters = response[1];
       data.filter = filter;
       data.pagination = Object.assign(response[0].meta, data.pagination);
-      data.pagination.view = req.query.view || 'list';
+      data.pagination.view = req.query.view || 'grid';
       data.page = 'movies';
       render( req, res, data );
     } ).catch((e) => { console.log(e); res.send('error');  });
@@ -418,9 +420,10 @@ module.exports = function( app ) {
   });
 
   app.get( '/api/filter/', ( req, res ) => {
+    const sort = req.query.sort || '-rating';
     const page = req.query.page || 1;
     const filters = Object.keys( req.query.filters ).map( filter => req.query.filters[ filter ] ? 'filter[' + filter + ']=' + req.query.filters[ filter ] : '' ).join('&');
-    request( { url: '/api/movie/filter/?sort=-rating&page=' + page + '&' + filters } )
+    request( { url: '/api/movie/filter/?sort=' + sort + '&page=' + page + '&' + filters } )
       .then( api => {
         res.send( JSON.stringify( api ) )
       } )

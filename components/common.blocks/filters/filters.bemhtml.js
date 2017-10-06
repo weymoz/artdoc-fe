@@ -96,23 +96,21 @@ block('filters')(
     replace()( node => {
       return {
         block: 'radio-group',
-        mods: {
-          type: 'line'
-        },
+        mods: { type: 'line' },
         mix: { block: node.block, elem: node.elem },
-        val: 'rating',
-        name: 'sortingBy',
+        val: '-rating',
+        name: 'sort',
         options: [
           {
-            val: 'rating',
+            val: '-rating',
             text: 'с высоким рейтингом'
           },
           {
-            val: 'recently',
+            val: '-year',
             text: 'сначала новые'
           },
           {
-            val: 'latest',
+            val: 'year',
             text: 'сначала старые'
           },
         ]
@@ -121,13 +119,15 @@ block('filters')(
   ),
 
   elem('view')(
-    replace()( () => {
+    replace()( node => {
       return {
         block: 'radio-group',
         mods: {
-          type: 'button'
+          type: 'button',
+          theme: 'artdoc-dark'
         },
-        val: 'rows',
+        mix: { block: node.block, elem: node.elem },
+        val: node._api.pagination.view || 'grid',
         name: 'view',
         options: [
           {
@@ -142,7 +142,7 @@ block('filters')(
             }
           },
           {
-            val: 'rows',
+            val: 'list',
             text: {
               block: 'icon',
               mods: {
@@ -151,7 +151,7 @@ block('filters')(
               },
               url: 'https://png.icons8.com/grid-3-filled/ios7/25'
             }
-          },
+          }
         ]
       }
     })
@@ -164,9 +164,7 @@ block('filters')(
       return node._api.api.map( movie => {
         return {
           block: 'card-movie',
-          mods: {
-            view: node._api.pagination.view || 'list'
-          },
+          mods: { view: node._api.pagination.view || 'grid' },
           mix: { block: 'filters', elem: 'result-item' },
           movie: movie
         }

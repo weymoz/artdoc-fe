@@ -13,6 +13,7 @@ block( 'card-selection' ).elem( 'author' )(
         author: author,
         content: {
           block: 'list',
+          mods: { size: 's' },
           content: [
             {
               elem: 'date',
@@ -20,9 +21,7 @@ block( 'card-selection' ).elem( 'author' )(
               content: [
               {
                 block: 'text',
-                mods: {
-                  format: 'datetime'
-                },
+                mods: { format: 'datetime' },
                 format: 'DD MMMM YYYY',
                 content: node._created_at
               }
