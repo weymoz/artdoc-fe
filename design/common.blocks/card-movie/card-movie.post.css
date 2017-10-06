@@ -380,6 +380,33 @@ block(card-movie) {
     }
   }
 
+  .mod(view grid) {
+    flex-direction: column;
+    padding-bottom: 56px;
+
+    .elem(name) {
+      padding-top: 1em;
+      padding-bottom: 1em;
+    }
+
+    .elem(rating) {
+      width: 32px;
+      line-height: 32px;
+      font-size: 16px;
+      font-weight: bold;
+
+      &:before {
+        content: none;
+      }
+    }
+
+    .elem(awards) {
+      width: 32px;
+      height: 32px;
+      padding: .35em;
+    }
+  }
+
   .mod(view order) {
     padding: 24px 0;
     box-sizing: border-box;
@@ -671,6 +698,7 @@ block(card-movie) {
       justify-content: flex-end;
       flex-direction: column;
       align-items: flex-start;
+      padding: 20px 56px 48px;
     }
 
     .elem(director) {

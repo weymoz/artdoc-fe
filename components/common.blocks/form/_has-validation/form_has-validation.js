@@ -7,13 +7,15 @@ modules.define('form', ['button'], function(provide, Button, Form) {
           this.__base.apply(this, arguments);
           this._elem('submit').findMixedBlock(Button)
             .setMod('disabled', false);
-          this._domEvents().on('submit', this._check.bind(this) );
           // this._domEvents().on('change', this._check.bind(this) );
         }
       }
     },
 
-    _check: function() {
+    _onSubmit : function(e) {
+      e.preventDefault();
+      this._emit('submit', this.getVal());
+    
       this.getMessage().hide();
       this.validate()
         .then( fieldsStatuses => {

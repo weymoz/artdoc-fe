@@ -1,6 +1,8 @@
 block('card-movie').mod('view', 'full')(
 
-  def()( () => {
+  def()( ( node, ctx ) => {
+    ctx.movie.cover = ctx.movie.cover || {};
+
     return applyNext( { 'ctx.movie.cover.width': 843 } );
   }),
 

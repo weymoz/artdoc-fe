@@ -7,7 +7,7 @@ block(card-author) {
   }
 
   @each $size, $width in
-    (xs, s, m, l, xl, xxl),
+    (  xs,    s,    m,    l,    xl,   xxl),
     (24px, 32px, 48px, 86px, 112px, 312px) {
     .mod(size $size) {
       .elem(aside) {

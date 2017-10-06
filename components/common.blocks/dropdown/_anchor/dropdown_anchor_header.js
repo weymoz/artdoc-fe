@@ -1,6 +1,6 @@
 modules.define('dropdown', ['header'],  function(provide, Header, Dropdown) {
 
-provide(Dropdown.declMod({ modName: 'nav-menu', modVal: true }, {
+provide(Dropdown.declMod({ modName: 'anchor', modVal: 'header' }, {
   onSetMod: {
     js: {
       inited: function() {

@@ -6,6 +6,7 @@
       block: 'dropdown',
       mods: {
         switcher: 'link',
+        anchor: 'header',
         'nav-menu': true
       }
     },

@@ -1,11 +1,12 @@
 block('card-movie').mod('view', 'list')(
 
   def()( ( node, ctx ) => {
-    let movie = Object.assign( {}, ctx.movie );
-    movie.cover.width = 421;
-    movie.url = ctx.movie.code ? '/movie/' + ctx.movie.code : null;
+    ctx.movie.cover = ctx.movie.cover || {};
 
-    return applyNext( { 'ctx.movie': movie } );
+    return applyNext( {
+      'ctx.movie.cover.width': 421,
+      'ctx.movie.url': ctx.movie.code ? '/movie/' + ctx.movie.code : null
+    } );
   }),
 
   content()( ( node, ctx ) => {

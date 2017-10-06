@@ -92,6 +92,7 @@ block(filters) {
   .elem(params) {
     display: flex;
     align-items: center;
+    margin-top: 24px;
   }
 
   .elem(sort) {
@@ -133,7 +134,8 @@ block(filters) {
   }
 
   .elem(content).mod(loading) {
-    opacity: .5;
+    opacity: .3;
+    filter: blur(10px);
   }
 
   .elem(close) {
@@ -163,6 +165,17 @@ block(filters) {
 
     &:hover {
       background-color: #666;
+    }
+  }
+
+  .mod(result grid) {
+
+    .elem(content) {
+      padding-top: 56px;
+    }
+
+    .elem(result-item) {
+      lost-column: 1/4;
     }
   }
 }

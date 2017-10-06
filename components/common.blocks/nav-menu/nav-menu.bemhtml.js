@@ -7,13 +7,12 @@ block('nav-menu')(
         mix: { block: 'nav-menu', elem: 'item' },
         mods: {
           switcher: 'link',
+          anchor: 'header',
           'nav-menu': true
         },
         switcher: {
           block: 'link',
-          mods: {
-            pseudo: true,
-          },
+          mods: { pseudo: true },
           url: '/movie',
           content: 'Фильмы'
         },
