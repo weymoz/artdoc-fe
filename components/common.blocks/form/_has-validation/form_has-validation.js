@@ -5,8 +5,10 @@ modules.define('form', ['button'], function(provide, Button, Form) {
       js: {
         inited: function() {
           this.__base.apply(this, arguments);
-          this._elem('submit').findMixedBlock(Button)
-            .setMod('disabled', false);
+          if ( this._elem('submit') ) {
+            this._elem('submit').findMixedBlock(Button)
+              .setMod('disabled', false);
+          }
           // this._domEvents().on('change', this._check.bind(this) );
         }
       }

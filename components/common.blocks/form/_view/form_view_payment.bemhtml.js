@@ -1,7 +1,14 @@
-block('form').mod('view', 'payment').content()(function() {
-  return [
-    {
-      attrs: { id: 'payment-form' },
-    }
-  ]
-});
+block('form').mod('view', 'payment')(
+
+  addMods()({
+    'has-validation': true
+  }),
+
+  content()(function() {
+    return [
+      {
+        attrs: { id: 'payment-form' },
+      }
+    ]
+  })
+)
