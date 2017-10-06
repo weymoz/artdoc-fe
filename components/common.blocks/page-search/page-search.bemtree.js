@@ -1,5 +1,6 @@
 block('page-search').replace()( node => {
 
+  delete node.data.api.items.author;
   const result = node.data.api.items || {},
         total = Object.keys( result ).reduce( ( sum, current ) => sum + result[ current ].length, 0 );
 
