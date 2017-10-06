@@ -137,7 +137,7 @@ module.exports = function( app ) {
 
     let sortBy = req.query.sort || '-rating';
 
-    let url = '/api/movie/filter/?sort=' + sortBy + '&';
+    let url = '/api/movie/filter/?per-page=20&sort=' + sortBy + '&';
 
     if (typeof req.params.category !== 'undefined') {
       filter['category'] = [global.categoryByCode[ req.params.category ].id];
@@ -356,7 +356,7 @@ module.exports = function( app ) {
   // Search
   app.get( '/search', ( req, res ) => {
     let data = Object.assign({}, global);
-    request( { url: '/search/search/?q=' + encodeURIComponent( req.query.q ) } )
+    request( { url: '/search/search/?per-page=20&q=' + encodeURIComponent( req.query.q ) } )
       .then( response => {
         data.api = response;
         data.page = 'search';
@@ -409,14 +409,7 @@ module.exports = function( app ) {
 
   app.post( '/api/payment/:transaction_id', ( req, res ) => {
     client.post( '/payment/provide/', { nonce: req.body.payment_nonce, transaction_id: req.params.transaction_id } )
-      .then( api => {
-        res.send( JSON.stringify( api.data ) );
-        if ( api.data.api.error ) {
-          // При оплате произошла ошибка
-        } else {
-          // Билет успешно оплачен
-        }
-      } )
+      .then( api => res.send( JSON.stringify( api.data ) ) )
       .catch(() => res.send('error') );
   });
 
@@ -424,7 +417,7 @@ module.exports = function( app ) {
     const sort = req.query.sort || '-rating';
     const page = req.query.page || 1;
     const filters = Object.keys( req.query.filters ).map( filter => req.query.filters[ filter ] ? 'filter[' + filter + ']=' + req.query.filters[ filter ] : '' ).join('&');
-    request( { url: '/api/movie/filter/?sort=' + sort + '&page=' + page + '&' + filters } )
+    request( { url: '/api/movie/filter/?per-page=20&sort=' + sort + '&page=' + page + '&' + filters } )
       .then( api => {
         res.send( JSON.stringify( api ) )
       } )
