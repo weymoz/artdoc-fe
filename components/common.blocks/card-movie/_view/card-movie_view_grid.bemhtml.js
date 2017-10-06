@@ -29,14 +29,9 @@ block('card-movie').mod('view', 'grid')(
         elem: 'aside',
         content: [
           { elem: 'name', elemMods: { link: true, size: 'xs' } },
-          { elem: 'director' },
-          {
-            elem: 'list',
-            content: [
-              { elem: 'countries' },
-              { elem: 'year' }
-            ]
-          }
+          { elem: 'director', mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } } },
+          { elem: 'countries', mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } } },
+          { elem: 'year', mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } } }
         ]
       }
     ];
