@@ -69,14 +69,19 @@ provide(Form.declMod({ modName: 'view', modVal: 'order' }, {
               bemDom.append(
                 paymentFormElem.domElem,
                 BEMHTML.apply({
-                  block: 'button',
-                  mods: {
-                    type: 'submit',
-                    width: 'available',
-                    size: 'xxl',
-                    theme: 'artdoc'
-                  },
-                  text: 'Отправить'
+                  block: 'form',
+                  elem: 'footer',
+                  content: {
+                    block: 'button',
+                    mods: {
+                      type: 'submit',
+                      width: 'available',
+                      size: 'xxl',
+                      theme: 'artdoc'
+                    },
+                    mix: { block: 'form', elem: 'submit' },
+                    text: 'Отправить'
+                  }
                 })
               );
 
@@ -115,8 +120,8 @@ provide(Form.declMod({ modName: 'view', modVal: 'order' }, {
         );
       } else if ( data.message === 'email send' ) {
         _this._modal
-          .setContent( '' )       // Move modal to end of page,
-          .setMod( 'visible' )    // because we have form inside form
+          .setContent( '' )    // Move modal to end of page,
+          .setMod( 'visible' ) // because we have form inside form
           .setContent([
             '<div style="padding: 20px">',
               '<p class="paragraph paragraph_lead text text_align_center">На вашу почту отправлено письмо<br>со ссылкой для активации</p>',
@@ -127,8 +132,8 @@ provide(Form.declMod({ modName: 'view', modVal: 'order' }, {
       } else {
         console.log( data );
         _this._modal
-          .setContent( '' )       // Move modal to end of page,
-          .setMod( 'visible' )    // because we have form inside form
+          .setContent( '' )    // Move modal to end of page,
+          .setMod( 'visible' ) // because we have form inside form
           .setContent([
             '<div style="padding: 20px">',
               '<p class="paragraph paragraph_lead text text_align_center">Произошла ошибка: ' + ( data.message || data.error ) + '</p>',
