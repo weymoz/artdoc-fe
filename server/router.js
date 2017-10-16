@@ -96,7 +96,7 @@ module.exports = function( app ) {
   // Index
   app.get( '/', function( req, res ) {
     axios.all([
-      request( { url: '/api/authorcompilation/?per-page=3&page=1' } ),
+      request( { url: '/api/authorcompilation/?sort=-created_at&per-page=3&page=1' } ),
       request( { url: '/api/schedule/?expand=sessions,movie&per-page=4&unique=1&date_from=' + (Math.floor((Date.now() / 1000) /3600 ) * 3600 - (31 * 60 * 60)) } )
     ]).then( (response) => {
       let data = Object.assign({}, global, {api: response[0].items}, {poster: response[1]});
@@ -219,7 +219,7 @@ module.exports = function( app ) {
     };
 
     let url = '/api/authorcompilation/';
-    url += '?per-page=' + data.pagination['per-page'] + '&page=' + data.pagination.page;
+    url += '?sort=-created_at&per-page=' + data.pagination['per-page'] + '&page=' + data.pagination.page;
 
     data.page = 'selections';
     data.title = 'Авторские подборки';
@@ -321,7 +321,7 @@ module.exports = function( app ) {
     request( { url: '/payment/freeactivate/?' + Object.keys( req.query ).map( key => key + '=' + encodeURIComponent( req.query[ key ] ) ).join('&') } )
       .then( response => {
         data.api = response;
-        
+
         if ( !data.api.error ) {
           data.page = 'thanks';
           data.title = 'Билет успешно активирован';
@@ -342,7 +342,7 @@ module.exports = function( app ) {
     request( { url: '/ondemand/release/?movie_code=' + req.params.name } )
       .then( response => {
         data.api = response;
-        
+
         if ( !data.api.error ) {
           data.page = 'play';
           data.title = 'Просмотр фильма';
@@ -361,7 +361,7 @@ module.exports = function( app ) {
         data.api = response;
         data.page = 'search';
         data.title = 'Результаты поиска';
-        
+
         if ( !data.api.error ) {
           render( req, res, data );
         }
