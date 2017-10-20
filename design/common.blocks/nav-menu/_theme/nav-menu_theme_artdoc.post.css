@@ -1,7 +1,4 @@
 block(nav-menu).mod(theme artdoc) {
-  padding-left: 1em;
-  padding-right: 1em;
-
   .elem(item) {
     font-size: 16px;
     font-weight: bold;
