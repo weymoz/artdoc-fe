@@ -63,7 +63,10 @@ block(slider) {
     justify-content: center;
     align-items: center;
     min-height: 170px;
-    margin: 0 70px;
+    padding-right: 70px;
+    padding-left: 70px;
+    padding-bottom: 0;
+    padding-top: 22px;
     text-align: center;
   }
 
