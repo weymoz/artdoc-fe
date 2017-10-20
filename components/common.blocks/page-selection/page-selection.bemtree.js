@@ -1,4 +1,11 @@
+var marked = require('marked');
+
 block('page-selection').replace()( node => {
+
+  if ( node.data.api.description ) {
+    node.data.api.description = marked( node.data.api.description );
+  }
+
   return [
     {
       block: 'card-selection',
