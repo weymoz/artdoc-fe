@@ -2,7 +2,11 @@ block('card-movie').elem('description')(
 
   match( node => !node._description ).def()( '' ),
 
-  content()( node => node._description )
+  content()( node => {
+    return {
+      html: node._description
+    }
+  } )
 
 )
 
@@ -18,5 +22,7 @@ block('card-movie').elem('description').elemMod( 'short', true ).content()( node
     var text = node._description.substr( 0, limit[1] );
     node._description = text.substr( 0, Math.min( text.length, text.lastIndexOf( ' ' ) ) ) + '…'
   }
-  return node._description
+  return {
+    html: node._description
+  }
 } )

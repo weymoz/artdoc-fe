@@ -11,20 +11,23 @@ block('club-footer')(
               content: [
                   { elem: 'avatar' },
                   {
-                    elem: 'title',
+                    elem: 'name',
                     elemMods: { size: 'xl' },
                     mix: { block: 'font', mods: { family: 'helvetica-neue-condensed-bold', loaded: true } },
-                    content: 'Клуб '
+                    content: 'Клуб'
                   },
+                  { html: '&nbsp;' },
                   {
-                    elem: 'title',
-                    elemMods: { size: 'xl' },
+                    elem: 'name',
+                    elemMods: { size: 'xl', secondary: true },
+                    mix: { block: 'font', mods: { family: 'helvetica-neue-condensed-bold', loaded: true } },
                     content: 'Артдок'
                   }
               ]
             },
             {
               block: 'paragraph',
+              mix: { block: node.block, elem: 'about' },
               content: 'Закрытое сообщество представителей крупных мировых фестивалей документального кино, ведущиx российскиx кинокритиков, редакторов телеканалов и профессионалов кино'
             }
           ]

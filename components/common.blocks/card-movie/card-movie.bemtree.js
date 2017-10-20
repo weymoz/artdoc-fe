@@ -1,39 +1,47 @@
-block('card-movie').def()( ( node, ctx ) => {
-  const _movie = ctx.movie;
+var marked = require('marked');
 
-  /*
-   * Normalization
-   */
+block('card-movie')(
+  match( ( node, ctx ) => !ctx.movie ).def()(''),
 
-  // If shedule has discussion data or premiere, move first concurrence to movie's object
-  if ( _movie.schedules ) {
-    let discuss_link, discuss_preview, premiere;
+  match( ( node, ctx ) => ctx.movie ).def()( ( node, ctx ) => {
+    const _movie = ctx.movie;
 
-    // Check discussion
-    for (let i = 0; i < _movie.schedules.length; i++) {
-      if ( _movie.schedules[i].discuss_link || _movie.schedules[i].discuss_preview ) {
-        discuss_link = _movie.schedules[i].discuss_link;
-        discuss_preview = _movie.schedules[i].discuss_preview;
-        break;
+    /*
+     * Normalization
+     */
+
+    _movie.description = marked( _movie.description );
+
+    // If shedule has discussion data or premiere, move first concurrence to movie's object
+    if ( _movie.schedules ) {
+      let discuss_link, discuss_preview, premiere;
+
+      // Check discussion
+      for (let i = 0; i < _movie.schedules.length; i++) {
+        if ( _movie.schedules[i].discuss_link || _movie.schedules[i].discuss_preview ) {
+          discuss_link = _movie.schedules[i].discuss_link;
+          discuss_preview = _movie.schedules[i].discuss_preview;
+          break;
+        }
       }
-    }
 
-    if (discuss_preview) {
-      discuss_preview = discuss_preview.replace('Пройдите по ссылке.', '');
-    }
-
-    _movie.discuss_link = discuss_link;
-    _movie.discuss_preview = discuss_preview;
-
-    // Check premiere
-    for (let i = 0; i < _movie.schedules.length; i++) {
-      if ( _movie.schedules[i].premiere ) {
-        premiere = _movie.schedules[i].premiere;
-        break;
+      if (discuss_preview) {
+        discuss_preview = discuss_preview.replace('Пройдите по ссылке.', '');
       }
-    }
-    _movie.premiere = premiere;
-  }
 
-  return applyNext();
-});
+      _movie.discuss_link = discuss_link;
+      _movie.discuss_preview = discuss_preview;
+
+      // Check premiere
+      for (let i = 0; i < _movie.schedules.length; i++) {
+        if ( _movie.schedules[i].premiere ) {
+          premiere = _movie.schedules[i].premiere;
+          break;
+        }
+      }
+      _movie.premiere = premiere;
+    }
+
+    return applyNext();
+  })
+)
