@@ -3,7 +3,9 @@ block('card-selection').elem('description')(
         return [
             {
                 block: 'text',
-                content: node._description
+                content: {
+                  html: node._description
+                }
             }
         ];
     })

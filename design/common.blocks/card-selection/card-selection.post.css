@@ -9,6 +9,10 @@ block(card-selection) {
     box-sizing: border-box;
   }
 
+  .elem(description) {
+    width: 75%;
+  }
+
   .elem(header) {
     position: relative;
     z-index: 1;
