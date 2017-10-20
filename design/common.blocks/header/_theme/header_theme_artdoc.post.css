@@ -33,14 +33,21 @@ block(header).mod(theme artdoc) {
   }
 
   .elem(title) {
-    width: 207px;
-    padding: .75em;
+    width: 216px;
+    padding-top: .75em;
+    padding-bottom: .75em;
+    padding-right: 1.25em;
+    padding-left: 1.25em;
     box-sizing: border-box;
     background-origin: content-box;
   }
 
   .elem(menu) {
     flex: 1;
+    padding-right: 11px;
+    padding-left: 11px;
+    padding-bottom: 0;
+    padding-top: 0;
   }
 
   .elem(lang) {

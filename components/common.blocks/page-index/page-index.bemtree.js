@@ -68,15 +68,24 @@ block('page-index').replace()( node => {
       content: [
         {
           block: 'slider',
-          mix: { block: 'page', elem: 'slider' }, content: slider },
-        { block: 'card-poster', poster: poster },
+          mix: { block: 'page', elem: 'slider' },
+          content: slider
+        },
+        {
+          block: 'card-poster',
+          mix: { block: 'page', elem: 'poster' },
+          poster: poster
+        },
         {
           elem: 'title',
           elemMods: { view: 'condensed-bold', size: 'xl' },
           mix: { block: 'heading', mods: { caps: true, align: 'center', size: 'l' } },
           content: 'Новости и события'
         },
-        { block: 'news' },
+        {
+          block: 'news',
+          mix: { block: 'page', elem: 'news' },
+        },
         {
           elem: 'title',
           elemMods: { view: 'condensed-bold', size: 'xl' },
