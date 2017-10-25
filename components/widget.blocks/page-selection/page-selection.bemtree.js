@@ -7,6 +7,7 @@ block('page-selection').replace()( node => {
         return {
           block: 'card-movie',
           mods: { view: 'grid' },
+          mix: { block: 'card-selection', elem: 'item' },
           movie: item,
         }
       } )
