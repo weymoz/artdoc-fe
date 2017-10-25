@@ -17,7 +17,8 @@ block('page-selection').replace()( node => {
       content: node.data.api.movies.map( item => {
         return {
           block: 'card-movie',
-          mods: { view: 'list' },
+          mods: { view: 'grid' },
+          mix: { block: 'card-selection', elem: 'item' },
           movie: item,
         }
       } ),
