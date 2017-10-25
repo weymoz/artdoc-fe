@@ -1,33 +1,33 @@
 Object.assign || (Object.assign = require('object-assign'));
 
-var fs = require('fs'),
-    path = require('path'),
-    express = require('express'),
-    app = express(),
-    bodyParser = require('body-parser'),
-    favicon = require('serve-favicon'),
-    morgan = require('morgan'),
-    serveStatic = require('serve-static'),
-    cookieParser = require('cookie-parser'),
-    expressSession = require('express-session'),
-    slashes = require('connect-slashes'),
-    passport = require('passport'),
-    LocalStrategy = require('passport-local').Strategy,
-    axios = require('axios'),
-    // csrf = require('csurf'),
-    compression = require('compression'),
+const fs = require('fs'),
+      path = require('path'),
+      express = require('express'),
+      app = express(),
+      bodyParser = require('body-parser'),
+      favicon = require('serve-favicon'),
+      morgan = require('morgan'),
+      serveStatic = require('serve-static'),
+      cookieParser = require('cookie-parser'),
+      expressSession = require('express-session'),
+      slashes = require('connect-slashes'),
+      passport = require('passport'),
+      LocalStrategy = require('passport-local').Strategy,
+      axios = require('axios'),
+      // csrf = require('csurf'),
+      compression = require('compression'),
 
-    config = require('./config'),
-    staticFolder = config.staticFolder,
-    client = axios.create( config.host ),
+      config = require('./config'),
+      staticFolder = config.staticFolder,
+      client = axios.create( config.host ),
 
-    Render = require('./render'),
-    render = Render.render,
-    dropCache = Render.dropCache, // eslint-disable-line no-unused-vars
+      Render = require('./render'),
+      render = Render.render,
+      dropCache = Render.dropCache, // eslint-disable-line no-unused-vars
 
-    port = config.defaultPort,
-    isSocket = isNaN(port),
-    isDev = process.env.NODE_ENV === 'development';
+      port = config.defaultPort,
+      isSocket = isNaN(port),
+      isDev = process.env.NODE_ENV === 'development';
 
 require('debug-http')();
 
@@ -53,19 +53,19 @@ app
 isDev || app.use(slashes());
 
 passport.use(new LocalStrategy({
-  usernameField: 'username',
-  passwordField: 'password'
-}, function( username, password, done ) {
-  client.post( '/auth/auth/login/', { username: username, password: password } )
-    .then( api => {
-      return api.data.error
-        ? done( null, false, api.data )
-        : done( null, {
-            status: api.data.status,
-            cookies: api.headers['set-cookie']
-          } )
-    } )
-    .catch( () => console.log('Passport error') )
+    usernameField: 'username',
+    passwordField: 'password'
+  }, function( username, password, done ) {
+    client.post( '/auth/auth/login/', { username: username, password: password } )
+      .then( api => {
+        return api.data.error
+          ? done( null, false, api.data )
+          : done( null, {
+              status: api.data.status,
+              cookies: api.headers['set-cookie']
+            } )
+      } )
+      .catch( () => console.log('Passport error') )
 }));
 
 passport.serializeUser(function(user, done) {

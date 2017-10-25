@@ -1,0 +1,7 @@
+block(page) {
+  .mod(refer) {
+    block(header) {
+      display: none;
+    }
+  }
+}
