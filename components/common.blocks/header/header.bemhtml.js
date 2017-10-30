@@ -36,58 +36,7 @@ block('header')(
           content: {
             elem: 'content',
             elemMods: { width: 'narrow' },
-            content: {
-              block: 'search',
-              content: [
-                {
-                  block: 'form',
-                  mods: { view: 'search' },
-                  method: 'GET',
-                  action: '/search',
-                  content: [
-                    { tag: 'br' },
-                    { tag: 'br' },
-                    {
-                      elem: 'content',
-                      content: {
-                        block: 'form-field',
-                        mods: {
-                          type: 'input'
-                        },
-                        name: 'q',
-                        content: {
-                          elem: 'control',
-                          content: {
-                            block: 'input',
-                            mods: {
-                              type: 'search',
-                              width: 'available'
-                            },
-                            placeholder: 'Поиск'
-                          }
-                        }
-                      }
-                    },
-                    { tag: 'br' },
-                    { tag: 'br' },
-                    // {
-                    //   elem: 'footer',
-                    //   content: [
-                    //     {
-                    //       block: 'paragraph',
-                    //       mods: {
-                    //         align: 'center'
-                    //       },
-                    //       content: 'К сожалению, мы ничего не нашли по запросу «айцуке». Попробуйте еще раз или загляните в каталог фильмов.'
-                    //     }
-                    //   ]
-                    // },
-                    // { tag: 'br' },
-                    // { tag: 'br' }
-                  ]
-                }
-              ]
-            }
+            content: { block: 'form', mods: { view: 'search' } }
           }
         }
       },

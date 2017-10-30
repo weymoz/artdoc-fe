@@ -432,6 +432,24 @@ module.exports = function( app ) {
       .catch( () => res.send('error') )
   });
 
+  app.get( '/api/search', ( req, res ) => {
+    if ( req.query.q ) {
+      let data = Object.assign({}, global);
+      request( { url: '/search/search/?per-page=20&q=' + encodeURIComponent( req.query.q ) } )
+        .then( response => {
+          data.api = response;
+          
+          if ( !data.api.error ) {
+            res.send( JSON.stringify( data ) )
+          }
+
+        } )
+        .catch(() => res.send('error') );
+    } else {
+      res.send( JSON.stringify( { api: { error: 'Empty data' } } ) )
+    }
+  });
+
   app.post( '/api/user/login', ( req, res, next ) => {
     passport.authenticate( 'local', ( err, user, info ) => {
       return err
