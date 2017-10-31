@@ -1,0 +1,1 @@
+block('club-footer').def()('');

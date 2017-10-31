@@ -13,7 +13,7 @@ block(link) {
     display: inline-block;
     border-radius: 2em;
     text-decoration: none;
-    margin-bottom: .5em;
+    margin-bottom: 1em;
     margin-right: .5em;
     padding: .5em 1em;
   }

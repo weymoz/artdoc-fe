@@ -3,8 +3,9 @@ var fs = require('fs'),
     mkdirp = require('mkdirp'),
     techs = require('./techs'),
     SETS = {
-      'desktop': ['common', 'desktop'],
-      'touch': ['common', 'touch']
+      desktop: ['common', 'desktop'],
+      widget: ['common', 'desktop', 'widget'],
+      touch: ['common', 'touch']
     };
 
 var isProd = process.env.YENV === 'production';

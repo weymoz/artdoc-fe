@@ -699,7 +699,8 @@ block(card-movie) {
       color: white;
       font-size: 17px;
       line-height: 20px;
-      padding: 20px 15px 8px;
+      padding-top: 21px;
+      padding-left: 16px;
       text-transform: uppercase;
     }
 

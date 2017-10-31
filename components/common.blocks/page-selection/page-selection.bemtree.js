@@ -1,4 +1,11 @@
+var marked = require('marked');
+
 block('page-selection').replace()( node => {
+
+  if ( node.data.api.description ) {
+    node.data.api.description = marked( node.data.api.description );
+  }
+
   return [
     {
       block: 'card-selection',
@@ -10,7 +17,8 @@ block('page-selection').replace()( node => {
       content: node.data.api.movies.map( item => {
         return {
           block: 'card-movie',
-          mods: { view: 'list' },
+          mods: { view: 'grid' },
+          mix: { block: 'card-selection', elem: 'item' },
           movie: item,
         }
       } ),

@@ -78,6 +78,14 @@ module.exports = function( app ) {
     next();
   } );
 
+  // iFrame widget
+  app.use( ( req, res, next ) => {
+    const refer = new URL( req.headers.referrer || req.headers.referer || req.protocol + '://' + req.get( 'host' ) + req.originalUrl );
+    global.refer = refer.host !== req.get('host');
+    global.bundle = !req.query.embed ? 'desktop' : 'widget';
+    next();
+  } );
+
   request( { url: '/api/category/?per-page=0'} ).then( response => {
     global.category = response.items.sort(function (a,b) {
       return a.name.localeCompare(b.name, 'ru');
@@ -99,7 +107,7 @@ module.exports = function( app ) {
       request( { url: '/api/authorcompilation/?sort=-created_at&per-page=3&page=1' } ),
       request( { url: '/api/schedule/?expand=sessions,movie&per-page=4&unique=1&date_from=' + (Math.floor((Date.now() / 1000) /3600 ) * 3600 - (31 * 60 * 60)) } )
     ]).then( (response) => {
-      let data = Object.assign({}, global, {api: response[0].items}, {poster: response[1]});
+      let data = Object.assign({}, global, { api: response[0].items }, { poster: response[ 1 ] } );
       data.page = 'index';
       //data.bundle = isCallerMobile( req ) ? 'touch' : 'desktop';
       render( req, res, data );

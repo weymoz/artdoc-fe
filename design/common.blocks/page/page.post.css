@@ -50,6 +50,21 @@ block(page) {
   }
 
   .elem(slider) {
-    margin-bottom: 74px;
+    margin-bottom: 76px;
+  }
+
+  .elem(poster) {
+    padding-bottom: 26px;
+  }
+
+  .elem(news) {
+    padding-bottom: 26px;
+  }
+
+  .mod(widget) {
+    .elem(content) {
+      padding-left: 0;
+      padding-right: 0;
+    }
   }
 }

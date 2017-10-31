@@ -79,7 +79,7 @@ block(menu) {
 
   @each $size, $fontSize, $lineHeight, $paddingLeft, $paddingVert, $paddingHor in
     (   s,    m,    l,   xl),  /* size        */
-    (12px, 14px, 16px, 18px),  /* fontSize    */
+    (14px, 14px, 16px, 18px),  /* fontSize    */
     (24px, 24px, 28px, 32px),  /* lineHeight  */
     (30px, 30px, 34px, 40px),  /* paddingLeft */
     ( 3px,  4px,  5px,  6px),  /* paddingVert */
