@@ -68,7 +68,8 @@ block('card-movie').mod('view', 'list')(
         elem: 'aside',
         elemMods: { view: 'action' },
         content: [
-          { elem: 'discussion' }
+          { elem: 'discussion' },
+          { elem: 'buy',  elemMods: { type: 'button' }  }
         ]
       }
     ];
