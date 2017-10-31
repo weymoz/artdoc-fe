@@ -1,128 +1,55 @@
-var fs = require('fs'),
-    path = require('path'),
-    mkdirp = require('mkdirp'),
-    techs = require('./techs'),
-    SETS = {
-      desktop: ['common', 'desktop'],
-      widget: ['common', 'desktop', 'widget'],
-      touch: ['common', 'touch']
-    };
-
-var isProd = process.env.YENV === 'production';
+const fs        = require('fs'),
+      path      = require('path'),
+      mkdirp    = require('mkdirp'),
+      build     = require('./config/build'),
+      techs     = require('./config/techs'),
+      getLevels = require('./config/levels').getLevels,
+      SETS      = require('./config/levels').SETS,
+      isProd    = process.env.YENV === 'production';
 
 module.exports = function(config) {
-  var platforms = Object.keys(SETS);
+  const platforms = Object.keys(SETS);
 
   platforms.forEach(function(platform) {
     [ 'css', 'js' ].forEach( catalog => {
       pathToStatic = path.resolve( 'static', 'assets', catalog, platform );
-      fs.existsSync(pathToStatic) || mkdirp(pathToStatic);
+      fs.existsSync( pathToStatic ) || mkdirp( pathToStatic );
     } );
 
-    var levels = getSourceLevels(platform);
+    const levels = getLevels( platform );
     isProd || levels.push({ path: path.join('components', 'development.blocks'), check: true });
 
-    config.nodes('bundles/' + platform + '.bundles/*', function(nodeConfig) {
+    config.nodes( 'bundles/' + platform + '.bundles/*', function( nodeConfig ) {
       nodeConfig.addTechs([
-        // essential
         [techs.bem.levels, { levels: levels }],
-        [techs.fileProvider, { target: '?.bemdecl.js' }],
-        [techs.bem.deps],
-        [techs.bem.files],
-
-        // css
-        [techs.postcss, {
-          target: '?.css',
-          oneOfSourceSuffixes: ['post.css', 'css'],
-          plugins: techs.postcssPlugins
-        }],
-
-        // bemtree
-        [techs.bemtree, {
-          sourceSuffixes: ['bemtree', 'bemtree.js'],
-        }],
-
-        // templates
-        [techs.bemhtml, {
-          sourceSuffixes: ['bemhtml', 'bemhtml.js'],
-          forceBaseTemplates: true,
-          engineOptions: {
-            elemJsInstances: true,
-            //runtimeLint: true
-          },
-          requires: {
-            moment: {
-              globals: 'moment',
-              ym: 'moment',
-              commonJS: 'moment'
-            },
-            moment_ru: {
-              commonJS: 'moment/locale/ru'
-            }
-          }
-        }],
-
-        // client templates
-        [techs.bem.depsByTechToBemdecl, {
-          target: '?.tmpl.bemdecl.js',
-          sourceTech: 'js',
-          destTech: 'bemhtml'
-        }],
-        [techs.bem.deps, {
-          target: '?.tmpl.deps.js',
-          bemdeclFile: '?.tmpl.bemdecl.js'
-        }],
-        [techs.bem.files, {
-          depsFile: '?.tmpl.deps.js',
-          filesTarget: '?.tmpl.files',
-          dirsTarget: '?.tmpl.dirs'
-        }],
-        [techs.bemhtml, {
-          target: '?.browser.bemhtml.js',
-          filesTarget: '?.tmpl.files',
-          sourceSuffixes: ['bemhtml', 'bemhtml.js'],
-          engineOptions: { elemJsInstances: true }
-        }],
-
-        // js
-        [techs.browserJs, { includeYM: true }],
-        [techs.fileMerge, {
-          target: '?.js',
-          sources: ['?.browser.js', '?.browser.bemhtml.js']
-        }],
-
-        // borschik
-        [techs.borschik, { source: '?.js', target: '?.min.js', minify: isProd }],
-        [techs.borschik, { source: '?.css', target: '?.min.css', minify: isProd }],
-
-        [techs.fileCopy, { source: '?.min.js', target: '../../../static/assets/js/' + platform + '/?.min.js' }],
-        [techs.fileCopy, { source: '?.min.css', target: '../../../static/assets/css/' + platform + '/?.min.css' }]
+        [techs.fileProvider, { target: '?.bemdecl.js' }]
       ]);
+
+      build( nodeConfig );
 
       nodeConfig.addTargets([
         '?.bemtree.js',
-        '?.bemhtml.js',
-        '../../../static/assets/js/' + platform + '/?.min.js',
-        '../../../static/assets/css/' + platform + '/?.min.css'
+        '?.bemhtml.js'
       ]);
     });
+
+    config.node( path.join( 'dist', platform ), function( nodeConfig ) {
+      nodeConfig.addTechs([
+        [techs.bem.levels, { levels: levels }],
+        [techs.bem.levelsToBemdecl]
+      ]);
+
+      build( nodeConfig, platform );
+
+      nodeConfig.addTechs([
+        [techs.fileCopy, { source: '?.min.js', target: '../../static/assets/js/' + platform + '/?.min.js' }],
+        [techs.fileCopy, { source: '?.min.css', target: '../../static/assets/css/' + platform + '/?.min.css' }]
+      ]);
+
+      nodeConfig.addTargets([
+        '../../static/assets/css/' + platform + '/?.min.css',
+        '../../static/assets/js/' + platform + '/?.min.js'
+      ]);
+    } );
   });
 };
-
-function getSourceLevels(platform) {
-  var platformNames = SETS[platform],
-      levels = [];
-
-  platformNames.forEach(function(name) {
-    levels.push({ path: path.join('node_modules', 'bem-core', name + '.blocks'), check: false });
-    levels.push({ path: path.join('node_modules', 'bem-components', name + '.blocks'), check: false });
-    levels.push({ path: path.join('node_modules', 'bem-forms', name + '.blocks'), check: false });
-    levels.push({ path: path.join('node_modules', 'bem-history', name + '.blocks'), check: false });
-    levels.push({ path: path.join('components', name + '.blocks'), check: true });
-    levels.push({ path: path.join('design', name + '.blocks'), check: true });
-  });
-
-  return levels.filter(function(level) {
-    return fs.existsSync(level.path);
-  });
-}

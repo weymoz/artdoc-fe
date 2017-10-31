@@ -28,11 +28,10 @@ block('page-index').replace()( node => {
     }
   }
 
+  /*
+   * Normalization
+   */
   const poster = node.data.poster.items.map( movie => {
-    /*
-     * Normalization
-     */
-
     // Fix 3 hours offset
     let offset = ( new Date().getTimezoneOffset() / 60 );
     let dateFromServer = new Date( movie.date_gmt3 * 1000 );
@@ -40,7 +39,7 @@ block('page-index').replace()( node => {
     let correctDate = new Date( dateUTC + ( 3600000 * offset ) );
     movie.date_gmt3 = correctDate.getTime() / 1000;
 
-    // // Folding
+    // Folding
     return Object.assign( {}, movie.movie[0], { schedules: movie.sessions }, {
       date: movie.date_gmt3,
       discuss_link: movie.discuss_link,
@@ -48,7 +47,6 @@ block('page-index').replace()( node => {
       premiere: movie.discuss_preview,
     } );
   } );
-
 
   return [
     {
