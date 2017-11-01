@@ -18,28 +18,34 @@ block('header')(
         currentCategoryCode: ctx.currentCategoryCode
       },
       {
-        block: 'dropdown',
-        mods: {
-          switcher: 'link',
-          anchor: 'header'
-        },
-        mix: { block: 'header', elem: 'search' },
-        switcher: {
-          block: 'link',
-          mods: { pseudo: true, },
-          url: '/search',
-          content: 'Поиск'
-        },
-        popup: {
-          block: 'page',
-          elem: 'section',
-          content: {
-            elem: 'content',
-            elemMods: { width: 'narrow' },
-            content: { block: 'form', mods: { view: 'search' } }
-          }
-        }
+        block: 'link',
+        mods: { pseudo: true, },
+        mix: { block: 'header', elem: 'search', js: true },
+        url: '/search',
+        content: 'Поиск'
       },
+      {
+        block: 'modal',
+        mods: { size: 'xxl', view: 'search' },
+        content: { block: 'form', mods: { view: 'search' } }
+      },
+      // {
+      //   block: 'dropdown',
+      //   mods: {
+      //     switcher: 'link',
+      //     anchor: 'header'
+      //   },
+      //   switcher: 
+      //   popup: {
+      //     block: 'page',
+      //     elem: 'section',
+      //     content: {
+      //       elem: 'content',
+      //       elemMods: { width: 'narrow' },
+      //       content: { block: 'form', mods: { view: 'search' } }
+      //     }
+      //   }
+      // },
 /*
       {
         elem: 'lang',

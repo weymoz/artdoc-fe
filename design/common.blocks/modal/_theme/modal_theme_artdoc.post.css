@@ -6,7 +6,6 @@ block(modal).mod(theme artdoc) {
   /* to prevent clickability and visiblity of internal elements with visiblity: visible */
   margin: -9999px 0 0 -9999px;
 
-
   background: rgba(50, 50, 50, 0.2);
 
   &,
@@ -65,6 +64,20 @@ block(modal).mod(theme artdoc) {
   .mod(size s) {
     .elem(content) {
       width: 400px;
+    }
+  }
+
+  .mod(view search) {
+    top: 64px;
+
+    .elem(cell) {
+      vertical-align: top;
+    }
+
+    .elem(content) {
+      display: block;
+      background-color: transparent;
+      height: 100%;
     }
   }
 
