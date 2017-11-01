@@ -65,8 +65,16 @@ module.exports = function( node, platform ) {
     // js
     [techs.browserJs, { includeYM: true }],
     [techs.fileMerge, {
-      target: '?.js',
+      target: '?.es6.js',
       sources: ['?.browser.js', '?.browser.bemhtml.js']
+    }],
+
+    [techs.babel, {
+      target: '?.js',
+      sourceTarget: '?.es6.js',
+      babelOptions: {
+        presets: [ 'es2015' ]
+      }
     }],
 
     [techs.borschik, { source: '?.js', target: '?.min.js', minify: isProd }],
