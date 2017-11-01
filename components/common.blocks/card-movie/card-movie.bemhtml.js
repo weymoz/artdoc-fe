@@ -9,8 +9,9 @@ block( 'card-movie' )(
     } );
 
     // 16:9 ratio for all covers
-    node._cover.height = Math.round( node._cover.width / ( 16 / 9 ) );
-    // node._cover.height = node._cover.width / ( 16 / 9 );
+    if ( node._cover && node._cover.width ) {
+      node._cover.height = Math.round( node._cover.width / ( 16 / 9 ) );
+    }
 
     return applyNext();
   } ),

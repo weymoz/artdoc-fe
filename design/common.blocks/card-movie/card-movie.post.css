@@ -424,8 +424,6 @@ block(card-movie) {
       font-size: 12px;
       color: #676770;
     }
-
-    
   }
 
   .mod(view order) {
@@ -783,6 +781,36 @@ block(card-movie) {
       display: block;
       font-size: 12px;
       margin-bottom: 5px;
+    }
+  }
+
+  .mod(view text) {
+
+    .elem(content) {
+      padding-top: 10px;
+      padding-bottom: 10px;
+      
+      &:before {
+        content: none;
+      }
+    }
+
+    .elem(name),
+    .elem(orig-name),
+    .elem(year) {
+      display: inline-block;
+      line-height: 20px;
+      width: auto;
+    }
+
+    .elem(name) {
+      font-size: 16px;
+      margin-right: 10px;
+    }
+
+    .elem(orig-name),
+    .elem(year) {
+      font-size: 14px;
     }
   }
 }
