@@ -369,6 +369,7 @@ module.exports = function( app ) {
         data.api = response;
         data.page = 'search';
         data.title = 'Результаты поиска';
+        data.search = req.query.q;
 
         if ( !data.api.error ) {
           render( req, res, data );
@@ -430,6 +431,24 @@ module.exports = function( app ) {
         res.send( JSON.stringify( api ) )
       } )
       .catch( () => res.send('error') )
+  });
+
+  app.get( '/api/search', ( req, res ) => {
+    if ( req.query.q ) {
+      let data = Object.assign({}, global);
+      request( { url: '/search/search/?per-page=20&q=' + encodeURIComponent( req.query.q ) } )
+        .then( response => {
+          data.api = response;
+          
+          if ( !data.api.error ) {
+            res.send( JSON.stringify( data ) )
+          }
+
+        } )
+        .catch(() => res.send('error') );
+    } else {
+      res.send( JSON.stringify( { api: { error: 'Empty data' } } ) )
+    }
   });
 
   app.post( '/api/user/login', ( req, res, next ) => {

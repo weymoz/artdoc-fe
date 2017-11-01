@@ -1,20 +1,4 @@
 block(card-movie).mod(theme artdoc-dark) {
-  .mod(view promo) {
-    box-shadow: inset 0px -1px 0px 0px currentColor;
-
-    .elem(today-label) {
-      color: #fff;
-    }
-
-    .elem(name) {
-      color: #fff;
-    }
-
-    .elem(orig-name) {
-      color: #fff;
-    }
-  }
-
   .elem(orig-name) {
     color: #fff;
   }
@@ -52,4 +36,32 @@ block(card-movie).mod(theme artdoc-dark) {
     color: #111;
   }
 
+  .mod(view promo) {
+    box-shadow: inset 0px -1px 0px 0px currentColor;
+
+    .elem(today-label) {
+      color: #fff;
+    }
+
+    .elem(name) {
+      color: #fff;
+    }
+
+    .elem(orig-name) {
+      color: #fff;
+    }
+  }
+
+  .mod(view text) {
+    .elem(content):hover {
+      .elem(name) {
+        color: #f3203b;
+      }
+    }
+
+    .elem(orig-name),
+    .elem(year) {
+      color: #777783;
+    }
+  }
 }

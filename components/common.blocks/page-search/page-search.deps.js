@@ -1,8 +1,6 @@
 [{
   shouldDeps: [
-    { block: 'card-movie', mods: { view: 'list' } },
-    { block: 'card-author' },
-    { block: 'link', mods: { view: 'tag' } },
+    { block: 'search', mods: { view: 'page' } },
     { block: 'club-footer' },
   ]
 }]
