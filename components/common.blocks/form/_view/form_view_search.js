@@ -21,17 +21,22 @@ provide(Form.declMod({ modName: 'view', modVal: 'search' }, {
               }
             }).done( response => {
               bemDom.update(
-                _this._elem('footer').domElem,
-                BEMHTML.apply({
-                  block: 'search',
-                  mods: { view: 'form' },
-                  result: JSON.parse(response).api.items
-                })
+                _this._elem('content').domElem,
+                JSON.parse(response).api.items
+                ? BEMHTML.apply({
+                    block: 'search',
+                    mods: { view: 'form' },
+                    result: JSON.parse(response).api.items,
+                    query:  _this.getVal().q
+                  })
+                : ''
               );
-              console.log('');
-              console.log( JSON.parse(response).api.items.tags );
-              console.log('');
             } ), 1000 )
+          } else {
+            bemDom.update(
+              _this._elem('content').domElem,
+              ''
+            );
           }
         }, this )
       }

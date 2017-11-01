@@ -369,6 +369,7 @@ module.exports = function( app ) {
         data.api = response;
         data.page = 'search';
         data.title = 'Результаты поиска';
+        data.search = req.query.q;
 
         if ( !data.api.error ) {
           render( req, res, data );

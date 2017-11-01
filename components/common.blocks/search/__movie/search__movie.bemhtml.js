@@ -1,23 +1,27 @@
 block('search').elem('movie')(
 
-  match( node => !node._api.movie ).def()(''),
+  match( node => !node._api.movie || !node._api.movie.length ).def()(''),
 
   content()( node => {
-    return node._api.movie && node._api.movie.length
-      ? [
-          {
-            elem: 'title',
-            content: 'Фильмы ' + node._api.movie.length
+    let movies = node.mods.view === 'page'
+      ? node._api.movie
+      : node._api.movie.slice( 0, 3 )
+    return [
+      {
+        elem: 'title',
+        content: 'Фильмы ' + node._api.movie.length
+      },
+      movies.map( movie => {
+        return {
+          block: 'card-movie',
+          mods: {
+            view: node.mods.view === 'page' ? 'list' : 'text',
+            theme: node.mods.view === 'page' ? 'artdoc' : 'artdoc-dark'
           },
-          node._api.movie.map( movie => {
-            return {
-              block: 'card-movie',
-              mods: { view: 'list' },
-              movie: movie
-            }
-          } )
-        ]
-      : ''
+          movie: movie
+        }
+      } )
+    ]
   } )
 
 )

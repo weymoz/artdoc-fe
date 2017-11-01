@@ -1,13 +1,14 @@
 block(link).mod(theme artdoc) {
   color: #a0a0ac;
 
+  .mod(view tag) {
+    background-color: #fff;
+    color: #23232c;
+    box-shadow: inset 0 0 0 1px #d8d8d8;
+  }
+
   .mod(hovered),
   .mod(focused) {
     color: #f4203b;
-  }
-
-  .mod(view tag) {
-    color: #23232c;
-    box-shadow: inset 0 0 0 1px #d8d8d8;
   }
 }

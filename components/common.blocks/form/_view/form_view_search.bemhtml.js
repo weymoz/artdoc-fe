@@ -7,15 +7,17 @@ block('form').mod('view', 'search')(
     } } );
   }),
 
+  addMix()({ block: 'page', elem: 'section' }),
+
   content()( () => {
     return [
-      { tag: 'br' },
-      { tag: 'br' },
       {
-        elem: 'content',
+        elem: 'header',
+        mix: { block: 'page', elem: 'content', elemMods: { width: 'narrow' } },
         content: {
           block: 'form-field',
           mods: { type: 'input' },
+          mix: { block: 'page', elem: 'content' },
           name: 'q',
           content: {
             elem: 'control',
@@ -30,10 +32,9 @@ block('form').mod('view', 'search')(
           }
         }
       },
-      { tag: 'br' },
-      { tag: 'br' },
       {
-        elem: 'footer'
+        elem: 'content',
+        mix: { block: 'page', elem: 'content', elemMods: { width: 'narrow' } },
       }
       // {
       //   elem: 'footer',
