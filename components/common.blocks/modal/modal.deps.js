@@ -1,5 +1,6 @@
 [{
   shouldDeps: [
-    { mods: { theme: '*' } }
+    { mods: { theme: '*' } },
+    { block: 'page' }
   ]
 }]

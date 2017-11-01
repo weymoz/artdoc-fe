@@ -1,9 +1,9 @@
 block('root').replace()(function() {
-  var ctx = this.ctx,
-      data = this.data = ctx.data,
-      meta = data.meta || {},
-      og = meta.og || {},
-      bundle = data.bundle || 'desktop';
+  const ctx = this.ctx,
+        data = this.data = ctx.data,
+        meta = data.meta || {},
+        og = meta.og || {},
+        bundle = data.bundle || 'desktop';
 
   if (ctx.context) return ctx.context;
   
@@ -14,7 +14,7 @@ block('root').replace()(function() {
     styles: [
       {
         elem: 'css',
-        url: '/assets/css/' + bundle + '/' + data.page + '.min.css'
+        url: '/assets/css/' + bundle + '/' + bundle + '.min.css'
       }
     ],
     scripts: [
@@ -28,7 +28,7 @@ block('root').replace()(function() {
       },
       {
         elem: 'js',
-        url: '/assets/js/' + bundle + '/' + data.page + '.min.js'
+        url: '/assets/js/' + bundle + '/' + bundle + '.min.js'
       }
     ],
     head: [
