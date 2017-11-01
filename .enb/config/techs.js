@@ -18,6 +18,7 @@ module.exports = {
     require('postcss-reporter')()
   ],
   browserJs: require('enb-js/techs/browser-js'),
+  babel: require('enb-babelify/techs/babel-browser-js'),
   bemtree: require('enb-bemxjst/techs/bemtree'),
   bemhtml: require('enb-bemxjst/techs/bemhtml'),
   bem: require('enb-bem-techs')

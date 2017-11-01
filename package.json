@@ -1,7 +1,7 @@
 {
   "author": "Roman @Realetive Ganin",
   "name": "artdoc-site",
-  "version": "2.12.0",
+  "version": "2.13.0",
   "repository": {
     "type": "git",
     "url": "git@bitbucket.org:artdocfest/frontend.git"
@@ -25,6 +25,7 @@
     "ym": "^0.1.2"
   },
   "devDependencies": {
+    "babel-preset-es2015": "^6.24.1",
     "bem-tools-core": "0.0.3",
     "bem-tools-create": "^2.2.0",
     "bemhint": "^0.9.1",
@@ -41,6 +42,7 @@
     "csurf": "^1.9.0",
     "debug-http": "^1.1.0",
     "enb": "^1.5.1",
+    "enb-babelify": "^0.0.1",
     "enb-bem-techs": "^2.2.2",
     "enb-bemxjst": "^8.6.7",
     "enb-borschik": "^3.0.0",
