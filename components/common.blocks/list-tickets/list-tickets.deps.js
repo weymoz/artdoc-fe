@@ -1,8 +1,7 @@
 ({
   shouldDeps: [
     { 
-      elems: [ 'item' ],
-      mods: { theme: '*' }
+      elems: [ 'item' ]
     },
     { block: 'card-ticket', mods: { view: 'movie' } }
   ]

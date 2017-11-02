@@ -1,8 +1,6 @@
 [{
   shouldDeps: [
-    {
-      block: 'breadcrumbs'
-    },
+    { block: 'breadcrumbs' },
     { block: 'paragraph' },
     { block: 'button', mods: { type: 'link' } },
   ]

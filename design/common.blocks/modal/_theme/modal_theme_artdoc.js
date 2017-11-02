@@ -12,17 +12,17 @@ modules.define(
  * @bem
  */
 provide(Modal.declMod({ modName : 'theme', modVal : 'artdoc' }, /** @lends modal.prototype */{
-    onSetMod : {
-        'visible' : {
-            'true' : function() {
-                this
-                    // Apply the animation only at first opening, otherwise the animation will be played when block
-                    // initialized.
-                    .setMod('has-animation')
-                    .__base.apply(this, arguments);
-            }
-        }
+  onSetMod : {
+    'visible' : {
+      'true' : function() {
+        this
+          // Apply the animation only at first opening, otherwise the animation will be played when block
+          // initialized.
+          .setMod('has-animation')
+          .__base.apply(this, arguments);
+      }
     }
+  }
 }));
 
 });

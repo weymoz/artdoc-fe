@@ -2,10 +2,7 @@
   shouldDeps: [
     {
       elems: [ 'item' ],
-      mods: {
-        state: [ 'current', 'disabled' ],
-        theme: '*'
-      }
+      mods: { state: [ 'current', 'disabled' ] }
     },
     { block: 'link' }
   ]

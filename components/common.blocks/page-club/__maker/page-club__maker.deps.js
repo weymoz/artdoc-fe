@@ -1,13 +1,6 @@
 [{
   shouldDeps: [
-    { mods: { theme: '*' } },
-    {
-      block: 'font',
-      mods: {
-        family: 'pt-mono',
-        loaded: true
-      }
-    },
-    'image'
+    { block: 'font', mods: { family: 'pt-mono' } },
+    { block: 'image' }
   ]
 }]

@@ -22,9 +22,11 @@ block(form) {
     width: 100%;
     height: 100%;
     overflow: hidden;
+    color: #777783;
 
     .elem(header) {
       width: 100%;
+      padding-top: 30px;    
     }
 
     .elem(content) {

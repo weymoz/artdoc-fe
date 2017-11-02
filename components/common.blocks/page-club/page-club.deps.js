@@ -1,7 +1,6 @@
 [{
   shouldDeps: [
     {
-      mods: { theme: '*' },
       elem: [
         'title',
         'party',

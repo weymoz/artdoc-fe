@@ -110,9 +110,9 @@ block(input) {
     .mod(size $size) {
       font-size: $fontSize;
       line-height: $lineHeight;
-      padding: $paddingVertical $paddingHorizontal;
 
       .elem(control) {
+        padding: $paddingVertical $paddingHorizontal;
       }
     }
   }
