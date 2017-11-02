@@ -1,6 +1,6 @@
 [{
   shouldDeps: [
-    { block: 'page' },
+    { block: 'page', elems: [ 'content', 'section' ] },
     { block: 'heading', mods: { size: 'xl' } },
     { block: 'button', mods: { togglable: 'check', theme: 'artdoc-dark' } },
     { block: 'radio-group', mods: { type: ['button', 'line'] } },        
