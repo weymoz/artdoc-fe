@@ -10,6 +10,7 @@ provide(bemDom.declBlock(this.name, {
     },
     visible: {
       '*': function( modName, modVal ) {
+        this.__base.apply( this, arguments );
         this._page.setMod( 'no-scroll', modVal )
       }
     }

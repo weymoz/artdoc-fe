@@ -12,7 +12,6 @@
         'user-date',
         'user-time',
       ],
-      mods: { theme: '*' }
     },
     { block: 'form', mods: { view: 'order' } }
   ]

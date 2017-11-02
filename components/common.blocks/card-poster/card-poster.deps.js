@@ -1,17 +1,13 @@
 [{
   shouldDeps: [
-    { mods: { theme: '*' },
-      elems: [
-      'preview',
-      'control'
-      ] },
-    { block: 'link' },
     {
-      block: 'button',
-      mods: {
-        theme: 'artdoc-dark'
-      }
+      elems: [
+        'preview',
+        'control'
+      ]
     },
+    { block: 'link' },
+    { block: 'button' },
     {
       block: 'card-movie',
       mods: {

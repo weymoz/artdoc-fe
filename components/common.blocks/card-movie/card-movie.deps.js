@@ -1,8 +1,5 @@
 [{
   shouldDeps: [
-    { 
-      mods: { theme: '*' },
-      elems: [ 'content' ]
-    }
+    { elems: [ 'content' ] }
   ]
 }]

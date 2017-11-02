@@ -1,22 +1,9 @@
 ({
     shouldDeps: [
-      {
-        block: 'page',
-        mods: {
-          view: 'page-selections'
-        }
-      },
-      {
-        block: 'breadcrumbs'
-      },
-      'club-footer',
-      'section',
-      {
-        block: 'card-selection',
-        mods: {
-          view: [ 'selections' ],
-          theme: '*'
-        }
-      }
+      { block: 'page', mods: { view: 'page-selections' } },
+      { block: 'breadcrumbs' },
+      { block: 'club-footer' },
+      { block: 'section' },
+      { block: 'card-selection', mods: { view: [ 'selections' ] } }
     ]
 })

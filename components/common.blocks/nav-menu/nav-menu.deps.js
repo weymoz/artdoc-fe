@@ -1,7 +1,7 @@
 ({
   shouldDeps: [
-    { mods: { theme: '*' } },
     { block: 'link' },
+    { block: 'section' },
     {
       block: 'dropdown',
       mods: {
@@ -9,9 +9,6 @@
         anchor: 'header',
         'nav-menu': true
       }
-    },
-    {
-      block: 'section'
     },
     {
       block: 'menu',

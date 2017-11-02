@@ -1,7 +1,7 @@
 [{
-    shouldDeps: [
-      { block: 'breadcrumbs' },
-      { block: 'club-footer' },
-      { block: 'filters' }
-    ]
+  shouldDeps: [
+    { block: 'breadcrumbs' },
+    { block: 'club-footer' },
+    { block: 'filters' }
+  ]
 }]

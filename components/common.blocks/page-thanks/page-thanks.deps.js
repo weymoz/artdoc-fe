@@ -3,7 +3,7 @@
       { block: 'card-movie', mods: { view: 'ticket' } },
       { block: 'card-ticket' },
       { block: 'paragraph' },
-      'club-footer',
-      'section',
+      { block: 'club-footer' },
+      { block: 'section' }
     ]
 })
