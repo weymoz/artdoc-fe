@@ -727,6 +727,10 @@ block(card-movie) {
 
     .elem(description) {
       max-width: 60%;
+
+      @media (max-width: 1024px) {
+        max-width: 100%;
+      }
     }
 
     .elem(year) {
