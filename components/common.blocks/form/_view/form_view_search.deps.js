@@ -6,6 +6,7 @@
 },{
   tech: 'js',
   shouldDeps: [
+    { tech: 'bemhtml' },
     { tech: 'bemhtml', block: 'search', mods: { view: 'form' } }
   ]
 }]
