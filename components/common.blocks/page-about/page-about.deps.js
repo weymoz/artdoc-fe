@@ -1,27 +1,9 @@
 [{
   shouldDeps: [
-    { mods: { theme: '*' } },
-    'breadcrumbs',
-    {
-      block: 'title',
-      mods: {
-        size: '*',
-      }
-    },
-    'paragraph',
-    {
-      block: 'font',
-      mods: {
-        family: '*',
-        loaded: true
-      }
-    },
-    'link',
-    {
-      block: 'page',
-      mods: {
-        view: 'page-about'
-      }
-    },
+    { block: 'page', mods: { view: 'page-about' } },
+    { block: 'title' },
+    { block: 'breadcrumbs' },
+    { block: 'paragraph' },
+    { block: 'link' }
   ]
 }]

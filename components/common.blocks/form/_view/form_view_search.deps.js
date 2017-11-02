@@ -1,6 +1,5 @@
 [{
   shouldDeps: [
-    { mods: { theme: '*' } },
     { block: 'form-field', mods: { type: 'input' } },
     { block: 'functions', elem: 'debounce' }
   ]

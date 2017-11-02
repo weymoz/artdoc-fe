@@ -1,3 +1,6 @@
 ({
-  shouldDeps : 'objects'
+  shouldDeps : [
+    { mods: { theme: '*' } },
+    { block: 'objects' }
+  ]
 })

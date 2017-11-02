@@ -1,12 +1,9 @@
 [{
   shouldDeps: [
     {
-      mods: { theme: '*' },
-      elems: [
-        'title'
-      ]
+      elems: [ 'title' ]
     },
     { block: 'font', mods: { family: 'pt-mono' } },
-    'image'
+    { block: 'image' }
   ]
 }]

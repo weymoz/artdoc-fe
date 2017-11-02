@@ -4,8 +4,7 @@
         elems: [
           'item',
           'title'
-        ],
-        mods: { theme: '*' }
+        ]
       },
       {
         block: 'list',
