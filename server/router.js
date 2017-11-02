@@ -205,7 +205,7 @@ module.exports = function( app ) {
         .catch(( error ) => res.send( error ) );
     } else {
       data.page = 'movie';
-      request( { url: '/api/movie/?expand=schedules,sessions,category,screenshots&code=' + encodeURIComponent(req.params.name) } )
+      request( { url: '/api/movie/?sort=id&expand=schedules,sessions,category,screenshots&code=' + encodeURIComponent(req.params.name) } )
         .then( response => {
           data.api = response.items[0];
           data.title = response.items[0].name;
