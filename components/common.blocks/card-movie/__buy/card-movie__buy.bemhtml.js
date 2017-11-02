@@ -81,9 +81,6 @@ block('card-movie').elem('buy')(
         text: 'Купить билет'
       })
     }
-
-
-
     return result;
   } ),
 
