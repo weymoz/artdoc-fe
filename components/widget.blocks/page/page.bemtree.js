@@ -1,3 +1,6 @@
 block('page').addMods()( ( node ) => {
-  return { refer: node.data.refer };
+  return {
+    widget: true,
+    refer: node.data.refer
+  };
 });
