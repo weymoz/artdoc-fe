@@ -1,6 +1,6 @@
-modules.define('page_widget', function(provide, Page) {
+modules.define('page', ['i-bem-dom'], function(provide, bemDom) {
 
-provide(Page.declMod({ modName: 'widget', modVal: true }, {
+provide(bemDom.declBlock(this.name, {
   onSetMod: {
     js: {
       inited: function() {
