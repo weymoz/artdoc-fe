@@ -11,8 +11,8 @@ provide(bemDom.declBlock(this.name, {
                   html = document.documentElement,
                   height = Math.max(body.scrollHeight, body.offsetHeight,
                     html.clientHeight, html.scrollHeight, html.offsetHeight);
-           
-            event.source.postMessage({ 'FrameHeight': height }, '*');       
+
+            event.source.postMessage( { 'FrameHeight': height }, '*' );
           }
         });
       }
