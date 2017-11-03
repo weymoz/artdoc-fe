@@ -5,10 +5,14 @@ iframe.src = thisScript.dataset.url || 'https://artdoc.media/movie/';
 iframe.width = '100%';
 iframe.height = 0;
 iframe.frameBorder = 0;
-iframe.onload = ( function setIframeHeight( e ) {
-  iframe.scrollIntoView();
-  var height = e.target.contentWindow.postMessage( 'FrameHeight', '*' );
-} );
+var setIframeHeight = function ( event ) {
+  if ( event ) {
+    iframe.scrollIntoView();
+  }
+  var height = iframe.contentWindow.postMessage( 'FrameHeight', '*' );
+};
+setIframeHeight();
+iframe.addEventListener( 'load', setIframeHeight );
 
 parent.insertBefore( iframe, thisScript.nextSibling );
 
