@@ -35,29 +35,6 @@ block('movie-about')(
   awards                    Награды
 */
 
-  // def()(function() {
-  //   this.ctx.model = [
-  //     { title: 'info', content: [ 'categories', 'year', 'countries', 'studio', 'duration', 'genres', 'fin_type', 'tvpg', 'actioncountries', 'actioncities', 'actionperiods', 'language', 'subs' ] },
-  //     { title: 'authors', content: [ 'authors' ] },
-  //     { title: 'crew', content: [ 'director', 'screenwriter', 'operator', 'producer', 'composer', 'sound_producer' ] },
-  //     { title: 'tags', content: [ 'tags' ] }
-  //   ];
-
-  //   return applyNext({
-  //     elem: 'item',
-  //     content: [
-  //       {
-  //         elem: 'title'
-  //       },
-  //       {
-  //         elem: 'content'
-  //       }
-  //     ]
-  //   })
-
-  //   return applyNext();
-  // }),
-
   content()( ( node, ctx ) => {
     const model = [
       {
@@ -74,27 +51,47 @@ block('movie-about')(
       }
     ];
 
-    return model.map( section => {
-      return {
-        elem: 'section',
-        content: section.section.map( item => {
-          return [
-            {
-              elem: 'title',
-              title: item.title
-            },
-            {
-              elem: 'item',
-              elemMods: {
-                section: item.title
+    return [
+      model.map( section => {
+        return {
+          elem: 'section',
+          content: section.section.map( item => {
+            return [
+              {
+                elem: 'title',
+                title: item.title
               },
-              data: item.content,
-              movie: ctx.movie
-            }
-          ]
-        } )
+              {
+                elem: 'item',
+                elemMods: {
+                  section: item.title
+                },
+                data: item.content,
+                movie: ctx.movie
+              }
+            ]
+          } )
+        }
+      }),
+      {
+        elem: 'section',
+        elemMods: { width: 'available' },
+        content: [
+          {
+            elem: 'title',
+            title: 'awards'
+          },
+          {
+            elem: 'item',
+            elemMods: {
+              section: 'awards'
+            },
+            data: [ 'artdocfest', 'lavr', 'world', 'russian' ],
+            movie: ctx.movie
+          }
+        ]
       }
-    });
+    ]
   })
 
 )

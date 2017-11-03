@@ -8,17 +8,64 @@ block(movie-about).mod(theme artdoc) {
   lost-center: 100%;
   padding-top: 80px;
 
-  .elem(section) {
-    lost-column: 1/2;
+  .elem(award) {
+    lost-column: 1/4 4 28px;
   }
 
-  .elem(title) {
-    border-top: 1px solid #23232c;
-    padding-top: 3px;
-    margin-bottom: 16px;
+  .elem(award-icon) {
+    padding: 50px 70px;
+    box-sizing: border-box;
+    width: 100%;
+    filter: invert(100%);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-origin: content-box;
+    background-position: 50% 50%;
+    background-image: svg-load('../../card-movie/__awards/card-movie__awards.svg', fill="#000");
+
+    &:before {
+      content: '';
+      float: left;
+      padding-bottom: 50%;
+    }
+
+    &:after {
+      content: '';
+      display: table;
+      clear: both;
+    }
+
+    .mod(type artdocfest) {
+      background-image: svg-load('../../card-movie/__awards/_type/card-movie__awards_type_artdocfest.svg', fill="#000");
+    }
+
+    .mod(type lavr) {
+      background-image: svg-load('../../card-movie/__awards/_type/card-movie__awards_type_lavr.svg', fill="#000");
+      
+    }
   }
 
   .elem(item) {
     padding-bottom: 32px;
   }
+
+  .elem(section) {
+    lost-column: 1/2;
+
+    .mod(width available) {
+      lost-column: 1/1;
+    }
+
+    .mod(type awards) {
+      lost-center: 100%;
+    }
+  }
+
+  .elem(title) {
+    lost-column: 1/1;
+    border-top: 1px solid #23232c;
+    padding-top: 3px;
+    margin-bottom: 16px;
+  }
+
 }

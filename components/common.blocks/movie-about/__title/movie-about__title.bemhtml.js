@@ -15,6 +15,7 @@ block('movie-about').elem('title')(
       case 'authors' : return 'Авторы';
       case 'crew'    : return 'Съемочная группа';
       case 'tags'    : return 'Теги';
+      case 'awards'  : return 'Награды и фестивали';
       default        : return 'Unknow section';
     }      
   } )
