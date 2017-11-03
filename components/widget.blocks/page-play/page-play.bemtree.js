@@ -1,9 +1,8 @@
 block('page')(
-  addMods()({ theme: 'artdoc-dark' })
+  addMods()({ theme: 'artdoc' })
 );
 
 block('page-play')(
-
   replace()( node => {
     // Move start timer to movie object
     const api = node.data.api;
@@ -39,7 +38,7 @@ block('page-play')(
             block: 'card-movie',
             mods: {
               view: 'play',
-              theme: 'artdoc-dark'
+              theme: 'artdoc'
             },
             movie: movie
           }
@@ -56,5 +55,4 @@ block('page-play')(
       }
     ];
   })
-
-)
+);
