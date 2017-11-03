@@ -6,13 +6,13 @@ provide(bemDom.declBlock(this.name, {
       inited: function() {
         this.__base.apply( this, arguments );
         window.addEventListener('message', function (event) {
-          if (event.data == "FrameHeight") {
+          if (event.data == 'FrameHeight') {
             const body = document.body, 
                   html = document.documentElement,
                   height = Math.max(body.scrollHeight, body.offsetHeight,
                     html.clientHeight, html.scrollHeight, html.offsetHeight);
            
-            event.source.postMessage({ "FrameHeight": height }, "*");       
+            event.source.postMessage({ 'FrameHeight': height }, '*');       
           }
         });
       }
