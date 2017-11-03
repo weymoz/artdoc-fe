@@ -1,4 +1,4 @@
-modules.define('page', function(provide, Page) {
+modules.define('page_widget', function(provide, Page) {
 
 provide(Page.declMod({ modName: 'widget', modVal: true }, {
   onSetMod: {
