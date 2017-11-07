@@ -1,8 +1,10 @@
 {
-  "freeze_paths" : {
-    "node_modules/**": ":base64:",
-    "node_modules/**/*.svg": ":encodeURIComponent:",
-    "components/*.blocks/**": ":base64:",
-    "components/*.blocks/**/*.svg": ":encodeURIComponent:"
+  "paths" : {
+    "./static": "/" 
+  },
+  "freeze_paths": {
+    "node_modules/**"             : ":base64:"
+  , "node_modules/**/*.svg"       : ":encodeURIComponent:"
+  , "components/*.blocks/font/**" : "static/assets/font"
   }
 }
