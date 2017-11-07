@@ -72,11 +72,9 @@ block('movie-about').elem('item')(
   } ),
 
   elemMod('section', 'awards').content()( ( node, ctx ) => {
-    // console.log( ctx.movie.fests );
-    // console.log( ctx.movie.nominations );
     let fests = {};
     ctx.movie.fests.map( fest => {
-      let name = '';
+      let name;
       switch ( fest.name ) {
         case 'Артдокфест':
           name = 'artdocfest';
@@ -94,13 +92,13 @@ block('movie-about').elem('item')(
           break;
       }
 
-      fests[ name ] = ctx.movie.nominations.filter( nomination => nomination.fest_id === fest.id );
+      fests[ name ] = {
+        year: fest.year,
+        nominations: ctx.movie.nominations.filter( nomination => nomination.fest_id === fest.id )
+      };
+
       return true;
     } )
-
-    console.log('');
-    console.log( fests );
-    console.log('');
 
     return Object.keys( fests ).sort().map( name => {
       return {
@@ -114,10 +112,10 @@ block('movie-about').elem('item')(
           {
             block: 'heading',
             mods: { align: 'center', size: 'xs' },
-            content: fests[ name ][0].row_data.split('#')[0]
+            content: fests[ name ].nominations[0].row_data.split('#')[0] + ' ' + fests[ name ].year
           },
           { tag: 'br' },
-          fests[ name ].map( fest => {
+          fests[ name ].nominations.map( fest => {
             return {
               block: 'paragraph',
               mods: { align: 'center' },
