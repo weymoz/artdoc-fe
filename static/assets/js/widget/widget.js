@@ -2,7 +2,7 @@ var thisScript = document.getElementById( 'artdocWidgetScript' );
 var parent = thisScript.parentElement;
 var iframe = document.createElement( 'iframe' );
 var url = ( window.location.hash && window.location.hash.match(/^#url\=(.*)$/i) ) ? window.location.hash.match(/^#url\=(.*)$/i)[1] : false;
-iframe.src = 'https://embed.artdoc.media' + url || thisScript.dataset.url || 'https://embed.artdoc.media/movie/';
+iframe.src = url ? 'https://embed.artdoc.media' + url : false || thisScript.dataset.url || 'https://embed.artdoc.media/movie/';
 iframe.width = '100%';
 iframe.height = 500;
 iframe.frameBorder = 0;
