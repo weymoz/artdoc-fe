@@ -111,14 +111,14 @@ block('movie-about').elem('item')(
           },
           {
             block: 'heading',
-            mods: { align: 'center', size: 'xs' },
+            mods: { align: 'center', size: 's' },
             content: fests[ name ].nominations[0].row_data.split('#')[0] + ' ' + fests[ name ].year
           },
           { tag: 'br' },
           fests[ name ].nominations.map( fest => {
             return {
               block: 'paragraph',
-              mods: { align: 'center' },
+              mods: { align: 'center', size: 's' },
               content: fest.stage
             }
           } )
