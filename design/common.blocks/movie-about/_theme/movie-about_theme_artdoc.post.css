@@ -66,6 +66,7 @@ block(movie-about).mod(theme artdoc) {
     border-top: 1px solid #23232c;
     padding-top: 3px;
     margin-bottom: 16px;
+    line-height: 24px;
   }
 
 }
