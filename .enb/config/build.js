@@ -5,8 +5,8 @@ const path = require('path'),
 module.exports = function( node, platform ) {
   node.addTechs([
     // essential
-    [techs.bem.deps],
-    [techs.bem.files],
+    [techs.bem.deps, { target: '.?.deps.js' } ],
+    [techs.bem.files, { depsFile: '.?.deps.js' } ],
 
     // css
     [techs.postcss, {
@@ -42,43 +42,42 @@ module.exports = function( node, platform ) {
 
     // client templates
     [techs.bem.depsByTechToBemdecl, {
-      target: '?.tmpl.bemdecl.js',
+      target: '.?.tmpl.bemdecl.js',
       sourceTech: 'js',
       destTech: 'bemhtml'
     }],
     [techs.bem.deps, {
-      target: '?.tmpl.deps.js',
-      bemdeclFile: '?.tmpl.bemdecl.js'
+      target: '.?.tmpl.deps.js',
+      bemdeclFile: '.?.tmpl.bemdecl.js'
     }],
     [techs.bem.files, {
-      depsFile: '?.tmpl.deps.js',
+      depsFile: '.?.tmpl.deps.js',
       filesTarget: '?.tmpl.files',
       dirsTarget: '?.tmpl.dirs'
     }],
     [techs.bemhtml, {
-      target: '?.browser.bemhtml.js',
+      target: '.?.browser.bemhtml.js',
       filesTarget: '?.tmpl.files',
       sourceSuffixes: ['bemhtml', 'bemhtml.js'],
       engineOptions: { elemJsInstances: true }
     }],
 
     // js
-    [techs.browserJs, { includeYM: true }],
+    [techs.browserJs, {
+      includeYM: true,
+      target: '.?.browser.js',
+    }],
     [techs.fileMerge, {
-      target: '?.es6.js',
-      sources: ['?.browser.js', '?.browser.bemhtml.js']
+      target: '.?.es6.js',
+      sources: ['.?.browser.js', '.?.browser.bemhtml.js']
     }],
 
-    [techs.babel, {
-      target: '?.js',
-      sourceTarget: '?.es6.js',
-      babelOptions: {
-        presets: [ 'es2015' ]
-      }
-    }],
+    isProd
+      ? [techs.babel, { target: '?.js', sourceTarget: '.?.es6.js', babelOptions: { presets: [ 'es2015' ] } }]
+      : [techs.fileCopy, { target: '?.js', source: '.?.es6.js' }],
 
-    [techs.borschik, { source: '?.js', target: '?.min.js', minify: isProd }],
-    [techs.borschik, { source: '?.css', target: '?.min.css', minify: isProd }],
-    [techs.borschik, { source: '?.bemhtml.js', target: '?.bemhtml.min.js', minify: isProd }]
+    [techs.borschik, { minify: isProd, freeze: false, source: '?.js', target: '?.min.js' }],
+    [techs.borschik, { minify: isProd, freeze: true,  source: '?.css', target: '?.min.css' }],
+    [techs.borschik, { minify: isProd, freeze: false, source: '?.bemhtml.js', target: '?.bemhtml.min.js' }]
   ]);
 }

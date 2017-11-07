@@ -15,12 +15,12 @@ block('page-discuss')(
 
   replace()( node => {
     // Move start timer to movie object
-    const movie = node.mergeDeep( node.data.api.movie, {
+    const movie = Object.assign( {}, node.data.api.movie, {
       starts_in: node.data.api.starts_in,
       play: node.data.api.link
     } );
 
-    const schedule = node.mergeDeep( node.data.api.schedule, {
+    const schedule = Object.assign( {}, node.data.api.schedule, {
       description: 'При начале обсуждения страница обновится автоматически',
     } );
 

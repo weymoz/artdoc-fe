@@ -6,6 +6,7 @@ node_modules/
 .zip
 npm-debug.log
 
+static/assets/font/
 static/assets/*/*/*.min.*
 
 .enb/tmp/

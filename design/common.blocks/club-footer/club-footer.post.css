@@ -8,7 +8,7 @@ block(club-footer) {
     display: block;
     width: 48px;
     height: 48px;
-    background-image: url(../../common.blocks/icon/_symbol/club_artdoc_icon.svg);
+    background-image: svg-load(club-footer.svg);
     margin-right: 26px;
     flex-shrink: 0;
   }

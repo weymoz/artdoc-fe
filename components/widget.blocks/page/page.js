@@ -5,14 +5,19 @@ provide(bemDom.declBlock(this.name, {
     js: {
       inited: function() {
         this.__base.apply( this, arguments );
+        console.log('init widget');
         window.addEventListener('message', function (event) {
-          if (event.data == 'FrameHeight') {
+          console.log('remote msg');
+          if (event.data == 'iFrame') {
             const body = document.body, 
                   html = document.documentElement,
                   height = Math.max(body.scrollHeight, body.offsetHeight,
                     html.clientHeight, html.scrollHeight, html.offsetHeight);
 
-            event.source.postMessage( { 'FrameHeight': height }, '*' );
+            event.source.postMessage( {
+              FrameHeight: height,
+              FrameUrl: window.location.pathname
+            }, '*' );
           }
         });
       }

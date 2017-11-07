@@ -69,5 +69,61 @@ block('movie-about').elem('item')(
         content: tag
       }
     } )
+  } ),
+
+  elemMod('section', 'awards').content()( ( node, ctx ) => {
+    let fests = {};
+    ctx.movie.fests.map( fest => {
+      let name;
+      switch ( fest.name ) {
+        case 'Артдокфест':
+          name = 'artdocfest';
+          break;
+        case 'Премия Лавр':
+          name = 'lavr';
+          break;
+        case 'Призер Международных фестивалей':
+          name = 'world';
+          break;
+        case 'Призер Российских фестивалей':
+          name = 'russian';
+          break;
+        default:
+          break;
+      }
+
+      fests[ name ] = {
+        year: fest.year,
+        nominations: ctx.movie.nominations.filter( nomination => nomination.fest_id === fest.id )
+      };
+
+      return true;
+    } )
+
+    return Object.keys( fests ).sort().map( name => {
+      return {
+        elem: 'award',
+        elemMod: { award: name },
+        content: [
+          {
+            elem: 'award-icon',
+            elemMods: { type: name }
+          },
+          {
+            block: 'heading',
+            mods: { align: 'center', size: 'xs' },
+            content: fests[ name ].nominations[0].row_data.split('#')[0] + ' ' + fests[ name ].year
+          },
+          { tag: 'br' },
+          fests[ name ].nominations.map( fest => {
+            return {
+              block: 'paragraph',
+              mods: { align: 'center' },
+              content: fest.stage
+            }
+          } )
+        ]
+      }
+    } )
   } )
 )

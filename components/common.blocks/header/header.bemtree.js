@@ -1,5 +1,5 @@
 block('header')(
-  def()( node => {
+  match( node => node.data && node.data.category ).def()( node => {
     const category = [
       {
         name: 'Все фильмы',
