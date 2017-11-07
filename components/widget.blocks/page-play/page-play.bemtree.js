@@ -6,7 +6,7 @@ block('page-play')(
   replace()( node => {
     // Move start timer to movie object
     const api = node.data.api;
-    const movie = node.mergeDeep( api.movie, {
+    const movie = Object.assign( {}, api.movie, {
       starts_in: api.starts_in,
       play: api.link,
       discuss_link: '/cinema/discuss/' + node.data.url.search,

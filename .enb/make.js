@@ -33,10 +33,10 @@ module.exports = function(config) {
       ]);
     });
 
-    config.node( path.join( 'dist', platform ), function( nodeConfig ) {
+    config.node( 'dist/' + platform, function( nodeConfig ) {
       nodeConfig.addTechs([
         [techs.bem.levels, { levels: levels }],
-        [techs.bem.levelsToBemdecl]
+        [techs.bem.levelsToBemdecl ]
       ]);
 
       build( nodeConfig, platform );

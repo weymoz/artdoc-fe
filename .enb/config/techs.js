@@ -13,7 +13,11 @@ module.exports = {
     require('lost'),
     require('pobem'),
     require('postcss-inline-svg'),
-    require('postcss-url')({ url: 'inline', optimizeSvgEncode: true }),
+    require('postcss-url')([
+      { url: 'rebase' },
+    //   // { filter: /\.(png|jpg|svg)$/, maxSize: 4, url: 'inline', optimizeSvgEncode: true, fallback: 'copy', assetsPath: 's/assets/img/' },
+    //   // { filter: /\.(eot|ttf|woff|woff2)$/, url: 'copy', assetsPath: '../assets/', useHash: false },
+    ]),
     require('postcss-cssnext')(),
     require('postcss-reporter')()
   ],

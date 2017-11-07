@@ -1,5 +1,5 @@
 block(logo) {
-  background-image: url(logo.svg);
+  background-image: svg-load(logo.svg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
