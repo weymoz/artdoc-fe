@@ -10,12 +10,13 @@ provide(bemDom.declBlock(this.name, {
           console.log('remote msg');
           console.log( event.data );
           if (event.data == 'iFrame') {
-            const body = document.body, 
-                  html = document.documentElement,
-                  height = Math.max(body.scrollHeight, body.offsetHeight,
-                    html.clientHeight, html.scrollHeight, html.offsetHeight);
+            let body = document.body, 
+                html = document.documentElement,
+                height = Math.max(body.scrollHeight, body.offsetHeight,
+                  html.clientHeight, html.scrollHeight, html.offsetHeight);
 
             console.log( 'iFrame.location.pathname', window.location.pathname );
+            console.log( 'iFrame height', height );
             event.source.postMessage( {
               FrameHeight: height,
               FrameUrl: window.location.pathname
