@@ -14,7 +14,7 @@ block('page-selections').replace()(function() {
           mix: { block: 'heading', mods: { caps: true, align: 'center', size: 'l' } },
           content: 'Авторские подборки'
         },
-        selections.map( item => {
+        selections && selections.map( item => {
           return {
             block: 'card-selection',
             mods: {
