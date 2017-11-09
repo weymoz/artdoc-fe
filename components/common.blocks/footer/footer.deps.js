@@ -7,6 +7,7 @@
     { block: 'logo', mods: { title: true } },
     { block: 'paragraph' },
     { block: 'heading', mods: { caps: true, size: 'xs' } },
-    { block: 'list', mods: { type: 'unstyled' } }
+    { block: 'list', mods: { type: 'unstyled' } },
+    { block: 'layout' }
   ]
 }]
