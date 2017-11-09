@@ -1,5 +1,4 @@
 block('page-index').replace()( node => {
-
   // Функция для слайдера
   let slider = [];
   const linkPerSlide = 20;
@@ -92,7 +91,7 @@ block('page-index').replace()( node => {
         },
         {
           elem: 'collections',
-          content: node.data.api.slice(0, 3).map( item => {
+          content: node.data.api && node.data.api.map( item => {
             return {
               block: 'card-selection',
               mods: {

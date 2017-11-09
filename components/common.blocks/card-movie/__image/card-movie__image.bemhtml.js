@@ -7,6 +7,7 @@ block('card-movie').elem('image')(
     return [
       {
         block: 'image',
+        mods: { 'has-resize': true },
         mix: { block: node.block, elem: node.elem },
         attrs: {
           onError: 'this.classList.add( "' + node.block + '__' + node.elem + '_no-image" )'

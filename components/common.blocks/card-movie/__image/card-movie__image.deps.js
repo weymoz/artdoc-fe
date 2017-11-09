@@ -1,5 +1,5 @@
 [{
   shouldDeps: [
-    { block: 'image' }
+    { block: 'image', mods: { 'has-resize': true } }
   ]
 }]
