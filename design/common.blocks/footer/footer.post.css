@@ -29,6 +29,22 @@ block(footer) {
     }
   }
 
+  .elem(content) {
+    & + & {
+      padding-top: 2em;
+    }
+  }
+
+  .elem(logo) {
+    display: block;
+    width: 64px;
+    height: 64px;
+    padding: .75em;
+    box-sizing: border-box;
+    background-color: #f4203b;
+    background-origin: content-box;
+  }
+
   .elem(nav-item){
     color: #a0a0ac;
     line-height: 2;

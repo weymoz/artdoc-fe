@@ -25,6 +25,7 @@ block('footer')(
     return [
       {
         elem: 'content',
+        elemMods: { section: 'main' },
         mix: { block: 'page', elem: 'content' },
         content: [
           {
@@ -192,6 +193,56 @@ block('footer')(
                   { elem: 'item', mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } }, content: 'media@artdocfest.com' },
                   { elem: 'item', mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } }, content: 'LV 1011 Latvia Riga Stabu 19-2' }
                 ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        elem: 'content',
+        elemMods: { section: 'logo' },
+        mix: { block: 'page', elem: 'content' },
+        content: [
+          { block: 'logo', mix: { block: 'footer', elem: 'logo' } }
+        ]
+      },
+      {
+        elem: 'content',
+        elemMods: { section: 'misc' },
+        mix: { block: 'page', elem: 'content' },
+        content: [
+          {
+            block: 'layout',
+            content: [
+              {
+                elem: 'content',
+                content: [
+                  {
+                    block: 'list',
+                    mods: {
+                      type: 'inline',
+                      delimiter: 'vertical',
+                      size: 's'
+                    },
+                    mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } },
+                    content: [
+                      { elem: 'item', content: '© 2017 Artdoc Fest & Media' },
+                      { elem: 'item', content: 'Пользовательское соглашение' },
+                      { elem: 'item', content: 'Политика конфидециальности' }
+                    ]
+                  }
+                ]
+              },
+              {
+                elem: 'aside',
+                content: {
+                  block: 'paragraph',
+                  mods: {
+                    align: 'right',
+                    size: 's'
+                  },
+                  content: 'Сделано в BreadHead'
+                }
               }
             ]
           }
