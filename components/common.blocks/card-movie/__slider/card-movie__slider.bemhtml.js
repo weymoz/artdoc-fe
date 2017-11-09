@@ -17,7 +17,7 @@ block('card-movie').elem('slider')(
       return {
         elem: 'slider-item',
         elemMods: {
-          checked: index ? false : true,
+          checked: !index,
           type: slide.type || 'image'
         },
         js: {
@@ -25,6 +25,9 @@ block('card-movie').elem('slider')(
         },
         content: {
           block: 'image',
+          mods: {
+            'has-resize': slide.type !== 'video'
+          },
           mix: { block: node.block, elem: 'image' },
           attrs: {
             onError: 'this.classList.add( "' + node.block + '__image_no-image" )'
