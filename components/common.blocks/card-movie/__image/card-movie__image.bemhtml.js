@@ -10,13 +10,14 @@ block('card-movie').elem('image')(
         mods: { 'has-resize': true },
         mix: { block: node.block, elem: node.elem },
         attrs: {
-          onError: 'this.classList.add( "' + node.block + '__' + node.elem + '_no-image" )'
+          onError: 'this.classList.add( "' + node.block + '__' + node.elem + '_no-image" )',
+          style: 'height: ' + node._cover.height + 'px'
         },
         url: node._cover.id,
         width: node._cover.width,
         height: node._cover.height,
         title: node._name,
-        alt: ''
+        alt: 'Кадр из фильма «' + node._name + '»'
       }
     ]
   })
