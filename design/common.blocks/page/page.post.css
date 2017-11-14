@@ -7,6 +7,11 @@ block(page) {
 
   min-width: 960px; /* костыль, пока нет моб. версии */
 
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+
   .elem(content) {
     lost-center: 1428px;
     position: relative;

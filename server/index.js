@@ -86,7 +86,7 @@ isDev && require('./rebuild')(app);
 
 app.get('*', function(req, res) {
   res.status(404);
-  return render(req, res, { view: '404', page: 'index' });
+  return render(req, res, { view: '404', page: 'index', title: '404' });
 });
 
 if (isDev) {

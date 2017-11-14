@@ -4,7 +4,7 @@
   ],
   shouldDeps: [
     {
-      mods: { view: ['404'] },
+      mods: { view: ['404', '500'] },
       elems: [ 'title' ]
     },
     { block: 'header' },

@@ -14,9 +14,9 @@ block('page')(
         block: 'header',
         mix: { block: node.block, elem: 'header' }
       },
-      {
-        block: node.data.view
-      },
+      node.customContent
+        ? node.customContent
+        : { block: node.data.view },
       {
         block: 'footer',
         mix: { block: node.block, elem: 'footer' }
