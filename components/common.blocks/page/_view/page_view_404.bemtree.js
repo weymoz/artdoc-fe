@@ -1,6 +1,9 @@
 block('page').mod('view', '404')(
-  def()( node => {
-    node.customContent = {
+  def()( () => {
+    return applyNext( { 'data.view': '' } )
+  } ),
+  content()( () => {
+    return {
       elem: 'content',
       elemMods: { width: 'narrow' },
       content: [
@@ -26,6 +29,5 @@ block('page').mod('view', '404')(
         }
       ]
     };
-    return applyNext();
   } )
 )

@@ -1,6 +1,9 @@
 block('page').mod('view', '500')(
-  def()( node => {
-    node.customContent =  {
+  def()( () => {
+    return applyNext( { 'data.view': '' } )
+  } ),
+  content()( () => {
+    return {
       elem: 'content',
       elemMods: { width: 'narrow' },
       content: [
@@ -16,6 +19,5 @@ block('page').mod('view', '500')(
         }
       ]
     };
-    return applyNext();
   })
 )
