@@ -22,13 +22,15 @@ block('form').mod('view', 'auth')(
             mods: {
               type: 'input',
               required: true,
-              message: 'popup',
+              validate: 'email',
+              message: 'text',
               size: 'm',
               theme: 'artdoc-dark'
             },
-            directions: [ 'top-left' ],
+            directions: [ 'bottom-left' ],
             js: {
-              required: { message: 'Это поле обязательно!' }
+              required: { message: 'Адрес эл. почты обязателен' },
+              email: { message: 'Это не похоже на адрес эл. почты' }
             },
             name: 'username',
             content: {
@@ -48,13 +50,13 @@ block('form').mod('view', 'auth')(
             mods: {
               type: 'input',
               required: true,
-              message: 'popup',
+              message: 'text',
               size: 'm',
               theme: 'artdoc-dark'
             },
-            directions: [ 'top-left' ],
+            directions: [ 'bottom-left' ],
             js: {
-              required: { message: 'Это поле обязательно!' }
+              required: { message: 'Это поле обязательно' }
             },
             name: 'password',
             content: {
