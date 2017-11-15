@@ -10,7 +10,7 @@
       block: 'form-field',
       mods: {
         type: [ 'input', 'checkbox' ],
-        message : 'popup',
+        message : 'text',
         required: true,
         validate: 'email'
       }

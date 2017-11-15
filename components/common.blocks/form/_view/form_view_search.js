@@ -1,6 +1,6 @@
 modules.define('form',
-  [ 'i-bem-dom', 'functions__throttle', 'jquery', 'BEMHTML' ],
-  function(provide, bemDom, throttle, $, BEMHTML, Form) {
+  [ 'i-bem-dom', 'functions__debounce', 'jquery', 'BEMHTML' ],
+  function(provide, bemDom, debounce, $, BEMHTML, Form) {
 
 provide(Form.declMod({ modName: 'view', modVal: 'search' }, {
   onSetMod: {
@@ -9,7 +9,7 @@ provide(Form.declMod({ modName: 'view', modVal: 'search' }, {
         this._events().on( 'change', () => {
           let _this = this;
           if ( _this.getVal().q ) {
-            throttle( $.ajax({
+            debounce( $.ajax({
               'async': true,
               'url': '/api/search/',
               'method': 'GET',
@@ -22,14 +22,14 @@ provide(Form.declMod({ modName: 'view', modVal: 'search' }, {
             }).done( response => {
               bemDom.update(
                 _this._elem('content').domElem,
-                JSON.parse(response).api.items
-                ? BEMHTML.apply({
-                    block: 'search',
-                    mods: { view: 'form' },
-                    result: JSON.parse(response).api.items,
-                    query:  _this.getVal().q
-                  })
-                : ''
+                JSON.parse(response) && JSON.parse(response).api.items
+                  ? BEMHTML.apply({
+                      block: 'search',
+                      mods: { view: 'form' },
+                      result: JSON.parse(response).api.items,
+                      query:  _this.getVal().q
+                    })
+                  : ''
               );
             } ), 1000 )
           } else {

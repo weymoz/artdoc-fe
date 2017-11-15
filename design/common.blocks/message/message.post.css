@@ -2,8 +2,12 @@ block(message) {
   .mod(type text) {
     width: 100%;
     box-sizing: border-box;
-    padding: .5em;
-    border-radius: 4px;
-    border: 1px solid #ddd;
+    font-family: "PT Mono";
+    font-size: 12px;
+    line-height: 12px;
+  }
+
+  .mod(invalid) {
+    color: #f3203b;
   }
 }

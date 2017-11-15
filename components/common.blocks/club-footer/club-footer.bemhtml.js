@@ -76,7 +76,7 @@ block('club-footer')(
                   ],
                   content: 'Вход для участников'
                 },
-                { block: 'form', mods: { view: 'auth' }, mix: { block: 'club-footer', elem: 'club-login' } }
+                { block: 'form', mods: { view: 'auth', theme: 'artdoc-dark' }, mix: { block: 'club-footer', elem: 'club-login' } }
               ]
           }
           ]

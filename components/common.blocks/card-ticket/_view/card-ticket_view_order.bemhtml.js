@@ -34,6 +34,7 @@ block('card-ticket').mod('view', 'order').content()( node => {
           content: [
             {
               block: 'paragraph',
+              mods: { size: 's' },
               content: [
                 'Мы отправим на вашу электронную почту ссылку на страницу ',
                 'сеанса после оплаты. Фильм будет доступен к просмотру ',
@@ -57,7 +58,8 @@ block('card-ticket').mod('view', 'order').content()( node => {
             {
               block: 'form',
               mods: {
-                view: 'order'
+                view: 'order',
+                theme: 'artdoc-dark'
               },
               session: node._id,
               submitLabel: node._promo ? 'Получить' : 'Купить'
