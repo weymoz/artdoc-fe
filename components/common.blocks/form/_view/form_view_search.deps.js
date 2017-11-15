@@ -1,12 +1,13 @@
 [{
   shouldDeps: [
     { block: 'form-field', mods: { type: 'input' } },
-    { block: 'functions', elem: 'debounce' }
+    { block: 'functions', elem: 'debounce' },
+    { block: 'search', mods: { view: 'form' } }
   ]
 },{
   tech: 'js',
   shouldDeps: [
     { tech: 'bemhtml' },
-    { tech: 'bemhtml', block: 'search', mods: { view: 'form' } }
+    { tech: 'bemhtml', block: 'form-field', mods: { type: 'input' } }
   ]
 }]

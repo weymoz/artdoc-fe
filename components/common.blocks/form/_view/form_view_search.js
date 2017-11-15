@@ -8,7 +8,7 @@ provide(Form.declMod({ modName: 'view', modVal: 'search' }, {
       inited: function() {
         this._events().on( 'change', () => {
           let _this = this;
-          if ( _this.getVal().q ) {
+          if ( _this.getVal().q && _this.getVal().q.length > 3 ) {
             debounce( $.ajax({
               'async': true,
               'url': '/api/search/',
@@ -22,11 +22,11 @@ provide(Form.declMod({ modName: 'view', modVal: 'search' }, {
             }).done( response => {
               bemDom.update(
                 _this._elem('content').domElem,
-                JSON.parse(response) && JSON.parse(response).api.items
+                JSON.parse(response)
                   ? BEMHTML.apply({
                       block: 'search',
                       mods: { view: 'form' },
-                      result: JSON.parse(response).api.items,
+                      result: JSON.parse(response).api.items || false,
                       query:  _this.getVal().q
                     })
                   : ''
