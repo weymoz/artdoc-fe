@@ -1,17 +1,15 @@
 block(input).mod(theme artdoc) {
   background-color: #a0a0ac;
 
-  /* Decorative element (inner background) */
   &:before {
     background-color: #fff;
   }
 
   .elem(control) {
+    color: #000;
 
     &:-webkit-autofill {
-      border: 1px solid transparent;
-      background-color: transparent;
-      box-shadow: 0 0 0 1em #fff inset;
+      /*box-shadow: inset 0 0 0 2em #fff;*/
     }
   }
 }
