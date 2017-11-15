@@ -58,7 +58,8 @@ block('card-ticket').mod('view', 'order').content()( node => {
             {
               block: 'form',
               mods: {
-                view: 'order'
+                view: 'order',
+                theme: 'artdoc-dark'
               },
               session: node._id,
               submitLabel: node._promo ? 'Получить' : 'Купить'

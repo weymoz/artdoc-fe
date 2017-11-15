@@ -35,7 +35,7 @@ block('card-selection').mod('view', 'selections')(
         content: newMovie.splice(0, 3).map( item => {
           return {
             block: 'card-movie',
-            mods: { view: 'selection' },
+            mods: { view: 'selection', theme: 'artdoc' },
             mix: { block: node.block, elem: 'item' },
             movie: item
           }
