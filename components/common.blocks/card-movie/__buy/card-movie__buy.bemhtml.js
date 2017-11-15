@@ -36,7 +36,7 @@ block('card-movie').elem('buy')(
       content: [{
         block: 'heading',
         attrs: {
-          style: 'text-align: left; margin-top: 24px; padding-left: 20px; padding-right: 70px; padding-bottom: 5px'
+          style: 'text-align: left; margin-top: 24px; padding-left: 20px; padding-right: 70px; padding-bottom: 5px; box-sizing: border-box;'
         },
         mods: { caps: true, size: 'xs'},
         mix: { block: 'font', mods: { family: 'helvetica-neue-condensed-bold', loaded: true } },
