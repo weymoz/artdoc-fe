@@ -34,6 +34,7 @@ block('card-ticket').mod('view', 'order').content()( node => {
           content: [
             {
               block: 'paragraph',
+              mods: { size: 's' },
               content: [
                 'Мы отправим на вашу электронную почту ссылку на страницу ',
                 'сеанса после оплаты. Фильм будет доступен к просмотру ',

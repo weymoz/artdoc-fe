@@ -130,7 +130,7 @@ block(card-ticket).mod(theme artdoc) {
     .elem(section) {
       lost-center: 100%;
       display: flex;
-      padding: 56px 28px;
+      padding: 56px 48px;
       box-sizing: border-box;
       background-color: #23232C;
       color: #fff;
@@ -139,7 +139,7 @@ block(card-ticket).mod(theme artdoc) {
     .elem(aside) {
       lost-column: 20/31 0 0;
       box-shadow: inset 1px 0 #666770;
-      padding-left: 28px;
+      padding-left: 48px;
       padding-top: 17px;
       box-sizing: border-box;
     }
