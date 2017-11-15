@@ -46,7 +46,7 @@ block('page-order')(
             elem: 'title',
             elemMods: { size: 'xl' },
             mix: [
-              { block: 'heading', mods: { caps: true, size: 'l' } },
+              { block: 'heading', mods: { align: 'center', caps: true, size: 'l' } },
               { block: 'font', mods: { family: 'helvetica-neue-condensed-bold', loaded: true } }
             ],
             content: [
