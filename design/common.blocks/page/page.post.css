@@ -3,17 +3,21 @@ block(page) {
   margin: 0;
   font-size: 16px;
   line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-
-  min-width: 960px; /* костыль, пока нет моб. версии */
 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  width: 100%;
+  min-width: 960px; /* костыль, пока нет моб. версии */
   min-height: 100vh;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 
   .elem(content) {
     lost-center: 1428px;
+    width: 100%;
     position: relative;
     box-sizing: border-box;
     padding-left: 56px;
