@@ -33,8 +33,9 @@ function render(req, res, data, context) {
     }, data)
   };
 
+  var bemjson;
   try {
-    var bemjson = templates.BEMTREE.apply(bemtreeCtx);
+    bemjson = templates.BEMTREE.apply(bemtreeCtx);
   } catch(err) {
     console.error('BEMTREE error', err.stack);
     console.trace('server stack');
@@ -43,8 +44,9 @@ function render(req, res, data, context) {
 
   if (isDev && query.bemjson) return res.send('<pre>' + JSON.stringify(bemjson, null, 4) + '</pre>');
 
+  var html;
   try {
-    var html = templates.BEMHTML.apply(bemjson);
+    html = templates.BEMHTML.apply(bemjson);
   } catch(err) {
     console.error('BEMHTML error', err.stack);
     return res.sendStatus(500);

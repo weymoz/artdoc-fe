@@ -15,6 +15,7 @@ block('page')(
       },
       {
         block: 'header',
+        mods: { theme: 'artdoc' },
         mix: { block: node.block, elem: 'header' }
       }
     ]
@@ -22,6 +23,7 @@ block('page')(
   appendContent()( node => {
     return {
       block: 'footer',
+      mods: { theme: 'artdoc' },
       mix: { block: node.block, elem: 'footer' }
     }
   } )

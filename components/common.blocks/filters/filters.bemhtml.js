@@ -7,7 +7,7 @@ block('filters')(
     return applyNext();
   } ),  
 
-  js()( true ),
+  addJs()( true ),
 
   addMods()( node => { return { result: node._api.pagination.view || 'list' } } ),
 

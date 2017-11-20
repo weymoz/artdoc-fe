@@ -26,16 +26,13 @@ module.exports = function( node, platform ) {
       forceBaseTemplates: true,
       engineOptions: {
         elemJsInstances: true,
-        // runtimeLint: true
-      },
-      requires: {
-        moment: {
-          globals: 'moment',
-          ym: 'moment',
-          commonJS: 'moment'
-        },
-        moment_ru: {
-          commonJS: 'moment/locale/ru'
+        requires: {
+          moment: {
+            commonJS: 'moment'
+          },
+          moment_ru: {
+            commonJS: 'moment/locale/ru'
+          }
         }
       }
     }],
@@ -73,7 +70,7 @@ module.exports = function( node, platform ) {
     }],
 
     isProd
-      ? [techs.babel, { target: '?.js', sourceTarget: '.?.es6.js', babelOptions: { presets: [ 'es2015' ] } }]
+      ? [techs.babel, { target: '?.js', sourceTarget: '.?.es6.js', babelOptions: { presets: [ [ "@babel/preset-env", { "targets": { "browsers": ["last 2 versions", "safari >= 7"] } } ] ] } }]
       : [techs.fileCopy, { target: '?.js', source: '.?.es6.js' }],
 
     [techs.borschik, { minify: isProd, freeze: false, source: '?.js', target: '?.min.js' }],

@@ -24,10 +24,6 @@ block('root').replace()(function() {
       },
       {
         elem: 'js',
-        url: '//cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js'
-      },
-      {
-        elem: 'js',
         url: '/assets/js/' + bundle + '/' + bundle + '.min.js'
       }
     ],

@@ -1,4 +1,4 @@
-block(modal) {
+block(modal).mod(theme artdoc) {
   display: none;
   visibility: hidden;
   z-index: 10;

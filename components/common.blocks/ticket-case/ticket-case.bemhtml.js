@@ -1,5 +1,5 @@
 block('ticket-case')(
-  js()(true),
+  addJs()(true),
 
   addAttrs()({ id: 'schedule' }),
 

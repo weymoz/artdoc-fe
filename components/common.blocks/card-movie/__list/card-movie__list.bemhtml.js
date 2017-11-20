@@ -1,16 +1,8 @@
 block('card-movie').elem('list')(
 
-  replace()( ( node, ctx ) => {
-    let items = ctx.content.map( item => {
-      return applyCtx( node.extend(
-        item,
-        {
-          tag: 'li',
-          mix: { block: 'list', elem: 'item' }
-        }
-      ) );
-    } );
+  tag()('ul'),
 
+  addMix()( ( node, ctx ) => {
     return {
       block: 'list',
       mix: [
@@ -19,14 +11,24 @@ block('card-movie').elem('list')(
           ? { block: 'font', mods: { family: 'pt-mono', loaded: true } }
           : ''
       ],
-      mods: node.extend(
+      mods: Object.assign(
+        {},
         { type: 'inline', size: 's', theme: node.mods.theme },
         ctx.elemMods
-      ),
-      content: {
-        html: items.join('')
-      }
+      )
     }
+  } ),
+
+  content()( ( node, ctx ) => {
+    let items = ctx.content.map( item => {
+      return Object.assign(
+        {},
+        item,
+        { tag: 'li', mix: { block: 'list', elem: 'item' } }
+      )
+    } );
+    return applyNext( { 'ctx.content': items } );
   })
+
 
 )

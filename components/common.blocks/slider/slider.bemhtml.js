@@ -1,5 +1,3 @@
-block('slider').js()( true )
-
 block('slider')(
   addJs()( ( node, ctx ) => {
     return {

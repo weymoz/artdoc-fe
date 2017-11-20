@@ -1,7 +1,6 @@
 block(card-poster) {
   lost-center: 100%;
   display: flex;
-  height: 100%;
 
   elem(control) {
     position: absolute;

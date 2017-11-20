@@ -12,5 +12,5 @@ block( 'card-poster' )(
 
   tag()( 'article' ),
 
-  js()(true)
+  addJs()(true)
 )
