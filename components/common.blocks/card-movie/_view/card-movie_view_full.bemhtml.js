@@ -6,7 +6,7 @@ block('card-movie').mod('view', 'full')(
     return applyNext( { 'ctx.movie.cover.width': 843 } );
   }),
 
-  js()( true ),
+  addJs()( true ),
 
   content()( ( node, ctx ) => {
     return [

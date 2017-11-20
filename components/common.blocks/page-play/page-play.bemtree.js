@@ -3,7 +3,6 @@ block('page')(
 );
 
 block('page-play')(
-
   replace()( node => {
     // Move start timer to movie object
     const api = node.data.api;

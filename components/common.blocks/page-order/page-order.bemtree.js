@@ -1,6 +1,4 @@
 block('page-order')(
-
-
   replace()( node => {
     let ticket = node.data.api;
     ticket.city = ticket.city[0];
