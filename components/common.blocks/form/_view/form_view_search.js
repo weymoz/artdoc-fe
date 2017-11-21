@@ -1,6 +1,6 @@
 modules.define('form',
-  [ 'i-bem-dom', 'functions__throttle', 'jquery', 'BEMHTML' ],
-  function(provide, bemDom, throttle, $, BEMHTML, Form) {
+  [ 'i-bem-dom', 'functions__debounce', 'jquery', 'BEMHTML' ],
+  function(provide, bemDom, debounce, $, BEMHTML, Form) {
 
 provide(Form.declMod({ modName: 'view', modVal: 'search' }, {
   onSetMod: {
@@ -8,8 +8,8 @@ provide(Form.declMod({ modName: 'view', modVal: 'search' }, {
       inited: function() {
         this._events().on( 'change', () => {
           let _this = this;
-          if ( _this.getVal().q ) {
-            throttle( $.ajax({
+          if ( _this.getVal().q && _this.getVal().q.length > 3 ) {
+            debounce( $.ajax({
               'async': true,
               'url': '/api/search/',
               'method': 'GET',
@@ -45,3 +45,4 @@ provide(Form.declMod({ modName: 'view', modVal: 'search' }, {
 }));
 
 });
+
