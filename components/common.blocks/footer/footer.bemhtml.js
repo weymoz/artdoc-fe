@@ -21,7 +21,7 @@ block('footer')(
       }
     } );
   } ),
-  content()( node => {
+  content()( ( node, ctx ) => {
     return [
       {
         elem: 'content',
@@ -182,7 +182,7 @@ block('footer')(
           {
             elem: 'contacts',
             content: [
-              { elem: 'social' },
+              { elem: 'social', social: ctx.social },
               {
                 block: 'list',
                 mods: {
