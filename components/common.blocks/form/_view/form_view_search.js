@@ -45,3 +45,4 @@ provide(Form.declMod({ modName: 'view', modVal: 'search' }, {
 }));
 
 });
+
