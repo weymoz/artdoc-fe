@@ -1,0 +1,9 @@
+block(icon).mod(social youtube) {
+  background-image: svg-load('icon_social_youtube.svg', fill="#777684");
+  background-origin: padding-box;
+  box-sizing: content-box;
+
+  &:hover {
+    background-image: svg-load('icon_social_youtube.svg', fill="#fff");
+  }
+}

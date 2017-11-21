@@ -67,7 +67,7 @@ block('header')(
       //     }
       //   }
       // },
-      { elem: 'social' },
+      { elem: 'social', social: ctx.social },
 /*
       {
         elem: 'lang',

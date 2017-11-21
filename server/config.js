@@ -34,8 +34,10 @@ module.exports = {
         image: '/assets/img/meta/artdocmedia.jpeg'
       },
       social: {
-        'facebook': '//www.facebook.com/artdoc.media/',
-        'vkontakte': '//vk.com/artdoc.media'
+        'facebook'  : '//www.facebook.com/artdoc.media/',
+        'vkontakte' : '//vk.com/artdoc.media',
+        'youtube'   : '//www.youtube.com/channel/UCmX4ayziG0kLmdsvHtMcfpA',
+        'instagram' : '//www.instagram.com/artdocfest/'
       }
     }
   },
