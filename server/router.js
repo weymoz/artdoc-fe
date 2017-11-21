@@ -227,7 +227,7 @@ module.exports = function( app ) {
     };
 
     let url = '/api/authorcompilation/';
-    url += '?sort=-created_at&per-page=' + data.pagination['per-page'] + '&page=' + data.pagination.page;
+    url += '?sort=-sort&per-page=' + data.pagination['per-page'] + '&page=' + data.pagination.page;
 
     data.page = 'selections';
     data.title = 'Авторские подборки';
