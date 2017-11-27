@@ -31,7 +31,7 @@ const render = (req, res, data, context) => {
       view: data.view || 'page-' + data.page,
       params: req.params,
       url: req._parsedUrl,
-      // csrf: req.csrfToken()
+      csrf: req.csrfToken(),
       user: req.isAuthenticated() ? req.user : false
     }, data)
   };
