@@ -70,26 +70,14 @@ passport.deserializeUser( ( user, done ) => {
   done( null, JSON.parse( user ) );
 });
 
+app.use( ( req, res, next ) => {
+  global.user = req.isAuthenticated() ? req.user : false;
+  next();
+} );
+
 require('./router')(app);
 
-app.get('/ping/', function(req, res) {
-  res.send('ok');
-});
-
 isDev && require('./rebuild')(app);
-
-app.get('*', function(req, res) {
-  res.status(404);
-  return render(req, res, { view: '404', page: 'index', title: '404' });
-});
-
-if (isDev) {
-  app.get('/error/', function() {
-    throw new Error('Uncaught exception from /error');
-  });
-
-  app.use(require('errorhandler')());
-}
 
 isSocket && fs.existsSync(port) && fs.unlinkSync(port);
 

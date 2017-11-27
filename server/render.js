@@ -19,7 +19,9 @@ function render(req, res, data, context) {
     return res.send(cached.html);
   }
 
-  if (isDev && query.json) return res.send('<pre>' + JSON.stringify(data, null, 4) + '</pre>');
+  if (isDev && query.json) {
+    return res.json( data );
+  }
 
   var bemtreeCtx = {
     block: 'root',
@@ -42,7 +44,9 @@ function render(req, res, data, context) {
     return res.sendStatus(500);
   }
 
-  if (isDev && query.bemjson) return res.send('<pre>' + JSON.stringify(bemjson, null, 4) + '</pre>');
+  if (isDev && query.bemjson) {
+    return res.json( bemjson );
+  }
 
   var html;
   try {
@@ -57,7 +61,7 @@ function render(req, res, data, context) {
     html: html
   });
 
-  res.send(html);
+  return res.send(html);
 }
 
 function dropCache() {
