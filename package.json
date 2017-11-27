@@ -63,7 +63,6 @@
     "node-notifier": "^5.1.2",
     "node-notifier-cli": "^1.0.1",
     "nodemon": "^1.12.1",
-    "object-assign": "^4.1.1",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "pobem": "^1.1.2",
