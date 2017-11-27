@@ -50,7 +50,7 @@ module.exports = app => {
     for ( let i = global.category.length - 1; i >= 0; i-- ) {
       global.categoryByCode[ global.category[i].code ] = global.category[i];
     }
-  }).catch( () => 'Fail for get category' );
+  }).catch( () => { console.log( 'Fail for get categories' ) } );
 
   /*
    *  Routing
@@ -65,22 +65,22 @@ module.exports = app => {
     ]).then( response => {
       let data = Object.assign({}, global, { api: response[0].items }, { poster: response[ 1 ] } );
       data.page = 'index';
-      render( req, res, data );
-    }).catch( error => res.send(error) );
+      return render( req, res, data );
+    }).catch( error => res.send( error ) );
   });
 
   // About
   app.get( '/about', ( req, res ) => {
     let data = Object.assign({}, global);
     data.page = 'about';
-    render( req, res, data );
+    return render( req, res, data );
   });
 
   // Club
   app.get( '/club', ( req, res ) => {
     let data = Object.assign({}, global);
     data.page = 'club';
-    render( req, res, data );
+    return render( req, res, data );
   });
 
   // Catalog

@@ -11,17 +11,17 @@ const fs = require('fs'),
       slashes = require('connect-slashes'),
       passport = require('passport'),
       LocalStrategy = require('passport-local').Strategy,
-      axios = require('axios'),
       // csrf = require('csurf'),
       compression = require('compression'),
 
       config = require('./config'),
       staticFolder = config.staticFolder,
-      client = axios.create( config.host ),
-
       port = config.defaultPort,
       isSocket = isNaN(port),
-      isDev = process.env.NODE_ENV === 'development';
+      isDev = process.env.NODE_ENV === 'development',
+
+      axios = require('axios'),
+      client = axios.create( config.host );
 
 require('debug-http')();
 
@@ -70,14 +70,9 @@ passport.deserializeUser( ( user, done ) => {
   done( null, JSON.parse( user ) );
 });
 
-app.use( ( req, res, next ) => {
-  global.user = req.isAuthenticated() ? req.user : false;
-  next();
-} );
+require( './router' )( app );
 
-require('./router')(app);
-
-isDev && require('./rebuild')(app);
+isDev && require( './rebuild' )( app );
 
 isSocket && fs.existsSync(port) && fs.unlinkSync(port);
 
