@@ -1,6 +1,6 @@
 block('card-ticket').elem('buy')(
 
-  match( node => !node.price && !node._price.price ).def()(''),
+  match( node => !node._price || !node._price.price ).def()(''),
 
   content()( node => node._price.price + ' ₽'),
 

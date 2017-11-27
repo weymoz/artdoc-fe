@@ -27,19 +27,19 @@ function rebuild(event, file) {
 
   console.time('Rebuild: ' + file);
   return make()
-  .then(function() {
-    console.timeEnd('Rebuild: ' + file);
-    notifier.notify({
-      title: 'bem-express',
-      message: 'Build finished'
+    .then(function() {
+      console.timeEnd('Rebuild: ' + file);
+      notifier.notify({
+        title: 'bem-express',
+        message: 'Build finished'
+      });
+    })
+    .fail(function(err) {
+      notifier.notify({
+        title: 'Build failed',
+        message: err
+      });
     });
-  })
-  .fail(function(err) {
-    notifier.notify({
-      title: 'Build failed',
-      message: err
-    });
-  });
 }
 
 var debouncedRebuild = _.debounce(rebuild, 30, { leading: true, trailing: true });

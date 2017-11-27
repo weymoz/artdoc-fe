@@ -19,10 +19,6 @@ const fs = require('fs'),
       staticFolder = config.staticFolder,
       client = axios.create( config.host ),
 
-      Render = require('./render'),
-      render = Render.render,
-      dropCache = Render.dropCache, // eslint-disable-line no-unused-vars
-
       port = config.defaultPort,
       isSocket = isNaN(port),
       isDev = process.env.NODE_ENV === 'development';
@@ -50,10 +46,10 @@ app
 // NOTE: conflicts with livereload
 isDev || app.use(slashes());
 
-passport.use(new LocalStrategy({
+passport.use( new LocalStrategy( {
     usernameField: 'username',
     passwordField: 'password'
-  }, function( username, password, done ) {
+  }, ( username, password, done ) => {
     client.post( '/auth/auth/login/', { username: username, password: password } )
       .then( api => {
         return api.data.error
@@ -66,12 +62,12 @@ passport.use(new LocalStrategy({
       .catch( () => console.log('Passport error') )
 }));
 
-passport.serializeUser(function(user, done) {
-  done(null, JSON.stringify(user));
+passport.serializeUser( ( user, done ) => {
+  done( null, JSON.stringify( user ) );
 });
 
-passport.deserializeUser(function(user, done) {
-  done(null, JSON.parse(user));
+passport.deserializeUser( ( user, done ) => {
+  done( null, JSON.parse( user ) );
 });
 
 require('./router')(app);

@@ -1,6 +1,6 @@
 const path = require('path'),
       techs = require( path.resolve( __dirname, '..', 'config', 'techs' ) ),
-      isProd    = process.env.YENV === 'production';
+      isProd = process.env.YENV === 'production';
 
 module.exports = function( node, platform ) {
   node.addTechs([

@@ -37,7 +37,7 @@ const request = options => {
 //  return !!isMobile;
 //};
 
-module.exports = function( app ) {
+module.exports = app => {
 
   // Expand
   let global = config.site;
@@ -105,11 +105,10 @@ module.exports = function( app ) {
   app.get( '/', function( req, res ) {
     axios.all([
       request( { url: '/api/authorcompilation/?sort=-created_at&per-page=3&page=1' } ),
-      request( { url: '/api/schedule/?expand=sessions,movie&per-page=4&unique=1&date_from=' + (Math.floor((Date.now() / 1000) /3600 ) * 3600 - (31 * 60 * 60)) } )
+      request( { url: '/api/schedule/?expand=sessions,movie&per-page=4&unique=1&date_from=' + ( Math.floor ( ( Date.now() / 1000 ) / 3600 ) * 3600 - ( 31 * 60 * 60 ) ) } )
     ]).then( (response) => {
       let data = Object.assign({}, global, { api: response[0].items }, { poster: response[ 1 ] } );
       data.page = 'index';
-      //data.bundle = isCallerMobile( req ) ? 'touch' : 'desktop';
       render( req, res, data );
     })
   });
@@ -275,7 +274,7 @@ module.exports = function( app ) {
     let data = Object.assign({}, global);
 
     if ( req.query.hasOwnProperty( 'hash' ) && req.query.hasOwnProperty( 'sess_id' ) && req.query.hasOwnProperty( 'id' ) ) {
-      data.page = req.params[0]=='discuss' ? 'discuss' : 'play';
+      data.page = req.params[0] === 'discuss' ? 'discuss' : 'play';
       request( { url: '/cinema/release/?id=' + req.query.id + '&hash=' + req.query.hash + '&sess_id=' + req.query.sess_id } )
         .then( response => {
 
@@ -283,7 +282,7 @@ module.exports = function( app ) {
 
           if (req.params[0]=='discuss') {
 
-            if (typeof response.schedule != 'undefined') {
+            if (typeof response.schedule !== 'undefined') {
               if (response.schedule.discuss_link) {
                 return res.redirect(response.schedule.discuss_link);
               } else if (response.schedule.discuss_preview) {
@@ -308,15 +307,12 @@ module.exports = function( app ) {
     client.post( '/payment/provide/', { nonce: req.query.payment_nonce, transaction_id: req.params.transaction_id } )
       .then( response => {
         data.api = response.data;
+        data.page = 'thanks';
+        data.title = 'Билет успешно оплачен';
 
         if ( data.api.error ) {
           data.page = 'error';
-          data.title = 'При оплате произошла ошибка';
-          render( req, res, data );
-        } else {
-          data.page = 'thanks';
-          data.title = 'Билет успешно оплачен';
-          render( req, res, data );
+          data.title = 'payment-error'; // 'При оплате произошла ошибка'
         }
 
       } )
@@ -339,6 +335,7 @@ module.exports = function( app ) {
           data.title = 'При активации произошла ошибка';
           render( req, res, data );
         }
+        return render( req, res, data );
 
       } )
       .catch(() => res.send('error') );
@@ -350,10 +347,9 @@ module.exports = function( app ) {
     request( { url: '/ondemand/release/?movie_code=' + req.params.name } )
       .then( response => {
         data.api = response;
+        data.page = 'play';
 
         if ( !data.api.error ) {
-          data.page = 'play';
-          data.title = 'Просмотр фильма';
           render( req, res, data );
         }
 
