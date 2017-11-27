@@ -34,6 +34,14 @@ module.exports = function( node, platform ) {
             commonJS: 'moment/locale/ru'
           }
         }
+      },
+      requires: {
+        moment: {
+          commonJS: 'moment'
+        },
+        moment_ru: {
+          commonJS: 'moment/locale/ru'
+        }
       }
     }],
 
