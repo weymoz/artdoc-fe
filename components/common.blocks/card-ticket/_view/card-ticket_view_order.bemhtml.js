@@ -26,7 +26,7 @@ block('card-ticket').mod('view', 'order').content()( node => {
             { elem: 'city' },
             { elem: 'user-time' },
             { elem: 'buy' },
-            node._promo ? '' : 'Оплата картой'
+            'Оплата картой'
           ]
         },
         {
@@ -62,7 +62,7 @@ block('card-ticket').mod('view', 'order').content()( node => {
                 theme: 'artdoc-dark'
               },
               session: node._id,
-              submitLabel: node._promo ? 'Получить' : 'Купить'
+              submitLabel: 'Купить'
             }
           ]
         }

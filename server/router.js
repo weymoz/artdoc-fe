@@ -43,35 +43,6 @@ module.exports = app => {
   let global = config.site;
   global.categoryByCode = {};
 
-  // Promo
-  app.use( (req, res, next) => {
-    // Check if `req.query.promo` contains in promo's list;
-    const actions = config.promo.filter( promo => req.query.promo === promo.name );
-    actions.forEach( promo => {
-      Object.keys( promo.cookies ).forEach( action => {
-        let newCookie = promo.cookies[ action ],
-            params = {};
-        Object.keys( newCookie ).forEach( key => {
-          switch ( key ) {
-            case 'value':
-              break;
-            case 'expire':
-              params.expire = ( new Date( newCookie.expire * 1000 ).toUTCString() );
-              break;
-            default:
-              params[ key ] = newCookie[ key ];
-              break;
-          }
-        } );
-        if ( req.cookies[ action ] !== newCookie.value ) {
-          res.cookie( action, newCookie.value, params );
-          req.cookies[ action ] = newCookie.value
-        }
-      } )
-    } );
-
-    next();
-  } );
 
   app.use( ( req, res, next ) => {
     global.user = req.isAuthenticated() ? req.user : false;
@@ -180,16 +151,6 @@ module.exports = app => {
   // Movie
   app.get( '/movie/:name', ( req, res ) => {
     let data = Object.assign({}, global);
-
-    // Check promo
-    data.promo = {};
-    config.promo.forEach( promo => {
-      data.promo[ promo.name ] = Object.keys( promo.cookies ).every( key => {
-          return promo.cookies[ key ].value == req.cookies[ key ];
-        } )
-        ? promo.data
-        : false
-    } );
 
     if ( req.query.hasOwnProperty( 'code' ) ) {
       data.page = 'order';
@@ -314,29 +275,7 @@ module.exports = app => {
           data.page = 'error';
           data.title = 'payment-error'; // 'При оплате произошла ошибка'
         }
-
-      } )
-      .catch(() => res.send('error') );
-  });
-
-  // Promo activate
-  app.get( '/payment/freeactivate/', ( req, res ) => {
-    let data = Object.assign({}, global);
-    request( { url: '/payment/freeactivate/?' + Object.keys( req.query ).map( key => key + '=' + encodeURIComponent( req.query[ key ] ) ).join('&') } )
-      .then( response => {
-        data.api = response;
-
-        if ( !data.api.error ) {
-          data.page = 'thanks';
-          data.title = 'Билет успешно активирован';
-          render( req, res, data );
-        } else {
-          data.page = 'error';
-          data.title = 'При активации произошла ошибка';
-          render( req, res, data );
-        }
         return render( req, res, data );
-
       } )
       .catch(() => res.send('error') );
   });
@@ -381,23 +320,9 @@ module.exports = app => {
    ***************************/
 
   app.post( '/api/order/:session_id', ( req, res ) => {
-
-    let promo_code = '';
-
-    // Check promo
-    let promoCode = {};
-    config.promo.forEach( promo => {
-      promoCode[ promo.name ] = Object.keys( promo.cookies ).every( key => {
-          return promo.cookies[ key ].value == req.cookies[ key ];
-        } )
-        ? promo.data
-        : false
-    } );
-
-    client.post( '/cinema/booking/booking/?promo=' + promo_code, {
+    client.post( '/cinema/booking/booking', {
       CinemaTicketModel: { email: req.body.email },
-      session_id: req.params.session_id,
-      promo: promo_code
+      session_id: req.params.session_id
     } ).then( api => {
         if ( api.data.payment_url ) {
           request( { url: api.data.payment_url } )

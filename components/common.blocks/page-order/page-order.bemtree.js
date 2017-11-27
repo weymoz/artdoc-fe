@@ -3,14 +3,6 @@ block('page-order')(
     let ticket = node.data.api;
     ticket.city = ticket.city[0];
 
-    const promo = node.data.promo;
-
-    if ( promo.meduza && promo.meduza.includes( ticket.id ) ) {
-      ticket.promo = 'meduza'
-    } else {
-      ticket.promo = null;
-    }
-
     // switch ( ticket.city_id ) {
     //   case 1:
     //     ticket.city.name = 'Москва';
@@ -47,10 +39,7 @@ block('page-order')(
               { block: 'heading', mods: { align: 'center', caps: true, size: 'l' } },
               { block: 'font', mods: { family: 'helvetica-neue-condensed-bold', loaded: true } }
             ],
-            content: [
-              ticket.promo === 'meduza' ? 'Получение' : 'Покупка',
-              ' билета на онлайн-сеанс'
-            ]
+            content: 'Покупка билета на онлайн-сеанс'
           },
           {
             block: 'card-movie',

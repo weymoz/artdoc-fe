@@ -7,24 +7,6 @@ module.exports = {
       password: 'dev'
     }
   },
-  promo: [
-    {
-      name: 'meduza',           // wait link with url: /movie/:name?promo=meduza
-      cookies: {
-        meduza: {               // then will set this cookies
-          value: 'promo',
-          expire: 1504796400    // with this experation date
-        }
-      },
-      data: [
-        238,
-        239,
-        240,
-        241,
-        242
-      ]
-    }
-  ],
   site: {
     title: 'Artdoc.Media',
     meta: {
