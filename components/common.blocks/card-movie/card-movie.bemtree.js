@@ -12,6 +12,10 @@ block('card-movie')(
 
     _movie.description = marked( _movie.description );
 
+    if ( _movie.offlineShow && _movie.offlineShow.description ) {
+      _movie.offlineShow.description = marked( _movie.offlineShow.description );
+    }
+
     // If shedule has discussion data or premiere, move first concurrence to movie's object
     if ( _movie.schedules ) {
       let discuss_link, discuss_preview, premiere;

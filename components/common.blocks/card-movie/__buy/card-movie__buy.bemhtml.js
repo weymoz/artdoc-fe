@@ -64,7 +64,6 @@ block('card-movie').elem('buy')(
 
     if ( typeof node._offlineShow.description !== 'undefined' ) {
       result.content.push({
-        block: 'paragraph',
         mix: { block: 'font', mods: { family: 'pt-mono' } },
         attrs: {
           style: 'color: #000; padding: 10px 60px 5px 20px; font-size: 13px; line-height: 20px; color: #5f5f5f; box-sizing: border-box;'
