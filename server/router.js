@@ -60,7 +60,7 @@ module.exports = app => {
   // Index
   app.get( '/', ( req, res ) => {
     axios.all([
-      request( { url: '/api/authorcompilation/?sort=-created_at&per-page=3&page=1' } ),
+      request( { url: '/api/authorcompilation/?sort=-sort&per-page=3&page=1' } ),
       request( { url: '/api/schedule/?expand=sessions,movie&per-page=4&unique=1&date_from=' + ( Math.floor ( ( Date.now() / 1000 ) / 3600 ) * 3600 - ( 31 * 60 * 60 ) ) } )
     ]).then( response => {
       let data = Object.assign({}, global, { api: response[0].items }, { poster: response[ 1 ] } );
