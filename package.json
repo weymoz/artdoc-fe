@@ -1,7 +1,7 @@
 {
   "author": "Roman @Realetive Ganin",
   "name": "artdoc-site",
-  "version": "2.18.8",
+  "version": "2.18.9",
   "repository": {
     "type": "git",
     "url": "git@bitbucket.org:artdocfest/frontend.git"
@@ -44,7 +44,7 @@
     "enb": "^1.5.1",
     "enb-babelify": "^0.0.1",
     "enb-bem-techs": "^2.2.2",
-    "enb-bemxjst": "^8.8.4",
+    "enb-bemxjst": "8.6.7",
     "enb-borschik": "^3.0.0",
     "enb-js": "^1.1.1",
     "enb-postcss": "^2.0.0",
