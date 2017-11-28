@@ -33,9 +33,11 @@ const request = options => {
 //};
 
 module.exports = app => {
+
   // Expand
   let global = config.site;
   global.categoryByCode = {};
+
   // iFrame widget
   app.use( ( req, res, next ) => {
     const refer = new URL( req.headers.referrer || req.headers.referer || req.protocol + '://' + req.get( 'host' ) + req.originalUrl );
@@ -43,6 +45,7 @@ module.exports = app => {
     global.bundle = !req.query.embed ? 'desktop' : 'widget';
     next();
   } );
+
   request( { url: '/api/category/?per-page=0'} ).then( response => {
     global.category = response.items.sort(function (a,b) {
       return a.name.localeCompare(b.name, 'ru');
@@ -356,5 +359,4 @@ module.exports = app => {
     res.status( 404 );
     return render(req, res, data);
   });
-
 };

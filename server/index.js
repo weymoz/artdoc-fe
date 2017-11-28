@@ -1,7 +1,6 @@
 const fs = require('fs'),
       path = require('path'),
-      express = require('express'),
-      app = express(),
+      app = require('express')(),
       bodyParser = require('body-parser'),
       favicon = require('serve-favicon'),
       morgan = require('morgan'),
@@ -23,7 +22,7 @@ const fs = require('fs'),
       axios = require('axios'),
       client = axios.create( config.host );
 
-require('debug-http')();
+!isDev || require('debug-http')();
 
 app
   .disable('x-powered-by')
@@ -31,7 +30,10 @@ app
   .use(compression())
   .use(favicon(path.join(staticFolder, 'favicon.ico')))
   .use(serveStatic(staticFolder))
-  .use(morgan('tiny'))
+
+!isDev || app.use(morgan('tiny'))
+
+app
   .use(cookieParser())
   .use(bodyParser.urlencoded({ extended: true }))
   .use(expressSession({
