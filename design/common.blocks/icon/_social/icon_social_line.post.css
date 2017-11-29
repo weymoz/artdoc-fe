@@ -1,6 +1,0 @@
-block(icon).mod(social line) {
-  background-color: #00c300;
-  background-image: svg-load('icon_social_line.svg', fill="#fff");
-  background-origin: padding-box;
-  box-sizing: content-box;
-}

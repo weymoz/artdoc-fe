@@ -1,6 +1,0 @@
-block(icon).mod(social weibo) {
-  background-color: #e71d34;
-  background-image: svg-load('icon_social_weibo.svg', fill="#fff");
-  background-origin: padding-box;
-  box-sizing: content-box;
-}
