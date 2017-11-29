@@ -352,6 +352,8 @@ module.exports = app => {
    *
    ****************************/
 
+  require('./test')( app );
+
   app.get('*', (req, res) => {
     let data = Object.assign({}, global);
     data.page = 'index';

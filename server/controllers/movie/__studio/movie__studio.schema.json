@@ -1,0 +1,33 @@
+{
+  "title": "Studio",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "code": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "status": {
+      "type": "integer"
+    },
+    "created_at": {
+      "type": "integer"
+    },
+    "updated_at": {
+      "type": "integer"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "code",
+    "name",
+    "status",
+    "created_at",
+    "updated_at"
+  ]
+}

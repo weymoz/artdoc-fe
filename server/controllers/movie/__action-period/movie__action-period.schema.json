@@ -1,0 +1,45 @@
+{
+  "title": "ActionPeriod",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "code": {
+      "type": "string"
+    },
+    "start": {
+      "type": "string"
+    },
+    "end": {
+      "type": "string"
+    },
+    "status": {
+      "type": "integer"
+    },
+    "created_at": {
+      "type": "integer"
+    },
+    "updated_at": {
+      "type": "integer"
+    },
+    "name": {
+      "type": "string"
+    },
+    "lang_id": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "code",
+    "start",
+    "end",
+    "status",
+    "created_at",
+    "updated_at",
+    "name",
+    "lang_id"
+  ]
+}

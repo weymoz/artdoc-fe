@@ -1,0 +1,60 @@
+{
+  "title": "Session",
+  "type": "object",
+  "properties": {
+    "session": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "code": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "city_id": {
+          "type": "integer"
+        },
+        "city": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/SimpleObject" }
+        },
+        "time_gmt3": {
+          "type": "integer"
+        },
+        "schedule_id": {
+          "type": "integer"
+        },
+        "tickets_left": {
+          "type": "integer"
+        },
+        "price": { "$ref": "#/definitions/Price" }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "code",
+        "name",
+        "city_id",
+        "city",
+        "time_gmt3",
+        "schedule_id",
+        "tickets_left",
+        "price"
+      ]
+    },
+    "city": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/SimpleObject" }
+    },
+    "price": { "$ref": "#/definitions/Price" }
+  },
+  "additionalProperties": false,
+  "required": [
+    "session",
+    "city",
+    "price"
+  ]
+}
