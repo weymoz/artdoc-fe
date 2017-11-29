@@ -1,4 +1,13 @@
+var marked = require('marked');
+
 block('filters').def()( ( node, ctx ) => {
+  if ( ctx.data.api && ctx.data.api.length ) {
+    ctx.data.api.forEach( movie => {
+      if ( movie.offlineShow && movie.offlineShow.description ) {
+        movie.offlineShow.description = marked( movie.offlineShow.description );
+      }
+    } )
+  }
   // data from api
   let filters = node.data.filters;
 
