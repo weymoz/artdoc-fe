@@ -106,14 +106,41 @@ block(card-selection) {
       flex: 1;
     }
 
-    .elem(author) {
-      margin-bottom: 20px;
-    }
-
-    .elem(aside) {
+    .elem(section) {
+      display: flex;
+      box-shadow: inset 0 -1px #232323;
       padding-top: 40px;
       padding-bottom: 40px;
-      box-shadow: inset 0 -1px #232323;
+    }
+
+    .elem(content) {
+      flex: 1;
+    }
+
+    .elem(share) {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid #232323;
+      position: sticky;
+      top: 70px;
+    }
+
+    .elem(share-item) {
+      display: block;
+
+      & + .elem(share-item) {
+        border-top: 1px solid #232323;
+      }
+
+      &:hover,
+      &:focus {
+        background-color: #f3203b;
+      }
+    }
+
+
+    .elem(author) {
+      margin-bottom: 20px;
     }
 
   }

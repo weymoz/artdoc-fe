@@ -4,7 +4,7 @@ block(card-movie).elem(image).mod(no-image) {
   height: 0;
   padding-bottom: 56.25%;
   box-sizing: border-box;
-  background-image: url(card-movie__image_no-image.svg);
+  background-image: svg-load(card-movie__image_no-image.svg);
   background-size: cover;
   background-color: #a0a0a0;
 }

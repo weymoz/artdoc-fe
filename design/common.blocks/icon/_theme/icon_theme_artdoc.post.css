@@ -20,7 +20,7 @@ block(icon).mod(theme artdoc) {
 
   @each $size, $fontSize in
     (  xs,    s,    m,    l,   xl,  xxl),
-    (10px, 12px, 16px, 20px, 22px, 32px) {
+    (10px, 12px, 16px, 20px, 22px, 28px) {
     .mod(size $size) {
       font-size: $fontSize;
     }
