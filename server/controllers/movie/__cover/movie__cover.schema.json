@@ -1,0 +1,37 @@
+{
+  "title": "Cover",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "name": {
+      "type": "string"
+    },
+    "path": {
+      "type": "string"
+    },
+    "ext": {
+      "type": "string"
+    },
+    "status": {
+      "type": "integer"
+    },
+    "created_at": {
+      "type": "integer"
+    },
+    "updated_at": {
+      "type": "integer"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "name",
+    "path",
+    "ext",
+    "status",
+    "created_at",
+    "updated_at"
+  ]
+}

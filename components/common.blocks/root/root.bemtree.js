@@ -9,7 +9,7 @@ block('root').replace()(function() {
   
   return {
     block: 'page',
-    title: data.title || '#b_',
+    title: data.title || data.view || data.page,
     favicon: '/favicon.ico',
     styles: [
       {

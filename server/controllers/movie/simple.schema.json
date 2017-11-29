@@ -1,0 +1,37 @@
+{
+  "title": "SimpleObject",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "code": {
+      "type": "string"
+    },
+    "status": {
+      "type": "integer"
+    },
+    "created_at": {
+      "type": "integer"
+    },
+    "updated_at": {
+      "type": "integer"
+    },
+    "name": {
+      "type": "string"
+    },
+    "lang_id": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "code",
+    "status",
+    "created_at",
+    "updated_at",
+    "name",
+    "lang_id"
+  ]
+}

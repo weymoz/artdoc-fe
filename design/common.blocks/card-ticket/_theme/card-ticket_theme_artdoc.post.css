@@ -80,16 +80,6 @@ block(card-ticket).mod(theme artdoc) {
       @media (max-width: 1040px) {
         font-size: 15px;
       }
-
-      .mod(promo meduza) {
-        font-size: 14px;
-        line-height: 18px;
-        padding: 10px 16px;
-        color: #b88b58 ;
-        background: #262626 ;
-        border: 1px solid;
-        border-top: 1px solid #23232c;
-      }
     }
 
     .elem(left) {
@@ -180,10 +170,6 @@ block(card-ticket).mod(theme artdoc) {
         background-color: #f3203b;
         color: #fff;
         border-top-color: #f3203b;
-
-        .mod(promo meduza) {
-          border-color: transparent;
-        }
       }
     }
   }

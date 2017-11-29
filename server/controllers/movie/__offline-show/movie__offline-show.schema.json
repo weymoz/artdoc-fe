@@ -1,0 +1,37 @@
+{
+  "title": "OfflineShow",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "status": {
+      "type": "integer"
+    },
+    "description": {
+      "type": "string"
+    },
+    "link": {
+      "type": "string"
+    },
+    "movie_id": {
+      "type": "integer"
+    },
+    "created_at": {
+      "type": "integer"
+    },
+    "updated_at": {
+      "type": "integer"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "status",
+    "description",
+    "link",
+    "movie_id",
+    "created_at",
+    "updated_at"
+  ]
+}

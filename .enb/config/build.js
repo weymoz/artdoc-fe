@@ -1,6 +1,6 @@
 const path = require('path'),
       techs = require( path.resolve( __dirname, '..', 'config', 'techs' ) ),
-      isProd    = process.env.YENV === 'production';
+      isProd = process.env.YENV === 'production';
 
 module.exports = function( node, platform ) {
   node.addTechs([
@@ -33,6 +33,14 @@ module.exports = function( node, platform ) {
           moment_ru: {
             commonJS: 'moment/locale/ru'
           }
+        }
+      },
+      requires: {
+        moment: {
+          commonJS: 'moment'
+        },
+        moment_ru: {
+          commonJS: 'moment/locale/ru'
         }
       }
     }],
@@ -70,7 +78,7 @@ module.exports = function( node, platform ) {
     }],
 
     isProd
-      ? [techs.babel, { target: '?.js', sourceTarget: '.?.es6.js', babelOptions: { presets: [ [ "@babel/preset-env", { "targets": { "browsers": ["last 2 versions", "safari >= 7"] } } ] ] } }]
+      ? [techs.babel, { target: '?.js', sourceTarget: '.?.es6.js', babelOptions: { presets: [ [ "env", { "targets": { "browsers": ["last 2 versions", "safari >= 7"] } } ] ] } }]
       : [techs.fileCopy, { target: '?.js', source: '.?.es6.js' }],
 
     [techs.borschik, { minify: isProd, freeze: false, source: '?.js', target: '?.min.js' }],

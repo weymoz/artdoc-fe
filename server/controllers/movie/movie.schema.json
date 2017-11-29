@@ -1,0 +1,31 @@
+{
+  "title": "Movie",
+  "type": "object",
+  "description": "A movie",
+  "additionalProperties": false,
+  "properties": {
+    "actioncities"   : { "type": "array", "items": { "$ref": "#/definitions/SimpleObject" } },
+    "actioncountries": { "type": "array", "items": { "$ref": "#/definitions/SimpleObject" } },
+    "code"           : { "type": "string" },
+    "composer"       : { "type": "string" },
+    "description"    : { "type": "string" },
+    "director"       : { "type": "string" },
+    "duration"       : { "type": "integer" },
+    "fin_type"       : { "type": "string" },
+    "info_access"    : { "type": "integer" },
+    "length_type"    : { "type": "string" },
+    "name"           : { "type": "string" },
+    "operator"       : { "type": "string" },
+    "orig_name"      : { "type": "string" },
+    "producer"       : { "type": "string" },
+    "rating"         : { "type": "integer" },
+    "screenwriter"   : { "type": "string" },
+    "sound_producer" : { "type": "string" },
+    "status"         : { "type": "integer" },
+    "tags"           : { "type": "string" },
+    "trailer"        : { "type": "string" },
+    "tvpg"           : { "type": "string" },
+    "view_access"    : { "type": "integer" },
+    "year"           : { "type": "integer" }
+  }
+}

@@ -11,11 +11,6 @@
   "watch": [
     "server"
   ],
-  "events": {
-    "start": "echo 'Server started' | notify -t bem-express",
-    "restart": "echo 'Server started' | notify -t bem-express",
-    "crash": "echo 'Server failed to start :(((((((((((((((' | notify -t bem-express"
-  },
   "env": {
     "NODE_ENV": "development"
   },
