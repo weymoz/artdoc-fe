@@ -5,7 +5,6 @@ block('card-selection').mod('view', 'detail')(
   }),
 
   content()( node => {
-    console.log( node );
     return [
         {
           elem: 'header',
@@ -51,20 +50,20 @@ block('card-selection').mod('view', 'detail')(
               content: {
                 elem: 'share',
                 content: [
+                  // {
+                  //   block: 'link',
+                  //   mix: { block: node.block, elem: 'share-item' },
+                  //   url: '//vk.com/share.php',
+                  //   target: '_blank',
+                  //   content: {
+                  //     block: 'icon',
+                  //     mods: { social: 'vkontakte', size: 'xxl' },
+                  //   }
+                  // },
                   {
                     block: 'link',
                     mix: { block: node.block, elem: 'share-item' },
-                    url: '//vk.com/share.php?url=https://artdoc.media/',
-                    target: '_blank',
-                    content: {
-                      block: 'icon',
-                      mods: { social: 'vkontakte', size: 'xxl' },
-                    }
-                  },
-                  {
-                    block: 'link',
-                    mix: { block: node.block, elem: 'share-item' },
-                    url: '//www.facebook.com/sharer.php?u=https://artdoc.media/',
+                    url: '//www.facebook.com/sharer.php',
                     target: '_blank',
                     content: {
                       block: 'icon',
@@ -74,7 +73,7 @@ block('card-selection').mod('view', 'detail')(
                   {
                     block: 'link',
                     mix: { block: node.block, elem: 'share-item' },
-                    url: '//twitter.com/share?url=https://artdoc.media/',
+                    url: '//twitter.com/share',
                     target: '_blank',
                     content: {
                       block: 'icon',
