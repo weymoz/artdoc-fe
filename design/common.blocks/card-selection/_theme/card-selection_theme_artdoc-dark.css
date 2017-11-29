@@ -1,6 +1,6 @@
 block(card-selection).mod(theme artdoc-dark) {
   .elem(content) {
-    color: #fff;
+    color: #000;
   }
 
   .elem(cover):after {
