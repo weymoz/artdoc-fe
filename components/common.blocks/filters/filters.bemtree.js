@@ -43,7 +43,7 @@ block('filters').def()( ( node, ctx ) => {
     free: {
       code: 'free',
       name: 'Только бесплатные',
-      skip: false,
+      skip: true,
     },
     rating: {
       name: 'Рейтинг artdoc.media',

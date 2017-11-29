@@ -45,7 +45,7 @@ block('filters')(
   elem('actions')(
     content()([
       { elem: 'count' },
-      { elem: 'clear' },
+      { elem: 'reset' },
       { elem: 'toggle' }
     ])
   ),

@@ -30,6 +30,8 @@ provide(bemDom.declBlock(this.name, {
         this._form.initialVal = this._form.getVal();
         this._form.resultTo = this._elem('content');
         this._form.filtersCount = this._elem('count');
+        this._form.reset = this._elem('reset');
+        this._domEvents( 'reset' ).on('click', this._resetForm, this );
         this._form.resultCount = this._elem('result-count');
         this._form.pagination = this._elem('footer');
         this._form.history = new History();
@@ -40,6 +42,23 @@ provide(bemDom.declBlock(this.name, {
 
   _openMenu: function () {
     this._menu.toggleMod('opened');
+  },
+
+  _resetForm: function () {
+    this._form.setVal( {
+      free: false,
+      rating: [],
+      year: [],
+      country: [],
+      studio: [],
+      genre: [],
+      period: [],
+      action_country: [],
+      action_city: [],
+      language: [],
+      subs: [],
+      fin_type: []
+    } );
   },
 
   _onToggle: function () {
@@ -80,6 +99,13 @@ provide(bemDom.declBlock(this.name, {
             selectedCount,
             { block: 'text', mods: { plural: true }, content: { number: selectedCount, one: ' фильтр', two: ' фильтра', five: ' фильтров' } }
           ] )
+        : ''
+    );
+
+    bemDom.update(
+      this._form.reset.domElem,
+      selectedCount
+        ? 'Сбросить'
         : ''
     );
 
