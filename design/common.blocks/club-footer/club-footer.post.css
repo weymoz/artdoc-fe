@@ -1,7 +1,6 @@
 block(club-footer) {
   padding-top: 2em;
   box-sizing: border-box;
-  margin-top: 104px;
   color: #fff;
 
   elem(avatar) {
