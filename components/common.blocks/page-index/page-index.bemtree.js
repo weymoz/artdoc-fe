@@ -83,6 +83,7 @@ block('page-index').replace()( node => {
         {
           block: 'news',
           mix: { block: 'page', elem: 'news' },
+          news: node.data.news
         },
         {
           elem: 'title',

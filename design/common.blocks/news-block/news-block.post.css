@@ -4,6 +4,10 @@ block(news-block) {
   display: flex;
   flex-direction: column;
 
+  .elem(image) {
+    width: 100%;
+  }
+
   .elem(title) {
     margin-bottom: 16px;
   }
