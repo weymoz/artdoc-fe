@@ -53,21 +53,6 @@ block(filters) {
     padding-left: 2em;
     padding-right: 2em;
     transition: all 200ms;
-
-    &:hover,
-    .mod(hovered) {
-      background-color: #333;
-    }
-
-    .mod(checked) {
-      background-color: #eeeef2;
-      color: #111;
-
-      &:hover,
-      .mod(hovered) {
-        background-color: #ccc;
-      }      
-    }
   }
 
   .elem(form) {
