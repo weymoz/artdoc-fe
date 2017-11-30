@@ -13,15 +13,11 @@ module.exports = {
       cookies: {
         meduza: {               // then will set this cookies
           value: 'promo',
-          expire: 1504796400    // with this experation date
+          expire: 1516849200    // with this experation date
         }
       },
       data: [
-        238,
-        239,
-        240,
-        241,
-        242
+        677
       ]
     }
   ],

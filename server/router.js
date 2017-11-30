@@ -399,6 +399,10 @@ module.exports = function( app ) {
         : false
     } );
 
+    if ( promoCode.meduza ) {
+      promo_code = 'artdocmedia_free';
+    }
+
     client.post( '/cinema/booking/booking/?promo=' + promo_code, {
       CinemaTicketModel: { email: req.body.email },
       session_id: req.params.session_id,
