@@ -64,9 +64,10 @@ module.exports = app => {
   app.get( '/', ( req, res ) => {
     axios.all([
       request( { url: '/api/authorcompilation/?sort=-sort&per-page=3&page=1' } ),
-      request( { url: '/api/schedule/?expand=sessions,movie&per-page=4&unique=1&date_from=' + ( Math.floor ( ( Date.now() / 1000 ) / 3600 ) * 3600 - ( 31 * 60 * 60 ) ) } )
-    ]).then( response => {
-      let data = Object.assign({}, global, { api: response[0].items }, { poster: response[ 1 ] } );
+      request( { url: '/api/schedule/?expand=sessions,movie&per-page=4&unique=1&date_from=' + (Math.floor((Date.now() / 1000) /3600 ) * 3600 - (31 * 60 * 60)) } ),
+      request( { url: '/api/news/?per-page=4&page=1&sort=sort' } )
+    ]).then( (response) => {
+      let data = Object.assign({}, global, { api: response[0].items }, { poster: response[ 1 ] }, { news: response[ 2 ].items } );
       data.page = 'index';
       return render( req, res, data );
     }).catch( error => res.send( error ) );
