@@ -1,12 +1,10 @@
-block(modal).mod(theme artdoc) {
+block(modal) {
   display: none;
   visibility: hidden;
   z-index: 10;
 
   /* to prevent clickability and visiblity of internal elements with visiblity: visible */
   margin: -9999px 0 0 -9999px;
-
-  background: rgba(50, 50, 50, 0.2);
 
   &,
   & .elem(content) {
@@ -17,7 +15,6 @@ block(modal).mod(theme artdoc) {
 
   .elem(header) {
     align-items: baseline;
-    background-color: #eee;
 
     block(title) {
       padding: 0 .75rem
@@ -25,11 +22,9 @@ block(modal).mod(theme artdoc) {
   }
 
   .elem(content) {
-    background-color: #fff;
     /*background-clip: content-box;*/
     box-sizing: border-box;
     overflow: auto;
-
   }
 
   .elem(close) {
@@ -82,7 +77,6 @@ block(modal).mod(theme artdoc) {
       height: 100%;
     }
   }
-
 }
 
 

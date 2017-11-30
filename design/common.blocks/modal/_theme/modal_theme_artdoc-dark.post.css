@@ -1,4 +1,4 @@
-block(modal).mod(theme artdoc) {
+block(modal).mod(theme artdoc-dark) {
   background-color: rgba(50, 50, 50, 0.2);
 
   .elem(header) {
