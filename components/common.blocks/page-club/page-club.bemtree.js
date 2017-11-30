@@ -19,7 +19,7 @@ block('page-club').content()(function() {
         content: [
           {
             elem: 'title',
-            elemMods: { size: 'xxl' },
+            elemMods: { size: 'xxl', gap: 'top' },
             mix: { block: 'heading', mods: { 'has-dot': true, size: 'xxl' } },
             content: 'Клуб АртДок'
           },

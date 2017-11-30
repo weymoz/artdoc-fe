@@ -75,7 +75,7 @@ block('page-index').replace()( node => {
         },
         {
           elem: 'title',
-          elemMods: { view: 'condensed-bold', size: 'xl' },
+          elemMods: { view: 'condensed-bold', size: 'xl', gap: 'both' },
           mix: { block: 'heading', mods: { caps: true, align: 'center', size: 'l' } },
           content: 'Новости и события'
         },
@@ -86,7 +86,7 @@ block('page-index').replace()( node => {
         },
         {
           elem: 'title',
-          elemMods: { view: 'condensed-bold', size: 'xl' },
+          elemMods: { view: 'condensed-bold', size: 'xl', gap: 'both' },
           mix: { block: 'heading', mods: { caps: true, align: 'center', size: 'l' } },
           content: 'Авторские подборки'
         },
@@ -111,7 +111,7 @@ block('page-index').replace()( node => {
       content: [
         {
           elem: 'title',
-          elemMods: { view: 'condensed-bold', size: 'xl' },
+          elemMods: { view: 'condensed-bold', size: 'xl', gap: 'both' },
           mix: { block: 'heading', mods: { caps: true, align: 'center', size: 'l' } },
           content: 'О проекте'
         },
