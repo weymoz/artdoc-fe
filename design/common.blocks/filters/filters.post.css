@@ -3,18 +3,23 @@ block(filters) {
 
   .elem(header) {
     display: flex;
+    flex-wrap: wrap;
     padding-bottom: 28px;
     align-items: center;
     box-shadow: 0 1px #23232c;
   }
 
   .elem(title) {
-    flex: 1;
+    display: inline-block;
+    margin-right: auto;
+    width: auto;
+    cursor: pointer;
   }
  
   .elem(actions) {
     display: flex;
     align-items: center;
+    margin-left: 24px;
   }
 
   .elem(count) {
