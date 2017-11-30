@@ -6,19 +6,25 @@ block('news-block')(
   content()( node => {
     const news = node.ctx.news;
 
+    const dateSplit = news.date.split('.');
+    const dateTimestamp = new Date( dateSplit[ 2 ], dateSplit[ 1 ] - 1, dateSplit[ 0 ], 0, 0, 0, 0 ).getTime() / 1000;
+
     return [
       { elem: 'title', content: news.title },
-      { elem: 'content', content: news.content },
-      news.image && {
+      { elem: 'content', content: news.text },
+      news.image && news.image.id && {
         block: 'link',
-        mix: { block: node.block, elem: 'preview', elemMods: { 'has-icon': true } },
+        mix: { block: node.block, elem: 'preview', elemMods: { 'has-icon': !!news.video_icon } },
         url: news.url,
         target: '_blank',
         content: [
           {
             block: 'image',
+            mix: { block: node.block, elem: 'image' },
             mods: { responsive: true },
-            url: news.image
+            url: news.image.id,
+            width: 193,
+            height: 110
           }
         ]
       },
@@ -26,14 +32,16 @@ block('news-block')(
         elem: 'footer',
         mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } },
         content: [
-          {
-            block: 'link',
-            mods: { view: 'text', size: 'xs' },
-            mix: { block: node.block, elem: 'refer' },
-            url: news.url,
-            target: '_blank',
-            content: news.linkname
-          },
+          news.url
+            ? {
+                block: 'link',
+                mods: { view: 'text', size: 'xs' },
+                mix: { block: node.block, elem: 'refer' },
+                url: news.url,
+                target: '_blank',
+                content: news.publisher
+              }
+            : news.publisher,
           {
             elem: 'date',
             content: [
@@ -43,7 +51,7 @@ block('news-block')(
                   format: 'datetime'
                 },
                 format: 'DD.MM.YY',
-                content: news.date
+                content: dateTimestamp
               }
             ]
           }
