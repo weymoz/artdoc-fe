@@ -1,0 +1,29 @@
+block(nav-menu) {
+  .elem(item) {
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 1.25;
+    color: #fff;
+    text-decoration: none;
+    box-sizing: border-box;
+    padding-top: 22px;
+    padding-bottom: 22px;
+    padding-left: 16px;
+    padding-right: 16px;
+
+    &.block(link) {
+      .mod(hovered) {
+        color: inherit;
+        background-color: #23232c;
+      }
+
+      .mod(focused) {
+        color: inherit;
+      }
+    }
+
+    &.block(dropdown).mod(opened) {
+      background-color: #23232c;
+    }
+  }
+}
