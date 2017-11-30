@@ -1,6 +1,7 @@
 block(card-selection) {
 
   .elem(content) {
+    color: inherit;
     position: relative;
   }
 
@@ -93,7 +94,7 @@ block(card-selection) {
     }
 
     .elem(header) {
-      color: #a0a0ac;
+      /*color: #a0a0ac;*/
       margin-bottom: 30px;
     }
 

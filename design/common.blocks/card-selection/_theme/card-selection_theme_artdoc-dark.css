@@ -1,8 +1,7 @@
 block(card-selection).mod(theme artdoc-dark) {
-  .elem(content) {
-    color: #000;
-  }
+  color: #fff;
 
+  /*Cover need speudo-payout just in dark theme*/
   .elem(cover):after {
     content: '';
     position: absolute;
@@ -12,5 +11,11 @@ block(card-selection).mod(theme artdoc-dark) {
     right: 0;
     display: block;
     background-color: rgba(0,0,0,.5);
+  }
+
+  .mod(view detail) {
+    .elem(content) {
+      color: #111;
+    }
   }
 }
