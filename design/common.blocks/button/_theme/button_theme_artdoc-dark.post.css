@@ -2,24 +2,23 @@ block(button).mod(theme artdoc-dark) {
   color: #23232c;
   background-color: #fff;
 
+  .mod(checked) {
+    background-color: #eeeef2;
+    color: #23232c;
+  }
+
   .mod(hovered) {
     color: #fff;
     background-color: #f3203b;
   }
 
   .mod(focused) {
+    /*color: #fff;*/
+    /*background-color: #bebec1;*/
+  }
+
+  .mod(pressed) {
     color: #fff;
-    background-color: #f3203b;
+    background-color: #ce1b32;
   }
-
-  .mod(active) {
-    color: #fff;
-    background-color: #f3203b;
-  }
-
-  .mod(checked) {
-    background-color: #eeeef2;
-    color: #23232c;
-  }
-
 }

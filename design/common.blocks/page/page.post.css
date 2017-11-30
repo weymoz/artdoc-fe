@@ -19,6 +19,7 @@ block(page) {
     lost-center: 1428px;
     width: 100%;
     position: relative;
+    margin-bottom: auto;
     box-sizing: border-box;
     padding-left: 56px;
     padding-right: 56px;
@@ -48,7 +49,20 @@ block(page) {
 
   .elem(title) {
     margin-top: 80px;
-    margin-bottom: 32px;
+    margin-bottom: 40px;
+
+    .mod(gap top) {
+      margin-top: 32px;
+    }
+
+    .mod(gap bottom) {
+      margin-bottom: 32px;
+    }
+
+    .mod(gap both) {
+      margin-top: 104px;
+      margin-bottom: 40px;
+    }
   }
 
   /* Всякие отступы */
@@ -68,6 +82,10 @@ block(page) {
 
   .elem(news) {
     padding-bottom: 26px;
+  }
+
+  .elem(collections) {
+    margin-bottom: 40px;
   }
 
   .mod(widget) {

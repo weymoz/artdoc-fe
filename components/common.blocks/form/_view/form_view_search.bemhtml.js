@@ -3,7 +3,7 @@ block('form').mod('view', 'search')(
   def()( () => {
     return applyNext( { ctx: {
       method: 'GET',
-      action: '/search'      
+      action: '/search'
     } } );
   }),
 
@@ -29,10 +29,11 @@ block('form').mod('view', 'search')(
             block: 'input',
             mods: {
               type: 'search',
-              width: 'available'
+              width: 'available',
+              size: 'xxl',
             },
             val: ctx.query,
-            placeholder: 'Поиск'
+            placeholder: 'Фильм или тег'
           }
         }
       }

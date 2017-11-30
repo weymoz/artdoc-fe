@@ -30,9 +30,6 @@ block('page-order')(
         elemMods: { width: 'narrow' },
         content: [
           {
-            block: 'breadcrumbs'
-          },
-          {
             elem: 'title',
             elemMods: { size: 'xl' },
             mix: [
