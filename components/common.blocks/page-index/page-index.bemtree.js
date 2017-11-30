@@ -103,6 +103,19 @@ block('page-index').replace()( node => {
             }
           } )
         },
+        {
+          block: 'paragraph',
+          mods: { align: 'center' },
+          content: {
+            block: 'button',
+            mods: {
+              type: 'link',
+              size: 'xxl'
+            },
+            text: 'Смотреть все подборки',
+            url: '/selection'
+          }
+        }
       ]
     },
     {
