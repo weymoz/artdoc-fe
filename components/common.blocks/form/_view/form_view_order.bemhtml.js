@@ -111,7 +111,8 @@ block('form').mod('view', 'order')(
                   'Я принимаю ',
                   {
                     block: 'link',
-                    url: '#',
+                    url: '/terms',
+                    attrs: { target: '_blank'},
                     content: 'условия покупки и использования билета'
                   }
                 ],

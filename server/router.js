@@ -122,6 +122,13 @@ module.exports = function( app ) {
     render( req, res, data );
   });
 
+  // Terms
+  app.get( '/terms', function(req, res) {
+    let data = Object.assign({}, global);
+    data.page = 'terms';
+    render( req, res, data );
+  });
+
   // Club
   app.get( '/club', function(req, res) {
     let data = Object.assign({}, global);
