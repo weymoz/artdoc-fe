@@ -130,6 +130,11 @@ block(card-movie) {
 
   .elem(name) {
     font-weight: bold;
+    text-decoration: none;
+
+    .mod(link) {
+      color: inherit;
+    }
   }
 
   .elem(orig-name) {
@@ -759,6 +764,7 @@ block(card-movie) {
 
     .elem(content) {
       text-decoration: none;
+      flex: 0;
     }
 
     .elem(name) {
@@ -781,6 +787,7 @@ block(card-movie) {
     }
 
     .elem(aside) {
+      margin-top: auto;
       margin-bottom: 10px;
     }
 
