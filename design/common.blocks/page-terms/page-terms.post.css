@@ -50,7 +50,7 @@ block(page-terms) {
     margin: 0 auto;
 
     elem(text-block){
-      margin-bottom: 80px;
+      margin-bottom: 40px;
     }
   }
 
@@ -161,46 +161,48 @@ block(page-terms) {
     }
   }
 
+  ol {
+    /* убираем стандартную нумерацию */
+    list-style: none;
+    /* Идентифицируем счетчик и даем ему имя li. Значение счетчика не указано - по умолчанию оно равно 0 */
+    counter-reset: li;
+  }
+
+  li {
+    position: relative;
+  }
+  ol > li:before {
+    /* Определяем элемент, который будет нумероваться — li. Псевдоэлемент before указывает, что содержимое, вставляемое при помощи свойства content, будет располагаться перед пунктами списка. Здесь же устанавливается значение приращения счетчика (по умолчанию равно 1). */
+    counter-increment: li;
+    position: absolute;
+    color: #a0a0ac;
+    font-family: 'PT Mono', monospace;
+    right: 100%;
+    margin-right: 10px;
+    /* С помощью свойства content выводится номер пункта списка. counters() означает, что генерируемый текст представляет собой значения всех счетчиков с таким именем. Точка в кавычках добавляет разделяющую точку между цифрами, а точка с пробелом добавляется перед содержимым каждого пункта списка */
+    content: counters(li,".") ". ";
+
+  }
+
+  ol {
+    padding-left: 0;
+    margin-left: 0;
+  }
+
+  ol ol li, ol ol li:before {
+    line-height: 1.7em;
+    margin-bottom: 20px;
+  }
+
+  ul {
+    padding-left: 20px;
+  }
+
+  div > ol > li:before {
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+
+
 }
 
-ol {
-  /* убираем стандартную нумерацию */
-  list-style: none;
-  /* Идентифицируем счетчик и даем ему имя li. Значение счетчика не указано - по умолчанию оно равно 0 */
-  counter-reset: li;
-}
-
-li {
-  position: relative;
-}
-ol > li:before {
-  /* Определяем элемент, который будет нумероваться — li. Псевдоэлемент before указывает, что содержимое, вставляемое при помощи свойства content, будет располагаться перед пунктами списка. Здесь же устанавливается значение приращения счетчика (по умолчанию равно 1). */
-  counter-increment: li;
-  position: absolute;
-  color: #a0a0ac;
-  font-family: 'PT Mono', monospace;
-  right: 100%;
-  margin-right: 10px;
-  /* С помощью свойства content выводится номер пункта списка. counters() означает, что генерируемый текст представляет собой значения всех счетчиков с таким именем. Точка в кавычках добавляет разделяющую точку между цифрами, а точка с пробелом добавляется перед содержимым каждого пункта списка */
-  content: counters(li,".") ". ";
-
-}
-
-ol {
-  padding-left: 0;
-  margin-left: 0;
-}
-
-ol ol li, ol ol li:before {
-  line-height: 1.7em;
-  margin-bottom: 20px;
-}
-
-ul {
-  padding-left: 20px;
-}
-
-div > ol > li:before {
-  font-size: 1.5em;
-  font-weight: bold;
-}
