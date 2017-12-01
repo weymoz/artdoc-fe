@@ -41,9 +41,10 @@ provide(Select.declMod({ modName: 'type', modVal: 'suggest' }, {
   _onSuggestInput: function() {
     let searchString = this._suggest.getVal();
     let result = this._data._entities.filter( elem => {
-      return elem.getText().toLowerCase().indexOf( searchString ) > -1;
+      return elem.getText().toLowerCase().indexOf( searchString.toLowerCase() ) > -1;
     });
-    this._menu.setContent( result.map( item => item.domElem[0] ) )
+    console.log( result );
+    this._menu.setContent( result.length ? result.map( item => item.domElem[0] ) : '<div class="menu__item menu__item_disabled menu__item_theme_artdoc-dark" role="option" aria-checked="false">Ничего не найдено</div>' )
   },
 
   _updateMenuWidth : function() {

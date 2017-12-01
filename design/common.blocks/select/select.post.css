@@ -7,7 +7,7 @@ block(select) {
     width: 100%;
     vertical-align: top;
     text-align: left;
-    max-width: 252px;
+    max-width: 255px;
     white-space: nowrap;
   }
 
@@ -51,6 +51,7 @@ block(select) {
     padding: 1em;
     box-sizing: border-box;
     border-bottom: 1px solid #ddd;
+    background-color: #fff;
   }
 
   .elem(tick) {
@@ -124,8 +125,8 @@ block(select) {
 
       .mod(checked) {
         .elem(text) {
-          padding-left: 4px;
-          padding-right: .25em;
+          padding-left: 12px;
+          padding-right: 12px;
           background-color: #fff;
           color: #000;
         }
