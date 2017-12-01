@@ -7,6 +7,7 @@ block('page-index').replace()( node => {
       name: 'Все фильмы',
       id: null,
       code: 'all',
+      primary: true
     },
     ...node.data.category
   ];
@@ -20,7 +21,7 @@ block('page-index').replace()( node => {
       slider[ slidePage ][ linkCount ] = {
         block: 'link',
         mods: { view: 'tag' },
-        mix: { block: 'slider', elem: 'link' },
+        mix: { block: 'slider', elem: 'link', elemMods: { primary: !!currentLink.primary } },
         url: currentLink.id ? '/movie/category-' + currentLink.code : '/movie',
         content: currentLink.name
       };

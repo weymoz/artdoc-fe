@@ -48,12 +48,21 @@ block(slider) {
     align-items: center;
   }
 
+  block(link).block(slider).elem(link).mod(primary) {
+    background-color: #111;
+    color: #fff;
+    box-shadow: none;
+
+    &.block(link).mod(hovered) {
+      background-color: #fff;
+    }
+  }
+
   elem(page) {
 
     block(link):hover{
-      background-color: #111;
-      color: #fff;
-      box-shadow: unset;
+      color: #f3203b;
+      box-shadow: 0 0 0 1px #f3203b;
     }
   }
 
