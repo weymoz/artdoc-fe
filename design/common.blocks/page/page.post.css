@@ -88,6 +88,10 @@ block(page) {
     margin-bottom: 40px;
   }
 
+  .elem(about) {
+    margin-bottom: 104px;
+  }
+
   .mod(widget) {
     .elem(content) {
       padding-left: 0;

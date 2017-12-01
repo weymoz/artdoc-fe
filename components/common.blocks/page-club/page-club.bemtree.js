@@ -21,7 +21,7 @@ block('page-club').content()(function() {
             elem: 'title',
             elemMods: { size: 'xxl', gap: 'top' },
             mix: { block: 'heading', mods: { 'has-dot': true, size: 'xxl' } },
-            content: 'Клуб АртДок'
+            content: 'Клуб Артдок'
           },
           {
             block: 'paragraph',
