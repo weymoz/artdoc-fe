@@ -179,6 +179,35 @@ module.exports = function( app ) {
     } ).catch((e) => { console.log(e); res.send('error');  });
   });
 
+  app.get('/movie/:name/buy', function (req, res) {
+    let data = Object.assign({}, global);
+    data.page = 'order';
+    data.page.isCinema = false;
+
+    console.log('%%%%%%%%%%%%');
+
+    request( { url: '/api/movie/?sort=id&expand=schedules,sessions,category,screenshots&code=' + encodeURIComponent(req.params.name) } )
+      .then( response => {
+        data.api = {
+          movie: response.items[0],
+          type: 'rent',
+          time_gmt3: Math.round(((new Date()))/1000 + 60*60*24*3),
+        }
+
+        data.title = response.items[0].name;
+        data.meta.og.image = response.items[0].cover && response.items[0].cover.id
+          ? '//artdoc.media/upload/resize/' + response.items[0].cover.id + '/640x360.jpg'
+          : data.meta.og.image;
+
+        render( req, res, data );
+      } )
+      .catch(( error ) => {
+        console.log('error!!!');
+        res.send( error );
+      } );
+
+  })
+
   // Movie
   app.get( '/movie/:name', ( req, res ) => {
     let data = Object.assign({}, global);
@@ -195,12 +224,16 @@ module.exports = function( app ) {
 
     if ( req.query.hasOwnProperty( 'code' ) ) {
       data.page = 'order';
+      data.isCinema = true;
       request( { url: '/api/session/?expand=movie,category,city&code=' + encodeURIComponent(req.query.code) } )
         .then( response => {
           data.api = response.items[0];
+          console.log(data.api);
+          data.api.type = 'cinema';
           data.title = response.items[0].name;
           data.api.tz = req.query.tz;
           data.api.checked_city = req.query.city;
+
           render( req, res, data );
         } )
         .catch(( error ) => res.send( error ) );
@@ -281,6 +314,7 @@ module.exports = function( app ) {
         .then( response => {
 
           data.api = response;
+          data.api.type = 'cinema';
 
           if (req.params[0]=='discuss') {
 
@@ -309,17 +343,18 @@ module.exports = function( app ) {
     client.post( '/payment/provide/', { nonce: req.query.payment_nonce, transaction_id: req.params.transaction_id } )
       .then( response => {
         data.api = response.data;
-
         if ( data.api.error ) {
           data.page = 'error';
           data.title = 'При оплате произошла ошибка';
-          render( req, res, data );
+
         } else {
           data.page = 'thanks';
           data.title = 'Билет успешно оплачен';
-          render( req, res, data );
+
         }
 
+        console.log(data);
+        render( req, res, data );
       } )
       .catch(() => res.send('error') );
   });
@@ -348,18 +383,37 @@ module.exports = function( app ) {
   // Free movie
   app.get( '/movie/:name/watch', ( req, res ) => {
     let data = Object.assign({}, global);
-    request( { url: '/ondemand/release/?movie_code=' + req.params.name } )
-      .then( response => {
-        data.api = response;
 
-        if ( !data.api.error ) {
-          data.page = 'play';
-          data.title = 'Просмотр фильма';
-          render( req, res, data );
-        }
+    if (req.query.hash) {
+      data.page = 'play';
+      request( { url: '/cinema/release/rent/?id=' + req.query.id + '&hash=' + req.query.hash  } )
+        .then( response => {
 
-      } )
-      .catch(() => res.send('error') );
+          data.api = response;
+          data.api.type = 'rent';
+          return render( req, res, data );
+        } )
+        .catch(() => {
+          return res.send('error')
+        } );
+
+    } else {
+      request( { url: '/ondemand/release/?movie_code=' + req.params.name } )
+        .then( response => {
+          data.api = response;
+
+          if ( !data.api.error ) {
+            data.page = 'play';
+            data.title = 'Просмотр фильма';
+            render( req, res, data );
+          }
+
+        } )
+        .catch(() => res.send('error') );
+    }
+
+
+
   });
 
   // Search
@@ -421,6 +475,30 @@ module.exports = function( app ) {
       .catch(() => res.send('error') );
   });
 
+
+  app.post( '/api/buy/:movie_id', ( req, res ) => {
+
+    client.post( '/cinema/booking/rent/', {
+      RentTicketModel: { email: req.body.email },
+      movie_id: req.params.movie_id
+    } ).then( api => {
+      console.log(api);
+      if ( api.data.payment_url ) {
+        request( { url: api.data.payment_url } )
+          .then( response => {
+            res.send( JSON.stringify( response ) );
+          } )
+          .catch(() => res.send('error') );
+      } else {
+        res.send( JSON.stringify( api.data ) );
+      }
+    })
+      .catch((e) => {
+        console.log(e);
+        return res.send('error')
+      } );
+  });
+
   app.post( '/api/payment/:transaction_id', ( req, res ) => {
     client.post( '/payment/provide/', { nonce: req.body.payment_nonce, transaction_id: req.params.transaction_id } )
       .then( api => res.send( JSON.stringify( api.data ) ) )
@@ -444,7 +522,7 @@ module.exports = function( app ) {
       request( { url: '/search/search/?per-page=20&q=' + encodeURIComponent( req.query.q ) } )
         .then( response => {
           data.api = response;
-          
+
           if ( !data.api.error ) {
             res.send( JSON.stringify( data ) )
           }

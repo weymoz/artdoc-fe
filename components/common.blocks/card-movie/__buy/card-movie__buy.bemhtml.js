@@ -1,5 +1,4 @@
 block('card-movie').elem('buy')(
-
   content()({
       block: 'paragraph',
       mix: { block: 'font', mods: { family: 'pt-mono' } },
@@ -10,6 +9,22 @@ block('card-movie').elem('buy')(
         html: 'После одобрения правообладателем фильм&nbsp;будет доступен для просмотра'
       }
   }),
+
+  match( node => node._status === 20 /*&& node._price && node._price.price === 0*/ ).replace()( node => {
+
+    return {
+      block: 'button',
+      mix: { block: node.block, elem: node.elem },
+      mods: {
+        type: 'link',
+        width: 'available',
+        size: 'l',
+        theme: node.mods.theme
+      },
+      url: '/movie/' + node._code + '/watch',
+      text: 'Смотреть бесплатно'
+    }
+  } ),
 
   match( node => node._status === 20 /*&& node._price && node._price.price === 0*/ ).replace()( node => {
 
@@ -107,6 +122,38 @@ block('card-movie').elem('buy')(
         theme: node.mods.theme
       },
       url: '/movie/' + node._code + '#schedule',
+      text: text
+    }
+  }),
+
+
+  match( node => node._price  && node._price.price > 0).replace()( node => {
+    let type, size, text;
+    let label = 'Смотреть за ' + node._price.price + ' ₽';
+    switch ( node.elemMods.type ) {
+      case 'button':
+        type = 'link';
+        size = 'xl';
+        text = label
+        break;
+      default: // checkbox
+        type = 'button';
+        size = 'm';
+        text = label;
+        break;
+    }
+
+
+
+    return {
+      block: node.elemMods.type || 'checkbox',
+      mix: { block: node.block, elem: node.elem },
+      mods: {
+        type: type,
+        size: size,
+        theme: node.mods.theme
+      },
+      url: '/movie/' + node._code + '/buy',
       text: text
     }
   })

@@ -11,6 +11,9 @@ block('card-movie').mod('view', 'play')(
 
   content()( node => {
     let status = 'finish';
+
+
+
     if ( node._starts_in ) {
       status = 'get'
     } else if ( node._play ) {
@@ -37,7 +40,7 @@ block('card-movie').mod('view', 'play')(
               {
                 elem: 'cover',
                 content: [
-                  { elem: 'play-status', elemMods: { status: status } }
+                  { elem: 'play-status', elemMods: { status: status, isCinema: node._discuss_link } }
                 ]
               }
             ]
