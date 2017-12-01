@@ -21,7 +21,7 @@ block('page-club').content()(function() {
             elem: 'title',
             elemMods: { size: 'xxl', gap: 'top' },
             mix: { block: 'heading', mods: { 'has-dot': true, size: 'xxl' } },
-            content: 'Клуб АртДок'
+            content: 'Клуб Артдок'
           },
           {
             block: 'paragraph',
@@ -173,6 +173,9 @@ block('page-club').content()(function() {
         ]
       },
       {
+        attrs: { id: 'performers' },
+      },
+      {
         elem: 'content',
         content: [
           {
@@ -207,6 +210,9 @@ block('page-club').content()(function() {
           //   mix: { block: 'page-club', elem: 'make-party' },
           //   text: 'Показать ещё'
           // },
+          {
+            attrs: { id: 'festivals' },
+          },
           {
             block: 'page',
             elem: 'title',

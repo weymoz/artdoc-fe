@@ -2,6 +2,7 @@ block(link).mod(view text) {
   color: inherit;
   font-size: inherit;
   text-decoration: inherit;
+  cursor: pointer;
 
   &,
   .mod(hovered),

@@ -1,8 +1,9 @@
 block(link) {
   line-height: 1.5;
+  cursor: pointer;
 
   @each $size, $fontSize in
-    (xs, s, m, l, xl, xxl),
+    (  xs,    s,    m,    l,   xl,  xxl),
     (12px, 14px, 16px, 18px, 22px, 32px) {
     .mod(size $size) {
       font-size: $fontSize;

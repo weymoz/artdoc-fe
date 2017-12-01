@@ -1,4 +1,5 @@
 block(card-movie).mod(theme artdoc) {
+  color: #111;
 
   .mod(view schedule), .mod(view list) {
     box-shadow: inset 0px -1px 0px 0px #23232C;
@@ -17,6 +18,12 @@ block(card-movie).mod(theme artdoc) {
 
     .elem(orig-name) {
       color: #fff;
+    }
+  }
+
+  .mod(view selection) {
+    .elem(aside) {
+      color: #676770;
     }
   }
 
