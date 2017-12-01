@@ -1,10 +1,5 @@
-<svg viewBox="0 0 308 308" xmlns="http://www.w3.org/2000/svg">
-  <g fill="none" fill-rule="evenodd">
-    <circle fill="#EEEEF2" cx="154" cy="154" r="154"/>
-    <g transform="translate(44 66)">
-      <path d="M219.065 196.724c-13.525-36.524-48.67-62.557-89.898-62.557H90.833c-41.227 0-76.373 26.033-89.898 62.557C28.817 224.694 67.387 242 110 242s81.183-17.307 109.065-45.276z" fill="#DBD9D9"/>
-      <rect stroke="#DBD9D9" stroke-width="19.2" transform="matrix(-1 0 0 1 220 0)" x="62.1" y="9.6" width="95.8" height="95.8" rx="9.6"/>
-      <path fill="#F3203B" d="M148.333 19.167H71.666v76.667h76.667z"/>
-    </g>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" id="Слой_1" viewBox="0 0 48 48">
+  <circle fill="#eeeef2" cx="24" cy="24" r="24"/>
+  <path fill="#d8d8d8" d="M41 40.9c-2.1-5.7-7.6-9.7-14-9.7h-6c-6.4 0-11.9 4.1-14 9.7 4.3 4.4 10.4 7.1 17 7.1s12.7-2.7 17-7.1zM16.5 10.3h14.9c.8 0 1.5.7 1.5 1.5v14.9c0 .8-.7 1.5-1.5 1.5H16.5c-.8 0-1.5-.7-1.5-1.5V11.8c0-.8.6-1.5 1.5-1.5z"/>
+  <path fill="#a3a1a1" d="M17.9 13.2h11.8V25H17.9z" class="st2"/>
 </svg>

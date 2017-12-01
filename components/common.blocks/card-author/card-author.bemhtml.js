@@ -49,6 +49,10 @@ block('card-author')(
 
   match( node => node._meta )(
     elem('content').appendContent()( node => node._meta )
-  )
+  ),
+
+  mod('no-photo', true).prependContent()({
+    elem: 'aside'
+  })
 
 )

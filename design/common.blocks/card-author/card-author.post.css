@@ -2,14 +2,18 @@ block(card-author) {
   display: inline-flex;
   align-items: center;
 
-  & + & {
-    margin-left: .5em;
-  }
-
-  @each $size, $width in
+  @each $size, $width, $fontSize in
     (  xs,    s,    m,    l,    xl,   xxl),
-    (24px, 32px, 48px, 86px, 112px, 312px) {
+    (24px, 32px, 48px, 84px, 112px, 312px),
+    (16px, 16px, 12px, 16px,  16px,  16px) {
     .mod(size $size) {
+      font-size: $fontSize;
+      margin-right: 2em;
+      margin-bottom: 1em;
+
+      .elem(aside) {
+        margin-right: 1em;
+      }
       .elem(aside) {
         width: $width;
         height: $width;
