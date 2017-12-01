@@ -111,12 +111,6 @@ block(card-ticket).mod(theme artdoc) {
       margin-top: 32px;
     }
 
-    .elem(buy) {
-      font-size: 16px;
-      line-height: 1.5;
-      font-weight: bold;
-    }
-
     .elem(section) {
       lost-center: 100%;
       display: flex;

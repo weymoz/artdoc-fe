@@ -2,7 +2,7 @@ block('card-ticket').elem('left')(
 
   addMix()( { block: 'font', mods: { family: 'pt-mono', loaded: true } } ),  
 
-  content()( node => {
+  match( node => node._tickets_left < 10 ).content()( node => {
     return [
       {
         block: 'text',
