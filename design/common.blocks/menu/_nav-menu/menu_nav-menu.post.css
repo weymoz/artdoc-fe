@@ -16,7 +16,7 @@ block(menu).mod(nav-menu) {
   }
 
   .elem(item) {
-    line-height: 26px;
+    line-height: 32px;
     padding: 0;
 
     .mod(checked) {
