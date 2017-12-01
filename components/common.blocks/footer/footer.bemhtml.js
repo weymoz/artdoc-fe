@@ -64,8 +64,8 @@ block('footer')(
                       block: 'link',
                       mods: { view: 'text' },
                       mix: { block: node.block, elem: 'nav-item' },
-                      url: '/about',
-                      content: 'О проекте'
+                      url: '/movie',
+                      content: 'Фильмы'
                     }
                   },
                   {
@@ -94,8 +94,8 @@ block('footer')(
                       block: 'link',
                       mods: { view: 'text' },
                       mix: { block: node.block, elem: 'nav-item' },
-                      url: '/movie',
-                      content: 'Все фильмы'
+                      url: '/about',
+                      content: 'О проекте'
                     }
                   },
                   // {
@@ -134,7 +134,7 @@ block('footer')(
                       mods: { view: 'text' },
                       mix: { block: node.block, elem: 'nav-item' },
                       url: '/club',
-                      content: 'Клуб artdoc.media'
+                      content: 'Клуб Артдок'
                     }
                   },
                   { elem: 'item',
@@ -142,7 +142,7 @@ block('footer')(
                       block: 'link',
                       mods: { view: 'text' },
                       mix: { block: node.block, elem: 'nav-item' },
-                      url: '/club#partners',
+                      url: '/club#festivals',
                       content: 'Аккредитованные фестивали'
                     }
                   },
@@ -203,7 +203,11 @@ block('footer')(
         elemMods: { section: 'logo' },
         mix: { block: 'page', elem: 'content' },
         content: [
-          { block: 'logo', mix: { block: 'footer', elem: 'logo' } }
+          {
+            block: 'logo',
+            mix: { block: 'footer', elem: 'logo' },
+            url: '//artdocfest.com'
+          }
         ]
       },
       {
@@ -227,8 +231,8 @@ block('footer')(
                     mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } },
                     content: [
                       { elem: 'item', content: '© 2017 Artdoc Fest & Media' },
-                      { elem: 'item', content: 'Пользовательское соглашение' },
-                      { elem: 'item', content: 'Политика конфидециальности' }
+                      // { elem: 'item', content: 'Пользовательское соглашение' },
+                      // { elem: 'item', content: 'Политика конфидециальности' }
                     ]
                   }
                 ]
@@ -241,7 +245,7 @@ block('footer')(
                     align: 'right',
                     size: 's'
                   },
-                  content: 'Сделано в BreadHead'
+                  content: 'By 🤗 with 💖'
                 }
               }
             ]
