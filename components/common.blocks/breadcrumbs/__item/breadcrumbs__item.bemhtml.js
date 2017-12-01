@@ -1,9 +1,12 @@
-block('breadcrumbs').elem('item').def()(function() {
-  return applyCtx({
-    block: 'link',
-    mix: [ { block: this.block, elem: this.elem }, this.ctx.mix ],
-    mods: this.ctx.mods,
-    url: this.ctx.url,
-    content: this.ctx.content
-  });
-});
+block('breadcrumbs').elem('item')(
+  match( ( node, ctx ) => ctx.url ).def()( ( node, ctx ) => {
+    return applyCtx({
+      block: 'link',
+      mix: [ { block: node.block, elem: node.elem }, ctx.mix ],
+      mods: ctx.mods,
+      url: ctx.url,
+      content: ctx.content
+    });
+  }),
+  tag()('span')
+)
