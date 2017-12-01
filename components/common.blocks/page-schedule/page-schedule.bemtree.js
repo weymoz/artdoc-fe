@@ -46,6 +46,7 @@ block('page-schedule').replace()(function() {
   return [
     {
       elem: 'content',
+      elemMods: { gap: 'bottom' },
       content: [
         {
           block: 'breadcrumbs',
@@ -57,16 +58,16 @@ block('page-schedule').replace()(function() {
           mix: { block: 'heading', mods: { caps: true, align: 'center', size: 'l' } },
           content: 'Онлайн-киносеансы'
         },
+        promoBlock,
+        schedule.map( item => {
+          return {
+            block: 'card-movie',
+            mods: { view: 'schedule' },
+            movie: item
+          }
+        } ),
       ]
     },
-    promoBlock,
-    schedule.map( item => {
-      return {
-        block: 'card-movie',
-        mods: { view: 'schedule' },
-        movie: item
-      }
-    } ),
     { block: 'club-footer' }
   ];
 });

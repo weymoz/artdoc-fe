@@ -27,7 +27,7 @@ block('page-order')(
     return [
       {
         elem: 'content',
-        elemMods: { width: 'narrow' },
+        elemMods: { width: 'narrow', gap: 'bottom' },
         content: [
           {
             elem: 'title',

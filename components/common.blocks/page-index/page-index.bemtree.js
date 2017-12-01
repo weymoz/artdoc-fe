@@ -122,7 +122,7 @@ block('page-index').replace()( node => {
     {
       elem: 'content',
       mix: { elem: 'about' },
-      elemMods: { width: 'tiny' },
+      elemMods: { width: 'tiny', gap: 'bottom' },
       content: [
         {
           elem: 'title',

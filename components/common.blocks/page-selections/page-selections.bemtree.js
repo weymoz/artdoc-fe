@@ -3,6 +3,7 @@ block('page-selections').replace()(function() {
   return [
     {
       elem: 'content',
+      elemMods: { gap: 'bottom' },
       content: [
         {
           block: 'breadcrumbs',
@@ -25,18 +26,13 @@ block('page-selections').replace()(function() {
         } )
       ]
     },
+    // {
+    //   block: 'pagination',
+    //   params: this.data.pagination
+    // },
     {
-      block: 'pagination',
-      params: this.data.pagination
-    },
-    {
-      block: 'section',
-      content: [
-      {
-        block: 'club-footer',
-        mix: { block: 'page', elem: 'club' }
-      }
-      ]
+      block: 'club-footer',
+      mix: { block: 'page', elem: 'club' }
     }
   ];
 });

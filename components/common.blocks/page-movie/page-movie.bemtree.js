@@ -30,12 +30,17 @@ block('page-movie').replace()( node => {
     } : '',
     {
       elem: 'content',
+      elemMods: { gap: _movie.schedules && _movie.schedules.length ? 'top' : false },
       content: {
         block: 'movie-about',
         movie: _movie
       }
     },
-    { elem: 'content', content: { block: 'rewards' } },
+    {
+      elem: 'content',
+      elemMods: { gap: 'bottom' },
+      content: { block: 'rewards' }
+    },
     { block: 'club-footer' }
   ];
 });
