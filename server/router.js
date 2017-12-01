@@ -283,19 +283,26 @@ module.exports = app => {
    ***************************/
 
   app.post( '/api/order/:session_id', ( req, res ) => {
-    client.post( '/cinema/booking/booking', {
-      CinemaTicketModel: { email: req.body.email },
-      session_id: req.params.session_id
+    request( {
+      url: '/cinema/booking/booking/?promo=""',
+      method: 'post',
+      data: {
+        CinemaTicketModel: { email: req.body.email },
+        session_id: req.params.session_id,
+        promo: ''
+      }
     } ).then( api => {
-        if ( api.data.payment_url ) {
-          request( { url: api.data.payment_url } )
-            .then( response => res.json( response ) )
-            .catch( error => res.send(error) );
-        } else {
-          return res.json( api.data );
-        }
-      })
-      .catch( error => res.send( error ) );
+      if ( api.payment_url ) {
+        request( { url: api.payment_url } )
+          .then( response => {
+            return res.json( response )
+          } )
+          .catch( error => res.json(error) );
+      } else {
+        return res.json( api.data );
+      }
+    })
+    .catch( error => res.send( error ) );
   });
 
   app.post( '/api/payment/:transaction_id', ( req, res ) => {
