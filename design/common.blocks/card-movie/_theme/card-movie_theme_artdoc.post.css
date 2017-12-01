@@ -27,6 +27,12 @@ block(card-movie).mod(theme artdoc) {
     }
   }
 
+  .mod(view full) {
+    .elem(list) {
+      color: #23232c;
+    }
+  }
+
   .elem(orig-name) {
     color: #111;
   }
@@ -42,10 +48,6 @@ block(card-movie).mod(theme artdoc) {
   .elem(schedule-duration) {
     background-color: #23232c;
     color: #fff;
-  }
-
-  .elem(schedule) {
-    box-shadow: inset 1px 0 0 #23232C;
   }
 
   .elem(schedule-day) {

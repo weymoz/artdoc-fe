@@ -2,22 +2,11 @@ block('card-movie').elem('list')(
 
   tag()('ul'),
 
-  addMix()( ( node, ctx ) => {
-    return {
-      block: 'list',
-      mix: [
-        { block: 'card-movie', elem: 'list' },
-        node.elemMods.delimiter === 'vertical'
-          ? { block: 'font', mods: { family: 'pt-mono', loaded: true } }
-          : ''
-      ],
-      mods: Object.assign(
-        {},
-        { type: 'inline', size: 's', theme: node.mods.theme },
-        ctx.elemMods
-      )
-    }
+  addMix()( node => {
+    return { block: 'list', mods: Object.assign( {}, node.elemMods, { type: 'inline', size: 's' } ) }
   } ),
+
+  match( node => node.elemMods.delimiter === 'vertical' ).addMix()( { block: 'font', mods: { family: 'pt-mono', loaded: true } } ),
 
   content()( ( node, ctx ) => {
     let items = ctx.content.map( item => {
@@ -29,6 +18,4 @@ block('card-movie').elem('list')(
     } );
     return applyNext( { 'ctx.content': items } );
   })
-
-
 )

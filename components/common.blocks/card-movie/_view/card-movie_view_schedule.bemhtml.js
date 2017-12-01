@@ -18,7 +18,7 @@ block('card-movie').mod('view', 'schedule')(
         elem: 'aside',
         elemMods: { view: 'schedule' },
         content: [
-          { elem: 'schedule-duration' },
+          // { elem: 'schedule-duration' },
           {
             elem: 'schedule',
             elemMods: { period: isPeriod },
