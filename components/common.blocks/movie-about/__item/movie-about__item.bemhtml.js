@@ -49,6 +49,7 @@ block('movie-about').elem('item')(
       return ctx.movie.authors.map( author => {
         return {
           block: 'card-author',
+          mods: { size: 'l' },
           author: author
         }
       } )
@@ -111,10 +112,10 @@ block('movie-about').elem('item')(
           },
           {
             block: 'heading',
+            mix: { block: node.block, elem: 'award-title' },
             mods: { align: 'center', size: 's' },
             content: fests[ name ].nominations[0].row_data.split('#')[0] + ' ' + fests[ name ].year
           },
-          { tag: 'br' },
           fests[ name ].nominations.map( fest => {
             return {
               block: 'paragraph',

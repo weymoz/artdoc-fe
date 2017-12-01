@@ -1,6 +1,12 @@
 block('card-movie').elem('discussion')(
 
-  match( node => (node._discuss_preview || node._discuss_link) && node.mods.view === 'play' ).content()( node => {
+  match( node => !node._discuss_preview && !node._discuss_link ).def()(''),
+
+  content()({
+    html: 'Обсуждение фильма с&nbsp;автором и&nbsp;зрителями'
+  }),
+
+  match( node => node.mods.view === 'play' ).content()( node => {
     return [
       {
         block: 'paragraph',
@@ -19,5 +25,4 @@ block('card-movie').elem('discussion')(
       }
     ]
   })
-
 )

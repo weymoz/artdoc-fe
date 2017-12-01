@@ -92,7 +92,7 @@ block(list) {
   .elem(definition) {
     display: table-cell;
     text-align: end;
-    hyphens: auto;
+    /*hyphens: auto;*/
     padding: .5rem 0;
     font-size: inherit;
     vertical-align: bottom;

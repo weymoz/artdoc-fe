@@ -2,12 +2,13 @@ block('card-movie').elem('buy')(
 
   content()({
       block: 'paragraph',
+      mods: { align: 'center', size: 's' },
       mix: { block: 'font', mods: { family: 'pt-mono' } },
       attrs: {
-        style: 'background-color: #eee; color: #000; padding: 20px; font-size: 14px; box-sizing: border-box;'
+        style: 'background-color: #eee; color: #000; padding: 8px 20px; box-sizing: border-box;'
       },
       content: {
-        html: 'После одобрения правообладателем фильм&nbsp;будет доступен для просмотра'
+        html: 'Фильм будет доступен для&nbsp;просмотра после одобрения правообладателем'
       }
   }),
 

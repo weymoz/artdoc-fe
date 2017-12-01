@@ -32,6 +32,7 @@ block(ticket-case).mod(theme artdoc) {
       box-sizing: border-box;
       font-size: 40px;
       font-weight: bold;
+      color: #a0a0ac;
 
       @media (max-width: 1320px) {
         font-size: 35px;
@@ -47,25 +48,9 @@ block(ticket-case).mod(theme artdoc) {
       }
 
       .mod(checked) {
+        color: #fff;
         background-color: #f4203b;
-        position: relative;
         border-top-color: transparent;
-
-        &:after {
-          content: '';
-          top: 100%;
-          left: 50%;
-          border: solid transparent;
-          height: 0;
-          width: 0;
-          position: absolute;
-          pointer-events: none;
-          border-color: rgba(244, 32, 59, 0);
-          border-top-color: #f4203b;
-          border-width: 12px;
-          margin-left: -12px;
-
-        }
       }
     }
   }

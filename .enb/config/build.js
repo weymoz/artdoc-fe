@@ -28,18 +28,22 @@ module.exports = function( node, platform ) {
         elemJsInstances: true,
         requires: {
           moment: {
+            globals: 'moment',
             commonJS: 'moment'
           },
           moment_ru: {
+            globals: 'moment/locale/ru',
             commonJS: 'moment/locale/ru'
           }
         }
       },
       requires: {
         moment: {
+          globals: 'moment',
           commonJS: 'moment'
         },
         moment_ru: {
+          globals: 'moment/locale/ru',
           commonJS: 'moment/locale/ru'
         }
       }
@@ -64,7 +68,29 @@ module.exports = function( node, platform ) {
       target: '.?.browser.bemhtml.js',
       filesTarget: '?.tmpl.files',
       sourceSuffixes: ['bemhtml', 'bemhtml.js'],
-      engineOptions: { elemJsInstances: true }
+      engineOptions: {
+        elemJsInstances: true,
+        requires: {
+          moment: {
+            globals: 'moment',
+            commonJS: 'moment'
+          },
+          moment_ru: {
+            globals: 'moment/locale/ru',
+            commonJS: 'moment/locale/ru'
+          }
+        }
+      },
+      requires: {
+        moment: {
+          globals: 'moment',
+          commonJS: 'moment'
+        },
+        moment_ru: {
+          globals: 'moment/locale/ru',
+          commonJS: 'moment/locale/ru'
+        }
+      }
     }],
 
     // js

@@ -67,12 +67,6 @@ block('card-ticket').mod('view', 'order').content()( node => {
           ]
         }
       ]
-    },
-    { tag: 'br' },
-    { tag: 'br' },
-    { tag: 'br' },
-    { tag: 'br' },
-    { tag: 'br' },
-    { tag: 'br' }
+    }
   ]
 });

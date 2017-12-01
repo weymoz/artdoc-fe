@@ -1,10 +1,10 @@
 block(calendar).mod(theme artdoc) {
   .mod(view ticket-case) {
-    display: flex;
+    display: flex;   
 
     .elem(date) {
       line-height: 1.0;
-      color: #ffffff;
+      color: inherit;
       margin-right: 8px;
     }
 
@@ -12,11 +12,11 @@ block(calendar).mod(theme artdoc) {
       flex: 1;
       font-size: 0.35em;
       line-height: 1.4em;
-      color: #ffffff;
+      color: inherit;
     }
   }
 
-  .elem(week-day) {
+  .elem(week-day):first-letter {
     text-transform: uppercase;
   }
 }
