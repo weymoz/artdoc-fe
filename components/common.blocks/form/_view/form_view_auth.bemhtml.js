@@ -79,7 +79,6 @@ block('form').mod('view', 'auth')(
         content: {
           block: 'button',
           mods: {
-            disabled: true,
             width: 'available',
             type: 'submit',
             view: 'action',
@@ -89,6 +88,21 @@ block('form').mod('view', 'auth')(
           mix: { block: 'form', elem: 'submit' },
           text: 'Войти'
         }
+      },
+      {
+        elem: 'footer',
+        content: [
+          {
+            block: 'paragraph',
+            content: {
+              block: 'link',
+              mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } },
+              mods: { size: 'xs' },
+              url: '/club',
+              content: 'Как стать участником клуба'
+            }
+          }
+        ]
       }
     ]
   })

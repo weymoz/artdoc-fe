@@ -173,6 +173,9 @@ block('page-club').content()(function() {
         ]
       },
       {
+        attrs: { id: 'performers' },
+      },
+      {
         elem: 'content',
         content: [
           {
@@ -207,6 +210,9 @@ block('page-club').content()(function() {
           //   mix: { block: 'page-club', elem: 'make-party' },
           //   text: 'Показать ещё'
           // },
+          {
+            attrs: { id: 'festivals' },
+          },
           {
             block: 'page',
             elem: 'title',

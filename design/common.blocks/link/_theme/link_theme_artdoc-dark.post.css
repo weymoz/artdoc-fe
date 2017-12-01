@@ -1,10 +1,10 @@
 block(link).mod(theme artdoc-dark) {
-  color: #f4203b;
+  color: #a0a0ac;
   transition: background 0.4s;
 
   .mod(hovered),
   .mod(focused) {
-    color: #a0a0ac;
+    color: #f3203b;
   }
 
   .mod(view tag) {
