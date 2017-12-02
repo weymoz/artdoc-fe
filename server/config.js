@@ -2,6 +2,20 @@ module.exports = {
   host: {
     baseURL: process.env.API || 'http://artdoc.media:9999',
   },
+  promo: [
+    {
+      name: 'meduza',           // wait link with url: /movie/:name?promo=meduza
+      cookies: {
+        meduza: {               // then will set this cookies
+          value: 'promo',
+          expire: 1516849200    // with this experation date
+        }
+      },
+      data: [
+        677
+      ]
+    }
+  ],
   site: {
     title: 'Artdoc.Media',
     meta: {
