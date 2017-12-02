@@ -11,8 +11,8 @@ provide(bemDom.declBlock(this.name, {
         this._menu = this.findParentBlock( Page )
           .findChildBlock( Header )
           .findChildBlock( { block: navMenu, modName: 'nav-menu', modVal: true } );
-        this._domEvents( this._elem('title') ).on('click', this._openMenu );        
-        
+        this._domEvents( this._elem('title') ).on('click', this._openMenu );
+
         this._toggle = this._elem('toggle').findMixedBlock( Button );
         this._toggle.target = this._elem('form');
         this._domEvents( this._toggle ).on('click', this._onToggle );
@@ -45,20 +45,19 @@ provide(bemDom.declBlock(this.name, {
   },
 
   _resetForm: function () {
-    this._form.setVal( {
-      free: false,
-      rating: [],
-      year: [],
-      country: [],
-      studio: [],
-      genre: [],
-      period: [],
-      action_country: [],
-      action_city: [],
-      language: [],
-      subs: [],
-      fin_type: []
-    } );
+    // full_movie: "",
+    //   free: "",
+
+    this._form.getFields().forEach(function(field) {
+      if (field.hasMod('type', 'checkbox')) {
+        field.getControl().setMod('checked', false);
+      } else if (field.hasMod('type', 'select')) {
+        field.setVal([]);
+      }
+
+
+    });
+
   },
 
   _onToggle: function () {
@@ -138,7 +137,7 @@ provide(bemDom.declBlock(this.name, {
         sort: sort
       },
     }).done( response => {
-      const data = JSON.parse( response )
+      const data = response;
 
       bemDom.update(
         this._form.resultCount.domElem,

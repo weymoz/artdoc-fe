@@ -37,13 +37,13 @@ block('filters').def()( ( node, ctx ) => {
     full_movie: {
       code: 'full_movie',
       name: 'Только с видео',
-      skip: true,
+      skip: false,
 
     },
     free: {
       code: 'free',
       name: 'Только бесплатные',
-      skip: true,
+      skip: false,
     },
     rating: {
       name: 'Рейтинг artdoc.media',
@@ -167,7 +167,7 @@ block('filters').def()( ( node, ctx ) => {
         result.content.push( d )
         break;
 
-      default: 
+      default:
         return []
     }
 
