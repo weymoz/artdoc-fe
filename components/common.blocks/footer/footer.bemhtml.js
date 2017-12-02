@@ -231,8 +231,26 @@ block('footer')(
                     mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } },
                     content: [
                       { elem: 'item', content: '© 2017 Artdoc Fest & Media' },
-                      // { elem: 'item', content: 'Пользовательское соглашение' },
-                      // { elem: 'item', content: 'Политика конфидециальности' }
+                      {
+                        elem: 'item',
+                        content: {
+                            block: 'link',
+                            mods: { view: 'text' },
+                            mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } },
+                            content: 'Пользовательское соглашение',
+                            url: '/terms'
+                          }
+                      },
+                      {
+                        elem: 'item',
+                        content: {
+                          block: 'link',
+                          mods: { view: 'text' },
+                          mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } },
+                          content: 'Политика конфиденциальности',
+                          url: '/terms/#privacy'
+                        }
+                      }
                     ]
                   }
                 ]
@@ -245,7 +263,7 @@ block('footer')(
                     align: 'right',
                     size: 's'
                   },
-                  content: 'By 🤗 with 💖'
+                  content: 'By  🤗  with  💖'
                 }
               }
             ]

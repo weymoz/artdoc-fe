@@ -11,7 +11,8 @@ block('card-movie').elem('image')(
         mix: { block: node.block, elem: node.elem },
         attrs: {
           onError: 'this.classList.add( "' + node.block + '__' + node.elem + '_no-image" )',
-          style: 'height: ' + node._cover.height + 'px'
+          // Костыль для корректировки ресайза с Бэкенда
+          // style: 'height: ' + node._cover.height + 'px'
         },
         url: node._cover.id,
         width: node._cover.width,
