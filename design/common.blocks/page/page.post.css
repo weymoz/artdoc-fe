@@ -66,4 +66,104 @@ block(page) {
       padding-right: 0;
     }
   }
+
+  .mod(adaptive){
+
+    block(header){
+
+      @media(max-width: 412px){
+        display: none;
+      }
+    }
+
+    block(slider){
+
+      @media(max-width: 412px){
+        display: none;
+      }
+
+    }
+
+    elem(adaptive-link-btn){
+      display: none;
+
+      @media(max-width: 412px){
+        display: block;
+        margin-bottom: 24px;
+        width: 100%;
+      }
+
+      &block(button).mod(size xxl){
+        elem(text){
+          @media(max-width: 412px){
+            padding: 12px 11px;
+          }
+        }
+      }
+    }
+
+    block(news){
+      block(news-block){
+
+        elem(title){
+          &block(heading).mod(size xs){
+            @media (max-width: 412px){
+              font-size: 16px;
+            }
+          }
+        }
+
+        elem(footer){
+          @media(max-width: 412px){
+            flex-direction: column;
+          }
+        }
+
+
+      }
+
+      elem(content){
+        @media (max-width: 412px){
+          overflow-x: auto;
+
+          elem(item){
+            @media (max-width: 412px){
+              flex-shrink: 0;
+              width: 196px;
+            }
+          }
+        }
+      }
+
+
+    }
+
+    elem(content){
+
+      @media(max-width: 412px){
+        padding: 0 16px;
+      }
+
+      block(heading){
+        &.mod(size l){
+
+          @media(max-width: 412px){
+            font-size: 24px;
+            line-height: 1.3;
+            margin-top: 40px;
+            margin-bottom: 24px;
+          }
+        }
+
+      }
+    }
+
+    elem(section){
+      block(club-footer){
+        @media (max-width: 412px){
+          display: none;
+        }
+      }
+    }
+  }
 }

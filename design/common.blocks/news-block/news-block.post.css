@@ -38,6 +38,17 @@ block(news-block) {
     }
   }
 
+  .elem(refer){
+    padding-left: 10px;
+    position: relative;
+    box-sizing: border-box;
+
+    &::before{
+      content: '';
+      position: absolute;
+    }
+  }
+
   .elem(footer) {
     margin-top: 18px;
     padding-bottom: 15px;

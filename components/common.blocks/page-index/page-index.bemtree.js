@@ -52,14 +52,26 @@ block('page-index').replace()( node => {
     {
       elem: 'content',
       elemMods: { width: 'narrow' },
-      content: {
+      content: [
+      {
         elem: 'title',
         elemMods: { view: 'condensed-bold', size: 'xl' },
         mix: { block: 'heading', mods: { caps: true, align: 'center', size: 'l' } },
         content: {
           html: 'Архив и онлайн-сеансы документального кино на&nbsp;русском языке'
         }
+      },
+      {
+        block: 'button',
+        mix: { block: 'page', elem: 'adaptive-link-btn' },
+        mods: {
+          type: 'link',
+          size: 'xxl'
+        },
+        text: 'Смотреть весь архив',
+        url: '/movie'
       }
+      ]
     },
     {
       elem: 'content',
@@ -73,6 +85,16 @@ block('page-index').replace()( node => {
           block: 'card-poster',
           mix: { block: 'page', elem: 'poster' },
           poster: poster
+        },
+        {
+          block: 'button',
+          mix: { block: 'page', elem: 'adaptive-link-btn' },
+          mods: {
+            type: 'link',
+            size: 'xxl'
+          },
+          text: 'Смотреть вce онлайн сеансы',
+          url: '/cinema'
         },
         {
           elem: 'title',
@@ -104,6 +126,16 @@ block('page-index').replace()( node => {
             }
           } )
         },
+        {
+          block: 'button',
+          mix: { block: 'page', elem: 'adaptive-link-btn' },
+          mods: {
+            type: 'link',
+            size: 'xxl'
+          },
+          text: 'Смотреть вce подборки',
+          url: '/selection'
+        },
       ]
     },
     {
@@ -126,6 +158,7 @@ block('page-index').replace()( node => {
           mods: { align: 'center' },
           content: {
             block: 'button',
+            mix: { block: 'page', elem: 'adaptive-link-btn' },
             mods: {
               type: 'link',
               size: 'xxl'
