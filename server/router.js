@@ -112,6 +112,7 @@ module.exports = app => {
     ]).then( (response) => {
       let data = Object.assign({}, global, { api: response[0].items }, { poster: response[ 1 ] }, { news: response[ 2 ].items } );
       data.page = 'index';
+      data.adaptive = true;
       //data.bundle = isCallerMobile( req ) ? 'touch' : 'desktop';
       render( req, res, data );
     })
