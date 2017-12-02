@@ -106,6 +106,7 @@ block('form').mod('view', 'order')(
                     block: 'link',
                     url: '/terms',
                     attrs: { target: '_blank'},
+                    mods: { size: 's' },
                     content: 'условия покупки и использования билета'
                   }
                 ],
