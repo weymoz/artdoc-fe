@@ -68,15 +68,6 @@ block(filters) {
     transition: max-height 200ms, padding 200ms;
     position: relative;
 
-    &:before {
-      content: '';
-      width: 0;
-      height: 0;
-      border-style: solid;
-      border-width: 0 12px 12px 12px;
-      border-color: transparent transparent #23232c transparent;
-    }
-    
     .mod(show) {
       padding-top: 20px;
       padding-bottom: 20px;
