@@ -137,16 +137,14 @@ provide(bemDom.declBlock(this.name, {
         sort: sort
       },
     }).done( response => {
-      const data = response;
-
       bemDom.update(
         this._form.resultCount.domElem,
-        data.meta.total_count
+        response.meta.total_count
       );
 
       bemDom.update(
         this._form.resultTo.domElem,
-        BEMHTML.apply( data.items.map( movie => {
+        BEMHTML.apply( response.items.map( movie => {
           return {
             block: 'card-movie',
             mods: { view: view, size: 'm', theme: 'artdoc' },
@@ -158,7 +156,7 @@ provide(bemDom.declBlock(this.name, {
 
       this._form.resultTo.setMod('loading', false);
 
-      let pagination = data.meta;
+      let pagination = response.meta;
       let req_url = new URL(window.location.href);
       pagination.params = req_url.searchParams;
 
