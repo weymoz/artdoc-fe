@@ -4,6 +4,7 @@ block(icon).mod(social vkontakte) {
   background-origin: padding-box;
   box-sizing: content-box;
 
+
   &:hover {
     background-image: svg-load('icon_social_vkontakte.svg', fill="#fff");
   }
