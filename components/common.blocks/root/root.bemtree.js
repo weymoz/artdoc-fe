@@ -6,7 +6,7 @@ block('root').replace()(function() {
         bundle = data.bundle || 'desktop';
 
   if (ctx.context) return ctx.context;
-  
+
   return {
     block: 'page',
     title: data.title || '#b_',
@@ -32,8 +32,8 @@ block('root').replace()(function() {
       }
     ],
     head: [
-      // { elem: 'meta', attrs: { name: 'viewport', content: 'width=device-width, initial-scale=1' } },
-      { elem: 'meta', attrs: { name: 'viewport', content: 'width=1024' } },
+      { elem: 'meta', attrs: { name: 'viewport', content: 'width=device-width, initial-scale=1' } },
+      // { elem: 'meta', attrs: { name: 'viewport', content: 'width=1024' } },
 
       // favicons
       {
@@ -46,7 +46,7 @@ block('root').replace()(function() {
           <meta name="application-name" content="Artdoc.media">
           <meta name="theme-color" content="#f3203c">`
       },
-      
+
       // meta
       { elem: 'meta', attrs: { name: 'description', content: meta.description } },
       { elem: 'meta', attrs: { property: 'og:title', content: og.title || data.title } },

@@ -4,8 +4,7 @@ block(page) {
   font-size: 16px;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-
-  min-width: 960px; /* костыль, пока нет моб. версии */
+  min-width: 320px;
 
   .elem(content) {
     lost-center: 1428px;
