@@ -16,6 +16,7 @@ block('page-search').replace()( node => {
   return [
     {
       elem: 'content',
+      elemMods: { gap: 'bottom' },
       content: [
         {
           block: 'search',

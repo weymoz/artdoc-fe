@@ -6,6 +6,7 @@ const config = require('./config'),
       // { loadSchemas, normalize } = require('json-schema-normalizer');
       { normalize, schema } = require('normalizr');
 
+/*
 const schemaSimple       = require('./controllers/movie/simple.schema.json'),
       schemaMovie        = require('./controllers/movie/movie.schema.json'),
       schemaActionPeriod = require('./controllers/movie/__action-period/movie__action-period.schema.json'),
@@ -18,77 +19,66 @@ const schemaSimple       = require('./controllers/movie/simple.schema.json'),
       schemaSchedule     = require('./controllers/movie/__schedule/movie__schedule.schema.json'),
       schemaSession      = require('./controllers/movie/__session/movie__session.schema.json'),
       schemaStudio       = require('./controllers/movie/__studio/movie__studio.schema.json');
+const schemas = loadSchemas([ simple, actionPeriod, author, cover, fest, nomination, offlineShow, price, schedule, session, studio, movie ]);
+*/
 
-// const schemas = loadSchemas([ simple, actionPeriod, author, cover, fest, nomination, offlineShow, price, schedule, session, studio, movie ]);
 
-const metaSchema = new schema.Entity('meta', {}, {
-  idAttribute: 'model'
-});
-
-const priceSchema = new schema.Entity('price');
-const festSchema = new schema.Entity('fest');
-const nominationSchema = new schema.Entity('nomination');
-const imageSchema = new schema.Entity('gallery');
-const countrySchema = new schema.Entity('country');
-const languageSchema = new schema.Entity('language');
-const citySchema = new schema.Entity('city');
-const genreSchema = new schema.Entity('genre');
-const categorySchema = new schema.Entity('category');
-const periodSchema = new schema.Entity('period');
-const userSchema = new schema.Entity('user');
-const studioSchema = new schema.Entity('studio');
-const offlineShowSchema = new schema.Entity('offlineShow');
-const tagSchema = new schema.Entity('tag');
-const sessionSchema = new schema.Entity('session', {
-  city: [citySchema],
-  price: priceSchema
-  }, {
-  idAttribute: 'code'
-} );
-const movieSchema = new schema.Entity('movie', {
-  price: priceSchema,
-  fests: [festSchema],
-  nominations: [nominationSchema],
-  cover: imageSchema,
-  countries: [countrySchema],
-  subs: [languageSchema],
-  language: [languageSchema],
-  actioncities: [citySchema],
-  actioncountries: [countrySchema],
-  genres: [genreSchema],
-  categories: [categorySchema],
-  actionperiods: [periodSchema],
-  authors: [userSchema],
-  studio: [studioSchema],
-  screenshots: [imageSchema],
-  schedules: [ new schema.Entity('schedule') ],
-  offlineShow: [offlineShowSchema],
-  sessions: [ { session: sessionSchema, city: [citySchema], price: priceSchema } ]
-  }, {
-  idAttribute: 'code'
-} );
-const scheduleSchema = new schema.Entity('schedule', {
-  movie: [movieSchema],
-  sessions: [sessionSchema]
-});
-const authorcompilationSchema = new schema.Entity('authorcompilation', {
-  movies: [movieSchema],
-  author: [userSchema],
-  image: imageSchema
-  },{
-  idAttribute: 'code'
-} );
-
-const searchResultSchema = new schema.Object({
-  tags: [tagSchema],
-  movie: [movieSchema],
-  category: [categorySchema]
-} );
-const moviePlaySchema = new schema.Object({
-  movie: movieSchema,
-  session: sessionSchema,
-  schedule: new schema.Entity('schedule')
-})
+const metaSchema = new schema.Entity('meta', {}, { idAttribute: 'model' });
+  const priceSchema = new schema.Entity('price');
+  const festSchema = new schema.Entity('fest');
+  const nominationSchema = new schema.Entity('nomination');
+  const imageSchema = new schema.Entity('gallery');
+  const countrySchema = new schema.Entity('country');
+  const languageSchema = new schema.Entity('language');
+  const citySchema = new schema.Entity('city');
+  const genreSchema = new schema.Entity('genre');
+  const categorySchema = new schema.Entity('category');
+  const periodSchema = new schema.Entity('period');
+  const userSchema = new schema.Entity('user');
+  const studioSchema = new schema.Entity('studio');
+  const offlineShowSchema = new schema.Entity('offlineShow');
+  const tagSchema = new schema.Entity('tag');
+  const sessionSchema = new schema.Entity('session', { city: [citySchema], price: priceSchema }, { idAttribute: 'code' } );
+  const movieSchema = new schema.Entity('movie', {
+    price: priceSchema,
+    fests: [festSchema],
+    nominations: [nominationSchema],
+    cover: imageSchema,
+    countries: [countrySchema],
+    subs: [languageSchema],
+    language: [languageSchema],
+    actioncities: [citySchema],
+    actioncountries: [countrySchema],
+    genres: [genreSchema],
+    categories: [categorySchema],
+    actionperiods: [periodSchema],
+    authors: [userSchema],
+    studio: [studioSchema],
+    screenshots: [imageSchema],
+    schedules: [ new schema.Entity('schedule') ],
+    offlineShow: [offlineShowSchema],
+    sessions: [ { session: sessionSchema, city: [citySchema], price: priceSchema } ]
+    }, {
+    idAttribute: 'code'
+  } );
+  const scheduleSchema = new schema.Entity('schedule', { movie: [movieSchema], sessions: [sessionSchema] });
+  const authorcompilationSchema = new schema.Entity('authorcompilation', {
+    movies: [movieSchema],
+    author: [userSchema],
+    image: imageSchema
+    },{
+    idAttribute: 'code'
+  } );
+  const searchResultSchema = new schema.Object({
+    tags: [tagSchema],
+    movie: [movieSchema],
+    category: [categorySchema]
+  } );
+  const moviePlaySchema = new schema.Object({
+    movie: movieSchema,
+    session: sessionSchema,
+    schedule: new schema.Entity('schedule')
+  })
 
 const API = axios.create( config.host );
 
@@ -205,11 +195,9 @@ class getMovieByFilter extends Request {
       }
     }
   }
-
 };
 
 module.exports = app => {
-
   app.get( '/test/getCategories', async ( req, res ) => {
     const getCategories = new Request( '/api/category', { 'per-page': 0, sort: 'code' }, { meta: metaSchema, items: [categorySchema] } );
     const response = await getCategories.request();
@@ -279,6 +267,4 @@ module.exports = app => {
     }, moviePlaySchema );
     return res.json( await getMovieViewPaid.request() )
   } );
-
 }
-

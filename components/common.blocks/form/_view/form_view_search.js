@@ -22,11 +22,11 @@ provide(Form.declMod({ modName: 'view', modVal: 'search' }, {
             }).done( response => {
               bemDom.update(
                 _this._elem('content').domElem,
-                JSON.parse(response)
+                response
                   ? BEMHTML.apply({
                       block: 'search',
                       mods: { view: 'form' },
-                      result: JSON.parse(response).api.items || false,
+                      result: response.items || false,
                       query:  _this.getVal().q
                     })
                   : ''

@@ -1,6 +1,4 @@
-block('page')(
-  addMods()({ theme: 'artdoc-dark' })
-);
+block('page').addMods()( { theme: 'artdoc-dark' } );
 
 block('page-play')(
   replace()( node => {
@@ -24,36 +22,26 @@ block('page-play')(
         content: [
           {
             block: 'card-ticket',
-            mods: {
-              view: 'play'
-            },
+            mods: { view: 'play' },
             ticket: ticket
           }
         ]
       },
       {
         elem: 'content',
+        elemMods: { gap: 'bottom' },
         content: [
           {
             block: 'card-movie',
-            mods: {
-              view: 'play',
-              theme: 'artdoc-dark'
-            },
+            mods: { view: 'play' },
             movie: movie
           }
         ]
       },
       {
-        block: 'section',
-        content: [
-        {
-          block: 'club-footer',
-          mix: { block: 'page', elem: 'club' }
-        }
-        ]
+        block: 'club-footer',
+        mix: { block: 'page', elem: 'club' }
       }
     ];
   })
-
 )

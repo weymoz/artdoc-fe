@@ -15,7 +15,6 @@ block('card-ticket').mod('view', 'play')(
         content: [
           { elem: 'room' },
           { elem: 'city' },
-
           { elem: 'user-date' },
           ', начало в',
           { html: '&nbsp;' },
@@ -28,12 +27,10 @@ block('card-ticket').mod('view', 'play')(
           'Доступен до ',
           {
             block: 'text',
-            mods: {
-              format: 'datetime'
-            },
+            mods: { format: 'datetime' },
             format: 'HH:mm',
             content: node._time_gmt3 + 3 * 60 * 60
-          },
+          }
         ]
       }
     ]

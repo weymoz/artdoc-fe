@@ -1,0 +1,158 @@
+block(card-ticket) {
+  text-decoration: none;
+
+  .mod(view movie) {
+    .elem(header) {
+      display: flex;
+      align-items: baseline;
+      align-content: baseline;
+      padding: 16px 16px 40px;
+      box-sizing: border-box;
+      font-stretch: condensed;
+      font-weight: bold;
+      font-size: 17px;
+      line-height: 20px;
+
+      white-space: nowrap;
+      overflow-x: hidden;
+      text-overflow: ellipsis;
+
+      @media (max-width: 1150px) {
+        flex-direction: column;
+        font-size: 15px;
+      }
+    }
+
+    .elem(room) {
+      text-transform: uppercase;
+    }
+
+    .elem(city) {
+      text-transform: uppercase;
+    }
+
+    .elem(content) {
+      padding: 1em;
+    }
+
+    .elem(user-date) {
+      font-size: 14px;
+      line-height: 20px;
+    }
+
+    .elem(user-time) {
+      font-size: 56px;
+      line-height: 1.0;
+      letter-spacing: -0.4px;
+      color: #23232c;
+
+      @media (max-width: 1320px) {
+        font-size: 45px;
+      }
+    }
+
+    .elem(timezone) {
+      font-size: 14px;
+      line-height: 1.43;
+      letter-spacing: -0.1px;
+    }
+
+    .elem(buy) {
+      text-align: left;
+      font-size: 18px;
+      line-height: 24px;
+      padding: 16px;
+      font-weight: bold;
+
+      @media (max-width: 1040px) {
+        font-size: 15px;
+      }
+    }
+
+    .elem(left) {
+      font-size: 12px;
+      line-height: 16px;
+      margin-top: 12px;
+    }
+  }
+
+  .mod(view order) {
+
+    .elem(content) {
+      font-size: 16px;
+      line-height: 1.5;
+      font-weight: bold;
+    }
+
+    .elem(day),
+    .elem(user-time),
+    .elem(buy) {
+      font-size: 56px;
+      font-weight: normal;
+      line-height: 1;
+    }
+
+    .elem(user-time),
+    .elem(buy) {
+      margin-top: 32px;
+    }
+
+    .elem(section) {
+      lost-center: 100%;
+      display: flex;
+      padding: 56px 48px;
+      box-sizing: border-box;
+    }
+
+    .elem(aside) {
+      lost-column: 20/31 0 0;
+      padding-left: 48px;
+      padding-top: 17px;
+      box-sizing: border-box;
+    }
+
+    .elem(header) {
+      padding: 12px 0;
+    }
+  }
+
+  .mod(view play) {
+    display: flex;
+    flex-wrap: nowrap;
+    text-transform: uppercase;
+    font-size: 17px;
+    line-height: 1.5;
+    padding-top: 24px;
+    padding-bottom: 16px;
+
+    .elem(header) {
+      margin-right: 40px;
+    }
+
+    .elem(content) {
+      display: flex;
+      flex: inherit;
+      margin-right: 40px;
+    }
+
+    .elem(city) {
+      margin-right: 40px;
+    }
+  }
+
+  .mod(status disabled) {
+    opacity: .5;
+  }
+
+  .elem(content) {
+    flex: 1;
+  }
+
+  .elem(room) {
+    display: inline-block;
+  }
+
+  .elem(city) {
+    display: inline-block;
+  }
+}
