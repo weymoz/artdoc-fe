@@ -458,11 +458,11 @@ module.exports = app => {
       if ( api.data.payment_url ) {
         request( { url: api.data.payment_url } )
           .then( response => {
-            res.send( JSON.stringify( response ) );
+            res.json(  response );
           } )
           .catch(() => res.send('error') );
       } else {
-        res.send( JSON.stringify( api.data ) );
+        res.json( api.data );
       }
     })
       .catch((e) => {
