@@ -5,6 +5,7 @@ const config = require('./config'),
       { URL } = require('url');
 
 const client = axios.create( config.host );
+
 const request = options => {
   const onSuccess = response => {
     return response.data;
@@ -20,6 +21,12 @@ const request = options => {
     }
     return Promise.reject(error.response || error.message);
   };
+
+  var source = axios.CancelToken.source();
+
+  options.cancelToken = source.token;
+  options.cancelSource = source;
+
   return client(options)
     .then(onSuccess)
     .catch(onError);
@@ -38,6 +45,41 @@ module.exports = app => {
   let global = config.site;
   global.categoryByCode = {};
 
+  // Promo
+  app.use( (req, res, next) => {
+    // Check if `req.query.promo` contains in promo's list;
+    const actions = config.promo.filter( promo => req.query.promo === promo.name );
+    actions.forEach( promo => {
+      Object.keys( promo.cookies ).forEach( action => {
+        let newCookie = promo.cookies[ action ],
+            params = {};
+        Object.keys( newCookie ).forEach( key => {
+          switch ( key ) {
+            case 'value':
+              break;
+            case 'expire':
+              params.expire = ( new Date( newCookie.expire * 1000 ).toUTCString() );
+              break;
+            default:
+              params[ key ] = newCookie[ key ];
+              break;
+          }
+        } );
+        if ( req.cookies[ action ] !== newCookie.value ) {
+          res.cookie( action, newCookie.value, params );
+          req.cookies[ action ] = newCookie.value
+        }
+      } )
+    } );
+
+    next();
+  } );
+
+  app.use( ( req, res, next ) => {
+    global.user = req.isAuthenticated() ? req.user : false;
+    next();
+  } );
+
   // iFrame widget
   app.use( ( req, res, next ) => {
     const refer = new URL( req.headers.referrer || req.headers.referer || req.protocol + '://' + req.get( 'host' ) + req.originalUrl );
@@ -50,6 +92,7 @@ module.exports = app => {
     global.category = response.items.sort(function (a,b) {
       return a.name.localeCompare(b.name, 'ru');
     });
+
     for ( let i = global.category.length - 1; i >= 0; i-- ) {
       global.categoryByCode[ global.category[i].code ] = global.category[i];
     }
@@ -69,6 +112,7 @@ module.exports = app => {
     ]).then( (response) => {
       let data = Object.assign({}, global, { api: response[0].items }, { poster: response[ 1 ] }, { news: response[ 2 ].items } );
       data.page = 'index';
+      data.adaptive = true;
       return render( req, res, data );
     }).catch( error => res.send( error ) );
   });
@@ -117,7 +161,7 @@ module.exports = app => {
     axios.all([
       request( { url:  url }),
       request( { url: '/api/movie/filtervalues/' } )
-    ]).then( response => {
+    ]).then( (response) => {
       data.api = response[0].items;
       data.filters = response[1];
       data.filter = filter;
@@ -129,14 +173,56 @@ module.exports = app => {
     } ).catch( error => res.send( error ) );
   });
 
+  app.get('/movie/:name/buy', function (req, res) {
+    let data = Object.assign({}, global);
+    data.page = 'order';
+    data.page.isCinema = false;
+
+    console.log('%%%%%%%%%%%%');
+
+    request( { url: '/api/movie/?sort=id&expand=schedules,sessions,category,screenshots&code=' + encodeURIComponent(req.params.name) } )
+      .then( response => {
+        data.api = {
+          movie: response.items[0],
+          type: 'rent',
+          time_gmt3: Math.round(((new Date()))/1000 + 60*60*24*3),
+        }
+
+        data.title = response.items[0].name;
+        data.meta.og.image = response.items[0].cover && response.items[0].cover.id
+          ? '//artdoc.media/upload/resize/' + response.items[0].cover.id + '/640x360.jpg'
+          : data.meta.og.image;
+
+        render( req, res, data );
+      } )
+      .catch(( error ) => {
+        console.log('error!!!');
+        res.send( error );
+      } );
+
+  })
+
   // Movie
   app.get( '/movie/:name', ( req, res ) => {
     let data = Object.assign({}, global);
+
+    // Check promo
+    data.promo = {};
+    config.promo.forEach( promo => {
+      data.promo[ promo.name ] = Object.keys( promo.cookies ).every( key => {
+          return promo.cookies[ key ].value == req.cookies[ key ];
+        } )
+        ? promo.data
+        : false
+    } );
+
     if ( req.query.hasOwnProperty( 'code' ) ) {
       data.page = 'order';
+      data.isCinema = true;
       request( { url: '/api/session/?expand=movie,category,city&code=' + encodeURIComponent(req.query.code) } )
         .then( response => {
           data.api = response.items[0];
+          data.api.type = 'cinema';
           data.title = response.items[0].name;
           data.api.tz = req.query.tz;
           data.api.checked_city = req.query.city;
@@ -154,7 +240,7 @@ module.exports = app => {
             : data.meta.og.image;
           return render( req, res, data );
         } )
-        .catch( error => res.send( error ) );
+        .catch( ( error ) => res.send( error ) );
     }
   });
 
@@ -214,7 +300,9 @@ module.exports = app => {
       request( { url: '/cinema/release/?id=' + req.query.id + '&hash=' + req.query.hash + '&sess_id=' + req.query.sess_id } )
         .then( response => {
           data.api = response;
-          if (req.params[0]=='discuss') {
+          data.api.type = 'cinema';
+
+          if (req.params[0] === 'discuss') {
             if (typeof response.schedule !== 'undefined') {
               if (response.schedule.discuss_link) {
                 return res.redirect(response.schedule.discuss_link);
@@ -236,6 +324,7 @@ module.exports = app => {
     client.post( '/payment/provide/', { nonce: req.query.payment_nonce, transaction_id: req.params.transaction_id } )
       .then( response => {
         data.api = response.data;
+
         data.page = 'thanks';
         data.title = 'Билет успешно оплачен';
         if ( data.api.error ) {
@@ -247,16 +336,55 @@ module.exports = app => {
       .catch( error => res.send(error) );
   });
 
+  // Promo activate
+  app.get( '/payment/freeactivate/', ( req, res ) => {
+    let data = Object.assign({}, global);
+    request( { url: '/payment/freeactivate/?' + Object.keys( req.query ).map( key => key + '=' + encodeURIComponent( req.query[ key ] ) ).join('&') } )
+      .then( response => {
+        data.api = response;
+
+        if ( !data.api.error ) {
+          data.page = 'thanks';
+          data.title = 'Билет успешно активирован';
+          render( req, res, data );
+        } else {
+          data.page = 'error';
+          data.title = 'При активации произошла ошибка';
+          return render( req, res, data );
+        }
+
+      } )
+      .catch(() => res.send('error') );
+  });
+
   // Free movie
   app.get( '/movie/:name/watch', ( req, res ) => {
     let data = Object.assign({}, global);
+
+    if (req.query.hash) {
+      data.page = 'play';
+      request( { url: '/cinema/release/rent/?id=' + req.query.id + '&hash=' + req.query.hash  } )
+        .then( response => {
+
+          data.api = response;
+          data.api.type = 'rent';
+          return render( req, res, data );
+        } )
+        .catch(() => {
+          return res.send('error')
+        } );
+
+    } else {
     request( { url: '/ondemand/release/?movie_code=' + req.params.name } )
       .then( response => {
         data.api = response;
-        data.page = 'play';
+
         if ( !data.api.error ) {
+          data.page = 'play';
+          data.title = 'Просмотр фильма';
           return render( req, res, data );
         }
+
       } )
       .catch( error => res.send(error) );
   });
@@ -283,26 +411,63 @@ module.exports = app => {
    ***************************/
 
   app.post( '/api/order/:session_id', ( req, res ) => {
-    request( {
-      url: '/cinema/booking/booking/?promo=""',
-      method: 'post',
-      data: {
-        CinemaTicketModel: { email: req.body.email },
-        session_id: req.params.session_id,
-        promo: ''
-      }
+
+    let promo_code = '';
+
+    // Check promo
+    let promoCode = {};
+    config.promo.forEach( promo => {
+      promoCode[ promo.name ] = Object.keys( promo.cookies ).every( key => {
+          return promo.cookies[ key ].value == req.cookies[ key ];
+        } )
+        ? promo.data
+        : false
+    } );
+
+    if ( promoCode.meduza ) {
+      promo_code = 'artdocmedia_free';
+    }
+
+    client.post( '/cinema/booking/booking/?promo=' + promo_code, {
+      CinemaTicketModel: { email: req.body.email },
+      session_id: req.params.session_id,
+      promo: promo_code
     } ).then( api => {
-      if ( api.payment_url ) {
-        request( { url: api.payment_url } )
+        if ( api.data.payment_url ) {
+          request( { url: api.data.payment_url } )
+            .then( response => {
+              return res.json( response )
+            } )
+            .catch(() => res.send('error') );
+        } else {
+          return res.json( api.data );
+        }
+      })
+      .catch( error => res.send( error ) );
+  });
+
+
+  app.post( '/api/buy/:movie_id', ( req, res ) => {
+
+    client.post( '/cinema/booking/rent/', {
+      RentTicketModel: { email: req.body.email },
+      movie_id: req.params.movie_id
+    } ).then( api => {
+      console.log(api);
+      if ( api.data.payment_url ) {
+        request( { url: api.data.payment_url } )
           .then( response => {
-            return res.json( response )
+            res.send( JSON.stringify( response ) );
           } )
-          .catch( error => res.json(error) );
+          .catch(() => res.send('error') );
       } else {
-        return res.json( api.data );
+        res.send( JSON.stringify( api.data ) );
       }
     })
-    .catch( error => res.send( error ) );
+      .catch((e) => {
+        console.log(e);
+        return res.send('error')
+      } );
   });
 
   app.post( '/api/payment/:transaction_id', ( req, res ) => {
@@ -322,9 +487,16 @@ module.exports = app => {
 
   app.get( '/api/search', ( req, res ) => {
     if ( req.query.q ) {
-      request( { url: '/search/search/?per-page=20&q=' + encodeURIComponent( req.query.q ) } )
+
+      let axiosParams = { url: '/search/search/?per-page=20&q=' + encodeURIComponent( req.query.q ) };
+
+      request( axiosParams )
         .then( api => res.json( api ) )
         .catch( error => res.send( error ) );
+
+      req.apiRequests.push(axiosParams);
+
+
     } else {
       return res.json( { api: { error: 'Empty data' } } )
     }

@@ -1,5 +1,6 @@
 [{
     shouldDeps: [
-      { block: 'link' }
+      { block: 'link' },
+      { elems: ['arrow', 'pagelink'] },
     ]
 }]

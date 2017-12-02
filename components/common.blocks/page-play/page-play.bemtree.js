@@ -5,9 +5,10 @@ block('page-play')(
     // Move start timer to movie object
     const api = node.data.api;
     const movie = Object.assign( {}, api.movie, {
-      starts_in: api.starts_in,
+      starts_in: api.starts_in ? api.starts_in : 0,
       play: api.link,
-      discuss_link: '/cinema/discuss/' + node.data.url.search,
+      type: api.type,
+      discuss_link: api.schedule ? '/cinema/discuss/' + node.data.url.search: '',
       discuss_preview: api.schedule ? api.schedule.discuss_preview : ''
     } );
 

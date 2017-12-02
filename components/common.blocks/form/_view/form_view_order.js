@@ -23,7 +23,7 @@ provide(Form.declMod({ modName: 'view', modVal: 'order' }, {
 
     var apiSettings = {
       'async': true,
-      'url': '/api/order/' + _this.params.session_id,
+      'url': _this.params.session_id > 0 ? '/api/order/' + _this.params.session_id : '/api/buy/' + _this.params.movie_id,
       'method': 'POST',
       'headers': {
         'content-type': 'application/x-www-form-urlencoded',

@@ -1,28 +1,20 @@
 block('page-order')(
   replace()( node => {
-    let ticket = node.data.api;
-    ticket.city = ticket.city[0];
 
-    // switch ( ticket.city_id ) {
-    //   case 1:
-    //     ticket.city.name = 'Москва';
-    //     break;
-    //   case 2:
-    //     ticket.city.name = 'Лос-Анджелес';
-    //     break;
-    //   case 3:
-    //     ticket.city.name = 'Нью-Йорк';
-    //     break;
-    //   case 4:
-    //     ticket.city.name = 'Лондон';
-    //     break;
-    //   case 5:
-    //     ticket.city.name = 'Токио';
-    //     break;
-    //   default:
-    //     ticket.city.name = 'Бобруйск';
-    //     break;
-    // }
+    let ticket = node.data.api;
+
+    if (ticket.type == 'cinema') {
+
+      ticket.city = ticket.city[0];
+
+      const promo = node.data.promo;
+
+      if ( promo.meduza && promo.meduza.includes( ticket.id ) ) {
+        ticket.promo = 'meduza'
+      } else {
+        ticket.promo = null;
+      }
+    }
 
     return [
       {
@@ -30,13 +22,19 @@ block('page-order')(
         elemMods: { width: 'narrow', gap: 'bottom' },
         content: [
           {
+            block: 'breadcrumbs'
+          },
+          {
             elem: 'title',
             elemMods: { size: 'xl' },
             mix: [
               { block: 'heading', mods: { align: 'center', caps: true, size: 'l' } },
               { block: 'font', mods: { family: 'helvetica-neue-condensed-bold', loaded: true } }
             ],
-            content: 'Покупка билета на онлайн-сеанс'
+            content: [
+              ticket.promo === 'meduza' ? 'Получение' : 'Покупка',
+              ticket.type == 'rent' ? ' доступа к просмотрю фильма' : ' билета на онлайн-сеанс'
+            ]
           },
           {
             block: 'card-movie',

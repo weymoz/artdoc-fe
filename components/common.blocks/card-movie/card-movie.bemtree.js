@@ -5,12 +5,13 @@ block('card-movie')(
 
   match( ( node, ctx ) => ctx.movie ).def()( ( node, ctx ) => {
     const _movie = ctx.movie;
-
     /*
      * Normalization
      */
+    if (_movie.description) {
+      _movie.description = marked( _movie.description );
+    }
 
-    _movie.description = marked( _movie.description );
 
     if ( _movie.offlineShow && _movie.offlineShow.description ) {
       _movie.offlineShow.description = marked( _movie.offlineShow.description );

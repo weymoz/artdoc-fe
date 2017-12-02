@@ -10,7 +10,45 @@ block('card-ticket').mod('view', 'order').content()( node => {
 
   const timezone = ( tzHours > 0 ? '+' : '-' ) + fixZero( tzHours ) + ':' + fixZero( tzMinutes );
 
+  const isCinema = (node._type == 'cinema');
+
+
+  console.log(isCinema);
+  const description = isCinema ?
+    {
+      block: 'paragraph',
+      content: [
+        'Мы отправим на вашу электронную почту ссылку на страницу ',
+        'сеанса после оплаты. Фильм будет доступен к просмотру ',
+        {
+          block: 'text',
+          mods: { format: 'datetime' },
+          format: 'DD[&nbsp;]MMMM[ с ]HH:mm[ до ]',
+          content: node._time_gmt3
+        },
+        {
+          block: 'text',
+          mods: { format: 'datetime' },
+          format: 'HH:mm[ (время&nbsp;UTC]',
+          content: node._time_gmt3 + 60 * 60 * 3
+        },
+        timezone,
+        ').'
+      ]
+    } :
+    {
+      block: 'paragraph',
+      content: {
+        html: 'После оплаты мы отправим на вашу электронную почту ссылку на&nbsp;страницу ' +
+        'просмотра, которая будет доступна в течение следующих 72&nbsp;часов. Количество просмотров не ограничено.'
+      }
+
+
+    }
+
+
   return [
+    isCinema &&
     {
       elem: 'header',
       content: { elem: 'left' }
@@ -18,6 +56,7 @@ block('card-ticket').mod('view', 'order').content()( node => {
     {
       elem: 'section',
       content: [
+        isCinema ?
         {
           elem: 'content',
           content: [
@@ -26,34 +65,23 @@ block('card-ticket').mod('view', 'order').content()( node => {
             { elem: 'city' },
             { elem: 'user-time' },
             { elem: 'buy' },
-            'Оплата картой'
+            node._promo ? '' : 'Оплата картой'
+          ]
+        } :
+          {
+           elem: 'content',
+            content: [
+              { html: 'Доступен до<br><br>'},
+              { elem: 'user-date' },
+              { elem: 'user-time' },
+              { elem: 'buy' },
+              node._promo ? '' : 'Оплата картой'
           ]
         },
         {
           elem: 'aside',
           content: [
-            {
-              block: 'paragraph',
-              mods: { size: 's' },
-              content: [
-                'Мы отправим на вашу электронную почту ссылку на страницу ',
-                'сеанса после оплаты. Фильм будет доступен к просмотру ',
-                {
-                  block: 'text',
-                  mods: { format: 'datetime' },
-                  format: 'DD[&nbsp;]MMMM[ с ]HH:mm[ до ]',
-                  content: node._time_gmt3
-                },
-                {
-                  block: 'text',
-                  mods: { format: 'datetime' },
-                  format: 'HH:mm[ (время&nbsp;UTC]',
-                  content: node._time_gmt3 + 60 * 60 * 3
-                },
-                timezone,
-                ').'
-              ]
-            },
+            description,
             { tag: 'br' },
             {
               block: 'form',
@@ -61,8 +89,10 @@ block('card-ticket').mod('view', 'order').content()( node => {
                 view: 'order',
                 theme: 'artdoc-dark'
               },
-              session: node._id,
-              submitLabel: 'Купить'
+              session_id: isCinema ? node._id : null,
+              movie_id: isCinema ? null : node._price.object_id,
+              isCinema: isCinema,
+              submitLabel: node._promo ? 'Получить' : 'Купить'
             }
           ]
         }

@@ -15,16 +15,19 @@ block('form').mod('view', 'order')(
 
   addJs()(function() {
     return {
-      session_id: this.ctx.session,
+      session_id: this.ctx.session_id,
+      movie_id: this.ctx.movie_id,
       _csrf: this.ctx.csrf
     }
   }),
 
   content()( ( node, ctx ) => {
+    console.log(ctx.session);
+
     return [
       {
         block : 'fieldset',
-        attrs: { disabled: !ctx.session },
+        attrs: { disabled: (!ctx.session_id && !ctx.movie_id) },
         mix: { block: node.block, elem: 'content' },
         content : [
           {
@@ -41,6 +44,14 @@ block('form').mod('view', 'order')(
               type: 'hidden',
               name: 'session_id',
               val: ctx.session
+            },
+          },
+          {
+            tag: 'input',
+            attrs: {
+              type: 'hidden',
+              name: 'movie_id',
+              val: ctx.movie_id
             },
           },
           {
@@ -93,7 +104,8 @@ block('form').mod('view', 'order')(
                   'Я принимаю ',
                   {
                     block: 'link',
-                    url: '#',
+                    url: '/terms',
+                    attrs: { target: '_blank'},
                     content: 'условия покупки и использования билета'
                   }
                 ],
@@ -114,7 +126,7 @@ block('form').mod('view', 'order')(
             size: 'xl',
             theme: 'artdoc-dark'
           },
-          text: ctx.submitLabel + ' онлайн-билет'
+          text: ctx.submitLabel + (ctx.isCinema ? ' онлайн-билет' : ' доступ к просмотру' )
         }
       },
       {
