@@ -36,7 +36,7 @@ block('filters').def()( ( node, ctx ) => {
     },
     full_movie: {
       code: 'full_movie',
-      name: 'Только с видео',
+      name: 'Доступные для просмотра на сайте',
       skip: false,
 
     },
