@@ -5,7 +5,7 @@ block('page').mod('view', '404')(
   content()( () => {
     return {
       elem: 'content',
-      elemMods: { width: 'narrow' },
+      elemMods: { width: 'narrow', gap: 'bottom' },
       content: [
         {
           elem: 'title',
