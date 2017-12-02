@@ -528,7 +528,7 @@ module.exports = app => {
         .then( api => res.json( api ) )
         .catch( error => res.send( error ) );
 
-      req.session.apiRequests.push(axiosParams);
+      req.apiRequests.push(axiosParams);
 
 
     } else {
