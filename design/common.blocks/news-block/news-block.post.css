@@ -39,13 +39,21 @@ block(news-block) {
   }
 
   .elem(refer){
-    padding-left: 10px;
+    padding-left: 15px;
     position: relative;
     box-sizing: border-box;
+    @media (max-width: 412px){
+      margin-bottom: 8px;
+    }
 
     &::before{
       content: '';
       position: absolute;
+      width: 8px;
+      height: 8px;
+      background-color: #F3203B;
+      left: 0px;
+      top: 6px;
     }
   }
 

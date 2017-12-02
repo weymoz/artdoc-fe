@@ -1,3 +1,5 @@
+block('footer').js()(true)
+
 block('footer')(
   match( ( node, ctx ) => ctx.social ).elem( 'social' ).content()( ( node, ctx ) => {
     return Object.keys( ctx.social ).map( name => {
