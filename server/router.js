@@ -10,10 +10,8 @@ const request = options => {
   const onSuccess = response => {
     return response.data;
   };
-
   const onError = error => {
     console.error('Request Failed:', error.config);
-
     if (error.response) {
       console.error('Status:',  error.response.status);
       console.error('Data:',    error.response.data);
@@ -21,9 +19,13 @@ const request = options => {
     } else {
       console.error('Error Message:', error.message);
     }
-
     return Promise.reject(error.response || error.message);
   };
+
+  var source = axios.CancelToken.source();
+
+  options.cancelToken = source.token;
+  options.cancelSource = source;
 
   return client(options)
     .then(onSuccess)
@@ -37,7 +39,7 @@ const request = options => {
 //  return !!isMobile;
 //};
 
-module.exports = function( app ) {
+module.exports = app => {
 
   // Expand
   let global = config.site;
@@ -110,7 +112,8 @@ module.exports = function( app ) {
     ]).then( (response) => {
       let data = Object.assign({}, global, { api: response[0].items }, { poster: response[ 1 ] }, { news: response[ 2 ].items } );
       data.page = 'index';
-      // data.bundle = isCallerMobile( req ) ? 'touch' : 'desktop';
+      data.adaptive = true;
+      //data.bundle = isCallerMobile( req ) ? 'touch' : 'desktop';
       render( req, res, data );
     })
   });
@@ -119,13 +122,6 @@ module.exports = function( app ) {
   app.get( '/about', function(req, res) {
     let data = Object.assign({}, global);
     data.page = 'about';
-    render( req, res, data );
-  });
-
-  // Terms
-  app.get( '/terms', function(req, res) {
-    let data = Object.assign({}, global);
-    data.page = 'terms';
     render( req, res, data );
   });
 
@@ -355,8 +351,8 @@ module.exports = function( app ) {
           data.title = 'При оплате произошла ошибка';
 
         } else {
-          data.page = 'thanks';
-          data.title = 'Билет успешно оплачен';
+        data.page = 'thanks';
+        data.title = 'Билет успешно оплачен';
 
         }
 
@@ -405,17 +401,17 @@ module.exports = function( app ) {
         } );
 
     } else {
-      request( { url: '/ondemand/release/?movie_code=' + req.params.name } )
-        .then( response => {
-          data.api = response;
+    request( { url: '/ondemand/release/?movie_code=' + req.params.name } )
+      .then( response => {
+        data.api = response;
 
           if ( !data.api.error ) {
-            data.page = 'play';
+        data.page = 'play';
             data.title = 'Просмотр фильма';
             render( req, res, data );
-          }
+        }
 
-        } )
+      } )
         .catch(() => res.send('error') );
     }
 
@@ -465,13 +461,13 @@ module.exports = function( app ) {
     }
 
     client.post( '/cinema/booking/booking/?promo=' + promo_code, {
-      CinemaTicketModel: { email: req.body.email },
-      session_id: req.params.session_id,
+        CinemaTicketModel: { email: req.body.email },
+        session_id: req.params.session_id,
       promo: promo_code
     } ).then( api => {
         if ( api.data.payment_url ) {
           request( { url: api.data.payment_url } )
-            .then( response => {
+          .then( response => {
               res.send( JSON.stringify( response ) );
             } )
             .catch(() => res.send('error') );
@@ -525,17 +521,16 @@ module.exports = function( app ) {
 
   app.get( '/api/search', ( req, res ) => {
     if ( req.query.q ) {
-      let data = Object.assign({}, global);
-      request( { url: '/search/search/?per-page=20&q=' + encodeURIComponent( req.query.q ) } )
-        .then( response => {
-          data.api = response;
 
-          if ( !data.api.error ) {
-            res.send( JSON.stringify( data ) )
-          }
+      let axiosParams = { url: '/search/search/?per-page=20&q=' + encodeURIComponent( req.query.q ) };
 
-        } )
-        .catch(() => res.send('error') );
+      request( axiosParams )
+        .then( api => res.json( api ) )
+        .catch( error => res.send( error ) );
+
+      req.apiRequests.push(axiosParams);
+      console.log(axiosParams);
+
     } else {
       res.send( JSON.stringify( { api: { error: 'Empty data' } } ) )
     }
@@ -568,4 +563,16 @@ module.exports = function( app ) {
       .catch( () => res.send('error') )
   } )
 
+  /*
+   * Misc.
+   *
+   ****************************/
+
+  app.get('*', (req, res) => {
+    let data = Object.assign({}, global);
+    data.page = 'index';
+    data.view = '404';
+    res.status( 404 );
+    return render(req, res, data);
+  });
 };

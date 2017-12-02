@@ -9,6 +9,7 @@ block('root').replace()(function() {
 
   return {
     block: 'page',
+
     title: data.title || '#b_',
     favicon: '/favicon.ico',
     styles: [
@@ -62,7 +63,8 @@ block('root').replace()(function() {
       }
     ],
     mods: {
-      view: data.view
+      view: data.view,
+      adaptive: data.adaptive
     }
   };
 });
