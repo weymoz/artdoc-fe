@@ -159,6 +159,7 @@ block('filters').def()( ( node, ctx ) => {
           mix: { block: 'font', mods: { family: 'helvetica-neue-bold', loaded: true } },
           mods: {
             checked: typeof userFilter[element.code] != 'undefined' ? true : false,
+            size: 's',
             theme: 'artdoc-dark'
           },
           text: filtersMap[element.code].name,
