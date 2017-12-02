@@ -61,7 +61,7 @@ block(filters) {
   }
 
   .elem(form) {
-    line-height: 48px;
+    /*line-height: 48px;*/
     vertical-align: middle;
     overflow: hidden;
     max-height: 0;
@@ -70,7 +70,7 @@ block(filters) {
 
     .mod(show) {
       padding-top: 20px;
-      padding-bottom: 20px;
+      padding-bottom: 10px;
       max-height: 500px;
     }
   }
@@ -78,7 +78,9 @@ block(filters) {
   .elem(item) {
     display: inline-block;
     margin-right: 32px;
+    margin-bottom: 10px;
     vertical-align: middle;
+    padding-bottom: 8px;
 
     & + & {
       margin-top: 0;
@@ -181,7 +183,6 @@ block(select) {
 
   .mod(type suggest) {
     overflow: hidden;
-    padding-bottom: 8px;
 
     &.mod(opened):after {
       content: '';
