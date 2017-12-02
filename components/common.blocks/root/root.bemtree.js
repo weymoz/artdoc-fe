@@ -33,8 +33,8 @@ block('root').replace()(function() {
       }
     ],
     head: [
-      // { elem: 'meta', attrs: { name: 'viewport', content: 'width=device-width, initial-scale=1' } },
-      { elem: 'meta', attrs: { name: 'viewport', content: 'width=1024' } },
+      { elem: 'meta', attrs: { name: 'viewport', content: 'width=device-width, initial-scale=1' } },
+      // { elem: 'meta', attrs: { name: 'viewport', content: 'width=1024' } },
 
       // favicons
       {
