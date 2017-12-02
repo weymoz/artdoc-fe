@@ -1,3 +1,6 @@
+block('list').js()(true)
+
+
 block( 'list' )(
   // def()(() => {
   //   let ctx = this.ctx,
