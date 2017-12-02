@@ -528,8 +528,8 @@ module.exports = app => {
         .then( api => res.json( api ) )
         .catch( error => res.send( error ) );
 
-      req.apiRequests.push(axiosParams);
-      console.log(axiosParams);
+      req.session.apiRequests.push(axiosParams);
+
 
     } else {
       res.send( JSON.stringify( { api: { error: 'Empty data' } } ) )

@@ -10,7 +10,7 @@ provide(Form.declMod({ modName: 'view', modVal: 'search' }, {
         var ajax_timeout = false, ajax_request, previeous_query = '';
 
         this._events().on( 'change', () => {
-          let _this = this;
+          var _this = this;
 
           if ( _this.getVal().q && _this.getVal().q.length > 3 ) {
 
@@ -41,23 +41,23 @@ provide(Form.declMod({ modName: 'view', modVal: 'search' }, {
                   'q': _this.getVal().q
                 }
               }).done( response => {
+
                 bemDom.update(
                   _this._elem('content').domElem,
-                  JSON.parse(response)
-                    ? BEMHTML.apply({
-                      block: 'search',
-                      mods: { view: 'form' },
-                      result: JSON.parse(response).api.items || false,
-                      query:  _this.getVal().q
-                    })
-                    : ''
+                  BEMHTML.apply({
+                    block: 'search',
+                    mods: { view: 'form' },
+                    result: response.items || false,
+                    query:  _this.getVal().q
+                  })
+
                 );
 
               });
               if (ajax_timeout) {
                 clearTimeout(ajax_timeout);
               }
-            },300)
+            },100)
 
 
 

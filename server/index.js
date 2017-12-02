@@ -48,9 +48,11 @@ app
   .use(passport.initialize())
   .use(passport.session())
   .use(function (req, res, next) {
-    req.apiRequests = [];
+    if (typeof req.session.apiRequests == 'undefined') {
+      req.session.apiRequests = []
+    }
     req.on('close', function () {
-      req.apiRequests.map(function (request) {
+      req.session.apiRequests.map(function (request) {
         request.cancelSource.cancel();
         return null;
       })
