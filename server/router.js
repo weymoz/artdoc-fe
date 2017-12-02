@@ -375,18 +375,19 @@ module.exports = app => {
         } );
 
     } else {
-    request( { url: '/ondemand/release/?movie_code=' + req.params.name } )
-      .then( response => {
-        data.api = response;
+      request({url: '/ondemand/release/?movie_code=' + req.params.name})
+        .then(response => {
+          data.api = response;
 
-        if ( !data.api.error ) {
-          data.page = 'play';
-          data.title = 'Просмотр фильма';
-          return render( req, res, data );
-        }
+          if (!data.api.error) {
+            data.page = 'play';
+            data.title = 'Просмотр фильма';
+            return render(req, res, data);
+          }
 
-      } )
-      .catch( error => res.send(error) );
+        })
+        .catch(error => res.send(error));
+    }
   });
 
   // Search
