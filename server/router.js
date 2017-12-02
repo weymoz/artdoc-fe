@@ -381,9 +381,11 @@ module.exports = app => {
         } );
 
     } else {
-      request({url: '/ondemand/release/?movie_code=' + req.params.name})
+      request({url: '/ondemand/release/?movie_code=' + encodeURIComponent(req.params.name)})
         .then(response => {
           data.api = response;
+
+          console.log(data.api);
 
           if (!data.api.error) {
             data.page = 'play';
