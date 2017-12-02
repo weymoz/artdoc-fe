@@ -27,6 +27,7 @@ block('footer')(
     return [
       {
         elem: 'content',
+        elemMods: { section: 'main' },
         mix: { block: 'page', elem: 'content' },
         content: [
           {
@@ -65,8 +66,8 @@ block('footer')(
                       block: 'link',
                       mods: { view: 'text' },
                       mix: { block: node.block, elem: 'nav-item' },
-                      url: '/about',
-                      content: 'О проекте'
+                      url: '/movie',
+                      content: 'Фильмы'
                     }
                   },
                   {
@@ -95,8 +96,8 @@ block('footer')(
                       block: 'link',
                       mods: { view: 'text' },
                       mix: { block: node.block, elem: 'nav-item' },
-                      url: '/movie',
-                      content: 'Все фильмы'
+                      url: '/about',
+                      content: 'О проекте'
                     }
                   },
                   // {
@@ -135,7 +136,7 @@ block('footer')(
                       mods: { view: 'text' },
                       mix: { block: node.block, elem: 'nav-item' },
                       url: '/club',
-                      content: 'Клуб artdoc.media'
+                      content: 'Клуб Артдок'
                     }
                   },
                   { elem: 'item',
@@ -143,7 +144,7 @@ block('footer')(
                       block: 'link',
                       mods: { view: 'text' },
                       mix: { block: node.block, elem: 'nav-item' },
-                      url: '/club#partners',
+                      url: '/club#festivals',
                       content: 'Аккредитованные фестивали'
                     }
                   },
@@ -194,6 +195,60 @@ block('footer')(
                   { elem: 'item', mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } }, content: 'media@artdocfest.com' },
                   { elem: 'item', mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } }, content: 'LV 1011 Latvia Riga Stabu 19-2' }
                 ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        elem: 'content',
+        elemMods: { section: 'logo' },
+        mix: { block: 'page', elem: 'content' },
+        content: [
+          {
+            block: 'logo',
+            mix: { block: 'footer', elem: 'logo' },
+            url: '//artdocfest.com'
+          }
+        ]
+      },
+      {
+        elem: 'content',
+        elemMods: { section: 'misc' },
+        mix: { block: 'page', elem: 'content' },
+        content: [
+          {
+            block: 'layout',
+            content: [
+              {
+                elem: 'content',
+                content: [
+                  {
+                    block: 'list',
+                    mods: {
+                      type: 'inline',
+                      delimiter: 'vertical',
+                      size: 's'
+                    },
+                    mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } },
+                    content: [
+                      { elem: 'item', content: '© 2017 Artdoc Fest & Media' },
+                      // { elem: 'item', content: 'Пользовательское соглашение' },
+                      // { elem: 'item', content: 'Политика конфидециальности' }
+                    ]
+                  }
+                ]
+              },
+              {
+                elem: 'aside',
+                content: {
+                  block: 'paragraph',
+                  mods: {
+                    align: 'right',
+                    size: 's'
+                  },
+                  content: 'By 🤗 with 💖'
+                }
               }
             ]
           }

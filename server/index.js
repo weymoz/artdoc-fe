@@ -1,9 +1,6 @@
-Object.assign || (Object.assign = require('object-assign'));
-
 const fs = require('fs'),
       path = require('path'),
-      express = require('express'),
-      app = express(),
+      app = require('express')(),
       bodyParser = require('body-parser'),
       favicon = require('serve-favicon'),
       morgan = require('morgan'),
@@ -13,23 +10,19 @@ const fs = require('fs'),
       slashes = require('connect-slashes'),
       passport = require('passport'),
       LocalStrategy = require('passport-local').Strategy,
-      axios = require('axios'),
       // csrf = require('csurf'),
       compression = require('compression'),
 
       config = require('./config'),
       staticFolder = config.staticFolder,
-      client = axios.create( config.host ),
-
-      Render = require('./render'),
-      render = Render.render,
-      dropCache = Render.dropCache, // eslint-disable-line no-unused-vars
-
       port = config.defaultPort,
       isSocket = isNaN(port),
-      isDev = process.env.NODE_ENV === 'development';
+      isDev = process.env.NODE_ENV === 'development',
 
-require('debug-http')();
+      axios = require('axios'),
+      client = axios.create( config.host );
+
+!isDev || require('debug-http')();
 
 app
   .disable('x-powered-by')
@@ -37,7 +30,10 @@ app
   .use(compression())
   .use(favicon(path.join(staticFolder, 'favicon.ico')))
   .use(serveStatic(staticFolder))
-  .use(morgan('tiny'))
+
+!isDev || app.use(morgan('tiny'))
+
+app
   .use(cookieParser())
   .use(bodyParser.urlencoded({ extended: true }))
   .use(expressSession({
@@ -48,7 +44,9 @@ app
   .use(passport.initialize())
   .use(passport.session())
   .use(function (req, res, next) {
-    req.apiRequests = [];
+
+    req.apiRequests = []
+
     req.on('close', function () {
       req.apiRequests.map(function (request) {
         request.cancelSource.cancel();
@@ -62,10 +60,10 @@ app
 // NOTE: conflicts with livereload
 isDev || app.use(slashes());
 
-passport.use(new LocalStrategy({
+passport.use( new LocalStrategy( {
     usernameField: 'username',
     passwordField: 'password'
-  }, function( username, password, done ) {
+  }, ( username, password, done ) => {
     client.post( '/auth/auth/login/', { username: username, password: password } )
       .then( api => {
         return api.data.error
@@ -78,34 +76,17 @@ passport.use(new LocalStrategy({
       .catch( () => console.log('Passport error') )
 }));
 
-passport.serializeUser(function(user, done) {
-  done(null, JSON.stringify(user));
+passport.serializeUser( ( user, done ) => {
+  done( null, JSON.stringify( user ) );
 });
 
-passport.deserializeUser(function(user, done) {
-  done(null, JSON.parse(user));
+passport.deserializeUser( ( user, done ) => {
+  done( null, JSON.parse( user ) );
 });
 
-require('./router')(app);
+require( './router' )( app );
 
-app.get('/ping/', function(req, res) {
-  res.send('ok');
-});
-
-isDev && require('./rebuild')(app);
-
-app.get('*', function(req, res) {
-  res.status(404);
-  return render(req, res, { view: '404', page: 'index' });
-});
-
-if (isDev) {
-  app.get('/error/', function() {
-    throw new Error('Uncaught exception from /error');
-  });
-
-  app.use(require('errorhandler')());
-}
+isDev && require( './rebuild' )( app );
 
 isSocket && fs.existsSync(port) && fs.unlinkSync(port);
 

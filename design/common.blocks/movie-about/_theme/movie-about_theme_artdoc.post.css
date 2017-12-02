@@ -6,10 +6,13 @@
 
 block(movie-about).mod(theme artdoc) {
   lost-center: 100%;
-  padding-top: 80px;
 
   .elem(award) {
     lost-column: 1/4 4 28px;
+  }
+
+  .elem(award-title) {
+    margin-bottom: 12px;
   }
 
   .elem(award-icon) {
@@ -47,6 +50,10 @@ block(movie-about).mod(theme artdoc) {
 
   .elem(item) {
     padding-bottom: 32px;
+
+    &.mod(section authors) {
+      padding-bottom: 16px;
+    }
   }
 
   .elem(section) {

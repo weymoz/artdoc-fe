@@ -86,7 +86,8 @@ block('card-ticket').mod('view', 'order').content()( node => {
             {
               block: 'form',
               mods: {
-                view: 'order'
+                view: 'order',
+                theme: 'artdoc-dark'
               },
               session_id: isCinema ? node._id : null,
               movie_id: isCinema ? null : node._price.object_id,
@@ -96,12 +97,6 @@ block('card-ticket').mod('view', 'order').content()( node => {
           ]
         }
       ]
-    },
-    { tag: 'br' },
-    { tag: 'br' },
-    { tag: 'br' },
-    { tag: 'br' },
-    { tag: 'br' },
-    { tag: 'br' }
+    }
   ]
 });

@@ -34,9 +34,7 @@ provide(Form.declMod({ modName: 'view', modVal: 'order' }, {
     }
 
     $.ajax(apiSettings).done(function (response) {
-
-      const data = JSON.parse( response );
-
+      const data = response;
       if ( data.clientToken ) {
         loader('https://js.braintreegateway.com/web/dropin/1.4.0/js/dropin.min.js',
           function() {
@@ -100,7 +98,6 @@ provide(Form.declMod({ modName: 'view', modVal: 'order' }, {
                     };
 
                     $.ajax( apiSettings ).done( function ( apiResponse ) {
-                      apiResponse = JSON.parse( apiResponse );
                       if ( apiResponse.error ) {
                         bemDom.append(
                           paymentFormElem.domElem,

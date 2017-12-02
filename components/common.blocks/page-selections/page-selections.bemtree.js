@@ -3,6 +3,7 @@ block('page-selections').replace()(function() {
   return [
     {
       elem: 'content',
+      elemMods: { gap: 'bottom' },
       content: [
         {
           block: 'breadcrumbs',
@@ -10,11 +11,11 @@ block('page-selections').replace()(function() {
         },
         {
           elem: 'title',
-          elemMods: { view: 'condensed-bold', size: 'xl' },
+          elemMods: { view: 'condensed-bold', size: 'xl', gap: 'top' },
           mix: { block: 'heading', mods: { caps: true, align: 'center', size: 'l' } },
           content: 'Авторские подборки'
         },
-        selections.map( item => {
+        selections && selections.map( item => {
           return {
             block: 'card-selection',
             mods: {
@@ -25,18 +26,13 @@ block('page-selections').replace()(function() {
         } )
       ]
     },
+    // {
+    //   block: 'pagination',
+    //   params: this.data.pagination
+    // },
     {
-      block: 'pagination',
-      params: this.data.pagination
-    },
-    {
-      block: 'section',
-      content: [
-      {
-        block: 'club-footer',
-        mix: { block: 'page', elem: 'club' }
-      }
-      ]
+      block: 'club-footer',
+      mix: { block: 'page', elem: 'club' }
     }
   ];
 });

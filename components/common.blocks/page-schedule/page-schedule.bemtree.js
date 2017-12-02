@@ -32,18 +32,21 @@ block('page-schedule').replace()(function() {
 
   });
 
-  const today = new Date().getDate();
-  const promoBlock = schedule[0].schedules.filter( movie => ( new Date ( movie.date * 1000 ).getDate() === today ) )
+  const today = new Date().toDateString();
+  const promoBlock = schedule[0].schedules
+    .filter( movie => new Date ( movie.date * 1000 ).toDateString() === today )
+    .length
     ? {
-      block: 'card-movie',
-      mods: { view: 'promo' },
-      movie: schedule.shift()
-    }
+        block: 'card-movie',
+        mods: { view: 'promo' },
+        movie: schedule.shift()
+      }
     : '';
 
   return [
     {
       elem: 'content',
+      elemMods: { gap: 'bottom' },
       content: [
         {
           block: 'breadcrumbs',
@@ -51,7 +54,7 @@ block('page-schedule').replace()(function() {
         },
         {
           elem: 'title',
-          elemMods: { view: 'condensed-bold', size: 'xl' },
+          elemMods: { view: 'condensed-bold', size: 'xl', gap: 'top' },
           mix: { block: 'heading', mods: { caps: true, align: 'center', size: 'l' } },
           content: 'Онлайн-киносеансы'
         },
@@ -62,7 +65,7 @@ block('page-schedule').replace()(function() {
             mods: { view: 'schedule' },
             movie: item
           }
-        } )
+        } ),
       ]
     },
     { block: 'club-footer' }

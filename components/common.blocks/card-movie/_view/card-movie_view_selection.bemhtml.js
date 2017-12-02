@@ -16,8 +16,13 @@ block('card-movie').mod('view', 'selection')(
         elemMods: { type: 'link' },
         content: [
           { elem: 'image' },
+        ]
+      },
+      {
+        elem: 'content',
+        content: [
           { elem: 'director', mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } } },
-          { elem: 'name', elemMods: { size: 'xs' } }
+          { elem: 'name', elemMods: { size: 'xs', link: true } }
         ]
       },
       {

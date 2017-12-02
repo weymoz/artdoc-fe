@@ -5,7 +5,7 @@ block('page-thanks')(
     return [
       {
         elem: 'content',
-        elemMods: { width: 'narrow' },
+        elemMods: { width: 'narrow', gap: 'bottom' },
         content: [
           {
             elem: 'title',
@@ -74,7 +74,7 @@ block('page-thanks')(
     return [
       {
         elem: 'content',
-        elemMods: { width: 'narrow' },
+        elemMods: { width: 'narrow', gap: 'bottom' },
         content: [
           {
             elem: 'header',
@@ -92,13 +92,7 @@ block('page-thanks')(
               lead: true
             },
             content: 'Активация прошла успешно. На вашу почту выслано письмо со ссылкой на страницу просмотра фильма. Приятного просмотра.'
-          },
-          { tag: 'br' },
-          { tag: 'br' },
-          { tag: 'br' },
-          { tag: 'br' },
-          { tag: 'br' },
-          { tag: 'br' }
+          }
         ]
       },
       {

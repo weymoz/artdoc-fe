@@ -22,8 +22,8 @@ block(heading) {
   .mod(has-dot):after {
     content: '';
     display: inline-block;
-    width: 0.2em;
-    height: 0.2em;
+    width: 0.25em;
+    height: 0.25em;
     background-color: #f3203b;
     margin-left: 0.1em;
     margin-right: -0.2em; /* prevent wrap to next line */

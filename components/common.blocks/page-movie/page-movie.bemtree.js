@@ -2,16 +2,6 @@ block('page-movie').replace()( node => {
 
   const _movie = node.data.api;
 
-  // Add promo
-  const promo = node.data.promo;
-  _movie.sessions.forEach( session => {
-    if ( promo.meduza && promo.meduza.includes( session.session.id ) ) {
-      session.session.promo = 'meduza'
-    } else {
-      session.session.promo = null;
-    }
-  } );
-
   return [
     {
       elem: 'content',
@@ -40,12 +30,17 @@ block('page-movie').replace()( node => {
     } : '',
     {
       elem: 'content',
+      elemMods: { gap: _movie.schedules && _movie.schedules.length ? 'top' : false },
       content: {
         block: 'movie-about',
         movie: _movie
       }
     },
-    { elem: 'content', content: { block: 'rewards' } },
+    {
+      elem: 'content',
+      elemMods: { gap: 'bottom' },
+      content: { block: 'rewards' }
+    },
     { block: 'club-footer' }
   ];
 });

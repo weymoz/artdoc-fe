@@ -1,0 +1,41 @@
+{
+  "title": "Price",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "price": {
+      "type": "integer"
+    },
+    "currency": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "object_id": {
+      "type": "integer"
+    },
+    "status": {
+      "type": "integer"
+    },
+    "created_at": {
+      "type": "integer"
+    },
+    "updated_at": {
+      "type": "integer"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "price",
+    "currency",
+    "type",
+    "object_id",
+    "status",
+    "created_at",
+    "updated_at"
+  ]
+}

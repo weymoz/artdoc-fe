@@ -1,0 +1,12 @@
+block(radio) {
+  cursor: pointer;
+
+  @each $size, $fontSize in
+    (  xs,    s,    m,    l,   xl,  xxl),
+    (12px, 14px, 16px, 18px, 22px, 32px) {
+    .mod(size $size) {
+      font-size: $fontSize;
+    }
+  }  
+
+}

@@ -9,8 +9,7 @@ block('root').replace()(function() {
 
   return {
     block: 'page',
-
-    title: data.title || '#b_',
+    title: data.title || data.view || "Artdoc.Media" || data.page,
     favicon: '/favicon.ico',
     styles: [
       {
@@ -25,16 +24,14 @@ block('root').replace()(function() {
       },
       {
         elem: 'js',
-        url: '//cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js'
-      },
-      {
-        elem: 'js',
         url: '/assets/js/' + bundle + '/' + bundle + '.min.js'
       }
     ],
     head: [
-      { elem: 'meta', attrs: { name: 'viewport', content: 'width=device-width, initial-scale=1' } },
-      // { elem: 'meta', attrs: { name: 'viewport', content: 'width=1024' } },
+
+      data.apative
+      ?  { elem: 'meta', attrs: { name: 'viewport', content: 'width=device-width, initial-scale=1' } }
+      :  { elem: 'meta', attrs: { name: 'viewport', content: 'width=1024' } },
 
       // favicons
       {

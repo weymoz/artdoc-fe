@@ -1,11 +1,6 @@
 module.exports = {
   host: {
-    url: '',
     baseURL: process.env.API || 'http://artdoc.media:9999',
-    auth: {
-      username: 'artdocmedia',
-      password: 'dev'
-    }
   },
   promo: [
     {

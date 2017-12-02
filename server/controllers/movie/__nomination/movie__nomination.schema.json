@@ -1,0 +1,57 @@
+{
+  "title": "Nomination",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "fest_id": {
+      "type": "integer"
+    },
+    "winner": {
+      "type": "integer"
+    },
+    "row_data": {
+      "type": "string"
+    },
+    "status": {
+      "type": "integer"
+    },
+    "created_at": {
+      "type": "integer"
+    },
+    "updated_at": {
+      "type": "integer"
+    },
+    "stage": {
+      "type": "string"
+    },
+    "comment": {
+      "type": "string"
+    },
+    "nomination_id": {
+      "type": "string"
+    },
+    "lang_id": {
+      "type": "string"
+    },
+    "code": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "fest_id",
+    "winner",
+    "row_data",
+    "status",
+    "created_at",
+    "updated_at",
+    "stage",
+    "comment",
+    "nomination_id",
+    "lang_id",
+    "code"
+  ]
+}

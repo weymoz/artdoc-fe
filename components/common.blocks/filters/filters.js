@@ -11,8 +11,8 @@ provide(bemDom.declBlock(this.name, {
         this._menu = this.findParentBlock( Page )
           .findChildBlock( Header )
           .findChildBlock( { block: navMenu, modName: 'nav-menu', modVal: true } );
-        this._domEvents( this._elem('title') ).on('click', this._openMenu );        
-        
+        this._domEvents( this._elem('title') ).on('click', this._openMenu );
+
         this._toggle = this._elem('toggle').findMixedBlock( Button );
         this._toggle.target = this._elem('form');
         this._domEvents( this._toggle ).on('click', this._onToggle );
@@ -30,6 +30,8 @@ provide(bemDom.declBlock(this.name, {
         this._form.initialVal = this._form.getVal();
         this._form.resultTo = this._elem('content');
         this._form.filtersCount = this._elem('count');
+        this._form.reset = this._elem('reset');
+        this._domEvents( 'reset' ).on('click', this._resetForm, this );
         this._form.resultCount = this._elem('result-count');
         this._form.pagination = this._elem('footer');
         this._form.history = new History();
@@ -40,6 +42,22 @@ provide(bemDom.declBlock(this.name, {
 
   _openMenu: function () {
     this._menu.toggleMod('opened');
+  },
+
+  _resetForm: function () {
+    // full_movie: "",
+    //   free: "",
+
+    this._form.getFields().forEach(function(field) {
+      if (field.hasMod('type', 'checkbox')) {
+        field.getControl().setMod('checked', false);
+      } else if (field.hasMod('type', 'select')) {
+        field.setVal([]);
+      }
+
+
+    });
+
   },
 
   _onToggle: function () {
@@ -83,6 +101,13 @@ provide(bemDom.declBlock(this.name, {
         : ''
     );
 
+    bemDom.update(
+      this._form.reset.domElem,
+      selectedCount
+        ? 'Сбросить'
+        : ''
+    );
+
     let hash = {};
     selectedFields.forEach( filter => {
       hash[filter] = Array.isArray( formData[ filter ] ) ? formData[ filter ].join(',') : formData[ filter ];
@@ -112,16 +137,14 @@ provide(bemDom.declBlock(this.name, {
         sort: sort
       },
     }).done( response => {
-      const data = JSON.parse( response )
-
       bemDom.update(
         this._form.resultCount.domElem,
-        data.meta.total_count
+        response.meta.total_count
       );
 
       bemDom.update(
         this._form.resultTo.domElem,
-        BEMHTML.apply( data.items.map( movie => {
+        BEMHTML.apply( response.items.map( movie => {
           return {
             block: 'card-movie',
             mods: { view: view, size: 'm', theme: 'artdoc' },
@@ -133,7 +156,7 @@ provide(bemDom.declBlock(this.name, {
 
       this._form.resultTo.setMod('loading', false);
 
-      let pagination = data.meta;
+      let pagination = response.meta;
       let req_url = new URL(window.location.href);
       pagination.params = req_url.searchParams;
 

@@ -1,0 +1,17 @@
+block(modal).mod(theme artdoc-dark) {
+  background-color: rgba(50, 50, 50, 0.2);
+
+  .elem(header) {
+    background-color: #eee;
+  }
+
+  .elem(content) {
+    background-color: #fff;
+  }
+
+  .mod(view search) {
+    .elem(content) {
+      background-color: transparent;
+    }
+  }
+}

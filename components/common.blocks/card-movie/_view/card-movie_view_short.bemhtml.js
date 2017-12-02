@@ -6,7 +6,7 @@ block('card-movie').mod('view', 'short')(
     return applyNext( { 'ctx.movie.cover.width': 130 } );
   }),
 
-  js()( ( node, ctx ) => {
+  addJs()( ( node, ctx ) => {
     return {
       movie: ctx.movie
     }

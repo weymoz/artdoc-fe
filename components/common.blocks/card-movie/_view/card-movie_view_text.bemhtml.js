@@ -7,7 +7,9 @@ block('card-movie').mod('view', 'text')(
   }),
 
   elem('orig-name')(
-    mix()({}),
+    def()( () => {
+      return applyNext();
+    } ),
     appendContent()( () => {
       return {
         html: ',&nbsp;'

@@ -42,9 +42,14 @@ block('club-footer')(
                 elem: 'title',
                 mix: [
                   { block: 'heading', mods: { caps: true, size: 'xs' } },
-                  { block: 'font', mods: { family: 'helvetica-neue-condensed-bold', loaded: true } }
+                  { block: 'font', mods: { family: 'helvetica-neue-condensed-bold', loaded: true } },
                 ],
-                content: 'Партнёрские фестивали'
+                content: {
+                  block: 'link',
+                  mods: { view: 'text' },
+                  url: '/club#festivals',
+                  content: 'Партнёрские фестивали'
+                }
               },
               { elem: 'partners' }
             ]
@@ -56,9 +61,14 @@ block('club-footer')(
                 elem: 'title',
                 mix: [
                   { block: 'heading', mods: { caps: true, size: 'xs' } },
-                  { block: 'font', mods: { family: 'helvetica-neue-condensed-bold', loaded: true } }
+                  { block: 'font', mods: { family: 'helvetica-neue-condensed-bold', loaded: true } },
                 ],
-                content: 'Аккредитованные критики'
+                content: {
+                  block: 'link',
+                  mods: { view: 'text' },
+                  url: '/club#performers',
+                  content: 'Аккредитованные критики'
+                }
               },
               { elem: 'party' }
             ]
@@ -76,7 +86,7 @@ block('club-footer')(
                   ],
                   content: 'Вход для участников'
                 },
-                { block: 'form', mods: { view: 'auth' }, mix: { block: 'club-footer', elem: 'club-login' } }
+                { block: 'form', mods: { view: 'auth', theme: 'artdoc-dark' }, mix: { block: 'club-footer', elem: 'club-login' } },
               ]
           }
           ]

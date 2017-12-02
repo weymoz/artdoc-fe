@@ -1,5 +1,3 @@
-// block('page').appendContent()()
-
 block('form').mod('view', 'order')(
   def()(function() {
     return applyNext({
@@ -12,7 +10,7 @@ block('form').mod('view', 'order')(
 
   addMods()({
     'has-validation': true,
-    message: 'popup',
+    message: 'popup'
   }),
 
   addJs()(function() {
@@ -63,21 +61,15 @@ block('form').mod('view', 'order')(
               type: 'input',
               required: true,
               validate: 'email',
-              message: 'popup',
+              message: 'text',
             },
-            directions: ['right-top'],
+            directions: ['bottom-left'],
             js: {
-              required: { message: 'Это поле обязательно!' }
+              required: { message: 'Адрес эл. почты обязателен' },
+              email: { message: 'Это не похоже на адрес эл. почты' }
             },
             name: 'email',
             content: [
-              {
-                elem: 'label',
-                content: {
-                  block: 'label',
-                  content: 'Эл. почта'
-                }
-              },
               {
                 elem: 'control',
                 content: {
@@ -85,7 +77,8 @@ block('form').mod('view', 'order')(
                   mods: {
                     width: 'available',
                     size: 'xl'
-                  }
+                  },
+                  placeholder: 'Эл. почта'
                 }
               }
             ]
@@ -96,23 +89,24 @@ block('form').mod('view', 'order')(
             mods: {
               type: 'checkbox',
               required: true,
-              message: 'popup',
+              message: 'text',
             },
             js: {
-              required: { message: 'Это поле обязательно!' }
+              required: { message: 'Вы должны принять условия' }
             },
-            directions: ['right-top'],
+            directions: ['bottom-left'],
             name: 'term',
             content: [
               {
                 block: 'checkbox',
-                mods: { size: 'l' },
+                mods: { size: 's' },
                 text: [
                   'Я принимаю ',
                   {
                     block: 'link',
                     url: '/terms',
                     attrs: { target: '_blank'},
+                    mods: { size: 's' },
                     content: 'условия покупки и использования билета'
                   }
                 ],

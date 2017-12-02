@@ -1,18 +1,7 @@
-/**
- * @module modal
- */
+modules.define('modal', ['i-bem-dom'], function(provide, bemDom) {
 
-modules.define(
-    'modal',
-    function(provide, Modal) {
-
-/**
- * @exports
- * @class modal
- * @bem
- */
-provide(Modal.declMod({ modName : 'theme', modVal : 'artdoc' }, /** @lends modal.prototype */{
-  onSetMod : {
+provide(bemDom.declBlock(this.name, {
+  onSetMod: {
     'visible' : {
       'true' : function() {
         this

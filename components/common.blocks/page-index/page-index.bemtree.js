@@ -1,5 +1,4 @@
 block('page-index').replace()( node => {
-
   // Функция для слайдера
   let slider = [];
   const linkPerSlide = 20;
@@ -8,6 +7,7 @@ block('page-index').replace()( node => {
       name: 'Все фильмы',
       id: null,
       code: 'all',
+      primary: true
     },
     ...node.data.category
   ];
@@ -21,7 +21,7 @@ block('page-index').replace()( node => {
       slider[ slidePage ][ linkCount ] = {
         block: 'link',
         mods: { view: 'tag' },
-        mix: { block: 'slider', elem: 'link' },
+        mix: { block: 'slider', elem: 'link', elemMods: { primary: !!currentLink.primary } },
         url: currentLink.id ? '/movie/category-' + currentLink.code : '/movie',
         content: currentLink.name
       };
@@ -98,7 +98,7 @@ block('page-index').replace()( node => {
         },
         {
           elem: 'title',
-          elemMods: { view: 'condensed-bold', size: 'xl' },
+          elemMods: { view: 'condensed-bold', size: 'xl', gap: 'both' },
           mix: { block: 'heading', mods: { caps: true, align: 'center', size: 'l' } },
           content: 'Новости и события'
         },
@@ -109,13 +109,13 @@ block('page-index').replace()( node => {
         },
         {
           elem: 'title',
-          elemMods: { view: 'condensed-bold', size: 'xl' },
+          elemMods: { view: 'condensed-bold', size: 'xl', gap: 'both' },
           mix: { block: 'heading', mods: { caps: true, align: 'center', size: 'l' } },
           content: 'Авторские подборки'
         },
         {
           elem: 'collections',
-          content: node.data.api.slice(0, 3).map( item => {
+          content: node.data.api && node.data.api.map( item => {
             return {
               block: 'card-selection',
               mods: {
@@ -127,31 +127,38 @@ block('page-index').replace()( node => {
           } )
         },
         {
-          block: 'button',
-          mix: { block: 'page', elem: 'adaptive-link-btn' },
-          mods: {
-            type: 'link',
-            size: 'xxl'
-          },
-          text: 'Смотреть вce подборки',
-          url: '/selection'
-        },
+          block: 'paragraph',
+          mods: { align: 'center' },
+          content: {
+            block: 'button',
+            mods: {
+              type: 'link',
+              size: 'xxl'
+            },
+            text: 'Смотреть все подборки',
+            url: '/selection'
+          }
+        }
       ]
     },
     {
       elem: 'content',
-      elemMods: { width: 'tiny' },
+      mix: { elem: 'about' },
+      elemMods: { width: 'tiny', gap: 'bottom' },
       content: [
         {
           elem: 'title',
-          elemMods: { view: 'condensed-bold', size: 'xl' },
+          elemMods: { view: 'condensed-bold', size: 'xl', gap: 'both' },
           mix: { block: 'heading', mods: { caps: true, align: 'center', size: 'l' } },
           content: 'О проекте'
         },
         {
           block: 'paragraph',
           mods: { align: 'center' },
-          content: 'Артдокмедиа — это архив документального кино, независимого и актуального контента, снятого в основном на территории бывшего СССР с начала 2000-х годов. Наш киноархив устроен по классическому принципу синематеки: доступная база с информацией о фильмах, возможности просмотров, ретроспективы, тематические циклы. Большая часть нашей коллекции состоит из фильмов, снятых без государственного участия, а, значит, не находящихся в каких-либо архивах и фондовых хранилищах. Немало студий, производивших эти фильмы, на сегодняшний день прекратили свое существование. И для многих фильмов наш архив является единственным местом, сохраняющим эти картины для зрителя и для истории.'
+          content: [
+            'АртдокМедиа — это архив документального кино, снятого в странах бывшего СССР с начала 2000-х годов. Каталог устроен по классическому принципу синематеки: база с информацией о фильмах, фотографиями, трейлерами, доступу к просмотру, подборками по темам и ретроспективами. ',
+            'Большая часть нашей коллекции состоит из фильмов, которые сняты без государственного участия, а значит не находятся в архивах и фондовых хранилищах. Немало студий, производивших эти фильмы, прекратили своё существование. Поэтому для многих фильмов наш сайт является единственным местом, сохраняющим эти картины для зрителя и для истории.'
+          ]
         },
         {
           block: 'paragraph',

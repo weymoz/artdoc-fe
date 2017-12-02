@@ -47,8 +47,8 @@ block('header')(
       },
       {
         block: 'modal',
-        mods: { size: 'xxl', view: 'search' },
-        content: { block: 'form', mods: { view: 'search' } }
+        mods: { view: 'search', size: 'xxl', theme: 'artdoc-dark' },
+        content: { block: 'form', mods: { view: 'search' }, zIndexGroupLevel: 1 }
       },
       // {
       //   block: 'dropdown',

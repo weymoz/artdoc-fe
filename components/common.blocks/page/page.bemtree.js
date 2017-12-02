@@ -2,7 +2,10 @@ block('page')(
   def()( node => {
     return applyNext( { 'ctx.user': node.data.user } )
   } ),
-  content()( node => {
+  match( node => node.data && node.data.view ).content()( node => {
+    return { block: node.data.view }
+  } ),
+  prependContent()( node => {
     return [
       { // Google Tag Manager
         tag: 'noscript',
@@ -12,15 +15,16 @@ block('page')(
       },
       {
         block: 'header',
+        mods: { theme: 'artdoc' },
         mix: { block: node.block, elem: 'header' }
-      },
-      {
-        block: node.data.view
-      },
-      {
-        block: 'footer',
-        mix: { block: node.block, elem: 'footer' }
       }
-    ];
+    ]
+  } ),
+  appendContent()( node => {
+    return {
+      block: 'footer',
+      mods: { theme: 'artdoc' },
+      mix: { block: node.block, elem: 'footer' }
+    }
   } )
 )

@@ -1,6 +1,4 @@
 block('page-order')(
-
-
   replace()( node => {
 
     let ticket = node.data.api;
@@ -21,7 +19,7 @@ block('page-order')(
     return [
       {
         elem: 'content',
-        elemMods: { width: 'narrow' },
+        elemMods: { width: 'narrow', gap: 'bottom' },
         content: [
           {
             block: 'breadcrumbs'
@@ -30,7 +28,7 @@ block('page-order')(
             elem: 'title',
             elemMods: { size: 'xl' },
             mix: [
-              { block: 'heading', mods: { caps: true, size: 'l' } },
+              { block: 'heading', mods: { align: 'center', caps: true, size: 'l' } },
               { block: 'font', mods: { family: 'helvetica-neue-condensed-bold', loaded: true } }
             ],
             content: [

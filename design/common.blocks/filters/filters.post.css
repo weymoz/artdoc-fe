@@ -3,25 +3,35 @@ block(filters) {
 
   .elem(header) {
     display: flex;
+    flex-wrap: wrap;
     padding-bottom: 28px;
     align-items: center;
     box-shadow: 0 1px #23232c;
   }
 
   .elem(title) {
-    flex: 1;
+    display: inline-block;
+    margin-right: auto;
+    width: auto;
+    cursor: pointer;
   }
  
   .elem(actions) {
     display: flex;
     align-items: center;
-  }
-
-  .elem(count) {
+    margin-left: 24px;
     color: #777783;
     font-size: 14px;
     line-height: 1.5;
+  }
+
+  .elem(count) {
     margin-right: 2.2em;
+  }
+
+  .elem(reset) {
+    margin-right: 2.2em;
+    cursor: pointer;
   }
  
   .elem(result-count) {
@@ -48,21 +58,6 @@ block(filters) {
     padding-left: 2em;
     padding-right: 2em;
     transition: all 200ms;
-
-    &:hover,
-    .mod(hovered) {
-      background-color: #333;
-    }
-
-    .mod(checked) {
-      background-color: #eeeef2;
-      color: #111;
-
-      &:hover,
-      .mod(hovered) {
-        background-color: #ccc;
-      }      
-    }
   }
 
   .elem(form) {
@@ -71,7 +66,8 @@ block(filters) {
     overflow: hidden;
     max-height: 0;
     transition: max-height 200ms, padding 200ms;
-    
+    position: relative;
+
     .mod(show) {
       padding-top: 20px;
       padding-bottom: 20px;
@@ -100,6 +96,7 @@ block(filters) {
 
     &:before {
       content: 'Сначала: ';
+      font-size: 14px;
       margin-right: 20px;
     }
 
@@ -182,8 +179,32 @@ block(filters) {
 
 block(select) {
 
+  .mod(type suggest) {
+    overflow: hidden;
+    padding-bottom: 8px;
+
+    &.mod(opened):after {
+      content: '';
+      display: block;
+      position: absolute;
+      bottom: 0;
+      left: 20px;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 0 8px 8px 8px;
+      border-color: transparent transparent #fff transparent;
+    }
+  }
+
+  .elem(header) {
+    transform: translateY(8px); /* Place for tooltip triangle */
+  }
+
   .elem(menu) {
-    width: 252px;
+    width: 255px;
+    box-shadow: 0 8px 16px rgba(0,0,0,.2);
+    transform: translateY(8px); /* Place for tooltip triangle */
 
     .block(menu).elem(item) {
       white-space: normal;

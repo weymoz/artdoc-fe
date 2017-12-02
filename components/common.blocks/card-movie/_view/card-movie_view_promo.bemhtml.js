@@ -18,7 +18,7 @@ block('card-movie').mod('view', 'promo')(
         elem: 'aside',
         elemMods: { view: 'schedule' },
         content: [
-          { elem: 'schedule-duration' },
+          // { elem: 'schedule-duration' },
           {
             elem: 'schedule',
             elemMods: { period: isPeriod },
@@ -80,8 +80,7 @@ block('card-movie').mod('view', 'promo')(
           {
             elem: 'section',
             content: [
-              { elem: 'discussion' },
-              { elem: 'show-more' }
+              { elem: 'discussion' }
             ]
           },
           { elem: 'buy', elemMods: { type: 'button' } },

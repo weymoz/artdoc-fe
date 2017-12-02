@@ -36,8 +36,8 @@ block('filters').def()( ( node, ctx ) => {
     },
     full_movie: {
       code: 'full_movie',
-      name: 'Только с видео',
-      skip: true,
+      name: 'Доступные для просмотра на сайте',
+      skip: false,
 
     },
     free: {
@@ -167,7 +167,7 @@ block('filters').def()( ( node, ctx ) => {
         result.content.push( d )
         break;
 
-      default: 
+      default:
         return []
     }
 

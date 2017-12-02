@@ -22,13 +22,15 @@ block('form').mod('view', 'auth')(
             mods: {
               type: 'input',
               required: true,
-              message: 'popup',
+              validate: 'email',
+              message: 'text',
               size: 'm',
               theme: 'artdoc-dark'
             },
-            directions: [ 'top-left' ],
+            directions: [ 'bottom-left' ],
             js: {
-              required: { message: 'Это поле обязательно!' }
+              required: { message: 'Адрес эл. почты обязателен' },
+              email: { message: 'Это не похоже на адрес эл. почты' }
             },
             name: 'username',
             content: {
@@ -48,13 +50,13 @@ block('form').mod('view', 'auth')(
             mods: {
               type: 'input',
               required: true,
-              message: 'popup',
+              message: 'text',
               size: 'm',
               theme: 'artdoc-dark'
             },
-            directions: [ 'top-left' ],
+            directions: [ 'bottom-left' ],
             js: {
-              required: { message: 'Это поле обязательно!' }
+              required: { message: 'Это поле обязательно' }
             },
             name: 'password',
             content: {
@@ -77,7 +79,6 @@ block('form').mod('view', 'auth')(
         content: {
           block: 'button',
           mods: {
-            disabled: true,
             width: 'available',
             type: 'submit',
             view: 'action',
@@ -87,6 +88,21 @@ block('form').mod('view', 'auth')(
           mix: { block: 'form', elem: 'submit' },
           text: 'Войти'
         }
+      },
+      {
+        elem: 'footer',
+        content: [
+          {
+            block: 'paragraph',
+            content: {
+              block: 'link',
+              mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } },
+              mods: { size: 'xs' },
+              url: '/club',
+              content: 'Как стать участником клуба'
+            }
+          }
+        ]
       }
     ]
   })

@@ -1,0 +1,45 @@
+{
+  "title": "Schedule",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "movie_id": {
+      "type": "integer"
+    },
+    "date_gmt3": {
+      "type": "integer"
+    },
+    "status": {
+      "type": "integer"
+    },
+    "created_at": {
+      "type": "integer"
+    },
+    "updated_at": {
+      "type": "integer"
+    },
+    "premiere": {
+      "type": "integer"
+    },
+    "discuss_preview": {
+      "type": "string"
+    },
+    "discuss_link": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "movie_id",
+    "date_gmt3",
+    "status",
+    "created_at",
+    "updated_at",
+    "premiere",
+    "discuss_preview",
+    "discuss_link"
+  ]
+}

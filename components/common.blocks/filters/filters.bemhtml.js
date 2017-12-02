@@ -7,7 +7,7 @@ block('filters')(
     return applyNext();
   } ),  
 
-  js()( true ),
+  addJs()( true ),
 
   addMods()( node => { return { result: node._api.pagination.view || 'list' } } ),
 
@@ -45,7 +45,7 @@ block('filters')(
   elem('actions')(
     content()([
       { elem: 'count' },
-      { elem: 'clear' },
+      { elem: 'reset' },
       { elem: 'toggle' }
     ])
   ),
@@ -96,7 +96,7 @@ block('filters')(
     replace()( node => {
       return {
         block: 'radio-group',
-        mods: { type: 'line' },
+        mods: { type: 'line', size: 's' },
         mix: { block: node.block, elem: node.elem },
         val: node._api.pagination.sort || '-rating',
         name: 'sort',
@@ -173,6 +173,7 @@ block('filters')(
   ),
 
   elem('footer').match( node => node._api.pagination )(
+    addMix()( { block: 'page', elem: 'content', elemMods: { gap: 'bottom' } } ),
     content()( node => {
       return {
         block: 'pagination',
