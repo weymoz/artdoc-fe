@@ -88,4 +88,25 @@ block(header).mod(theme artdoc) {
       }
     }
   }
+
+  .elem(show-menu) {
+    align-self: center;
+    text-decoration: none;
+    font-weight: bold;
+    color: #fff;
+    outline: none;
+
+    &:hover {
+      background-color: #23232c;
+    }
+
+    .mod(active) {
+      background-color: #f3203b;
+      position: relative;
+
+      &:hover {
+        background-color: #f3203b;
+      }
+    }
+  }
 }

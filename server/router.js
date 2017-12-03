@@ -143,6 +143,7 @@ module.exports = app => {
     let data = Object.assign({}, global);
     let filter = Object.assign({}, req.query);
     data.page = 'movies';
+    data.adaptive = true;
     data.currentCategoryCode = 'all';
     data.title = req.params.category ? global.categoryByCode[ req.params.category ].name : 'Все фильмы';
     data.pagination = {
@@ -211,7 +212,6 @@ module.exports = app => {
   // Movie
   app.get( '/movie/:name', ( req, res ) => {
     let data = Object.assign({}, global);
-
     // Check promo
     data.promo = {};
     config.promo.forEach( promo => {
@@ -237,6 +237,7 @@ module.exports = app => {
         .catch(( error ) => res.send( error ) );
     } else {
       data.page = 'movie';
+      data.adaptive = true;
       request( { url: '/api/movie/?sort=id&expand=schedules,sessions,category,screenshots&code=' + encodeURIComponent(req.params.name) } )
         .then( response => {
           data.api = response.items[0];
