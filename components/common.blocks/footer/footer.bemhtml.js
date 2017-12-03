@@ -16,7 +16,8 @@ block('footer')(
           block: 'icon',
           mods: {
             social: name,
-            size: 'l'
+            size: 'l',
+            bright: true
           }
         },
         url: ctx.social[ name ]
