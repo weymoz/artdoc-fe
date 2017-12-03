@@ -20,6 +20,7 @@ block('page-movie').replace()( node => {
     },
     _movie.schedules && _movie.schedules.length ? {
       elem: 'section',
+      attrs: { id: 'schedule' },
       content: [
         {
           block: 'ticket-case',
