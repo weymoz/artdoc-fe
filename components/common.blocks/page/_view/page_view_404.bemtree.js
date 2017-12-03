@@ -6,6 +6,7 @@ block('page').mod('view', '404')(
     return {
       elem: 'content',
       elemMods: { width: 'narrow', gap: 'bottom' },
+      mix: { block: 'page-about' },
       content: [
         {
           elem: 'title',
