@@ -5,6 +5,10 @@ block(icon).mod(social instagram) {
 
 
   &:hover {
+    background-image: svg-load('icon_social_instagram.svg', fill="#f5f5f5");
+  }
+
+  &.mod(bright) {
     background-image: svg-load('icon_social_instagram.svg', fill="#fff");
   }
 }
