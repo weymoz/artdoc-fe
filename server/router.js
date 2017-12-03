@@ -199,7 +199,7 @@ module.exports = app => {
     } ).catch( error => res.send( error ) );
   });
 
-  app.get('/movie/:name/buy', function (req, res) {
+  app.get('/movie/:name/buy', function (req, res, next) {
     let data = Object.assign({}, global);
     data.page = 'order';
     data.page.isCinema = false;
@@ -210,7 +210,10 @@ module.exports = app => {
       url: '/api/movie/?sort=id&expand=schedules,sessions,category,screenshots&code=' + encodeURIComponent(req.params.name)
     })
       .then( response => {
-
+        if (!response.items[0]) {
+          next();
+          return true;
+        }
         data.api = {
           movie: response.items[0],
           type: 'rent',
@@ -232,7 +235,7 @@ module.exports = app => {
   })
 
   // Movie
-  app.get( '/movie/:name', ( req, res ) => {
+  app.get( '/movie/:name', ( req, res, next ) => {
     let data = Object.assign({}, global);
 
     // Check promo
@@ -253,6 +256,10 @@ module.exports = app => {
         clientRequest: req
       })
         .then( response => {
+          if (!response.items.length) {
+            console.log('next!');
+            next();
+          }
           data.api = response.items[0];
           data.api.type = 'cinema';
           data.title = response.items[0].name;
@@ -268,7 +275,10 @@ module.exports = app => {
         clientRequest: req
       })
         .then( response => {
-          console.log(response);
+          if (!response.items.length) {
+            console.log('next!');
+            next();
+          }
           data.api = response.items[0];
           data.title = response.items[0].name;
           data.meta.og.image = response.items[0].cover && response.items[0].cover.id
