@@ -312,7 +312,7 @@ module.exports = app => {
   });
 
   // Collection
-  app.get( '/selection/:code', ( req, res ) => {
+  app.get( '/selection/:code', ( req, res, next ) => {
     let data = Object.assign({}, global);
     data.pagination = {
       'per-page' : 20,
@@ -325,6 +325,10 @@ module.exports = app => {
       url: url
     })
       .then( response => {
+        if (!response.items.length) {
+          console.log('next!');
+          next();
+        }
         data.api = response.items[0];
         data.title = response.items[0].name;
         return render( req, res, data );
@@ -621,6 +625,7 @@ module.exports = app => {
     let data = Object.assign({}, global);
     data.page = 'index';
     data.view = '404';
+    data.title = 'Ошибка 404 – страница не найдена';
     res.status( 404 );
     return render(req, res, data);
   });
