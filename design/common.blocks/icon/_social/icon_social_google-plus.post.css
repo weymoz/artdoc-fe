@@ -1,6 +1,0 @@
-block(icon).mod(social google-plus) {
-  background-color: #dc4e41;
-  background-image: svg-load('icon_social_google-plus.svg', fill="#fff");
-  background-origin: padding-box;
-  box-sizing: content-box;
-}
