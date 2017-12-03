@@ -152,6 +152,33 @@ block('card-movie').elem('buy')(
       url: '/movie/' + node._code + '/buy',
       text: text
     }
-  })
+  }),
+
+  match( node => node._video_link ).replace()( node => {
+    return [{
+      block: 'button',
+      mix: { block: node.block, elem: node.elem },
+      mods: {
+        type: 'link',
+        width: 'available',
+        size: 'l',
+        theme: node.mods.theme
+      },
+      url: '/movie/' + node._code + '/watch',
+      text: 'Смотреть онлайн'
+    },
+      {
+        block: 'paragraph',
+        mods: {
+          size: 's'
+        },
+        attrs: {
+          style: "font-size: 12px; margin-top: 10px; text-align: center; color: #5f5f5f;"
+
+        },
+        content: 'Бесплатно для участников Клуба Артдок'
+
+      }]
+  } ),
 
 )

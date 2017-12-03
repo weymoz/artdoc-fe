@@ -1,6 +1,4 @@
 block('pagination').elem('pagelink').replace()(function(node, ctx) {
-  console.log('pagelink!');
-  console.log(ctx);
   ctx = {
 
     block: 'link',
