@@ -21,7 +21,7 @@ block('news-block')(
           {
             block: 'image',
             mix: { block: node.block, elem: 'image' },
-            mods: { responsive: true },
+            mods: { responsive: true, 'has-resize': true },
             url: news.image.id,
             width: 193,
             height: 110
