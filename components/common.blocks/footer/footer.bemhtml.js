@@ -242,14 +242,32 @@ block('footer')(
               },
               {
                 elem: 'aside',
-                content: {
-                  block: 'paragraph',
-                  mods: {
-                    align: 'right',
-                    size: 's'
+                mix: [
+                  { block: 'list_size_s' },
+                  { block: 'font', mods: {family: 'pt-mono', loaded: true}}
+                ],
+                attrs: { style: 'text-align: right' },
+                content: [{
+                    block: 'div',
+                    content: {
+                      html: '<span style="opacity: 0.7">Developed with</span><span style="position: absolute; margin-left: 6px;">💖</span><br>'
+                    }
+
                   },
-                  content: 'By 🤗 with 💖'
-                }
+                  {
+                    block: 'link',
+                    mods: {
+                      align: 'right',
+                      size: 's',
+                      theme: 'artdoc',
+                      /*view: 'text'*/
+                    },
+
+                    url: 'mailto:best.webapp.dev@gmail.com',
+                    attrs: {target: '_blank', style: 'text-decoration: none; border-bottom: 1px solid' },
+                    content: 'Get in touch'
+                  }]
+
               }
             ]
           }
