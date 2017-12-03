@@ -265,7 +265,9 @@ block('footer')(
                     align: 'right',
                     size: 's'
                   },
-                  content: 'By  🤗  with  💖'
+                  content: {
+                    html: 'By&nbsp;🤗&nbsp;&nbsp;with&nbsp;💖'
+                  }
                 }
               }
             ]

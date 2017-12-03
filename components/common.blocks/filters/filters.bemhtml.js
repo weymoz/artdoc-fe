@@ -5,7 +5,7 @@ block('filters')(
   def()( ( node, ctx ) => {
     node._api = Object.assign( {}, ctx.data );
     return applyNext();
-  } ),  
+  } ),
 
   addJs()( true ),
 

@@ -56,7 +56,7 @@ block('header')(
       //     switcher: 'link',
       //     anchor: 'header'
       //   },
-      //   switcher: 
+      //   switcher:
       //   popup: {
       //     block: 'page',
       //     elem: 'section',
@@ -67,6 +67,23 @@ block('header')(
       //     }
       //   }
       // },
+      {
+        block: 'link',
+        mods: { pseudo: true, },
+        mix: { block: 'header', elem: 'show-menu', js: true },
+        url: '',
+        content: 'Меню'
+      },
+      {
+        block: 'modal',
+        mods: { view: 'mobile-menu', size: 'xxl', theme: 'artdoc-dark' },
+        content:{
+          block: 'nav-menu',
+          mix: { block: 'header', elem: 'mobile-menu' },
+          category: ctx.category,
+          currentCategoryCode: ctx.currentCategoryCode
+        }
+      },
       { elem: 'social', social: ctx.social },
 /*
       {
@@ -80,7 +97,7 @@ block('header')(
           text: 'En'
         }
       },
-*/    
+*/
       // {
       //   elem: 'user',
       //   content: {
