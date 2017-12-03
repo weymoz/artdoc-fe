@@ -91,7 +91,7 @@
     "postinstall": "npm run drop-cache && npm run make",
     "make": "enb make",
     "drop-cache": "rm -rf .enb/tmp",
-    "dev": "npm run drop-cache && npm run make && nodemon",
+    "dev": "memcached || true & npm run drop-cache && npm run make && nodemon",
     "watch": "chokidar 'components/**' --initial -c 'enb make && notify -t bem-express -m Built'",
     "test": "npm run lint",
     "lint": "eslint . && bemhint .",
