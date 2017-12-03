@@ -8,6 +8,7 @@ const fs = require('fs'),
       cookieParser = require('cookie-parser'),
       expressSession = require('express-session'),
       slashes = require('connect-slashes'),
+      MemcachedStore = require('connect-memcached')(expressSession),
       passport = require('passport'),
       LocalStrategy = require('passport-local').Strategy,
       // csrf = require('csurf'),
@@ -39,7 +40,11 @@ app
   .use(expressSession({
     resave: true,
     saveUninitialized: true,
-    secret: config.sessionSecret
+    secret: config.sessionSecret,
+    store: new MemcachedStore({
+      hosts: ['127.0.0.1:11211'],
+      secret: '123, easy as ABC. ABC, easy as 123' // Optionally use transparent encryption for memcache session data
+    })
   }))
   .use(passport.initialize())
   .use(passport.session())
@@ -66,6 +71,9 @@ passport.use( new LocalStrategy( {
   }, ( username, password, done ) => {
     client.post( '/auth/auth/login/', { username: username, password: password } )
       .then( api => {
+
+        console.log(api);
+
         return api.data.error
           ? done( null, false, api.data )
           : done( null, {

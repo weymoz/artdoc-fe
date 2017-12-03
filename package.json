@@ -21,6 +21,7 @@
     "bem-core": "^4.2.1",
     "bem-forms": "github:realetive/bem-forms",
     "bem-history": "^4.0.0",
+    "connect-memcached": "^0.2.0",
     "moment": "^2.18.1",
     "ym": "^0.1.2"
   },
