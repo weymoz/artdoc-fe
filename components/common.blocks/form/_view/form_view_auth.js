@@ -21,7 +21,7 @@ provide(Form.declMod({ modName: 'view', modVal: 'auth' }, {
     }
 
     $.ajax(apiSettings).done( response => {
-      const msg = JSON.parse( response );
+      const msg =  response ;
       if ( msg.error ) {
         this.setMessageVal('Ошибка авторизации');
         this.getMessage().show();

@@ -16,7 +16,8 @@ block('footer')(
           block: 'icon',
           mods: {
             social: name,
-            size: 'l'
+            size: 'l',
+            bright: true
           }
         },
         url: ctx.social[ name ]
@@ -233,42 +234,40 @@ block('footer')(
                     mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } },
                     content: [
                       { elem: 'item', content: '© 2017 Artdoc Fest & Media' },
-                      {
-                        elem: 'item',
-                        content: {
-                            block: 'link',
-                            mods: { view: 'text' },
-                            mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } },
-                            content: 'Пользовательское соглашение',
-                            url: '/terms'
-                          }
-                      },
-                      {
-                        elem: 'item',
-                        content: {
-                          block: 'link',
-                          mods: { view: 'text' },
-                          mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } },
-                          content: 'Политика конфиденциальности',
-                          url: '/terms/#privacy'
-                        }
-                      }
+                      // { elem: 'item', content: 'Пользовательское соглашение' },
+                      // { elem: 'item', content: 'Политика конфидециальности' }
                     ]
                   }
                 ]
               },
               {
                 elem: 'aside',
-                content: {
-                  block: 'paragraph',
-                  mods: {
-                    align: 'right',
-                    size: 's'
+                mix: [
+                  { block: 'list_size_s' },
+                  { block: 'font', mods: {family: 'pt-mono', loaded: true}}
+                ],
+                attrs: { style: 'text-align: right' },
+                content: [{
+                    block: 'div',
+                    content: {
+                      html: '<span style="opacity: 0.7">Developed with</span><span style="position: absolute; margin-left: 6px;">💖</span><br>'
+                    }
+
                   },
-                  content: {
-                    html: 'By&nbsp;🤗&nbsp;&nbsp;with&nbsp;💖'
-                  }
-                }
+                  {
+                    block: 'link',
+                    mods: {
+                      align: 'right',
+                      size: 's',
+                      theme: 'artdoc',
+                      /*view: 'text'*/
+                    },
+
+                    url: 'mailto:best.webapp.dev@gmail.com',
+                    attrs: {target: '_blank', style: 'text-decoration: none; border-bottom: 1px solid' },
+                    content: 'Get in touch'
+                  }]
+
               }
             ]
           }

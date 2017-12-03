@@ -24,6 +24,20 @@ const request = options => {
 
   var source = axios.CancelToken.source();
 
+  if (options.clientRequest) {
+    options.headers = Object.assign(
+      options.headers || {},
+      {
+        Cookie:
+          (options.clientRequest.user && options.clientRequest.user.cookies)
+            ? options.clientRequest.user.cookies.join('')
+            : ''
+      }
+    );
+
+    console.log(options);
+  }
+
   options.cancelToken = source.token;
   options.cancelSource = source;
 
@@ -143,7 +157,6 @@ module.exports = app => {
     let data = Object.assign({}, global);
     let filter = Object.assign({}, req.query);
     data.page = 'movies';
-    data.adaptive = true;
     data.currentCategoryCode = 'all';
     data.title = req.params.category ? global.categoryByCode[ req.params.category ].name : 'Все фильмы';
     data.pagination = {
@@ -166,8 +179,14 @@ module.exports = app => {
     })
     url += '&per-page=' + data.pagination['per-page'] + '&page=' + data.pagination.page;
     axios.all([
-      request( { url:  url }),
-      request( { url: '/api/movie/filtervalues/' } )
+      request({
+        clientRequest: req,
+        url: url,
+      }),
+      request({
+        clientRequest: req,
+        url: '/api/movie/filtervalues/',
+      })
     ]).then( (response) => {
       data.api = response[0].items;
       data.filters = response[1];
@@ -180,15 +199,21 @@ module.exports = app => {
     } ).catch( error => res.send( error ) );
   });
 
-  app.get('/movie/:name/buy', function (req, res) {
+  app.get('/movie/:name/buy', function (req, res, next) {
     let data = Object.assign({}, global);
     data.page = 'order';
     data.page.isCinema = false;
 
-    console.log('%%%%%%%%%%%%');
 
-    request( { url: '/api/movie/?sort=id&expand=schedules,sessions,category,screenshots&code=' + encodeURIComponent(req.params.name) } )
+    request({
+      clientRequest: req,
+      url: '/api/movie/?sort=id&expand=schedules,sessions,category,screenshots&code=' + encodeURIComponent(req.params.name)
+    })
       .then( response => {
+        if (!response.items[0]) {
+          next();
+          return true;
+        }
         data.api = {
           movie: response.items[0],
           type: 'rent',
@@ -210,8 +235,9 @@ module.exports = app => {
   })
 
   // Movie
-  app.get( '/movie/:name', ( req, res ) => {
+  app.get( '/movie/:name', ( req, res, next ) => {
     let data = Object.assign({}, global);
+
     // Check promo
     data.promo = {};
     config.promo.forEach( promo => {
@@ -225,8 +251,15 @@ module.exports = app => {
     if ( req.query.hasOwnProperty( 'code' ) ) {
       data.page = 'order';
       data.isCinema = true;
-      request( { url: '/api/session/?expand=movie,category,city&code=' + encodeURIComponent(req.query.code) } )
+      request({
+        url: '/api/session/?expand=movie,category,city&code=' + encodeURIComponent(req.query.code),
+        clientRequest: req
+      })
         .then( response => {
+          if (!response.items.length) {
+            console.log('next!');
+            next();
+          }
           data.api = response.items[0];
           data.api.type = 'cinema';
           data.title = response.items[0].name;
@@ -237,9 +270,15 @@ module.exports = app => {
         .catch(( error ) => res.send( error ) );
     } else {
       data.page = 'movie';
-      data.adaptive = true;
-      request( { url: '/api/movie/?sort=id&expand=schedules,sessions,category,screenshots&code=' + encodeURIComponent(req.params.name) } )
+      request({
+        url: '/api/movie/?sort=id&expand=schedules,sessions,category,screenshots&code=' + encodeURIComponent(req.params.name),
+        clientRequest: req
+      })
         .then( response => {
+          if (!response.items.length) {
+            console.log('next!');
+            next();
+          }
           data.api = response.items[0];
           data.title = response.items[0].name;
           data.meta.og.image = response.items[0].cover && response.items[0].cover.id
@@ -262,7 +301,10 @@ module.exports = app => {
     url += '?sort=-sort&per-page=' + data.pagination['per-page'] + '&page=' + data.pagination.page;
     data.page = 'selections';
     data.title = 'Авторские подборки';
-      request( { url: url } )
+    request({
+      clientRequest: req,
+      url: url
+    })
         .then( response => {
           data.api = response.items;
           return render( req, res, data );
@@ -270,7 +312,7 @@ module.exports = app => {
   });
 
   // Collection
-  app.get( '/selection/:code', ( req, res ) => {
+  app.get( '/selection/:code', ( req, res, next ) => {
     let data = Object.assign({}, global);
     data.pagination = {
       'per-page' : 20,
@@ -278,8 +320,15 @@ module.exports = app => {
     };
     let url = '/api/authorcompilation/?code=' + encodeURIComponent(req.params.code);
     data.page = 'selection';
-    request( { url: url } )
+    request({
+      clientRequest: req,
+      url: url
+    })
       .then( response => {
+        if (!response.items.length) {
+          console.log('next!');
+          next();
+        }
         data.api = response.items[0];
         data.title = response.items[0].name;
         return render( req, res, data );
@@ -291,7 +340,10 @@ module.exports = app => {
     let data = Object.assign({}, global);
     data.page = 'schedule';
     data.title = 'Расписание онлайн-киносеансов';
-    request( { url: '/api/schedule/?expand=sessions,movie&sort=date_gmt3&per-page=100&date_from=' + (Math.floor((Date.now() / 1000) /3600 ) * 3600 - (31 * 60 * 60)) } )
+    request({
+      clientRequest: req,
+      url: '/api/schedule/?expand=sessions,movie&sort=date_gmt3&per-page=100&date_from=' + (Math.floor((Date.now() / 1000) / 3600) * 3600 - (31 * 60 * 60))
+    })
       .then( response => {
         data.api = response.items;
         return render( req, res, data );
@@ -304,7 +356,10 @@ module.exports = app => {
     let data = Object.assign({}, global);
     if ( req.query.hasOwnProperty( 'hash' ) && req.query.hasOwnProperty( 'sess_id' ) && req.query.hasOwnProperty( 'id' ) ) {
       data.page = req.params[0] === 'discuss' ? 'discuss' : 'play';
-      request( { url: '/cinema/release/?id=' + req.query.id + '&hash=' + req.query.hash + '&sess_id=' + req.query.sess_id } )
+      request({
+        clientRequest: req,
+        url: '/cinema/release/?id=' + req.query.id + '&hash=' + req.query.hash + '&sess_id=' + req.query.sess_id
+      })
         .then( response => {
           data.api = response;
           data.api.type = 'cinema';
@@ -346,7 +401,10 @@ module.exports = app => {
   // Promo activate
   app.get( '/payment/freeactivate/', ( req, res ) => {
     let data = Object.assign({}, global);
-    request( { url: '/payment/freeactivate/?' + Object.keys( req.query ).map( key => key + '=' + encodeURIComponent( req.query[ key ] ) ).join('&') } )
+    request({
+      clientRequest: req,
+      url: '/payment/freeactivate/?' + Object.keys(req.query).map(key => key + '=' + encodeURIComponent(req.query[key])).join('&')
+    })
       .then( response => {
         data.api = response;
 
@@ -370,7 +428,10 @@ module.exports = app => {
 
     if (req.query.hash) {
       data.page = 'play';
-      request( { url: '/cinema/release/rent/?id=' + req.query.id + '&hash=' + req.query.hash  } )
+      request({
+        clientRequest: req,
+        url: '/cinema/release/rent/?id=' + req.query.id + '&hash=' + req.query.hash
+      })
         .then( response => {
 
           data.api = response;
@@ -382,9 +443,14 @@ module.exports = app => {
         } );
 
     } else {
-      request({url: '/ondemand/release/?movie_code=' + req.params.name})
+      request({
+        clientRequest: req,
+        url: '/ondemand/release/?movie_code=' + encodeURIComponent(req.params.name)
+      })
         .then(response => {
           data.api = response;
+
+          console.log(data.api);
 
           if (!data.api.error) {
             data.page = 'play';
@@ -400,7 +466,10 @@ module.exports = app => {
   // Search
   app.get( '/search', ( req, res ) => {
     let data = Object.assign({}, global);
-    request( { url: '/search/search/?per-page=20&q=' + encodeURIComponent( req.query.q ) } )
+    request({
+      clientRequest: req,
+      url: '/search/search/?per-page=20&q=' + encodeURIComponent(req.query.q)
+    })
       .then( response => {
         data.api = response;
         data.page = 'search';
@@ -442,7 +511,10 @@ module.exports = app => {
       promo: promo_code
     } ).then( api => {
         if ( api.data.payment_url ) {
-          request( { url: api.data.payment_url } )
+        request({
+          clientRequest: req,
+          url: api.data.payment_url
+        })
             .then( response => {
               return res.json( response )
             } )
@@ -463,7 +535,10 @@ module.exports = app => {
     } ).then( api => {
       console.log(api);
       if ( api.data.payment_url ) {
-        request( { url: api.data.payment_url } )
+        request({
+          clientRequest: req,
+          url: api.data.payment_url
+        })
           .then( response => {
             res.json(  response );
           } )
@@ -488,7 +563,10 @@ module.exports = app => {
     const sort = req.query.sort || '-rating';
     const page = req.query.page || 1;
     const filters = Object.keys( req.query.filters ).map( filter => req.query.filters[ filter ] ? 'filter[' + filter + ']=' + req.query.filters[ filter ] : '' ).join('&');
-    request( { url: '/api/movie/filter/?per-page=20&sort=' + sort + '&page=' + page + '&' + filters } )
+    request({
+      clientRequest: req,
+      url: '/api/movie/filter/?per-page=20&sort=' + sort + '&page=' + page + '&' + filters
+    })
       .then( api => res.json( api ) )
       .catch(  error => res.send( error ) )
   });
@@ -496,7 +574,10 @@ module.exports = app => {
   app.get( '/api/search', ( req, res ) => {
     if ( req.query.q ) {
 
-      let axiosParams = { url: '/search/search/?per-page=20&q=' + encodeURIComponent( req.query.q ) };
+      let axiosParams = {
+        url: '/search/search/?per-page=20&q=' + encodeURIComponent(req.query.q),
+        clientRequest: req
+      };
 
       request( axiosParams )
         .then( api => res.json( api ) )
@@ -527,9 +608,7 @@ module.exports = app => {
   app.get( '/test/', ( req, res ) => {
     request( {
         url: '/auth/auth/',
-        headers: {
-         Cookie: (req.user && req.user.cookies) ? req.user.cookies.join('') : ''
-        }
+      clientRequest: req,
       } )
       .then( api => res.json( api ) )
       .catch( error => res.send( error ) )
@@ -546,6 +625,7 @@ module.exports = app => {
     let data = Object.assign({}, global);
     data.page = 'index';
     data.view = '404';
+    data.title = 'Ошибка 404 – страница не найдена';
     res.status( 404 );
     return render(req, res, data);
   });

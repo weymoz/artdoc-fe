@@ -1,8 +1,8 @@
 block('card-ticket').elem('left')(
 
-  addMix()( { block: 'font', mods: { family: 'pt-mono', loaded: true } } ),  
+  addMix()( { block: 'font', mods: { family: 'pt-mono', loaded: true } } ),
 
-  match( node => node._tickets_left < 10 ).content()( node => {
+  match( node => (node._tickets_left < 100) && (node.mods.status === 'active')  ).content()( node => {
     return [
       {
         block: 'text',
@@ -35,5 +35,5 @@ block('card-ticket').elem('left')(
       return 'Билетов больше нет…'
     })
   )
-  
+
 );
