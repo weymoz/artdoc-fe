@@ -607,6 +607,13 @@ module.exports = app => {
     } )(req, res, next);
   });
 
+  app.get( '/logout', ( req, res ) => {
+    req.logOut();
+    res.redirect( 303, '/' );
+
+  } )
+
+
   app.get( '/test/', ( req, res ) => {
     request( {
         url: '/auth/auth/',
