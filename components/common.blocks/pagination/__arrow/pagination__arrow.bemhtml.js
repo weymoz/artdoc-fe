@@ -1,6 +1,4 @@
 block('pagination').elem('arrow').replace()(function(node, ctx) {
-  console.log('arrow!');
-  console.log(ctx);
   ctx = {
     block: 'link',
     mix: [

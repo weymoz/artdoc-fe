@@ -16,7 +16,6 @@ provide(bemDom.declBlock(this.name, {
     js: {
       inited: function() {
         var theTabs = this;
-
         this._boxList = {};
         this._radioGroup = this.findChildElem('calendar').findMixedBlock( radioGroup );
         let tickets = this.findChildBlocks( Ticket );

@@ -25,9 +25,18 @@ provide(bemDom.declBlock(this.name, {
     const datetime = new Date( ( timestamp + this._timeZoneOffset ) * 1000 );
     const time = datetime.toLocaleString( 'ru', { hour: 'numeric', minute: 'numeric' } );
     const date = datetime.toLocaleString( 'ru', { day: 'numeric', month: 'long' } );
-    
+
+    const tomorrow = new Date();
+    tomorrow.setDate( tomorrow.getDate() + 1 )
+
+    let isTomorrow = '';
+    if ( tomorrow.getFullYear() === datetime.getFullYear() && tomorrow.getMonth() === datetime.getMonth() && tomorrow.getDate() === datetime.getDate() && datetime.getHours() < 12 ) {
+      isTomorrow = ', завтра'
+    }
+
+    // console.log( datetime );
     bemDom.update( this._elem('user-time').domElem, time );
-    bemDom.update( this._elem('user-date').domElem, date );
+    bemDom.update( this._elem('user-date').domElem, date + isTomorrow );
 
     const link = this.findMixedBlock( Link );
     if ( link ) {

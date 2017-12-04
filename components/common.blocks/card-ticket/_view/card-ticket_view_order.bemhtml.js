@@ -9,11 +9,8 @@ block('card-ticket').mod('view', 'order').content()( node => {
   }
 
   const timezone = ( tzHours > 0 ? '+' : '-' ) + fixZero( tzHours ) + ':' + fixZero( tzMinutes );
-
   const isCinema = (node._type == 'cinema');
 
-
-  console.log(isCinema);
   const description = isCinema ?
     {
       block: 'paragraph',

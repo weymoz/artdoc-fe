@@ -8,19 +8,20 @@ const fs = require('fs'),
       cookieParser = require('cookie-parser'),
       expressSession = require('express-session'),
       slashes = require('connect-slashes'),
+      MemcachedStore = require('connect-memcached')(expressSession),
       passport = require('passport'),
       LocalStrategy = require('passport-local').Strategy,
       // csrf = require('csurf'),
       compression = require('compression'),
-
+      request = require('./request'),
       config = require('./config'),
       staticFolder = config.staticFolder,
       port = config.defaultPort,
       isSocket = isNaN(port),
-      isDev = process.env.NODE_ENV === 'development',
+      isDev = process.env.NODE_ENV === 'development';
 
-      axios = require('axios'),
-      client = axios.create( config.host );
+
+
 
 !isDev || require('debug-http')();
 
@@ -39,7 +40,11 @@ app
   .use(expressSession({
     resave: true,
     saveUninitialized: true,
-    secret: config.sessionSecret
+    secret: config.sessionSecret,
+    store: new MemcachedStore({
+      hosts: ['127.0.0.1:11211'],
+      secret: '123, easy as ABC. ABC, easy as 123' // Optionally use transparent encryption for memcache session data
+    })
   }))
   .use(passport.initialize())
   .use(passport.session())
@@ -48,8 +53,8 @@ app
     req.apiRequests = []
 
     req.on('close', function () {
-      req.apiRequests.map(function (request) {
-        request.cancelSource.cancel();
+      req.apiRequests.map(function (cancel) {
+        cancel.cancelSource.cancel();
         return null;
       })
     });
@@ -64,15 +69,26 @@ passport.use( new LocalStrategy( {
     usernameField: 'username',
     passwordField: 'password'
   }, ( username, password, done ) => {
-    client.post( '/auth/auth/login/', { username: username, password: password } )
+
+    var result = {
+      credentials: {username: username, password: password}
+    }
+
+    request({
+      url: '/auth/auth/login/',
+      method: 'post',
+      data: result.credentials
+    })
       .then( api => {
-        return api.data.error
-          ? done( null, false, api.data )
-          : done( null, {
-              status: api.data.status,
-              cookies: api.headers['set-cookie']
-            } )
-      } )
+        if (api.error) {
+          return done( null, false, api );
+        } else {
+          result.cookies = api.__set_cookie;
+          result.status = api.status;
+          result.data   = api.user;
+          return done( null, result)
+        }
+      })
       .catch( () => console.log('Passport error') )
 }));
 

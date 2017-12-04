@@ -1,6 +1,7 @@
 block('club-footer')(
   addMix()({ block: 'page', elem: 'content' }),
   content()( node => {
+
       return [
         {
           elem: 'aside',
@@ -76,7 +77,38 @@ block('club-footer')(
           {
             elem: 'footer-item',
             content: node.user
-            ? 'Вы авторизованы'
+            ? [
+                {
+                  elem: 'title',
+                  mix: [
+                    { block: 'heading', mods: { caps: true, size: 'xs' } },
+                    { block: 'font', mods: { family: 'helvetica-neue-condensed-bold', loaded: true } },
+                  ],
+                  content: "Здравствуйте, " + node.user.extra.user_meta.name + "."
+                },
+                {
+
+                    block: 'button',
+                    mods: {
+                      width: 'available',
+                      type: 'link',
+                      view: 'action',
+                      size: 'xl',
+                      theme: 'artdoc-dark'
+                    },
+                    mix: { block: 'form', elem: 'submit' },
+
+                    url: '/logout',
+                    text: 'Выйти'
+
+                },
+
+                {
+                  block: "paragraph",
+
+                },
+                //userExtra
+              ]
             : [
                 {
                   elem: 'title',
