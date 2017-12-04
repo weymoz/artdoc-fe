@@ -127,12 +127,196 @@ block(page) {
           display: none;
         }
 
+        /*TODO – adaptive view*/
+        elem(search){
+          padding: 20px;
+
+          &block(link).mod(size m){
+            font-size: 12px;
+          }
+        }
+
+        elem(show-menu){
+          display: block;
+          padding: 20px;
+          &block(link).mod(size m){
+            font-size: 12px;
+          }
+        }
+
         elem(title){
           width: 190px;
           padding: 8px 16px;
         }
       }
     }
+
+    block(footer){
+      @media(max-width: 425px){
+        padding-top: 20px;
+        padding-bottom: 23px;
+        position: relative;
+      }
+
+      elem(content){
+        @media(max-width: 425px){
+          display: flex;
+          flex-direction: column;
+          padding: 0!important;
+        }
+
+        elem(about){
+          @media(max-width: 425px){
+            padding-right: 0;
+            width: 100%;
+            padding: 16px;
+            box-sizing: border-box;
+
+            block(link){
+              @media(max-width: 425px){
+                margin-bottom: 8px;
+              }
+            }
+
+            block(paragraph){
+              font-size: 12px;
+              margin-bottom: 0;
+            }
+          }
+        }
+
+        elem(title){
+          @media (max-width: 425px) {
+            width: 100%;
+            font-size: 14px;
+            line-height: 20px;
+            padding: 16px;
+            box-sizing: border-box;
+            box-shadow: inset 0 3px 0 -2px #393943, inset 0 -3px 0 -2px #393943;
+            margin-bottom: 0;
+          }
+        }
+
+        elem(for-viewers){
+          @media(max-width: 425px){
+            padding-right: 0;
+            width: 100%;
+          }
+
+          block(list){
+            @media(max-width: 425px){
+              padding: 16px;
+              box-sizing: border-box;
+              display: none;
+            }
+
+            .mod(show){
+              @media(max-width: 425px){
+                display: block;
+              }
+            }
+          }
+        }
+
+        elem(for-professionals){
+          @media(max-width: 425px){
+            padding-right: 0;
+            width: 100%;
+            margin-top: -1px;
+          }
+
+          block(list){
+            @media(max-width: 425px){
+              padding: 16px;
+              box-sizing: border-box;
+              display: none;
+
+              .mod(show){
+                @media(max-width: 425px){
+                  display: block;
+                }
+              }
+            }
+          }
+        }
+
+        elem(contacts){
+          @media(max-width: 425px){
+            width: 100%;
+            padding: 16px;
+            box-sizing: border-box;
+          }
+
+          elem(social){
+            @media (max-width: 425px) {
+              margin-bottom: 23px;
+            }
+          }
+
+          block(list){
+            elem(item){
+              @media(max-width: 425px){
+                font-size: 12px;
+                line-height: 16px;
+              }
+            }
+          }
+        }
+
+        .mod(section logo){
+          @media(max-width: 425px){
+            padding: 0 16px;
+            box-sizing: border-box;
+            position: absolute;
+            bottom: 55px;
+            display: inline;
+
+            block(link){
+              width: 40px;
+              height: 40px;
+              padding: 8px;
+              position: absolute;
+              right: 16px;
+            }
+          }
+        }
+
+        .mod(section misc){
+          @media(max-width: 425px){
+            padding: 0 16px!important;
+            box-sizing: border-box;
+
+            block(paragraph){
+              margin-bottom: 0;
+              font-size: 12px;
+              line-height: 16px;
+              margin-top: 5px;
+            }
+
+            block(list){
+              display: flex;
+              flex-direction: column;
+              justify-content: flex-end;
+              elem(item){
+                font-size: 12px;
+                line-height: 16px;
+                &::after{
+                  display: none;
+                }
+              }
+            }
+
+            block(link){
+              font-size: 12px;
+              line-height: 16px;
+
+            }
+          }
+        }
+      }
+    }
+
+    /* Главная страница */
 
     block(slider){
       @media(max-width: 425px){
@@ -226,6 +410,10 @@ block(page) {
     elem(content){
       @media(max-width: 425px){
         padding: 0 16px;
+
+        block(paragraph){
+          margin-bottom: 24px;
+        }
       }
 
       block(heading){
@@ -235,9 +423,16 @@ block(page) {
             line-height: 1.3;
             margin-top: 40px;
             margin-bottom: 24px;
+            letter-spacing: 0;
           }
         }
 
+      }
+    }
+
+    elem(desktop-link-btn){
+      @media(max-width: 425px){
+        display: none;
       }
     }
 
@@ -254,6 +449,8 @@ block(page) {
         elem(text){
           @media(max-width: 425px){
             padding: 12px 11px;
+            font-size: 18px;
+            line-height: 24px;
           }
         }
       }
@@ -408,118 +605,256 @@ block(page) {
       }
     }
 
-    block(footer){
+  block(dropdown).mod(nav-menu){
+    @media(max-width: 425px){
+      block(menu).mod(nav-menu){
+          column-count: 1;
+          padding-top: 32px;
+        }
+    }
+  }
+
+  /*Страница фильмов*/
+  &block(page).mod(view page-movies){
+    block(breadcrumbs){
       @media(max-width: 425px){
-        padding-top: 20px;
-        padding-bottom: 23px;
+        display: none;
+      }
+    }
+
+    block(heading).mod(size xl){
+      @media(max-width: 425px){
+        font-size: 18px;
+        line-height: 24px;
+        margin-bottom: 32px;
+        margin-top: 32px;
+      }
+    }
+
+    block(card-movie).mod(view grid){
+      @media(max-width: 425px){
+        elem(name){
+          padding: 8px 0 16px;
+        }
+
+        elem(director){
+
+        }
+      }
+    }
+
+    block(filters){
+
+      elem(header){
+        @media(max-width: 425px){
+          flex-direction: column;
+        }
+      }
+
+      elem(view){
+        @media(max-width: 425px){
+          display: none;
+        }
+      }
+
+      elem(toggle){
+        @media(max-width: 425px){
+          width: 100%;
+          display: block;
+        }
+      }
+
+      .mod(result grid) {
+        @media(max-width: 425px){
+          .elem(content) {
+            padding-top: 40px;
+          }
+
+          .elem(result-item) {
+            lost-column: 1/1;
+          }
+        }
+      }
+    }
+  }
+  /*Страница Конкретного фильма*/
+  &block(page).mod(view page-movie){
+
+    elem(content){
+      @media(max-width: 425px){
+        padding: 0;
+      }
+
+      &.mod(gap top){
+        @media (max-width: 425px){
+          margin-top: 32px;
+        }
+      }
+    }
+
+    block(breadcrumbs){
+      @media(max-width: 425px){
+        display: none;
+      }
+    }
+
+    block(card-movie).mod(view full){
+
+      @media(max-width: 425px){
+        flex-direction: column;
+
+        elem(content){
+          padding-bottom: 77px;
+          width: 100%;
+        }
+
+        elem(slider){
+          margin-bottom: 20px;
+        }
+
+        elem(aside){
+          lost-column: 1/1;
+          margin-left: 0;
+          padding: 0 16px;
+          box-sizing: border-box;
+
+
+          elem(orig-name){
+            font-size: 14px;
+            line-height: 20px;
+          }
+
+          elem(name){
+            padding: 8px 0 16px;
+            font-size: 24px;
+            line-height: 28px;
+            margin-bottom: 0;
+          }
+
+          block(list).mod(size s){
+            font-size: 12px;
+            line-height: 16px;
+          }
+        }
+      }
+    }
+
+    block(ticket-case){
+      @media(max-width: 425px){
+        padding: 28px 16px;
+
+      elem(calendar){
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 40px;
+
+        block(radio){
+          lost-column: 1/1;
+        }
       }
 
       elem(content){
-        @media(max-width: 425px){
+        display: flex;
+        flex-direction: column;
+
+        elem(aside){
+          lost-column: 1/1;
+        }
+
+        elem(list-tickets){
+          lost-column: 1/1;
+        }
+
+        block(list-tickets){
           display: flex;
           flex-direction: column;
-          padding: 0;
-        }
 
-        elem(about){
-          @media(max-width: 425px){
-            padding-right: 0;
-            width: 100%;
-            padding: 16px;
-            box-sizing: border-box;
+          block(card-ticket){
+            lost-column: 1/1;
+            position: relative;
+            margin-bottom: 20px;
 
-            block(link){
-              @media(max-width: 425px){
-                margin-bottom: 8px;
-              }
-            }
-
-            block(paragraph){
+            elem(header){
+              display: flex;
+              flex-direction: row;
+              padding: 5px 5px 0;
               font-size: 12px;
+              line-height: 16px;
             }
-          }
-        }
 
-        elem(title){
-          @media (max-width: 425px) {
-            width: 100%;
-            font-size: 14px;
-            line-height: 20px;
-            padding: 16px;
-            box-sizing: border-box;
-            box-shadow: inset 0 3px 0 -2px #393943, inset 0 -3px 0 -2px #393943;
-            margin-bottom: 0;
-          }
-        }
+            elem(content){
+              padding: 0px 5px;
+            }
 
-        elem(for-viewers){
-          @media(max-width: 425px){
-            padding-right: 0;
-            width: 100%;
-          }
-
-          block(list){
-            @media(max-width: 425px){
-              padding: 16px;
+            elem(buy){
+              position: absolute;
+              right: 0;
+              top: 0;
+              margin-top: 8px;
+              margin-right: 10px;
+              padding: 13px 30px;
               box-sizing: border-box;
-              display: none;
+              margin-bottom: 0;
+              border: 0;
+              font-size: 16px;
+              line-height: 20px;
             }
 
-            .mod(show){
-              @media(max-width: 425px){
-                display: block;
-              }
+            elem(user-time){
+              font-size: 24px;
+              line-height: 28px;
             }
-          }
-        }
-
-        elem(for-professionals){
-          @media(max-width: 425px){
-            padding-right: 0;
-            width: 100%;
-            margin-top: -1px;
-          }
-
-          block(list){
-            @media(max-width: 425px){
-              padding: 16px;
-              box-sizing: border-box;
-              display: none;
-
-              .mod(show){
-                @media(max-width: 425px){
-                  display: block;
-                }
-              }
+            elem(user-date){
+              font-size: 12px;
+              line-height: 16px;
             }
           }
         }
-
-        elem(contacts){
-          @media(max-width: 425px){
-            width: 100%;
-            padding: 16px;
-            box-sizing: border-box;
-          }
-
-          elem(social){
-            @media (max-width: 425px) {
-              margin-bottom: 23px;
-            }
-          }
-
-          block(list){
-            elem(item){
-              @media(max-width: 425px){
-                font-size: 12px;
-                line-height: 16px;
-              }
-            }
-          }
-        }
+      }
 
       }
     }
+
+    block(movie-about){
+      @media(max-width: 425px){
+
+        padding: 0 16px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+
+        elem(section){
+          lost-column: 1/1;
+
+
+          &:nth-child(2){
+            order: -1;
+          }
+
+        }
+
+        block(list){
+          font-size: 12px;
+
+          elem(term){
+            width: 50%;
+          }
+        }
+
+        block(link).mod(view tag){
+          padding: 2px 12px;
+        }
+
+        elem(award) {
+          lost-column: 1/1;
+        }
+      }
+    }
+
+
+  }
+
+
   }
 /*------------------*/
 /*--Конец адаптива--*/

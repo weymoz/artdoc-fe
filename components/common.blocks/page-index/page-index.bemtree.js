@@ -91,7 +91,8 @@ block('page-index').replace()( node => {
           mix: { block: 'page', elem: 'adaptive-link-btn' },
           mods: {
             type: 'link',
-            size: 'xxl'
+            size: 'xxl',
+            theme: 'artdoc'
           },
           text: 'Смотреть вce онлайн сеансы',
           url: '/cinema'
@@ -129,6 +130,7 @@ block('page-index').replace()( node => {
         {
           block: 'paragraph',
           mods: { align: 'center' },
+          mix: { block: 'page', elem: 'desktop-link-btn' },
           content: {
             block: 'button',
             mods: {
@@ -138,6 +140,16 @@ block('page-index').replace()( node => {
             text: 'Смотреть все подборки',
             url: '/selection'
           }
+        },
+        {
+          block: 'button',
+          mix: { block: 'page', elem: 'adaptive-link-btn' },
+          mods: {
+            type: 'link',
+            size: 'xxl'
+          },
+          text: 'Смотреть вce онлайн сеансы',
+          url: '/cinema'
         }
       ]
     },
@@ -163,9 +175,9 @@ block('page-index').replace()( node => {
         {
           block: 'paragraph',
           mods: { align: 'center' },
+          mix: { block: 'page', elem: 'desktop-link-btn' },
           content: {
             block: 'button',
-            mix: { block: 'page', elem: 'adaptive-link-btn' },
             mods: {
               type: 'link',
               size: 'xxl'
@@ -174,6 +186,16 @@ block('page-index').replace()( node => {
             url: '/about'
           }
         },
+        {
+          block: 'button',
+          mix: { block: 'page', elem: 'adaptive-link-btn' },
+          mods: {
+            type: 'link',
+            size: 'xxl'
+          },
+          text: 'Подробнее',
+          url: '/about'
+        }
       ]
     },
     {
