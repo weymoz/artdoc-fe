@@ -8,6 +8,7 @@ block('filters').def()( ( node, ctx ) => {
       }
     } )
   }
+
   // data from api
   let filters = node.data.filters;
 
@@ -36,14 +37,14 @@ block('filters').def()( ( node, ctx ) => {
     },
     full_movie: {
       code: 'full_movie',
-      name: 'Доступные для просмотра на сайте',
+      name: ctx.data.user ? 'Возможность просмотра полного видео':'Доступные для просмотра на сайте',
       skip: false,
 
     },
     free: {
       code: 'free',
       name: 'Только бесплатные',
-      skip: false,
+      skip: !!ctx.data.user,
     },
     rating: {
       name: 'Рейтинг artdoc.media',

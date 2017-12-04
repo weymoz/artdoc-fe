@@ -234,40 +234,58 @@ block('footer')(
                     mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } },
                     content: [
                       { elem: 'item', content: '© 2017 Artdoc Fest & Media' },
-                      // { elem: 'item', content: 'Пользовательское соглашение' },
-                      // { elem: 'item', content: 'Политика конфидециальности' }
+                      {
+                        elem: 'item',
+                        content: {
+                            block: 'link',
+                            mods: { view: 'text' },
+                            mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } },
+                            content: 'Пользовательское соглашение',
+                            url: '/terms'
+                          }
+                      },
+                      {
+                        elem: 'item',
+                        content: {
+                          block: 'link',
+                          mods: { view: 'text' },
+                          mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } },
+                          content: 'Политика конфиденциальности',
+                          url: '/terms/#privacy'
+                        }
+                      }
                     ]
                   }
                 ]
               },
               {
                 elem: 'aside',
-                mix: [
-                  { block: 'list_size_s' },
-                  { block: 'font', mods: {family: 'pt-mono', loaded: true}}
-                ],
-                attrs: { style: 'text-align: right' },
-                content: [{
-                    block: 'div',
-                    content: {
-                      html: '<span style="opacity: 0.7">Developed with</span><span style="position: absolute; margin-left: 6px;">💖</span><br>'
-                    }
-
+                content: {
+                  block: 'paragraph',
+                  mods: {
+                    align: 'right',
+                    size: 's'
                   },
-                  {
-                    block: 'link',
-                    mods: {
-                      align: 'right',
-                      size: 's',
-                      theme: 'artdoc',
-                      /*view: 'text'*/
+                  content: [
+                    {
+                      content: {
+                        html: '<span style="opacity: 0.7">Developed with</span><span style="position: absolute; margin-left: 6px;">💖</span><br>'
+                      }
                     },
-
-                    url: 'mailto:best.webapp.dev@gmail.com',
-                    attrs: {target: '_blank', style: 'text-decoration: none; border-bottom: 1px solid' },
-                    content: 'Get in touch'
-                  }]
-
+                    {
+                      block: 'link',
+                      mods: {
+                        align: 'right',
+                        size: 's',
+                        theme: 'artdoc',
+                      },
+                      url: 'mailto:best.webapp.dev@gmail.com',
+                      target: '_blank',
+                      attrs: { style: 'text-decoration: none; border-bottom: 1px solid' },
+                      content: 'Get in touch'
+                    }
+                  ]
+                }
               }
             ]
           }

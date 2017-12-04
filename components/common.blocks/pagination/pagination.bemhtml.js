@@ -32,9 +32,6 @@ block('pagination')(
         range = [range, range];
       }
 
-      // 2 19 6 [3,5]
-      console.log(index, count, selected, range);
-
       if (index == 1) return true;
       if (index == count) return true;
 
