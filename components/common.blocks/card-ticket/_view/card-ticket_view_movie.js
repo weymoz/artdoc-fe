@@ -5,7 +5,7 @@ provide(CardTicket.declMod({ modName: 'view', modVal: 'movie' }, {
     js: {
       inited: function() {
         var _ticket = this.params.ticket;
-        
+
         bemDom.replace(
           this.domElem,
           BEMHTML.apply({

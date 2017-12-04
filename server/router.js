@@ -2,47 +2,8 @@ const config = require('./config'),
       render = require('./render').render,
       axios = require('axios'),
       passport = require('passport'),
+      request = require('./request'),
       { URL } = require('url');
-
-const client = axios.create( config.host );
-
-const request = options => {
-  const onSuccess = response => {
-    return response.data;
-  };
-  const onError = error => {
-    console.error('Request Failed:', error.config);
-    if (error.response) {
-      console.error('Status:',  error.response.status);
-      console.error('Data:',    error.response.data);
-      console.error('Headers:', error.response.headers);
-    } else {
-      console.error('Error Message:', error.message);
-    }
-    return Promise.reject(error.response || error.message);
-  };
-
-  var source = axios.CancelToken.source();
-
-  if (options.clientRequest) {
-    options.headers = Object.assign(
-      options.headers || {},
-      {
-        Cookie:
-          (options.clientRequest.user && options.clientRequest.user.cookies)
-            ? options.clientRequest.user.cookies.join('')
-            : ''
-      }
-    );
-  }
-
-  options.cancelToken = source.token;
-  options.cancelSource = source;
-
-  return client(options)
-    .then(onSuccess)
-    .catch(onError);
-};
 
 //const isCallerMobile = req => {
 //  let ua = req.headers['user-agent'].toLowerCase(),
@@ -54,7 +15,7 @@ const request = options => {
 module.exports = app => {
 
   // Expand
-  let global = config.site;
+  let global = Object.assign({}, config.site);
   global.categoryByCode = {};
 
   // Promo
@@ -88,10 +49,36 @@ module.exports = app => {
   } );
 
   app.use( ( req, res, next ) => {
-    req.globalData = Object.assign(global, {
-      user: req.isAuthenticated() ? req.user : false
-    })
-    next();
+
+    req.globalData = Object.assign({}, global);
+
+    if (req.isAuthenticated()) {
+      request({
+        url: '/auth/',
+        clientRequest: req
+      }).then( (response) => {
+        console.log(response);
+        console.log('test');
+        if (response.status == 'authorized') {
+          req.session.userExtra = response;
+          req.globalData = Object.assign({ user: {
+            extra: response
+            } }, req.globalData);
+        } else {
+          delete req.session.userExtra;
+          //req.logOut();
+        }
+        next();
+      }).catch( error => {
+        console.log( error );
+        next();
+      } );
+    } else {
+      //req.globalData.user = {};
+      next();
+    }
+
+
   } );
 
   // iFrame widget
@@ -164,6 +151,7 @@ module.exports = app => {
       page: req.query.page || 1,
       params: req_url.searchParams
     };
+
     let sortBy = req.query.sort || '-rating';
     let url = '/api/movie/filter/?per-page=20&sort=' + sortBy + '&';
     if (typeof req.params.category !== 'undefined') {
@@ -188,6 +176,8 @@ module.exports = app => {
         url: '/api/movie/filtervalues/',
       })
     ]).then( (response) => {
+
+      console.log(response);
       data.api = response[0].items;
       data.filters = response[1];
       data.filter = filter;
@@ -195,21 +185,23 @@ module.exports = app => {
       data.pagination.sort = req.query.sort || '-rating';
       data.pagination.view = req.query.view || 'grid';
       data.page = 'movies';
+
+      console.log(data);
       return render( req, res, data );
     } ).catch( error => res.send( error ) );
   });
 
   app.get('/movie/:name/buy', function (req, res, next) {
-    let data = Object.assign({}, req.globalDatal);
+    let data = Object.assign({}, req.globalData);
     data.page = 'order';
     data.page.isCinema = false;
-
 
     request({
       clientRequest: req,
       url: '/api/movie/?sort=id&expand=schedules,sessions,category,screenshots&code=' + encodeURIComponent(req.params.name)
     })
       .then( response => {
+
         if (!response.items[0]) {
           next();
           return true;
@@ -217,14 +209,14 @@ module.exports = app => {
         data.api = {
           movie: response.items[0],
           type: 'rent',
-          time_gmt3: Math.round(((new Date()))/1000 + 60*60*24*3),
+          time_gmt3: Math.ceil((((new Date()))/1000 + 60*60*24*3)/60/60)*60*60,
         }
+
 
         data.title = response.items[0].name;
         data.meta.og.image = response.items[0].cover && response.items[0].cover.id
           ? '//artdoc.media/upload/resize/' + response.items[0].cover.id + '/640x360.jpg'
           : data.meta.og.image;
-
         render( req, res, data );
       } )
       .catch(( error ) => {
@@ -257,7 +249,6 @@ module.exports = app => {
       })
         .then( response => {
           if (!response.items.length) {
-            console.log('next!');
             next();
           }
           data.api = response.items[0];
@@ -383,7 +374,12 @@ module.exports = app => {
   // Order
   app.get( '/order/:transaction_id', ( req, res ) => {
     let data = Object.assign({}, req.globalData);
-    client.post( '/payment/provide/', { nonce: req.query.payment_nonce, transaction_id: req.params.transaction_id } )
+    request( {
+      url: '/payment/provide/',
+      method: 'post',
+      clientRequest: req,
+      data: { nonce: req.query.payment_nonce, transaction_id: req.params.transaction_id }
+    })
       .then( response => {
         data.api = response.data;
 
@@ -504,46 +500,51 @@ module.exports = app => {
       promo_code = 'artdocmedia_free';
     }
 
-    client.post( '/cinema/booking/booking/?promo=' + promo_code, {
-      CinemaTicketModel: { email: req.body.email },
-      session_id: req.params.session_id,
-      promo: promo_code
-    } ).then( api => {
-        if ( api.data.payment_url ) {
+    request( {
+      url: '/cinema/booking/booking/?promo=' + promo_code,
+      method: 'post',
+      clientRequest: req,
+      data: {
+        CinemaTicketModel: { email: req.body.email },
+        session_id: req.params.session_id,
+        promo: promo_code
+      }
+    }).then( api => {
+      if ( api.payment_url ) {
         request({
           clientRequest: req,
-          url: api.data.payment_url
-        })
-            .then( response => {
-              return res.json( response )
-            } )
-            .catch(() => res.send('error') );
-        } else {
-          return res.json( api.data );
-        }
-      })
-      .catch( error => res.send( error ) );
+          url: api.payment_url
+        }).then( response => {
+          return res.json( response )
+        }).catch(() => res.send('error') );
+      } else {
+        return res.json( api );
+      }
+    }).catch( error => res.send( error ) );
   });
-
 
   app.post( '/api/buy/:movie_id', ( req, res ) => {
 
-    client.post( '/cinema/booking/rent/', {
-      RentTicketModel: { email: req.body.email },
-      movie_id: req.params.movie_id
-    } ).then( api => {
-      console.log(api);
-      if ( api.data.payment_url ) {
+    request({
+      url: '/cinema/booking/rent/',
+      method: 'post',
+      clientRequest: req,
+      data: {
+        RentTicketModel: { email: req.body.email },
+        movie_id: req.params.movie_id
+      }
+    }).then( api => {
+      if ( api.payment_url ) {
         request({
           clientRequest: req,
-          url: api.data.payment_url
+          url: api.payment_url
         })
           .then( response => {
             res.json(  response );
           } )
           .catch(() => res.send('error') );
       } else {
-        res.json( api.data );
+        res.json( api );
       }
     })
       .catch((e) => {
@@ -553,8 +554,13 @@ module.exports = app => {
   });
 
   app.post( '/api/payment/:transaction_id', ( req, res ) => {
-    client.post( '/payment/provide/', { nonce: req.body.payment_nonce, transaction_id: req.params.transaction_id } )
-      .then( api => res.json( api.data ) )
+    request( {
+      url: '/payment/provide/',
+      method: 'post',
+      clientRequest: req,
+      data: { nonce: req.body.payment_nonce, transaction_id: req.params.transaction_id}
+    })
+      .then( api => res.json( api ) )
       .catch( error => res.send( error ) );
   });
 
@@ -581,10 +587,7 @@ module.exports = app => {
       request( axiosParams )
         .then( api => res.json( api ) )
         .catch( error => res.send( error ) );
-
       req.apiRequests.push(axiosParams);
-
-
     } else {
       return res.json( { api: { error: 'Empty data' } } )
     }

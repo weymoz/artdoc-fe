@@ -25,11 +25,12 @@ provide(bemDom.declBlock(this.name, {
     const datetime = new Date( ( timestamp + this._timeZoneOffset ) * 1000 );
     const time = datetime.toLocaleString( 'ru', { hour: 'numeric', minute: 'numeric' } );
     const date = datetime.toLocaleString( 'ru', { day: 'numeric', month: 'long' } );
-    
+
     bemDom.update( this._elem('user-time').domElem, time );
     bemDom.update( this._elem('user-date').domElem, date );
 
     const link = this.findMixedBlock( Link );
+
     if ( link ) {
       link.setUrl( window.location.pathname + '?code=' + this.params.ticket.code + '&tz=' + this.getTimezoneOffset() );
     }
