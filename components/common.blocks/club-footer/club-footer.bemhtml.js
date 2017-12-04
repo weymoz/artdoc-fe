@@ -84,7 +84,7 @@ block('club-footer')(
                     { block: 'heading', mods: { caps: true, size: 'xs' } },
                     { block: 'font', mods: { family: 'helvetica-neue-condensed-bold', loaded: true } },
                   ],
-                  content: "Здравствуйте, " + node.user.extra.user_meta.name + "."
+                  content: "Здравствуйте, " + (node.user && node.user.extra && node.user.extra.user_meta ? node.user.extra.user_meta.name:'') + "."
                 },
                 {
 
