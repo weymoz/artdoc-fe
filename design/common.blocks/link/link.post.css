@@ -8,7 +8,7 @@ block(link) {
     .mod(size $size) {
       font-size: $fontSize;
     }
-  }  
+  }
 
   .mod(view tag) {
     display: inline-block;
@@ -17,5 +17,10 @@ block(link) {
     margin-bottom: 1em;
     margin-right: .5em;
     padding: .5em 1em;
+
+    @media(max-width: 425px){
+      font-size: 12px;
+      line-height: 16px;
+    }
   }
 }

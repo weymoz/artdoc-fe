@@ -12,5 +12,47 @@ block(search) {
       color: #eeeef2;
       font-weight: bold;
     }
+
+
+    @media(max-width: 425px) {
+      padding: 0 16px;
+      box-sizing: border-box;
+
+      elem(footer){
+        block(paragraph){
+          .mod(align right){
+            text-align: left;
+          }
+        }
+      }
+
+      block(page){
+        elem(title){
+         margin: 0;
+         margin-top: 28px;
+         margin-bottom: 14px;
+         padding-bottom: 4px;
+         box-shadow: inset 0 -1px 0 0 #676770;
+        }
+      }
+
+      elem(movie){
+        block(page){
+          elem(title){
+            margin-top: 35px;
+          }
+        }
+      }
+
+      elem(tag){
+        block(page){
+          elem(title){
+            margin-bottom: 24px;
+          }
+        }
+      }
+
+    }
+
   }
 }
