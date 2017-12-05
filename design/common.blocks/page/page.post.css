@@ -619,9 +619,10 @@ block(page) {
   block(dropdown).mod(nav-menu){
     @media(max-width: 425px){
       top: 56px !important;
+
       block(menu).mod(nav-menu){
         column-count: 1;
-        padding-top: 32px;
+        padding: 32px 16px 0;
 
         block(nav-menu).elem(close){
           display: block;
@@ -630,6 +631,15 @@ block(page) {
         elem(item){
           width: 60px;
         }
+      }
+    }
+  }
+
+  block(popup){
+    &block(dropdown).mod(nav-menu){
+      @media(max-width: 425px){
+        overflow: auto;
+        height: 100vh;
       }
     }
   }
@@ -780,6 +790,10 @@ block(page) {
               flex-direction: column;
               align-items: flex-start;
               padding-top: 37px;
+
+              block(select){
+                align-items: center;
+              }
 
               block(filters){
                 elem(item){
