@@ -20,3 +20,4 @@ bundles/*/*/*.tmpl.bemdecl.js
 .swp
 package-lock.json
 shrinkwrap.yaml
+.env

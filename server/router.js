@@ -148,6 +148,7 @@ module.exports = app => {
     let data = Object.assign({}, req.globalData);
     let filter = Object.assign({}, req.query);
     data.page = 'movies';
+    data.adaptive = true;
     data.currentCategoryCode = 'all';
     data.title = req.params.category ? data.categoryByCode[ req.params.category ].name : 'Все фильмы';
     data.pagination = {
@@ -276,6 +277,7 @@ module.exports = app => {
           }
           data.api = response.items[0];
           data.title = response.items[0].name;
+          data.adaptive = true;
           data.meta.og.image = response.items[0].cover && response.items[0].cover.id
             ? '//artdoc.media/upload/resize/' + response.items[0].cover.id + '/640x360.jpg'
             : data.meta.og.image;

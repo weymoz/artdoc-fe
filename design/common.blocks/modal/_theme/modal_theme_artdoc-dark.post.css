@@ -1,6 +1,10 @@
 block(modal).mod(theme artdoc-dark) {
   background-color: rgba(50, 50, 50, 0.2);
 
+  /*Блюр бэкграунда только для iOS & Safari*/
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+
   .elem(header) {
     background-color: #eee;
   }
@@ -10,6 +14,13 @@ block(modal).mod(theme artdoc-dark) {
   }
 
   .mod(view search) {
+    .elem(content) {
+      background-color: transparent;
+    }
+  }
+
+  .mod(view mobile-menu) {
+    background-color: rgba(35, 35, 44, .95);
     .elem(content) {
       background-color: transparent;
     }

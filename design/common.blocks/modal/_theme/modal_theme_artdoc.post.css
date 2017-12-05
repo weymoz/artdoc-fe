@@ -14,4 +14,10 @@ block(modal).mod(theme artdoc) {
       background-color: transparent;
     }
   }
+
+  .mod(view mobile-menu) {
+    .elem(content) {
+      background-color: transparent;
+    }
+  }
 }

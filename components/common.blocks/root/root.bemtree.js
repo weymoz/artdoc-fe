@@ -29,7 +29,7 @@ block('root').replace()(function() {
     ],
     head: [
 
-      data.apative
+      data.adaptive
       ?  { elem: 'meta', attrs: { name: 'viewport', content: 'width=device-width, initial-scale=1' } }
       :  { elem: 'meta', attrs: { name: 'viewport', content: 'width=1024' } },
 

@@ -36,6 +36,14 @@ block(form) {
       width: 100%;
       flex: 1;
     }
+
+
+    @media(max-width: 425px){
+      elem(header){
+        padding: 23px 0 5px !important;
+        margin-bottom: 0;
+      }
+    }
   }
-  
+
 }
