@@ -293,6 +293,7 @@ module.exports = app => {
     let url = '/api/authorcompilation/';
     url += '?sort=-sort&per-page=' + data.pagination['per-page'] + '&page=' + data.pagination.page;
     data.page = 'selections';
+    data.adaptive = true;
     data.title = 'Авторские подборки';
     request({
       clientRequest: req,
@@ -313,6 +314,7 @@ module.exports = app => {
     };
     let url = '/api/authorcompilation/?code=' + encodeURIComponent(req.params.code);
     data.page = 'selection';
+    data.adaptive = true;
     request({
       clientRequest: req,
       url: url
