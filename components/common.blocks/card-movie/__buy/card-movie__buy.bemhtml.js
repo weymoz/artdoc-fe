@@ -1,5 +1,7 @@
 block('card-movie').elem('buy')(
 
+
+
   content()({
       block: 'paragraph',
       mods: { align: 'center', size: 's' },

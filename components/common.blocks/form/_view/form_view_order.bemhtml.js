@@ -22,8 +22,6 @@ block('form').mod('view', 'order')(
   }),
 
   content()( ( node, ctx ) => {
-    console.log(ctx.session);
-
     return [
       {
         block : 'fieldset',

@@ -14,6 +14,10 @@ const config = require('./config'),
 
 module.exports = app => {
 
+  app.get('/livereload.js', (req, res) => {
+    res.end('ok');
+  });
+
   // Expand
   let global = Object.assign({}, config.site);
   global.categoryByCode = {};

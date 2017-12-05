@@ -104,7 +104,6 @@ provide(Form.declMod({ modName: 'view', modVal: 'order' }, {
                           '<p class="paragraph text text_state_error">Произошла ошибка: ' + apiResponse.error + '</p>'
                         );
                       } else {
-                        console.log( apiResponse );
                         window.location.href = '/order/' + data.transaction_id + '?payment_nonce=' + payload.nonce;
                       }
                     } );
