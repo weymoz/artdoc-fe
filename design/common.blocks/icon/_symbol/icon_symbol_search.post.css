@@ -4,5 +4,5 @@
 }
 
 block(icon).mod(symbol search) {
-  background-image: svg-load( 'icon_symbol_search.svg', fill="map(fbs-cabinet, color, bermuda_light)" );
+  background-image: svg-load( 'icon_symbol_search.svg');
 }

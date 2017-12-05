@@ -43,7 +43,22 @@ block('header')(
         mods: { pseudo: true, },
         mix: { block: 'header', elem: 'search', js: true },
         url: '/search',
-        content: 'Поиск'
+        content: [
+        {
+          block: 'icon',
+          mods: {
+            symbol: 'search'
+          }
+        },
+        {
+          block: 'text',
+          mods: {
+            theme: 'artdoc-dark',
+            size: 'l'
+          },
+          content: 'Поиск'
+        }
+        ]
       },
       {
         block: 'modal',
@@ -71,8 +86,23 @@ block('header')(
         block: 'link',
         mods: { pseudo: true, },
         mix: { block: 'header', elem: 'show-menu', js: true },
-        url: '',
-        content: 'Меню'
+        url: '/',
+        content: [
+        {
+          block: 'icon',
+          mods: {
+            symbol: 'burger'
+          }
+        },
+        {
+          block: 'text',
+          mods: {
+            theme: 'artdoc-dark',
+            size: 'l'
+          },
+          content: 'Меню'
+        }
+        ]
       },
       {
         block: 'modal',

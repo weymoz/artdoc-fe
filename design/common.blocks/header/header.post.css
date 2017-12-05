@@ -6,4 +6,13 @@ block(header) {
   elem(show-menu){
     display: none;
   }
+
+  elem(search){
+    block(text){
+      display: block;
+    }
+    block(icon){
+      display: none;
+    }
+  }
 }

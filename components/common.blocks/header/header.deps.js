@@ -4,6 +4,7 @@
     { block: 'nav-menu' },
     { block: 'icon', mods: { social: '*', symbol: 'user' } },
     { block: 'form', mods: { view: 'search' } },
-    { block: 'modal' }
+    { block: 'modal' },
+    { block: 'text' }
   ]
 }]
