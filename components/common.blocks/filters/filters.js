@@ -1,6 +1,6 @@
 modules.define('filters',
-[ 'i-bem-dom', 'form', 'jquery', 'BEMHTML', 'button', 'radio-group', 'history', 'uri__querystring', 'page', 'header', 'dropdown' ],
-function(provide, bemDom, Form, $, BEMHTML, Button, radioGroup, History, Querystring, Page, Header, navMenu ) {
+[ 'i-bem-dom', 'form', 'jquery', 'BEMHTML', 'button', 'radio-group', 'history', 'uri__querystring', 'page', 'header', 'dropdown'],
+function(provide, bemDom, Form, $, BEMHTML, Button, radioGroup, History, Querystring, Page, Header, navMenu) {
 
 provide(bemDom.declBlock(this.name, {
   onSetMod: {
@@ -11,6 +11,7 @@ provide(bemDom.declBlock(this.name, {
         this._menu = this.findParentBlock( Page )
           .findChildBlock( Header )
           .findChildBlock( { block: navMenu, modName: 'nav-menu', modVal: true } );
+
         this._domEvents( this._elem('title') ).on('click', this._openMenu );
 
         this._toggle = this._elem('toggle').findMixedBlock( Button );
@@ -18,7 +19,10 @@ provide(bemDom.declBlock(this.name, {
         this._domEvents( this._toggle ).on('click', this._onToggle );
 
         this._close = this._elem('close');
-        this._domEvents( this._elem('close') ).on('click', this._onToggle );
+        this._domEvents( this._elem('close') ).on('click touchstart', () => {
+          // this._onToggle
+          this._toggle.target.delMod( 'show' );
+        });
 
         this._sort = this._elem('sort').findMixedBlock( radioGroup );
         this._events( this._sort ).on('change', this._onSortChange, this );
@@ -61,7 +65,7 @@ provide(bemDom.declBlock(this.name, {
   },
 
   _onToggle: function () {
-    this._toggle.target.setMod( 'show', !this._toggle.hasMod('checked') );
+    this._toggle.target.toggleMod( 'show' );
   },
 
   _onSortChange: function () {

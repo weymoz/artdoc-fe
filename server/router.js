@@ -297,6 +297,7 @@ module.exports = app => {
     let url = '/api/authorcompilation/';
     url += '?sort=-sort&per-page=' + data.pagination['per-page'] + '&page=' + data.pagination.page;
     data.page = 'selections';
+    data.adaptive = true;
     data.title = 'Авторские подборки';
     request({
       clientRequest: req,
@@ -317,6 +318,7 @@ module.exports = app => {
     };
     let url = '/api/authorcompilation/?code=' + encodeURIComponent(req.params.code);
     data.page = 'selection';
+    data.adaptive = true;
     request({
       clientRequest: req,
       url: url
@@ -387,7 +389,7 @@ module.exports = app => {
       data: { nonce: req.query.payment_nonce, transaction_id: req.params.transaction_id }
     })
       .then( response => {
-        data.api = response.data;
+        data.api = response;
 
         data.page = 'thanks';
         data.title = 'Билет успешно оплачен';

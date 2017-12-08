@@ -1,4 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21 21">
-  <path d="M3.4 16L16 3.4l1.6 1.5L5 17.8 3.3 16z"/>
-  <path d="M16 17.5L3.5 4.8 5 3.3 17.5 16 16 17.5z"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <g fill="#FFFFFF" fill-rule="evenodd">
+    <rect width="20" height="2" x="-2" y="7" transform="scale(-1 1) rotate(-45 0 27.314)"/>
+    <rect width="20" height="2" x="-2" y="7" transform="scale(-1 1) rotate(45 0 -11.314)"/>
+  </g>
 </svg>

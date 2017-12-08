@@ -1,3 +1,5 @@
+block('nav-menu').js()(true)
+
 block('nav-menu')(
   addMix()({ block: 'font', mods: { family: 'helvetica-neue-bold', loaded: true } }),
   content()( ( node, ctx ) => {
@@ -13,7 +15,7 @@ block('nav-menu')(
         switcher: {
           block: 'link',
           mods: { pseudo: true },
-          url: '/movie',
+          url: '',
           content: 'Фильмы'
         },
         popup: {
@@ -25,11 +27,14 @@ block('nav-menu')(
               block: 'menu',
               mods: {
                 type: 'radio',
+                theme: 'artdoc',
                 'nav-menu': true
               },
               mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } },
               val: ctx.currentCategoryCode,
-              content: ctx.category && ctx.category.map( item => {
+              content: [
+                { block: node.block, elem: 'close' },
+                ctx.category && ctx.category.map( item => {
                 return {
                   elem: 'item',
                   elemMods: { type: 'link' },
@@ -41,6 +46,7 @@ block('nav-menu')(
                   }
                 }
               } )
+              ]
             }
           }
         }
