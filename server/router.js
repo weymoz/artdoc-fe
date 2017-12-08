@@ -385,7 +385,7 @@ module.exports = app => {
       data: { nonce: req.query.payment_nonce, transaction_id: req.params.transaction_id }
     })
       .then( response => {
-        data.api = response.data;
+        data.api = response;
 
         data.page = 'thanks';
         data.title = 'Билет успешно оплачен';
