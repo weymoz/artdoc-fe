@@ -4,5 +4,5 @@
 }
 
 block(icon).mod(symbol times) {
-  background-image: svg-load( 'icon_symbol_times.svg', fill="map(fbs-cabinet, color, bermuda_light)" );
+  background-image: svg-load( 'icon_symbol_times.svg');
 }
