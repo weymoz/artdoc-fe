@@ -29,7 +29,7 @@
                 'operator',
                 'producer',
                 'screenwriter',
-                'sound_producer',
+                'sound-producer',
                 'studio',
                 'subs',
                 'tags',
