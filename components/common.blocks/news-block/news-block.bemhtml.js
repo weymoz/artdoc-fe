@@ -3,15 +3,24 @@ block('news-block')(
   def()( ( node, ctx ) => {
     return applyNext( { _api: ctx.news } )
   } ),
-  content()( node => {
-    const news = node.ctx.news;
+  content()( (node, ctx) => {
+    const news = ctx.news;
 
     const dateSplit = news.date.split('.');
     const dateTimestamp = new Date( dateSplit[ 2 ], dateSplit[ 1 ] - 1, dateSplit[ 0 ], 0, 0, 0, 0 ).getTime() / 1000;
 
     return [
-      { elem: 'title', content: news.title },
-      { elem: 'content', content: news.text },
+      { elem: 'title', content: ctx.title },
+      { elem: 'content', content: [
+          {
+            block: 'text',
+            mods: { bold: true },
+            content: news.title
+          },
+          { tag: 'br' },
+          news.text
+        ]
+      },
       news.image && news.image.id && {
         block: 'link',
         mix: { block: node.block, elem: 'preview', elemMods: { 'has-icon': !!news.video_icon } },
