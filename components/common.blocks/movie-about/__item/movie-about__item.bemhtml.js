@@ -117,11 +117,18 @@ block('movie-about').elem('item')(
             content: fests[ name ].nominations[0].row_data.split('#')[0] + ' ' + fests[ name ].year
           },
           fests[ name ].nominations.map( fest => {
-            return {
-              block: 'paragraph',
-              mods: { align: 'center', size: 's' },
-              content: fest.stage
-            }
+            return [
+              fest.stage && {
+                block: 'paragraph',
+                mods: { align: 'center', size: 's' },
+                content: fest.stage
+              },
+              fest.comment && {
+                block: 'paragraph',
+                mods: { align: 'center', size: 's' },
+                content: fest.comment
+              } 
+            ]
           } )
         ]
       }
