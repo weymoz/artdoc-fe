@@ -16,7 +16,7 @@ block('card-author').mod('view', 'detail')(
       ];
 
     let author_info = data_rows.map(function (elem) {
-      if (!ctx.author[elem.field]) {
+      if (!ctx.author[elem.field] || !ctx.author[elem.field][0]) {
         return false;
       }
 
