@@ -15,6 +15,11 @@ block('page-author').replace()( node => {
     {
       elem: 'content',
       content: node.data.api.movies.map( item => {
+
+        for (var i in item) {
+          item['_'+i] = item[i];
+        }
+
         return {
           block: 'card-movie',
           mods: { view: 'grid' },

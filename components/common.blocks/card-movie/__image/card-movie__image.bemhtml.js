@@ -3,7 +3,8 @@ block('card-movie').elem('image')(
     addElemMods()( { 'no-image': true } )
   ),
 
-  match( node => node._cover && node._cover.id ).replace()( node => {
+  match( node => (node._cover && node._cover.id) || node._cover_id ).replace()( node => {
+
     return [
       {
         block: 'image',
@@ -14,7 +15,7 @@ block('card-movie').elem('image')(
           // Костыль для корректировки ресайза с Бэкенда
           // style: 'height: ' + node._cover.height + 'px'
         },
-        url: node._cover.id,
+        url: node._cover.id || node._cover_id,
         width: node._cover.width,
         height: node._cover.height,
         title: node._name,
