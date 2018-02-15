@@ -2,7 +2,7 @@ const path = require('path'),
       fs = require('fs'),
       SETS = {
         desktop: ['common', 'desktop'],
-        widget: ['common', 'desktop', 'widget'],
+        //widget: ['common', 'desktop', 'widget'],
         // touch: ['common', 'touch']
       };
 
