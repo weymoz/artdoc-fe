@@ -113,7 +113,7 @@ module.exports = app => {
     axios.all([
       request( { url: '/api/authorcompilation/?sort=-sort&per-page=3&page=1' } ),
       request( { url: '/api/schedule/?expand=sessions,movie&per-page=4&unique=1&date_from=' + (Math.floor((Date.now() / 1000) /3600 ) * 3600 - (31 * 60 * 60)) } ),
-      request( { url: '/api/news/?per-page=4&page=1&sort=sort' } )
+      request( { url: '/api/news/?per-page=4&page=1&sort=-sort' } )
     ]).then( (response) => {
       let data = Object.assign({}, req.globalData, { api: response[0].items }, { poster: response[ 1 ] }, { news: response[ 2 ].items } );
       data.page = 'index';
@@ -334,6 +334,32 @@ module.exports = app => {
       }).catch( error => res.send( error ) );
   });
 
+
+  app.get( '/author/:id', ( req, res, next ) => {
+    let data = Object.assign({}, req.globalData);
+    data.pagination = {
+      'per-page' : 20,
+      'page': req.query.page ? req.query.page : 1
+    };
+    let url = '/api/author/?id=' + req.params.id
+    data.page = 'author';
+    data.adaptive = true;
+    request({
+      clientRequest: req,
+      url: url
+    })
+      .then( response => {
+        if (!response.items.length) {
+          console.log('next!');
+          next();
+        }
+        data.api = response.items[0];
+        data.title = response.items[0].name;
+        return render( req, res, data );
+      }).catch( error => res.send( error ) );
+  });
+
+
   // Cinema's catalog
   app.get( '/cinema', ( req, res ) => {
     let data = Object.assign({}, req.globalData);
@@ -447,22 +473,25 @@ module.exports = app => {
         } );
 
     } else {
+
       request({
-        clientRequest: req,
-        url: '/ondemand/release/?movie_code=' + encodeURIComponent(req.params.name)
+        url: '/api/movie/?sort=id&expand=schedules,sessions,category,video_link,screenshots&code=' + encodeURIComponent(req.params.name),
+        clientRequest: req
       })
-        .then(response => {
-          data.api = response;
+        .then( response => {
 
-          if (!data.api.error) {
-            data.api.type = 'rent';
-            data.page = 'play';
-            data.title = 'Просмотр фильма';
-            return render(req, res, data);
-          }
-
-        })
-        .catch(error => res.send(error));
+          data.api = {};
+          data.api.type = 'rent';
+          data.api.movie = response.items[0];
+          data.api.link = response.items[0].video_link;
+          data.title = response.items[0].name;
+          data.page = 'play';
+          data.meta.og.image = response.items[0].cover && response.items[0].cover.id
+            ? '//artdoc.media/upload/resize/' + response.items[0].cover.id + '/640x360.jpg'
+            : data.meta.og.image;
+          return render( req, res, data );
+        } )
+        .catch( ( error ) => res.send( error ) );
     }
   });
 

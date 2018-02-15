@@ -1,6 +1,7 @@
 block('card-author')(
 
   match( ( node, ctx ) => ctx.author ).def()( ( node, ctx ) => {
+
     Object.keys( ctx.author ).map( key => {
       node[ '_' + key ] = ctx.author[ key ];
       return true;
@@ -39,9 +40,15 @@ block('card-author')(
       return  {
         elem: 'content',
         content: {
-          elem: 'header',
-          mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } },
-          content: node._name
+          block: 'link',
+          url: '/author/'+node._id,
+          content: {
+            elem: 'content',
+            attrs: {style: 'color: #000'},
+            mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } },
+            content: node._name
+          }
+
         }
       }
     })

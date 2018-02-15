@@ -1,7 +1,5 @@
 block('card-movie').elem('buy')(
 
-
-
   content()({
       block: 'paragraph',
       mods: { align: 'center', size: 's' },
@@ -14,7 +12,7 @@ block('card-movie').elem('buy')(
       }
   }),
 
-  match( node => node._status === 20 /*&& node._price && node._price.price === 0*/ ).replace()( node => {
+  match( node => node._status === 20 || node._view_access === 512 && node._price && node._price.price === 0 ).replace()( node => {
     return {
       block: 'button',
       mix: { block: node.block, elem: node.elem },
@@ -140,8 +138,6 @@ block('card-movie').elem('buy')(
         break;
     }
 
-
-
     return {
       block: node.elemMods.type || 'checkbox',
       mix: { block: node.block, elem: node.elem },
@@ -155,7 +151,8 @@ block('card-movie').elem('buy')(
     }
   }),
 
-  match( node => node._video_link ).replace()( node => {
+  match( node => node._video_link && (node._view_access < 512 || node._price.price > 0) ).replace()( node => {
+
     return [{
       block: 'button',
       mix: { block: node.block, elem: node.elem },
@@ -178,7 +175,6 @@ block('card-movie').elem('buy')(
 
         },
         content: 'Бесплатно для участников Клуба Артдок'
-
       }]
   } )
 
