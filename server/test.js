@@ -82,23 +82,23 @@ const metaSchema = new schema.Entity('meta', {}, { idAttribute: 'model' });
 
 const API = axios.create( config.host );
 
-const fetch = async options => {
-  let response;
-  try {
-    response = await API( options )
-  } catch ( error ) {
-    console.error('Request Failed:', error.config);
-    if ( error.response ) {
-      console.error('Status:',  error.response.status);
-      console.error('Data:',    error.response.data);
-      console.error('Headers:', error.response.headers);
-    } else {
-      console.error('Error Message:', error.message);
-    }
-    throw new Error( error.response || error.message )
-  }
-  return response.data;
-};
+// const fetch = async options => {
+//   let response;
+//   try {
+//     response = await API( options )
+//   } catch ( error ) {
+//     console.error('Request Failed:', error.config);
+//     if ( error.response ) {
+//       console.error('Status:',  error.response.status);
+//       console.error('Data:',    error.response.data);
+//       console.error('Headers:', error.response.headers);
+//     } else {
+//       console.error('Error Message:', error.message);
+//     }
+//     throw new Error( error.response || error.message )
+//   }
+//   return response.data;
+// };
 
 class Request {
   constructor( url, params, schema ) {
@@ -267,4 +267,5 @@ module.exports = app => {
     }, moviePlaySchema );
     return res.json( await getMovieViewPaid.request() )
   } );
+
 }
