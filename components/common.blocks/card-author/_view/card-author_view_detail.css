@@ -18,6 +18,22 @@ block(author) {
     block(heading) {
       margin-bottom: 20px;
     }
+
+/*    block(list){
+      elem(term){
+        margin-right: 40px;
+        display: block;
+      }
+    }*/
+
+    block(link){
+      color: #000;
+
+      &.mod(hovered),
+      &.mod(focused){
+        color: #f4203b;
+      }
+    }
   }
 }
 
