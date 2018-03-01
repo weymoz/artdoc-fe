@@ -10,5 +10,12 @@ block(icon).mod(social facebook) {
 
   &.mod(bright) {
      background-image: svg-load('icon_social_facebook.svg', fill="#f5f5f5");
-   }
+  }
+
+  &.mod(black) {
+     background-image: svg-load('icon_social_facebook.svg', fill="#000");
+      &:hover {
+        background-image: svg-load('icon_social_facebook.svg', fill="#777783");
+      }
+  }
 }

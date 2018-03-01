@@ -8,7 +8,7 @@ block(author) {
     display: flex;
     margin-right: 30px;
     min-width: 310px;
-
+    max-height: 310px;
   }
 
   elem(description) {
@@ -32,6 +32,26 @@ block(author) {
       &.mod(hovered),
       &.mod(focused){
         color: #f4203b;
+      }
+    }
+  }
+
+  elem(social-row){
+    margin-top: 25px;
+    width: 232px;
+    display: flex;
+    justify-content: space-around;
+
+    block(icon){
+      &:hover{
+        transition: background-image, 0.4s;
+      }
+    }
+
+    block(button){
+      background-color: #fff;
+      &.mod(hovered){
+        background-color: #fff;
       }
     }
   }
