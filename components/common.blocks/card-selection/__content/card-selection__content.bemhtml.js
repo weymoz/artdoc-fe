@@ -5,7 +5,6 @@ block('card-selection').elem('content')(
     addAttrs()( (node) => {
       let url = node._url;
       delete node._url;
-
       return {
         href: url
       }

@@ -12,7 +12,7 @@ block(heading) {
   .mod(size l) {
     letter-spacing: 1px;
   }
-  
+
   .mod(size xs),
   .mod(size xl),
   .mod(size xxl) {
@@ -28,4 +28,17 @@ block(heading) {
     margin-left: 0.1em;
     margin-right: -0.2em; /* prevent wrap to next line */
   }
+
+  .mod(underline){
+    padding-bottom: 16px;
+    border-bottom: 1px solid #000;
+    margin-bottom: 56px;
+    elem(counter){
+      font-weight: normal;
+      display: inline-block;
+      margin-left: 16px;
+      color: #c5c5d2;
+    }
+  }
+
 }
