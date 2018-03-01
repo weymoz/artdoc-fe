@@ -9,6 +9,10 @@ block('card-author')(
 
     node._meta = ctx.content;
 
+    if (ctx.isLink === false){
+      node._isLink = ctx.isLink;
+    }
+
     switch ( node.mods.size ) {
       case 'xs':
         node.width = 48;
@@ -25,6 +29,7 @@ block('card-author')(
   match( node => !node._image_id ).addMods()( { 'no-photo': true } ),
 
   match( node => node._image_id ).content()( node => {
+
     return {
       block: 'image',
       mods: { circle: true, 'has-resize': true },
@@ -37,22 +42,33 @@ block('card-author')(
 
   match( node => node._name )(
     appendContent()( node => {
-      return  {
-        elem: 'content',
-        content: {
-          block: 'link',
-          url: '/author/'+node._id,
-          content: {
+
+      console.log(node._isLink);
+      if (node._isLink !== false){
+        return  {
             elem: 'content',
-            attrs: {style: 'color: #000'},
+            content: {
+              block: 'link',
+              url: '/author/'+node._id,
+              content: {
+                elem: 'content',
+                attrs: {style: 'color: #000'},
+                mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } },
+                content: node._name
+              }
+
+            }
+          }
+      } else {
+          return  {
+            elem: 'content',
             mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } },
             content: node._name
           }
-
-        }
       }
     })
   ),
+
 
   match( node => node._meta )(
     elem('content').appendContent()( node => node._meta )

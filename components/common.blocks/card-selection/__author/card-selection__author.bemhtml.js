@@ -11,6 +11,7 @@ block( 'card-selection' ).elem( 'author' )(
         block: 'card-author',
         mods: { size: node.author_image },
         author: author,
+        isLink: false,
         content: {
           block: 'list',
           mods: { size: 's' },
@@ -19,12 +20,12 @@ block( 'card-selection' ).elem( 'author' )(
               elem: 'date',
               mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } },
               content: [
-              {
-                block: 'text',
-                mods: { format: 'datetime' },
-                format: 'DD MMMM YYYY',
-                content: node._created_at
-              }
+                {
+                  block: 'text',
+                  mods: { format: 'datetime' },
+                  format: 'DD MMMM YYYY',
+                  content: node._created_at
+                }
               ]
             }
           ]
