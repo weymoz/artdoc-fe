@@ -14,12 +14,31 @@ block('page-author').replace()( node => {
     },
     {
       elem: 'content',
-      content: node.data.api.movies.map( item => {
+      elemMods: {
+        underline: true
+      },
+      content: {
+          block: 'heading',
+          mods: {
+            size: 'xl',
+            underline: true
+          },
+          content: [
+          'Фильмография',
+          {
+            elem: 'counter',
+            content: node.data.api.movies.length
+          }
+          ]
+        }
+    },
+    {
+      elem: 'content',
+      content:node.data.api.movies.map( item => {
 
         for (var i in item) {
           item['_'+i] = item[i];
         }
-
         return {
           block: 'card-movie',
           mods: { view: 'grid' },
@@ -32,3 +51,20 @@ block('page-author').replace()( node => {
     { block: 'club-footer' }
   ];
 });
+
+
+  // elem('header').match( node => node._api )(
+  //   addMix()( { block: 'page', elem: 'content' } ),
+  //   content()([
+  //     { elem: 'title' },
+  //     { elem: 'actions' }
+  //   ])
+  // ),
+
+  // elem('title')(
+  //   addMix()({ block: 'heading', mods: { size: 'xl' } }),
+  //   content()( node => [
+  //     node._api.title,
+  //     { elem: 'result-count' },
+  //   ] )
+  // ),

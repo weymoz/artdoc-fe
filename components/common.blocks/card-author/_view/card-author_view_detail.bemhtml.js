@@ -6,7 +6,7 @@ block('card-author').mod('view', 'detail')(
 
   content()( (node, ctx) => {
 
-    console.log('TEST DETAIL CARD', ctx);
+    // console.log('TEST DETAIL CARD', ctx);
 
 
     let data_rows = [

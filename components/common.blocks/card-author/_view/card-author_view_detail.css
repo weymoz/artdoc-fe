@@ -19,12 +19,15 @@ block(author) {
       margin-bottom: 20px;
     }
 
-/*    block(list){
+    block(list){
       elem(term){
-        margin-right: 40px;
-        display: block;
+        width: 45%;
       }
-    }*/
+
+      elem(definition){
+        text-align: unset;
+      }
+    }
 
     block(link){
       color: #000;
