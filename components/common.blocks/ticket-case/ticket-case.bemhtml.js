@@ -22,38 +22,36 @@ block('ticket-case')(
     }
 
     return [
-      _schedules.length > 1
-      ? {
-          elem: 'header',
-          content: [
-            {
-              elem: 'title',
-              content: 'Выберите день и время онлайн-сеанса'
-            },
-            {
-              elem: 'pagination',
-              content: [
-                {
-                  block: 'icon',
-                  mods: {
-                    symbol: 'chevron-left',
-                    circle: true,
-                    size: 'xxl'
-                  }
-                },
-                {
-                  block: 'icon',
-                  mods: {
-                    symbol: 'chevron-right',
-                    circle: true,
-                    size: 'xxl'
-                  }
+      {
+        elem: 'header',
+        content: [
+          {
+            elem: 'title',
+            content: 'Выберите день и время онлайн-сеанса'
+          },
+          _schedules.length > 1 ? {
+            elem: 'pagination',
+            content: [
+              {
+                block: 'icon',
+                mods: {
+                  symbol: 'chevron-left',
+                  circle: true,
+                  size: 'xxl'
                 }
-              ]
-            }
-          ]
-        }
-      : '',
+              },
+              {
+                block: 'icon',
+                mods: {
+                  symbol: 'chevron-right',
+                  circle: true,
+                  size: 'xxl'
+                }
+              }
+            ]
+          } : '',
+        ]
+      },
       {
         block: 'radio-group',
         mix: [

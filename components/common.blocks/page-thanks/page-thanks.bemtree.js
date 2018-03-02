@@ -2,6 +2,9 @@ block('page-thanks')(
 
   match( node => node.data.api.ticket && node.data.api.movie ).replace()( node => {
     const isCinema = node.data.api.type != 'rent';
+
+    let _discuss = 'В 21:00 состоится обсуждение фильма с автором и зрителями. Ссылка на обсуждение будет доступна на странице просмотра фильма.'
+
     return [
       {
         elem: 'content',
@@ -23,19 +26,25 @@ block('page-thanks')(
           {
             block: 'layout',
             mix: { block: 'paragraph' },
-            // content: [
-            //   {
-            //     elem: 'aside',
-            //     content: 'icon'
-            //   },
-            //   {
-            //     elem: 'content',
-            //     content: 'В 20:00 состоится обсуждение фильма с автором в закрытой группе Facebook. Ссылка на обсуждение будет доступна на странице просмотра фильма.'
-            //   }
-            // ]
+            content: [
+              {
+                elem: 'aside',
+                content: {
+                  elem: 'discuss',
+                  mix: {block: 'card-movie', elem: 'discussion'}
+                }
+              },
+              {
+                elem: 'content',
+                content: _discuss
+              }
+            ]
           },
           {
             block: 'card-ticket',
+            mods: {
+              view: 'ticket'
+            },
             ticket: node.data.api.session,
             js: { ticket: node.data.api.session, timezoneOffset: 0 }
           },

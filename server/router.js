@@ -416,9 +416,9 @@ module.exports = app => {
     })
       .then( response => {
         data.api = response;
-
         data.page = 'thanks';
         data.title = 'Билет успешно оплачен';
+
         if ( data.api.error ) {
           data.page = 'error';
           data.title = 'payment-error'; // 'При оплате произошла ошибка'

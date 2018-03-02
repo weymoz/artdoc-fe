@@ -1,0 +1,18 @@
+block(page).mod(view page-thanks) {
+  block(layout){
+    margin-bottom: 40px;
+    position: relative;
+    align-items: center;
+    elem(discuss){
+      padding-left: 0;
+      margin-right: 12px;
+      width: unset;
+      color: #111111;
+      font-size: 16px;
+      line-height: 24px;
+      &::before{
+        position: static;
+      }
+    }
+  }
+}
