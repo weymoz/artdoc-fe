@@ -42,9 +42,9 @@ block('page-thanks')(
           },
           {
             block: 'card-ticket',
-            mods: {
-              view: 'ticket'
-            },
+            // mods: {
+            //   view: 'ticket'
+            // },
             ticket: node.data.api.session,
             js: { ticket: node.data.api.session, timezoneOffset: 0 }
           },
