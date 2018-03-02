@@ -29,6 +29,7 @@ block('page-thanks')(
             content: [
               {
                 elem: 'aside',
+
                 content: {
                   elem: 'discuss',
                   mix: {block: 'card-movie', elem: 'discussion'}
