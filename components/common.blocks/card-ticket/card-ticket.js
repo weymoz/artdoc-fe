@@ -5,6 +5,8 @@ provide(bemDom.declBlock(this.name, {
     js: {
       inited: function() {
         this._timeZoneOffset = 0;
+
+        this.setTimeZone();
       }
     }
   },

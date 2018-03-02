@@ -3,7 +3,10 @@ block('page-thanks')(
   match( node => node.data.api.ticket && node.data.api.movie ).replace()( node => {
     const isCinema = node.data.api.type != 'rent';
 
-    let _discuss = 'В 21:00 состоится обсуждение фильма с автором и зрителями. Ссылка на обсуждение будет доступна на странице просмотра фильма.'
+    const _discuss = 'В 21:00 состоится обсуждение фильма с автором и зрителями. Ссылка на обсуждение будет доступна на странице просмотра фильма.'
+    const _ticket = node.data.api.session;
+
+    console.log(_ticket);
 
     return [
       {
@@ -42,10 +45,10 @@ block('page-thanks')(
           },
           {
             block: 'card-ticket',
-            // mods: {
-            //   view: 'ticket'
-            // },
-            ticket: node.data.api.session,
+            mods: {
+              view: 'ticket'
+            },
+            ticket: _ticket,
             js: { ticket: node.data.api.session, timezoneOffset: 0 }
           },
           {

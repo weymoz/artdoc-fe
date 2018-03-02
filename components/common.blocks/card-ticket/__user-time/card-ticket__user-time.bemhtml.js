@@ -1,4 +1,5 @@
 block('card-ticket').elem('user-time').content()( node => {
+
   return [
     {
       block: 'text',

@@ -116,6 +116,47 @@ block(card-ticket) {
     }
   }
 
+  .mod(view ticket) {
+
+    .elem(content) {
+      font-size: 16px;
+      line-height: 1.5;
+      font-weight: bold;
+      display: flex;
+    }
+
+    .elem(day),
+    .elem(user-time) {
+      font-size: 56px;
+      font-weight: normal;
+      line-height: 1;
+    }
+
+    elem(user-date){
+      margin-right: 85px;
+      display: flex;
+    }
+
+    elem(weekday){
+      text-transform: uppercase;
+    }
+
+    elem(flex-column){
+      padding-top: 5px;
+      margin-left: 8px;
+    }
+
+    .elem(section) {
+      lost-center: 100%;
+      display: flex;
+      box-sizing: border-box;
+      padding: 15px 0 16px;
+      box-shadow: inset 0px 1px 0px 0px currentColor;
+
+    }
+  }
+
+
   .mod(view play) {
     display: flex;
     flex-wrap: nowrap;

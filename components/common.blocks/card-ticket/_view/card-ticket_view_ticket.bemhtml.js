@@ -1,38 +1,29 @@
-block('card-ticket').mod('view', 'ticket')(
+block('card-ticket').mod('view', 'ticket').content()( node => {
 
-  addMix()({ block: 'font', mods: { family: 'helvetica-neue-condensed-bold', loaded: true }  }),
+  console.log(node);
 
-  content()( node => {
-    return [
-      {
-        elem: 'header',
-        content: [
-          'Онлайн-сеанс',
-        ]
-      },
-      {
-        elem: 'content',
-        content: [
-          { elem: 'room' },
-          { elem: 'city' },
-          { elem: 'user-date' },
-          ', начало в',
-          { html: '&nbsp;' },
-          { elem: 'user-time' }
-        ]
-      },
-      {
-        elem: 'footer',
-        content: [
-          'Доступен до ',
+  // const tzMinutes = node._tz % 60;
+  // const tzHours = ( node._tz - tzMinutes ) / 60;
+
+  // function fixZero ( number ) {
+  //   number = Math.abs( number );
+  //   return number < 10 ? '0' + number : number;
+  // }
+
+
+  // const timezone = ( tzHours > 0 ? '+' : '-' ) + fixZero( tzHours ) + ':' + fixZero( tzMinutes );
+
+  // console.log();
+
+  return {
+      elem: 'section',
+      content:
           {
-            block: 'text',
-            mods: { format: 'datetime' },
-            format: 'HH:mm',
-            content: node._time_gmt3 + 3 * 60 * 60
-          }
-        ]
-      }
-    ]
-  })
-)
+           elem: 'content',
+            content: [
+              { elem: 'user-date' },
+              { elem: 'user-time' }
+          ]
+        }
+    }
+});

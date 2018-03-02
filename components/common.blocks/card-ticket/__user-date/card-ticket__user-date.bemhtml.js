@@ -1,8 +1,12 @@
 block('card-ticket').elem('user-date')(
 
   content()( ( node, ctx ) => {
-    let format = node.mods.view === 'order'
-      ? '[<div class="card-ticket__user-date">' + node.reapply([
+
+    console.log(node._time_gmt3);
+
+    let format;
+    if (node.mods.view === 'order'){
+      format = '[<div class="card-ticket__user-date">' + node.reapply([
         {
           block: node.block,
           elem: 'day',
@@ -14,7 +18,33 @@ block('card-ticket').elem('user-date')(
           content: ']MMMM[, ] dd['
         }
       ]) + '</div>]'
-    : 'DD MMMM'
+    } else if (node.mods.view === 'ticket') {
+      format = '[<div class="card-ticket__user-date">' + node.reapply([
+        {
+          block: node.block,
+          elem: 'day',
+          content: ']DD['
+        },
+        {
+          block: node.block,
+          elem: 'flex-column',
+          content: [
+            {
+              block: node.block,
+              elem: 'month',
+              content: ']MMMM[ '
+            },
+            {
+              block: node.block,
+              elem: 'weekday',
+              content: '] dd['
+            }
+          ]
+        }
+      ]) + '</div>]'
+    } else {
+      format = 'DD MMMM'
+    }
 
     return [
       {
