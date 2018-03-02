@@ -28,7 +28,7 @@ block(ticket-case).mod(theme artdoc) {
     .block(radio) {
       lost-column: 1/7 7 28px;
       border-top: 1px solid #666770;
-      padding: 8px 12px 12px;
+      padding: 8px 8px 12px;
       box-sizing: border-box;
       font-size: 40px;
       font-weight: bold;

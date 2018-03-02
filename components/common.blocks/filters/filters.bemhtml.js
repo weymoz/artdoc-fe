@@ -135,10 +135,9 @@ block('filters')(
             text: {
               block: 'icon',
               mods: {
-                symbol: 'timer',
+                symbol: 'view-grid',
                 size: 's'
               },
-              url: 'https://png.icons8.com/grid-2-filled/ios7/25'
             }
           },
           {
@@ -146,10 +145,9 @@ block('filters')(
             text: {
               block: 'icon',
               mods: {
-                symbol: 'timer',
+                symbol: 'view-list',
                 size: 's'
-              },
-              url: 'https://png.icons8.com/grid-3-filled/ios7/25'
+              }
             }
           }
         ]

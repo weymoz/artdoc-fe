@@ -1,6 +1,6 @@
 block(calendar).mod(theme artdoc) {
   .mod(view ticket-case) {
-    display: flex;   
+    display: flex;
 
     .elem(date) {
       line-height: 1.0;
@@ -19,4 +19,39 @@ block(calendar).mod(theme artdoc) {
   .elem(week-day):first-letter {
     text-transform: uppercase;
   }
+
+  elem(discuss){
+    &::before{
+      top: -25px;
+      width: 20px;
+      height: 20px;
+      left: 65px;
+    }
+
+    elem(tooltip){
+      top: -105px;
+      left: -20px;
+      height: 65px;
+      width: 200px;
+      font-weight: 400;
+      box-shadow: unset;
+
+      &::after{
+        content: '';
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+        background-color: #fff;
+        bottom: -5px;
+        left: 90px;
+      }
+    }
+  }
 }
+
+
+.radio_checked .card-movie__discussion::before {
+  background-image: svg-load('../../../../static/assets/img/static/duscussion_icon-white.svg');
+ }

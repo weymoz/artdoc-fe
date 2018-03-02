@@ -1,0 +1,14 @@
+block(icon).mod(symbol view-list) {
+    background-image: svg-load('icon_symbol_view-list.svg', fill: "#A0A0AC");
+    padding: 6px;
+    box-sizing: content-box;
+    transition: background-image, 0.5s;
+
+    &:hover{
+      background-image: svg-load('icon_symbol_view-list.svg', fill: "#f3203b");
+    }
+}
+
+.button_checked .icon_symbol_view-list {
+      background-image: svg-load('icon_symbol_view-list.svg', fill: "#000");
+}

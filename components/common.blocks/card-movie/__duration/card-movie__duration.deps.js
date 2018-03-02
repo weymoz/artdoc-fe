@@ -1,6 +1,6 @@
 ({
   shouldDeps: [
     'text',
-    { block: 'icon', mods: { symbol: 'timer' } }
+    { block: 'icon', mods: { symbol: 'duration' } }
   ]
 })

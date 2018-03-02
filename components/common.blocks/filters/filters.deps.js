@@ -3,7 +3,7 @@
     { block: 'page', elems: [ 'content', 'section' ] },
     { block: 'heading', mods: { size: 'xl' } },
     { block: 'button', mods: { togglable: 'check', theme: 'artdoc-dark' } },
-    { block: 'radio-group', mods: { type: ['button', 'line'] } },        
+    { block: 'radio-group', mods: { type: ['button', 'line'] } },
     { block: 'form' },
     { block: 'form-field', mods: { type: [ 'checkbox', 'select' ] } },
     { block: 'checkbox' },
@@ -14,7 +14,8 @@
     { block: 'location' },
     { block: 'uri', elem: 'querystring' },
     { block: 'header' },
-    { block: 'dropdown', mods: { 'nav-menu': true } }
+    { block: 'dropdown', mods: { 'nav-menu': true } },
+    { block: 'icon', mods: { symbol: '*' } }
   ]
 },{
   tech: 'js',

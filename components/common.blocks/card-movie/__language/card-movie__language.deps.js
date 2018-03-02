@@ -1,5 +1,5 @@
 ({
   shouldDeps: [
-    { block: 'icon', mods: { symbol: 'volume' } }
+    { block: 'icon', mods: { symbol: 'lang' } }
   ]
 })

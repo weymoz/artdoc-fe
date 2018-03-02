@@ -49,6 +49,14 @@ block(card-movie) {
     }
   }
 
+  elem(duration),
+  elem(language),
+  elem(subs){
+    block(text){
+      vertical-align: 3%;
+    }
+  }
+
   .elem(cover) {
     display: flex;
     position: absolute;
@@ -77,6 +85,7 @@ block(card-movie) {
     padding-left: 44px;
     width: 194px;
     color: #676770;
+    cursor: pointer;
 
     &:before {
       content: '';
@@ -88,6 +97,38 @@ block(card-movie) {
       background-size: cover;
       position: absolute;
       left: 0;
+    }
+
+    &:hover{
+      elem(tooltip){
+        opacity: 1;
+      }
+
+    }
+
+    elem(tooltip){
+      position: absolute;
+      padding: 12px 16px 24px;
+      box-sizing: border-box;
+      background-color: #fff;
+      opacity: 0;
+      transition: opacity 0.5s;
+      color: #111111;
+      box-shadow: 0 0 2px 1px #D9D9D9;
+
+      .mod(schedule){
+        bottom: -115px;
+        left: -80px;
+        width: 200px;
+        height: 100px;
+      }
+
+      .mod(promo){
+        top: -115px;
+        left: -80px;
+        width: 200px;
+        height: 100px;
+      }
     }
   }
 
@@ -567,6 +608,24 @@ block(card-movie) {
     }
   }
 
+  .mod(view schedule){
+    elem(discussion){
+      elem(tooltip){
+        &::after{
+          content: '';
+          position: absolute;
+          width: 10px;
+          height: 10px;
+          box-shadow: -1px -1px 1px 0 #D9D9D9;
+          transform: rotate(45deg);
+          background-color: #fff;
+          top: -5px;
+          left: 90px;
+        }
+      }
+    }
+  }
+
   .mod(view promo) {
     padding-bottom: 38px;
 
@@ -609,6 +668,22 @@ block(card-movie) {
       width: 32px;
       height: 32px;
       padding: .35em;
+    }
+
+    elem(discussion){
+      elem(tooltip){
+        &::after{
+          content: '';
+          position: absolute;
+          width: 10px;
+          height: 10px;
+          box-shadow: 1px 1px 1px 0 #D9D9D9;
+          transform: rotate(45deg);
+          background-color: #fff;
+          bottom: -5px;
+          left: 90px;
+        }
+      }
     }
   }
 
@@ -809,7 +884,7 @@ block(card-movie) {
     .elem(content) {
       padding-top: 10px;
       padding-bottom: 10px;
-      
+
       &:before {
         content: none;
       }

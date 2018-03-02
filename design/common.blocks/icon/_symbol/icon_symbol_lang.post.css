@@ -1,0 +1,3 @@
+block(icon).mod(symbol lang) {
+  background-image: svg-load('icon_symbol_lang.svg');
+}

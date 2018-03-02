@@ -8,9 +8,8 @@ block( 'card-movie' ).elem( 'subs' )(
         block: 'icon',
         mods: {
           symbol: 'subs',
-          size: 's'
-        },
-        url: 'https://png.icons8.com/subtitles/win10/16'
+          size: 'm'
+        }
       },
       {
         block: 'text',

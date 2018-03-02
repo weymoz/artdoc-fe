@@ -10,10 +10,9 @@ block( 'card-movie' ).elem( 'duration' )(
       {
         block: 'icon',
         mods: {
-          symbol: 'timer',
-          size: 's'
-        },
-        url: 'https://png.icons8.com/time-span/p1em/16'
+          symbol: 'duration',
+          size: 'm'
+        }
       },
       {
         block: 'text',

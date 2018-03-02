@@ -7,10 +7,9 @@ block( 'card-movie' ).elem( 'language' )(
       {
         block: 'icon',
         mods: {
-          symbol: 'volume',
-          size: 's'
-        },
-        url: 'https://png.icons8.com/speaker/p1em/16'
+          symbol: 'lang',
+          size: 'm'
+        }
       },
       {
         block: 'text',

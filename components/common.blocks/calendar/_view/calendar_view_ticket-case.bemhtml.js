@@ -4,6 +4,8 @@ block('calendar').mod('view', 'ticket-case')(
           currentDay = new Date( date * 1000 ).getDate(),
           today = new Date().getDate();
 
+    const _discuss = ctx.discuss
+
     const template = node.reapply({
       block: node.block,
       mods: node.mods,
@@ -22,9 +24,18 @@ block('calendar').mod('view', 'ticket-case')(
             {
               elem: 'week-day',
               content: ( currentDay === today ? 'Сегодня' : ']dd[' )
+            },
+            _discuss && {
+              elem: 'discuss',
+              mix: {block: 'card-movie', elem: 'discussion'},
+              content: {
+                elem: 'tooltip',
+                mix: { block: 'card-movie', elem: 'tooltip', elemMods: { promo: true } },
+                content: _discuss
+              }
             }
           ]
-        }
+        },
       ]
     });
 

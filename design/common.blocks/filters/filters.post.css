@@ -15,7 +15,7 @@ block(filters) {
     width: auto;
     cursor: pointer;
   }
- 
+
   .elem(actions) {
     display: flex;
     align-items: center;
@@ -34,7 +34,24 @@ block(filters) {
     cursor: pointer;
     color: #111;
   }
- 
+
+  elem(view){
+    block(button){
+      color: #A0A0AC !important;
+      elem(text){
+        padding: 0;
+      }
+      .mod(hovered){
+        background-color: transparent!important;
+      }
+
+      .mod(checked){
+        color: black;
+        background-color: transparent!important;
+      }
+    }
+  }
+
   .elem(result-count) {
     font-weight: normal;
     display: inline-block;

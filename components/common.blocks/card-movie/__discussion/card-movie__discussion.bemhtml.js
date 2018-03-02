@@ -2,8 +2,36 @@ block('card-movie').elem('discussion')(
 
   match( node => !node._discuss_preview && !node._discuss_link ).def()(''),
 
-  content()({
-    html: 'Обсуждение фильма с&nbsp;автором и&nbsp;зрителями'
+  content()( () => {
+      return [{
+        html: 'Обсуждение фильма с&nbsp;автором и&nbsp;зрителями'
+      }]
+  }),
+
+  match( node => node.mods.view === 'promo' ).content()( node => {
+    return [
+      {
+        elem: 'tooltip',
+        elemMods: { promo: true },
+        content: node._discuss_preview
+      },
+      {
+        html: 'Обсуждение фильма с&nbsp;автором и&nbsp;зрителями'
+      }
+    ]
+  }),
+
+  match( node => node.mods.view === 'schedule' ).content()( node => {
+    return [
+      {
+        elem: 'tooltip',
+        elemMods: { schedule: true },
+        content: node._discuss_preview
+      },
+      {
+        html: 'Обсуждение фильма с&nbsp;автором и&nbsp;зрителями'
+      }
+    ]
   }),
 
   match( node => node.mods.view === 'play' ).content()( node => {

@@ -20,7 +20,7 @@ block('ticket-case')(
       item.session.price = item.price;
       _sessions[ item.session.schedule_id ].push( item.session )
     }
-    
+
     return [
       _schedules.length > 1
       ? {
@@ -67,13 +67,15 @@ block('ticket-case')(
         name: 'calendar',
         val: _schedules[0].id,
         options: _schedules.slice(0, 7).map( item => {
+
           return {
             val: item.id,
             text: [
               {
                 block: 'calendar',
                 mods: { view: 'ticket-case' },
-                date: item.date_gmt3
+                date: item.date_gmt3,
+                discuss: item.discuss_preview
               }
             ]
           }
