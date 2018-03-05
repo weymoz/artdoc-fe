@@ -9,7 +9,7 @@ block('card-author').mod('view', 'detail')(
     let data_rows = [
       {field: 'career', name: 'Карьера'},
       {field: 'birthday', name: 'Дата рождения'},
-      {field: 'city', name: 'Город', sub_field: 'name'},
+      {field: 'city', name: 'Место рождения', sub_field: 'name'},
       {field: 'email', name: 'Эл. почта'},
       {field: 'web', name: 'Сайт'}
       ];

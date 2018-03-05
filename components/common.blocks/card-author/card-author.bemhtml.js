@@ -2,9 +2,6 @@ block('card-author')(
 
   match( ( node, ctx ) => ctx.author ).def()( ( node, ctx ) => {
 
-
-    console.log(ctx.color);
-
     Object.keys( ctx.author ).map( key => {
       node[ '_' + key ] = ctx.author[ key ];
       return true;
@@ -50,17 +47,18 @@ block('card-author')(
 
   match( node => node._name )(
     appendContent()( node => {
-
-      console.log(node._isLink);
       if (node._isLink !== false){
         return  {
             elem: 'content',
             content: {
               block: 'link',
+              mods: {
+                size: 's'
+              },
               url: '/author/'+node._id,
               content: {
                 elem: 'content',
-                attrs: {style: 'color:' + node._color ? node._color : '#000'},
+                attrs: node._color !== undefined ? {style: 'color: rgb(160, 160, 172)'} : {style: 'color: #000'},
                 mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } },
                 content: node._name
               }
