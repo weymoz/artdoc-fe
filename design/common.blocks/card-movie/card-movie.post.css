@@ -907,5 +907,9 @@ block(card-movie) {
     .elem(year) {
       font-size: 14px;
     }
+
+    .elem(orig-name){
+      margin-right: 10px;
+    }
   }
 }
