@@ -2,12 +2,20 @@ block('card-author')(
 
   match( ( node, ctx ) => ctx.author ).def()( ( node, ctx ) => {
 
+
+    console.log(ctx.color);
+
     Object.keys( ctx.author ).map( key => {
       node[ '_' + key ] = ctx.author[ key ];
       return true;
     } );
 
     node._meta = ctx.content;
+
+    if (ctx.color !== undefined){
+      node._color = ctx.color;
+    }
+
 
     if (ctx.isLink === false){
       node._isLink = ctx.isLink;
@@ -52,7 +60,7 @@ block('card-author')(
               url: '/author/'+node._id,
               content: {
                 elem: 'content',
-                attrs: {style: 'color: #000'},
+                attrs: {style: 'color:' + node._color ? node._color : '#000'},
                 mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } },
                 content: node._name
               }

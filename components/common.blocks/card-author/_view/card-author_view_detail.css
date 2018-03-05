@@ -43,7 +43,7 @@ block(author) {
     margin-top: 25px;
     width: 232px;
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
 
     block(icon){
       &:hover{

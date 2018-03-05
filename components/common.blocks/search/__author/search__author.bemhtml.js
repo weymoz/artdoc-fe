@@ -15,7 +15,8 @@ block('search').elem('author')(
             return {
               block: 'card-author',
               mods: { size: 'l' },
-              author: author
+              author: author,
+              color: '#fff'
             }
           } )
         ]

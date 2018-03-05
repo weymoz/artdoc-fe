@@ -10,7 +10,8 @@ block('search').mod('view', 'form')(
     content()( () => {
       return [
         { elem: 'movie' },
-        { elem: 'tag' }
+        { elem: 'tag' },
+        { elem: 'author' }
       ]
     } )
   ),
@@ -32,7 +33,7 @@ block('search').mod('view', 'form')(
     match( node => ( !node._api.tags || ( node._api.tags && !node._api.tags.length ) ) &&
                    ( !node._api.movie || ( node._api.movie && !node._api.movie.length ) ) &&
                    ( !node._api.author || ( node._api.author && !node._api.author.length ) ) &&
-                   node._api.query 
+                   node._api.query
     ).content()( node => {
       return {
         block: 'paragraph',

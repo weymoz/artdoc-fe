@@ -29,10 +29,10 @@ block(calendar).mod(theme artdoc) {
     }
 
     elem(tooltip){
-      top: -105px;
-      left: -20px;
-      height: 65px;
-      width: 200px;
+      top: -125px;
+      left: -40px;
+      height: 85px;
+      width: 230px;
       font-weight: 400;
       box-shadow: unset;
 
@@ -45,7 +45,7 @@ block(calendar).mod(theme artdoc) {
         transform: rotate(45deg);
         background-color: #fff;
         bottom: -5px;
-        left: 90px;
+        left: 110px;
       }
     }
   }

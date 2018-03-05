@@ -3,7 +3,7 @@ const config = require('./config'),
       axios = require('axios'),
       passport = require('passport'),
       request = require('./request'),
-      { URL } = require('url');
+      URL  = require('url');
 
 //const isCallerMobile = req => {
 //  let ua = req.headers['user-agent'].toLowerCase(),
@@ -86,12 +86,12 @@ module.exports = app => {
   } );
 
   // iFrame widget
-  app.use( ( req, res, next ) => {
-    const refer = new URL( req.headers.referrer || req.headers.referer || req.protocol + '://' + req.get( 'host' ) + req.originalUrl );
-    req.globalData.refer = refer.host !== req.get('host');
-    req.globalData.bundle = !req.query.embed ? 'desktop' : 'widget';
-    next();
-  } );
+  // app.use( ( req, res, next ) => {
+  //   const refer = new URL( req.headers.referrer || req.headers.referer || req.protocol + '://' + req.get( 'host' ) + req.originalUrl );
+  //   req.globalData.refer = refer.host !== req.get('host');
+  //   req.globalData.bundle = !req.query.embed ? 'desktop' : 'widget';
+  //   next();
+  // } );
 
   request( { url: '/api/category/?per-page=0'} ).then( response => {
     global.category = response.items.sort(function (a,b) {
@@ -665,7 +665,7 @@ module.exports = app => {
    *
    ****************************/
 
-  require('./test')( app );
+  // require('./test')( app );
 
   app.get('*', (req, res) => {
     let data = Object.assign({}, req.globalData);
