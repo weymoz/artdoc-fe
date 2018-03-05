@@ -34,7 +34,7 @@ block('page-author').replace()( node => {
     },
     {
       elem: 'content',
-      content:node.data.api.movies.map( item => {
+      content: node.data.api.movies.map( item => {
 
         for (var i in item) {
           item['_'+i] = item[i];
@@ -45,7 +45,8 @@ block('page-author').replace()( node => {
           mix: { block: 'card-selection', elem: 'item' },
           movie: item,
         }
-      } ),
+
+      } )
     },
     { block: 'pagination', params: node.data.pagination },
     { block: 'club-footer' }
