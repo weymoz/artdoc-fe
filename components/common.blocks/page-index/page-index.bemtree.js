@@ -1,15 +1,16 @@
 block('page-index').replace()( node => {
+
   // Функция для слайдера
   let slider = [];
   const linkPerSlide = 20;
   const categories = [
     {
-      name: 'Все фильмы',
+      name: node.i18n('index', 'allMovies'),
       id: null,
       code: 'all',
       primary: true
     },
-    ...node.data.category
+    ...node.data.lang === 'en' ? node.data.categoryEn : node.data.category
   ];
   let links = categories.length;
   const slidesCount = ( ( links - ( links % linkPerSlide ) ) / linkPerSlide ) + ( links % linkPerSlide ? 1 : 0 );
@@ -48,6 +49,7 @@ block('page-index').replace()( node => {
     } );
   } );
 
+
   return [
     {
       elem: 'content',
@@ -58,7 +60,7 @@ block('page-index').replace()( node => {
         elemMods: { view: 'condensed-bold', size: 'xl' },
         mix: { block: 'heading', mods: { caps: true, align: 'center', size: 'l' } },
         content: {
-          html: 'Архив и онлайн-сеансы документального кино на&nbsp;русском языке'
+          html: node.i18n('index', 'MainTitle')
         }
       },
       {
@@ -68,7 +70,7 @@ block('page-index').replace()( node => {
           type: 'link',
           size: 'xxl'
         },
-        text: 'Смотреть весь архив',
+        text: node.i18n('index', 'link-to-archive'),
         url: '/movie'
       }
       ]
@@ -94,14 +96,14 @@ block('page-index').replace()( node => {
             size: 'xxl',
             theme: 'artdoc'
           },
-          text: 'Смотреть вce онлайн сеансы',
+          text: node.i18n('index', 'link-to-online'),
           url: '/cinema'
         },
         {
           elem: 'title',
           elemMods: { view: 'condensed-bold', size: 'xl', gap: 'both' },
           mix: { block: 'heading', mods: { caps: true, align: 'center', size: 'l' } },
-          content: 'Новости и события'
+          content: node.i18n('index', 'newsTitle')
         },
         {
           block: 'news',
@@ -112,7 +114,7 @@ block('page-index').replace()( node => {
           elem: 'title',
           elemMods: { view: 'condensed-bold', size: 'xl', gap: 'both' },
           mix: { block: 'heading', mods: { caps: true, align: 'center', size: 'l' } },
-          content: 'Авторские подборки'
+          content: node.i18n('index', 'collectionsTitle')
         },
         {
           elem: 'collections',
@@ -137,7 +139,7 @@ block('page-index').replace()( node => {
               type: 'link',
               size: 'xxl'
             },
-            text: 'Смотреть все подборки',
+            text: node.i18n('index', 'link-to-selection'),
             url: '/selection'
           }
         },
@@ -148,7 +150,7 @@ block('page-index').replace()( node => {
             type: 'link',
             size: 'xxl'
           },
-          text: 'Смотреть вce онлайн сеансы',
+          text: node.i18n('index', 'link-to-online'),
           url: '/cinema'
         }
       ]
@@ -162,7 +164,7 @@ block('page-index').replace()( node => {
           elem: 'title',
           elemMods: { view: 'condensed-bold', size: 'xl', gap: 'both' },
           mix: { block: 'heading', mods: { caps: true, align: 'center', size: 'l' } },
-          content: 'О проекте'
+          content: node.i18n('index', 'about'),
         },
         {
           block: 'paragraph',
@@ -182,7 +184,7 @@ block('page-index').replace()( node => {
               type: 'link',
               size: 'xxl'
             },
-            text: 'Подробнее',
+            text: node.i18n('index', 'more'),
             url: '/about'
           }
         },

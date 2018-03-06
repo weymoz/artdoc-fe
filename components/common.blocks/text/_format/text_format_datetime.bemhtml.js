@@ -2,6 +2,7 @@ block( 'text' ).mod( 'format', 'datetime' )(
   match( ( node, ctx ) => !ctx.content ).def()( '' ),
 
   def()( ( node, ctx ) => {
+
     let moment = node.require( 'moment' ) || window.moment,
         format = ctx.format,
         locale = ctx.locale || 'ru',
@@ -9,6 +10,7 @@ block( 'text' ).mod( 'format', 'datetime' )(
 
     switch ( locale ) {
       case 'ru': node.require( 'moment_ru' ); break;
+      // case 'en': node.require( 'moment_en' ); break;
     }
 
     datetime.locale( locale );
@@ -23,6 +25,8 @@ block( 'text' ).mod( 'format', 'datetime' )(
       } );
     }
     return datetime.format( format );
+
+
   }),
 
   tag()('time')

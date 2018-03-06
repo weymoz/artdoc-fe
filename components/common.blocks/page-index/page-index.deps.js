@@ -1,4 +1,5 @@
 ({
+  mustDeps: 'i18n',
   shouldDeps: [
     { block: 'heading', mods: { caps: true, align: 'center', size: 'l' } },
     { block: 'card-selection', mods: { view: 'selections' } },

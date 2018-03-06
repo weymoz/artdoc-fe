@@ -22,7 +22,10 @@
     "bem-forms": "github:realetive/bem-forms",
     "bem-history": "^4.0.0",
     "connect-memcached": "^0.2.0",
-    "moment": "^2.18.1",
+    "enb-bem-i18n": "^1.1.1",
+    "enb-bemxjst-i18n": "github:tadatuta/enb-bemxjst-i18n#bemtree-nextgen",
+    "moment": "^2.21.0",
+    "enb-modules": "^0.4.2",
     "ym": "^0.1.2"
   },
   "devDependencies": {
@@ -46,8 +49,10 @@
     "enb-babelify": "^0.0.1",
     "enb-bem-techs": "^2.2.2",
     "enb-bemxjst": "8.6.7",
+    "enb-bemxjst-i18n": "github:tadatuta/enb-bemxjst-i18n#bemtree-nextgen",
     "enb-borschik": "^3.0.0",
     "enb-js": "^1.1.1",
+    "enb-modules": "^0.4.2",
     "enb-postcss": "^2.0.0",
     "errorhandler": "^1.5.0",
     "eslint": "^4.11.0",

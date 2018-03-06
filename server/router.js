@@ -21,6 +21,7 @@ module.exports = app => {
   // Expand
   let global = Object.assign({}, config.site);
   global.categoryByCode = {};
+  global.categoryByCodeEn = {};
 
   // Promo
   app.use( (req, res, next) => {
@@ -103,52 +104,75 @@ module.exports = app => {
     }
   }).catch( () => { console.log( 'Fail for get categories' ) } );
 
+
+
+  request( { url: '/api/category/?per-page=0&lang=en'} ).then( response => {
+    global.categoryEn = response.items.sort(function (a,b) {
+      return a.name.localeCompare(b.name, 'ru');
+    });
+
+    for ( let i = global.category.length - 1; i >= 0; i-- ) {
+      global.categoryByCodeEn[ global.categoryEn[i].code ] = global.categoryEn[i];
+    }
+  }).catch( () => { console.log( 'Fail for get english categories' ) } );
+
   /*
    *  Routing
    *
    ***************************/
 
   // Index
-  app.get( '/', ( req, res ) => {
-    axios.all([
-      request( { url: '/api/authorcompilation/?sort=-sort&per-page=3&page=1' } ),
-      request( { url: '/api/schedule/?expand=sessions,movie&per-page=4&unique=1&date_from=' + (Math.floor((Date.now() / 1000) /3600 ) * 3600 - (31 * 60 * 60)) } ),
-      request( { url: '/api/news/?per-page=4&page=1&sort=-sort' } )
-    ]).then( (response) => {
+  app.get( '/:lang', ( req, res ) => {
+    axios.all(
+      req.params.lang === 'ru' ? [
+        request( { url: '/api/authorcompilation/?sort=-sort&per-page=3&page=1' } ),
+        request( { url: '/api/schedule/?expand=sessions,movie&per-page=4&unique=1&date_from=' + (Math.floor((Date.now() / 1000) /3600 ) * 3600 - (31 * 60 * 60)) } ),
+        request( { url: '/api/news/?per-page=4&page=1&sort=-sort' } )
+      ]:[
+        request( { url: '/api/authorcompilation/?sort=-sort&per-page=3&page=1&lang=en' } ),
+        request( { url: '/api/schedule/?lang=en&expand=sessions,movie&per-page=4&unique=1&date_from=' + (Math.floor((Date.now() / 1000) /3600 ) * 3600 - (31 * 60 * 60)) } ),
+        request( { url: '/api/news/?lang=en&per-page=4&page=1&sort=-sort' } )
+      ]).then( (response) => {
       let data = Object.assign({}, req.globalData, { api: response[0].items }, { poster: response[ 1 ] }, { news: response[ 2 ].items } );
       data.page = 'index';
       data.adaptive = true;
+      data.lang = req.params.lang;
       return render( req, res, data );
     }).catch( error => res.send( error ) );
   });
 
+
   // About
-  app.get( '/about', ( req, res ) => {
+  app.get( '/:lang/about/', ( req, res ) => {
     let data = Object.assign({}, req.globalData);
     data.page = 'about';
+    data.lang = req.params.lang;
     return render( req, res, data );
   });
 
-  app.get( '/terms', function(req, res) {
+  app.get( '/:lang/terms/', function(req, res) {
     let data = Object.assign({}, req.globalData);
     data.page = 'terms';
+    data.lang = req.params.lang;
     return render( req, res, data );
   });
 
   // Club
-  app.get( '/club', ( req, res ) => {
+  app.get( '/:lang/club/', ( req, res ) => {
     let data = Object.assign({}, req.globalData);
     data.page = 'club';
+    data.lang = req.params.lang;
     return render( req, res, data );
   });
 
   // Catalog
-  app.get( [ '/movie/category-:category', '/movie/tag-:tag', '/movie' ], ( req, res ) => {
+  app.get( [ '/:lang/movie/category-:category', '/:lang/movie/tag-:tag', '/:lang/movie' ], ( req, res ) => {
     let req_url = new URL(req.protocol + '://' + req.get('host') + req.originalUrl);
     let data = Object.assign({}, req.globalData);
     let filter = Object.assign({}, req.query);
     data.page = 'movies';
     data.adaptive = true;
+    data.lang = req.params.lang;
     data.currentCategoryCode = 'all';
     data.title = req.params.category ? data.categoryByCode[ req.params.category ].name : 'Все фильмы';
     data.pagination = {
@@ -186,6 +210,7 @@ module.exports = app => {
       data.api = response[0].items;
       data.filters = response[1];
       data.filter = filter;
+      data.lang = req.params.lang;
       data.pagination = Object.assign(response[0].meta, data.pagination);
       data.pagination.sort = req.query.sort || '-rating';
       data.pagination.view = req.query.view || 'grid';
@@ -196,17 +221,16 @@ module.exports = app => {
     } ).catch( error => res.send( error ) );
   });
 
-  app.get('/movie/:name/buy', function (req, res, next) {
+  app.get('/:lang/movie/:name/buy', function (req, res, next) {
     let data = Object.assign({}, req.globalData);
     data.page = 'order';
     data.page.isCinema = false;
-
+    data.lang = req.params.lang;
     request({
       clientRequest: req,
       url: '/api/movie/?sort=id&expand=schedules,sessions,category,screenshots&code=' + encodeURIComponent(req.params.name)
     })
       .then( response => {
-
         if (!response.items[0]) {
           next();
           return true;
@@ -216,6 +240,7 @@ module.exports = app => {
           type: 'rent',
           time_gmt3: Math.ceil((((new Date()))/1000 + 60*60*24*3)/60/60)*60*60,
         }
+        data.lang = req.params.lang;
 
 
         data.title = response.items[0].name;
@@ -232,7 +257,7 @@ module.exports = app => {
   })
 
   // Movie
-  app.get( '/movie/:name', ( req, res, next ) => {
+  app.get( '/:lang/movie/:name', ( req, res, next ) => {
     let data = Object.assign({}, req.globalData);
 
     // Check promo
@@ -260,6 +285,7 @@ module.exports = app => {
           data.api.type = 'cinema';
           data.title = response.items[0].name;
           data.api.tz = req.query.tz;
+          data.lang = req.params.lang;
           data.api.checked_city = req.query.city;
           return render( req, res, data );
         } )
@@ -278,6 +304,7 @@ module.exports = app => {
           data.api = response.items[0];
           data.title = response.items[0].name;
           data.adaptive = true;
+          data.lang = req.params.lang;
           data.meta.og.image = response.items[0].cover && response.items[0].cover.id
             ? '//artdoc.media/upload/resize/' + response.items[0].cover.id + '/640x360.jpg'
             : data.meta.og.image;
@@ -288,7 +315,7 @@ module.exports = app => {
   });
 
   // Collections
-  app.get( '/selection', ( req, res ) => {
+  app.get( '/:lang/selection', ( req, res ) => {
     let data = Object.assign({}, req.globalData);
     data.pagination = {
       'per-page' : 20,
@@ -298,6 +325,7 @@ module.exports = app => {
     url += '?sort=-sort&per-page=' + data.pagination['per-page'] + '&page=' + data.pagination.page;
     data.page = 'selections';
     data.adaptive = true;
+    data.lang = req.params.lang;
     data.title = 'Авторские подборки';
     request({
       clientRequest: req,
@@ -310,7 +338,7 @@ module.exports = app => {
   });
 
   // Collection
-  app.get( '/selection/:code', ( req, res, next ) => {
+  app.get( '/:lang/selection/:code', ( req, res, next ) => {
     let data = Object.assign({}, req.globalData);
     data.pagination = {
       'per-page' : 20,
@@ -329,13 +357,14 @@ module.exports = app => {
           next();
         }
         data.api = response.items[0];
+        data.lang = req.params.lang;
         data.title = response.items[0].name;
         return render( req, res, data );
       }).catch( error => res.send( error ) );
   });
 
 
-  app.get( '/author/:id', ( req, res, next ) => {
+  app.get( '/:lang/author/:id', ( req, res, next ) => {
     let data = Object.assign({}, req.globalData);
     data.pagination = {
       'per-page' : 20,
@@ -343,6 +372,7 @@ module.exports = app => {
     };
     let url = '/api/author/?id=' + req.params.id
     data.page = 'author';
+    data.lang = req.params.lang;
     data.adaptive = true;
     request({
       clientRequest: req,
@@ -354,6 +384,7 @@ module.exports = app => {
           next();
         }
         data.api = response.items[0];
+        data.lang = req.params.lang;
         data.title = response.items[0].name;
         return render( req, res, data );
       }).catch( error => res.send( error ) );
@@ -361,7 +392,7 @@ module.exports = app => {
 
 
   // Cinema's catalog
-  app.get( '/cinema', ( req, res ) => {
+  app.get( '/:lang/cinema', ( req, res ) => {
     let data = Object.assign({}, req.globalData);
     data.page = 'schedule';
     data.title = 'Расписание онлайн-киносеансов';
@@ -371,10 +402,18 @@ module.exports = app => {
     })
       .then( response => {
         data.api = response.items;
+        data.lang = req.params.lang;
         return render( req, res, data );
       } )
       .catch( error => res.send( error ) );
   });
+
+
+
+
+
+// Разрезолвить?
+
 
   // Cinema's play or discuss
   app.get( /cinema\/(release|discuss)/, ( req, res ) => {
@@ -388,7 +427,7 @@ module.exports = app => {
         .then( response => {
           data.api = response;
           data.api.type = 'cinema';
-
+          data.lang = req.params.lang;
           if (req.params[0] === 'discuss') {
             if (typeof response.schedule !== 'undefined') {
               if (response.schedule.discuss_link) {
@@ -406,7 +445,7 @@ module.exports = app => {
   });
 
   // Order
-  app.get( '/order/:transaction_id', ( req, res ) => {
+  app.get( '/:lang/order/:transaction_id', ( req, res ) => {
     let data = Object.assign({}, req.globalData);
     request( {
       url: '/payment/provide/',
@@ -417,6 +456,7 @@ module.exports = app => {
       .then( response => {
         data.api = response;
         data.page = 'thanks';
+        data.lang = req.params.lang;
         data.title = 'Билет успешно оплачен';
 
         if ( data.api.error ) {
@@ -429,7 +469,7 @@ module.exports = app => {
   });
 
   // Promo activate
-  app.get( '/payment/freeactivate/', ( req, res ) => {
+  app.get( '/:lang/payment/freeactivate/', ( req, res ) => {
     let data = Object.assign({}, req.globalData);
     request({
       clientRequest: req,
@@ -437,7 +477,7 @@ module.exports = app => {
     })
       .then( response => {
         data.api = response;
-
+        data.lang = req.params.lang;
         if ( !data.api.error ) {
           data.page = 'thanks';
           data.title = 'Билет успешно активирован';
@@ -453,7 +493,7 @@ module.exports = app => {
   });
 
   // Free movie
-  app.get( '/movie/:name/watch', ( req, res ) => {
+  app.get( '/:lang/movie/:name/watch', ( req, res ) => {
     let data = Object.assign({}, req.globalData);
 
     if (req.query.hash) {
@@ -463,7 +503,7 @@ module.exports = app => {
         url: '/cinema/release/rent/?id=' + req.query.id + '&hash=' + req.query.hash
       })
         .then( response => {
-
+          data.lang = req.params.lang;
           data.api = response;
           data.api.type = 'rent';
           return render( req, res, data );
@@ -479,13 +519,14 @@ module.exports = app => {
         clientRequest: req
       })
         .then( response => {
-
+          data.lang = req.params.lang;
           data.api = {};
           data.api.type = 'rent';
           data.api.movie = response.items[0];
           data.api.link = response.items[0].video_link;
           data.title = response.items[0].name;
           data.page = 'play';
+          data.lang = req.params.lang;
           data.meta.og.image = response.items[0].cover && response.items[0].cover.id
             ? '//artdoc.media/upload/resize/' + response.items[0].cover.id + '/640x360.jpg'
             : data.meta.og.image;
@@ -496,7 +537,7 @@ module.exports = app => {
   });
 
   // Search
-  app.get( '/search', ( req, res ) => {
+  app.get( '/:lang/search', ( req, res ) => {
     let data = Object.assign({}, req.globalData);
     request({
       clientRequest: req,
@@ -505,6 +546,7 @@ module.exports = app => {
       .then( response => {
         data.api = response;
         data.page = 'search';
+        data.lang = req.params.lang;
         data.title = 'Результаты поиска';
         data.search = req.query.q;
         if ( !data.api.error ) {

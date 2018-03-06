@@ -13,17 +13,20 @@ module.exports = {
     require('lost'),
     require('pobem'),
     require('postcss-inline-svg'),
-    require('postcss-url')([
-      { url: 'rebase' },
-    //   // { filter: /\.(png|jpg|svg)$/, maxSize: 4, url: 'inline', optimizeSvgEncode: true, fallback: 'copy', assetsPath: 's/assets/img/' },
-    //   // { filter: /\.(eot|ttf|woff|woff2)$/, url: 'copy', assetsPath: '../assets/', useHash: false },
-    ]),
+    require('postcss-url')([ { url: 'rebase' } ]),
     require('postcss-cssnext')(),
     require('postcss-reporter')()
   ],
   browserJs: require('enb-js/techs/browser-js'),
   babel: require('enb-babelify/techs/babel-browser-js'),
-  bemtree: require('enb-bemxjst/techs/bemtree'),
+  prependYm: require('enb-modules/techs/prepend-modules'),
+  bemtreeI18N: require('enb-bemxjst-i18n/techs/bemtree-i18n'),
   bemhtml: require('enb-bemxjst/techs/bemhtml'),
+  keysets: require('enb-bem-i18n/techs/keysets'),
+  i18n: require('enb-bem-i18n/techs/i18n'),
   bem: require('enb-bem-techs')
 }
+
+
+
+

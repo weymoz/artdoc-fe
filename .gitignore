@@ -8,6 +8,7 @@ npm-debug.log
 
 static/assets/font/
 static/assets/img/svg/
+static/assets/*/*/*.*.min.*
 static/assets/*/*/*.min.*
 
 .enb/tmp/

@@ -35,5 +35,6 @@ module.exports = {
   staticFolder: 'static',
   defaultPort: process.env.PORT || 3000,
   cacheTTL: 30000,
-  sessionSecret: 'Exegi_monumentum_aere_perennius'
+  sessionSecret: 'Exegi_monumentum_aere_perennius',
+  langs: ['ru', 'en']
 };
