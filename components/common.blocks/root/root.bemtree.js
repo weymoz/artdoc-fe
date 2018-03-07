@@ -3,8 +3,8 @@ block('root').replace()(function() {
         data = this.data = ctx.data,
         meta = data.meta || {},
         og = meta.og || {},
-        bundle = data.bundle || 'desktop';
-        lang = data.lang
+        bundle = data.bundle || 'desktop',
+        lang = data.lang || 'ru'
 
 
   if (ctx.context) return ctx.context;
