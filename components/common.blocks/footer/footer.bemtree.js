@@ -211,7 +211,7 @@ block('footer')(
                     },
                     mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } },
                     content: [
-                      { elem: 'item', content: '© 2017 Artdoc Fest & Media' },
+                      { elem: 'item', content: { html: '© 2017 Artdoc Fest & Media' }},
                       {
                         elem: 'item',
                         content: {
