@@ -12,7 +12,8 @@
     { block: 'image' },
     { block: 'paragrapgh' }
   ]
-},{
+},
+{
   elem: 'title',
   mustDeps: [
     { block: 'font', mods: { family: 'helvetica-neue-condensed-bold' } },

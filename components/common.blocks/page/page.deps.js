@@ -1,6 +1,7 @@
 ({
   mustDeps: [
-    { block: 'font' }
+    { block: 'font' },
+    'i18n'
   ],
   shouldDeps: [
     {

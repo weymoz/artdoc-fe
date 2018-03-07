@@ -4,7 +4,7 @@ module.exports = {
         'close'      : 'Закрыть',
         'menu'       : 'Меню',
         'lang'       : 'En',
-        'movie'      : 'Фильмы',
+        'movies'     : 'Фильмы',
         'selections' : 'Подборки',
         'showtimes'  : 'Киносеансы'
     }

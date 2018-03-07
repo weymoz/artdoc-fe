@@ -60,6 +60,7 @@ block(header).mod(theme artdoc) {
     block(button){
       elem(text){
         padding: 20px 40px;
+        font-size: 16px;
       }
     }
 
