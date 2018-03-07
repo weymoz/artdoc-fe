@@ -86,7 +86,7 @@ block('form').mod('view', 'auth')(
               block: 'link',
               mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } },
               mods: { size: 'xs' },
-              url: '/club',
+              url: '/' + node.data.lang + '/club',
               content: node.i18n('form', 'auth-description')
             }
           }
