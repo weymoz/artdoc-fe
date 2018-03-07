@@ -14,7 +14,7 @@ block('card-movie').mod('view', 'short')(
 
   content()( ( node, ctx ) => {
     const _session = ctx.movie.schedules[0];
-    
+
     return [
       {
         elem: 'content',

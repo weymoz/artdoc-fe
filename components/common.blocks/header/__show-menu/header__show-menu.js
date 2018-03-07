@@ -4,7 +4,6 @@ provide(bemDom.declElem('header', 'show-menu', {
   onSetMod: {
     js: {
       inited: function() {
-
         this._domEvents().on('click touchstart', ( event ) => {
           event.preventDefault();
           this.setMod( 'active', !this.hasMod('active') );

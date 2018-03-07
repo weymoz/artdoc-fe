@@ -1,4 +1,5 @@
 [{
+  mustDeps: 'i18n',
   shouldDeps: [
     { block: 'logo', mods: { title: true } },
     { block: 'nav-menu' },

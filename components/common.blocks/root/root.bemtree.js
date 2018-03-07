@@ -4,6 +4,8 @@ block('root').replace()(function() {
         meta = data.meta || {},
         og = meta.og || {},
         bundle = data.bundle || 'desktop';
+        lang = data.lang
+
 
   if (ctx.context) return ctx.context;
 
@@ -24,7 +26,7 @@ block('root').replace()(function() {
       },
       {
         elem: 'js',
-        url: '/assets/js/' + bundle + '/' + bundle + '.min.js'
+        url: '/assets/js/' + bundle + '/' + bundle + '.' + lang + '.min.js'
       }
     ],
     head: [

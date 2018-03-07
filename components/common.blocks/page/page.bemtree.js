@@ -7,6 +7,18 @@ block('page')(
   } ),
 
   prependContent()( node => {
+
+    let originalUrl = node.data.origUrl;
+    let parsedUrl = originalUrl.split('/');
+    let lang = parsedUrl[1];
+    var regV = new RegExp(lang);
+    let newRoute;
+    if(lang === 'en'){
+      newRoute = originalUrl.replace(regV,'ru');
+    } else {
+      newRoute = originalUrl.replace(regV,'en');
+    }
+
     return [
       { // Google Tag Manager
         tag: 'noscript',
@@ -17,7 +29,9 @@ block('page')(
       {
         block: 'header',
         mods: { theme: 'artdoc' },
-        mix: { block: node.block, elem: 'header' }
+        mix: { block: node.block, elem: 'header' },
+        lang: node.data.lang,
+        link: newRoute
       }
     ]
   } ),
@@ -25,7 +39,8 @@ block('page')(
     return {
       block: 'footer',
       mods: { theme: 'artdoc' },
-      mix: { block: node.block, elem: 'footer' }
+      mix: { block: node.block, elem: 'footer' },
+      lang: node.data.lang
     }
   } )
 )

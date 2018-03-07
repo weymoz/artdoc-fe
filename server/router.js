@@ -136,7 +136,9 @@ module.exports = app => {
       let data = Object.assign({}, req.globalData, { api: response[0].items }, { poster: response[ 1 ] }, { news: response[ 2 ].items } );
       data.page = 'index';
       data.adaptive = true;
+      data.origUrl = req.originalUrl;
       data.lang = req.params.lang;
+      data.origUrl = req.originalUrl;
       return render( req, res, data );
     }).catch( error => res.send( error ) );
   });
@@ -146,6 +148,7 @@ module.exports = app => {
   app.get( '/:lang/about/', ( req, res ) => {
     let data = Object.assign({}, req.globalData);
     data.page = 'about';
+    data.origUrl = req.originalUrl;
     data.lang = req.params.lang;
     return render( req, res, data );
   });
@@ -153,6 +156,7 @@ module.exports = app => {
   app.get( '/:lang/terms/', function(req, res) {
     let data = Object.assign({}, req.globalData);
     data.page = 'terms';
+    data.origUrl = req.originalUrl;
     data.lang = req.params.lang;
     return render( req, res, data );
   });
@@ -161,6 +165,7 @@ module.exports = app => {
   app.get( '/:lang/club/', ( req, res ) => {
     let data = Object.assign({}, req.globalData);
     data.page = 'club';
+    data.origUrl = req.originalUrl;
     data.lang = req.params.lang;
     return render( req, res, data );
   });
@@ -172,6 +177,7 @@ module.exports = app => {
     let filter = Object.assign({}, req.query);
     data.page = 'movies';
     data.adaptive = true;
+    data.origUrl = req.originalUrl;
     data.lang = req.params.lang;
     data.currentCategoryCode = 'all';
     data.title = req.params.category ? data.categoryByCode[ req.params.category ].name : 'Все фильмы';
@@ -206,10 +212,11 @@ module.exports = app => {
       })
     ]).then( (response) => {
 
-      console.log(response);
+      // console.log(response);
       data.api = response[0].items;
       data.filters = response[1];
       data.filter = filter;
+      data.origUrl = req.originalUrl;
       data.lang = req.params.lang;
       data.pagination = Object.assign(response[0].meta, data.pagination);
       data.pagination.sort = req.query.sort || '-rating';
@@ -225,6 +232,7 @@ module.exports = app => {
     let data = Object.assign({}, req.globalData);
     data.page = 'order';
     data.page.isCinema = false;
+    data.origUrl = req.originalUrl;
     data.lang = req.params.lang;
     request({
       clientRequest: req,
@@ -240,6 +248,7 @@ module.exports = app => {
           type: 'rent',
           time_gmt3: Math.ceil((((new Date()))/1000 + 60*60*24*3)/60/60)*60*60,
         }
+        data.origUrl = req.originalUrl;
         data.lang = req.params.lang;
 
 
@@ -285,6 +294,7 @@ module.exports = app => {
           data.api.type = 'cinema';
           data.title = response.items[0].name;
           data.api.tz = req.query.tz;
+          data.origUrl = req.originalUrl;
           data.lang = req.params.lang;
           data.api.checked_city = req.query.city;
           return render( req, res, data );
@@ -304,6 +314,7 @@ module.exports = app => {
           data.api = response.items[0];
           data.title = response.items[0].name;
           data.adaptive = true;
+          data.origUrl = req.originalUrl;
           data.lang = req.params.lang;
           data.meta.og.image = response.items[0].cover && response.items[0].cover.id
             ? '//artdoc.media/upload/resize/' + response.items[0].cover.id + '/640x360.jpg'
@@ -325,6 +336,7 @@ module.exports = app => {
     url += '?sort=-sort&per-page=' + data.pagination['per-page'] + '&page=' + data.pagination.page;
     data.page = 'selections';
     data.adaptive = true;
+    data.origUrl = req.originalUrl;
     data.lang = req.params.lang;
     data.title = 'Авторские подборки';
     request({
@@ -357,6 +369,7 @@ module.exports = app => {
           next();
         }
         data.api = response.items[0];
+        data.origUrl = req.originalUrl;
         data.lang = req.params.lang;
         data.title = response.items[0].name;
         return render( req, res, data );
@@ -372,6 +385,7 @@ module.exports = app => {
     };
     let url = '/api/author/?id=' + req.params.id
     data.page = 'author';
+    data.origUrl = req.originalUrl;
     data.lang = req.params.lang;
     data.adaptive = true;
     request({
@@ -384,6 +398,7 @@ module.exports = app => {
           next();
         }
         data.api = response.items[0];
+        data.origUrl = req.originalUrl;
         data.lang = req.params.lang;
         data.title = response.items[0].name;
         return render( req, res, data );
@@ -402,6 +417,7 @@ module.exports = app => {
     })
       .then( response => {
         data.api = response.items;
+        data.origUrl = req.originalUrl;
         data.lang = req.params.lang;
         return render( req, res, data );
       } )
@@ -427,6 +443,7 @@ module.exports = app => {
         .then( response => {
           data.api = response;
           data.api.type = 'cinema';
+          data.origUrl = req.originalUrl;
           data.lang = req.params.lang;
           if (req.params[0] === 'discuss') {
             if (typeof response.schedule !== 'undefined') {
@@ -456,6 +473,7 @@ module.exports = app => {
       .then( response => {
         data.api = response;
         data.page = 'thanks';
+        data.origUrl = req.originalUrl;
         data.lang = req.params.lang;
         data.title = 'Билет успешно оплачен';
 
@@ -477,6 +495,7 @@ module.exports = app => {
     })
       .then( response => {
         data.api = response;
+        data.origUrl = req.originalUrl;
         data.lang = req.params.lang;
         if ( !data.api.error ) {
           data.page = 'thanks';
@@ -503,6 +522,7 @@ module.exports = app => {
         url: '/cinema/release/rent/?id=' + req.query.id + '&hash=' + req.query.hash
       })
         .then( response => {
+          data.origUrl = req.originalUrl;
           data.lang = req.params.lang;
           data.api = response;
           data.api.type = 'rent';
@@ -519,6 +539,7 @@ module.exports = app => {
         clientRequest: req
       })
         .then( response => {
+          data.origUrl = req.originalUrl;
           data.lang = req.params.lang;
           data.api = {};
           data.api.type = 'rent';
@@ -526,6 +547,7 @@ module.exports = app => {
           data.api.link = response.items[0].video_link;
           data.title = response.items[0].name;
           data.page = 'play';
+          data.origUrl = req.originalUrl;
           data.lang = req.params.lang;
           data.meta.og.image = response.items[0].cover && response.items[0].cover.id
             ? '//artdoc.media/upload/resize/' + response.items[0].cover.id + '/640x360.jpg'
@@ -546,6 +568,7 @@ module.exports = app => {
       .then( response => {
         data.api = response;
         data.page = 'search';
+        data.origUrl = req.originalUrl;
         data.lang = req.params.lang;
         data.title = 'Результаты поиска';
         data.search = req.query.q;

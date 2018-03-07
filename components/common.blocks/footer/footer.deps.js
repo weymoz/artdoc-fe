@@ -1,6 +1,7 @@
 [{
   mustDeps: [
     { block: 'font', mods: { family: [ 'pt-mono', 'helvetica-neue-condensed-bold' ] } },
+    'i18n'
   ]
 },{
   shouldDeps: [

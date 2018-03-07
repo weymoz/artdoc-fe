@@ -29,6 +29,12 @@ block('page-index').replace()( node => {
     }
   }
 
+
+  let linkProvider = '/' + node.data.lang;
+
+
+
+
   /*
    * Normalization
    */
@@ -71,7 +77,7 @@ block('page-index').replace()( node => {
           size: 'xxl'
         },
         text: node.i18n('index', 'link-to-archive'),
-        url: '/movie'
+        url: linkProvider + '/movie'
       }
       ]
     },
@@ -97,7 +103,7 @@ block('page-index').replace()( node => {
             theme: 'artdoc'
           },
           text: node.i18n('index', 'link-to-online'),
-          url: '/cinema'
+          url: linkProvider + '/cinema'
         },
         {
           elem: 'title',
@@ -140,7 +146,7 @@ block('page-index').replace()( node => {
               size: 'xxl'
             },
             text: node.i18n('index', 'link-to-selection'),
-            url: '/selection'
+            url: linkProvider + '/selection'
           }
         },
         {
@@ -151,7 +157,7 @@ block('page-index').replace()( node => {
             size: 'xxl'
           },
           text: node.i18n('index', 'link-to-online'),
-          url: '/cinema'
+          url: linkProvider + '/cinema'
         }
       ]
     },
@@ -177,15 +183,15 @@ block('page-index').replace()( node => {
         {
           block: 'paragraph',
           mods: { align: 'center' },
-          mix: { block: 'page', elem: 'desktop-link-btn' },
           content: {
             block: 'button',
+            mix: { block: 'page', elem: 'desktop-link-btn' },
             mods: {
               type: 'link',
               size: 'xxl'
             },
             text: node.i18n('index', 'more'),
-            url: '/about'
+            url: linkProvider + '/about'
           }
         },
         {
@@ -195,8 +201,8 @@ block('page-index').replace()( node => {
             type: 'link',
             size: 'xxl'
           },
-          text: 'Подробнее',
-          url: '/about'
+          text: node.i18n('index', 'more'),
+          url: linkProvider + '/about'
         }
       ]
     },
