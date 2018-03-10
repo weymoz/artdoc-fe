@@ -24,8 +24,11 @@
     "connect-memcached": "^0.2.0",
     "enb-bem-i18n": "^1.1.1",
     "enb-bemxjst-i18n": "github:tadatuta/enb-bemxjst-i18n#bemtree-nextgen",
-    "moment": "^2.21.0",
     "enb-modules": "^0.4.2",
+    "geoip-lite": "^1.2.1",
+    "geoip-middleware": "^0.1.0",
+    "ipware": "^1.0.0",
+    "moment": "^2.21.0",
     "ym": "^0.1.2"
   },
   "devDependencies": {

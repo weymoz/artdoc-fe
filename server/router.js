@@ -3,7 +3,10 @@ const config = require('./config'),
       axios = require('axios'),
       passport = require('passport'),
       request = require('./request'),
-      {URL}  = require('url');
+      {URL}  = require('url'),
+      accepts = require('accepts'),
+      geoip = require('geoip-lite'),
+      ipware = require('ipware');
 
 //const isCallerMobile = req => {
 //  let ua = req.headers['user-agent'].toLowerCase(),
@@ -14,9 +17,9 @@ const config = require('./config'),
 
 module.exports = app => {
 
-  app.get('/livereload.js', (req, res) => {
-    res.end('ok');
-  });
+  // app.get('/livereload.js', (req, res) => {
+  //   res.end('ok');
+  // });
 
   // Expand
   let global = Object.assign({}, config.site);
@@ -120,6 +123,33 @@ module.exports = app => {
    *  Routing
    *
    ***************************/
+
+  var getIP = ipware().get_ip;
+  let exampleIp = '192.168.100.4';
+
+  app.get( '/', ( req, res ) => {
+    var ipInfo = getIP(req);
+    var geo = geoip.lookup(exampleIp);
+    console.log('////////////');
+    console.log(ipInfo);
+    console.log(geo);
+    console.log('////////////');
+
+
+
+    var accept = accepts(req);
+    var lang = accept.languages();
+    if (lang[0] === 'ru-RU') {
+      res.redirect('/ru/')
+    } else {
+      res.redirect('/en/')
+    }
+  });
+
+
+
+
+
 
   // Index
   app.get( '/:lang', ( req, res ) => {
