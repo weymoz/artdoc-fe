@@ -8,8 +8,12 @@ block( 'card-selection' )(
       return true;
     } );
 
+    if (ctx.lang) {
+      node['_lang'] = ctx.lang;
+    }
+
     return applyNext( {
-      _url: node._code ? '/selection/' + node._code : null,
+      _url: node._code ? '/' + ctx.lang + '/selection/' + node._code : null,
       'mods.theme': ctx.selection.image ? 'artdoc-dark' : 'artdoc'
     } );
   } ),

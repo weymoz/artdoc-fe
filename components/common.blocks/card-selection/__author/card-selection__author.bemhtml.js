@@ -22,6 +22,7 @@ block( 'card-selection' ).elem( 'author' )(
               content: [
                 {
                   block: 'text',
+                  locale: node._lang,
                   mods: { format: 'datetime' },
                   format: 'DD MMMM YYYY',
                   content: node._created_at

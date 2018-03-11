@@ -12,7 +12,7 @@ provide(bemDom.declBlock(this.name, {
                 let card = e.bemTarget.findMixedBlock(cardMovie);
                 this.findChildElems('item').setMod('selected', false);
                 e.bemTarget.setMod('selected', true);
-                let template = BEMHTML.apply( { block: 'card-movie', mods: { view: 'slide', theme: 'artdoc-dark' }, movie: card.params.movie } );
+                let template = BEMHTML.apply( { block: 'card-movie', mods: { view: 'slide', theme: 'artdoc-dark' }, movie: card.params.movie, lang: card.params.lang} );
                 bemDom.update(
                   this._elem('preview').domElem,
                   template

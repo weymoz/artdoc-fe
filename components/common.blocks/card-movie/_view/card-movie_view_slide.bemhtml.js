@@ -6,7 +6,7 @@ block('card-movie').mod('view', 'slide')(
     return applyNext( { 'ctx.movie.cover.width': 896 } );
   }),
 
-  content()( () => {
+  content()( (node, ctx) => {
     return applyNext( { 'ctx.content': {
         elem: 'content',
         content: [
@@ -17,7 +17,7 @@ block('card-movie').mod('view', 'slide')(
               {
                 elem: 'title',
                 mix: { block: 'font', mods: { family: 'helvetica-neue-condensed-bold', loaded: true } },
-                content: 'Сегодня в онлайн-киносеансах'
+                content: ctx.lang === 'en' ? 'Today online'  : 'Сегодня в онлайн-киносеансах'
               }
             ]
           },

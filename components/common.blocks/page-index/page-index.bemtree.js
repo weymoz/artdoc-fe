@@ -131,7 +131,8 @@ block('page-index').replace()( node => {
                 view: 'selections',
                 theme: item.image ? 'artdoc' : 'artdoc-dark'
               },
-              selection: item
+              selection: item,
+              lang: node.data.lang
             }
           } )
         },
