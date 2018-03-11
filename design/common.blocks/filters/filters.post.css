@@ -111,14 +111,13 @@ block(filters) {
     margin-top: 24px;
   }
 
+  elem(sort-title){
+    font-size: 14px;
+    margin-right: 20px;
+  }
+
   .elem(sort) {
     flex: 1;
-
-    &:before {
-      content: 'Сначала: ';
-      font-size: 14px;
-      margin-right: 20px;
-    }
 
     block(radio) {
       color: #a0a0ac;

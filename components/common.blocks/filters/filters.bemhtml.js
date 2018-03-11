@@ -87,7 +87,8 @@ block('filters')(
 
   elem('params')(
     addMix()( { block: 'page', elem: 'content' } ),
-    content()([
+    content()( node => [
+      { elem: 'sort-title', content: node._lang === 'en' ? 'Sort by' : 'Сначала' },
       { elem: 'sort' },
       { elem: 'view' }
     ])
@@ -104,15 +105,15 @@ block('filters')(
         options: [
           {
             val: '-rating',
-            text: 'с высоким рейтингом'
+            text: node._lang === 'en' ? 'rating' : 'с высоким рейтингом'
           },
           {
             val: '-year',
-            text: 'сначала новые'
+            text: node._lang === 'en' ? 'from new to old' : 'сначала новые'
           },
           {
             val: 'year',
-            text: 'сначала старые'
+            text: node._lang === 'en' ? 'from old to new' : 'сначала старые'
           },
         ]
       }
