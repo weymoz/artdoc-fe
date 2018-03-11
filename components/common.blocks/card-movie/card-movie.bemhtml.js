@@ -8,6 +8,10 @@ block( 'card-movie' )(
       return true;
     } );
 
+    if (ctx.lang) {
+      node['_lang'] = ctx.lang;
+    }
+
     // 16:9 ratio for all covers
     if ( node._cover && node._cover.width ) {
       node._cover.height = Math.round( node._cover.width / ( 16 / 9 ) );

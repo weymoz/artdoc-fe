@@ -5,10 +5,11 @@ block('card-selection').mod('view', 'selections')(
 
   content()( ( node, ctx ) => {
     var newMovie = ctx.selection.movies.slice();
+
     return [
       {
         elem: 'content',
-        url: '/selection/' + node._code,
+        url: '/' + node._lang + '/selection/' + node._code,
         content: [
           {
             elem: 'cover',
@@ -37,7 +38,8 @@ block('card-selection').mod('view', 'selections')(
             block: 'card-movie',
             mods: { view: 'selection', theme: 'artdoc' },
             mix: { block: node.block, elem: 'item' },
-            movie: item
+            movie: item,
+            lang: node._lang
           }
         } )
       }

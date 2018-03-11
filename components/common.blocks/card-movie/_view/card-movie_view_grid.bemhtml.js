@@ -5,7 +5,7 @@ block('card-movie').mod('view', 'grid')(
 
     return applyNext( {
       'ctx.movie.cover.width': 308,
-      'ctx.movie.url': ctx.movie.code ? '/movie/' + ctx.movie.code : null
+      'ctx.movie.url': ctx.movie.code ? '/' + node._lang + '/movie/' + ctx.movie.code : null
     } );
   }),
 

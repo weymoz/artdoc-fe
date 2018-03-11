@@ -23,7 +23,7 @@ block('page-index').replace()( node => {
         block: 'link',
         mods: { view: 'tag' },
         mix: { block: 'slider', elem: 'link', elemMods: { primary: !!currentLink.primary } },
-        url: currentLink.id ? '/movie/category-' + currentLink.code : '/movie',
+        url: currentLink.id ? '/' + node.data.lang + '/movie/category-' + currentLink.code : '/' + node.data.lang + '/movie',
         content: currentLink.name
       };
     }

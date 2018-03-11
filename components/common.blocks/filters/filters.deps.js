@@ -1,4 +1,6 @@
 [{
+  mustDeps: 'i18n',
+},{
   shouldDeps: [
     { block: 'page', elems: [ 'content', 'section' ] },
     { block: 'heading', mods: { size: 'xl' } },

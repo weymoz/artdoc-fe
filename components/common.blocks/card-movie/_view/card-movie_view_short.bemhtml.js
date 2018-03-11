@@ -14,7 +14,6 @@ block('card-movie').mod('view', 'short')(
 
   content()( ( node, ctx ) => {
     const _session = ctx.movie.schedules[0];
-
     return [
       {
         elem: 'content',
@@ -29,6 +28,7 @@ block('card-movie').mod('view', 'short')(
             content: [
               {
                 block: 'text',
+                locale: node._lang,
                 mods: { format: 'datetime' },
                 format: 'DD MMMM',
                 content: _session.time_gmt3
@@ -39,6 +39,7 @@ block('card-movie').mod('view', 'short')(
                 mods: { caps: true },
                 content: {
                   block: 'text',
+                  locale: node._lang,
                   mods: { format: 'datetime' },
                   format: 'dd',
                   content: _session.time_gmt3

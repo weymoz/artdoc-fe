@@ -119,8 +119,10 @@ module.exports = app => {
     }
   }).catch( () => { console.log( 'Fail for get english categories' ) } );
 
+
+
   /*
-   *  Routing
+   *  Redirect
    *
    ***************************/
 
@@ -202,6 +204,7 @@ module.exports = app => {
 
   // Catalog
   app.get( [ '/:lang/movie/category-:category', '/:lang/movie/tag-:tag', '/:lang/movie' ], ( req, res ) => {
+
     let req_url = new URL(req.protocol + '://' + req.get('host') + req.originalUrl);
     let data = Object.assign({}, req.globalData);
     let filter = Object.assign({}, req.query);
@@ -217,8 +220,15 @@ module.exports = app => {
       params: req_url.searchParams
     };
 
+
     let sortBy = req.query.sort || '-rating';
-    let url = '/api/movie/filter/?per-page=20&sort=' + sortBy + '&';
+    let url;
+    if (data.lang === 'en'){
+      url = '/api/movie/filter/?per-page=20&lang=en&sort=' + sortBy + '&';
+    } else {
+      url = '/api/movie/filter/?per-page=20&sort=' + sortBy + '&';
+    }
+
     if (typeof req.params.category !== 'undefined') {
       filter['category'] = [data.categoryByCode[ req.params.category ].id];
       data.currentCategoryCode = data.categoryByCode[ req.params.category ].code;
@@ -226,11 +236,13 @@ module.exports = app => {
     if (typeof req.params.tag !== 'undefined') {
       filter['tags'] = [encodeURIComponent(req.params.tag)];
     }
+
     Object.keys(filter).map(function (key) {
       url += encodeURIComponent('filter['+key+']')+'=' + filter[key] + '&';
       return filter[key];
     })
     url += '&per-page=' + data.pagination['per-page'] + '&page=' + data.pagination.page;
+
     axios.all([
       request({
         clientRequest: req,
@@ -241,7 +253,6 @@ module.exports = app => {
         url: '/api/movie/filtervalues/',
       })
     ]).then( (response) => {
-
       // console.log(response);
       data.api = response[0].items;
       data.filters = response[1];
@@ -252,8 +263,6 @@ module.exports = app => {
       data.pagination.sort = req.query.sort || '-rating';
       data.pagination.view = req.query.view || 'grid';
       data.page = 'movies';
-
-      console.log(data);
       return render( req, res, data );
     } ).catch( error => res.send( error ) );
   });
@@ -699,10 +708,11 @@ module.exports = app => {
   app.get( '/api/filter/', ( req, res ) => {
     const sort = req.query.sort || '-rating';
     const page = req.query.page || 1;
+    const lang = req.query.lang || '';
     const filters = Object.keys( req.query.filters ).map( filter => req.query.filters[ filter ] ? 'filter[' + filter + ']=' + req.query.filters[ filter ] : '' ).join('&');
     request({
       clientRequest: req,
-      url: '/api/movie/filter/?per-page=20&sort=' + sort + '&page=' + page + '&' + filters
+      url: '/api/movie/filter/?per-page=20&lang='+ lang +'&sort=' + sort + '&page=' + page + '&' + filters
     })
       .then( api => res.json( api ) )
       .catch(  error => res.send( error ) )

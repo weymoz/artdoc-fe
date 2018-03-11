@@ -87,7 +87,7 @@ block('card-movie').elem('buy')(
         },
         url: node._offlineShow.link,
         target: "_blank",
-        text: 'Купить билет'
+        text: node._lang === 'en' ? 'Buy ticket' : 'Купить билет'
       })
     }
     return result;
@@ -99,12 +99,12 @@ block('card-movie').elem('buy')(
       case 'button':
         type = 'link';
         size = 'xl';
-        text = 'Купить онлайн-билет';
+        text = node._lang === 'en' ? 'Buy online ticket' : 'Купить онлайн-билет';
         break;
       default: // checkbox
         type = 'button';
         size = 'xl';
-        text = 'Купить онлайн-билет';
+        text = node._lang === 'en' ? 'Buy online ticket' : 'Купить онлайн-билет';
         break;
     }
 
@@ -117,7 +117,7 @@ block('card-movie').elem('buy')(
         size: size,
         theme: node.mods.theme,
       },
-      url: '/movie/' + node._code + '#schedule',
+      url: '/'+ node._lang + '/movie/' + node._code + '#schedule',
       text: text
     }
   }),

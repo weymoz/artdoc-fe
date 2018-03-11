@@ -4,6 +4,7 @@ block('filters')(
 
   def()( ( node, ctx ) => {
     node._api = Object.assign( {}, ctx.data );
+    node._lang = ctx.lang;
     return applyNext();
   } ),
 
@@ -59,7 +60,7 @@ block('filters')(
         theme: 'artdoc-dark'
       },
       mix: { block: node.block, elem: node.elem },
-      text: 'Фильтры'
+      text: node._lang === 'en' ? 'Filters' : 'Фильтры'
     }
   }),
 

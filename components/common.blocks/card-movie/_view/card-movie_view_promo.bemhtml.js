@@ -5,13 +5,15 @@ block('card-movie').mod('view', 'promo')(
 
     return applyNext( {
       'ctx.movie.cover.width': 745,
-      'ctx.movie.url': ctx.movie.code ? '/movie/' + ctx.movie.code : null
+      'ctx.movie.url': ctx.movie.code ? '/' + node._lang + '/movie/' + ctx.movie.code : null
     } );
   } ),
 
   content()( node => {
+
+    let langPrefix = node._lang === 'en' ? 'from ' : 'c ';
     const isPeriod = node._schedules.length > 1;
-    const prefix = isPeriod ? 'c ' : '';
+    const prefix = isPeriod ? langPrefix : '';
 
     return [
       node._schedules && {
@@ -28,7 +30,7 @@ block('card-movie').mod('view', 'promo')(
           isPeriod && {
             elem: 'schedule',
             elemMods: { period: true },
-            prefix: 'по ',
+            prefix: node._lang === 'en' ? 'till ' : 'по ',
             content: node._schedules[ node._schedules.length - 1 ].date
           }
         ]

@@ -1,8 +1,6 @@
 block('page-movie').replace()( node => {
 
   const _movie = node.data.api;
-
-
   return [
     {
       elem: 'content',

@@ -132,13 +132,15 @@ provide(bemDom.declBlock(this.name, {
     let history = this._history;
     history.pushState( {}, 'Title', uri.toString() );
 
+
     $.ajax({
       async: true,
       type: 'GET',
       url: '/api/filter/',
       data: {
         filters: formData,
-        sort: sort
+        sort: sort,
+        lang: this.params.lang
       },
     }).done( response => {
       bemDom.update(

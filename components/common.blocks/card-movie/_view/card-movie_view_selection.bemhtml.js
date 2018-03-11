@@ -2,10 +2,9 @@ block('card-movie').mod('view', 'selection')(
 
   def()( ( node, ctx ) => {
     ctx.movie.cover = ctx.movie.cover || {};
-
     return applyNext( {
       'ctx.movie.cover.width': 196,
-      'ctx.movie.url': ctx.movie.code ? '/movie/' + ctx.movie.code : null
+      'ctx.movie.url': ctx.movie.code ? '/' + node._lang + '/movie/' + ctx.movie.code : null
     } );
   }),
 
