@@ -4,7 +4,7 @@ block(card-movie) {
 
   .elem(awards) {
     color: #fff;
-    background-color: rgba(17, 17, 17, .8);
+    /*background-color: rgba(17, 17, 17, .8);*/
     display: inline-block;
     width: 48px;
     height: 48px;
@@ -17,14 +17,16 @@ block(card-movie) {
     background-size: cover;
     background-repeat: no-repeat;
     background-origin: content-box;
-    background-image: svg-load('./__awards/card-movie__awards.svg');
+    /*background-image: svg-load('./__awards/card-movie__awards.svg');*/
 
     .mod(type lavr) {
-      background-image: svg-load('./__awards/_type/card-movie__awards_type_lavr.svg')
+      background-image: svg-load('./__awards/_type/card-movie__awards_type_lavr.svg');
+      background-color: rgba(17, 17, 17, .8);
     }
 
     .mod(type artdocfest) {
-      background-image: svg-load('./__awards/_type/card-movie__awards_type_artdocfest.svg')
+      background-image: svg-load('./__awards/_type/card-movie__awards_type_artdocfest.svg');
+      background-color: rgba(17, 17, 17, .8);
     }
   }
 

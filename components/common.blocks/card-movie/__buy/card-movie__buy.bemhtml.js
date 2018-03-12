@@ -1,6 +1,8 @@
 block('card-movie').elem('buy')(
 
-  content()({
+  content()( node => {
+    let text = node._lang === 'en' ? 'The film will be available for&nbsp;viewing after approval by the copyright owner' : 'Фильм будет доступен для&nbsp;просмотра после одобрения правообладателем'
+    return {
       block: 'paragraph',
       mods: { align: 'center', size: 's' },
       mix: { block: 'font', mods: { family: 'pt-mono' } },
@@ -8,11 +10,14 @@ block('card-movie').elem('buy')(
         style: 'background-color: #eee; color: #000; padding: 8px 20px; box-sizing: border-box;'
       },
       content: {
-        html: 'Фильм будет доступен для&nbsp;просмотра после одобрения правообладателем'
+        html: text
       }
+    }
   }),
 
   match( node => node._status === 20 || node._view_access === 512 && node._price && node._price.price === 0 ).replace()( node => {
+
+
     return {
       block: 'button',
       mix: { block: node.block, elem: node.elem },
@@ -22,8 +27,8 @@ block('card-movie').elem('buy')(
         size: 'l',
         theme: node.mods.theme
       },
-      url: '/movie/' + node._code + '/watch',
-      text: 'Смотреть бесплатно'
+      url: '/' + node._lang + '/movie/' + node._code + '/watch',
+      text: node._lang === 'en' ? 'Watch free' : 'Смотреть бесплатно'
     }
   } ),
 
@@ -122,9 +127,17 @@ block('card-movie').elem('buy')(
     }
   }),
 
+
+
+// перевести на баксы.
+
+
   match( node => node._price  && node._price.price > 0).replace()( node => {
     let type, size, text;
-    let label = 'Смотреть за ' + node._price.price + ' ₽';
+    let currency = node._lang === 'en' ? ' $' : ' ₽';
+    let description = node._lang === 'en' ? 'Watch for ' : 'Смотреть за '
+
+    let label = description + node._price.price + currency;
     switch ( node.elemMods.type ) {
       case 'button':
         type = 'link';
@@ -146,7 +159,7 @@ block('card-movie').elem('buy')(
         size: size,
         theme: node.mods.theme
       },
-      url: '/movie/' + node._code + '/buy',
+      url: '/' + node._lang + '/movie/' + node._code + '/buy',
       text: text
     }
   }),
@@ -162,8 +175,8 @@ block('card-movie').elem('buy')(
         size: 'l',
         theme: node.mods.theme
       },
-      url: '/movie/' + node._code + '/watch',
-      text: 'Смотреть онлайн'
+      url: '/' + node._lang + '/movie/' + node._code + '/watch',
+      text: node._lang ==='en' ? 'Watch online' : 'Смотреть онлайн'
     },
       {
         block: 'paragraph',
@@ -174,7 +187,7 @@ block('card-movie').elem('buy')(
           style: "font-size: 12px; margin-top: 10px; text-align: center; color: #5f5f5f;"
 
         },
-        content: 'Бесплатно для участников Клуба Артдок'
+        content: node._lang ==='en' ? 'Free of charge for Artdoc Club Members' : 'Бесплатно для участников Клуба Артдок'
       }]
   } )
 

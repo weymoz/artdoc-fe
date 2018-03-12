@@ -148,7 +148,6 @@ provide(bemDom.declBlock(this.name, {
         response.meta.total_count
       );
 
-
       bemDom.update(
         this._form.resultTo.domElem,
         BEMHTML.apply( response.items.map( movie => {

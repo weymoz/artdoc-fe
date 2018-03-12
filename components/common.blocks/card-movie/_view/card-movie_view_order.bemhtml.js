@@ -2,10 +2,11 @@ block('card-movie').mod('view', 'order')(
 
   def()( ( node, ctx ) => {
     ctx.movie.cover = ctx.movie.cover || {};
+    let lang = ctx.lang || node._lang;
 
     return applyNext( {
       'ctx.movie.cover.width': 235,
-      'ctx.movie.url': ctx.movie.code ? '/' + node._lang + '/movie/' + ctx.movie.code : null
+      'ctx.movie.url': ctx.movie.code ? '/' + lang + '/movie/' + ctx.movie.code : null
     } );
   }),
 

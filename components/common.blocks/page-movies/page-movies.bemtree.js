@@ -1,8 +1,4 @@
 block('page-movies').replace()(function(node) {
-
-
-   console.log(node.data.filter.category);
-
    return [
     {
       elem: 'content',

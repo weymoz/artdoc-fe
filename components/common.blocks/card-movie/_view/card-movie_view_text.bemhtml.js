@@ -1,8 +1,11 @@
 block('card-movie').mod('view', 'text')(
 
   def()( ( node, ctx ) => {
+
+    let lang = ctx.lang || node._lang;
+
     return applyNext( {
-      'ctx.movie.url': ctx.movie.code ? '/movie/' + ctx.movie.code : null
+      'ctx.movie.url': ctx.movie.code ? '/' + lang + '/movie/' + ctx.movie.code : null
     } );
   }),
 
