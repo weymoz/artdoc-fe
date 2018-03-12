@@ -167,7 +167,8 @@ block('filters')(
           block: 'card-movie',
           mods: { view: node._api.pagination.view || 'grid' },
           mix: { block: 'filters', elem: 'result-item' },
-          movie: movie
+          movie: movie,
+          lang: node._lang
         }
       } )
     })

@@ -90,7 +90,6 @@ provide(bemDom.declBlock(this.name, {
   _onFormChange: function () {
     this._form.resultTo.setMod('loading', true);
     let formData = this._form.getVal();
-
     // Count used filters
     let selectedFields = Object.keys( formData ).filter( item => formData[ item ].length );
     let selectedCount = selectedFields.length;
@@ -140,13 +139,15 @@ provide(bemDom.declBlock(this.name, {
       data: {
         filters: formData,
         sort: sort,
-        lang: this.params.lang
+        lang: this.params.lang,
+        code: this.params.code
       },
     }).done( response => {
       bemDom.update(
         this._form.resultCount.domElem,
         response.meta.total_count
       );
+
 
       bemDom.update(
         this._form.resultTo.domElem,
@@ -155,7 +156,8 @@ provide(bemDom.declBlock(this.name, {
             block: 'card-movie',
             mods: { view: view, size: 'm', theme: 'artdoc' },
             mix: { block: 'filters', elem: 'result-item' },
-            movie: movie
+            movie: movie,
+            lang: this.params.lang
           }
         } ) )
       )

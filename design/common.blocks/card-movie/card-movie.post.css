@@ -117,7 +117,7 @@ block(card-movie) {
       box-shadow: 0 0 2px 1px #D9D9D9;
 
       .mod(schedule){
-        bottom: -115px;
+        bottom: -155px;
         left: -80px;
         width: 200px;
         height: 140px;
@@ -620,7 +620,7 @@ block(card-movie) {
           transform: rotate(45deg);
           background-color: #fff;
           top: -5px;
-          left: 90px;
+          left: 92px;
         }
       }
     }
@@ -671,6 +671,9 @@ block(card-movie) {
     }
 
     elem(discussion){
+      margin-top: 20px;
+      width: 250px;
+
       elem(tooltip){
         &::after{
           content: '';

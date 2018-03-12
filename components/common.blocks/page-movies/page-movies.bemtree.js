@@ -1,4 +1,8 @@
 block('page-movies').replace()(function(node) {
+
+
+   console.log(node.data.filter.category);
+
    return [
     {
       elem: 'content',
@@ -9,7 +13,10 @@ block('page-movies').replace()(function(node) {
     },
     {
       block: 'filters',
-      js: { lang: node.data.lang },
+      js: {
+        lang: node.data.lang,
+        code: node.data.filter.category
+      },
       data: this.data,
       lang: node.data.lang
     },

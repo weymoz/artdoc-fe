@@ -143,7 +143,7 @@ module.exports = app => {
     var accept = accepts(req);
     var lang = accept.languages();
     let url = req.originalUrl;
-    var reg = /^\/(en|ru)\//gi;
+    var reg = /^\/(en|ru|api)\//gi;
     var str = url;
 
     if (reg.test(str)){
@@ -258,8 +258,6 @@ module.exports = app => {
       return filter[key];
     })
     url += '&per-page=' + data.pagination['per-page'] + '&page=' + data.pagination.page;
-
-
     axios.all([
       request({
         clientRequest: req,
@@ -753,11 +751,13 @@ module.exports = app => {
   app.get( '/api/filter/', ( req, res ) => {
     const sort = req.query.sort || '-rating';
     const page = req.query.page || 1;
-    const lang = req.query.lang || '';
+    const lang = req.query.lang === 'en' ? req.query.lang : '';
+    const code = req.query.code !== undefined ? '&filter[category]=' + req.query.code : '';
+
     const filters = Object.keys( req.query.filters ).map( filter => req.query.filters[ filter ] ? 'filter[' + filter + ']=' + req.query.filters[ filter ] : '' ).join('&');
     request({
       clientRequest: req,
-      url: '/api/movie/filter/?per-page=20&lang='+ lang +'&sort=' + sort + '&page=' + page + '&' + filters
+      url: '/api/movie/filter/?per-page=20' + code + '&lang='+ lang +'&sort=' + sort + '&page=' + page + '&' + filters
     })
       .then( api => res.json( api ) )
       .catch(  error => res.send( error ) )
