@@ -127,14 +127,15 @@ module.exports = app => {
    ***************************/
 
   var getIP = ipware().get_ip;
-  let exampleIp = '192.168.100.4';
+  // let exampleIp = "185.32.57.186";
+  // var exampleIp = "207.97.227.239";
 
   app.get( '/', ( req, res ) => {
     var ipInfo = getIP(req);
-    var geo = geoip.lookup(exampleIp);
+    var geo = geoip.lookup(getIP);
     console.log('////////////');
     console.log(ipInfo);
-    console.log(geo);
+    console.log(geo.country);
     console.log('////////////');
 
 
@@ -248,6 +249,7 @@ module.exports = app => {
         clientRequest: req,
         url: url,
       }),
+      // Добавить запрос на англоязычные фильтры
       request({
         clientRequest: req,
         url: '/api/movie/filtervalues/',
@@ -372,7 +374,11 @@ module.exports = app => {
       'page': req.query.page ? req.query.page : 1
     };
     let url = '/api/authorcompilation/';
-    url += '?sort=-sort&per-page=' + data.pagination['per-page'] + '&page=' + data.pagination.page;
+    if (req.params.lang === 'en'){
+      url += '?sort=-sort&lang=en&per-page=' + data.pagination['per-page'] + '&page=' + data.pagination.page;
+    } else {
+      url += '?sort=-sort&per-page=' + data.pagination['per-page'] + '&page=' + data.pagination.page;
+    }
     data.page = 'selections';
     data.adaptive = true;
     data.origUrl = req.originalUrl;
@@ -395,8 +401,14 @@ module.exports = app => {
       'per-page' : 20,
       'page': req.query.page ? req.query.page : 1
     };
-    let url = '/api/authorcompilation/?code=' + encodeURIComponent(req.params.code);
+    let url;
+    if ( req.params.lang === 'en'){
+      url = '/api/authorcompilation/?code=' + encodeURIComponent(req.params.code)+'&lang=en';
+    } else {
+      url = '/api/authorcompilation/?code=' + encodeURIComponent(req.params.code);
+    }
     data.page = 'selection';
+    data.lang = req.params.lang;
     data.adaptive = true;
     request({
       clientRequest: req,
@@ -409,7 +421,6 @@ module.exports = app => {
         }
         data.api = response.items[0];
         data.origUrl = req.originalUrl;
-        data.lang = req.params.lang;
         data.title = response.items[0].name;
         return render( req, res, data );
       }).catch( error => res.send( error ) );

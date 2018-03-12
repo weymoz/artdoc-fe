@@ -1,5 +1,6 @@
 block('page-selections').replace()(function() {
   const selections = this.data.api;
+
   return [
     {
       elem: 'content',
@@ -13,7 +14,7 @@ block('page-selections').replace()(function() {
           elem: 'title',
           elemMods: { view: 'condensed-bold', size: 'xl', gap: 'top' },
           mix: { block: 'heading', mods: { caps: true, align: 'center', size: 'l' } },
-          content: 'Авторские подборки'
+          content: this.data.lang === 'en' ? 'Selections' : 'Авторские подборки'
         },
         selections && selections.map( item => {
           return {
@@ -21,7 +22,8 @@ block('page-selections').replace()(function() {
             mods: {
               view: 'selections'
             },
-            selection: item
+            selection: item,
+            lang: this.data.lang
           }
         } )
       ]

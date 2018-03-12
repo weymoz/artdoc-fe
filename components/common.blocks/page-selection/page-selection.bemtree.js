@@ -6,11 +6,14 @@ block('page-selection').replace()( node => {
     node.data.api.description = marked( node.data.api.description );
   }
 
+  console.log(node.data.lang);
+
   return [
     {
       block: 'card-selection',
       mods: { view: 'detail' },
-      selection: node.data.api
+      selection: node.data.api,
+      lang: node.data.lang
     },
     {
       elem: 'content',
