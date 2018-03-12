@@ -44,6 +44,7 @@ block('header')(
       },
       {
         block: 'link',
+        js: {lang: ctx.lang},
         mods: { pseudo: true, },
         mix: { block: 'header', elem: 'search', js: true },
         url: '/search',

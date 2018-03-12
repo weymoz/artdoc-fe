@@ -4,9 +4,9 @@ const config = require('./config'),
       passport = require('passport'),
       request = require('./request'),
       {URL}  = require('url'),
-      accepts = require('accepts'),
-      geoip = require('geoip-lite'),
-      ipware = require('ipware');
+      accepts = require('accepts');
+      // geoip = require('geoip-lite');
+      // ipware = require('ipware');
 
 //const isCallerMobile = req => {
 //  let ua = req.headers['user-agent'].toLowerCase(),
@@ -105,16 +105,15 @@ module.exports = app => {
     for ( let i = global.category.length - 1; i >= 0; i-- ) {
       global.categoryByCode[ global.category[i].code ] = global.category[i];
     }
-  }).catch( () => { console.log( 'Fail for get categories' ) } );
+  }).catch( () => { console.log( 'Fail for get Russian categories' ) } );
 
 
 
   request( { url: '/api/category/?per-page=0&lang=en'} ).then( response => {
     global.categoryEn = response.items.sort(function (a,b) {
-      return a.name.localeCompare(b.name, 'ru');
+      return a.name.localeCompare(b.name, 'en');
     });
-
-    for ( let i = global.category.length - 1; i >= 0; i-- ) {
+    for ( let i = global.categoryEn.length - 1; i >= 0; i-- ) {
       global.categoryByCodeEn[ global.categoryEn[i].code ] = global.categoryEn[i];
     }
   }).catch( () => { console.log( 'Fail for get english categories' ) } );
@@ -126,26 +125,33 @@ module.exports = app => {
    *
    ***************************/
 
-  var getIP = ipware().get_ip;
+  // var getIP = ipware().get_ip;
   // let exampleIp = "185.32.57.186";
   // var exampleIp = "207.97.227.239";
 
-  app.get( '/', ( req, res ) => {
-    var ipInfo = getIP(req);
-    var geo = geoip.lookup(getIP);
-    console.log('////////////');
-    console.log(ipInfo);
-    console.log(geo.country);
-    console.log('////////////');
-
-
+  app.get( '*', ( req, res, next ) => {
+    // var ipInfo = getIP(req);
+    // var geo = geoip.lookup(getIP);
+    // console.log('////////////');
+    // console.log(ipInfo);
+    // console.log(geo.country);
+    // console.log('////////////');
 
     var accept = accepts(req);
     var lang = accept.languages();
-    if (lang[0] === 'ru-RU') {
-      res.redirect('/ru/')
+    let url = req.originalUrl;
+    var reg = /^\/(en|ru)/gi;
+    var str = url;
+
+    if (reg.test(str)){
+      next();
+      return true;
     } else {
-      res.redirect('/en/')
+      if (lang[0] === 'ru-RU') {
+        res.redirect('/ru' + req.originalUrl)
+      } else {
+        res.redirect('/en' + req.originalUrl)
+      }
     }
   });
 
@@ -214,20 +220,26 @@ module.exports = app => {
     data.origUrl = req.originalUrl;
     data.lang = req.params.lang;
     data.currentCategoryCode = 'all';
-    data.title = req.params.category ? data.categoryByCode[ req.params.category ].name : 'Все фильмы';
+    if (data.lang === 'en'){
+      data.title = req.params.category ? data.categoryByCodeEn[ req.params.category ].name : 'All movies';
+    } else {
+      data.title = req.params.category ? data.categoryByCode[ req.params.category ].name : 'Все фильмы';
+    }
     data.pagination = {
       'per-page' : 20,
       page: req.query.page || 1,
       params: req_url.searchParams
     };
 
-
     let sortBy = req.query.sort || '-rating';
     let url;
+    let filtersUrl;
     if (data.lang === 'en'){
       url = '/api/movie/filter/?per-page=20&lang=en&sort=' + sortBy + '&';
+      filtersUrl = '/api/movie/filtervalues/?lang=en';
     } else {
       url = '/api/movie/filter/?per-page=20&sort=' + sortBy + '&';
+      filtersUrl = '/api/movie/filtervalues/'
     }
 
     if (typeof req.params.category !== 'undefined') {
@@ -244,18 +256,17 @@ module.exports = app => {
     })
     url += '&per-page=' + data.pagination['per-page'] + '&page=' + data.pagination.page;
 
+
     axios.all([
       request({
         clientRequest: req,
         url: url,
       }),
-      // Добавить запрос на англоязычные фильтры
       request({
         clientRequest: req,
-        url: '/api/movie/filtervalues/',
+        url: filtersUrl,
       })
     ]).then( (response) => {
-      // console.log(response);
       data.api = response[0].items;
       data.filters = response[1];
       data.filter = filter;
@@ -291,8 +302,6 @@ module.exports = app => {
         }
         data.origUrl = req.originalUrl;
         data.lang = req.params.lang;
-
-
         data.title = response.items[0].name;
         data.meta.og.image = response.items[0].cover && response.items[0].cover.id
           ? '//artdoc.media/upload/resize/' + response.items[0].cover.id + '/640x360.jpg'
@@ -323,8 +332,15 @@ module.exports = app => {
     if ( req.query.hasOwnProperty( 'code' ) ) {
       data.page = 'order';
       data.isCinema = true;
+      let url;
+
+      if(req.params.lang === 'en'){
+        url = '/api/session/?lang=en&expand=movie,category,city&code=' + encodeURIComponent(req.query.code);
+      } else {
+        url = '/api/session/?expand=movie,category,city&code=' + encodeURIComponent(req.query.code)
+      }
       request({
-        url: '/api/session/?expand=movie,category,city&code=' + encodeURIComponent(req.query.code),
+        url: url,
         clientRequest: req
       })
         .then( response => {
@@ -343,8 +359,15 @@ module.exports = app => {
         .catch(( error ) => res.send( error ) );
     } else {
       data.page = 'movie';
+      let url;
+      if(req.params.lang === 'en'){
+        url = '/api/movie/?sort=id&lang=en&expand=schedules,sessions,category,screenshots&code=' + encodeURIComponent(req.params.name);
+      } else {
+        url = '/api/movie/?sort=id&expand=schedules,sessions,category,screenshots&code=' + encodeURIComponent(req.params.name)
+      }
+
       request({
-        url: '/api/movie/?sort=id&expand=schedules,sessions,category,screenshots&code=' + encodeURIComponent(req.params.name),
+        url: url,
         clientRequest: req
       })
         .then( response => {
@@ -352,6 +375,7 @@ module.exports = app => {
             console.log('next!');
             next();
           }
+
           data.api = response.items[0];
           data.title = response.items[0].name;
           data.adaptive = true;
@@ -390,6 +414,7 @@ module.exports = app => {
     })
         .then( response => {
           data.api = response.items;
+          data.lang = req.params.lang;
           return render( req, res, data );
         }).catch( error => res.send( error ) );
   });
@@ -420,6 +445,7 @@ module.exports = app => {
           next();
         }
         data.api = response.items[0];
+        data.lang = req.params.lang;
         data.origUrl = req.originalUrl;
         data.title = response.items[0].name;
         return render( req, res, data );
@@ -433,7 +459,13 @@ module.exports = app => {
       'per-page' : 20,
       'page': req.query.page ? req.query.page : 1
     };
-    let url = '/api/author/?id=' + req.params.id
+    let url;
+
+    if(req.params.lang === 'en'){
+      url = '/api/author/?lang=en&id=' + req.params.id
+    } else {
+      url = '/api/author/?id=' + req.params.id;
+    }
     data.page = 'author';
     data.origUrl = req.originalUrl;
     data.lang = req.params.lang;
@@ -583,7 +615,6 @@ module.exports = app => {
         } );
 
     } else {
-
       request({
         url: '/api/movie/?sort=id&expand=schedules,sessions,category,video_link,screenshots&code=' + encodeURIComponent(req.params.name),
         clientRequest: req

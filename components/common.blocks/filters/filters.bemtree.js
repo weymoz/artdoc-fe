@@ -1,6 +1,9 @@
 var marked = require('marked');
 
 block('filters').def()( ( node, ctx ) => {
+
+
+
   if ( ctx.data.api && ctx.data.api.length ) {
     ctx.data.api.forEach( movie => {
       if ( movie.offlineShow && movie.offlineShow.description ) {
@@ -30,80 +33,80 @@ block('filters').def()( ( node, ctx ) => {
   let filtersMap = {
     category: {
       code: 'category',
-      name: 'Категории',
+      name: node.i18n('filters', 'category'),
       skip: true,
       sort: sortWord,
 
     },
     full_movie: {
       code: 'full_movie',
-      name: ctx.data.user ? 'Возможность просмотра полного видео':'Доступные для просмотра на сайте',
+      name: ctx.data.user ? node.i18n('filters', 'user') : node.i18n('filters', 'noUser'),
       skip: false,
 
     },
     free: {
       code: 'free',
-      name: 'Только бесплатные',
+      name: node.i18n('filters', 'free'),
       skip: !!ctx.data.user,
     },
     rating: {
-      name: 'Рейтинг artdoc.media',
+      name: node.i18n('filters', 'artdoc'),
       skip: false,
       sort: sortNumberDesc,
     },
     year: {
-      name: 'Год выхода',
+      name: node.i18n('filters', 'year'),
       skip: false,
       sort: sortNumberDesc,
 
     },
     country: {
-      name: 'Страна производства',
+      name: node.i18n('filters', 'produce-country'),
       skip: false,
       sort: sortWord,
     },
     studio: {
       skip: false,
-      name: 'Студия производства',
+      name: node.i18n('filters', 'studio'),
       sort: sortWord,
     },
     genre: {
-      name: 'Жанры',
+      name: node.i18n('filters', 'genre'),
       skip: false,
       sort: sortWord,
     },
     period: {
-      name: 'Исторический период',
+      name: node.i18n('filters', 'history'),
       skip: false,
       sort: sortNumber,
     },
     action_country: {
-      name: 'Страна действия',
+      name: node.i18n('filters', 'action-country'),
       skip: false,
       sort: sortWord,
     },
     action_city: {
-      name: 'Место действия',
+      name: node.i18n('filters', 'action-place'),
       skip: false,
       sort: sortWord
     },
     language: {
-      name: 'Язык',
+      name: node.i18n('filters', 'lang'),
       skip: false,
       sort: sortWord
     },
     subs: {
-      name: 'Субтитры',
+      name: node.i18n('filters', 'subtitles'),
       skip: false,
       sort: sortWord
     },
     fin_type: {
-      name: 'Финансирование',
+      name: node.i18n('filters', 'finances'),
       skip: false,
       sort: sortWord,
     },
     nominations: {
-      name: 'Номинации',
+      name: node.i18n('filters', 'nominations'),
       skip: false,
       sort: sortWord
     },

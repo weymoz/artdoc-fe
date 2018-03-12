@@ -1,6 +1,5 @@
 block('page-movies').replace()(function(node) {
-
-  return [
+   return [
     {
       elem: 'content',
       content: {

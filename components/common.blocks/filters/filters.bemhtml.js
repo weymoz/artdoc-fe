@@ -5,6 +5,7 @@ block('filters')(
   def()( ( node, ctx ) => {
     node._api = Object.assign( {}, ctx.data );
     node._lang = ctx.lang;
+
     return applyNext();
   } ),
 

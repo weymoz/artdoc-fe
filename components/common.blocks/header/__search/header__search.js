@@ -1,10 +1,11 @@
-modules.define('header__search', ['i-bem-dom', 'BEMHTML', 'header', 'modal'], function(provide, bemDom, BEMHTML, Header, Modal) {
+modules.define('header__search',
+  ['i-bem-dom', 'BEMHTML', 'header', 'modal', 'link'],
+  function(provide, bemDom, BEMHTML, Header, Modal, Link) {
 
 provide(bemDom.declElem('header', 'search', {
   onSetMod: {
     js: {
       inited: function() {
-
         this._domEvents().on('click touchstart', ( event ) => {
           event.preventDefault();
           this.setMod( 'active', !this.hasMod('active') );
@@ -18,6 +19,7 @@ provide(bemDom.declElem('header', 'search', {
     },
     active: {
       '*': function(modName, modVal) {
+        let lang = this.findMixedBlock(Link).params.lang;
         bemDom.update(
           this.domElem,
           modVal ?
@@ -34,7 +36,7 @@ provide(bemDom.declElem('header', 'search', {
                 theme: 'artdoc-dark',
                 size: 'l'
               },
-              content: 'Закрыть'
+              content: lang === 'en' ? 'Close' : 'Закрыть'
             }
             ]
           ) : BEMHTML.apply([
@@ -50,7 +52,7 @@ provide(bemDom.declElem('header', 'search', {
                 theme: 'artdoc-dark',
                 size: 'l'
               },
-              content: 'Поиск'
+              content: lang === 'en' ? 'Search' : 'Поиск'
             }
             ]
           )

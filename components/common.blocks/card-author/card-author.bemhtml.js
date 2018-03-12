@@ -1,7 +1,6 @@
 block('card-author')(
 
   match( ( node, ctx ) => ctx.author ).def()( ( node, ctx ) => {
-
     Object.keys( ctx.author ).map( key => {
       node[ '_' + key ] = ctx.author[ key ];
       return true;

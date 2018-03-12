@@ -1,6 +1,7 @@
 block('page-movie').replace()( node => {
-
   const _movie = node.data.api;
+  const _lang = node.data.lang;
+
   return [
     {
       elem: 'content',
@@ -13,7 +14,8 @@ block('page-movie').replace()( node => {
         {
           block: 'card-movie',
           mods: { view: 'full' },
-          movie: _movie
+          movie: _movie,
+          lang: _lang
         }
       ]
     },
@@ -24,7 +26,8 @@ block('page-movie').replace()( node => {
         {
           block: 'ticket-case',
           mix: { block: 'page', elem: 'content' },
-          movie: _movie
+          movie: _movie,
+          lang: _lang
         }
       ]
     } : '',
@@ -33,7 +36,8 @@ block('page-movie').replace()( node => {
       elemMods: { gap: _movie.schedules && _movie.schedules.length ? 'top' : false },
       content: {
         block: 'movie-about',
-        movie: _movie
+        movie: _movie,
+        lang: _lang
       }
     },
     {
