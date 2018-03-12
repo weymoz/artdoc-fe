@@ -120,16 +120,13 @@ module.exports = app => {
 
 
 
-  /*
-   *  Redirect
-   *
-   ***************************/
 
-  // var getIP = ipware().get_ip;
-  // let exampleIp = "185.32.57.186";
-  // var exampleIp = "207.97.227.239";
 
-  app.get( '*', ( req, res, next ) => {
+  //
+
+    // var getIP = ipware().get_ip;
+    // let exampleIp = "185.32.57.186";
+    // var exampleIp = "207.97.227.239";
     // var ipInfo = getIP(req);
     // var geo = geoip.lookup(getIP);
     // console.log('////////////');
@@ -137,10 +134,16 @@ module.exports = app => {
     // console.log(geo.country);
     // console.log('////////////');
 
+  /*
+   *  Redirect
+   *
+   ***************************/
+  app.get( '*', ( req, res, next ) => {
+
     var accept = accepts(req);
     var lang = accept.languages();
     let url = req.originalUrl;
-    var reg = /^\/(en|ru)/gi;
+    var reg = /^\/(en|ru)\//gi;
     var str = url;
 
     if (reg.test(str)){
