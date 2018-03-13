@@ -31,22 +31,28 @@ block('card-movie').mod('view', 'full')(
           { elem: 'orig-name' },
           { elem: 'name', elemMods: { 'has-dot': true, size: 'xl' } },
           {
-            elem: 'list',
-            elemMods: { delimiter: 'vertical' },
-            content: [
-              { elem: 'director' },
-              { elem: 'countries' },
-              { elem: 'year' }
-            ]
+            elem: 'listbox',
+            content: {
+                elem: 'list',
+                elemMods: { delimiter: 'vertical' },
+                content: [
+                  { elem: 'director' },
+                  { elem: 'countries' },
+                  { elem: 'year' }
+                ]
+              }
           },
           {
-            elem: 'list',
-            content: [
-              { elem: 'tvpg' },
-              { elem: 'duration' },
-              { elem: 'language' },
-              { elem: 'subs' }
-            ]
+            elem: 'listbox',
+            content: {
+                elem: 'list',
+                content: [
+                  { elem: 'tvpg' },
+                  { elem: 'duration' },
+                  { elem: 'language' },
+                  { elem: 'subs' }
+                ]
+              }
           },
           { elem: 'buy', elemMods: { type: 'button' } },
           { elem: 'description' }

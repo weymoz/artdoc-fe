@@ -6,6 +6,7 @@ block( 'card-movie' ).elem( 'duration' )(
   addAttrs()( { title: 'Длительность' } ),
 
   content()( node => {
+    let min = node._lang === 'en' ? ' min.' : ' мин.'
     return [
       {
         block: 'icon',
@@ -19,7 +20,7 @@ block( 'card-movie' ).elem( 'duration' )(
         mods: {
           size: 's'
         },
-        content: node._duration + ' мин.'
+        content: node._duration + min
       }
     ]
   })

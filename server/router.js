@@ -494,9 +494,16 @@ module.exports = app => {
     let data = Object.assign({}, req.globalData);
     data.page = 'schedule';
     data.title = 'Расписание онлайн-киносеансов';
+    data.lang = req.params.lang;
+    let url;
+    if (data.lang === 'en'){
+      url = '/api/schedule/?expand=sessions,movie&lang=en&sort=date_gmt3&per-page=100&date_from=' + (Math.floor((Date.now() / 1000) / 3600) * 3600 - (31 * 60 * 60))
+    }else {
+      url = '/api/schedule/?expand=sessions,movie&sort=date_gmt3&per-page=100&date_from=' + (Math.floor((Date.now() / 1000) / 3600) * 3600 - (31 * 60 * 60));
+    }
     request({
       clientRequest: req,
-      url: '/api/schedule/?expand=sessions,movie&sort=date_gmt3&per-page=100&date_from=' + (Math.floor((Date.now() / 1000) / 3600) * 3600 - (31 * 60 * 60))
+      url: url
     })
       .then( response => {
         data.api = response.items;
@@ -506,12 +513,6 @@ module.exports = app => {
       } )
       .catch( error => res.send( error ) );
   });
-
-
-
-
-
-// Разрезолвить?
 
 
   // Cinema's play or discuss

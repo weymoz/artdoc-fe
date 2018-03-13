@@ -4,6 +4,8 @@ block('card-movie').elem('is-premiere')(
 
   addMix()({ block: 'font', mods: { family: 'helvetica-neue-condensed-bold', loaded: true } }),
 
-  content()( 'Премьера' )
+  content()( (node) => {
+    return  node._lang === 'en' ? 'Premiere' : 'Премьера'
+  })
 
 )

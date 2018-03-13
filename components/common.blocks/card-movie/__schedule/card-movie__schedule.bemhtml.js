@@ -5,6 +5,7 @@ block( 'card-movie' ).elem( 'schedule' )(
   tag()('time'),
 
   addAttrs()( ( node, ctx ) => {
+
     return {
       title: applyCtx( {
         block: 'text',
@@ -12,6 +13,7 @@ block( 'card-movie' ).elem( 'schedule' )(
           format: 'datetime'
         },
         format: 'LL',
+        locale: node._lang,
         content: ctx.content
       } ),
       datetime: applyCtx( {
@@ -20,12 +22,14 @@ block( 'card-movie' ).elem( 'schedule' )(
           format: 'datetime'
         },
         format: '',
+        locale: node._lang,
         content: ctx.content
       } )
     }
   } ),
 
   content()( ( node, ctx ) => {
+
     const template = node.reapply([
       {
         block: node.block,
@@ -41,12 +45,13 @@ block( 'card-movie' ).elem( 'schedule' )(
         block: node.block,
         elem: 'schedule-week-day',
         content: ']dd['
-      }      
+      }
     ]);
 
     return {
       block: 'text',
       mods: { format: 'datetime' },
+      locale: node._lang,
       format: '[' + template + ']',
       content: ctx.content
     }

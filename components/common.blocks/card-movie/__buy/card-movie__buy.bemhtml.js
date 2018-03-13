@@ -127,11 +127,6 @@ block('card-movie').elem('buy')(
     }
   }),
 
-
-
-// перевести на баксы.
-
-
   match( node => node._price  && node._price.price > 0).replace()( node => {
     let type, size, text;
     let currency = node._lang === 'en' ? ' $' : ' ₽';

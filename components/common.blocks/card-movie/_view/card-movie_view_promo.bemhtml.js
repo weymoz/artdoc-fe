@@ -16,6 +16,8 @@ block('card-movie').mod('view', 'promo')(
     const isPeriod = node._schedules.length > 1;
     const prefix = isPeriod ? langPrefix : '';
 
+
+
     return [
       node._schedules && {
         elem: 'aside',
@@ -62,28 +64,34 @@ block('card-movie').mod('view', 'promo')(
         elem: 'aside',
         content: [
           {
-            elem: 'list',
-            elemMods: { delimiter: 'vertical' },
-            content: [
-              { elem: 'director' },
-              { elem: 'countries' },
-              { elem: 'year' }
-            ]
+            elem: 'listbox',
+            content: {
+                elem: 'list',
+                elemMods: { delimiter: 'vertical' },
+                content: [
+                  { elem: 'director' },
+                  { elem: 'countries' },
+                  { elem: 'year' }
+                ]
+              }
           },
           {
-            elem: 'list',
-            content: [
-              { elem: 'tvpg' },
-              { elem: 'duration' },
-              { elem: 'language' },
-              { elem: 'subs' }
-            ]
+            elem: 'listbox',
+            content: {
+                elem: 'list',
+                content: [
+                  { elem: 'tvpg' },
+                  { elem: 'duration' },
+                  { elem: 'language' },
+                  { elem: 'subs' }
+                ]
+              }
           },
           { elem: 'description', elemMods: { 'short': true } },
           {
             elem: 'section',
             content: [
-              { elem: 'discussion' }
+              { elem: 'discussion', lang: node._lang}
             ]
           },
           { elem: 'buy', elemMods: { type: 'button' } },

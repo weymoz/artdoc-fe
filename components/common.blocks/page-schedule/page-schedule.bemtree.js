@@ -1,7 +1,6 @@
 block('page-schedule').replace()(function() {
 
   const _movies = this.data.api;
-
   let schedule = [];
 
   _movies.forEach( movie => {
@@ -39,7 +38,8 @@ block('page-schedule').replace()(function() {
     ? {
         block: 'card-movie',
         mods: { view: 'promo' },
-        movie: schedule.shift()
+        movie: schedule.shift(),
+        lang: this.data.lang
       }
     : '';
 
@@ -63,7 +63,8 @@ block('page-schedule').replace()(function() {
           return {
             block: 'card-movie',
             mods: { view: 'schedule' },
-            movie: item
+            movie: item,
+            lang: this.data.lang
           }
         } ),
       ]

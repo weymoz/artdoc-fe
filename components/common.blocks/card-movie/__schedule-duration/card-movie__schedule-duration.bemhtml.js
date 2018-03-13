@@ -10,9 +10,9 @@ block('card-movie').elem('schedule-duration')(
         mods: { plural: true },
         content: {
           number: node._schedules.length,
-          one: 'день',
-          two: 'дня',
-          five: 'дней'
+          one:  node._lang === 'en' ? 'day' : 'день',
+          two:  node._lang === 'en' ? 'days' : 'дня',
+          five: node._lang === 'en' ? 'days' : 'дней'
         }
       }
     ];

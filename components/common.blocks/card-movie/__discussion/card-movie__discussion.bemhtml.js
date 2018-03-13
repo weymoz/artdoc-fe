@@ -2,9 +2,9 @@ block('card-movie').elem('discussion')(
 
   match( node => !node._discuss_preview && !node._discuss_link ).def()(''),
 
-  content()( () => {
+  content()( (node) => {
       return [{
-        html: 'Обсуждение фильма с&nbsp;автором и&nbsp;зрителями'
+        html: node._lang === 'en' ? 'Film discussion with&nbsp;author and&nbsp;viewers' : 'Обсуждение фильма с&nbsp;автором и&nbsp;зрителями'
       }]
   }),
 
@@ -16,7 +16,7 @@ block('card-movie').elem('discussion')(
         content: node._discuss_preview
       },
       {
-        html: 'Обсуждение фильма с&nbsp;автором и&nbsp;зрителями'
+        html: node._lang === 'en' ? 'Film discussion with&nbsp;author and&nbsp;viewers' : 'Обсуждение фильма с&nbsp;автором и&nbsp;зрителями'
       }
     ]
   }),
@@ -29,7 +29,7 @@ block('card-movie').elem('discussion')(
         content: node._discuss_preview
       },
       {
-        html: 'Обсуждение фильма с&nbsp;автором и&nbsp;зрителями'
+        html: node._lang === 'en' ? 'Film discussion with&nbsp;author and&nbsp;viewers' : 'Обсуждение фильма с&nbsp;автором и&nbsp;зрителями'
       }
     ]
   }),
@@ -49,7 +49,7 @@ block('card-movie').elem('discussion')(
           theme: 'artdoc-dark'
         },
         url: node._discuss_link,
-        text: 'Перейти к обсуждению'
+        text: node._lang === 'en' ? 'To discussion' : 'Перейти к обсуждению'
       }
     ]
   })

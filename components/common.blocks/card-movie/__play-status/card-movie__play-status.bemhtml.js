@@ -4,7 +4,7 @@ block('card-movie').elem('play-status')(
     return [
       {
         elem: 'play-status-header',
-        content: 'Сеанс начнётся через'
+        content: node._lang === 'en' ? 'The showtime will start in' : 'Сеанс начнётся через'
       },
       {
         elem: 'play-status-countdown',
@@ -19,10 +19,12 @@ block('card-movie').elem('play-status')(
 
   elemMod('status', 'finish').content()( node => {
 
+    console.log(node._lang);
+
     return [
       {
         elem: 'play-status-header',
-        content: node._type =='rent' ? 'Доступ закрыт' : 'Сеанс окончен'
+        content: node._type =='rent' ? (node._lang === 'en' ? 'Access is closed' : 'Доступ закрыт') : (node._lang === 'en' ? 'Showtime is finished' : 'Сеанс окончен')
       },
       node._url && {
         block: 'button',
@@ -32,7 +34,7 @@ block('card-movie').elem('play-status')(
           theme: 'artdoc-dark'
         },
         url: node._url,
-        text: 'На страницу фильма'
+        text: node._lang === 'en' ? 'Back to the movie page' : 'На страницу фильма'
       }
     ];
   })

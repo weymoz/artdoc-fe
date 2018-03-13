@@ -1,8 +1,9 @@
 block('card-movie').elem('rating')(
 
-  addAttrs()( () => {
+  addAttrs()( (node) => {
+    console.log(node._lang);
     return {
-      'data-title': 'Рейтинг Artdoc'
+      'data-title': node._lang === 'en' ? 'Artdoc rating' :'Рейтинг Artdoc'
     }
   }),
 

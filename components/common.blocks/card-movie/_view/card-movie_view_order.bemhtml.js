@@ -25,23 +25,29 @@ block('card-movie').mod('view', 'order')(
           { elem: 'orig-name' },
           { elem: 'name', elemMods: { link: true, size: 'm' } },
           {
-            elem: 'list',
-            elemMods: { delimiter: 'vertical' },
-            content: [
-              { elem: 'director' },
-              { elem: 'countries' },
-              { elem: 'year' }
-            ]
+            elem: 'listbox',
+            content: {
+                elem: 'list',
+                elemMods: { delimiter: 'vertical' },
+                content: [
+                  { elem: 'director' },
+                  { elem: 'countries' },
+                  { elem: 'year' }
+                ]
+              }
           },
           {
-            elem: 'list',
-            content: [
-              { elem: 'tvpg' },
-              { elem: 'duration' },
-              { elem: 'language' },
-              { elem: 'subs' }
-            ]
-          }
+            elem: 'listbox',
+            content: {
+                elem: 'list',
+                content: [
+                  { elem: 'tvpg' },
+                  { elem: 'duration' },
+                  { elem: 'language' },
+                  { elem: 'subs' }
+                ]
+              }
+          },
         ]
       }
     ];
