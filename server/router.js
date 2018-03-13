@@ -516,13 +516,22 @@ module.exports = app => {
 
 
   // Cinema's play or discuss
-  app.get( /cinema\/(release|discuss)/, ( req, res ) => {
+  app.get( /:lang\/cinema\/(release|discuss)/, ( req, res ) => {
     let data = Object.assign({}, req.globalData);
     if ( req.query.hasOwnProperty( 'hash' ) && req.query.hasOwnProperty( 'sess_id' ) && req.query.hasOwnProperty( 'id' ) ) {
       data.page = req.params[0] === 'discuss' ? 'discuss' : 'play';
+      data.lang = req.params.lang;
+
+      let url;
+      if (data.lang === 'en'){
+        url = '/cinema/release/?id=' + req.query.id + '&lang=en&hash=' + req.query.hash + '&sess_id=' + req.query.sess_id
+      } else {
+        url = '/cinema/release/?id=' + req.query.id + '&hash=' + req.query.hash + '&sess_id=' + req.query.sess_id
+      }
+
       request({
         clientRequest: req,
-        url: '/cinema/release/?id=' + req.query.id + '&hash=' + req.query.hash + '&sess_id=' + req.query.sess_id
+        url: url
       })
         .then( response => {
           data.api = response;

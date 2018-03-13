@@ -5,9 +5,6 @@ block('page-selection').replace()( node => {
   if ( node.data.api.description ) {
     node.data.api.description = marked( node.data.api.description );
   }
-
-  console.log(node.data.lang);
-
   return [
     {
       block: 'card-selection',
@@ -23,6 +20,7 @@ block('page-selection').replace()( node => {
           mods: { view: 'grid' },
           mix: { block: 'card-selection', elem: 'item' },
           movie: item,
+          lang: node.data.lang
         }
       } ),
     },

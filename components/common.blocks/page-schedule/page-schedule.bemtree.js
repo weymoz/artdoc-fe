@@ -56,7 +56,7 @@ block('page-schedule').replace()(function() {
           elem: 'title',
           elemMods: { view: 'condensed-bold', size: 'xl', gap: 'top' },
           mix: { block: 'heading', mods: { caps: true, align: 'center', size: 'l' } },
-          content: 'Онлайн-киносеансы'
+          content: this.data.lang === 'en' ? 'Online showtimes' : 'Онлайн-киносеансы'
         },
         promoBlock,
         schedule.map( item => {

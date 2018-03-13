@@ -1,4 +1,5 @@
 [{
+  mustDeps: 'i18n',
   shouldDeps: [
     {
       elem: [
