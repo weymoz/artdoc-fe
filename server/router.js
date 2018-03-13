@@ -143,7 +143,7 @@ module.exports = app => {
     var accept = accepts(req);
     var lang = accept.languages();
     let url = req.originalUrl;
-    var reg = /^\/(en|ru|api)\//gi;
+    var reg = /^\/(en|ru|api)\//i;
     var str = url;
 
     if (reg.test(str)){
