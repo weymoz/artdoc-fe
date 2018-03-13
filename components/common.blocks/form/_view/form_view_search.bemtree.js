@@ -1,3 +1,3 @@
-block('form').mod('view', 'search').content()(function() {
-    return;
-});
+// block('form').mod('view', 'search').content()(function() {
+//     return;
+// });

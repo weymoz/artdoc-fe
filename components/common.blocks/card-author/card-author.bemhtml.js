@@ -54,7 +54,7 @@ block('card-author')(
               mods: {
                 size: 's'
               },
-              url: '/author/'+node._id,
+              url: '/' + node._lang + '/author/'+node._id,
               content: {
                 elem: 'content',
                 attrs: node._color !== undefined ? {style: 'color: rgb(160, 160, 172)'} : {style: 'color: #000'},

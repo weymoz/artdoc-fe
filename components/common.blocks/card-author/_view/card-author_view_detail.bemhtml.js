@@ -7,11 +7,11 @@ block('card-author').mod('view', 'detail')(
   content()( (node, ctx) => {
 
     let data_rows = [
-      {field: 'career', name: 'Карьера'},
-      {field: 'birthday', name: 'Дата рождения'},
-      {field: 'city', name: 'Место рождения', sub_field: 'name'},
-      {field: 'email', name: 'Эл. почта'},
-      {field: 'web', name: 'Сайт'}
+      {field: 'career',   name: ctx.lang==='en' ? 'career' : 'Карьера'                          },
+      {field: 'birthday', name: ctx.lang==='en' ? 'Date of birth' : 'Дата рождения'                    },
+      {field: 'city',     name: ctx.lang==='en' ? 'Place of birth' : 'Место рождения', sub_field: 'name'},
+      {field: 'email',    name: ctx.lang==='en' ? 'Email' : 'Эл. почта'                        },
+      {field: 'web',      name: ctx.lang==='en' ? 'Website' : 'Сайт'                             }
       ];
 
     let socials = [

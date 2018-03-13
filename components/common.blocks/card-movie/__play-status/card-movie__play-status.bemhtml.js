@@ -18,9 +18,6 @@ block('card-movie').elem('play-status')(
   elemMod('status', 'ready').def()(''),
 
   elemMod('status', 'finish').content()( node => {
-
-    console.log(node._lang);
-
     return [
       {
         elem: 'play-status-header',

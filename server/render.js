@@ -39,7 +39,6 @@ const render = (req, res, data, context) => {
   };
 
   const templates = getTemplates( data.page, data.bundle );
-
   let bemjson;
   try {
     bemjson = templates[currentLang].BEMTREE.apply( bemtreeCtx );

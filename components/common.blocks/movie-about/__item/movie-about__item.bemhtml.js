@@ -59,7 +59,6 @@ block('movie-about').elem('item')(
   ),
 
   elemMod('section', 'tags').content()( ( node, ctx ) => {
-
     return ctx.movie.tags.split(', ').map( tag => {
       return {
         block: 'link',

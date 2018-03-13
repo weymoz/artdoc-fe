@@ -6,6 +6,7 @@ module.exports = {
         'password'          : 'Пароль',
         'auth-login'        : 'Войти',
         'auth-description'  : 'Как стать участником клуба',
-        'auth-necessary'    : 'Это поле обязательно'
+        'auth-necessary'    : 'Это поле обязательно',
+        'placeholder'       : 'Фильм или тег'
     }
 }

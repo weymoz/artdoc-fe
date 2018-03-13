@@ -10,7 +10,8 @@ block('page-author').replace()( node => {
     {
       block: 'card-author',
       mods: { view: 'detail'},
-      author: node.data.api
+      author: node.data.api,
+      lang: node.data.lang
     },
     {
       elem: 'content',
@@ -24,7 +25,7 @@ block('page-author').replace()( node => {
             underline: true
           },
           content: [
-          'Фильмография',
+          node.i18n('author', 'title'),
           {
             elem: 'counter',
             content: node.data.api.movies.length
@@ -44,6 +45,7 @@ block('page-author').replace()( node => {
           mods: { view: 'grid' },
           mix: { block: 'card-selection', elem: 'item' },
           movie: item,
+          lang: node.data.lang
         }
 
       } )

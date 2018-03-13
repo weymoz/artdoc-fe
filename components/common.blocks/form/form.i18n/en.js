@@ -6,6 +6,7 @@ module.exports = {
         'password'          : 'Password',
         'auth-login'        : 'Log In',
         'auth-description'  : 'How to join the club',
-        'auth-necessary'    : 'This field is necessary'
+        'auth-necessary'    : 'This field is necessary',
+        'placeholder'       : 'Movie or tag'
     }
 }
