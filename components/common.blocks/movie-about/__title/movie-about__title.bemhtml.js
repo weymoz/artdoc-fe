@@ -1,7 +1,7 @@
 block('movie-about').elem('title')(
 
   match( ( node, ctx ) => !ctx.title ).def()(''),
-  
+
   tag()('h3'),
 
   addMix()( [
@@ -11,13 +11,13 @@ block('movie-about').elem('title')(
 
   content()( ( node, ctx ) => {
     switch ( ctx.title ) {
-      case 'info'    : return 'Информация о фильме';
-      case 'authors' : return 'Авторы';
-      case 'crew'    : return 'Съемочная группа';
-      case 'tags'    : return 'Теги';
-      case 'awards'  : return 'Награды и фестивали';
-      default        : return 'Unknow section';
-    }      
+      case 'info'    : return node._lang === 'en' ? 'Movie about' : 'Информация о фильме';
+      case 'authors' : return node._lang === 'en' ? 'Authors' : 'Авторы';
+      case 'crew'    : return node._lang === 'en' ? 'Crew' : 'Съемочная группа';
+      case 'tags'    : return node._lang === 'en' ? 'Tags' : 'Теги';
+      case 'awards'  : return node._lang === 'en' ? 'Movie awards and festivals' : 'Награды и фестивали';
+      default        : return 'Unknown section';
+    }
   } )
 
 )

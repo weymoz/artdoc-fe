@@ -1,3 +1,3 @@
-block('list').elem('term').elemMod('movie', 'genres').content()(function() {
-  return 'Жанр';
+block('list').elem('term').elemMod('movie', 'genres').content()(function(node) {
+  return node._lang === 'en' ? 'Genre' : 'Жанр';
 });

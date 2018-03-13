@@ -13,6 +13,8 @@ block('movie-about').elem('item')(
           { block: 'font', mods: { family: 'pt-mono', loaded: true } }
         ],
         content: ctx.data.map( item => {
+
+
           if ( ctx.movie.hasOwnProperty( item ) && ctx.movie[ item ] && ctx.movie[ item ].length ) {
             return [
               {
@@ -57,6 +59,7 @@ block('movie-about').elem('item')(
   ),
 
   elemMod('section', 'tags').content()( ( node, ctx ) => {
+
     return ctx.movie.tags.split(', ').map( tag => {
       return {
         block: 'link',
@@ -66,7 +69,7 @@ block('movie-about').elem('item')(
           size: 'xs',
           theme: 'artdoc-dark'
         },
-        url: '/movie/tag-' + tag,
+        url: '/' + node._lang + '/movie/tag-' + tag,
         content: tag
       }
     } )
@@ -127,7 +130,7 @@ block('movie-about').elem('item')(
                 block: 'paragraph',
                 mods: { align: 'center', size: 's' },
                 content: fest.comment
-              } 
+              }
             ]
           } )
         ]
