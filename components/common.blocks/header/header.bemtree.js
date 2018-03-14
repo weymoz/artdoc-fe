@@ -22,7 +22,6 @@ block('header')(
   }),
 
   content()( ( node, ctx ) => {
-
     return [
       {
         block: 'logo',
@@ -47,7 +46,7 @@ block('header')(
         js: {lang: ctx.lang},
         mods: { pseudo: true, },
         mix: { block: 'header', elem: 'search', js: true },
-        url: '/search',
+        url: '/' + ctx.lang + '/search',
         content: [
         {
           block: 'icon',
@@ -81,7 +80,7 @@ block('header')(
       {
         block: 'modal',
         mods: { view: 'search', size: 'xxl', theme: 'artdoc-dark' },
-        content: { block: 'form', mods: { view: 'search' }, zIndexGroupLevel: 1 }
+        content: { block: 'form', js: { lang: node.data.lang }, mods: { view: 'search' }, lang: node.data.lang, zIndexGroupLevel: 1 }
       },
       // {
       //   block: 'dropdown',

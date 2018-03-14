@@ -43,6 +43,7 @@ const render = (req, res, data, context) => {
   try {
     bemjson = templates[currentLang].BEMTREE.apply( bemtreeCtx );
   } catch( err ) {
+
     console.error( 'BEMTREE error', err.stack );
     console.trace( 'server stack' );
     return res.sendStatus( 500 );

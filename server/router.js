@@ -65,7 +65,7 @@ module.exports = app => {
         url: '/auth/',
         clientRequest: req
       }).then( (response) => {
-        console.log(response);
+        // console.log(response);
         console.log('test');
         if (response.status == 'authorized') {
           req.session.userExtra = response;
@@ -143,7 +143,7 @@ module.exports = app => {
     var accept = accepts(req);
     var lang = accept.languages();
     let url = req.originalUrl;
-    var reg = /^\/(en|ru|api)\//i;
+    var reg = /^\/(en|ru|api|logout)\//i;
     var str = url;
 
     if (reg.test(str)){
@@ -157,9 +157,6 @@ module.exports = app => {
       }
     }
   });
-
-
-
 
 
 
@@ -287,9 +284,15 @@ module.exports = app => {
     data.page.isCinema = false;
     data.origUrl = req.originalUrl;
     data.lang = req.params.lang;
+    let url;
+    if (data.lang === 'en'){
+      url = '/api/movie/?sort=id&lang=en&expand=schedules,sessions,category,screenshots&code=' + encodeURIComponent(req.params.name)
+    } else {
+      url = '/api/movie/?sort=id&expand=schedules,sessions,category,screenshots&code=' + encodeURIComponent(req.params.name)
+    }
     request({
       clientRequest: req,
-      url: '/api/movie/?sort=id&expand=schedules,sessions,category,screenshots&code=' + encodeURIComponent(req.params.name)
+      url: url
     })
       .then( response => {
         if (!response.items[0]) {
@@ -653,9 +656,18 @@ module.exports = app => {
   // Search
   app.get( '/:lang/search', ( req, res ) => {
     let data = Object.assign({}, req.globalData);
+    data.lang = req.params.lang;
+    let url;
+
+    if (data.lang === 'en'){
+      url = '/search/search/?per-page=20&lang=en&q=' + encodeURIComponent(req.query.q)
+    } else {
+      url = '/search/search/?per-page=20&q=' + encodeURIComponent(req.query.q)
+    }
+
     request({
       clientRequest: req,
-      url: '/search/search/?per-page=20&q=' + encodeURIComponent(req.query.q)
+      url: url
     })
       .then( response => {
         data.api = response;
@@ -664,6 +676,7 @@ module.exports = app => {
         data.lang = req.params.lang;
         data.title = 'Результаты поиска';
         data.search = req.query.q;
+
         if ( !data.api.error ) {
           return render( req, res, data );
         }
@@ -773,16 +786,22 @@ module.exports = app => {
       .catch(  error => res.send( error ) )
   });
 
-  app.get( '/api/search', ( req, res ) => {
+  app.get( '/api/lookfor', ( req, res ) => {
+    let url;
+    if (req.query.lang === 'en'){
+      url = '/search/search/?per-page=20&lang=en&q=' + encodeURIComponent(req.query.q)
+    } else {
+      url = '/search/search/?per-page=20&q=' + encodeURIComponent(req.query.q)
+    }
     if ( req.query.q ) {
-
       let axiosParams = {
-        url: '/search/search/?per-page=20&q=' + encodeURIComponent(req.query.q),
+        url: url,
         clientRequest: req
       };
-
       request( axiosParams )
-        .then( api => res.json( api ) )
+        .then( api => {
+          res.json( api )
+        })
         .catch( error => res.send( error ) );
       req.apiRequests.push(axiosParams);
     } else {

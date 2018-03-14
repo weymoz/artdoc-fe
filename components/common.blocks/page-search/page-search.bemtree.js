@@ -22,7 +22,8 @@ block('page-search').replace()( node => {
           block: 'search',
           mods: { view: 'page' },
           result: result,
-          query: node.data.search
+          query: node.data.search,
+          lang: node.data.lang
         }
       ]
     },

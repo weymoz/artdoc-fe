@@ -1,23 +1,31 @@
 block('form').mod('view', 'search')(
 
-  def()( () => {
+  def()( (node, ctx) => {
     return applyNext( { ctx: {
       method: 'GET',
-      action: '/search'
+      action: '/' + ctx.lang + '/search',
+      lang: ctx.lang
     } } );
   }),
 
-  content()( () => {
+  addJs()( ( node, ctx ) => {
+    return {
+      lang: ctx.lang
+    }
+  } ),
+
+  content()( (node, ctx) => {
     return [
-      { elem: 'header' },
-      { elem: 'content' },
-      { elem: 'footer' }
+      { elem: 'header', lang: ctx.lang },
+      { elem: 'content', lang: ctx.lang },
+      { elem: 'footer', lang: ctx.lang }
     ]
   } ),
 
   elem('header')(
     addMix()( { block: 'page', elem: 'content', elemMods: { width: 'narrow' } } ),
     content()( ( node, ctx ) => {
+
       return {
         block: 'form-field',
         mods: { type: 'input' },
@@ -33,7 +41,7 @@ block('form').mod('view', 'search')(
               size: 'xxl',
             },
             val: ctx.query,
-            placeholder: 'Фильм или тег'
+            placeholder: ctx.lang === 'en' ? 'Movie or tag' : 'Фильм или тег'
           }
         }
       }
@@ -47,7 +55,8 @@ block('form').mod('view', 'search')(
         block: 'search',
         mods: { view: 'form' },
         result: ctx.result,
-        query: ctx.query
+        query: ctx.query,
+        lang: ctx.lang
       }
     } )
   )

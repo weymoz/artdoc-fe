@@ -3,6 +3,10 @@ block('page-order')(
 
     let ticket = node.data.api;
 
+    if (node.data.lang){
+      node._lang = node.data.lang
+    }
+
     if (ticket.type == 'cinema') {
 
       ticket.city = ticket.city[0];
@@ -15,6 +19,11 @@ block('page-order')(
         ticket.promo = null;
       }
     }
+
+    let purchase = node._lang === 'en' ? 'Purchase' : 'Покупка';
+    let get = node._lang === 'en' ? 'Get' : 'Получение';
+    let access = node._lang === 'en' ? ' access to view the movie' : ' доступа к просмотрю фильма';
+    let tickets = node._lang === 'en' ? ' online ticket' : ' билета на онлайн-сеанс';
 
     return [
       {
@@ -32,8 +41,8 @@ block('page-order')(
               { block: 'font', mods: { family: 'helvetica-neue-condensed-bold', loaded: true } }
             ],
             content: [
-              ticket.promo === 'meduza' ? 'Получение' : 'Покупка',
-              ticket.type == 'rent' ? ' доступа к просмотрю фильма' : ' билета на онлайн-сеанс'
+              ticket.promo === 'meduza' ? get : purchase,
+              ticket.type == 'rent' ? access : tickets
             ]
           },
           {
@@ -41,14 +50,16 @@ block('page-order')(
             mods: {
               view: 'order'
             },
-            movie: ticket.movie
+            movie: ticket.movie,
+            lang: node._lang
           },
           {
             block: 'card-ticket',
             mods: {
               view: 'order'
             },
-            ticket: ticket
+            ticket: ticket,
+            lang: node._lang
           }
         ]
       }

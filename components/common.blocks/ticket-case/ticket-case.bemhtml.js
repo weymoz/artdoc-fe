@@ -6,7 +6,8 @@ block('ticket-case')(
   ),
   match( ( node, ctx ) => ctx.movie ).content()( ( node, ctx ) => {
     const _schedules = ctx.movie.schedules,
-          _code = ctx.movie.code;
+          _code = ctx.movie.code,
+          _lang = ctx.lang;
 
     _schedules.sort(function(a,b) {
       return (a.date_gmt3 > b.date_gmt3) ? 1 : ((b.date_gmt3 > a.date_gmt3) ? -1 : 0);
@@ -27,7 +28,7 @@ block('ticket-case')(
         content: [
           {
             elem: 'title',
-            content: 'Выберите день и время онлайн-сеанса'
+            content: _lang === 'en' ? 'Choose day and time of the showtime' : 'Выберите день и время онлайн-сеанса'
           },
           _schedules.length > 1 ? {
             elem: 'pagination',
@@ -73,7 +74,8 @@ block('ticket-case')(
                 block: 'calendar',
                 mods: { view: 'ticket-case' },
                 date: item.date_gmt3,
-                discuss: item.discuss_preview
+                discuss: item.discuss_preview,
+                lang: _lang
               }
             ]
           }
@@ -99,7 +101,7 @@ block('ticket-case')(
                   content: [
                     {
                       block: 'label',
-                      content: 'Ваш часовой пояс'
+                      content: _lang === 'en' ? 'Timezone' : 'Ваш часовой пояс'
                     },
                     {
                       block: 'select',
@@ -180,7 +182,7 @@ block('ticket-case')(
             {
               block: 'paragraph',
               mods: { bold: true, size: 's' },
-              content: 'Онлайн-сеансы начинаются в 18:00 по местному времени пяти мировых центров культуры.'
+              content: _lang === 'en' ? 'The online-screenings start at 6:00 p.m. local time in five leading сultureal centers.' : 'Онлайн-сеансы начинаются в 18:00 по местному времени пяти мировых центров культуры.'
             }
             ]
           },
@@ -194,7 +196,8 @@ block('ticket-case')(
                 content: {
                   block: 'list-tickets',
                   code: _code,
-                  tickets: _sessions[ item.id ]
+                  tickets: _sessions[ item.id ],
+                  lang: _lang
                 }
               }
             } )

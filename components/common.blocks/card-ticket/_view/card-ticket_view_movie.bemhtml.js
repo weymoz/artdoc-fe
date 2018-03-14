@@ -21,6 +21,9 @@ block('card-ticket').mod('view', 'movie')(
   match( ( node, ctx ) => ctx.ticket.tickets_left < 10 && ( ( ctx.ticket.time_gmt3 * 1000 ) > Date.now() ) ).addMods()({ status: 'less' }),
 
   content()( node => {
+
+    let tomorrow = node._lang === 'en' ? ', tomorrow' : ', завтра'
+
     return [
       {
         elem: 'header',
@@ -36,7 +39,7 @@ block('card-ticket').mod('view', 'movie')(
           {
             elem: 'user-date',
             mix: { block: 'font', mods: { family: 'pt-mono', loaded: true }  },
-            append: ( node.position > 3 && new Date( node._time_gmt3 * 1000 ).getDate() === new Date().getDate() + 1 ? ', завтра' : '' ),
+            append: ( node.position > 3 && new Date( node._time_gmt3 * 1000 ).getDate() === new Date().getDate() + 1 ? tomorrow : '' ),
           },
           { elem: 'user-time' }
         ]

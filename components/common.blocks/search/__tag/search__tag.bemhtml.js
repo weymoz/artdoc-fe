@@ -2,13 +2,18 @@ block('search').elem('tag')(
 
   match( node => !node._api.tags || !node._api.tags.length ).def()(''),
 
-  content()( node => {
+  content()( (node, ctx) => {
+
+    if(ctx.lang){
+      node._lang = ctx.lang
+    }
+
     return [
       {
         elem: 'title',
         elemMods: { view: 'condensed-bold', size: 'm' },
         mix: { block: 'heading', mods: { caps: true, size: 'xs' } },
-        content: 'Теги ' + node._api.tags.length
+        content: node._lang === 'en' ? 'Tags ' + node._api.tags.length : 'Теги ' + node._api.tags.length
       },
       node._api.tags.map( tag => {
         return {
@@ -18,7 +23,7 @@ block('search').elem('tag')(
             size: 's',
             theme: node.mods.view === 'page' ? 'artdoc-dark' : 'artdoc'
           },
-          url: '/movie/tag-' + tag.value,
+          url: '/' + node._lang + '/movie/tag-' + tag.value,
           content: tag.value
         }
       } )

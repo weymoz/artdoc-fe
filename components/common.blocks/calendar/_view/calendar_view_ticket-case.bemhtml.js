@@ -4,7 +4,9 @@ block('calendar').mod('view', 'ticket-case')(
           currentDay = new Date( date * 1000 ).getDate(),
           today = new Date().getDate();
 
-    const _discuss = ctx.discuss
+    const _discuss = ctx.discuss;
+
+    const todayDay = ctx.lang === 'en' ? 'Today' : 'Сегодня';
 
     const template = node.reapply({
       block: node.block,
@@ -23,7 +25,7 @@ block('calendar').mod('view', 'ticket-case')(
             },
             {
               elem: 'week-day',
-              content: ( currentDay === today ? 'Сегодня' : ']dd[' )
+              content: ( currentDay === today ? todayDay : ']dd[' )
             },
             _discuss && {
               elem: 'discuss',
@@ -44,6 +46,7 @@ block('calendar').mod('view', 'ticket-case')(
         block: 'text',
         mods: { format: 'datetime' },
         format: '[' + template + ']',
+        locale: ctx.lang,
         content: date
       }
     ]

@@ -7,6 +7,7 @@ block('card-ticket').elem('user-time').content()( node => {
       mods: {
         format: 'datetime'
       },
+      locale: node._lang,
       format: 'HH:mm',
       content: node._time_gmt3
     }

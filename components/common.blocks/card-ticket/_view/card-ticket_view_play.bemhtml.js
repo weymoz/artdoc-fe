@@ -7,7 +7,7 @@ block('card-ticket').mod('view', 'play')(
       {
         elem: 'header',
         content: [
-          'Онлайн-сеанс',
+          node._lang === 'en' ? 'Online-screening' : 'Онлайн-сеанс',
         ]
       },
       {
@@ -16,7 +16,7 @@ block('card-ticket').mod('view', 'play')(
           { elem: 'room' },
           { elem: 'city' },
           { elem: 'user-date' },
-          ', начало в',
+          node._lang === 'en' ? ', start at' : ', начало в',
           { html: '&nbsp;' },
           { elem: 'user-time' }
         ]
@@ -24,10 +24,11 @@ block('card-ticket').mod('view', 'play')(
       {
         elem: 'footer',
         content: [
-          'Доступен до ',
+          node._lang === 'en' ? 'Awailable until ' : 'Доступен до ',
           {
             block: 'text',
             mods: { format: 'datetime' },
+            locale: node._lang,
             format: 'HH:mm',
             content: node._time_gmt3 + 3 * 60 * 60
           }

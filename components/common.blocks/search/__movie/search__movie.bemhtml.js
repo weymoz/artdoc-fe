@@ -2,14 +2,19 @@ block('search').elem('movie')(
 
   match( node => !node._api.movie || !node._api.movie.length ).def()(''),
 
-  content()( node => {
+  content()( ( node, ctx ) => {
     let movies = node.mods.view === 'page'
       ? node._api.movie
       : node._api.movie.slice( 0, 3 )
+
+      if(ctx.lang){
+        node._lang = ctx.lang;
+      }
+
     return [
       {
         elem: 'title',
-        content: 'Фильмы ' + node._api.movie.length
+        content: node._lang === 'en' ? 'Movies ' + node._api.movie.length : 'Фильмы ' + node._api.movie.length
       },
       movies.map( movie => {
         return {
@@ -18,7 +23,8 @@ block('search').elem('movie')(
             view: node.mods.view === 'page' ? 'list' : 'text',
             theme: node.mods.view === 'page' ? 'artdoc' : 'artdoc-dark'
           },
-          movie: movie
+          movie: movie,
+          lang: node._lang
         }
       } )
     ]

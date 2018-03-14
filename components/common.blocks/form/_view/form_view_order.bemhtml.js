@@ -22,6 +22,19 @@ block('form').mod('view', 'order')(
   }),
 
   content()( ( node, ctx ) => {
+
+    console.log('yo');
+    console.log(ctx.lang);
+
+    let messageInt = ctx.lang === 'en' ? 'Email address is necessary' : 'Адрес эл. почты обязателен';
+    let notEmail =  ctx.lang === 'en' ? 'It doesn\'t looks like email' : 'Это не похоже на адрес эл. почты';
+    let placeholderInt = ctx.lang === 'en' ? 'Email' : 'Эл. почта';
+    let iAgree = ctx.lang === 'en' ? 'I accept ' : 'Я принимаю ';
+    let terms = ctx.lang === 'en' ? 'the terms and conditions of а ticket purchase' : 'условия покупки и использования билета';
+    let onlineTicket = ctx.lang === 'en' ? ' online-ticket' : ' онлайн-билет';
+    let accessToMovie = ctx.lang === 'en' ? ' access to movie' : ' доступ к просмотру';
+
+
     return [
       {
         block : 'fieldset',
@@ -63,8 +76,8 @@ block('form').mod('view', 'order')(
             },
             directions: ['bottom-left'],
             js: {
-              required: { message: 'Адрес эл. почты обязателен' },
-              email: { message: 'Это не похоже на адрес эл. почты' }
+              required: { message: messageInt },
+              email: { message: notEmail }
             },
             name: 'email',
             content: [
@@ -76,7 +89,7 @@ block('form').mod('view', 'order')(
                     width: 'available',
                     size: 'xl'
                   },
-                  placeholder: 'Эл. почта'
+                  placeholder: placeholderInt
                 }
               }
             ]
@@ -99,13 +112,13 @@ block('form').mod('view', 'order')(
                 block: 'checkbox',
                 mods: { size: 's' },
                 text: [
-                  'Я принимаю ',
+                  iAgree,
                   {
                     block: 'link',
                     url: '/terms',
                     attrs: { target: '_blank'},
                     mods: { size: 's' },
-                    content: 'условия покупки и использования билета'
+                    content: terms
                   }
                 ],
                 val: 'confirm'
@@ -125,7 +138,7 @@ block('form').mod('view', 'order')(
             size: 'xl',
             theme: 'artdoc-dark'
           },
-          text: ctx.submitLabel + (ctx.isCinema ? ' онлайн-билет' : ' доступ к просмотру' )
+          text: ctx.submitLabel + (ctx.isCinema ? onlineTicket : accessToMovie )
         }
       },
       {

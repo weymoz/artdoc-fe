@@ -8,6 +8,7 @@
   tech: 'js',
   shouldDeps: [
     { tech: 'bemhtml' },
-    { tech: 'bemhtml', block: 'form-field', mods: { type: 'input' } }
+    { tech: 'bemhtml', block: 'form-field', mods: { type: 'input' } },
+    { tech: 'bemhtml', block: 'search', mods: { view: 'form' } }
   ]
 }]

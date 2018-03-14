@@ -7,6 +7,8 @@ provide(bemDom.declBlock(this.name, {
         this._timeZoneOffset = 0;
 
         this.setTimeZone();
+
+        this.tomorrow = this.params.lang === 'en' ? ', tomorrow' : ', завтра';
       }
     }
   },
@@ -25,15 +27,15 @@ provide(bemDom.declBlock(this.name, {
 
   setDateTime: function( timestamp ) {
     const datetime = new Date( ( timestamp + this._timeZoneOffset ) * 1000 );
-    const time = datetime.toLocaleString( 'ru', { hour: 'numeric', minute: 'numeric' } );
-    const date = datetime.toLocaleString( 'ru', { day: 'numeric', month: 'long' } );
+    const time = datetime.toLocaleString( this.params.lang, { hour: 'numeric', minute: 'numeric', hour12: false } );
+    const date = datetime.toLocaleString( this.params.lang, { day: 'numeric', month: 'long', hour12: false } );
 
     const tomorrow = new Date();
     tomorrow.setDate( tomorrow.getDate() + 1 )
 
     let isTomorrow = '';
     if ( tomorrow.getFullYear() === datetime.getFullYear() && tomorrow.getMonth() === datetime.getMonth() && tomorrow.getDate() === datetime.getDate() && datetime.getHours() < 12 ) {
-      isTomorrow = ', завтра'
+      isTomorrow = this.tomorrow;
     }
 
     // console.log( datetime );

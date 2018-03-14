@@ -2,7 +2,7 @@ block('card-ticket').elem('user-date')(
 
   content()( ( node, ctx ) => {
 
-    console.log(node._time_gmt3);
+    // console.log(node._time_gmt3);
 
     let format;
     if (node.mods.view === 'order'){
@@ -52,6 +52,7 @@ block('card-ticket').elem('user-date')(
         mods: {
           format: 'datetime'
         },
+        locale: node._lang,
         format: format,
         content: node._time_gmt3
       },
