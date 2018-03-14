@@ -88,7 +88,9 @@ provide(Form.declMod({ modName: 'view', modVal: 'order' }, {
               _this._domEvents(button).on('click', function () {
                 instance.requestPaymentMethod( function (err, payload) {
                   if (err){
+                    console.log('///////////');
                     console.error(err);
+                    console.log('///////////');
                   } else {
                     bemDom.destruct( button.domElem );
 

@@ -23,10 +23,8 @@ block('form').mod('view', 'order')(
 
   content()( ( node, ctx ) => {
 
-    console.log('yo');
-    console.log(ctx.lang);
-
     let messageInt = ctx.lang === 'en' ? 'Email address is necessary' : 'Адрес эл. почты обязателен';
+    let checkboxMsg = ctx.lang === 'en' ? 'You have to accept the terms' : 'Вы должны принять условия';
     let notEmail =  ctx.lang === 'en' ? 'It doesn\'t looks like email' : 'Это не похоже на адрес эл. почты';
     let placeholderInt = ctx.lang === 'en' ? 'Email' : 'Эл. почта';
     let iAgree = ctx.lang === 'en' ? 'I accept ' : 'Я принимаю ';
@@ -103,7 +101,7 @@ block('form').mod('view', 'order')(
               message: 'text',
             },
             js: {
-              required: { message: 'Вы должны принять условия' }
+              required: { message: checkboxMsg }
             },
             directions: ['bottom-left'],
             name: 'term',
