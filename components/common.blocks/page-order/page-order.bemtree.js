@@ -7,6 +7,11 @@ block('page-order')(
       node._lang = node.data.lang
     }
 
+    if (node.data.currency){
+      node._currency = node.data.currency
+    }
+
+
     if (ticket.type == 'cinema') {
 
       ticket.city = ticket.city[0];
@@ -59,7 +64,8 @@ block('page-order')(
               view: 'order'
             },
             ticket: ticket,
-            lang: node._lang
+            lang: node._lang,
+            currency: node._currency
           }
         ]
       }

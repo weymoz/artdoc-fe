@@ -11,8 +11,6 @@ block('card-ticket').mod('view', 'order').content()( ( node, ctx ) => {
 
   const timezone = ( tzHours > 0 ? '+' : '-' ) + fixZero( tzHours ) + ':' + fixZero( tzMinutes );
   const isCinema = (node._type == 'cinema');
-
-
   const descrText = ctx.lang === 'en' ? 'On receipt of payment, we\'ll send an e-mail with your ticket and a link to the screening page. The film will be available for screening on ' : 'Мы отправим на вашу электронную почту ссылку на&nbsp;страницу сеанса после оплаты. Фильм будет доступен к просмотру ';
   const payByCard = ctx.lang === 'en' ? 'Pay by card' : 'Оплата картой';
   const descrtext2 = ctx.lang === 'en' ? 'After payment, we will send a link to your email to your email address, which will be available for the next 72 hours. The number of views is unlimited.' : 'После оплаты мы отправим на вашу электронную почту ссылку на&nbsp;страницу просмотра, которая будет доступна в течение следующих 72&nbsp;часов. Количество просмотров не ограничено.'

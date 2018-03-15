@@ -5,7 +5,15 @@ block('card-ticket')(
       node[ '_' + key ] = ctx.ticket[ key ];
       return true;
     } );
-    node._lang = ctx.lang;
+
+    if (ctx.lang){
+      node._lang = ctx.lang;
+    }
+
+    if (ctx.currency){
+      node._currency = ctx.currency;
+    }
+
 
     node._time_gmt3 = node._tz
       ? node._time_gmt3 + ( new Date().getTimezoneOffset() * 60 ) + node._tz * 60
@@ -17,7 +25,8 @@ block('card-ticket')(
 
   addJs()( node => {
     return {
-      lang: node._lang
+      lang: node._lang,
+      currency: node._currency
     }
   } ),
 

@@ -7,7 +7,8 @@ block('ticket-case')(
   match( ( node, ctx ) => ctx.movie ).content()( ( node, ctx ) => {
     const _schedules = ctx.movie.schedules,
           _code = ctx.movie.code,
-          _lang = ctx.lang;
+          _lang = ctx.lang,
+          _currency = ctx.currency;
 
     _schedules.sort(function(a,b) {
       return (a.date_gmt3 > b.date_gmt3) ? 1 : ((b.date_gmt3 > a.date_gmt3) ? -1 : 0);
@@ -197,7 +198,8 @@ block('ticket-case')(
                   block: 'list-tickets',
                   code: _code,
                   tickets: _sessions[ item.id ],
-                  lang: _lang
+                  lang: _lang,
+                  currency: _currency
                 }
               }
             } )

@@ -33,8 +33,19 @@ provide(Form.declMod({ modName: 'view', modVal: 'order' }, {
       }
     }
 
+    console.log('==========');
+    console.log(apiSettings);
+    console.log('==========');
+
     $.ajax(apiSettings).done(function (response) {
+
+      console.log('/////////');
+      console.log(response.locale);
+      console.log('/////////');
+
       const data = response;
+
+
       if ( data.clientToken ) {
         loader('https://js.braintreegateway.com/web/dropin/1.4.0/js/dropin.min.js',
           function() {

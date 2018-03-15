@@ -5,6 +5,7 @@ block('filters')(
   def()( ( node, ctx ) => {
     node._api = Object.assign( {}, ctx.data );
     node._lang = ctx.lang;
+    node._currency = ctx.currency;
 
     return applyNext();
   } ),
@@ -168,7 +169,8 @@ block('filters')(
           mods: { view: node._api.pagination.view || 'grid' },
           mix: { block: 'filters', elem: 'result-item' },
           movie: movie,
-          lang: node._lang
+          lang: node._lang,
+          currency: node._currency
         }
       } )
     })

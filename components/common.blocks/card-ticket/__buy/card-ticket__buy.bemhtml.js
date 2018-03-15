@@ -3,8 +3,7 @@ block('card-ticket').elem('buy')(
   match( node => !node._price || !node._price.price ).def()(''),
 
   content()( node => {
-
-    let currency = node._lang === 'en' ? ' $' : ' ₽';
+    let currency = node._lang === 'en' ? ' $' : ' ' + node._currency;
 
     return node._price.price + currency
   }),

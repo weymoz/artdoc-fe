@@ -1,6 +1,8 @@
 block('page-movie').replace()( node => {
   const _movie = node.data.api;
   const _lang = node.data.lang;
+  const _currency = node.data.currency;
+  node._currency = node.data.currency;
 
   return [
     {
@@ -15,7 +17,8 @@ block('page-movie').replace()( node => {
           block: 'card-movie',
           mods: { view: 'full' },
           movie: _movie,
-          lang: _lang
+          lang: _lang,
+          currency: _currency
         }
       ]
     },
@@ -27,7 +30,8 @@ block('page-movie').replace()( node => {
           block: 'ticket-case',
           mix: { block: 'page', elem: 'content' },
           movie: _movie,
-          lang: _lang
+          lang: _lang,
+          currency: _currency
         }
       ]
     } : '',

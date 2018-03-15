@@ -4,9 +4,8 @@ const config = require('./config'),
       passport = require('passport'),
       request = require('./request'),
       {URL}  = require('url'),
-      accepts = require('accepts');
-      // geoip = require('geoip-lite');
-      // ipware = require('ipware');
+      accepts = require('accepts'),
+      geoip = require('geoip-lite');
 
 //const isCallerMobile = req => {
 //  let ua = req.headers['user-agent'].toLowerCase(),
@@ -59,6 +58,11 @@ module.exports = app => {
   app.use( ( req, res, next ) => {
 
     req.globalData = Object.assign({}, global);
+
+      // Добавление геопозиции
+      let ip = req.header('x-forwarded-for') || '194.24.241.47';
+      var geo = geoip.lookup(ip);
+      req.globalData = Object.assign({ geo: geo.country}, req.globalData);
 
     if (req.isAuthenticated()) {
       request({
@@ -122,30 +126,17 @@ module.exports = app => {
 
 
 
-  //
-
-    // var getIP = ipware().get_ip;
-    // let exampleIp = "185.32.57.186";
-    // var exampleIp = "207.97.227.239";
-    // var ipInfo = getIP(req);
-    // var geo = geoip.lookup(getIP);
-    // console.log('////////////');
-    // console.log(ipInfo);
-    // console.log(geo.country);
-    // console.log('////////////');
 
   /*
    *  Redirect
    *
    ***************************/
   app.get( '*', ( req, res, next ) => {
-
     var accept = accepts(req);
     var lang = accept.languages();
     let url = req.originalUrl;
     var reg = /^\/(en|ru|api|logout)\//i;
     var str = url;
-
     if (reg.test(str)){
       next();
       return true;
@@ -238,8 +229,13 @@ module.exports = app => {
       url = '/api/movie/filter/?per-page=20&lang=en&sort=' + sortBy + '&';
       filtersUrl = '/api/movie/filtervalues/?lang=en';
     } else {
-      url = '/api/movie/filter/?per-page=20&sort=' + sortBy + '&';
-      filtersUrl = '/api/movie/filtervalues/'
+      if (req.globalData.geo !== 'RU'){
+        url = '/api/movie/filter/?per-page=20&currency=2&sort=' + sortBy + '&';
+        filtersUrl = '/api/movie/filtervalues/'
+      } else {
+        url = '/api/movie/filter/?per-page=20&sort=' + sortBy + '&';
+        filtersUrl = '/api/movie/filtervalues/'
+      }
     }
 
     if (typeof req.params.category !== 'undefined') {
@@ -270,6 +266,7 @@ module.exports = app => {
       data.filter = filter;
       data.origUrl = req.originalUrl;
       data.lang = req.params.lang;
+      data.currency = req.globalData.geo !== 'RU' ? '$' : '₽';
       data.pagination = Object.assign(response[0].meta, data.pagination);
       data.pagination.sort = req.query.sort || '-rating';
       data.pagination.view = req.query.view || 'grid';
@@ -285,10 +282,15 @@ module.exports = app => {
     data.origUrl = req.originalUrl;
     data.lang = req.params.lang;
     let url;
+
     if (data.lang === 'en'){
       url = '/api/movie/?sort=id&lang=en&expand=schedules,sessions,category,screenshots&code=' + encodeURIComponent(req.params.name)
     } else {
-      url = '/api/movie/?sort=id&expand=schedules,sessions,category,screenshots&code=' + encodeURIComponent(req.params.name)
+      if (req.globalData.geo !== 'RU'){
+        url = '/api/movie/?sort=id&expand=schedules,sessions,category,screenshots&code=' + encodeURIComponent(req.params.name) + '&currency=2'
+      } else {
+        url = '/api/movie/?sort=id&expand=schedules,sessions,category,screenshots&code=' + encodeURIComponent(req.params.name)
+      }
     }
     request({
       clientRequest: req,
@@ -306,6 +308,7 @@ module.exports = app => {
         }
         data.origUrl = req.originalUrl;
         data.lang = req.params.lang;
+        data.currency = req.globalData.geo !== 'RU' ? '$' : '₽';
         data.title = response.items[0].name;
         data.meta.og.image = response.items[0].cover && response.items[0].cover.id
           ? '//artdoc.media/upload/resize/' + response.items[0].cover.id + '/640x360.jpg'
@@ -322,7 +325,6 @@ module.exports = app => {
   // Movie
   app.get( '/:lang/movie/:name', ( req, res, next ) => {
     let data = Object.assign({}, req.globalData);
-
     // Check promo
     data.promo = {};
     config.promo.forEach( promo => {
@@ -341,7 +343,11 @@ module.exports = app => {
       if(req.params.lang === 'en'){
         url = '/api/session/?lang=en&expand=movie,category,city&code=' + encodeURIComponent(req.query.code);
       } else {
-        url = '/api/session/?expand=movie,category,city&code=' + encodeURIComponent(req.query.code)
+        if (req.globalData.geo !== 'RU') {
+          url = '/api/session/?expand=movie,category,city&code=' + encodeURIComponent(req.query.code) + '&currency=2'
+        } else {
+          url = '/api/session/?expand=movie,category,city&code=' + encodeURIComponent(req.query.code)
+        }
       }
       request({
         url: url,
@@ -357,6 +363,7 @@ module.exports = app => {
           data.api.tz = req.query.tz;
           data.origUrl = req.originalUrl;
           data.lang = req.params.lang;
+          data.currency = req.globalData.geo !== 'RU' ? '$' : '₽';
           data.api.checked_city = req.query.city;
           return render( req, res, data );
         } )
@@ -367,7 +374,11 @@ module.exports = app => {
       if(req.params.lang === 'en'){
         url = '/api/movie/?sort=id&lang=en&expand=schedules,sessions,category,screenshots&code=' + encodeURIComponent(req.params.name);
       } else {
-        url = '/api/movie/?sort=id&expand=schedules,sessions,category,screenshots&code=' + encodeURIComponent(req.params.name)
+        if (req.globalData.geo !== 'RU') {
+          url = '/api/movie/?sort=id&expand=schedules,sessions,category,screenshots&code=' + encodeURIComponent(req.params.name) + '&currency=2'
+        } else {
+          url = '/api/movie/?sort=id&expand=schedules,sessions,category,screenshots&code=' + encodeURIComponent(req.params.name)
+        }
       }
 
       request({
@@ -385,6 +396,7 @@ module.exports = app => {
           data.adaptive = true;
           data.origUrl = req.originalUrl;
           data.lang = req.params.lang;
+          data.currency = req.globalData.geo !== 'RU' ? '$' : '₽';
           data.meta.og.image = response.items[0].cover && response.items[0].cover.id
             ? '//artdoc.media/upload/resize/' + response.items[0].cover.id + '/640x360.jpg'
             : data.meta.og.image;
@@ -708,7 +720,7 @@ module.exports = app => {
     }
 
     request( {
-      url: '/cinema/booking/booking/?promo=' + promo_code,
+      url: '/cinema/booking/booking/?&promo=' + promo_code,
       method: 'post',
       clientRequest: req,
       data: {
@@ -717,11 +729,19 @@ module.exports = app => {
         promo: promo_code
       }
     }).then( api => {
+      console.log('===========');
+      console.log(api);
+      console.log('===========');
       if ( api.payment_url ) {
         request({
           clientRequest: req,
-          url: api.payment_url
+          url: api.payment_url + '&lang=en'
         }).then( response => {
+
+            console.log('//////');
+            console.log(response);
+            console.log('///////');
+
           return res.json( response )
         }).catch(() => res.send('error') );
       } else {

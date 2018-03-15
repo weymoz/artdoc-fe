@@ -129,7 +129,7 @@ block('card-movie').elem('buy')(
 
   match( node => node._price  && node._price.price > 0).replace()( node => {
     let type, size, text;
-    let currency = node._lang === 'en' ? ' $' : ' ₽';
+    let currency = node._lang === 'en' ? ' $' : ' ' + node._currency;
     let description = node._lang === 'en' ? 'Watch for ' : 'Смотреть за '
 
     let label = description + node._price.price + currency;

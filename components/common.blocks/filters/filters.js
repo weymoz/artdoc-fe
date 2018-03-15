@@ -93,13 +93,23 @@ provide(bemDom.declBlock(this.name, {
     // Count used filters
     let selectedFields = Object.keys( formData ).filter( item => formData[ item ].length );
     let selectedCount = selectedFields.length;
+
+    let filter1 = this.params.lang === 'en' ? ' filter'  : ' фильтр';
+    let filter2 = this.params.lang === 'en' ? ' filters' : ' фильтрa';
+    let filter5 = this.params.lang === 'en' ? ' filters' : ' фильтров';
+    let choose1 = this.params.lang === 'en' ? 'You have chosen ' : 'Выбран ';
+    let choose2 = this.params.lang === 'en' ? 'You have chosen ' : 'Выбрано ';
+    let choose5 = this.params.lang === 'en' ? 'You have chosen ' : 'Выбрано ';
+    let clear   = this.params.lang === 'en' ? 'Clear'  : 'Сбросить';
+
+
     bemDom.update(
       this._form.filtersCount.domElem,
       selectedCount
         ? BEMHTML.apply( [
-            { block: 'text', mods: { plural: true }, content: { number: selectedCount, one: 'Выбран ', two: 'Выбрано ', five: 'Выбрано ' } },
+            { block: 'text', mods: { plural: true }, content: { number: selectedCount, one: choose1, two: choose2, five: choose5 } },
             selectedCount,
-            { block: 'text', mods: { plural: true }, content: { number: selectedCount, one: ' фильтр', two: ' фильтра', five: ' фильтров' } }
+            { block: 'text', mods: { plural: true }, content: { number: selectedCount, one: filter1, two: filter2, five: filter5 } }
           ] )
         : ''
     );
@@ -107,7 +117,7 @@ provide(bemDom.declBlock(this.name, {
     bemDom.update(
       this._form.reset.domElem,
       selectedCount
-        ? 'Сбросить'
+        ? clear
         : ''
     );
 
@@ -156,7 +166,8 @@ provide(bemDom.declBlock(this.name, {
             mods: { view: view, size: 'm', theme: 'artdoc' },
             mix: { block: 'filters', elem: 'result-item' },
             movie: movie,
-            lang: this.params.lang
+            lang: this.params.lang,
+            currency: this.params.currency
           }
         } ) )
       )

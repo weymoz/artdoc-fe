@@ -12,6 +12,10 @@ block( 'card-movie' )(
       node['_lang'] = ctx.lang;
     }
 
+    if (ctx.currency) {
+      node['_currency'] = ctx.currency;
+    }
+
     // 16:9 ratio for all covers
     if ( node._cover && node._cover.width ) {
       node._cover.height = Math.round( node._cover.width / ( 16 / 9 ) );
