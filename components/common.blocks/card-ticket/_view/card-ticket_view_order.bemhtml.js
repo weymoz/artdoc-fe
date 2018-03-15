@@ -98,6 +98,7 @@ block('card-ticket').mod('view', 'order').content()( ( node, ctx ) => {
               movie_id: isCinema ? null : node._price.object_id,
               isCinema: isCinema,
               lang: node._lang,
+              currency: node._currency,
               submitLabel: node._promo ? getTicket : buyTicket
             }
           ]

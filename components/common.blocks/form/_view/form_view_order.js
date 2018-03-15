@@ -12,7 +12,6 @@ provide(Form.declMod({ modName: 'view', modVal: 'order' }, {
         this.__base.apply( this, arguments );
         this._events().on('success', this._onFormSuccess);
         this._events().on('error', this._onFormError);
-
         this._modal = this.findChildBlock(Modal);
       }
     }
@@ -29,23 +28,13 @@ provide(Form.declMod({ modName: 'view', modVal: 'order' }, {
         'content-type': 'application/x-www-form-urlencoded',
       },
       'data': {
-        'email': _this.getVal().email
+        'email'   : _this.getVal().email,
+        'lang'    : _this.params.lang,
+        'currency': _this.params.currency
       }
     }
-
-    console.log('==========');
-    console.log(apiSettings);
-    console.log('==========');
-
     $.ajax(apiSettings).done(function (response) {
-
-      console.log('/////////');
-      console.log(response.locale);
-      console.log('/////////');
-
       const data = response;
-
-
       if ( data.clientToken ) {
         loader('https://js.braintreegateway.com/web/dropin/1.4.0/js/dropin.min.js',
           function() {
@@ -74,7 +63,7 @@ provide(Form.declMod({ modName: 'view', modVal: 'order' }, {
               }
 
               let paymentFormElem = _this._modal.findChildBlock( { block: Form, modName: 'view', modVal: 'payment' } );
-
+              let sendButton = _this.params.lang === 'en' ? 'Pay' : 'Оплатить'
               bemDom.append(
                 paymentFormElem.domElem,
                 BEMHTML.apply({
@@ -89,7 +78,7 @@ provide(Form.declMod({ modName: 'view', modVal: 'order' }, {
                       theme: 'artdoc'
                     },
                     mix: { block: 'form', elem: 'submit' },
-                    text: 'Отправить'
+                    text: sendButton
                   }
                 })
               );
@@ -104,20 +93,23 @@ provide(Form.declMod({ modName: 'view', modVal: 'order' }, {
                     console.log('///////////');
                   } else {
                     bemDom.destruct( button.domElem );
-
                     apiSettings.url = '/api/payment/' + data.transaction_id;
                     apiSettings.data = {
                       payment_nonce: payload.nonce
                     };
 
+                    let errorInt = _this.params.lang === 'en' ? 'Error: ' : 'Произошла ошибка: ';
+                    let lang = _this.params.lang;
+
+
                     $.ajax( apiSettings ).done( function ( apiResponse ) {
                       if ( apiResponse.error ) {
                         bemDom.append(
                           paymentFormElem.domElem,
-                          '<p class="paragraph text text_state_error">Произошла ошибка: ' + apiResponse.error + '</p>'
+                          '<p class="paragraph text text_state_error">'+ errorInt + apiResponse.error + '</p>'
                         );
                       } else {
-                        window.location.href = '/order/' + data.transaction_id + '?payment_nonce=' + payload.nonce;
+                        window.location.href = '/' + lang + '/order/' + data.transaction_id + '?payment_nonce=' + payload.nonce;
                       }
                     } );
 
@@ -128,24 +120,31 @@ provide(Form.declMod({ modName: 'view', modVal: 'order' }, {
           }
         );
       } else if ( data.message === 'email send' ) {
+
+        let info1    = _this.params.lang === 'en' ? 'We have sent an email to you with an activation link' : 'На вашу почту отправлено письмо<br>со ссылкой для активации';
+        let info2    = _this.params.lang === 'en' ? 'The ticket is booked for 10 minutes. Please confirm the reservation within this time by clicking on the link from the email.' : 'Билет забронирован на 10 минут. Пожалуйста, подтвердите бронирование в течение этого времени, перейдя по ссылке из письма.';
+        let info3    = _this.params.lang === 'en' ? 'Only one ticket can be activated for one e-mail address.' : 'На один адрес электронной почты можно активировать только один билет.';
+
         _this._modal
           .setContent( '' )    // Move modal to end of page,
           .setMod( 'visible' ) // because we have form inside form
           .setContent([
             '<div style="padding: 20px">',
-              '<p class="paragraph paragraph_lead text text_align_center">На вашу почту отправлено письмо<br>со ссылкой для активации</p>',
-              '<p class="paragraph paragraph_lead text text_align_center">Билет забронирован на 10 минут. Пожалуйста, подтвердите бронирование в течение этого времени, перейдя по ссылке из письма.',
-              '<p class="paragraph paragraph_lead text text_align_center">На один адрес электронной почты можно активировать только один билет.</p>',
+              '<p class="paragraph paragraph_lead text text_align_center">' + info1 + '</p>',
+              '<p class="paragraph paragraph_lead text text_align_center">' + info2 + '</p>',
+              '<p class="paragraph paragraph_lead text text_align_center">' + info3 + '</p>',
             '<div>'
           ].join(''));
       } else {
+
+        let errorNew = _this.params.lang === 'en' ? 'Error: ' : 'Произошла ошибка: ';
         console.log( data );
         _this._modal
           .setContent( '' )    // Move modal to end of page,
           .setMod( 'visible' ) // because we have form inside form
           .setContent([
             '<div style="padding: 20px">',
-              '<p class="paragraph paragraph_lead text text_align_center">Произошла ошибка: ' + ( data.message || data.error ) + '</p>',
+              '<p class="paragraph paragraph_lead text text_align_center">'+ errorNew + ( data.message || data.error ) + '</p>',
             '<div>'
           ].join(''));
       }

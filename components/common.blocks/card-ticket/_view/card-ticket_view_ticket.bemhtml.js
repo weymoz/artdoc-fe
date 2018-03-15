@@ -1,7 +1,4 @@
-block('card-ticket').mod('view', 'ticket').content()( node => {
-
-  console.log(node);
-
+block('card-ticket').mod('view', 'ticket').content()( () => {
   // const tzMinutes = node._tz % 60;
   // const tzHours = ( node._tz - tzMinutes ) / 60;
 
@@ -13,7 +10,7 @@ block('card-ticket').mod('view', 'ticket').content()( node => {
 
   // const timezone = ( tzHours > 0 ? '+' : '-' ) + fixZero( tzHours ) + ':' + fixZero( tzMinutes );
 
-  // console.log();
+  console.log();
 
   return {
       elem: 'section',

@@ -2,11 +2,8 @@ block('page-thanks')(
 
   match( node => node.data.api.ticket && node.data.api.movie ).replace()( node => {
     const isCinema = node.data.api.type != 'rent';
-
     const _discuss = 'В 21:00 состоится обсуждение фильма с автором и зрителями. Ссылка на обсуждение будет доступна на странице просмотра фильма.'
     const _ticket = node.data.api.session;
-
-    console.log(_ticket);
 
     return [
       {
@@ -20,11 +17,11 @@ block('page-thanks')(
               { block: 'heading', mods: { align: 'center', caps: true } },
               { block: 'font', mods: { family: 'helvetica-neue-condensed-bold', loaded: true } }
             ],
-            content: 'Спасибо за покупку билета!'
+            content: node.i18n('thanks', 'title')
           },
           {
             block: 'paragraph',
-            content: 'Оплата прошла успешно! На почту ' + node.data.api.ticket.email + ' выслано письмо со ссылкой на страницу просмотра фильма. Приятного просмотра!'
+            content: node.i18n('thanks', 'emailpre') + node.data.api.ticket.email + node.i18n('thanks', 'emailpost')
           },
           {
             block: 'layout',
@@ -50,22 +47,24 @@ block('page-thanks')(
               view: 'ticket'
             },
             ticket: _ticket,
+            lang: node.data.lang,
             js: { ticket: node.data.api.session, timezoneOffset: 0 }
           },
           {
             block: 'card-movie',
             mods: { view: 'ticket' },
-            movie: node.data.api.movie
+            movie: node.data.api.movie,
+            lang: node.data.lang
           },
           { tag: 'br' },
           {
             block: 'list',
             mods: { type: 'numeric' },
             items: [
-              isCinema ? 'Фильм доступен к просмотру 3 часа с момента начала онлайн-сеанса. По окончании 3 часов показ прекращается.'
-                :'Фильм доступен к просмотру 72 часа с момента оплаты. По окончании 72 часов доступ будет закрыт.',
-              'Просмотр фильма индивидуальный и доступен только на одном устройстве в один момент времени. Не для массового показа.',
-              'В случае неиспользованного билета, деньги не возвращаются.'
+              isCinema ? node.i18n('thanks', 'condition')
+                : node.i18n('thanks', 'cinema1'),
+              node.i18n('thanks', 'cinema2'),
+              node.i18n('thanks', 'cinema3')
             ],
 
           }
@@ -83,7 +82,7 @@ block('page-thanks')(
     ]
   } ),
 
-  match( node => node.data.api.message === 'mail send' && node.data.api.mode === 'free' ).replace()( () => {
+  match( node => node.data.api.message === 'mail send' && node.data.api.mode === 'free' ).replace()( (node) => {
     return [
       {
         elem: 'content',
@@ -94,7 +93,7 @@ block('page-thanks')(
             content: [
               {
                 elem: 'title',
-                content: 'Ваш билет успешно активирован'
+                content: node.i18n('thanks', 'ticketSuccess')
               },
             ]
           },
@@ -104,7 +103,7 @@ block('page-thanks')(
             mods: {
               lead: true
             },
-            content: 'Активация прошла успешно. На вашу почту выслано письмо со ссылкой на страницу просмотра фильма. Приятного просмотра.'
+            content: node.i18n('thanks', 'showtimeSuccess')
           }
         ]
       },

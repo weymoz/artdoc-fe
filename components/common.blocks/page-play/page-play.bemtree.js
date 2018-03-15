@@ -24,7 +24,8 @@ block('page-play')(
           {
             block: 'card-ticket',
             mods: { view: 'play' },
-            ticket: ticket
+            ticket: ticket,
+            lang: node.data.lang
           }
         ]
       },
@@ -35,7 +36,8 @@ block('page-play')(
           {
             block: 'card-movie',
             mods: { view: 'play' },
-            movie: movie
+            movie: movie,
+            lang: node.data.lang
           }
         ]
       },

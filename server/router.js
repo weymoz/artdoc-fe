@@ -572,8 +572,15 @@ module.exports = app => {
   // Order
   app.get( '/:lang/order/:transaction_id', ( req, res ) => {
     let data = Object.assign({}, req.globalData);
+    let url;
+    if (req.params.lang === 'en'){
+      url = '/payment/provide/?lang=en'
+    } else {
+      url = '/payment/provide/'
+    }
+
     request( {
-      url: '/payment/provide/',
+      url: url,
       method: 'post',
       clientRequest: req,
       data: { nonce: req.query.payment_nonce, transaction_id: req.params.transaction_id }
@@ -584,7 +591,6 @@ module.exports = app => {
         data.origUrl = req.originalUrl;
         data.lang = req.params.lang;
         data.title = 'Билет успешно оплачен';
-
         if ( data.api.error ) {
           data.page = 'error';
           data.title = 'payment-error'; // 'При оплате произошла ошибка'
@@ -596,10 +602,16 @@ module.exports = app => {
 
   // Promo activate
   app.get( '/:lang/payment/freeactivate/', ( req, res ) => {
-    let data = Object.assign({}, req.globalData);
+      let data = Object.assign({}, req.globalData);
+      let url;
+      if (req.params.lang === 'en'){
+        url = '/payment/freeactivate/?lang=en&' + Object.keys(req.query).map(key => key + '=' + encodeURIComponent(req.query[key])).join('&')
+      } else {
+        url = '/payment/freeactivate/?' + Object.keys(req.query).map(key => key + '=' + encodeURIComponent(req.query[key])).join('&')
+      }
     request({
       clientRequest: req,
-      url: '/payment/freeactivate/?' + Object.keys(req.query).map(key => key + '=' + encodeURIComponent(req.query[key])).join('&')
+      url: url
     })
       .then( response => {
         data.api = response;
@@ -625,9 +637,17 @@ module.exports = app => {
 
     if (req.query.hash) {
       data.page = 'play';
+      let url;
+
+      if (req.params.lang === 'en'){
+        url = '/cinema/release/rent/?id=' + req.query.id + '&lang=en&hash=' + req.query.hash
+      } else {
+        url = '/cinema/release/rent/?id=' + req.query.id + '&hash=' + req.query.hash
+      }
+
       request({
         clientRequest: req,
-        url: '/cinema/release/rent/?id=' + req.query.id + '&hash=' + req.query.hash
+        url: url
       })
         .then( response => {
           data.origUrl = req.originalUrl;
@@ -639,10 +659,16 @@ module.exports = app => {
         .catch(() => {
           return res.send('error')
         } );
-
     } else {
+      let url;
+      if (req.params.lang === 'en'){
+        url = '/api/movie/?sort=id&expand=schedules,sessions,category,video_link,screenshots&lang=en&code=' + encodeURIComponent(req.params.name)
+      } else {
+        url = '/api/movie/?sort=id&expand=schedules,sessions,category,video_link,screenshots&code=' + encodeURIComponent(req.params.name)
+      }
+
       request({
-        url: '/api/movie/?sort=id&expand=schedules,sessions,category,video_link,screenshots&code=' + encodeURIComponent(req.params.name),
+        url: url,
         clientRequest: req
       })
         .then( response => {
@@ -696,15 +722,17 @@ module.exports = app => {
       .catch( error => res.send( error ) );
   });
 
+
+
+
+
   /*
    *  API Proxy
    *
    ***************************/
 
   app.post( '/api/order/:session_id', ( req, res ) => {
-
     let promo_code = '';
-
     // Check promo
     let promoCode = {};
     config.promo.forEach( promo => {
@@ -714,13 +742,23 @@ module.exports = app => {
         ? promo.data
         : false
     } );
-
     if ( promoCode.meduza ) {
       promo_code = 'artdocmedia_free';
     }
 
+    let url;
+    if (req.body.lang === 'en'){
+      url = '/cinema/booking/booking/?&lang=en&promo=' + promo_code
+    } else {
+      if (req.body.currency === '$'){
+        url = '/cinema/booking/booking/?&currency=2&promo=' + promo_code
+      } else {
+        url = '/cinema/booking/booking/?&promo=' + promo_code
+      }
+    }
+
     request( {
-      url: '/cinema/booking/booking/?&promo=' + promo_code,
+      url: url,
       method: 'post',
       clientRequest: req,
       data: {
@@ -729,19 +767,21 @@ module.exports = app => {
         promo: promo_code
       }
     }).then( api => {
-      console.log('===========');
-      console.log(api);
-      console.log('===========');
+
       if ( api.payment_url ) {
+        if( req.body.lang === 'en' ){
+          url = api.payment_url + '&lang=en'
+        } else {
+          if (req.body.currency === 2){
+            url = api.payment_url + '&currency=2'
+          } else {
+            url = api.payment_url
+          }
+        }
         request({
           clientRequest: req,
-          url: api.payment_url + '&lang=en'
+          url: url
         }).then( response => {
-
-            console.log('//////');
-            console.log(response);
-            console.log('///////');
-
           return res.json( response )
         }).catch(() => res.send('error') );
       } else {
@@ -752,8 +792,19 @@ module.exports = app => {
 
   app.post( '/api/buy/:movie_id', ( req, res ) => {
 
+    let url;
+    if (req.body.lang === 'en'){
+      url = '/cinema/booking/rent/?lang=en'
+    } else {
+      if (req.body.currency === '$'){
+        url = '/cinema/booking/rent/?currency=2'
+      } else {
+        url = '/cinema/booking/rent/'
+      }
+    }
+
     request({
-      url: '/cinema/booking/rent/',
+      url: url,
       method: 'post',
       clientRequest: req,
       data: {
@@ -762,9 +813,18 @@ module.exports = app => {
       }
     }).then( api => {
       if ( api.payment_url ) {
+        if( req.body.lang === 'en' ){
+          url = api.payment_url + '&lang=en'
+        } else {
+          if (req.body.currency === 2){
+            url = api.payment_url + '&currency=2'
+          } else {
+            url = api.payment_url
+          }
+        }
         request({
           clientRequest: req,
-          url: api.payment_url
+          url: url
         })
           .then( response => {
             res.json(  response );

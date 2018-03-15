@@ -1,4 +1,5 @@
 ({
+    mustDeps: 'i18n',
     shouldDeps: [
       { block: 'card-movie', mods: { view: 'ticket' } },
       { block: 'card-ticket' , mods: { view: '*' }},

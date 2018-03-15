@@ -17,7 +17,9 @@ block('form').mod('view', 'order')(
     return {
       session_id: this.ctx.session_id,
       movie_id: this.ctx.movie_id,
-      _csrf: this.ctx.csrf
+      _csrf: this.ctx.csrf,
+      lang: this.ctx.lang,
+      currency: this.ctx.currency === '$' ? 2 : 1
     }
   }),
 
