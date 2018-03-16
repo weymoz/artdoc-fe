@@ -1,3 +1,7 @@
 block(icon).mod(symbol subs) {
-  background-image: svg-load('icon_symbol_subtitle.svg');
+  background-image: svg-load('icon_symbol_subtitle-black.svg');
+
+  &.mod(theme artdoc-dark){
+    background-image: svg-load('icon_symbol_subtitle-white.svg');
+  }
 }

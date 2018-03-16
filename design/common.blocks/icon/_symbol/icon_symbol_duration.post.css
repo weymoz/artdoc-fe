@@ -1,3 +1,7 @@
 block(icon).mod(symbol duration) {
-  background-image: svg-load('icon_symbol_duration.svg');
+  background-image: svg-load('icon_symbol_duration.svg', stroke=#111);
+
+  &.mod(theme artdoc-dark){
+    background-image: svg-load('icon_symbol_duration.svg', stroke=#fff);
+  }
 }

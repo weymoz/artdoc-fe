@@ -6,7 +6,6 @@ block('filters')(
     node._api = Object.assign( {}, ctx.data );
     node._lang = ctx.lang;
     node._currency = ctx.currency;
-
     return applyNext();
   } ),
 

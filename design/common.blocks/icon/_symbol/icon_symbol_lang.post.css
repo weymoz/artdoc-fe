@@ -1,3 +1,9 @@
 block(icon).mod(symbol lang) {
-  background-image: svg-load('icon_symbol_lang.svg');
+  background-image: svg-load('icon_symbol_lang.svg', fill=#111);
+
+  &.mod(theme artdoc-dark){
+    background-image: svg-load('icon_symbol_lang.svg', fill=#fff);
+  }
 }
+
+

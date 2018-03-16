@@ -1,9 +1,6 @@
 var marked = require('marked');
 
 block('filters').def()( ( node, ctx ) => {
-
-
-
   if ( ctx.data.api && ctx.data.api.length ) {
     ctx.data.api.forEach( movie => {
       if ( movie.offlineShow && movie.offlineShow.description ) {
@@ -17,6 +14,7 @@ block('filters').def()( ( node, ctx ) => {
 
   // applied filters from get:
   let userFilter = node.data.filter;
+
 
   function sortWord(a, b) {
     return a.value.localeCompare(b.value, 'ru');
@@ -36,7 +34,6 @@ block('filters').def()( ( node, ctx ) => {
       name: node.i18n('filters', 'category'),
       skip: true,
       sort: sortWord,
-
     },
     full_movie: {
       code: 'full_movie',
@@ -128,6 +125,34 @@ block('filters').def()( ( node, ctx ) => {
     }
 
     switch (element.type) {
+    case 'string':
+      result.mods.type = 'select';
+      d = {
+        block: 'select',
+        text: filtersMap[element.code].name,
+        mods: {
+          mode: 'check',
+          type: 'suggest',
+          'has-clear': true,
+          size: 's',
+          theme: 'artdoc-dark'
+        },
+        optionsMaxHeight: 320,
+        options: element.values.sort(filtersMap[element.code].sort).map(function (option) {
+          return {
+            val: option.id,
+            text: option.value
+          }
+        })
+      }
+
+      if (typeof userFilter[element.code] != 'undefined') {
+        d.val = userFilter[element.code];
+      }
+
+      result.content.push( d );
+      break;
+
       case 'int':
         result.mods.type = 'select';
         d = {

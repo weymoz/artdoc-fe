@@ -251,6 +251,12 @@ module.exports = app => {
       return filter[key];
     })
     url += '&per-page=' + data.pagination['per-page'] + '&page=' + data.pagination.page;
+
+    console.log('+++++++++++');
+    console.log(url);
+    console.log('+++++++++++');
+
+
     axios.all([
       request({
         clientRequest: req,
