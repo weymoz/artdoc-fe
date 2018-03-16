@@ -21,8 +21,9 @@ block('page-discuss')(
     } );
 
     const schedule = Object.assign( {}, node.data.api.schedule, {
-      description: 'При начале обсуждения страница обновится автоматически',
+      description: node.data.lang === 'en' ? 'At the beginning of the discussion, the page will be updated automatically' : 'При начале обсуждения страница обновится автоматически',
     } );
+    const linkToDiscuss = node.data.lang === 'en' ? ' Link to discuss' : 'Пройдите по ссылке.'
 
     return [
       {
@@ -30,11 +31,11 @@ block('page-discuss')(
         content: [
           {
             elem: 'title',
-            content: 'Обсуждение еще не началось'
+            content: node.data.lang === 'en' ? 'Discussion doesn\'t started yet' : 'Обсуждение еще не началось'
           },
           {
             block: 'paragraph',
-            content: schedule.discuss_preview.replace('Пройдите по ссылке.','')
+            content: schedule.discuss_preview.replace(linkToDiscuss,'')
           },
           {
             block: 'paragraph',
@@ -48,14 +49,16 @@ block('page-discuss')(
             mods: {
               view: 'order'
             },
-            movie: movie
+            movie: movie,
+            lang: node.data.lang
           },
           {
             block: 'card-discuss',
             mods: {
               theme: 'artdoc-dark'
             },
-            movie: movie
+            movie: movie,
+            lang: node.data.lang
           }
         ]
       }

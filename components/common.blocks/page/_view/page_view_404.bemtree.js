@@ -2,7 +2,8 @@ block('page').mod('view', '404')(
   def()( () => {
     return applyNext( { 'data.view': '' } )
   } ),
-  content()( () => {
+  content()( (node) => {
+
     return {
       elem: 'content',
       elemMods: { width: 'narrow', gap: 'bottom' },
@@ -12,18 +13,18 @@ block('page').mod('view', '404')(
           elem: 'title',
           elemMods: { size: 'xxl' },
           mix: { block: 'heading', mods: { 'has-dot': true, size: 'xxl' } },
-          content: 'Страница не найдена'
+          content: node.data.lang === 'en' ? 'Page not found' : 'Страница не найдена'
         },
         {
           block: 'paragraph',
           content: [
-            'Адрес набран неправильно, или такой страницы не существует.',
+            node.data.lang === 'en' ? 'Url isn\'t correct or such page doesn\'t exists' : 'Адрес набран неправильно, или такой страницы не существует.',
             { tag: 'br' },
-            'Перейти ',
+            node.data.lang === 'en' ? 'Back to the ' : 'Перейти ',
             {
               block: 'link',
-              url: '/',
-              content: 'на главную'
+              url: '/' + node.data.lang + '/',
+              content: node.data.lang === 'en' ? 'homepage' : 'на главную'
             },
             '.'
           ]

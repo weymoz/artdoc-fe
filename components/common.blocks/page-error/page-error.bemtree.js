@@ -10,12 +10,12 @@ block('page-error').replace()( node => {
           mix: [
             { block: 'heading', mods: { 'has-dot': true, size: 'xxl' } },
           ],
-          content: 'Что-то пошло не так'
+          content: node.i18n('error', 'wrong')
         },
         {
           block: 'paragraph',
           content: [
-            'Произошла ошибка при проведении платежа: ',
+            node.i18n('error', 'error'),
             node.data.api.error,
           ]
         },
@@ -27,7 +27,7 @@ block('page-error').replace()( node => {
             size: 'xl'
           },
           url: 'javascript:history.back()',
-          text: 'Повторить платёж'
+          text: node.i18n('error', 'repeat')
         },
         { tag: 'br' },
         { tag: 'br' },

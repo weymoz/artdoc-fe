@@ -142,7 +142,7 @@ module.exports = app => {
       return true;
     } else {
       if (lang[0] === 'ru-RU') {
-        res.redirect('/ru' + req.originalUrl)
+        res.redirect('/ru' + req.originalUrl);
       } else {
         res.redirect('/en' + req.originalUrl)
       }
@@ -423,7 +423,7 @@ module.exports = app => {
     data.adaptive = true;
     data.origUrl = req.originalUrl;
     data.lang = req.params.lang;
-    data.title = 'Авторские подборки';
+    data.title = req.params.lang === 'en' ? 'Author\'s collections' : 'Авторские подборки';
     request({
       clientRequest: req,
       url: url
@@ -508,8 +508,8 @@ module.exports = app => {
   app.get( '/:lang/cinema', ( req, res ) => {
     let data = Object.assign({}, req.globalData);
     data.page = 'schedule';
-    data.title = 'Расписание онлайн-киносеансов';
     data.lang = req.params.lang;
+    data.title = req.params.lang === 'en' ? 'Showtimes schedules' : 'Расписание онлайн-киносеансов';
     let url;
     if (data.lang === 'en'){
       url = '/api/schedule/?expand=sessions,movie&lang=en&sort=date_gmt3&per-page=100&date_from=' + (Math.floor((Date.now() / 1000) / 3600) * 3600 - (31 * 60 * 60))
@@ -590,9 +590,10 @@ module.exports = app => {
         data.page = 'thanks';
         data.origUrl = req.originalUrl;
         data.lang = req.params.lang;
-        data.title = 'Билет успешно оплачен';
+        data.title = req.params.lang === 'en' ? 'Payment successfull' : 'Билет успешно оплачен';
         if ( data.api.error ) {
           data.page = 'error';
+          data.lang = req.params.lang;
           data.title = 'payment-error'; // 'При оплате произошла ошибка'
         }
         return render( req, res, data );
@@ -619,11 +620,12 @@ module.exports = app => {
         data.lang = req.params.lang;
         if ( !data.api.error ) {
           data.page = 'thanks';
-          data.title = 'Билет успешно активирован';
+          data.title = req.params.lang === 'en' ? 'Ticket is succesfully activated' : 'Билет успешно активирован';
           render( req, res, data );
         } else {
           data.page = 'error';
-          data.title = 'При активации произошла ошибка';
+          data.lang = req.params.lang;
+          data.title = req.params.lang === 'en' ? 'Error occured during the activation' : 'При активации произошла ошибка';
           return render( req, res, data );
         }
 
@@ -712,7 +714,7 @@ module.exports = app => {
         data.page = 'search';
         data.origUrl = req.originalUrl;
         data.lang = req.params.lang;
-        data.title = 'Результаты поиска';
+        data.title = req.params.lang === 'en' ? 'Search results' : 'Результаты поиска';
         data.search = req.query.q;
 
         if ( !data.api.error ) {
@@ -926,12 +928,17 @@ module.exports = app => {
 
   // require('./test')( app );
 
-  app.get('*', (req, res) => {
+  app.get('/:lang/*', (req, res) => {
     let data = Object.assign({}, req.globalData);
     data.page = 'index';
     data.view = '404';
-    data.title = 'Ошибка 404 – страница не найдена';
+    data.origUrl = req.originalUrl;
+    data.lang = req.params.lang;
+    data.title = req.params.lang === 'en' ? '404 error – page not found' :  'Ошибка 404 – страница не найдена';
     res.status( 404 );
     return render(req, res, data);
   });
+
+
+
 };
