@@ -14,7 +14,15 @@ block('nav-menu')(
           block: 'link',
           mods: { pseudo: true },
           url: '',
-          content: node.i18n('header', 'movies')
+          content: [
+          node.i18n('header', 'movies'),
+          {
+            block: 'icon',
+            mods: {
+              symbol: 'arrowDropdown'
+            }
+          }
+          ]
         },
         popup: {
           block: 'page',

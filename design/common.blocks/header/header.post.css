@@ -3,16 +3,28 @@ block(header) {
   top: 0;
   z-index: 10;
 
+  elem(social){
+    block(button){
+      &.mod(hovered){
+        background-color: unset!important;
+      }
+    }
+  }
+
   elem(show-menu){
     display: none;
   }
 
   elem(search){
+
+    display: flex;
+
+
     block(text){
       display: block;
     }
     block(icon){
-      display: none;
+      margin-right: 5px;
     }
   }
 }

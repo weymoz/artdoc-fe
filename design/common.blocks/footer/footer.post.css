@@ -79,14 +79,20 @@ block(footer) {
 
   .elem(social) {
     margin-bottom: 2em;
+    block(button){
+      &.mod(hovered){
+        background-color: unset!important;
+      }
+    }
   }
 
   .elem(social-item) {
     border: 1px solid rgba(255,255,255,0.2);
     border-radius: 2em;
+    transition: border-color 0.5s;
 
     &:hover {
-      border-color: transparent;
+      border-color: rgba(255,255,255,1);
     }
 
     & + & {

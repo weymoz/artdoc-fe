@@ -11,6 +11,40 @@ block(search) {
       margin-top: 30px;
       color: #eeeef2;
       font-weight: bold;
+      margin-bottom: 100px;
+    }
+
+    elem(movie){
+      block(page){
+        elem(title){
+          box-shadow: 0 1px 0 0 #676770;
+        }
+      }
+    }
+
+    elem(author){
+      block(page){
+        elem(title){
+          box-shadow: 0 1px 0 0 #676770;
+        }
+      }
+
+      block(card-author){
+
+        min-width: 350px;
+
+        block(link){
+          text-decoration: none;
+          font-weight: bold;
+          font-size: 16px;
+          line-height: 20px;
+
+          elem(content){
+            color: #fff!important;;
+            font-family: 'Helvetica Neue';
+          }
+        }
+      }
     }
 
 
@@ -40,6 +74,7 @@ block(search) {
         block(page){
           elem(title){
             margin-top: 35px;
+            box-shadow: 0 1px 0 0 #676770;
           }
         }
       }
