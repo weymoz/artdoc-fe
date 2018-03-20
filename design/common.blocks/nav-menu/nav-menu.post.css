@@ -7,10 +7,19 @@ block(nav-menu) {
     text-decoration: none;
     box-sizing: border-box;
     padding-top: 22px;
-    padding-bottom: 22px;
+    padding-bottom: 24px;
     padding-left: 16px;
     padding-right: 16px;
     outline: none;
+
+    &block(dropdown){
+      &.mod(opened){
+        block(icon){
+          transition: transform 0.3s;
+          transform: rotate(-180deg);
+        }
+      }
+    }
 
     &.mod(checked){
        box-shadow: inset 0 -4px 0 0px #F21026;

@@ -16,6 +16,7 @@ block('filters')(
   content()( () => {
     return [
       { elem: 'header'  }, // header with actions
+      { elem: 'separator-line' },
       { elem: 'form'    }, // filter's form
       { elem: 'params'  }, // sorting and view params
       { elem: 'content' }, // search result

@@ -6,7 +6,14 @@ block(filters) {
     flex-wrap: wrap;
     padding-bottom: 28px;
     align-items: center;
+  }
+
+  elem(separator-line){
     box-shadow: 0 1px #23232c;
+    height: 1px;
+    max-width: 1320px;
+    margin: 0 auto;
+    width: 100%;
   }
 
   .elem(title) {
@@ -55,27 +62,57 @@ block(filters) {
   .elem(result-count) {
     font-weight: normal;
     display: inline-block;
-    margin-left: 7px;
+    margin-left: 16px;
     color: #c5c5d2;
 
     &:before {
       content: '';
       display: inline-block;
-      vertical-align: middle;
-      width: 1em;
-      height: 1em;
-      background-image: svg-load('../icon/_symbol/icon_symbol_chevron-down.svg');
+      vertical-align: top;
+      width: 16px;
+      height: 10px;
+      background-image: svg-load('../icon/_symbol/arrow_dropdown.svg', stroke: #000);
       background-size: cover;
-      margin-right: 12px;
+      margin-right: 24px;
+      margin-top: 22px;
+      background-repeat: no-repeat;
     }
   }
+
 
   .elem(toggle).block(button) {
     background-color: #111111;
     color: #fff;
-    padding-left: 2em;
-    padding-right: 2em;
     transition: all 200ms;
+    position: relative;
+    padding: 4px 2em;
+
+    &::after {
+      content: '';
+      display: inline-block;
+      vertical-align: top;
+      width: 16px;
+      height: 10px;
+      background-image: svg-load('../icon/_symbol/arrow_dropdown.svg', stroke: #fff);
+      background-size: cover;
+      background-repeat: no-repeat;
+      margin-top: 16px;
+      transition: transform 0.3s;
+    }
+
+    &.mod(checked){
+      &::after{
+        transform: rotate(-180deg);
+        background-image: svg-load('../icon/_symbol/arrow_dropdown.svg', stroke: #000);
+      }
+    }
+
+    &.mod(hovered){
+      &::after{
+        background-image: svg-load('../icon/_symbol/arrow_dropdown.svg', stroke: #fff);
+      }
+    }
+
   }
 
   .elem(form) {
@@ -170,13 +207,14 @@ block(filters) {
       color: #fff;
       position: absolute;
       left: 0;
-      top: 0;
-      right: 0;
+      top: -1px;
+      right: -0.5px;
       bottom: 0;
       display: block;
       text-align: center;
       font-size: 32px;
       line-height: 0.85;
+
     }
 
     &:hover {

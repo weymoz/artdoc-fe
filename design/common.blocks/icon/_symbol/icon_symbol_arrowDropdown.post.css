@@ -1,7 +1,11 @@
 block(icon).mod(symbol arrowDropdown) {
-  background-image: svg-load('arrow_dropdown.svg');
+  background-image: svg-load('arrow_dropdown.svg', stroke: #fff);
   -webkit-background-size: 16px 8px;
   background-size: 16px 8px;
   margin-left: 12px;
   padding-bottom: 0;
+
+  &.mod(symbol arrowDropdown-black){
+    background-image: svg-load('arrow_dropdown.svg', stroke: #000);
+  }
 }

@@ -20,7 +20,7 @@ provide(bemDom.declBlock(this.name, {
 
         this._close = this._elem('close');
         this._domEvents( this._elem('close') ).on('click touchstart', () => {
-          // this._onToggle
+          this._toggle.delMod('checked');
           this._toggle.target.delMod( 'show' );
         });
 
@@ -40,12 +40,33 @@ provide(bemDom.declBlock(this.name, {
         this._form.pagination = this._elem('footer');
         this._form.history = new History();
         this._events( this._form ).on('change', this._onFormChange, this );
+
+
+        let isOpener;
+        if( localStorage.getItem('filters') ){
+          if (window.innerWidth > 768){
+
+            isOpener = localStorage.getItem('filters') === 'open' ? true : false;
+
+            if (isOpener === true){
+              this._openFilters()
+            }
+          }
+        }
+
+
+
       }
     }
   },
 
   _openMenu: function () {
     this._menu.toggleMod('opened');
+  },
+
+  _openFilters: function() {
+    this._toggle.target.setMod('show');
+    this._toggle.setMod('checked');
   },
 
   _resetForm: function () {
@@ -65,7 +86,14 @@ provide(bemDom.declBlock(this.name, {
   },
 
   _onToggle: function () {
+
     this._toggle.target.toggleMod( 'show' );
+
+    if(this._toggle.target.hasMod('show')){
+      localStorage.setItem('filters', 'open');
+    } else {
+      localStorage.setItem('filters', 'close');
+    }
   },
 
   _onSortChange: function () {
