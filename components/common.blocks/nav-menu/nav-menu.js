@@ -1,9 +1,43 @@
-modules.define('nav-menu', ['i-bem-dom', 'dropdown', 'page', 'header'], function(provide, bemDom, navMenu, Page, Header) {
+modules.define('nav-menu',
+
+['i-bem-dom', 'dropdown', 'page', 'header'],
+
+function(provide, bemDom, navMenu, Page, Header) {
 
 provide(bemDom.declBlock(this.name, {
+
+    beforeSetMod: {
+        js: {
+          inited: function() {
+
+            if (window.innerWidth > 500){
+              let currentUrl = window.location.pathname;
+              var regMovie = /\/(en|ru)\/movie/i;
+              var regSelection = /\/(en|ru)\/selection/i;
+              var regCinema = /\/(en|ru)\/cinema/i;
+              let isMovie = regMovie.test(currentUrl);
+              let isSelection = regSelection.test(currentUrl);
+              let isCinema = regCinema.test(currentUrl);
+              let links = this.findChildElems('item');
+                if (isMovie){
+                  links.get(0).setMod('checked')
+                } else if (isSelection) {
+                  links.get(1).setMod('checked')
+                } else if (isCinema){
+                  links.get(2).setMod('checked')
+                }
+
+            }
+          }
+        }
+    },
+
+
     onSetMod: {
         js: {
             inited: function() {
+
+
                 this._menu = this.findParentBlock( Page )
                   .findChildBlock( Header )
                   .findChildBlock( { block: navMenu, modName: 'nav-menu', modVal: true } );
@@ -13,7 +47,6 @@ provide(bemDom.declBlock(this.name, {
     },
 
     _openMenu: function () {
-      console.log('hello');
       console.log(this._menu);
       this._menu.delMod('opened');
     }

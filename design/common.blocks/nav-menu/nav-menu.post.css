@@ -12,6 +12,10 @@ block(nav-menu) {
     padding-right: 16px;
     outline: none;
 
+    &.mod(checked){
+       box-shadow: inset 0 -4px 0 0px #F21026;
+    }
+
     &.block(link) {
       .mod(hovered) {
         color: inherit;
