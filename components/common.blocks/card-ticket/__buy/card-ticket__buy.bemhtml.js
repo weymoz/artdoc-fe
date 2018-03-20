@@ -4,8 +4,8 @@ block('card-ticket').elem('buy')(
 
   content()( node => {
     let currency = node._lang === 'en' ? ' $' : ' ' + node._currency;
-
-    return node._price.price + currency
+    let correctView = node._lang === 'en' ? ( currency + node._price.price ) : ( node._price.price + currency );
+    return correctView
   }),
 
   match( node => node.mods.view === 'movie' ).prependContent()( (node) => {
