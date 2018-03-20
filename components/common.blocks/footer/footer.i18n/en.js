@@ -13,6 +13,7 @@ module.exports = {
         'press'           : 'Accredited media',
         'add'             : 'Propose a film',
         'user'            : 'User agreement',
-        'terms'           : 'Privacy policy'
+        'terms'           : 'Privacy policy',
+        'breadhead'       : 'Design and code'
     }
 };

@@ -23,7 +23,6 @@ block(menu).mod(nav-menu) {
       background: none;
       position: relative;
       color: #f3203b;
-
       padding-left: 20px;
       box-sizing: border-box;
 
@@ -31,7 +30,7 @@ block(menu).mod(nav-menu) {
         content: '';
         position: absolute;
         left: 0;
-        top: 6px;
+        top: 8px;
         display: block;
         width: 12px;
         height: 12px;

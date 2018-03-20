@@ -1,6 +1,7 @@
 block('nav-menu')(
 
   content()( ( node, ctx ) => {
+
     return [
       {
         block: 'dropdown',
@@ -34,16 +35,17 @@ block('nav-menu')(
               mods: {
                 type: 'radio',
                 theme: 'artdoc',
-                'nav-menu': true
+                'nav-menu': true,
               },
               mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } },
               val: ctx.currentCategoryCode,
               content: [
                 { block: node.block, elem: 'close' },
                 ctx.category && ctx.category.map( item => {
+                let isChecked = ctx.currentCategoryCode === item.code ? true : false;
                 return {
                   elem: 'item',
-                  elemMods: { type: 'link' },
+                  elemMods: { type: 'link', checked: isChecked },
                   val: item.code,
                   content: {
                     block: 'link',

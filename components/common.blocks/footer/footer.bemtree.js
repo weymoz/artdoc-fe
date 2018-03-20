@@ -246,21 +246,16 @@ block('footer')(
                   },
                   content: [
                     {
-                      content: {
-                        html: '<span style="opacity: 0.7">Developed with</span><span style="position: absolute; margin-left: 6px;">💖</span><br>'
-                      }
-                    },
-                    {
                       block: 'link',
                       mods: {
                         align: 'right',
                         size: 's',
-                        theme: 'artdoc',
+                        theme: 'artdoc'
                       },
                       url: 'mailto:best.webapp.dev@gmail.com',
                       target: '_blank',
-                      attrs: { style: 'text-decoration: none; border-bottom: 1px solid' },
-                      content: 'Get in touch'
+                      attrs: { style: 'text-decoration: none;' },
+                      content: node.i18n('footer', 'breadhead')
                     }
                   ]
                 }
