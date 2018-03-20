@@ -18,4 +18,12 @@ block(icon).mod(social facebook) {
         background-image: svg-load('icon_social_facebook.svg', fill="#777783");
       }
   }
+
+  &.mod(facebook black){
+     background-image: svg-load('icon_social_facebook.svg', fill="#000");
+
+      &:hover {
+        background-image: svg-load('icon_social_facebook.svg', fill="#fff");
+      }
+  }
 }

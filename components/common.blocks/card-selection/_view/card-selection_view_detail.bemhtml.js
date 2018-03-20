@@ -67,7 +67,11 @@ block('card-selection').mod('view', 'detail')(
                     target: '_blank',
                     content: {
                       block: 'icon',
-                      mods: { social: 'facebook', size: 'xxl' },
+                      mods: {
+                        social: 'facebook',
+                        size: 'xxl',
+                        facebook: 'black'
+                      },
                     }
                   },
                   {
@@ -77,7 +81,11 @@ block('card-selection').mod('view', 'detail')(
                     target: '_blank',
                     content: {
                       block: 'icon',
-                      mods: { social: 'twitter', size: 'xxl' },
+                      mods: {
+                        social: 'twitter',
+                        size: 'xxl',
+                        twitter: 'black'
+                      },
                     }
                   }
                 ]

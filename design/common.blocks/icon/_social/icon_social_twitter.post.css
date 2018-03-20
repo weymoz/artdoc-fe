@@ -18,4 +18,12 @@ block(icon).mod(social twitter) {
       }
   }
 
+  &.mod(twitter black){
+    background-image: svg-load('icon_social_twitter.svg', fill="#000");
+
+    &:hover {
+      background-image: svg-load('icon_social_twitter.svg', fill="#fff");
+    }
+  }
+
 }
