@@ -33,7 +33,7 @@ block('page-discuss')(
             elem: 'title',
             content: node.data.lang === 'en' ? 'Discussion doesn\'t started yet' : 'Обсуждение еще не началось'
           },
-          {
+          schedule.discuss_preview && {
             block: 'paragraph',
             content: schedule.discuss_preview.replace(linkToDiscuss,'')
           },
