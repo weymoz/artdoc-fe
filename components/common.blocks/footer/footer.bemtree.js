@@ -231,35 +231,52 @@ block('footer')(
                           content: node.i18n('footer', 'terms'),
                           url: '/' + ctx.lang + '/terms/#privacy'
                         }
+                      },
+                      {
+                        elem: 'item',
+                        content:
+                          {
+                            block: 'link',
+                            mods: {
+                              align: 'right',
+                              size: 's',
+                              theme: 'artdoc'
+                            },
+                            url: 'mailto:best.webapp.dev@gmail.com',
+                            target: '_blank',
+                            attrs: { style: 'text-decoration: none;' },
+                            content: node.i18n('footer', 'breadhead')
+                          }
                       }
                     ]
                   }
                 ]
               },
-              {
-                elem: 'aside',
-                content: {
-                  block: 'paragraph',
-                  mods: {
-                    align: 'right',
-                    size: 's'
-                  },
-                  content: [
-                    {
-                      block: 'link',
-                      mods: {
-                        align: 'right',
-                        size: 's',
-                        theme: 'artdoc'
-                      },
-                      url: 'mailto:best.webapp.dev@gmail.com',
-                      target: '_blank',
-                      attrs: { style: 'text-decoration: none;' },
-                      content: node.i18n('footer', 'breadhead')
-                    }
-                  ]
-                }
-              }
+              // {
+              //   elem: 'aside',
+              //   content:
+              //   {
+              //     block: 'paragraph',
+              //     mods: {
+              //       align: 'right',
+              //       size: 's'
+              //     },
+              //     content: [
+              //       {
+              //         block: 'link',
+              //         mods: {
+              //           align: 'right',
+              //           size: 's',
+              //           theme: 'artdoc'
+              //         },
+              //         url: 'mailto:best.webapp.dev@gmail.com',
+              //         target: '_blank',
+              //         attrs: { style: 'text-decoration: none;' },
+              //         content: node.i18n('footer', 'breadhead')
+              //       }
+              //     ]
+              //   }
+              // }
             ]
           }
         ]
