@@ -531,10 +531,11 @@ module.exports = app => {
 
 
   // Cinema's play or discuss
-  app.get( /:lang\/cinema\/(release|discuss)/, ( req, res ) => {
+  app.get( '/:lang/cinema/:type(release|discuss)', ( req, res ) => {
+    console.log('route ')
     let data = Object.assign({}, req.globalData);
     if ( req.query.hasOwnProperty( 'hash' ) && req.query.hasOwnProperty( 'sess_id' ) && req.query.hasOwnProperty( 'id' ) ) {
-      data.page = req.params[0] === 'discuss' ? 'discuss' : 'play';
+      data.page = req.params.type === 'discuss' ? 'discuss' : 'play';
       data.lang = req.params.lang;
 
       let url;
