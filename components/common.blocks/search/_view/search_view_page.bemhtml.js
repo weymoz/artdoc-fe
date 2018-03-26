@@ -5,6 +5,8 @@ block('search').mod('view', 'page')(
     const finded = ctx.lang === 'en' ?  'All search results for «' : 'Все результаты поиска по запросу «';
     const nothing = ctx.lang === 'en' ?  'Nothing found on your request' : 'По вашему запросу ничего не найдено';
 
+
+
     return [
       {
         block: 'page',
@@ -18,7 +20,8 @@ block('search').mod('view', 'page')(
       [ 'movie', 'tag' ].map( elem => {
         return {
           elem: elem,
-          lang: ctx.lang
+          lang: ctx.lang,
+          currency: ctx.currency
         }
       } )
     ]

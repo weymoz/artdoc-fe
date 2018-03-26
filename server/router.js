@@ -714,6 +714,7 @@ module.exports = app => {
         data.page = 'search';
         data.origUrl = req.originalUrl;
         data.lang = req.params.lang;
+        data.currency = req.globalData.geo !== 'RU' ? '$' : '₽';
         data.title = req.params.lang === 'en' ? 'Search results' : 'Результаты поиска';
         data.search = req.query.q;
 

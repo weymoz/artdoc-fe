@@ -11,6 +11,10 @@ block('search').elem('movie')(
         node._lang = ctx.lang;
       }
 
+      if(ctx.currency){
+        node._currency = ctx.currency;
+      }
+
     return [
       {
         elem: 'title',
@@ -24,7 +28,8 @@ block('search').elem('movie')(
             theme: node.mods.view === 'page' ? 'artdoc' : 'artdoc-dark'
           },
           movie: movie,
-          lang: node._lang
+          lang: node._lang,
+          currency: node._currency
         }
       } )
     ]
