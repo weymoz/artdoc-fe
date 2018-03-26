@@ -60,7 +60,7 @@ module.exports = app => {
     req.globalData = Object.assign({}, global);
 
       // Добавление геопозиции
-      let ip = req.header('x-forwarded-for') || '194.24.241.47';
+      let ip = req.header('x-forwarded-for') || '95.31.18.119';
       var geo = geoip.lookup(ip);
       req.globalData = Object.assign({ geo: geo.country}, req.globalData);
 
@@ -703,7 +703,11 @@ module.exports = app => {
     if (data.lang === 'en'){
       url = '/search/search/?per-page=20&lang=en&q=' + encodeURIComponent(req.query.q)
     } else {
-      url = '/search/search/?per-page=20&q=' + encodeURIComponent(req.query.q)
+      if (req.globalData.geo !== 'RU'){
+        url = '/search/search/?per-page=20&currency=2&q=' + encodeURIComponent(req.query.q)
+      } else {
+        url = '/search/search/?per-page=20&q=' + encodeURIComponent(req.query.q)
+      }
     }
 
     request({
