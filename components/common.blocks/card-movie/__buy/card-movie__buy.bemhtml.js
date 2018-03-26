@@ -1,22 +1,21 @@
 block('card-movie').elem('buy')(
 
-  // content()( node => {
-  //   let text = node._lang === 'en' ? 'The film will be available for&nbsp;viewing after approval by the copyright owner' : 'Фильм будет доступен для&nbsp;просмотра после одобрения правообладателем'
-  //   return {
-  //     block: 'paragraph',
-  //     mods: { align: 'center', size: 's' },
-  //     mix: { block: 'font', mods: { family: 'pt-mono' } },
-  //     attrs: {
-  //       style: 'background-color: #eee; color: #000; padding: 8px 20px; box-sizing: border-box;'
-  //     },
-  //     content: {
-  //       html: text
-  //     }
-  //   }
-  // }),
+  content()( node => {
+    let text = node._lang === 'en' ? 'The film will be available for&nbsp;viewing after approval by the copyright owner' : 'Фильм будет доступен для&nbsp;просмотра после одобрения правообладателем'
+    return {
+      block: 'paragraph',
+      mods: { align: 'center', size: 's', empty: true },
+      mix: { block: 'font', mods: { family: 'pt-mono' } },
+      attrs: {
+        style: 'background-color: #eee; color: #000; padding: 8px 20px; box-sizing: border-box;'
+      },
+      content: {
+        html: text
+      }
+    }
+  }),
 
   match( node => node._status === 20 || node._view_access === 512 && node._price && node._price.price === 0 ).replace()( node => {
-
 
     return {
       block: 'button',

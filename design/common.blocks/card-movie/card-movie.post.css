@@ -32,6 +32,12 @@ block(card-movie) {
 
   .elem(buy) {
     margin-top: 24px;
+
+    block(paragraph){
+      &.mod(empty){
+        display: none;
+      }
+    }
   }
 
   .elem(content) {
@@ -445,6 +451,12 @@ block(card-movie) {
 
     .elem(buy) {
       width: 100%;
+
+      block(paragraph){
+        &.mod(empty){
+          display: block;
+        }
+      }
     }
 
     .elem(content) {
