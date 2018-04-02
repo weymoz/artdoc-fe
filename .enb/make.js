@@ -21,6 +21,60 @@ module.exports = ( config ) => {
       fs.existsSync( pathToStatic ) || mkdirp( pathToStatic );
     } );
 
+    config.nodes( 'bundles/' + platform + '.bundles/*', ( nodeConfig ) => {
+
+      nodeConfig.addTechs( [
+        [ techs.bem.levels, { levels: distLevels } ],
+        [ techs.fileProvider, { target: '?.bemdecl.js' } ],
+        [ techs.bem.deps, { target: '.?.deps.js' } ],
+        [ techs.bem.files, { depsFile: '.?.deps.js' } ],
+        // i18n
+        [ techs.keysets, { lang: '{lang}' } ],
+        [ techs.i18n, {
+          exports: { ym: true, commonJS: true },
+          lang: '{lang}'
+        } ],
+      ] );
+
+      nodeConfig.addTechs( [
+        // bemtree
+        [ techs.bemtreeI18N, {
+          sourceSuffixes: [ 'bemtree', 'bemtree.js' ],
+          target: '?.{lang}.bemtree.js',
+          lang: '{lang}'
+        } ],
+
+        // templates
+        [ techs.bemhtml, {
+          sourceSuffixes: [ 'bemhtml', 'bemhtml.js' ],
+          target: '?.{lang}.bemhtml.js',
+          forceBaseTemplates: true,
+          engineOptions: {
+            elemJsInstances: true,
+            xhtml: false,
+            omitOptionalEndTags: true,
+            unquotedAttrs: true,
+            // runtimeLint: true
+          },
+          requires: {
+            moment: {
+              globals: 'moment',
+              commonJS: 'moment'
+            },
+            moment_ru: {
+              globals: 'moment/locale/ru',
+              commonJS: 'moment/locale/ru'
+            }
+          }
+        } ]
+      ] );
+
+      nodeConfig.addTargets( [
+        '?.{lang}.bemtree.js',
+        '?.{lang}.bemhtml.js'
+      ] );
+
+    } );
 
     config.node( 'dist/' + platform, ( nodeConfig ) => {
       nodeConfig.addTechs( [
@@ -109,70 +163,6 @@ module.exports = ( config ) => {
       nodeConfig.addTargets( [
         '../../static/assets/css/' + platform + '/?.min.css',
         '../../static/assets/js/' + platform + '/?.{lang}.min.js'
-      ] );
-    } );
-  } );
-
-  let levels;
-  platforms.forEach( ( platform ) => {
-    levels = getLevels( platform );
-    !__DEV__ || levels.push( { path: path.join( 'components', 'development.blocks' ), check: true } );
-
-      // Сборка бандлов по декларациям
-      config.nodes( 'bundles/' + platform + '.bundles/*', ( nodeConfig ) => {
-        nodeConfig.addTechs( [
-          [ techs.bem.levels, { levels: levels } ],
-          [ techs.fileProvider, { target: '?.bemdecl.js' } ],
-          [ techs.bem.deps, { target: '.?.deps.js' } ],
-          [ techs.bem.files, { depsFile: '.?.deps.js' } ],
-          // i18n
-          [ techs.keysets, { lang: '{lang}' } ],
-          [ techs.i18n, {
-            exports: { ym: true, commonJS: true },
-            lang: '{lang}'
-          } ],
-        ] );
-      } );
-  } );
-
-  platforms.forEach( ( platform ) => {
-    config.nodes( 'bundles/' + platform + '.bundles/*', ( nodeConfig ) => {
-      nodeConfig.addTechs( [
-        // bemtree
-        [ techs.bemtreeI18N, {
-          sourceSuffixes: [ 'bemtree', 'bemtree.js' ],
-          target: '?.{lang}.bemtree.js',
-          lang: '{lang}'
-        } ],
-
-        // templates
-        [ techs.bemhtml, {
-          sourceSuffixes: [ 'bemhtml', 'bemhtml.js' ],
-          target: '?.{lang}.bemhtml.js',
-          forceBaseTemplates: true,
-          engineOptions: {
-            elemJsInstances: true,
-            xhtml: false,
-            omitOptionalEndTags: true,
-            unquotedAttrs: true,
-            // runtimeLint: true
-          },
-          requires: {
-            moment: {
-              globals: 'moment',
-              commonJS: 'moment'
-            },
-            moment_ru: {
-              globals: 'moment/locale/ru',
-              commonJS: 'moment/locale/ru'
-            }
-          }
-        } ]
-      ] );
-
-      nodeConfig.addTargets( [
-        '?.{lang}.bemtree.js',
-        '?.{lang}.bemhtml.js'
       ] );
     } );
   } );

@@ -9,7 +9,7 @@ block('card-author').mod('view', 'detail')(
     let data_rows = [
       {field: 'career',   name: ctx.lang==='en' ? 'career' : 'Карьера'                          },
       {field: 'birthday', name: ctx.lang==='en' ? 'Date of birth' : 'Дата рождения'                    },
-      {field: 'city',     name: ctx.lang==='en' ? 'Place of birth' : 'Место рождения', sub_field: 'name'},
+      {field: 'city',     name: ctx.lang==='en' ? 'Location' : 'Место жительства', sub_field: 'name'},
       {field: 'email',    name: ctx.lang==='en' ? 'Email' : 'Эл. почта'                        },
       {field: 'web',      name: ctx.lang==='en' ? 'Website' : 'Сайт'                             }
       ];

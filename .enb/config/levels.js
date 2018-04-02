@@ -2,8 +2,8 @@ const path = require('path'),
       fs = require('fs'),
       SETS = {
         desktop: ['common', 'desktop'],
-        widget: ['common', 'desktop', 'widget'],
-        touch: ['common', 'touch']
+        widget: ['common', 'desktop', 'widget']
+        // touch: ['common', 'touch']
       };
 
 function getLevels(platform) {
