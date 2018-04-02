@@ -9,6 +9,10 @@ block(header) {
         background-color: unset!important;
       }
     }
+
+    @media(max-width: 1025px){
+      display: none;
+    }
   }
 
   elem(show-menu){

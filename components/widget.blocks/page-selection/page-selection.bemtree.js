@@ -9,6 +9,7 @@ block('page-selection').replace()( node => {
           mods: { view: 'grid' },
           mix: { block: 'card-selection', elem: 'item' },
           movie: item,
+          lang: node.data.lang
         }
       } )
     }

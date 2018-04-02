@@ -85,6 +85,10 @@ block(header).mod(theme artdoc) {
   .elem(social) {
     box-sizing: border-box;
     padding: 0 7px;
+
+    @media(max-width: 1025px){
+      display: none;
+    }
   }
 
   .elem(search) {

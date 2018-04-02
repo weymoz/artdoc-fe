@@ -63,7 +63,7 @@ block('card-movie').elem('slider')(
         }
       }
     } );
-    
+
   })
 
 )
