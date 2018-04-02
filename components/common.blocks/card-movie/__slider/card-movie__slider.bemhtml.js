@@ -70,6 +70,10 @@ block('card-movie').elem('slider')(
     } else {
         let slides = [];
 
+        if ( node._cover ) {
+          slides.unshift( { id: node._cover.id, type: 'image' } );
+        }
+
         if ( node._trailer ) {
           const video = parseVideo( node._trailer );
           slides.splice( 1, 0, { id: video._video_id, type: 'video', video: video } );
