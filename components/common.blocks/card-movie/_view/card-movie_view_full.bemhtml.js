@@ -9,7 +9,7 @@ block('card-movie').mod('view', 'full')(
   addJs()( true ),
 
   content()( ( node, ctx ) => {
-    return [
+     return [
       {
         elem: 'content',
         content: [
