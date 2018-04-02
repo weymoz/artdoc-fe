@@ -35,13 +35,20 @@ block('card-author')(
   match( node => node._image_id ).content()( node => {
 
     return {
-      block: 'image',
-      mods: { circle: true, 'has-resize': true },
-      mix: { block: 'card-author', elem: 'aside' },
-      width: node.width,
-      height: node.height,
-      url: node._image_id
-    }
+        block: 'link',
+        mods: {
+          size: 's'
+        },
+        url: '/' + node._lang + '/author/'+node._id,
+        content: {
+          block: 'image',
+          mods: { circle: true, 'has-resize': true },
+          mix: { block: 'card-author', elem: 'aside' },
+          width: node.width,
+          height: node.height,
+          url: node._image_id
+        }
+     }
   } ),
 
   match( node => node._name )(
