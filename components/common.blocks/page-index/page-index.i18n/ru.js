@@ -8,6 +8,7 @@ module.exports = {
         'collectionsTitle'  : 'Авторские подборки',
         'link-to-selection' : 'Смотреть все подборки',
         'about'             : 'О проекте',
-        'more'              : 'Подробнее'
+        'more'              : 'Подробнее',
+        'available'         : 'Доступные онлайн'
     }
 };

@@ -1,7 +1,6 @@
 block('nav-menu')(
 
   content()( ( node, ctx ) => {
-
     return [
       {
         block: 'dropdown',
@@ -43,13 +42,14 @@ block('nav-menu')(
                 { block: node.block, elem: 'close' },
                 ctx.category && ctx.category.map( item => {
                 let isChecked = ctx.currentCategoryCode === item.code ? true : false;
+                let isSpecial = item.code === 'online' ? true : false;
                 return {
                   elem: 'item',
-                  elemMods: { type: 'link', checked: isChecked },
+                  elemMods: { type: 'link', checked: isChecked, special: isSpecial },
                   val: item.code,
                   content: {
                     block: 'link',
-                    url: item.id ? ('/' + node.data.lang + '/movie/category-' + item.code) : ('/' + node.data.lang + '/movie'),
+                    url: item.id ? ('/' + node.data.lang + '/movie/category-' + item.code) : (item.code === 'online' ? '/' + node.data.lang + '/movie?page=1&sort=-rating&view=grid&full_movie=on' : '/' + node.data.lang + '/movie'),
                     content: item.name
                   }
                 }

@@ -19,6 +19,10 @@ block(menu).mod(nav-menu) {
     line-height: 32px;
     padding: 0;
 
+    .mod(special){
+      font-weight: bold;
+    }
+
     .mod(checked) {
       background: none;
       position: relative;

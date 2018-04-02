@@ -5,6 +5,11 @@ block('header')(
 
     const category = [
       {
+        name: node.i18n('index', 'available'),
+        id: null,
+        code: 'online',
+      },
+      {
         name: node.i18n('index', 'allMovies'),
         id: null,
         code: 'all',

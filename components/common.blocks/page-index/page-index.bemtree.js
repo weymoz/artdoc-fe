@@ -5,10 +5,15 @@ block('page-index').replace()( node => {
   const linkPerSlide = 20;
   const categories = [
     {
+      name: node.i18n('index', 'available'),
+      id: null,
+      code: 'online',
+      primary: true
+    },
+    {
       name: node.i18n('index', 'allMovies'),
       id: null,
-      code: 'all',
-      primary: true
+      code: 'all'
     },
     ...node.data.lang === 'en' ? node.data.categoryEn : node.data.category
   ];
@@ -23,7 +28,7 @@ block('page-index').replace()( node => {
         block: 'link',
         mods: { view: 'tag' },
         mix: { block: 'slider', elem: 'link', elemMods: { primary: !!currentLink.primary } },
-        url: currentLink.id ? '/' + node.data.lang + '/movie/category-' + currentLink.code : '/' + node.data.lang + '/movie',
+        url: currentLink.id ? '/' + node.data.lang + '/movie/category-' + currentLink.code : (currentLink.primary === true ? '/' + node.data.lang + '/movie?page=1&sort=-rating&view=grid&full_movie=on' : '/' + node.data.lang + '/movie'),
         content: currentLink.name
       };
     }
@@ -31,9 +36,6 @@ block('page-index').replace()( node => {
 
 
   let linkProvider = '/' + node.data.lang;
-
-
-
 
   /*
    * Normalization

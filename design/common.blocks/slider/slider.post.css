@@ -54,7 +54,8 @@ block(slider) {
     box-shadow: none;
 
     &.block(link).mod(hovered) {
-      background-color: #fff;
+      background-color: #f3203b;
+      color: #fff;
     }
   }
 

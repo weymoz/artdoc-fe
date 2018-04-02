@@ -8,6 +8,7 @@ module.exports = {
         'collectionsTitle'  : 'Selections',
         'link-to-selection' : 'Watch all selections',
         'about'             : 'About the project',
-        'more'              : 'More'
+        'more'              : 'More',
+        'available'         : 'Available online'
     }
 };
