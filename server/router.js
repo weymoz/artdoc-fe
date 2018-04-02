@@ -25,6 +25,10 @@ module.exports = app => {
   global.categoryByCode = {};
   global.categoryByCodeEn = {};
 
+  process.on('unhandledRejection', (reason, p) => {
+    console.error('Unhandled Rejection at:', p, 'reason:', reason);
+  });
+
   // Promo
   app.use( (req, res, next) => {
     // Check if `req.query.promo` contains in promo's list;

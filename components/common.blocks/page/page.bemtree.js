@@ -19,6 +19,8 @@ block('page')(
       newRoute = originalUrl.replace(regV,'en');
     }
 
+
+
     return [
       { // Google Tag Manager
         tag: 'noscript',

@@ -5,7 +5,37 @@ block('page-thanks')(
     const _discuss = 'В 21:00 состоится обсуждение фильма с автором и зрителями. Ссылка на обсуждение будет доступна на странице просмотра фильма.'
     const _ticket = node.data.api.session;
 
+    const _movie = node.data.api.movie;
+
+      function purchaseGoods() {
+        let purchased = {
+          'ecommerce': {
+            'purchase': {
+              'actionField': {
+                'id': _movie.id,
+                'revenue': _movie.price.price,
+                'currency': _movie.price.currency === '1' ? 'RUB' : 'USD',
+                // 'coupon': order.promocode_id
+              },
+              'products': {
+                name: _movie.name,
+                id: _movie.id,
+                price: _movie.price.price,
+                brand: 'ArtdocMedia',
+                variant: node.data.api.type,
+                quantity: 1
+              }
+            }
+          }
+        };
+        return JSON.stringify(purchased);
+      }
+
     return [
+      {
+        elem: 'js',
+        content: 'if(!window.dataLayer){window.dataLayer=new Array()}; window.dataLayer.push(\'' + purchaseGoods() + '\')'
+      },
       {
         elem: 'content',
         elemMods: { width: 'narrow', gap: 'bottom' },

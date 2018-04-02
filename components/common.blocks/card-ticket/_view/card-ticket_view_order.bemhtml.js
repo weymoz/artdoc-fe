@@ -90,6 +90,9 @@ block('card-ticket').mod('view', 'order').content()( ( node, ctx ) => {
             { tag: 'br' },
             {
               block: 'form',
+              js: {
+                movie: ctx.movie
+              },
               mods: {
                 view: 'order',
                 theme: 'artdoc-dark'

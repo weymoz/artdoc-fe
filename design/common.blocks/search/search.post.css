@@ -48,7 +48,7 @@ block(search) {
     }
 
 
-    @media(max-width: 425px) {
+    @media(max-width: 1024px) {
       padding: 0 16px;
       box-sizing: border-box;
 

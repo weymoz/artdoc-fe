@@ -46,6 +46,9 @@ provide(Form.declMod({ modName: 'view', modVal: 'order' }, {
               }
             });
 
+            window.dataLayer.push(_this._addGoods(_this.params.movie));
+            console.log(window.dataLayer);
+
             _this._modal
               .setContent( '' )       // Move modal to end of page,
               .setMod( 'visible' )    // because we have form inside form
@@ -154,6 +157,25 @@ provide(Form.declMod({ modName: 'view', modVal: 'order' }, {
 
   _onFormError: function(e, data) {
     console.log('error', data);
+  },
+
+  _addGoods(item) {
+    let addToCart = {
+      event: 'addToCart',
+      'ecommerce': {
+        'currencyCode': 'USD',
+        'add': {
+          'products': {
+            name: item.name,
+            id: item.id,
+            price: item.price.price,
+            brand: 'ArtdocMedia',
+            quantity: 1
+          }
+        }
+      }
+    };
+    return JSON.stringify(addToCart);
   }
 
 }));

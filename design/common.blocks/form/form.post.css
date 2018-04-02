@@ -38,7 +38,7 @@ block(form) {
     }
 
 
-    @media(max-width: 425px){
+    @media(max-width: 1024px){
       elem(header){
         padding: 23px 0 5px !important;
         margin-bottom: 0;

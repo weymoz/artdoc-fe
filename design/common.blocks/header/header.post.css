@@ -10,7 +10,7 @@ block(header) {
       }
     }
 
-    @media(max-width: 1025px){
+    @media(max-width: 1080px){
       display: none;
     }
   }

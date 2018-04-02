@@ -65,7 +65,8 @@ block('page-order')(
             },
             ticket: ticket,
             lang: node._lang,
-            currency: node._currency
+            currency: node._currency,
+            movie: ticket.movie
           }
         ]
       }

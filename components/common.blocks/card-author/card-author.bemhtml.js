@@ -35,12 +35,6 @@ block('card-author')(
   match( node => node._image_id ).content()( node => {
 
     return {
-        block: 'link',
-        mods: {
-          size: 's'
-        },
-        url: '/' + node._lang + '/author/'+node._id,
-        content: {
           block: 'image',
           mods: { circle: true, 'has-resize': true },
           mix: { block: 'card-author', elem: 'aside' },
@@ -48,7 +42,6 @@ block('card-author')(
           height: node.height,
           url: node._image_id
         }
-     }
   } ),
 
   match( node => node._name )(

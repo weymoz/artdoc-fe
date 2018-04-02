@@ -66,7 +66,7 @@ block(modal) {
     top: 64px;
     bottom: 0;
 
-    @media(max-width: 425px){
+    @media(max-width: 1024px){
       top: 56px;
       padding-bottom: 56px;
       box-sizing: border-box;

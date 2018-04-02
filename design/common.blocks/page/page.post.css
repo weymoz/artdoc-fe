@@ -116,13 +116,13 @@ block(page) {
     min-width: 320px;
 
     block(breadcrumbs){
-      @media(max-width: 425px){
+      @media(max-width: 1024px){
         display: none;
       }
     }
 
     block(header){
-      @media(max-width: 425px){
+      @media(max-width: 1024px){
         justify-content: flex-start;
 
         elem(social){
@@ -169,28 +169,28 @@ block(page) {
     }
 
     block(footer){
-      @media(max-width: 425px){
+      @media(max-width: 1024px){
         padding-top: 20px;
         padding-bottom: 23px;
         position: relative;
       }
 
       elem(content){
-        @media(max-width: 425px){
+        @media(max-width: 1024px){
           display: flex;
           flex-direction: column;
           padding: 0!important;
         }
 
         elem(about){
-          @media(max-width: 425px){
+          @media(max-width: 1024px){
             padding-right: 0;
             width: 100%;
             padding: 16px;
             box-sizing: border-box;
 
             block(link){
-              @media(max-width: 425px){
+              @media(max-width: 1024px){
                 margin-bottom: 8px;
               }
             }
@@ -203,7 +203,7 @@ block(page) {
         }
 
         elem(title){
-          @media (max-width: 425px) {
+          @media (max-width: 1024px) {
             width: 100%;
             font-size: 14px;
             line-height: 20px;
@@ -215,20 +215,20 @@ block(page) {
         }
 
         elem(for-viewers){
-          @media(max-width: 425px){
+          @media(max-width: 1024px){
             padding-right: 0;
             width: 100%;
           }
 
           block(list){
-            @media(max-width: 425px){
+            @media(max-width: 1024px){
               padding: 16px;
               box-sizing: border-box;
               display: none;
             }
 
             .mod(show){
-              @media(max-width: 425px){
+              @media(max-width: 1024px){
                 display: block;
               }
             }
@@ -236,20 +236,20 @@ block(page) {
         }
 
         elem(for-professionals){
-          @media(max-width: 425px){
+          @media(max-width: 1024px){
             padding-right: 0;
             width: 100%;
             margin-top: -1px;
           }
 
           block(list){
-            @media(max-width: 425px){
+            @media(max-width: 1024px){
               padding: 16px;
               box-sizing: border-box;
               display: none;
 
               .mod(show){
-                @media(max-width: 425px){
+                @media(max-width: 1024px){
                   display: block;
                 }
               }
@@ -258,21 +258,21 @@ block(page) {
         }
 
         elem(contacts){
-          @media(max-width: 425px){
+          @media(max-width: 1024px){
             width: 100%;
             padding: 16px;
             box-sizing: border-box;
           }
 
           elem(social){
-            @media (max-width: 425px) {
+            @media (max-width: 1024px) {
               margin-bottom: 23px;
             }
           }
 
           block(list){
             elem(item){
-              @media(max-width: 425px){
+              @media(max-width: 1024px){
                 font-size: 12px;
                 line-height: 16px;
               }
@@ -281,7 +281,7 @@ block(page) {
         }
 
         .mod(section logo){
-          @media(max-width: 425px){
+          @media(max-width: 1024px){
             padding: 0 16px;
             box-sizing: border-box;
             position: absolute;
@@ -299,7 +299,7 @@ block(page) {
         }
 
         .mod(section misc){
-          @media(max-width: 425px){
+          @media(max-width: 1024px){
             padding: 0 16px!important;
             box-sizing: border-box;
 
@@ -336,24 +336,24 @@ block(page) {
     /* Главная страница */
 
     block(slider){
-      @media(max-width: 425px){
+      @media(max-width: 1024px){
         display: none;
       }
     }
 
 
     block(card-poster){
-      @media(max-width: 425px){
+      @media(max-width: 1024px){
         flex-direction: column;
       }
 
       elem(content){
-        @media(max-width: 425px){
+        @media(max-width: 1024px){
           height: 40%;
         }
 
         elem(image){
-          @media(max-width: 425px){
+          @media(max-width: 1024px){
             height: 300px;
           }
         }
@@ -361,7 +361,7 @@ block(page) {
 
       block(card-movie){
         &.mod(view slide){
-          @media(max-width: 425px){
+          @media(max-width: 1024px){
 
             elem(content){
               min-height: unset;
@@ -384,7 +384,7 @@ block(page) {
           }
         }
 
-        @media(max-width: 425px) {
+        @media(max-width: 1024px) {
           elem(cover){
             padding: 16px;
           }
@@ -412,12 +412,12 @@ block(page) {
       }
 
       elem(aside){
-        @media(max-width: 425px){
+        @media(max-width: 1024px){
           width: unset;
         }
 
         block(link){
-          @media(max-width: 425px){
+          @media(max-width: 1024px){
             display: none;
           }
         }
@@ -425,7 +425,7 @@ block(page) {
     }
 
     elem(content){
-      @media(max-width: 425px){
+      @media(max-width: 1024px){
         padding: 0 16px;
 
         block(paragraph){
@@ -435,7 +435,7 @@ block(page) {
 
       block(heading){
         &.mod(size l){
-          @media(max-width: 425px){
+          @media(max-width: 1024px){
             font-size: 24px;
             line-height: 1.3;
             margin-top: 40px;
@@ -448,7 +448,7 @@ block(page) {
     }
 
     elem(desktop-link-btn){
-      @media(max-width: 425px){
+      @media(max-width: 1024px){
         display: none;
       }
     }
@@ -456,7 +456,7 @@ block(page) {
     elem(adaptive-link-btn){
       display: none;
 
-      @media(max-width: 425px){
+      @media(max-width: 1024px){
         display: block;
         margin-bottom: 24px;
         width: 100%;
@@ -464,7 +464,7 @@ block(page) {
 
       &block(button).mod(size xxl){
         elem(text){
-          @media(max-width: 425px){
+          @media(max-width: 1024px){
             padding: 12px 11px;
             font-size: 18px;
             line-height: 24px;
@@ -478,14 +478,14 @@ block(page) {
 
         elem(title){
           &block(heading).mod(size xs){
-            @media (max-width: 425px){
+            @media (max-width: 1024px){
               font-size: 16px;
             }
           }
         }
 
         elem(footer){
-          @media(max-width: 425px){
+          @media(max-width: 1024px){
             flex-direction: column;
           }
         }
@@ -493,11 +493,11 @@ block(page) {
 
 
       elem(content){
-        @media (max-width: 425px){
+        @media (max-width: 1024px){
           overflow-x: auto;
 
           elem(item){
-            @media (max-width: 425px){
+            @media (max-width: 1024px){
               flex-shrink: 0;
               width: 196px;
             }
@@ -512,7 +512,7 @@ block(page) {
 
 
     elem(collections){
-      @media(max-width: 425px){
+      @media(max-width: 1024px){
         margin-left: 1px;
         margin-bottom: 24px;
       }
@@ -521,21 +521,21 @@ block(page) {
 
     block(card-selection){
 
-      @media(max-width: 425px){
+      @media(max-width: 1024px){
         flex-direction: column;
       }
 
       .mod(view selections){
         & + & {
           background-color: red;
-          @media(max-width: 425px){
+          @media(max-width: 1024px){
             margin-top: 45px!important;
           }
         }
 
         block(card-movie){
           .mod(view selection){
-            @media (max-width: 425px){
+            @media (max-width: 1024px){
               height: 286px;
             }
           }
@@ -546,7 +546,7 @@ block(page) {
         &block(card-selection){
           &.mod(view selections){
             elem(content){
-              @media(max-width: 425px){
+              @media(max-width: 1024px){
                 box-shadow: inset 0 5px 0 -1px #000, inset 0 -3px 0 -2px #000;
               }
             }
@@ -556,33 +556,33 @@ block(page) {
       }
 
       elem(content){
-        @media(max-width: 425px){
+        @media(max-width: 1024px){
           margin-bottom: 16px;
           height: 209px;
         }
       }
 
       elem(counter-number){
-        @media(max-width: 425px){
+        @media(max-width: 1024px){
           font-size: 40px;
         }
       }
 
       elem(counter-label){
-        @media(max-width: 425px){
+        @media(max-width: 1024px){
           font-size: 14px;
           line-height: 20px;
         }
       }
 
       elem(cover){
-        @media (max-width: 425px) {
+        @media (max-width: 1024px) {
           padding: 17px 20px;
         }
       }
 
       elem(aside){
-        @media (max-width: 425px){
+        @media (max-width: 1024px){
           overflow-x: auto;
           width: unset;
           margin-left: 0;
@@ -590,7 +590,7 @@ block(page) {
         }
 
         elem(item){
-          @media(max-width: 425px){
+          @media(max-width: 1024px){
             width: 196px;
             flex-shrink: 0;
             box-shadow: inset 0 -3px 0 -2px #000;
@@ -599,14 +599,14 @@ block(page) {
       }
 
       elem(name){
-        @media(max-width: 425px){
+        @media(max-width: 1024px){
           font-size: 24px;
           line-height: 28px;
         }
       }
 
       elem(author){
-        @media(max-width: 425px){
+        @media(max-width: 1024px){
           display: none;
         }
       }
@@ -616,14 +616,14 @@ block(page) {
 
     elem(section){
       block(club-footer){
-        @media (max-width: 425px){
+        @media (max-width: 1024px){
           display: none;
         }
       }
     }
 
   block(dropdown).mod(nav-menu){
-    @media(max-width: 425px){
+    @media(max-width: 1024px){
       top: 56px !important;
 
       block(menu).mod(nav-menu){
@@ -643,7 +643,7 @@ block(page) {
 
   block(popup){
     &block(dropdown).mod(nav-menu){
-      @media(max-width: 425px){
+      @media(max-width: 1024px){
         overflow: auto;
         height: 100vh;
       }
@@ -651,7 +651,7 @@ block(page) {
   }
 
   block(modal).mod(view mobile-menu){
-    @media(max-width: 425px){
+    @media(max-width: 1024px){
       block(nav-menu){
         width: 100%;
         elem(item){
@@ -670,13 +670,13 @@ block(page) {
   /*Страница фильмов*/
   &block(page).mod(view page-movies){
     block(breadcrumbs){
-      @media(max-width: 425px){
+      @media(max-width: 1024px){
         display: none;
       }
     }
 
     block(heading).mod(size xl){
-      @media(max-width: 425px){
+      @media(max-width: 1024px){
         font-size: 18px;
         line-height: 24px;
         margin-bottom: 32px;
@@ -685,7 +685,7 @@ block(page) {
     }
 
     block(card-movie).mod(view grid){
-      @media(max-width: 425px){
+      @media(max-width: 1024px){
         elem(name){
           padding: 8px 0 16px;
         }
@@ -698,7 +698,7 @@ block(page) {
 
     block(filters){
       elem(header){
-        @media(max-width: 425px){
+        @media(max-width: 1024px){
           flex-direction: column;
           align-items: stretch;
           box-shadow: unset;
@@ -706,20 +706,20 @@ block(page) {
       }
 
       elem(view){
-        @media(max-width: 425px){
+        @media(max-width: 1024px){
           display: none;
         }
       }
 
       elem(toggle){
-        @media(max-width: 425px){
+        @media(max-width: 1024px){
           width: 100%;
           display: block;
         }
       }
 
       elem(actions){
-        @media(max-width: 425px){
+        @media(max-width: 1024px){
           flex-wrap: wrap;
           margin: 0;
           flex: 1;
@@ -740,7 +740,7 @@ block(page) {
       }
 
       elem(sort){
-        @media(max-width: 425px){
+        @media(max-width: 1024px){
           flex: unset;
           flex-direction: row;
           flex-wrap: wrap;
@@ -763,14 +763,14 @@ block(page) {
         }
 
         &::before{
-          @media (max-width: 425px){
+          @media (max-width: 1024px){
             margin-right: 0px;
           }
         }
       }
 
       elem(form){
-        @media(max-width: 425px){
+        @media(max-width: 1024px){
           overflow: auto;
           position: relative;
           &.mod(show){
@@ -812,7 +812,7 @@ block(page) {
       }
 
       .mod(result grid) {
-        @media(max-width: 425px){
+        @media(max-width: 1024px){
           .elem(content) {
             padding-top: 40px;
           }
@@ -829,26 +829,26 @@ block(page) {
   &block(page).mod(view page-movie){
 
     elem(content){
-      @media(max-width: 425px){
+      @media(max-width: 1024px){
         padding: 0;
       }
 
       &.mod(gap top){
-        @media (max-width: 425px){
+        @media (max-width: 1024px){
           margin-top: 32px;
         }
       }
     }
 
     block(breadcrumbs){
-      @media(max-width: 425px){
+      @media(max-width: 1024px){
         display: none;
       }
     }
 
     block(card-movie).mod(view full){
 
-      @media(max-width: 425px){
+      @media(max-width: 1024px){
         flex-direction: column;
 
         elem(content){
@@ -888,7 +888,7 @@ block(page) {
     }
 
     block(ticket-case){
-      @media(max-width: 425px){
+      @media(max-width: 1024px){
         padding: 28px 16px;
 
       elem(calendar){
@@ -964,7 +964,7 @@ block(page) {
     }
 
     block(movie-about){
-      @media(max-width: 425px){
+      @media(max-width: 1024px){
 
         padding: 0 16px;
         box-sizing: border-box;
@@ -1002,7 +1002,7 @@ block(page) {
 
   /*страница отдельной подборки*/
   &.mod(view page-selection){
-    @media(max-width: 425px){
+    @media(max-width: 1024px){
       block(card-selection){
 
         &.mod(view detail){

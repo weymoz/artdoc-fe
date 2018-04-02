@@ -18,7 +18,7 @@ block(link) {
     margin-right: .5em;
     padding: .5em 1em;
 
-    @media(max-width: 425px){
+    @media(max-width: 1024px){
       font-size: 12px;
       line-height: 16px;
     }
