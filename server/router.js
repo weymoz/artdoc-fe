@@ -66,8 +66,9 @@ module.exports = app => {
       // Добавление геопозиции
       let ip = req.header('x-forwarded-for') || '95.31.18.119';
       var geo = geoip.lookup(ip);
+      let currentGeo = geo.country ? geo.country : 'RU';
 
-      req.globalData = Object.assign({ geo: geo.country ? geo.country : 'RU'}, req.globalData);
+      req.globalData = Object.assign({ geo: currentGeo }, req.globalData);
 
     if (req.isAuthenticated()) {
       request({
