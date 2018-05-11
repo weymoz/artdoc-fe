@@ -29,7 +29,6 @@ var
     var source = axios.CancelToken.source();
 
     if (options.clientRequest) {
-      console.log('XXXXXXXXXXXX', options.clientRequest.globalData)
       if (options.clientRequest.globalData && options.clientRequest.globalData.geo) {
         options.url += (options.url.indexOf('?')?'&':'?') + 'country='+options.clientRequest.globalData.geo;
       }
