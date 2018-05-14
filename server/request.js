@@ -30,7 +30,7 @@ var
 
     if (options.clientRequest) {
       if (options.clientRequest.globalData && options.clientRequest.globalData.geo) {
-        options.url += (options.url.indexOf('?')?'&':'?') + 'country='+options.clientRequest.globalData.geo;
+        options.url += (options.url.indexOf('?')>-1?'&':'?') + 'country='+options.clientRequest.globalData.geo;
       }
 
       options.headers = Object.assign(
