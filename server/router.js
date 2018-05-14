@@ -69,6 +69,9 @@ module.exports = app => {
       console.log(ip);
       var geo = geoip.lookup(ip);
       console.log(geo);
+      if (!geo) {
+        geo = { country: 'RU'}
+      }
       let currentGeo = geo.country ? geo.country : 'RU';
 
       req.globalData = Object.assign({ geo: currentGeo }, req.globalData);
