@@ -16,10 +16,10 @@ block('card-author').mod('view', 'detail')(
 
     let socials = [
       { field: 'fb', icon: 'facebook'  },
-      { field: 'yt', icon: 'instagram' },
-      { field: 'inst', icon: 'twitter' },
+      { field: 'yt', icon: 'youtube' },
+      { field: 'inst', icon: 'instagram' },
       { field: 'vk', icon: 'vkontakte' },
-      { field: 'tw', icon: 'youtube' }
+      { field: 'tw', icon: 'twitter' }
     ]
 
 
