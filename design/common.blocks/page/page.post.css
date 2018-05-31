@@ -122,7 +122,7 @@ block(page) {
     }
 
     block(header){
-      @media(max-width: 1024px){
+      @media(max-width: 880px){
         justify-content: flex-start;
 
         elem(social){
@@ -176,14 +176,20 @@ block(page) {
       }
 
       elem(content){
-        @media(max-width: 1024px){
+        @media(max-width: 880px){
           display: flex;
           flex-direction: column;
           padding: 0!important;
         }
 
         elem(about){
-          @media(max-width: 1024px){
+
+          @media(max-width: 1024px) {
+            padding: 0 16px;
+            max-width: 280px;
+          }
+
+          @media(max-width: 880px){
             padding-right: 0;
             width: 100%;
             padding: 16px;
@@ -207,6 +213,12 @@ block(page) {
             width: 100%;
             font-size: 14px;
             line-height: 20px;
+            margin-bottom: 10px;
+
+
+          }
+
+          @media (max-width: 880px) {
             padding: 16px;
             box-sizing: border-box;
             box-shadow: inset 0 3px 0 -2px #393943, inset 0 -3px 0 -2px #393943;
@@ -215,20 +227,27 @@ block(page) {
         }
 
         elem(for-viewers){
-          @media(max-width: 1024px){
+          @media(max-width: 880px){
+              padding-right: 40px;
+              width: 100%;
+          }
+
+
+
+          @media(max-width: 880px){
             padding-right: 0;
             width: 100%;
           }
 
           block(list){
-            @media(max-width: 1024px){
+            @media(max-width: 880px){
               padding: 16px;
               box-sizing: border-box;
               display: none;
             }
 
             .mod(show){
-              @media(max-width: 1024px){
+              @media(max-width: 880px){
                 display: block;
               }
             }
@@ -236,20 +255,20 @@ block(page) {
         }
 
         elem(for-professionals){
-          @media(max-width: 1024px){
+          @media(max-width: 880px){
             padding-right: 0;
             width: 100%;
             margin-top: -1px;
           }
 
           block(list){
-            @media(max-width: 1024px){
+            @media(max-width: 880px){
               padding: 16px;
               box-sizing: border-box;
               display: none;
 
               .mod(show){
-                @media(max-width: 1024px){
+                @media(max-width: 880px){
                   display: block;
                 }
               }
@@ -257,8 +276,23 @@ block(page) {
           }
         }
 
+        @media(max-width: 1024px) {
+          block(list) {
+            elem(item) {
+              font-size: 11px;
+              &::after {
+                display: none;
+              }
+            }
+            elem(item)::after{
+              display: none;
+            }
+          }
+
+        }
+
         elem(contacts){
-          @media(max-width: 1024px){
+          @media(max-width: 800px){
             width: 100%;
             padding: 16px;
             box-sizing: border-box;
@@ -275,6 +309,7 @@ block(page) {
               @media(max-width: 1024px){
                 font-size: 12px;
                 line-height: 16px;
+
               }
             }
           }
@@ -300,6 +335,14 @@ block(page) {
 
         .mod(section misc){
           @media(max-width: 1024px){
+            margin-top: 50px;
+            margin-bottom: 50px;
+            font-size: 11px;
+            padding: 0 16px!important;
+
+
+          }
+          @media(max-width: 880px){
             padding: 0 16px!important;
             box-sizing: border-box;
 
@@ -426,7 +469,7 @@ block(page) {
 
     elem(content){
       @media(max-width: 1024px){
-        padding: 0 16px;
+        padding: 0 16px 16px;
 
         block(paragraph){
           margin-bottom: 24px;
@@ -435,7 +478,7 @@ block(page) {
 
       block(heading){
         &.mod(size l){
-          @media(max-width: 1024px){
+          @media(max-width: 880px){
             font-size: 24px;
             line-height: 1.3;
             margin-top: 40px;
@@ -677,11 +720,12 @@ block(page) {
 
     block(heading).mod(size xl){
       @media(max-width: 1024px){
-        font-size: 18px;
         line-height: 24px;
         margin-bottom: 32px;
         margin-top: 32px;
+        font-size: 18px;
       }
+
     }
 
     block(card-movie).mod(view grid){
@@ -698,7 +742,7 @@ block(page) {
 
     block(filters){
       elem(header){
-        @media(max-width: 1024px){
+        @media(max-width: 880px){
           flex-direction: column;
           align-items: stretch;
           box-shadow: unset;
@@ -706,20 +750,20 @@ block(page) {
       }
 
       elem(view){
-        @media(max-width: 1024px){
+        @media(max-width: 880px){
           display: none;
         }
       }
 
       elem(toggle){
-        @media(max-width: 1024px){
+        @media(max-width: 880px){
           width: 100%;
           display: block;
         }
       }
 
       elem(actions){
-        @media(max-width: 1024px){
+        @media(max-width: 880px){
           flex-wrap: wrap;
           margin: 0;
           flex: 1;
@@ -740,7 +784,7 @@ block(page) {
       }
 
       elem(sort){
-        @media(max-width: 1024px){
+        @media(max-width: 880px){
           flex: unset;
           flex-direction: row;
           flex-wrap: wrap;
@@ -763,14 +807,14 @@ block(page) {
         }
 
         &::before{
-          @media (max-width: 1024px){
+          @media (max-width: 880px){
             margin-right: 0px;
           }
         }
       }
 
       elem(form){
-        @media(max-width: 1024px){
+        @media(max-width: 880px){
           overflow: auto;
           position: relative;
           &.mod(show){
@@ -812,11 +856,17 @@ block(page) {
       }
 
       .mod(result grid) {
-        @media(max-width: 1024px){
+        @media(max-width: 880px){
           .elem(content) {
             padding-top: 40px;
           }
 
+          .elem(result-item) {
+            /*lost-column: 1/1;*/
+          }
+        }
+
+        @media(max-width: 640px) {
           .elem(result-item) {
             lost-column: 1/1;
           }
@@ -848,7 +898,22 @@ block(page) {
 
     block(card-movie).mod(view full){
 
-      @media(max-width: 1024px){
+      @media(max-width: 1024px) {
+        margin-top: 20px;
+        elem(aside)  {
+
+          margin-left: 40px;
+        margin-right: 20px;
+          }
+
+elem(content){
+
+  margin-left: 20px;
+
+}
+      }
+
+      @media(max-width: 880px){
         flex-direction: column;
 
         elem(content){
@@ -964,7 +1029,7 @@ block(page) {
     }
 
     block(movie-about){
-      @media(max-width: 1024px){
+      @media(max-width: 880px){
 
         padding: 0 16px;
         box-sizing: border-box;

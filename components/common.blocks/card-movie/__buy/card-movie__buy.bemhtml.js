@@ -159,7 +159,7 @@ block('card-movie').elem('buy')(
     }
   }),
 
-  match( node => node._video_link && (node._view_access < 512 || node._price.price > 0) ).replace()( node => {
+                    match( node => node._video_link && (node._view_access < 512 || node._price.price > 0) ).replace()( node => {
 
     return [{
       block: 'button',
