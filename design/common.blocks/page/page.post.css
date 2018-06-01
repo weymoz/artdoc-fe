@@ -1067,7 +1067,7 @@ elem(content){
 
   /*страница отдельной подборки*/
   &.mod(view page-selection){
-    @media(max-width: 1024px){
+    @media(max-width: 880px){
       block(card-selection){
 
         &.mod(view detail){
