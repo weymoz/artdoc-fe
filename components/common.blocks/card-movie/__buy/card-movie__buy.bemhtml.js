@@ -126,7 +126,7 @@ block('card-movie').elem('buy')(
     }
   }),
 
-  match( node => node._price  && node._price.price > 0).replace()( node => {
+  match( node => node._price  && node._price.price > 0 && node && node._allowedInCountry).replace()( node => {
     let type, size, text;
     let currency = node._lang === 'en' ? '$' : ' ' + node._currency;
     let correctView = node._currency === '$' ? ( currency + ' ' + node._price.price ) : ( node._price.price + ' ' + currency );
