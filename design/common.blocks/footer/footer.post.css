@@ -44,6 +44,7 @@ block(footer) {
     box-sizing: border-box;
     background-color: #f4203b;
     background-origin: content-box;
+    margin-top: -65px
   }
 
   .elem(nav-item){

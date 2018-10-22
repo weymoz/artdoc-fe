@@ -107,13 +107,13 @@ block('page-index').replace()( node => {
           text: node.i18n('index', 'link-to-online'),
           url: linkProvider + '/cinema'
         },
-        {
+        node.data.lang !== 'en' && {
           elem: 'title',
           elemMods: { view: 'condensed-bold', size: 'xl', gap: 'both' },
           mix: { block: 'heading', mods: { caps: true, align: 'center', size: 'l' } },
           content: node.i18n('index', 'newsTitle')
         },
-        {
+        node.data.lang !== 'en' && {
           block: 'news',
           mix: { block: 'page', elem: 'news' },
           news: node.data.news
@@ -178,10 +178,12 @@ block('page-index').replace()( node => {
         {
           block: 'paragraph',
           mods: { align: 'center' },
-          content: [
-            'АртдокМедиа — это архив документального кино, снятого в странах бывшего СССР с начала 2000-х годов. Каталог устроен по классическому принципу синематеки: база с информацией о фильмах, фотографиями, трейлерами, доступу к просмотру, подборками по темам и ретроспективами. ',
+          content: node.data.lang === 'en' ? [
+            'Artdoc.media is an archive of documentary films made in countries of the former USSR since the early 2000s. The catalogue is arranged according to the classic principle of film libraries: it contains a detailed database, descriptions, photos, trailers, screenings, thematic selections and retrospectives. For the most part, our collection contains films produced without state funds, which therefore have not been retained in archives. Many studios that produced these films no longer exist. Thus, Artdoc.media is the only collection where many of these films are preserved for viewers and for the future.'
+          ] : [
+             'АртдокМедиа — это архив документального кино, снятого в странах бывшего СССР с начала 2000-х годов. Каталог устроен по классическому принципу синематеки: база с информацией о фильмах, фотографиями, трейлерами, доступу к просмотру, подборками по темам и ретроспективами. ',
             'Большая часть нашей коллекции состоит из фильмов, которые сняты без государственного участия, а значит не находятся в архивах и фондовых хранилищах. Немало студий, производивших эти фильмы, прекратили своё существование. Поэтому для многих фильмов наш сайт является единственным местом, сохраняющим эти картины для зрителя и для истории.'
-          ]
+          ],
         },
         {
           block: 'paragraph',

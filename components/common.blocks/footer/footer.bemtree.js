@@ -172,7 +172,100 @@ block('footer')(
                 },
                 content: [
                   { elem: 'item', mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } }, content: 'media@artdocfest.com' },
-                  { elem: 'item', mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } }, content: 'LV 1011 Latvia Riga Stabu 19-2' }
+                  { elem: 'item', mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } }, content: 'LV 1011 Latvia Riga Stabu 19-2' },
+
+
+
+                  /*
+                   * Телефон: + 371 2727 4745
+                   Skype: ArtdocMedia Cinematheque [активная ссылка на skype:live:f91ebf19476ab97a]
+                   Whatsapp: + 371 2727 4745 [активная ссылка на https://wa.me/37127274745]
+                   Telegram: artdocmediaoffice [активная ссылка на https://t.me/artdocmediaoffice]
+                   Signal: + 371 2727 4745
+
+                   *
+                   * */
+
+
+                  { elem: 'item',
+                    mix: {
+                      block: 'font',
+                      mods: { family: 'pt-mono', loaded: true }
+                    },
+
+                    content: [
+                      node.i18n('footer', 'phone') + ': ',
+                      {
+                        block: 'link',
+                        mods: { size: 's'},
+                        mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } },
+                        url: 'tel:+37127274745',
+                        content: '+ 371 2727 4745'
+                      }
+                    ]
+                  },
+                  { elem: 'item',
+                    mix: {
+                      block: 'font',
+                      mods: { family: 'pt-mono', loaded: true }
+                    },
+
+                    content: [
+                      'Skype: ',
+                      {
+                        block: 'link',
+                        mods: { size: 's'},
+                        mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } },
+                        url: 'skype:live:f91ebf19476ab97a',
+                        content: 'ArtdocMedia Cinematheque'
+                      }
+                    ]
+                  },
+                  { elem: 'item',
+                    mix: {
+                      block: 'font',
+                      mods: { family: 'pt-mono', loaded: true }
+                    },
+
+                    content: [
+                      'Whatsapp: ',
+                      {
+                        block: 'link',
+                        mods: { size: 's'},
+                        mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } },
+                        url: 'https://wa.me/37127274745',
+                        content: '+ 371 2727 4745'
+                      }
+                    ]
+                  },
+                  { elem: 'item',
+                    mix: {
+                      block: 'font',
+                      mods: { family: 'pt-mono', loaded: true }
+                    },
+
+                    content: [
+                      'Telegram: ',
+                      {
+                        block: 'link',
+                        mods: { size: 's'},
+                        mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } },
+                        url: 'https://t.me/artdocmediaoffice',
+                        content: 'artdocmediaoffice'
+                      }
+                    ]
+                  },
+                  { elem: 'item',
+                    mix: {
+                      block: 'font',
+                      mods: { family: 'pt-mono', loaded: true }
+                    },
+
+                    content: [
+                      'Signal: + 371 2727 4745',
+
+                    ]
+                  },
                 ]
               }
             ]

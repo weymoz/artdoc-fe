@@ -14,6 +14,7 @@ module.exports = {
         'add'             : 'Propose a film',
         'user'            : 'User agreement',
         'terms'           : 'Privacy policy',
-        'breadhead'       : 'Design and code'
+        'breadhead'       : 'Design and code',
+        'phone'           : 'Phone'
     }
 };
