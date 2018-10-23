@@ -1,6 +1,6 @@
 block('page-selections').replace()(function() {
   const selections = this.data.api;
-
+  console.log(this.data.pagination);
   return [
     {
       elem: 'content',
@@ -28,10 +28,10 @@ block('page-selections').replace()(function() {
         } )
       ]
     },
-    // {
-    //   block: 'pagination',
-    //   params: this.data.pagination
-    // },
+    {
+      block: 'pagination',
+      params: this.data.pagination
+    },
     {
       block: 'club-footer',
       mix: { block: 'page', elem: 'club' }

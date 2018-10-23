@@ -421,9 +421,11 @@ module.exports = app => {
   // Collections
   app.get( '/:lang/selection', ( req, res ) => {
     let data = Object.assign({}, req.globalData);
+    let req_url = new URL(req.protocol + '://' + req.get('host') + req.originalUrl);
     data.pagination = {
-      'per-page' : 20,
-      'page': req.query.page ? req.query.page : 1
+      'per-page' : 5,
+       page: req.query.page ? req.query.page : 1,
+       params: req_url.searchParams
     };
     let url = '/api/authorcompilation/';
     if (req.params.lang === 'en'){
@@ -441,6 +443,7 @@ module.exports = app => {
       url: url
     })
         .then( response => {
+          data.pagination = Object.assign(response.meta, data.pagination);
           data.api = response.items;
           data.lang = req.params.lang;
           return render( req, res, data );
