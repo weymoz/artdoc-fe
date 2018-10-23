@@ -507,6 +507,12 @@ module.exports = app => {
           console.log('next!');
           next();
         }
+
+
+        if (response.items[0].movies && response.items[0].movies.length) {
+          response.items[0].movies = response.items[0].movies.filter((movie) => movie.status == 10)
+        }
+
         data.api = response.items[0];
         data.origUrl = req.originalUrl;
         data.lang = req.params.lang;
