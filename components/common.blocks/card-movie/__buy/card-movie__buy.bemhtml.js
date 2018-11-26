@@ -45,7 +45,7 @@ block('card-movie').elem('buy')(
           },
           mods: { caps: true, size: 'xs'},
           mix: { block: 'font', mods: { family: 'helvetica-neue-condensed-bold', loaded: true } },
-          content: "Артдокфест 2017"
+          content: "Артдокфест 2018"
         },
         /*{
           attrs: {
