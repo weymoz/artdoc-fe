@@ -100,78 +100,78 @@ block('page-club').content()(function( node ) {
           }
         ]
       },
-      {
-        elem: 'footer',
-        content: [
-          {
-            elem: 'footer-content',
-            content: [
-              {
-                block: 'page',
-                elem: 'title',
-                elemMods: { size: 'xl' },
-                mix: [
-                  { block: 'heading', mods: { caps: true, align: 'center', size: 'l' } },
-                  { block: 'font', mods: { family: 'helvetica-neue-condensed-bold', loaded: true } }
-                ],
-                content: node.i18n('club', 'join')
-              },
-              {
-                block: 'paragraph',
-                content: node.i18n('club', 'join-descr')
-              },
-              {
-                block: 'paragraph',
-                mods: { align: 'center' },
-                content: {
-                  block: 'button',
-                  mix: { block: 'page-club', elem: 'get-card' },
-                  mods: {
-                    type: 'link',
-                    size: 'xxl',
-                    theme: 'artdoc-dark'
-                  },
-                  text: node.i18n('club', 'apply'),
-                  url: 'mailto:media@artdocfest.com'
-                }
-              }
-            ]
-          },
-          {
-            elem: 'footer-content',
-            content: [
-              {
-                block: 'page',
-                elem: 'title',
-                elemMods: { size: 'xl' },
-                mix: [
-                  { block: 'heading', mods: { caps: true, align: 'center', size: 'l' } },
-                  { block: 'font', mods: { family: 'helvetica-neue-condensed-bold', loaded: true } }
-                ],
-                content: node.i18n('club', 'card')
-              },
-              {
-                elem: 'image',
-                mix: { block: 'page-club', elem: 'card-image' }
-              },
-              {
-                block: 'paragraph',
-                content: [
-                  node.i18n('club', 'condition1'),
-                  {
-                    block: 'link',
-                    mods: { view: 'text' },
-                    mix: { block: 'page-club', elem: 'link' },
-                    url: 'mailto:media@artdocfest.com',
-                    content: node.i18n('club', 'link')
-                  },
-                  node.i18n('club', 'condition2')
-                ]
-              }
-            ]
-          }
-        ]
-      },
+      // {
+      //   elem: 'footer',
+      //   content: [
+      //     {
+      //       elem: 'footer-content',
+      //       content: [
+      //         {
+      //           block: 'page',
+      //           elem: 'title',
+      //           elemMods: { size: 'xl' },
+      //           mix: [
+      //             { block: 'heading', mods: { caps: true, align: 'center', size: 'l' } },
+      //             { block: 'font', mods: { family: 'helvetica-neue-condensed-bold', loaded: true } }
+      //           ],
+      //           content: node.i18n('club', 'join')
+      //         },
+      //         {
+      //           block: 'paragraph',
+      //           content: node.i18n('club', 'join-descr')
+      //         },
+      //         {
+      //           block: 'paragraph',
+      //           mods: { align: 'center' },
+      //           content: {
+      //             block: 'button',
+      //             mix: { block: 'page-club', elem: 'get-card' },
+      //             mods: {
+      //               type: 'link',
+      //               size: 'xxl',
+      //               theme: 'artdoc-dark'
+      //             },
+      //             text: node.i18n('club', 'apply'),
+      //             url: 'mailto:media@artdocfest.com'
+      //           }
+      //         }
+      //       ]
+      //     },
+      //     {
+      //       elem: 'footer-content',
+      //       content: [
+      //         {
+      //           block: 'page',
+      //           elem: 'title',
+      //           elemMods: { size: 'xl' },
+      //           mix: [
+      //             { block: 'heading', mods: { caps: true, align: 'center', size: 'l' } },
+      //             { block: 'font', mods: { family: 'helvetica-neue-condensed-bold', loaded: true } }
+      //           ],
+      //           content: node.i18n('club', 'card')
+      //         },
+      //         {
+      //           elem: 'image',
+      //           mix: { block: 'page-club', elem: 'card-image' }
+      //         },
+      //         {
+      //           block: 'paragraph',
+      //           content: [
+      //             node.i18n('club', 'condition1'),
+      //             {
+      //               block: 'link',
+      //               mods: { view: 'text' },
+      //               mix: { block: 'page-club', elem: 'link' },
+      //               url: 'mailto:media@artdocfest.com',
+      //               content: node.i18n('club', 'link')
+      //             },
+      //             node.i18n('club', 'condition2')
+      //           ]
+      //         }
+      //       ]
+      //     }
+      //   ]
+      // },
       {
         attrs: { id: 'performers' },
       },
@@ -230,45 +230,45 @@ block('page-club').content()(function( node ) {
           }
         ]
       },
-      // {
-      //   elem: 'footer',
-      //   content: [
-      //     {
-      //       elem: 'footer-content',
-      //       content: [
-      //         {
-      //           block: 'page',
-      //           elem: 'title',
-      //           elemMods: { size: 'xl' },
-      //           mix: [
-      //             { block: 'heading', mods: { caps: true, align: 'center', size: 'l' } },
-      //             { block: 'font', mods: { family: 'helvetica-neue-condensed-bold', loaded: true } }
-      //           ],
-      //           content: node.i18n('club', '200')
-      //         },
-      //         {
-      //           block: 'paragraph',
-      //           mods: { align: 'center' },
-      //           content: node.i18n('club', 'call')
-      //         },
-      //         {
-      //           block: 'paragraph',
-      //           mods: { align: 'center' },
-      //           content: {
-      //             block: 'button',
-      //             mix: { block: 'page-club', elem: 'get-card' },
-      //             mods: {
-      //               type: 'link',
-      //               size: 'xxl',
-      //               theme: 'artdoc-dark'
-      //             },
-      //             text: node.i18n('club', 'apply'),
-      //             url: 'mailto:media@artdocfest.com'
-      //           }
-      //         }
-      //       ]
-      //     }
-      //   ]
-      // }
+      {
+        elem: 'footer',
+        content: [
+          {
+            elem: 'footer-content',
+            content: [
+              {
+                block: 'page',
+                elem: 'title',
+                elemMods: { size: 'xl' },
+                mix: [
+                  { block: 'heading', mods: { caps: true, align: 'center', size: 'l' } },
+                  { block: 'font', mods: { family: 'helvetica-neue-condensed-bold', loaded: true } }
+                ],
+                content: node.i18n('club', '200')
+              },
+              {
+                block: 'paragraph',
+                mods: { align: 'center' },
+                content: node.i18n('club', 'call')
+              },
+              {
+                block: 'paragraph',
+                mods: { align: 'center' },
+                content: {
+                  block: 'button',
+                  mix: { block: 'page-club', elem: 'get-card' },
+                  mods: {
+                    type: 'link',
+                    size: 'xxl',
+                    theme: 'artdoc-dark'
+                  },
+                  text: node.i18n('club', 'apply'),
+                  url: 'mailto:media@artdocfest.com'
+                }
+              }
+            ]
+          }
+        ]
+      }
     ]
   });
