@@ -230,45 +230,45 @@ block('page-club').content()(function( node ) {
           }
         ]
       },
-      {
-        elem: 'footer',
-        content: [
-          {
-            elem: 'footer-content',
-            content: [
-              {
-                block: 'page',
-                elem: 'title',
-                elemMods: { size: 'xl' },
-                mix: [
-                  { block: 'heading', mods: { caps: true, align: 'center', size: 'l' } },
-                  { block: 'font', mods: { family: 'helvetica-neue-condensed-bold', loaded: true } }
-                ],
-                content: node.i18n('club', '200')
-              },
-              {
-                block: 'paragraph',
-                mods: { align: 'center' },
-                content: node.i18n('club', 'call')
-              },
-              {
-                block: 'paragraph',
-                mods: { align: 'center' },
-                content: {
-                  block: 'button',
-                  mix: { block: 'page-club', elem: 'get-card' },
-                  mods: {
-                    type: 'link',
-                    size: 'xxl',
-                    theme: 'artdoc-dark'
-                  },
-                  text: node.i18n('club', 'apply'),
-                  url: 'mailto:media@artdocfest.com'
-                }
-              }
-            ]
-          }
-        ]
-      }
+      // {
+      //   elem: 'footer',
+      //   content: [
+      //     {
+      //       elem: 'footer-content',
+      //       content: [
+      //         {
+      //           block: 'page',
+      //           elem: 'title',
+      //           elemMods: { size: 'xl' },
+      //           mix: [
+      //             { block: 'heading', mods: { caps: true, align: 'center', size: 'l' } },
+      //             { block: 'font', mods: { family: 'helvetica-neue-condensed-bold', loaded: true } }
+      //           ],
+      //           content: node.i18n('club', '200')
+      //         },
+      //         {
+      //           block: 'paragraph',
+      //           mods: { align: 'center' },
+      //           content: node.i18n('club', 'call')
+      //         },
+      //         {
+      //           block: 'paragraph',
+      //           mods: { align: 'center' },
+      //           content: {
+      //             block: 'button',
+      //             mix: { block: 'page-club', elem: 'get-card' },
+      //             mods: {
+      //               type: 'link',
+      //               size: 'xxl',
+      //               theme: 'artdoc-dark'
+      //             },
+      //             text: node.i18n('club', 'apply'),
+      //             url: 'mailto:media@artdocfest.com'
+      //           }
+      //         }
+      //       ]
+      //     }
+      //   ]
+      // }
     ]
   });

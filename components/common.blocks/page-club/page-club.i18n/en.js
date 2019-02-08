@@ -1,7 +1,7 @@
 module.exports = {
     club: {
         'title'       : 'Artdoc Club',
-        'description' : 'The Artdoc Club is a community of documentary film professionals. Club members are representatives of the film industry: directors and members of selection commissions of international festivals, distributors of non-feature films, acquisition managers of TV channels and media, heads of cultural clubs and centers, film critics and journalists writing about non-feature films.',
+        'description' : 'The Artdoc Club is a community of documentary film professionals. Club members are representatives of the film industry: directors and members of selection commissions of international festivals, distributors of non-feature films, acquisition managers of TV channels and media, heads of cultural clubs and centers, film critics and journalists writing about non-feature films. Тhe accession of new members is possible upon invitation from the direction of Artdocfest/ArtdocMedia.',
         'benefits'    : 'Membership benefits',
         'one'         : 'Free screening of all films of Artdoc.Media, except first runs of the current year',
         'two'         : 'Complimentary tickets to all Artdoc.Media online screenings',
