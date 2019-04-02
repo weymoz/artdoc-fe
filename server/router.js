@@ -287,6 +287,25 @@ module.exports = app => {
     } ).catch( error => res.send( error ) );
   });
 
+
+  app.get('/:lang/support', function (req, res) {
+    let data = Object.assign({}, req.globalData);
+    data.page = 'support';
+    data.page.isCinema = false;
+    data.origUrl = req.originalUrl;
+    data.lang = req.params.lang;
+
+
+        data.origUrl = req.originalUrl;
+        data.lang = req.params.lang;
+        data.currency = req.globalData.geo !== 'RU' ? '$' : '₽';
+        data.title ='test';
+
+        render(req, res, data);
+
+
+  })
+
   app.get('/:lang/movie/:name/buy', function (req, res, next) {
     let data = Object.assign({}, req.globalData);
     data.page = 'order';
