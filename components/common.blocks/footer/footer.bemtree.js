@@ -79,6 +79,16 @@ block('footer')(
                       content: node.i18n('footer', 'about')
                     }
                   },
+                  {
+                    elem: 'item',
+                    content: {
+                      block: 'link',
+                      mods: { view: 'text' },
+                      mix: { block: node.block, elem: 'nav-item' },
+                      url: '/' + ctx.lang + '/about',
+                      content: node.i18n('footer', 'support')
+                    }
+                  },
                   // {
                   //   elem: 'item',
                   //   content: [

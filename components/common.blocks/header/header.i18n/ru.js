@@ -7,6 +7,6 @@ module.exports = {
         'movies'     : 'Фильмы',
         'selections' : 'Подборки',
         'showtimes'  : 'Киносеансы',
-        'support'  : 'Поддержать проект'
+        'support'    : 'Поддержать проект'
     }
 };
