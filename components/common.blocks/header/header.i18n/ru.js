@@ -6,6 +6,7 @@ module.exports = {
         'lang'       : 'En',
         'movies'     : 'Фильмы',
         'selections' : 'Подборки',
-        'showtimes'  : 'Киносеансы'
+        'showtimes'  : 'Киносеансы',
+        'support'  : 'Поддержать проект'
     }
 };

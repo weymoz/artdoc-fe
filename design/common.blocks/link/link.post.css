@@ -23,4 +23,10 @@ block(link) {
       line-height: 16px;
     }
   }
+
+    &.mod(special){
+      color: red !important;
+    }
+
+
 }

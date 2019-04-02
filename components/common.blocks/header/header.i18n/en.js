@@ -6,6 +6,7 @@ module.exports = {
         'lang'       : 'Ру',
         'movies'     : 'Movies',
         'selections' : 'Selections',
-        'showtimes'  : 'Showtimes'
+        'showtimes'  : 'Showtimes',
+        'support'  : 'Support the project',
     }
 };
