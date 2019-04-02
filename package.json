@@ -74,6 +74,8 @@
     "node-notifier-cli": "^1.0.1",
     "nodemon": "^1.12.1",
     "normalizr": "^3.2.4",
+    "parcel-bundler": "^1.12.3",
+    "concurrently": "^4.1.0",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "pobem": "^1.1.2",
@@ -99,12 +101,12 @@
     "postinstall": "npm run drop-cache && npm run make",
     "make": "enb make",
     "drop-cache": "rm -rf .enb/tmp",
-    "dev": "memcached || true & npm run drop-cache && npm run make && nodemon",
+    "dev": "memcached || true & npm run drop-cache && npm run make && concurrently 'nodemon' 'parcel watch src/index.react.js --out-dir static/assets/js' ",
     "watch": "chokidar 'components/**' --initial -c 'enb make && notify -t bem-express -m Built'",
     "test": "npm run lint",
     "lint": "eslint . && bemhint .",
     "stylelint": "stylelint static/assets/css/**/*.css",
-    "prod": "npm run drop-cache && YENV=production npm run make"
+    "prod": "npm run drop-cache && YENV=production npm run make && parcel build src/index.react.js --out-dir static/assets/js"
   },
   "pre-commit": [
     "test"
