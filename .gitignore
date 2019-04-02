@@ -10,8 +10,7 @@ static/assets/font/
 static/assets/img/svg/
 static/assets/*/*/*.*.min.*
 static/assets/*/*/*.min.*
-static/assets/js/index.react.js
-static/assets/js/index.react.js.map
+static/assets/react
 
 .cache
 

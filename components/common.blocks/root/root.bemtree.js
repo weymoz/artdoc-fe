@@ -17,6 +17,10 @@ block('root').replace()(function() {
       {
         elem: 'css',
         url: '/assets/css/' + bundle + '/' + bundle + '.min.css'
+      },
+      {
+        elem: 'css',
+        url: '/assets/react/index.react.css'
       }
     ],
     scripts: [
@@ -30,7 +34,7 @@ block('root').replace()(function() {
       },
       {
         elem: 'js',
-        url: '/assets/js/index.react.js'
+        url: '/assets/react/index.react.js'
       },
     ],
     head: [

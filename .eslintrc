@@ -19,3 +19,4 @@ rules:
   curly: [error, multi-line]
 
 extends: pedant
+
