@@ -27,7 +27,11 @@ block('root').replace()(function() {
       {
         elem: 'js',
         url: '/assets/js/' + bundle + '/' + bundle + '.' + lang + '.min.js'
-      }
+      },
+      {
+        elem: 'js',
+        url: '/assets/js/index.react.js'
+      },
     ],
     head: [
 
