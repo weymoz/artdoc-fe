@@ -85,7 +85,7 @@ block('footer')(
                       block: 'link',
                       mods: { view: 'text' },
                       mix: { block: node.block, elem: 'nav-item' },
-                      url: '/' + ctx.lang + '/about',
+                      url: '/' + ctx.lang + '/support',
                       content: node.i18n('footer', 'support')
                     }
                   },

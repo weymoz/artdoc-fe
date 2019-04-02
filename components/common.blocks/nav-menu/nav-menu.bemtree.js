@@ -77,7 +77,7 @@ block('nav-menu')(
         mods: {
           special: true,
         },
-        url: '/' + node.data.lang + '/cinema',
+        url: '/' + node.data.lang + '/support',
         content: node.i18n('header', 'support')
       }
     ]
