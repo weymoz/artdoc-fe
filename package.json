@@ -21,6 +21,7 @@
     "bem-core": "^4.2.1",
     "bem-forms": "github:realetive/bem-forms",
     "bem-history": "^4.0.0",
+    "classnames": "^2.2.6",
     "connect-memcached": "^0.2.0",
     "enb-bem-i18n": "^1.1.1",
     "enb-bemxjst-i18n": "github:tadatuta/enb-bemxjst-i18n#bemtree-nextgen",
