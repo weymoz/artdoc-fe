@@ -1,2 +1,2 @@
-import  "./Support";
+import  "./features/support";
 
