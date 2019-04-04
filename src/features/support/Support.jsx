@@ -1,6 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import { render } from 'react-dom';
+import styles from "./support.css";
 import { SelectDonation } from './selectDonation';
 
 import { withLanguages, useTranslatedContent } from '../i18n';
@@ -30,7 +31,7 @@ export const Support = withLanguages(() => {
         >
           <div className="card-ticket__section">
             <div className="card-ticket__content">
-              {pay}
+              <span className={styles.payNote}>{pay}</span>
               <SelectDonation />
 
             </div>

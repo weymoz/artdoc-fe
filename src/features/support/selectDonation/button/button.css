@@ -5,19 +5,20 @@
   border: none;
   box-shadow: 0px 0px 0px 1px #d2d1d1;
   cursor: pointer;
-  transition: color .2s, background-color .2s, box-shadow;
+  transition: color 0.2s, background-color 0.2s, box-shadow;
   font-size: 16px;
   outline: none;
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     background-color: #f3203b;
-  box-shadow: 0px 0px 0px 1px #f3203b;
+    box-shadow: 0px 0px 0px 1px #f3203b;
 
     color: #fff;
   }
 
-  &:active {
+  &:active, &.active {
     background-color: #ce1b32;
-  box-shadow: 0px 0px 0px 1px #ce1b32;
-
+    color: #fff;
+    box-shadow: 0px 0px 0px 1px #ce1b32;
   }
 }

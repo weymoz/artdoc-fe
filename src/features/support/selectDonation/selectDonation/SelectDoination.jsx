@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '../button/Button';
 import styles from './selectDonation.css';
 import { CustomDonataion } from '../customDonation';
@@ -12,12 +12,23 @@ export const SelectDonation = withLanguages(() => {
     customDonationPlaceholder
   } = useTranslatedContent(supportContent);
 
+  const [donation, setDonation] = useState(0);
+
   return (
     <div className={styles.selectDonation}>
       {donations.map(price => (
-        <Button key={price} price={price} currency={currency} />
+        <Button
+          active={`${donation}` === `${price}`}
+          onClick={() => setDonation(price)}
+          key={price}
+          price={price}
+          currency={currency}
+        />
       ))}
-      <CustomDonataion placeholder={customDonationPlaceholder} />
+      <CustomDonataion
+        onChange={e => setDonation(e.target.value)}
+        placeholder={customDonationPlaceholder}
+      />
     </div>
   );
 });

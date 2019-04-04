@@ -1,8 +1,9 @@
 import React from 'react';
-import styles from "./button.css";
+import cx from "classnames";
+import styles from './button.css';
 
-
-export const Button = ({price, currency}) =>
-<button type="button" className={styles.button}>
-{price} {currency}
-</button>
+export const Button = ({ price, currency, onClick, active }) => (
+  <button onClick={onClick} type="button" className={cx(styles.button, active && styles.active)}>
+    {price} {currency}
+  </button>
+);
