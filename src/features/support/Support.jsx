@@ -3,8 +3,7 @@ import cx from 'classnames';
 import { render } from 'react-dom';
 import { SelectPrice } from './selectPrice';
 
-import { withLanguages } from '../../i18n/withLanguages';
-import { useTranslatedContent } from '../../i18n';
+import { withLanguages, useTranslatedContent } from '../i18n';
 import { support as supportContent } from '../../translations/support';
 
 export const Support = withLanguages(() => {
