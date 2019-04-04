@@ -1,6 +1,6 @@
 import React from 'react';
-import styles from './customPrice.css';
+import styles from './customDonation.css';
 
-export const CustomPrice = ({ placeholder }) => (
+export const CustomDonataion = ({ placeholder }) => (
   <input placeholder={placeholder} className={styles.customPrice} type="number" />
 );

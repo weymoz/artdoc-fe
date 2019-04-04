@@ -1,7 +1,0 @@
-.selectPrice {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-
-  margin-right: 48px;
-  margin-top: 24px;
-}

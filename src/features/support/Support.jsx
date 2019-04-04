@@ -1,13 +1,19 @@
 import React from 'react';
 import cx from 'classnames';
 import { render } from 'react-dom';
-import { SelectPrice } from './selectPrice';
+import { SelectDonation } from './selectDonation';
 
 import { withLanguages, useTranslatedContent } from '../i18n';
 import { support as supportContent } from '../../translations/support';
 
 export const Support = withLanguages(() => {
-  const { email, accept, termsConditions, support, pay } = useTranslatedContent(supportContent);
+  const {
+    email,
+    accept,
+    termsConditions,
+    support,
+    pay,
+  } = useTranslatedContent(supportContent);
 
   return (
     <div className="page__content page__content_width_narrow page__content_gap_bottom page__content_gap_top">
@@ -25,7 +31,7 @@ export const Support = withLanguages(() => {
           <div className="card-ticket__section">
             <div className="card-ticket__content">
               {pay}
-              <SelectPrice />
+              <SelectDonation />
 
             </div>
             <div className="card-ticket__aside">
@@ -69,7 +75,7 @@ export const Support = withLanguages(() => {
                             role="link"
                             href="/terms"
                           >
-                           {termsConditions}
+                            {termsConditions}
                           </a>
                         </span>
                       </label>
