@@ -33,6 +33,7 @@ export const Support = withLanguages(() => {
             <div className="card-ticket__content">
               <span className={styles.payNote}>{pay}</span>
               <SelectDonation />
+              <div id="payment-test"></div>
 
             </div>
             <div className="card-ticket__aside">
