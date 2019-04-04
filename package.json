@@ -37,10 +37,13 @@
     "moment": "^2.21.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "src": "^1.1.2",
     "ym": "^0.1.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.4.3",
     "autoprefixer": "^9.5.0",
+    "babel-plugin-module-resolver": "^3.2.0",
     "babel-preset-env": "^1.6.1",
     "bem-tools-core": "^0.0.3",
     "bem-tools-create": "^2.2.0",
@@ -71,6 +74,7 @@
     "eslint": "^4.11.0",
     "eslint-config-pedant": "^1.0.0",
     "eslint-plugin-bem-xjst": "^2.2.0",
+    "eslint-plugin-react": "^7.12.4",
     "express": "^4.16.2",
     "express-session": "^1.15.6",
     "json-schema-normalizer": "^1.2.1",
