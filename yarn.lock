@@ -7805,6 +7805,14 @@ physical-cpu-count@^2.0.0:
   resolved "https://registry.yarnpkg.com/physical-cpu-count/-/physical-cpu-count-2.0.0.tgz#18de2f97e4bf7a9551ad7511942b5496f7aba660"
   integrity sha1-GN4vl+S/epVRrXURlCtUlverpmA=
 
+pick-by-lang@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/pick-by-lang/-/pick-by-lang-1.0.0.tgz#90eddbd68969e50b560571a63020fb085ad87390"
+  integrity sha512-lF/bv3HbcnlG7fq80rJtqcQ84SbBubNbNG44K4vqKMPEPT1rhiYihgpxso4315GQuMHshyXT1OkOFgljxGIYrQ==
+  dependencies:
+    lodash.isplainobject "^4.0.6"
+    lodash.mapvalues "^4.6.0"
+
 pify@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/pify/-/pify-2.3.0.tgz#ed141a6ac043a849ea588498e7dca8b15330e90c"

@@ -1,7 +1,7 @@
 import { useContext, useCallback } from 'react'
+import { pickByLang } from 'pick-by-lang'
 
 import { LanguageContext } from './LanguageContext'
-import { pickByLang } from './pickByLang';
 
 export const useTranslatedContent = (content) => {
   const lang = useContext(LanguageContext)
