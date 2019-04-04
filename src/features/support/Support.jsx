@@ -25,8 +25,9 @@ export const Support = withLanguages(() => {
         >
           <div className="card-ticket__section">
             <div className="card-ticket__content">
-              <SelectPrice />
               {pay}
+              <SelectPrice />
+
             </div>
             <div className="card-ticket__aside">
               <div className="form form_view_order form_theme_artdoc-dark form_has-validation form_message_popup form_size_m i-bem">
