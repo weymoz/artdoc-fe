@@ -1,13 +1,16 @@
 block('page-support')(
-  replace()( () => {
-
-
-
+  replace()(() => {
     return [
       {
-        attrs: { id: 'support-page-react-root' },
+        tag: 'script',
+        attrs: {
+          src:
+            'https://js.braintreegateway.com/web/dropin/1.17.0/js/dropin.min.js'
+        }
+      },
+      {
+        attrs: { id: 'support-page-react-root' }
       }
     ];
-  } )
-
-)
+  })
+);

@@ -1,20 +1,54 @@
-import React from 'react';
+import React, { useState } from 'react';
 import cx from 'classnames';
 import { render } from 'react-dom';
-import styles from "./support.css";
+import styles from './support.css';
 import { SelectDonation } from './selectDonation';
-
+import axios from 'axios';
 import { withLanguages, useTranslatedContent } from '../i18n';
 import { support as supportContent } from '../../translations/support';
 
-export const Support = withLanguages(() => {
-  const {
-    email,
-    accept,
-    termsConditions,
-    support,
-    pay,
-  } = useTranslatedContent(supportContent);
+export const Support = withLanguages(({ lang }) => {
+  const { email, accept, termsConditions, support, pay } = useTranslatedContent(
+    supportContent
+  );
+  const [donation, setDonation] = useState(0);
+  const [emailValue, setEmailValue] = useState('');
+  const [modalOpened, setModalOpened] = useState(false);
+
+
+
+  const onFormSubmit = e => {
+    e.preventDefault();
+
+    const params = new URLSearchParams();
+    params.append('email', emailValue);
+    params.append('price', donation);
+    params.append('lang', lang);
+    return axios
+      .post('/api/payment/donate', params)
+      .then(({ data }) => {
+        console.log(data);
+
+        const button = document.querySelector('#submit-button');
+
+        braintree.dropin.create(
+          {
+            authorization: data.clientToken,
+            container: '#payment-form',
+            locale: data.locale
+          },
+          function(createErr, instance) {
+            setModalOpened(true);
+            button.addEventListener('click', function() {
+              instance.requestPaymentMethod(function(err, payload) {
+
+              });
+            });
+          }
+        );
+      })
+      .catch(console.log);
+  };
 
   return (
     <div className="page__content page__content_width_narrow page__content_gap_bottom page__content_gap_top">
@@ -23,33 +57,60 @@ export const Support = withLanguages(() => {
           'card-ticket card-ticket_view_order card-ticket_size_m card-ticket_theme_artdoc i-bem card-ticket_js_inited'
         )}
       >
-        <form
-          noValidate
-          action="http://artdoc.breadhead.ru/cinema/booking/booking/"
-          encType="multipart/form-data"
-          method="POST"
+        <div
+          className={cx(
+            'modal modal_autoclosable modal_has-close modal_size_s popup popup_autoclosable i-bem modal_js_inited popup_js_inited modal_visible popup_visible modal_has-animation',
+            !modalOpened && styles.invisible
+          )}
+          role="dialog"
+          style={{ zIndex: 2001 }}
         >
+          <div className="modal__table">
+            <div className="modal__cell">
+              <div onClick={() => setModalOpened(false)} className={styles.overlay}></div>
+              <div
+                className={cx(
+                  'modal__content i-bem modal__content_js_inited',
+                  styles.modalContent
+                )}
+              >
+                <form noValidate className="form form_view_payment form_theme_artdoc form_has-validation form_size_m i-bem form_js_inited">
+                  <div id="payment-form" />
+
+                  <div className="form__footer">
+                    <button
+                      id="submit-button"
+                      className="button button_type_submit button_width_available button_size_xxl button_theme_artdoc form__submit button__control font font_family_helvetica-neue-bold font_loaded i-bem button_js_inited button__control_js_inited"
+                      role="button"
+                      type="submit"
+                    >
+                      <span className="button__text">Pay</span>
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <form noValidate onSubmit={onFormSubmit}>
           <div className="card-ticket__section">
             <div className="card-ticket__content">
               <span className={styles.payNote}>{pay}</span>
-              <SelectDonation />
-              <div id="payment-test"></div>
-
+              <SelectDonation donation={donation} setDonation={setDonation} />
             </div>
             <div className="card-ticket__aside">
               <div className="form form_view_order form_theme_artdoc-dark form_has-validation form_message_popup form_size_m i-bem">
                 <fieldset className="fieldset fieldset_size_m fieldset_theme_artdoc-dark form__content">
                   <div className="fieldset__content">
-                    <input type="hidden" name="_csrf" />
-                    <input type="hidden" name="session_id" />
-                    <input type="hidden" name="movie_id" val={9752} />
                     <div className="form-field form-field_type_input form-field_required form-field_validate_email form-field_message_text form-field_size_m form-field_theme_artdoc-dark form__section i-bem">
                       <div className="form-field__control">
                         <span className="input input_width_available input_size_xl input_theme_artdoc-dark i-bem input_js_inited">
                           <span className="input__box">
                             <input
+                              value={emailValue}
+                              onChange={e => setEmailValue(e.target.value)}
                               className="input__control i-bem input__control_js_inited"
-                              id="uniq1554215469327126"
                               name="email"
                               placeholder={email}
                             />
