@@ -354,7 +354,7 @@ module.exports = app => {
     data.origUrl = req.originalUrl;
     data.lang = req.params.lang;
     data.currency = req.globalData.geo !== 'RU' ? '$' : '₽';
-    data.title = 'test';
+    data.title = req.globalData.geo !== 'RU' ? 'Support the project' : 'Поддержать проект';
 
     render(req, res, data);
   });
@@ -1050,21 +1050,22 @@ module.exports = app => {
 
   app.post('/api/payment/donate', (req, res) => {
     request({
-      url: 'http://preprod.artdoc.media:10000/payment/donate/',
+      url: '/payment/donate/',
       method: 'post',
       clientRequest: req,
       data: req.body
     })
       .then(api => {
+        // eslint-disable-next-line no-debugger
+        debugger;
+        console.log(api);
 
-
-          request({
-            clientRequest: req,
-            url: `http://preprod.artdoc.media:10000${api.payment_url}&lang=${
-              req.body.lang
-            }`
-          })
-
+        request({
+          clientRequest: req,
+          url: `${api.payment_url}&lang=${
+            req.body.lang
+          }`
+        })
           .then(response => {
             console.log(response);
             // eslint-disable-next-line no-debugger

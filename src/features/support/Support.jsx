@@ -7,6 +7,8 @@ import axios from 'axios';
 import { withLanguages, useTranslatedContent } from '../i18n';
 import { support as supportContent } from '../../translations/support';
 
+
+
 export const Support = withLanguages(({ lang }) => {
   const { email, accept, termsConditions, support, pay } = useTranslatedContent(
     supportContent
@@ -15,8 +17,6 @@ export const Support = withLanguages(({ lang }) => {
   const [emailValue, setEmailValue] = useState('');
   const [modalOpened, setModalOpened] = useState(false);
 
-
-
   const onFormSubmit = e => {
     e.preventDefault();
 
@@ -24,6 +24,7 @@ export const Support = withLanguages(({ lang }) => {
     params.append('email', emailValue);
     params.append('price', donation);
     params.append('lang', lang);
+    params.append('currency', 1);
     return axios
       .post('/api/payment/donate', params)
       .then(({ data }) => {
@@ -41,7 +42,31 @@ export const Support = withLanguages(({ lang }) => {
             setModalOpened(true);
             button.addEventListener('click', function() {
               instance.requestPaymentMethod(function(err, payload) {
+                if (err) {
+                  console.error(err);
+                } else {
+                  const params1 = new URLSearchParams();
+                  params1.append('payment_nonce', payload.nonce);
+                  params1.append('email', emailValue);
+                  params1.append('lang', lang);
+                  axios
+                    .post(`/api/payment/${data.transaction_id}`, params1)
+                    .then(({ data }) => {
+                      if (data.error) {
+                        console.log(data);
+                      } else {
+                        console.log(data);
 
+                        // window.location.href =
+                        //   '/' +
+                        //   lang +
+                        //   '/order/' +
+                        //   data.transaction_id +
+                        //   '?payment_nonce=' +
+                        //   payload.nonce;
+                      }
+                    });
+                }
               });
             });
           }
@@ -49,6 +74,7 @@ export const Support = withLanguages(({ lang }) => {
       })
       .catch(console.log);
   };
+  console.log(process.env.API);
 
   return (
     <div className="page__content page__content_width_narrow page__content_gap_bottom page__content_gap_top">
@@ -67,14 +93,20 @@ export const Support = withLanguages(({ lang }) => {
         >
           <div className="modal__table">
             <div className="modal__cell">
-              <div onClick={() => setModalOpened(false)} className={styles.overlay}></div>
+              <div
+                onClick={() => setModalOpened(false)}
+                className={styles.overlay}
+              />
               <div
                 className={cx(
                   'modal__content i-bem modal__content_js_inited',
                   styles.modalContent
                 )}
               >
-                <form noValidate className="form form_view_payment form_theme_artdoc form_has-validation form_size_m i-bem form_js_inited">
+                <form
+                  noValidate
+                  className="form form_view_payment form_theme_artdoc form_has-validation form_size_m i-bem form_js_inited"
+                >
                   <div id="payment-form" />
 
                   <div className="form__footer">
