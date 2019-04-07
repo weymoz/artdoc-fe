@@ -25,7 +25,7 @@ block(link) {
   }
 
     &.mod(special){
-      color: red !important;
+      color: #f3203b !important;
     }
 
 
