@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import cx from 'classnames';
 import { render } from 'react-dom';
+import { isEmpty } from 'lodash';
 import { Form, Field } from 'react-final-form';
 import { SelectDonation } from './components/SelectDonation';
 import axios from 'axios';
@@ -10,35 +11,36 @@ import { CardForm } from './components/CardForm';
 import { EmailFormGroup } from './components/EmailFormGroup';
 import { getPaymentRequest } from './helpers/getpaymentRequest';
 import { placeCardForm } from './helpers/placeCardForm';
+import { validateFields } from './helpers/validateFields';
+import { schemas } from './helpers/schemas';
 
 export const Support = withLanguages(({ lang }) => {
-  const { email, accept, termsConditions, support, pay } = useTranslatedContent(
+  const { email, accept, termsConditions, support, pay, validationErrors } = useTranslatedContent(
     supportContent
   );
 
   const [modalOpened, setModalOpened] = useState(false);
 
-  const validateForm = () => {
-    if (donation === 0) {
-      setError(errors => ({ ...errors, donation: 'Выберите сумму' }));
-    }
-    setError(errors => ({ ...errors, donation: false }));
 
-    if (emailValue) {
-    }
-  };
   const onFormSubmit = values => {
-    const paymentRequest = getPaymentRequest(values);
-    return axios
-      .post('/api/payment/donate', paymentRequest)
-      .then(({ data }) => {
-        console.log(data);
+    const errors = validateFields(values, schemas, validationErrors);
+    console.log(errors);
+    if (!isEmpty(errors)) {
+      return errors;
+    }
 
-        const button = document.querySelector('#submit-button');
 
-        placeCardForm(data, setModalOpened, button, values);
-      })
-      .catch(console.log);
+    // const paymentRequest = getPaymentRequest(values);
+    // return axios
+    //   .post('/api/payment/donate', paymentRequest)
+    //   .then(({ data }) => {
+    //     console.log(data);
+
+    //     const button = document.querySelector('#submit-button');
+
+    //     placeCardForm(data, setModalOpened, button, values);
+    //   })
+    //   .catch(console.log);
   };
 
   return (
@@ -51,6 +53,7 @@ export const Support = withLanguages(({ lang }) => {
         <CardForm modalOpened={modalOpened} setModalOpened={setModalOpened} />
 
         <Form
+          initialValues={{ email: '', donation: '', term: false }}
           onSubmit={onFormSubmit}
           render={({ handleSubmit }) => (
             <form noValidate onSubmit={handleSubmit}>

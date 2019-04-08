@@ -30,6 +30,19 @@ export const support = {
   customDonationPlaceholder: {
     ru: 'Другая сумма',
     en: 'Other amount'
-
+  },
+  validationErrors: {
+    email: {
+      ru: 'Емейл',
+      en: 'email'
+    },
+    term: {
+      ru: 'Емейл',
+      en: 'email'
+    },
+    donation: {
+      ru: 'Емейл',
+      en: 'email'
+    },
   }
 }
