@@ -1,6 +1,6 @@
-export const getPaymentRequest = (emailValue, donation, lang) => {
+export const getPaymentRequest = ({email, donation, lang}) => {
   const request = new URLSearchParams();
-  request.append('email', emailValue);
+  request.append('email', email);
   request.append('price', donation);
   request.append('lang', lang);
   request.append('currency', lang === 'ru' ? 1 : 2);

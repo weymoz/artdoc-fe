@@ -9,25 +9,14 @@ import { support as supportContent } from '../../translations/support';
 import { CardForm } from './components/CardForm';
 import { EmailFormGroup } from './components/EmailFormGroup';
 import { getPaymentRequest } from './helpers/getpaymentRequest';
-import { getTransactionRequest } from './helpers/getTransactionRequest';
-
-
+import { placeCardForm } from './helpers/placeCardForm';
 
 export const Support = withLanguages(({ lang }) => {
   const { email, accept, termsConditions, support, pay } = useTranslatedContent(
     supportContent
   );
-  // form values
-  const [donation, setDonation] = useState(0);
-  const [emailValue, setEmailValue] = useState('');
-  const [agreed, setAgreed] = useState(false);
 
   const [modalOpened, setModalOpened] = useState(false);
-  const [error, setError] = useState({
-    donation: false,
-    emailValue: false,
-    agreed: false
-  });
 
   const validateForm = () => {
     if (donation === 0) {
@@ -38,10 +27,8 @@ export const Support = withLanguages(({ lang }) => {
     if (emailValue) {
     }
   };
-  const onFormSubmit = e => {
-    e.preventDefault();
-
-    const paymentRequest = getPaymentRequest(emailValue, donation, lang);
+  const onFormSubmit = values => {
+    const paymentRequest = getPaymentRequest(values);
     return axios
       .post('/api/payment/donate', paymentRequest)
       .then(({ data }) => {
@@ -49,49 +36,7 @@ export const Support = withLanguages(({ lang }) => {
 
         const button = document.querySelector('#submit-button');
 
-        braintree.dropin.create(
-          {
-            authorization: data.clientToken,
-            container: '#payment-form',
-            locale: data.locale
-          },
-          function(createErr, instance) {
-            setModalOpened(true);
-            button.addEventListener('click', function() {
-              instance.requestPaymentMethod(function(err, payload) {
-                if (err) {
-                  console.error(err);
-                } else {
-                  const transactionRequest = getTransactionRequest(
-                    payload,
-                    emailValue,
-                    lang
-                  );
-                  axios
-                    .post(
-                      `/api/payment/${data.transaction_id}`,
-                      transactionRequest
-                    )
-                    .then(({ data }) => {
-                      if (data.error) {
-                        console.log(data);
-                      } else {
-                        console.log(data);
-
-                        // window.location.href =
-                        //   '/' +
-                        //   lang +
-                        //   '/order/' +
-                        //   data.transaction_id +
-                        //   '?payment_nonce=' +
-                        //   payload.nonce;
-                      }
-                    });
-                }
-              });
-            });
-          }
-        );
+        placeCardForm(data, setModalOpened, button, values);
       })
       .catch(console.log);
   };
@@ -107,20 +52,12 @@ export const Support = withLanguages(({ lang }) => {
 
         <Form
           onSubmit={onFormSubmit}
-          render={({ handleSubmit}) => (
+          render={({ handleSubmit }) => (
             <form noValidate onSubmit={handleSubmit}>
               <div className="card-ticket__section">
-                <SelectDonation
-                  translation={{ pay }}
-                  donation={donation}
-                  setDonation={setDonation}
-                />
+                <SelectDonation translation={{ pay }} />
 
                 <EmailFormGroup
-                  emailValue={emailValue}
-                  setEmailValue={setEmailValue}
-                  agreed={agreed}
-                  setAgreed={setAgreed}
                   translation={{
                     email,
                     accept,
