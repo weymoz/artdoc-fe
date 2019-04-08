@@ -21,10 +21,14 @@ export const Support = withLanguages(() => {
     termsConditions,
     support,
     pay,
-    validationErrors
+    validationErrors,
+    payButton,
+    payError
   } = useTranslatedContent(supportContent);
 
   const [modalOpened, setModalOpened] = useState(false);
+  const [cardFormError, setCardFormError] = useState('');
+  const [formSent, setFormSent] = useState(false);
 
   const onFormSubmit = values => {
     const errors = validateFields(values, schemas);
@@ -38,9 +42,13 @@ export const Support = withLanguages(() => {
       .then(({ data }) => {
         console.log(data);
 
-        const button = document.querySelector('#submit-button');
-
-        placeCardForm(data, setModalOpened, button, values);
+        placeCardForm(
+          data,
+          setModalOpened,
+          values,
+          setFormSent,
+          setCardFormError
+        );
       })
       .catch(console.log);
   };
@@ -52,7 +60,14 @@ export const Support = withLanguages(() => {
           'card-ticket card-ticket_view_order card-ticket_size_m card-ticket_theme_artdoc i-bem card-ticket_js_inited'
         )}
       >
-        <CardForm modalOpened={modalOpened} setModalOpened={setModalOpened} />
+        <CardForm
+          translation={{ payButton, payError }}
+          cardFormError={cardFormError}
+          formSent={formSent}
+          setFormSent={setFormSent}
+          modalOpened={modalOpened}
+          setModalOpened={setModalOpened}
+        />
 
         <Form
           initialValues={{ email: '', donation: '', term: false }}

@@ -44,5 +44,13 @@ export const support = {
       ru: 'Выберите размер оплаты',
       en: 'Choose the donation amount'
     },
+  },
+  payButton: {
+    en: 'Pay',
+    ru: 'Оплатить'
+  },
+  payError: {
+    en: 'An error occured: ',
+    ru: 'Произошла ошибка: '
   }
 }

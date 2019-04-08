@@ -1,6 +1,6 @@
-import { getTransactionRequest } from "./getTransactionRequest";
+import { getTransactionRequest } from './getTransactionRequest';
 
-export const placeCardForm = (data, setModalOpened, button, values) => {
+export const placeCardForm = (data, setModalOpened, values, setFormSent, setCardFormError) => {
   braintree.dropin.create(
     {
       authorization: data.clientToken,
@@ -8,8 +8,10 @@ export const placeCardForm = (data, setModalOpened, button, values) => {
       locale: data.locale
     },
     function(createErr, instance) {
+      const button = document.querySelector('#submit-button');
       setModalOpened(true);
       button.addEventListener('click', function() {
+        setFormSent(true)
         instance.requestPaymentMethod(function(err, payload) {
           if (err) {
             console.error(err);
@@ -23,6 +25,7 @@ export const placeCardForm = (data, setModalOpened, button, values) => {
               .then(({ data }) => {
                 if (data.error) {
                   console.error(data);
+                  setCardFormError(data.error)
                 } else {
                   console.log(data);
                   // window.location.href =
