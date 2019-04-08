@@ -5,7 +5,10 @@ export const schemas = {
     .string()
     .email('email')
     .required('email'),
-  donation: yup.string().required('donation'),
+  donation: yup
+    .number()
+    .positive('donation')
+    .required('donation'),
   term: yup
     .mixed()
     .oneOf([true], 'term')

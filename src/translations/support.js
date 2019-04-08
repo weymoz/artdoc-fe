@@ -3,7 +3,7 @@ export const support = {
     ru: 'Эл. почта',
     en: 'Email',
   },
-  accept: {
+  term: {
     ru: 'Я принимаю',
     en: 'I accept',
   },
@@ -33,16 +33,16 @@ export const support = {
   },
   validationErrors: {
     email: {
-      ru: 'Емейл',
-      en: 'email'
+      ru: 'Адрес эл. почты обязателен',
+      en: 'Email address is necessary'
     },
     term: {
-      ru: 'Емейл',
-      en: 'email'
+      ru: 'Вы должны принять условия',
+      en: 'You have to accept the terms'
     },
     donation: {
-      ru: 'Емейл',
-      en: 'email'
+      ru: 'Выберите размер оплаты',
+      en: 'Choose the donation amount'
     },
   }
 }

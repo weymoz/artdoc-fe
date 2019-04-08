@@ -1,8 +1,8 @@
-export const validateField = (value, schema, errorMessage) => {
+export const validateField = (value, schema) => {
   try {
     schema.validateSync(value)
   } catch (error) {
 
-    return errorMessage
+    return error.message
   }
 }

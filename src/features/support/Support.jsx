@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import cx from 'classnames';
 import { render } from 'react-dom';
 import { isEmpty } from 'lodash';
-import { Form, Field } from 'react-final-form';
+import { Form } from 'react-final-form';
 import { SelectDonation } from './components/SelectDonation';
 import axios from 'axios';
 import { withLanguages, useTranslatedContent } from '../i18n';
@@ -14,33 +14,35 @@ import { placeCardForm } from './helpers/placeCardForm';
 import { validateFields } from './helpers/validateFields';
 import { schemas } from './helpers/schemas';
 
-export const Support = withLanguages(({ lang }) => {
-  const { email, accept, termsConditions, support, pay, validationErrors } = useTranslatedContent(
-    supportContent
-  );
+export const Support = withLanguages(() => {
+  const {
+    email,
+    term,
+    termsConditions,
+    support,
+    pay,
+    validationErrors
+  } = useTranslatedContent(supportContent);
 
   const [modalOpened, setModalOpened] = useState(false);
 
-
   const onFormSubmit = values => {
-    const errors = validateFields(values, schemas, validationErrors);
-    console.log(errors);
+    const errors = validateFields(values, schemas);
     if (!isEmpty(errors)) {
       return errors;
     }
 
+    const paymentRequest = getPaymentRequest(values);
+    return axios
+      .post('/api/payment/donate', paymentRequest)
+      .then(({ data }) => {
+        console.log(data);
 
-    // const paymentRequest = getPaymentRequest(values);
-    // return axios
-    //   .post('/api/payment/donate', paymentRequest)
-    //   .then(({ data }) => {
-    //     console.log(data);
+        const button = document.querySelector('#submit-button');
 
-    //     const button = document.querySelector('#submit-button');
-
-    //     placeCardForm(data, setModalOpened, button, values);
-    //   })
-    //   .catch(console.log);
+        placeCardForm(data, setModalOpened, button, values);
+      })
+      .catch(console.log);
   };
 
   return (
@@ -58,12 +60,16 @@ export const Support = withLanguages(({ lang }) => {
           render={({ handleSubmit }) => (
             <form noValidate onSubmit={handleSubmit}>
               <div className="card-ticket__section">
-                <SelectDonation translation={{ pay }} />
+                <SelectDonation
+                  validationErrors={validationErrors}
+                  translation={{ pay }}
+                />
 
                 <EmailFormGroup
+                  validationErrors={validationErrors}
                   translation={{
                     email,
-                    accept,
+                    term,
                     termsConditions,
                     support
                   }}

@@ -5,18 +5,20 @@ import { Field } from 'react-final-form';
 import { CustomDonataion } from '../customDonation';
 import { useTranslatedContent, withLanguages } from '../../../../i18n';
 import { support as supportContent } from '../../../../../translations/support';
+import { ErrorMessage } from '../../ErrorMessage';
 
 export const SelectDonation = withLanguages(({ translation: { pay } }) => {
   const {
     donations,
     currency,
-    customDonationPlaceholder
+    customDonationPlaceholder,
+    validationErrors
   } = useTranslatedContent(supportContent);
   const customDonation = useRef(null);
   return (
     <Field
       name="donation"
-      render={({ input }) => (
+      render={({ input, meta }) => (
         <div className="card-ticket__content">
           <div className={styles.selectDonation}>
             {donations.map(price => (
@@ -38,6 +40,9 @@ export const SelectDonation = withLanguages(({ translation: { pay } }) => {
             />
           </div>
           <span className={styles.payNote}>{pay}</span>
+          {meta.submitError && (
+            <ErrorMessage>{validationErrors.donation}</ErrorMessage>
+          )}
         </div>
       )}
     />

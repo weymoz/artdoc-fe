@@ -1,10 +1,10 @@
 import { validateField } from './validateField';
 
-export const validateFields = (values, schemas, messages) => {
+export const validateFields = (values, schemas) => {
   try {
     const result = {};
-    for (const key in values) {
-      const error = validateField(values[key], schemas[key], messages[key]);
+    for (const key in schemas) {
+      const error = validateField(values[key], schemas[key]);
       if (error) {
         result[key] = error;
       }
