@@ -23,7 +23,8 @@ export const Support = withLanguages(({ lang }) => {
     pay,
     validationErrors,
     payButton,
-    payError
+    payError,
+    title
   } = useTranslatedContent(supportContent);
 
   const [modalOpened, setModalOpened] = useState(false);
@@ -55,7 +56,11 @@ export const Support = withLanguages(({ lang }) => {
   };
 
   return (
-    <div className="page__content page__content_width_narrow page__content_gap_bottom page__content_gap_top">
+    <div className="page__content page__content_width_narrow page__content_gap_bottom">
+      <h1 className="page__title page__title_size_xxl heading heading_align_center heading_caps font font_family_helvetica-neue-condensed-bold font_loaded">
+        {title}
+      </h1>
+      <br />
       <article
         className={cx(
           'card-ticket card-ticket_view_order card-ticket_size_m card-ticket_theme_artdoc i-bem card-ticket_js_inited'

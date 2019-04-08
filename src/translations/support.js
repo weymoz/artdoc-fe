@@ -1,4 +1,8 @@
 export const support = {
+  title: {
+    en: 'Support the project',
+    ru: 'Поддержать проект'
+  },
   email: {
     ru: 'Эл. почта',
     en: 'Email',
