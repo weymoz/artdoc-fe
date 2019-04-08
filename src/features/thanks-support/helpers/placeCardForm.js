@@ -1,15 +1,6 @@
-import axios from 'axios';
-
 import { getTransactionRequest } from './getTransactionRequest';
 
-export const placeCardForm = ({
-  data,
-  setModalOpened,
-  values,
-  setFormSent,
-  setCardFormError,
-  lang
-}) => {
+export const placeCardForm = (data, setModalOpened, values, setFormSent, setCardFormError) => {
   braintree.dropin.create(
     {
       authorization: data.clientToken,
@@ -20,7 +11,7 @@ export const placeCardForm = ({
       const button = document.querySelector('#submit-button');
       setModalOpened(true);
       button.addEventListener('click', function() {
-        setFormSent(true);
+        setFormSent(true)
         instance.requestPaymentMethod(function(err, payload) {
           if (err) {
             console.error(err);
@@ -34,10 +25,16 @@ export const placeCardForm = ({
               .then(({ data }) => {
                 if (data.error) {
                   console.error(data);
-                  setCardFormError(data.error);
+                  setCardFormError(data.error)
                 } else {
                   console.log(data);
-                  window.location.href = '/' + lang + '/thanks-support';
+                  // window.location.href =
+                  //   '/' +
+                  //   lang +
+                  //   '/order/' +
+                  //   data.transaction_id +
+                  //   '?payment_nonce=' +
+                  //   payload.nonce;
                 }
               });
           }

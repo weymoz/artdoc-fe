@@ -354,9 +354,28 @@ module.exports = app => {
     data.origUrl = req.originalUrl;
     data.lang = req.params.lang;
     data.currency = req.globalData.geo !== 'RU' ? '$' : '₽';
-    data.title = req.globalData.geo !== 'RU' ? 'Support the project' : 'Поддержать проект';
+    data.title =
+      req.globalData.geo !== 'RU' ? 'Support the project' : 'Поддержать проект';
 
     render(req, res, data);
+  });
+  app.get('/:lang/thanks-support', function(req, res) {
+    let data = Object.assign({}, req.globalData);
+    data.api = res;
+    data.page = 'thanks-support';
+    data.origUrl = req.originalUrl;
+    data.lang = req.params.lang;
+    data.title =
+      req.params.lang === 'en'
+        ? 'Payment successfull'
+        : 'Оплата прошла успешно';
+    if (data.api.error) {
+      data.page = 'error';
+      data.lang = req.params.lang;
+      data.title = 'payment-error'; // 'При оплате произошла ошибка'
+    }
+    return render(req, res, data);
+
   });
 
   app.get('/:lang/movie/:name/buy', function(req, res, next) {
@@ -1062,9 +1081,7 @@ module.exports = app => {
 
         request({
           clientRequest: req,
-          url: `${api.payment_url}&lang=${
-            req.body.lang
-          }`
+          url: `${api.payment_url}&lang=${req.body.lang}`
         })
           .then(response => {
             console.log(response);

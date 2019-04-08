@@ -14,7 +14,7 @@ import { placeCardForm } from './helpers/placeCardForm';
 import { validateFields } from './helpers/validateFields';
 import { schemas } from './helpers/schemas';
 
-export const Support = withLanguages(() => {
+export const Support = withLanguages(({ lang }) => {
   const {
     email,
     term,
@@ -42,13 +42,14 @@ export const Support = withLanguages(() => {
       .then(({ data }) => {
         console.log(data);
 
-        placeCardForm(
+        placeCardForm({
           data,
           setModalOpened,
           values,
           setFormSent,
-          setCardFormError
-        );
+          setCardFormError,
+          lang
+        });
       })
       .catch(console.log);
   };
