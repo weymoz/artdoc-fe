@@ -1,8 +1,11 @@
 import React from 'react';
+import styles from './emailFormGroup.css';
+import cx from 'classnames';
+import { Form, Field } from 'react-final-form';
 
 export const EmailFormGroup = ({
-  emailValue,
-  setEmailValue,
+  agreed,
+  setAgreed,
   translation: { email, accept, termsConditions, support }
 }) => (
   <div className="card-ticket__aside">
@@ -13,11 +16,10 @@ export const EmailFormGroup = ({
             <div className="form-field__control">
               <span className="input input_width_available input_size_xl input_theme_artdoc-dark i-bem input_js_inited">
                 <span className="input__box">
-                  <input
-                    value={emailValue}
-                    onChange={e => setEmailValue(e.target.value)}
-                    className="input__control i-bem input__control_js_inited"
+                  <Field
                     name="email"
+                    className="input__control i-bem input__control_js_inited"
+                    component="input"
                     placeholder={email}
                   />
                 </span>
@@ -26,29 +28,38 @@ export const EmailFormGroup = ({
             <div className="message message_type_text message_theme_artdoc-dark message_size_m form-field__message message__control i-bem message_js_inited" />
           </div>
           <div className="form-field form-field_type_checkbox form-field_required form-field_message_text form-field_size_m form-field_theme_artdoc-dark form__section i-bem">
-            <label className="checkbox checkbox_size_s checkbox_theme_artdoc-dark i-bem checkbox_js_inited">
-              <span className="checkbox__box">
-                <input
-                  className="checkbox__control i-bem checkbox__control_js_inited"
-                  type="checkbox"
-                  autoComplete="off"
-                  name="term"
-                  defaultValue="confirm"
-                />
-              </span>
-              <span className="checkbox__text" role="presentation">
-                {accept}{' '}
-                <a
-                  className="link link_size_s link_theme_artdoc-dark link__control i-bem"
-                  target="_blank"
-                  role="link"
-                  href="/terms"
+            <Field
+              name="term"
+              type="checkbox"
+              render={({ input }) => (
+                <label
+                  className={cx(
+                    'checkbox checkbox_size_s checkbox_theme_artdoc-dark i-bem checkbox_js_inited',
+
+                    input.checked && 'checkbox_checked'
+                  )}
                 >
-                  {termsConditions}
-                </a>
-              </span>
-            </label>
-            <div className="message message_type_text message_theme_artdoc-dark message_size_m form-field__message message__control i-bem message_js_inited" />
+                  <span className={cx('checkbox__box', styles.checkboxBox)}>
+                    <input
+                      className="checkbox__control i-bem checkbox__control_js_inited"
+                      type="checkbox"
+                      {...input}
+                    />
+                  </span>
+                  <span className="checkbox__text" role="presentation">
+                    {accept}{' '}
+                    <a
+                      className="link link_size_s link_theme_artdoc-dark link__control i-bem"
+                      target="_blank"
+                      role="link"
+                      href="/terms"
+                    >
+                      {termsConditions}
+                    </a>
+                  </span>
+                </label>
+              )}
+            />
           </div>
         </div>
       </fieldset>

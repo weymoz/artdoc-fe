@@ -1,32 +1,95 @@
 import React, { useState } from 'react';
 import cx from 'classnames';
 import { render } from 'react-dom';
-import styles from './support.css';
+import { Form, Field } from 'react-final-form';
 import { SelectDonation } from './components/SelectDonation';
 import axios from 'axios';
 import { withLanguages, useTranslatedContent } from '../i18n';
 import { support as supportContent } from '../../translations/support';
 import { CardForm } from './components/CardForm';
 import { EmailFormGroup } from './components/EmailFormGroup';
+import { getPaymentRequest } from './helpers/getpaymentRequest';
+import { getTransactionRequest } from './helpers/getTransactionRequest';
+
+// const MyForm = () => (
+//   <Form
+//     onSubmit={onSubmit}
+//     render={({ handleSubmit, pristine, invalid }) => (
+//       <form onSubmit={handleSubmit}>
+//         <h2>Simple Default Input</h2>
+//         <div>
+//           <label>First Name</label>
+//           <Field name="firstName" component="input" placeholder="First Name" />
+//         </div>
+
+//         <h2>An Arbitrary Reusable Input Component</h2>
+//         <div>
+//           <label>Interests</label>
+//           <Field name="interests" component={InterestPicker} />
+//         </div>
+
+//         <h2>Render Function</h2>
+//         <Field
+//           name="bio"
+//           render={({ input, meta }) => (
+//             <div>
+//               <label>Bio</label>
+//               <textarea {...input} />
+//               {meta.touched && meta.error && <span>{meta.error}</span>}
+//             </div>
+//           )}
+//         />
+
+//         <h2>Render Function as Children</h2>
+//         <Field name="phone">
+//           {({ input, meta }) => (
+//             <div>
+//               <label>Phone</label>
+//               <input type="text" {...input} placeholder="Phone" />
+//               {meta.touched && meta.error && <span>{meta.error}</span>}
+//             </div>
+//           )}
+//         </Field>
+
+//         <button type="submit" disabled={pristine || invalid}>
+//           Submit
+//         </button>
+//       </form>
+//     )}
+//   />
+// );
 
 export const Support = withLanguages(({ lang }) => {
   const { email, accept, termsConditions, support, pay } = useTranslatedContent(
     supportContent
   );
+  // form values
   const [donation, setDonation] = useState(0);
   const [emailValue, setEmailValue] = useState('');
-  const [modalOpened, setModalOpened] = useState(false);
+  const [agreed, setAgreed] = useState(false);
 
+  const [modalOpened, setModalOpened] = useState(false);
+  const [error, setError] = useState({
+    donation: false,
+    emailValue: false,
+    agreed: false
+  });
+
+  const validateForm = () => {
+    if (donation === 0) {
+      setError(errors => ({ ...errors, donation: 'Выберите сумму' }));
+    }
+    setError(errors => ({ ...errors, donation: false }));
+
+    if (emailValue) {
+    }
+  };
   const onFormSubmit = e => {
     e.preventDefault();
 
-    const params = new URLSearchParams();
-    params.append('email', emailValue);
-    params.append('price', donation);
-    params.append('lang', lang);
-    params.append('currency', lang === 'ru' ? 1 : 2);
+    const paymentRequest = getPaymentRequest(emailValue, donation, lang);
     return axios
-      .post('/api/payment/donate', params)
+      .post('/api/payment/donate', paymentRequest)
       .then(({ data }) => {
         console.log(data);
 
@@ -45,12 +108,16 @@ export const Support = withLanguages(({ lang }) => {
                 if (err) {
                   console.error(err);
                 } else {
-                  const params1 = new URLSearchParams();
-                  params1.append('payment_nonce', payload.nonce);
-                  params1.append('email', emailValue);
-                  params1.append('lang', lang);
+                  const transactionRequest = getTransactionRequest(
+                    payload,
+                    emailValue,
+                    lang
+                  );
                   axios
-                    .post(`/api/payment/${data.transaction_id}`, params1)
+                    .post(
+                      `/api/payment/${data.transaction_id}`,
+                      transactionRequest
+                    )
                     .then(({ data }) => {
                       if (data.error) {
                         console.log(data);
@@ -83,26 +150,34 @@ export const Support = withLanguages(({ lang }) => {
         )}
       >
         <CardForm modalOpened={modalOpened} setModalOpened={setModalOpened} />
-        <form noValidate onSubmit={onFormSubmit}>
-          <div className="card-ticket__section">
-            <SelectDonation
-              translation={{ pay }}
-              donation={donation}
-              setDonation={setDonation}
-            />
 
-            <EmailFormGroup
-              emailValue={emailValue}
-              setEmailValue={setEmailValue}
-              translation={{
-                email,
-                accept,
-                termsConditions,
-                support
-              }}
-            />
-          </div>
-        </form>
+        <Form
+          onSubmit={onFormSubmit}
+          render={({ handleSubmit}) => (
+            <form noValidate onSubmit={handleSubmit}>
+              <div className="card-ticket__section">
+                <SelectDonation
+                  translation={{ pay }}
+                  donation={donation}
+                  setDonation={setDonation}
+                />
+
+                <EmailFormGroup
+                  emailValue={emailValue}
+                  setEmailValue={setEmailValue}
+                  agreed={agreed}
+                  setAgreed={setAgreed}
+                  translation={{
+                    email,
+                    accept,
+                    termsConditions,
+                    support
+                  }}
+                />
+              </div>
+            </form>
+          )}
+        />
       </article>
     </div>
   );

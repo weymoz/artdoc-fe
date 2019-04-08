@@ -9,7 +9,7 @@ export const support = {
   },
   termsConditions: {
     ru: 'условия пользовательского соглашения',
-    en: 'terms and conditions',
+    en: 'the terms and conditions',
   },
   support: {
     ru: 'Поддержать проект',
