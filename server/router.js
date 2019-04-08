@@ -1076,7 +1076,9 @@ module.exports = app => {
       .then(api =>
         request({
           clientRequest: req,
-          url: `${api.payment_url}&lang=${req.body.lang}&currency=2`
+          url: `${api.payment_url}&lang=${req.body.lang}&currency=${
+            req.body.lang === 'ru' ? 1 : 2
+          }`
         })
           .then(response => {
             res.json(response);
@@ -1096,7 +1098,7 @@ module.exports = app => {
       clientRequest: req,
       data: {
         nonce: req.body.payment_nonce,
-        transaction_id: req.params.transaction_id,
+        transaction_id: req.params.transaction_id
       }
     })
       .then(api => res.json(api))
