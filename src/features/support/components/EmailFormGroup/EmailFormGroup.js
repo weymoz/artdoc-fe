@@ -1,11 +1,9 @@
 import React from 'react';
 import styles from './emailFormGroup.css';
 import cx from 'classnames';
-import { Form, Field } from 'react-final-form';
+import { Field } from 'react-final-form';
 
 export const EmailFormGroup = ({
-  agreed,
-  setAgreed,
   translation: { email, accept, termsConditions, support }
 }) => (
   <div className="card-ticket__aside">
