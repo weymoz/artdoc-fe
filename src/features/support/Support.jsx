@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import cx from 'classnames';
+import useKey from 'use-key-hook';
 import { render } from 'react-dom';
 import { isEmpty } from 'lodash';
 import { Form } from 'react-final-form';
@@ -31,13 +32,29 @@ export const Support = withLanguages(({ lang }) => {
   const [cardFormError, setCardFormError] = useState('');
   const [formSent, setFormSent] = useState(false);
 
+  const closePopup = () => {
+    setModalOpened(false);
+    document.location.reload();
+  };
+  useKey(
+    () => {
+      if (modalOpened) {
+        closePopup();
+      }
+    },
+    {
+      // escape
+      detectKeys: [27]
+    }
+  );
+
   const onFormSubmit = values => {
     const errors = validateFields(values, schemas);
     if (!isEmpty(errors)) {
       return errors;
     }
 
-    const paymentRequest = getPaymentRequest(values);
+    const paymentRequest = getPaymentRequest({ ...values, lang });
     return axios
       .post('/api/payment/donate', paymentRequest)
       .then(({ data }) => {
@@ -46,7 +63,6 @@ export const Support = withLanguages(({ lang }) => {
         placeCardForm({
           data,
           setModalOpened,
-          values,
           setFormSent,
           setCardFormError,
           lang
@@ -72,7 +88,7 @@ export const Support = withLanguages(({ lang }) => {
           formSent={formSent}
           setFormSent={setFormSent}
           modalOpened={modalOpened}
-          setModalOpened={setModalOpened}
+          closePopup={closePopup}
         />
 
         <Form

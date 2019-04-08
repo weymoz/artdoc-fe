@@ -5,7 +5,6 @@ import { getTransactionRequest } from './getTransactionRequest';
 export const placeCardForm = ({
   data,
   setModalOpened,
-  values,
   setFormSent,
   setCardFormError,
   lang
@@ -26,7 +25,6 @@ export const placeCardForm = ({
             console.error(err);
           } else {
             const transactionRequest = getTransactionRequest({
-              ...values,
               payload
             });
             axios

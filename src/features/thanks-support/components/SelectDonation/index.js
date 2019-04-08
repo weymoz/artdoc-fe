@@ -1,1 +1,0 @@
-export { SelectDonation } from "./selectDonation";

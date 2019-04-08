@@ -4,7 +4,7 @@ import styles from './cardForm.css';
 
 export const CardForm = ({
   modalOpened,
-  setModalOpened,
+  closePopup,
   formSent,
   cardFormError,
   translation
@@ -19,7 +19,7 @@ export const CardForm = ({
   >
     <div className="modal__table">
       <div className="modal__cell">
-        <div onClick={() => setModalOpened(false)} className={styles.overlay} />
+        <div onClick={closePopup} className={styles.overlay} />
         <div
           className={cx(
             'modal__content i-bem modal__content_js_inited',

@@ -375,7 +375,6 @@ module.exports = app => {
       data.title = 'payment-error'; // 'При оплате произошла ошибка'
     }
     return render(req, res, data);
-
   });
 
   app.get('/:lang/movie/:name/buy', function(req, res, next) {
@@ -1074,23 +1073,16 @@ module.exports = app => {
       clientRequest: req,
       data: req.body
     })
-      .then(api => {
-        // eslint-disable-next-line no-debugger
-        debugger;
-        console.log(api);
-
+      .then(api =>
         request({
           clientRequest: req,
-          url: `${api.payment_url}&lang=${req.body.lang}`
+          url: `${api.payment_url}&lang=${req.body.lang}&currency=2`
         })
           .then(response => {
-            console.log(response);
-            // eslint-disable-next-line no-debugger
-            debugger;
             res.json(response);
           })
-          .catch(() => res.send('error'));
-      })
+          .catch(() => res.send('error'))
+      )
       .catch(e => {
         console.log(e);
         return res.send('error');
@@ -1104,7 +1096,7 @@ module.exports = app => {
       clientRequest: req,
       data: {
         nonce: req.body.payment_nonce,
-        transaction_id: req.params.transaction_id
+        transaction_id: req.params.transaction_id,
       }
     })
       .then(api => res.json(api))
