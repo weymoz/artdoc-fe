@@ -157,12 +157,14 @@ module.exports = ( config ) => {
         [ techs.borschik, { minify: !__DEV__, freeze: false, source: '?.bemhtml.js', target: '?.bemhtml.min.js' } ],
 
         [ techs.fileCopy, { source: '?.{lang}.min.js', target: '../../static/assets/js/' + platform + '/?.{lang}.min.js' } ],
-        [ techs.fileCopy, { source: '?.min.css', target: '../../static/assets/css/' + platform + '/?.min.css' } ]
+        [ techs.fileCopy, { source: '?.min.css', target: '../../static/assets/css/' + platform + '/?.min.css' } ],
       ]);
+
+
 
       nodeConfig.addTargets( [
         '../../static/assets/css/' + platform + '/?.min.css',
-        '../../static/assets/js/' + platform + '/?.{lang}.min.js'
+        '../../static/assets/js/' + platform + '/?.{lang}.min.js',
       ] );
     } );
   } );

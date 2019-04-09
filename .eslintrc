@@ -1,5 +1,8 @@
 parserOptions:
   ecmaVersion: 6
+  sourceType: module
+  ecmaFeatures:
+    jsx: true
 
 plugins:
   - bem-xjst
@@ -17,5 +20,10 @@ globals:
 
 rules:
   curly: [error, multi-line]
+  react/display-name: 0
+  react/prop-types: 0
 
-extends: pedant
+extends: [pedant, plugin:react/recommended]
+
+
+

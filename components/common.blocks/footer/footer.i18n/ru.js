@@ -4,6 +4,7 @@ module.exports = {
         'movies'          : 'Все фильмы',
         'selections'      : 'Подборки',
         'showtimes'       : 'Киносеансы',
+        'support'         : 'Поддержать проект',
         'viewers'         : 'Зрителям',
         'professionals'   : 'Профессионалам кино',
         'about'           : 'О проекте',
