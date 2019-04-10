@@ -1,59 +1,47 @@
 block('filters')(
+  match((node, ctx) => !ctx.data).def()(''),
 
-  match( ( node, ctx ) => !ctx.data ).def()(''),
-
-  def()( ( node, ctx ) => {
-    node._api = Object.assign( {}, ctx.data );
+  def()((node, ctx) => {
+    node._api = Object.assign({}, ctx.data);
     node._lang = ctx.lang;
     node._currency = ctx.currency;
     return applyNext();
-  } ),
+  }),
 
-  addJs()( true ),
+  addJs()(true),
 
-  addMods()( node => { return { result: node._api.pagination.view || 'list' } } ),
+  addMods()(node => {
+    return { result: node._api.pagination.view || 'list' };
+  }),
 
-  content()( () => {
+  content()(() => {
     return [
-      { elem: 'header'  }, // header with actions
+      { elem: 'header' }, // header with actions
       { elem: 'separator-line' },
-      { elem: 'form'    }, // filter's form
-      { elem: 'params'  }, // sorting and view params
+      { elem: 'form' }, // filter's form
+      { elem: 'params' }, // sorting and view params
       { elem: 'content' }, // search result
-      { elem: 'footer'  }  // pagination
-    ]
-  }
-  ),
+      { elem: 'footer' } // pagination
+    ];
+  }),
 
-  elem('header').match( node => node._api )(
-    addMix()( { block: 'page', elem: 'content' } ),
-    content()([
-      { elem: 'title' },
-      { elem: 'actions' }
-    ])
+  elem('header').match(node => node._api)(
+    addMix()({ block: 'page', elem: 'content' }),
+    content()([{ elem: 'title' }, { elem: 'actions' }])
   ),
 
   elem('title')(
     addMix()({ block: 'heading', mods: { size: 'xl' } }),
-    content()( node => [
-      node._api.title,
-      { elem: 'result-count' },
-    ] )
+    content()(node => [node._api.title, { elem: 'result-count' }])
   ),
 
-  elem('result-count')(
-    content()( node => node._api.pagination.total_count )
-  ),
+  elem('result-count')(content()(node => node._api.pagination.total_count)),
 
   elem('actions')(
-    content()([
-      { elem: 'count' },
-      { elem: 'reset' },
-      { elem: 'toggle' }
-    ])
+    content()([{ elem: 'count' }, { elem: 'reset' }, { elem: 'toggle' }])
   ),
 
-  elem('toggle').replace()( node => {
+  elem('toggle').replace()(node => {
     return {
       block: 'button',
       mods: {
@@ -63,11 +51,11 @@ block('filters')(
       },
       mix: { block: node.block, elem: node.elem },
       text: node._lang === 'en' ? 'Filters' : 'Фильтры'
-    }
+    };
   }),
 
-  elem('form').match( node => node._api.filters )(
-    replace()( node => {
+  elem('form').match(node => node._api.filters)(
+    replace()(node => {
       return {
         block: 'page',
         elem: 'section',
@@ -83,21 +71,24 @@ block('filters')(
             }
           ]
         }
-      }
+      };
     })
   ),
 
   elem('params')(
-    addMix()( { block: 'page', elem: 'content' } ),
-    content()( node => [
-      { elem: 'sort-title', content: node._lang === 'en' ? 'Sort by' : 'Сначала' },
+    addMix()({ block: 'page', elem: 'content' }),
+    content()(node => [
+      {
+        elem: 'sort-title',
+        content: node._lang === 'en' ? 'Sort by' : 'Сначала'
+      },
       { elem: 'sort' },
       { elem: 'view' }
     ])
   ),
 
   elem('sort')(
-    replace()( node => {
+    replace()(node => {
       return {
         block: 'radio-group',
         mods: { type: 'line', size: 's' },
@@ -116,14 +107,14 @@ block('filters')(
           {
             val: 'year',
             text: node._lang === 'en' ? 'from old to new' : 'сначала старые'
-          },
+          }
         ]
-      }
-    } )
+      };
+    })
   ),
 
   elem('view')(
-    replace()( node => {
+    replace()(node => {
       return {
         block: 'radio-group',
         mods: {
@@ -141,7 +132,7 @@ block('filters')(
               mods: {
                 symbol: 'view-grid',
                 size: 's'
-              },
+              }
             }
           },
           {
@@ -155,15 +146,15 @@ block('filters')(
             }
           }
         ]
-      }
+      };
     })
   ),
 
-  elem('content').match( node => node._api.api )(
-    addMix()( { block: 'page', elem: 'content' } ),
+  elem('content').match(node => node._api.api)(
+    addMix()({ block: 'page', elem: 'content' }),
 
-    content()( node => {
-      return node._api.api.map( movie => {
+    content()(node => {
+      return node._api.api.map(movie => {
         return {
           block: 'card-movie',
           mods: { view: node._api.pagination.view || 'grid' },
@@ -171,20 +162,19 @@ block('filters')(
           movie: movie,
           lang: node._lang,
           currency: node._currency
-        }
-      } )
+        };
+      });
     })
   ),
 
-  elem('footer').match( node => node._api.pagination )(
-    addMix()( { block: 'page', elem: 'content', elemMods: { gap: 'bottom' } } ),
-    content()( node => {
+  elem('footer').match(node => node._api.pagination)(
+    addMix()({ block: 'page', elem: 'content', elemMods: { gap: 'bottom' } }),
+    content()(node => {
       return {
         block: 'pagination',
         mix: { block: 'page', elem: 'content' },
         params: node._api.pagination
-      }
+      };
     })
   )
-
 );
