@@ -1,24 +1,21 @@
 block('card-movie').mod('view', 'full')(
-
-  def()( ( node, ctx ) => {
+  def()((node, ctx) => {
     ctx.movie.cover = ctx.movie.cover || {};
 
-    return applyNext( { 'ctx.movie.cover.width': 843 } );
+    return applyNext({ 'ctx.movie.cover.width': 843 });
   }),
 
-  addJs()( true ),
+  addJs()(true),
 
-  content()( ( node, ctx ) => {
-     return [
+  content()((node, ctx) => {
+
+    return [
       {
         elem: 'content',
         content: [
           {
             elem: 'header',
-            content: [
-              { elem: 'rating' },
-              { elem: 'awards' }
-            ]
+            content: [{ elem: 'rating' }, { elem: 'awards' }]
           },
           { elem: 'video', content: ctx.movie.trailer },
           { elem: 'image' },
@@ -33,33 +30,31 @@ block('card-movie').mod('view', 'full')(
           {
             elem: 'listbox',
             content: {
-                elem: 'list',
-                elemMods: { delimiter: 'vertical' },
-                content: [
-                  { elem: 'director' },
-                  { elem: 'countries' },
-                  { elem: 'year' }
-                ]
-              }
+              elem: 'list',
+              elemMods: { delimiter: 'vertical' },
+              content: [
+                { elem: 'director', movie: ctx.movie },
+                { elem: 'countries' },
+                { elem: 'year' }
+              ]
+            }
           },
           {
             elem: 'listbox',
             content: {
-                elem: 'list',
-                content: [
-                  { elem: 'tvpg' },
-                  { elem: 'duration' },
-                  { elem: 'language' },
-                  { elem: 'subs' }
-                ]
-              }
+              elem: 'list',
+              content: [
+                { elem: 'tvpg' },
+                { elem: 'duration' },
+                { elem: 'language' },
+                { elem: 'subs' }
+              ]
+            }
           },
           { elem: 'buy', elemMods: { type: 'button' } },
           { elem: 'description' }
         ]
-      },
+      }
     ];
   })
-
-)
-
+);

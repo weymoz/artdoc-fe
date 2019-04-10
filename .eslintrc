@@ -21,6 +21,7 @@ globals:
 rules:
   curly: [error, multi-line]
   react/display-name: 0
+  no-debugger: 0
   react/prop-types: 0
 
 extends: [pedant, plugin:react/recommended]

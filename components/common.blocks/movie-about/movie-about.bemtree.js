@@ -53,9 +53,11 @@ block('movie-about')(
 
     return [
       model.map( section => {
+
         return {
           elem: 'section',
           content: section.section.map( item => {
+
             return [
               {
                 elem: 'title',
