@@ -2,10 +2,26 @@ block(card-author) {
   display: inline-flex;
   align-items: center;
 
-  @each $size, $width, $fontSize in
-    (  xs,    s,    m,    l,    xl,   xxl),
-    (24px, 32px, 48px, 84px, 112px, 312px),
-    (16px, 16px, 12px, 16px,  16px,  16px) {
+  &.mod(hide-image) {
+    .block(image) {
+      display: none !important;
+    }
+  }
+
+  &.mod(no-offsets) {
+    margin: 0 !important;
+    & > * {
+      padding: 0 !important;
+    }
+    &:not(:last-child)::after {
+      content: ',';
+      margin-right: 7px;
+    }
+  }
+
+  @each $size, $width, $fontSize in (xs, s, m, l, xl, xxl),
+    (24px, 32px, 48px, 84px, 112px, 312px), (16px, 16px, 12px, 16px, 16px, 16px)
+  {
     .mod(size $size) {
       font-size: $fontSize;
       margin-right: 2em;
@@ -22,14 +38,14 @@ block(card-author) {
   }
 
   .elem(content) {
-    padding-right: .5em;
+    padding-right: 0.5em;
     box-sizing: border-box;
     font-size: 14px;
     line-height: 20px;
   }
 
   .elem(aside) {
-    margin-right: .5em;
+    margin-right: 0.5em;
   }
 
   .mod(view club-performer) {
