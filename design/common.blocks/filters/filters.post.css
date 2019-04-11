@@ -150,7 +150,7 @@ block(filters) {
 
   .elem(params) {
     display: flex;
-    align-items: center;
+    align-items: baseline;
     margin-top: 24px;
   }
 
