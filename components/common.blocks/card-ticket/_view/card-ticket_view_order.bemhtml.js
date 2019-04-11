@@ -48,6 +48,9 @@ block('card-ticket').mod('view', 'order').content()( ( node, ctx ) => {
       block: 'paragraph',
       content: {
         html: descrtext2
+      },
+      mods: {
+        'bottom-offset': true
       }
     }
 
