@@ -109,11 +109,11 @@ block('filters')(
             text: node._lang === 'en' ? 'from old to new' : 'сначала старые'
           },
           {
-            val: 'alphabetical',
+            val: 'name',
             text: node._lang === 'en' ? 'from A to Z' : 'от А до Я'
           },
           {
-            val: '-alphabetical',
+            val: '-name',
             text: node._lang === 'en' ? 'from Z to A' : 'от Я до А'
           },
         ]
