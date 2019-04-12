@@ -206,6 +206,10 @@ block(card-movie) {
     .mod(link) {
       color: inherit;
     }
+
+    .mod(offsetTop) {
+      margin-top: 18px;
+    }
   }
 
   .elem(orig-name) {
@@ -483,7 +487,7 @@ block(card-movie) {
 
     .elem(name) {
       padding-top: 1em;
-      padding-bottom: 1em;
+      padding-bottom: 0.5em;
     }
 
     .elem(rating) {
@@ -880,7 +884,8 @@ block(card-movie) {
       display: block;
       color: #676770;
       font-size: 14px;
-      margin: 10px 0;
+      margin-bottom: 28px;
+      margin-top: 6px;
     }
 
     .elem(aside) {

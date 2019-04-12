@@ -80,7 +80,7 @@ block('filters')(
     content()(node => [
       {
         elem: 'sort-title',
-        content: node._lang === 'en' ? 'Sort by' : 'Сначала'
+        content: node._lang === 'en' ? 'Sort by:' : 'Показывать сначала:'
       },
       { elem: 'sort' },
       { elem: 'view' }
@@ -107,7 +107,15 @@ block('filters')(
           {
             val: 'year',
             text: node._lang === 'en' ? 'from old to new' : 'сначала старые'
-          }
+          },
+          {
+            val: 'name',
+            text: node._lang === 'en' ? 'from A to Z' : 'от А до Я'
+          },
+          {
+            val: '-name',
+            text: node._lang === 'en' ? 'from Z to A' : 'от Я до А'
+          },
         ]
       };
     })

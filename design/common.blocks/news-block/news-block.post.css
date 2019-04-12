@@ -22,7 +22,8 @@ block(news-block) {
     position: relative;
     display: block;
     margin-right: 36%;
-    margin-top: 16px;
+    width: 100%;
+    margin-bottom: 16px;
 
     .mod(has-icon):after {
       content: '';
@@ -38,20 +39,20 @@ block(news-block) {
     }
   }
 
-  .elem(refer){
+  .elem(refer) {
     padding-left: 15px;
     position: relative;
     box-sizing: border-box;
-    @media (max-width: 412px){
+    @media (max-width: 412px) {
       margin-bottom: 8px;
     }
 
-    &::before{
+    &::before {
       content: '';
       position: absolute;
       width: 8px;
       height: 8px;
-      background-color: #F3203B;
+      background-color: #f3203b;
       left: 0px;
       top: 6px;
     }
@@ -65,5 +66,4 @@ block(news-block) {
     font-size: 12px;
     color: #676770;
   }
-
 }
