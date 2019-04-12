@@ -1,18 +1,18 @@
 block('card-author')(
   match((node, ctx) => ctx.author).def()((node, ctx) => {
     Object.keys(ctx.author).map(key => {
-      node['_' + key] = ctx.author[key];
+      node[Symbol.for('_' + key)] = ctx.author[key];
       return true;
     });
 
-    node._meta = ctx.content;
+    node[Symbol.for('_meta')] = ctx.content;
 
     if (ctx.color !== undefined) {
-      node._color = ctx.color;
+      node[Symbol.for('_color')] = ctx.color;
     }
 
     if (ctx.isLink === false) {
-      node._isLink = ctx.isLink;
+      node[Symbol.for('_isLink')] = ctx.isLink;
     }
 
     switch (node.mods.size) {
@@ -28,22 +28,22 @@ block('card-author')(
     return applyNext();
   }),
 
-  match(node => !node._image_id).addMods()({ 'no-photo': true }),
+  match(node => !node[Symbol.for('_image_id')]).addMods()({ 'no-photo': true }),
 
-  match(node => node._image_id).content()(node => {
+  match(node => node[Symbol.for('_image_id')]).content()(node => {
     return {
       block: 'image',
       mods: { circle: true, 'has-resize': true },
       mix: { block: 'card-author', elem: 'aside' },
       width: node.width,
       height: node.height,
-      url: node._image_id
+      url: node[Symbol.for('_image_id')]
     };
   }),
 
-  match(node => node._name)(
+  match(node => node[Symbol.for('_name')])(
     appendContent()(node => {
-      if (node._isLink !== false) {
+      if (node[Symbol.for('_isLink')] !== false) {
         return {
           elem: 'content',
           content: {
@@ -51,15 +51,19 @@ block('card-author')(
             mods: {
               size: 's'
             },
-            url: 'https://artdoc.media/' + node._lang + '/author/' + node._id,
+            url:
+              'https://artdoc.media/' +
+              node['_lang'] +
+              '/author/' +
+              node[Symbol.for('_id')],
             content: {
               elem: 'content',
               attrs:
-                node._color !== undefined
+                node[Symbol.for('_color')] !== undefined
                   ? { style: 'color: rgb(160, 160, 172)' }
                   : { style: 'color: #000' },
               mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } },
-              content: node._name
+              content: node[Symbol.for('_name')]
             }
           }
         };
@@ -67,14 +71,14 @@ block('card-author')(
         return {
           elem: 'content',
           mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } },
-          content: node._name
+          content: node[Symbol.for('_name')]
         };
       }
     })
   ),
 
-  match(node => node._meta)(
-    elem('content').appendContent()(node => node._meta)
+  match(node => node[Symbol.for('_meta')])(
+    elem('content').appendContent()(node => node[Symbol.for('_meta')])
   ),
 
   mod('no-photo', true).prependContent()({
