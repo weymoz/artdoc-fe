@@ -350,6 +350,7 @@ module.exports = app => {
     data.page.isCinema = false;
     data.origUrl = req.originalUrl;
     data.lang = req.params.lang;
+    data.adaptive = true;
 
     data.origUrl = req.originalUrl;
     data.lang = req.params.lang;
@@ -365,6 +366,7 @@ module.exports = app => {
     data.page = 'thanks-support';
     data.origUrl = req.originalUrl;
     data.lang = req.params.lang;
+    data.adaptive = true;
     data.title =
       req.params.lang === 'en'
         ? 'Payment successfull'
