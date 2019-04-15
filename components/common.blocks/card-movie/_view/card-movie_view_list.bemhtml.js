@@ -1,24 +1,22 @@
 block('card-movie').mod('view', 'list')(
-
-  def()( ( node, ctx ) => {
+  def()((node, ctx) => {
     ctx.movie.cover = ctx.movie.cover || {};
     let lang = ctx.lang || node._lang;
 
-    return applyNext( {
+    return applyNext({
       'ctx.movie.cover.width': 421,
-      'ctx.movie.url': ctx.movie.code ? '/' + lang + '/movie/' + ctx.movie.code : null
-    } );
+      'ctx.movie.url': ctx.movie.code
+        ? '/' + lang + '/movie/' + ctx.movie.code
+        : null
+    });
   }),
 
-  content()( ( node, ctx ) => {
+  content()((node, ctx) => {
     return [
       ctx.movie.schedules && {
         elem: 'aside',
         elemMods: { view: 'schedule' },
-        content: [
-          { elem: 'schedule-duration' },
-          { elem: 'schedule' }
-        ]
+        content: [{ elem: 'schedule-duration' }, { elem: 'schedule' }]
       },
       {
         elem: 'content',
@@ -26,10 +24,7 @@ block('card-movie').mod('view', 'list')(
         content: [
           {
             elem: 'header',
-            content: [
-              { elem: 'rating' },
-              { elem: 'awards' }
-            ]
+            content: [{ elem: 'rating' }, { elem: 'awards' }]
           },
           { elem: 'image' }
         ]
@@ -45,7 +40,7 @@ block('card-movie').mod('view', 'list')(
               elem: 'list',
               elemMods: { delimiter: 'vertical' },
               content: [
-                { elem: 'director' },
+                { elem: 'director', movie: node.ctx.movie },
                 { elem: 'countries' },
                 { elem: 'year' }
               ]
@@ -54,20 +49,18 @@ block('card-movie').mod('view', 'list')(
           {
             elem: 'listbox',
             content: {
-                elem: 'list',
-                content: [
-                  { elem: 'tvpg' },
-                  { elem: 'duration' },
-                  { elem: 'language' },
-                  { elem: 'subs' }
-                ]
-              },
+              elem: 'list',
+              content: [
+                { elem: 'tvpg' },
+                { elem: 'duration' },
+                { elem: 'language' },
+                { elem: 'subs' }
+              ]
+            }
           },
           {
             elem: 'section',
-            content: [
-              { elem: 'description', elemMods: { short: true } }
-            ]
+            content: [{ elem: 'description', elemMods: { short: true } }]
           }
         ]
       },
@@ -76,7 +69,7 @@ block('card-movie').mod('view', 'list')(
         elemMods: { view: 'action' },
         content: [
           { elem: 'discussion' },
-          { elem: 'buy',  elemMods: { type: 'button' }  }
+          { elem: 'buy', elemMods: { type: 'button' } }
         ]
       }
     ];

@@ -26,7 +26,7 @@ block(header).mod(theme artdoc) {
   }
 
   .elem(logo) {
-    padding: .75em;
+    padding: 0.75em;
     box-sizing: border-box;
     background-color: #f4203b;
     background-origin: content-box;
@@ -34,8 +34,8 @@ block(header).mod(theme artdoc) {
 
   .elem(title) {
     width: 216px;
-    padding-top: .75em;
-    padding-bottom: .75em;
+    padding-top: 0.75em;
+    padding-bottom: 0.75em;
     padding-right: 1.25em;
     padding-left: 1.25em;
     box-sizing: border-box;
@@ -57,19 +57,23 @@ block(header).mod(theme artdoc) {
     color: #fff;
     box-shadow: -13px 0 0 -12px #3d3d42, 13px 0 0 -12px #3d3d42;
 
-    block(button){
-      elem(text){
+    block(button) {
+      elem(text) {
         padding: 20px 40px;
         font-size: 16px;
       }
     }
 
     &:hover {
-      block(button){
-        &.mod(hovered){
+      block(button) {
+        &.mod(hovered) {
           background-color: #23232c;
         }
       }
+    }
+
+    @media (max-width: 1090px) {
+      display: none;
     }
   }
 
@@ -86,7 +90,7 @@ block(header).mod(theme artdoc) {
     box-sizing: border-box;
     padding: 0 7px;
 
-    @media(max-width: 1025px){
+    @media (max-width: 1280px) {
       display: none;
     }
   }
