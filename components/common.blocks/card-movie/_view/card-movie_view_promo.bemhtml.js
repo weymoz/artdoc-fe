@@ -1,22 +1,20 @@
 block('card-movie').mod('view', 'promo')(
+  def()((node, ctx) => {
+    ctx.movie.cover = ctx.movie.cover || {}
+    let lang = ctx.lang || node._lang
 
-  def()( ( node, ctx ) => {
-    ctx.movie.cover = ctx.movie.cover || {};
-    let lang = ctx.lang || node._lang;
-
-    return applyNext( {
+    return applyNext({
       'ctx.movie.cover.width': 745,
-      'ctx.movie.url': ctx.movie.code ? '/' + lang + '/movie/' + ctx.movie.code : null
-    } );
-  } ),
+      'ctx.movie.url': ctx.movie.code
+        ? '/' + lang + '/movie/' + ctx.movie.code
+        : null
+    })
+  }),
 
-  content()( node => {
-
-    let langPrefix = node._lang === 'en' ? 'from ' : 'c ';
-    const isPeriod = node._schedules.length > 1;
-    const prefix = isPeriod ? langPrefix : '';
-
-
+  content()((node, ctx) => {
+    let langPrefix = node._lang === 'en' ? 'from ' : 'c '
+    const isPeriod = node._schedules.length > 1
+    const prefix = isPeriod ? langPrefix : ''
 
     return [
       node._schedules && {
@@ -28,13 +26,13 @@ block('card-movie').mod('view', 'promo')(
             elem: 'schedule',
             elemMods: { period: isPeriod },
             prefix: prefix,
-            content: node._schedules[ 0 ].date
+            content: node._schedules[0].date
           },
           isPeriod && {
             elem: 'schedule',
             elemMods: { period: true },
             prefix: node._lang === 'en' ? 'till ' : 'по ',
-            content: node._schedules[ node._schedules.length - 1 ].date
+            content: node._schedules[node._schedules.length - 1].date
           }
         ]
       },
@@ -44,10 +42,7 @@ block('card-movie').mod('view', 'promo')(
         content: [
           {
             elem: 'header',
-            content: [
-              { elem: 'is-premiere' },
-              { elem: 'awards' }
-            ]
+            content: [{ elem: 'is-premiere' }, { elem: 'awards' }]
           },
           { elem: 'image' },
           {
@@ -55,7 +50,7 @@ block('card-movie').mod('view', 'promo')(
             content: [
               { elem: 'is-today' },
               { elem: 'orig-name' },
-              { elem: 'name', elemMods: { 'has-dot': true, size: 'xl' } },
+              { elem: 'name', elemMods: { 'has-dot': true, size: 'xl' } }
             ]
           }
         ]
@@ -66,37 +61,35 @@ block('card-movie').mod('view', 'promo')(
           {
             elem: 'listbox',
             content: {
-                elem: 'list',
-                elemMods: { delimiter: 'vertical' },
-                content: [
-                  { elem: 'director' },
-                  { elem: 'countries' },
-                  { elem: 'year' }
-                ]
-              }
+              elem: 'list',
+              elemMods: { delimiter: 'vertical' },
+              content: [
+                { elem: 'director', movie: ctx.movie },
+                { elem: 'countries' },
+                { elem: 'year' }
+              ]
+            }
           },
           {
             elem: 'listbox',
             content: {
-                elem: 'list',
-                content: [
-                  { elem: 'tvpg' },
-                  { elem: 'duration' },
-                  { elem: 'language' },
-                  { elem: 'subs' }
-                ]
-              }
+              elem: 'list',
+              content: [
+                { elem: 'tvpg' },
+                { elem: 'duration' },
+                { elem: 'language' },
+                { elem: 'subs' }
+              ]
+            }
           },
-          { elem: 'description', elemMods: { 'short': true } },
+          { elem: 'description', elemMods: { short: true } },
           {
             elem: 'section',
-            content: [
-              { elem: 'discussion', lang: node._lang}
-            ]
+            content: [{ elem: 'discussion', lang: node._lang }]
           },
-          { elem: 'buy', elemMods: { type: 'button' } },
+          { elem: 'buy', elemMods: { type: 'button' } }
         ]
       }
-    ];
+    ]
   })
-);
+)
