@@ -1,23 +1,22 @@
 block('card-movie').mod('view', 'ticket')(
+  def()((node, ctx) => {
+    ctx.movie.cover = ctx.movie.cover || {}
+    let lang = ctx.lang || node._lang
 
-  def()( ( node, ctx ) => {
-    ctx.movie.cover = ctx.movie.cover || {};
-    let lang = ctx.lang || node._lang;
-
-    return applyNext( {
+    return applyNext({
       'ctx.movie.cover.width': 235,
-      'ctx.movie.url': ctx.movie.code ? '/' + lang + '/movie/' + ctx.movie.code : null
-    } );
+      'ctx.movie.url': ctx.movie.code
+        ? '/' + lang + '/movie/' + ctx.movie.code
+        : null
+    })
   }),
 
-  content()( () => {
+  content()((node, ctx) => {
     return [
       {
         elem: 'content',
         elemMods: { type: 'link' },
-        content: [
-          { elem: 'image' }
-        ]
+        content: [{ elem: 'image' }]
       },
       {
         elem: 'aside',
@@ -27,30 +26,29 @@ block('card-movie').mod('view', 'ticket')(
           {
             elem: 'listbox',
             content: {
-                elem: 'list',
-                elemMods: { delimiter: 'vertical' },
-                content: [
-                  { elem: 'director' },
-                  { elem: 'countries' },
-                  { elem: 'year' }
-                ]
-              }
+              elem: 'list',
+              elemMods: { delimiter: 'vertical' },
+              content: [
+                { elem: 'director', movie: ctx.movie },
+                { elem: 'countries' },
+                { elem: 'year' }
+              ]
+            }
           },
           {
             elem: 'listbox',
             content: {
-                elem: 'list',
-                content: [
-                  { elem: 'tvpg' },
-                  { elem: 'duration' },
-                  { elem: 'language' },
-                  { elem: 'subs' }
-                ]
-              }
-          },
+              elem: 'list',
+              content: [
+                { elem: 'tvpg' },
+                { elem: 'duration' },
+                { elem: 'language' },
+                { elem: 'subs' }
+              ]
+            }
+          }
         ]
       }
-    ];
+    ]
   })
-
-);
+)
