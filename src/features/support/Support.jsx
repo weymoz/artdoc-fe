@@ -13,10 +13,11 @@ import { EmailFormGroup } from './components/EmailFormGroup'
 import { getPaymentRequest } from './helpers/getpaymentRequest'
 import { placeCardForm } from './helpers/placeCardForm'
 import { validateFields } from './helpers/validateFields'
-import { schemas } from './helpers/schemas'
+import { getSchemas } from './helpers/schemas'
 import styles from './support.css'
+import { getCurrencyLang } from './helpers/getLangFromCurrency'
 
-export const Support = withLanguages(({ lang }) => {
+export const Support = withLanguages(() => {
   const {
     email,
     term,
@@ -33,6 +34,12 @@ export const Support = withLanguages(({ lang }) => {
   const [modalOpened, setModalOpened] = useState(false)
   const [cardFormError, setCardFormError] = useState('')
   const [formSent, setFormSent] = useState(false)
+  const [currency, setCurrency] = useState('')
+  setTimeout(() => {
+    setCurrency(window.appCurrency)
+  }, 100)
+
+  const currencyLang = getCurrencyLang(currency)
 
   const closePopup = () => {
     setModalOpened(false)
@@ -51,13 +58,16 @@ export const Support = withLanguages(({ lang }) => {
   )
 
   const onFormSubmit = values => {
-    const schemasByLang = schemas[lang || 'ru']
+    const schemasByLang = getSchemas(currencyLang)
     const errors = validateFields(values, schemasByLang)
     if (!isEmpty(errors)) {
       return errors
     }
 
-    const paymentRequest = getPaymentRequest({ ...values, lang })
+    const paymentRequest = getPaymentRequest({
+      ...values,
+      lang: currencyLang
+    })
     return axios
       .post('/api/payment/donate', paymentRequest)
       .then(({ data }) => {
@@ -68,7 +78,7 @@ export const Support = withLanguages(({ lang }) => {
           setModalOpened,
           setFormSent,
           setCardFormError,
-          lang
+          lang: currencyLang
         })
       })
       .catch(console.log)
@@ -110,6 +120,8 @@ export const Support = withLanguages(({ lang }) => {
             <form noValidate onSubmit={handleSubmit}>
               <div className="card-ticket__section">
                 <SelectDonation
+                  currencyLang={currencyLang}
+                  currency={currency}
                   validationErrors={validationErrors}
                   translation={{ pay }}
                 />

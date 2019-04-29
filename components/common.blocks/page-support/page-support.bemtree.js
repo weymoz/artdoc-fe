@@ -11,6 +11,6 @@ block('page-support')(
       {
         attrs: { id: 'support-page-react-root' }
       }
-    ];
+    ]
   })
-);
+)

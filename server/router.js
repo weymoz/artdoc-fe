@@ -329,7 +329,7 @@ module.exports = app => {
           data.filter = filter
           data.origUrl = req.originalUrl
           data.lang = req.params.lang
-          data.currency = req.globalData.geo !== 'RU' ? '$' : '₽'
+          data.currency = '$'
           data.pagination = Object.assign(response[0].meta, data.pagination)
           data.pagination.sort = req.query.sort || '-rating'
           data.pagination.view = req.query.view || 'grid'
@@ -351,7 +351,8 @@ module.exports = app => {
     data.origUrl = req.originalUrl
     data.lang = req.params.lang
 
-    data.currency = req.params.lang === 'en' ? '$' : '₽'
+    data.currency = req.globalData.geo !== 'RU' ? '$' : '₽'
+
     data.title =
       req.params.lang === 'en' ? 'Support the project' : 'Поддержать проект'
 
@@ -1130,8 +1131,6 @@ module.exports = app => {
         filters
     })
       .then(api => {
-        // eslint-disable-next-line
-        debugger
         return res.json(api)
       })
       .catch(error => res.send(error))

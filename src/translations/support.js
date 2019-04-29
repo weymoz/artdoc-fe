@@ -35,14 +35,7 @@ export const support = {
     ru: 'Оплата картой',
     en: 'Pay by card'
   },
-  donations: {
-    ru: [100, 300, 500, 1000, 3000, 5000],
-    en: [5, 15, 30, 50, 100, 150]
-  },
-  currency: {
-    ru: '₽',
-    en: 'USD'
-  },
+
   customDonationPlaceholder: {
     ru: 'Другая сумма',
     en: 'Other amount'
@@ -57,8 +50,8 @@ export const support = {
       en: 'You have to accept the terms'
     },
     donation: {
-      ru: 'Минимальная сумма 100 ₽',
-      en: 'Minimal amount 3 USD'
+      ru: 'Минимальная сумма',
+      en: 'Minimal amount'
     }
   },
   payButton: {
