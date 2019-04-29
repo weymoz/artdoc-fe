@@ -182,7 +182,19 @@ block('footer')(
                       block: 'font',
                       mods: { family: 'pt-mono', loaded: true }
                     },
-                    content: 'media@artdocfest.com'
+
+                    content: [
+                      {
+                        block: 'link',
+                        mods: { size: 's' },
+                        mix: {
+                          block: 'font',
+                          mods: { family: 'pt-mono', loaded: true }
+                        },
+                        url: 'mailto:media@artdocfest.com',
+                        content: 'media@artdocfest.com'
+                      }
+                    ]
                   },
                   {
                     elem: 'item',
