@@ -738,6 +738,10 @@ block(card-movie) {
         padding-right: 50%;
         box-sizing: border-box;
       }
+
+      & .block(card-author) div {
+        color: #fff !important;
+      }
     }
 
     .elem(aside) {
