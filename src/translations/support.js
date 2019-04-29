@@ -57,8 +57,8 @@ export const support = {
       en: 'You have to accept the terms'
     },
     donation: {
-      ru: 'Выберите размер оплаты',
-      en: 'Choose the donation amount'
+      ru: 'Минимальная сумма 100 ₽',
+      en: 'Minimal amount 3 USD'
     }
   },
   payButton: {

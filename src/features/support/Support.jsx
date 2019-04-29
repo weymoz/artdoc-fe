@@ -51,7 +51,8 @@ export const Support = withLanguages(({ lang }) => {
   )
 
   const onFormSubmit = values => {
-    const errors = validateFields(values, schemas)
+    const schemasByLang = schemas[lang || 'ru']
+    const errors = validateFields(values, schemasByLang)
     if (!isEmpty(errors)) {
       return errors
     }
