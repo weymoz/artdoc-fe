@@ -24,7 +24,7 @@ module.exports = {
   bemhtml: require('enb-bemxjst/techs/bemhtml'),
   keysets: require('enb-bem-i18n/techs/keysets'),
   i18n: require('enb-bem-i18n/techs/i18n'),
-  bem: require('enb-bem-techs')
+  bem: require('enb-bem-techs'),
 }
 
 

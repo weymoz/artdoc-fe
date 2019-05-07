@@ -70,6 +70,15 @@ block('nav-menu')(
         mix: { block: 'nav-menu', elem: 'item' },
         url: '/' + node.data.lang + '/cinema',
         content: node.i18n('header', 'showtimes')
+      },
+      {
+        block: 'link',
+        mix: { block: 'nav-menu', elem: 'item' },
+        mods: {
+          special: true,
+        },
+        url: '/' + node.data.lang + '/support',
+        content: node.i18n('header', 'support')
       }
     ]
   })

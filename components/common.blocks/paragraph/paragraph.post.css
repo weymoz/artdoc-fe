@@ -5,5 +5,8 @@ block(paragraph) {
   font-family: inherit;
   color: inherit;
   width: 100%;
-  margin: 0
+  margin: 0;
+  .mod(bottom-offset) {
+    margin-bottom: 24px;
+  }
 }

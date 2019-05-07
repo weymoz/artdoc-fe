@@ -11,16 +11,6 @@ block('news-block')(
 
     return [
       { elem: 'title', content: ctx.title },
-      { elem: 'content', content: [
-          {
-            block: 'text',
-            mods: { bold: true },
-            content: news.title
-          },
-          { tag: 'br' },
-          news.text
-        ]
-      },
       news.image && news.image.id && {
         block: 'link',
         mix: { block: node.block, elem: 'preview', elemMods: { 'has-icon': !!news.video_icon } },
@@ -35,6 +25,16 @@ block('news-block')(
             width: 193,
             height: 110
           }
+        ]
+      },
+      { elem: 'content', content: [
+          {
+            block: 'text',
+            mods: { bold: true },
+            content: news.title
+          },
+          { tag: 'br' },
+          news.text
         ]
       },
       {

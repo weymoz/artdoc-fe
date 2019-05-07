@@ -1,11 +1,11 @@
 const config = require('./config'),
-      render = require('./render').render,
-      axios = require('axios'),
-      passport = require('passport'),
-      request = require('./request'),
-      {URL}  = require('url'),
-      accepts = require('accepts'),
-      geoip = require('geoip-lite');
+  render = require('./render').render,
+  axios = require('axios'),
+  passport = require('passport'),
+  request = require('./request'),
+  { URL } = require('url'),
+  accepts = require('accepts'),
+  geoip = require('geoip-lite');
 
 //const isCallerMobile = req => {
 //  let ua = req.headers['user-agent'].toLowerCase(),
@@ -15,7 +15,6 @@ const config = require('./config'),
 //};
 
 module.exports = app => {
-
   // app.get('/livereload.js', (req, res) => {
   //   res.end('ok');
   // });
@@ -30,264 +29,357 @@ module.exports = app => {
   });
 
   // Promo
-  app.use( (req, res, next) => {
+  app.use((req, res, next) => {
     // Check if `req.query.promo` contains in promo's list;
-    const actions = config.promo.filter( promo => req.query.promo === promo.name );
-    actions.forEach( promo => {
-      Object.keys( promo.cookies ).forEach( action => {
-        let newCookie = promo.cookies[ action ],
-            params = {};
-        Object.keys( newCookie ).forEach( key => {
-          switch ( key ) {
+    const actions = config.promo.filter(
+      promo => req.query.promo === promo.name
+    );
+    actions.forEach(promo => {
+      Object.keys(promo.cookies).forEach(action => {
+        let newCookie = promo.cookies[action],
+          params = {};
+        Object.keys(newCookie).forEach(key => {
+          switch (key) {
             case 'value':
               break;
             case 'expire':
-              params.expire = ( new Date( newCookie.expire * 1000 ).toUTCString() );
+              params.expire = new Date(newCookie.expire * 1000).toUTCString();
               break;
             default:
-              params[ key ] = newCookie[ key ];
+              params[key] = newCookie[key];
               break;
           }
-        } );
-        if ( req.cookies[ action ] !== newCookie.value ) {
-          res.cookie( action, newCookie.value, params );
-          req.cookies[ action ] = newCookie.value
+        });
+        if (req.cookies[action] !== newCookie.value) {
+          res.cookie(action, newCookie.value, params);
+          req.cookies[action] = newCookie.value;
         }
-      } )
-    } );
+      });
+    });
 
     next();
-  } );
+  });
 
-  app.use( ( req, res, next ) => {
-
+  app.use((req, res, next) => {
     req.globalData = Object.assign({}, global);
 
-      // Добавление геопозиции
-      let ip = req.header('x-forwarded-for') || '95.31.18.119';
-      console.log('################### GEO #################');
-      console.log(ip);
-      var geo = geoip.lookup(ip);
-      console.log(geo);
-      if (!geo) {
-        geo = { country: 'RU'}
-      }
-      let currentGeo = geo.country ? geo.country : 'RU';
+    // Добавление геопозиции
+    let ip = req.header('x-forwarded-for') || '95.31.18.119';
+    console.log('################### GEO #################');
+    console.log(ip);
+    var geo = geoip.lookup(ip);
+    console.log(geo);
+    if (!geo) {
+      geo = { country: 'RU' };
+    }
+    let currentGeo = geo.country ? geo.country : 'RU';
 
-      req.globalData = Object.assign({ geo: currentGeo }, req.globalData);
+    req.globalData = Object.assign({ geo: currentGeo }, req.globalData);
 
     if (req.isAuthenticated()) {
       request({
         url: '/auth/',
         clientRequest: req
-      }).then( (response) => {
-        // console.log(response);
-        console.log('test');
-        if (response.status == 'authorized') {
-          req.session.userExtra = response;
-          req.globalData = Object.assign({ user: {
-            extra: response
-            } }, req.globalData);
-        } else {
-          delete req.session.userExtra;
-          //req.logOut();
-        }
-        next();
-      }).catch( error => {
-        console.log( error );
-        next();
-      } );
+      })
+        .then(response => {
+          // console.log(response);
+          console.log('test');
+          if (response.status == 'authorized') {
+            req.session.userExtra = response;
+            req.globalData = Object.assign(
+              {
+                user: {
+                  extra: response
+                }
+              },
+              req.globalData
+            );
+          } else {
+            delete req.session.userExtra;
+            //req.logOut();
+          }
+          next();
+        })
+        .catch(error => {
+          console.log(error);
+          next();
+        });
     } else {
       //req.globalData.user = {};
       next();
     }
-
-
-  } );
+  });
 
   // iFrame widget
-  app.use( ( req, res, next ) => {
-    const refer = new URL( req.headers.referrer || req.headers.referer || req.protocol + '://' + req.get( 'host' ) + req.originalUrl );
+  app.use((req, res, next) => {
+    const refer = new URL(
+      req.headers.referrer ||
+        req.headers.referer ||
+        req.protocol + '://' + req.get('host') + req.originalUrl
+    );
     req.globalData.refer = refer.host !== req.get('host');
     req.globalData.bundle = !req.query.embed ? 'desktop' : 'widget';
     next();
-  } );
+  });
 
-  request( { url: '/api/category/?per-page=0'} ).then( response => {
-    global.category = response.items.sort(function (a,b) {
-      return a.name.localeCompare(b.name, 'ru');
+  request({ url: '/api/category/?per-page=0' })
+    .then(response => {
+      global.category = response.items.sort(function(a, b) {
+        return a.name.localeCompare(b.name, 'ru');
+      });
+
+      for (let i = global.category.length - 1; i >= 0; i--) {
+        global.categoryByCode[global.category[i].code] = global.category[i];
+      }
+    })
+    .catch(() => {
+      console.log('Fail for get Russian categories');
     });
 
-    for ( let i = global.category.length - 1; i >= 0; i-- ) {
-      global.categoryByCode[ global.category[i].code ] = global.category[i];
-    }
-  }).catch( () => { console.log( 'Fail for get Russian categories' ) } );
-
-
-
-  request( { url: '/api/category/?per-page=0&lang=en'} ).then( response => {
-    global.categoryEn = response.items.sort(function (a,b) {
-      return a.name.localeCompare(b.name, 'en');
+  request({ url: '/api/category/?per-page=0&lang=en' })
+    .then(response => {
+      global.categoryEn = response.items.sort(function(a, b) {
+        return a.name.localeCompare(b.name, 'en');
+      });
+      for (let i = global.categoryEn.length - 1; i >= 0; i--) {
+        global.categoryByCodeEn[global.categoryEn[i].code] =
+          global.categoryEn[i];
+      }
+    })
+    .catch(() => {
+      console.log('Fail for get english categories');
     });
-    for ( let i = global.categoryEn.length - 1; i >= 0; i-- ) {
-      global.categoryByCodeEn[ global.categoryEn[i].code ] = global.categoryEn[i];
-    }
-  }).catch( () => { console.log( 'Fail for get english categories' ) } );
-
-
-
-
-
 
   /*
    *  Redirect
    *
    ***************************/
-  app.get( '*', ( req, res, next ) => {
+  app.get('*', (req, res, next) => {
     var accept = accepts(req);
     var lang = accept.languages();
     let url = req.originalUrl;
     var reg = /^\/(en|ru|api|logout)\//i;
     var str = url;
-    if (reg.test(str)){
+    if (reg.test(str)) {
       next();
       return true;
     } else {
       if (lang[0] === 'ru-RU') {
         res.redirect('/ru' + req.originalUrl);
       } else {
-        res.redirect('/en' + req.originalUrl)
+        res.redirect('/en' + req.originalUrl);
       }
     }
   });
 
-
-
   // Index
-  app.get( '/:lang', ( req, res ) => {
-    axios.all(
-      req.params.lang === 'ru' ? [
-        request( { url: '/api/authorcompilation/?sort=-sort&per-page=3&page=1' } ),
-        request( { url: '/api/schedule/?expand=sessions,movie&per-page=4&unique=1&date_from=' + (Math.floor((Date.now() / 1000) /3600 ) * 3600 - (31 * 60 * 60)) } ),
-        request( { url: '/api/news/?per-page=4&page=1&sort=-sort' } )
-      ]:[
-        request( { url: '/api/authorcompilation/?sort=-sort&per-page=3&page=1&lang=en' } ),
-        request( { url: '/api/schedule/?lang=en&expand=sessions,movie&per-page=4&unique=1&date_from=' + (Math.floor((Date.now() / 1000) /3600 ) * 3600 - (31 * 60 * 60)) } ),
-        request( { url: '/api/news/?lang=en&per-page=4&page=1&sort=-sort' } )
-      ]).then( (response) => {
-      let data = Object.assign({}, req.globalData, { api: response[0].items }, { poster: response[ 1 ] }, { news: response[ 2 ].items } );
-      data.page = 'index';
-      data.adaptive = true;
-      data.origUrl = req.originalUrl;
-      data.lang = req.params.lang;
-      data.origUrl = req.originalUrl;
-      return render( req, res, data );
-    }).catch( error => res.send( error ) );
+  app.get('/:lang', (req, res) => {
+    axios
+      .all(
+        req.params.lang === 'ru'
+          ? [
+              request({
+                url: '/api/authorcompilation/?sort=-sort&per-page=3&page=1'
+              }),
+              request({
+                url:
+                  '/api/schedule/?expand=sessions,movie&per-page=4&unique=1&date_from=' +
+                  (Math.floor(Date.now() / 1000 / 3600) * 3600 - 31 * 60 * 60)
+              }),
+              request({ url: '/api/news/?per-page=4&page=1&sort=-sort' })
+            ]
+          : [
+              request({
+                url:
+                  '/api/authorcompilation/?sort=-sort&per-page=3&page=1&lang=en'
+              }),
+              request({
+                url:
+                  '/api/schedule/?lang=en&expand=sessions,movie&per-page=4&unique=1&date_from=' +
+                  (Math.floor(Date.now() / 1000 / 3600) * 3600 - 31 * 60 * 60)
+              }),
+              request({
+                url: '/api/news/?lang=en&per-page=4&page=1&sort=-sort'
+              })
+            ]
+      )
+      .then(response => {
+        let data = Object.assign(
+          {},
+          req.globalData,
+          { api: response[0].items },
+          { poster: response[1] },
+          { news: response[2].items }
+        );
+        data.page = 'index';
+        data.adaptive = true;
+        data.origUrl = req.originalUrl;
+        data.lang = req.params.lang;
+        data.origUrl = req.originalUrl;
+        return render(req, res, data);
+      })
+      .catch(error => res.send(error));
   });
 
-
   // About
-  app.get( '/:lang/about/', ( req, res ) => {
+  app.get('/:lang/about/', (req, res) => {
     let data = Object.assign({}, req.globalData);
     data.page = 'about';
     data.origUrl = req.originalUrl;
     data.lang = req.params.lang;
-    return render( req, res, data );
+    return render(req, res, data);
   });
 
-  app.get( '/:lang/terms/', function(req, res) {
+  app.get('/:lang/terms/', function(req, res) {
     let data = Object.assign({}, req.globalData);
     data.page = 'terms';
     data.origUrl = req.originalUrl;
     data.lang = req.params.lang;
-    return render( req, res, data );
+    return render(req, res, data);
   });
 
   // Club
-  app.get( '/:lang/club/', ( req, res ) => {
+  app.get('/:lang/club/', (req, res) => {
     let data = Object.assign({}, req.globalData);
     data.page = 'club';
     data.origUrl = req.originalUrl;
     data.lang = req.params.lang;
-    return render( req, res, data );
+    return render(req, res, data);
   });
 
   // Catalog
-  app.get( [ '/:lang/movie/category-:category', '/:lang/movie/tag-:tag', '/:lang/movie' ], ( req, res ) => {
-
-    let req_url = new URL(req.protocol + '://' + req.get('host') + req.originalUrl);
-    let data = Object.assign({}, req.globalData);
-    let filter = Object.assign({}, req.query);
-    data.page = 'movies';
-    data.adaptive = true;
-    data.origUrl = req.originalUrl;
-    data.lang = req.params.lang;
-    data.currentCategoryCode = 'all';
-    if (data.lang === 'en'){
-      data.title = req.params.category ? data.categoryByCodeEn[ req.params.category ].name : 'All movies';
-    } else {
-      data.title = req.params.category ? data.categoryByCode[ req.params.category ].name : 'Все фильмы';
-    }
-    data.pagination = {
-      'per-page' : 20,
-      page: req.query.page || 1,
-      params: req_url.searchParams
-    };
-
-    let sortBy = req.query.sort || '-rating';
-    let url;
-    let filtersUrl;
-    if (data.lang === 'en'){
-      url = '/api/movie/filter/?per-page=20&lang=en&sort=' + sortBy + '&';
-      filtersUrl = '/api/movie/filtervalues/?lang=en';
-    } else {
-      if (req.globalData.geo !== 'RU'){
-        url = '/api/movie/filter/?per-page=20&currency=2&sort=' + sortBy + '&';
-        filtersUrl = '/api/movie/filtervalues/'
-      } else {
-        url = '/api/movie/filter/?per-page=20&sort=' + sortBy + '&';
-        filtersUrl = '/api/movie/filtervalues/'
-      }
-    }
-
-    if (typeof req.params.category !== 'undefined') {
-      filter['category'] = [data.categoryByCode[ req.params.category ].id];
-      data.currentCategoryCode = data.categoryByCode[ req.params.category ].code;
-    }
-    if (typeof req.params.tag !== 'undefined') {
-      filter['tags'] = [encodeURIComponent(req.params.tag)];
-    }
-
-    Object.keys(filter).map(function (key) {
-      url += encodeURIComponent('filter['+key+']')+'=' + filter[key] + '&';
-      return filter[key];
-    })
-    url += '&per-page=' + data.pagination['per-page'] + '&page=' + data.pagination.page;
-    axios.all([
-      request({
-        clientRequest: req,
-        url: url,
-      }),
-      request({
-        clientRequest: req,
-        url: filtersUrl,
-      })
-    ]).then( (response) => {
-      data.api = response[0].items;
-      data.filters = response[1];
-      data.filter = filter;
+  app.get(
+    [
+      '/:lang/movie/category-:category',
+      '/:lang/movie/tag-:tag',
+      '/:lang/movie'
+    ],
+    (req, res) => {
+      let req_url = new URL(
+        req.protocol + '://' + req.get('host') + req.originalUrl
+      );
+      let data = Object.assign({}, req.globalData);
+      let filter = Object.assign({}, req.query);
+      data.page = 'movies';
+      data.adaptive = true;
       data.origUrl = req.originalUrl;
       data.lang = req.params.lang;
-      data.currency = req.globalData.geo !== 'RU' ? '$' : '₽';
-      data.pagination = Object.assign(response[0].meta, data.pagination);
-      data.pagination.sort = req.query.sort || '-rating';
-      data.pagination.view = req.query.view || 'grid';
-      data.page = 'movies';
-      return render( req, res, data );
-    } ).catch( error => res.send( error ) );
+      data.currentCategoryCode = 'all';
+      if (data.lang === 'en') {
+        data.title = req.params.category
+          ? data.categoryByCodeEn[req.params.category].name
+          : 'All movies';
+      } else {
+        data.title = req.params.category
+          ? data.categoryByCode[req.params.category].name
+          : 'Все фильмы';
+      }
+      data.pagination = {
+        'per-page': 20,
+        page: req.query.page || 1,
+        params: req_url.searchParams
+      };
+
+      let sortBy = req.query.sort || '-rating';
+      let url;
+      let filtersUrl;
+      if (data.lang === 'en') {
+        url = '/api/movie/filter/?per-page=20&lang=en&sort=' + sortBy + '&';
+        filtersUrl = '/api/movie/filtervalues/?lang=en';
+      } else {
+        if (req.globalData.geo !== 'RU') {
+          url =
+            '/api/movie/filter/?per-page=20&currency=2&sort=' + sortBy + '&';
+          filtersUrl = '/api/movie/filtervalues/';
+        } else {
+          url = '/api/movie/filter/?per-page=20&sort=' + sortBy + '&';
+          filtersUrl = '/api/movie/filtervalues/';
+        }
+      }
+
+      if (typeof req.params.category !== 'undefined') {
+        filter['category'] = [data.categoryByCode[req.params.category].id];
+        data.currentCategoryCode =
+          data.categoryByCode[req.params.category].code;
+      }
+      if (typeof req.params.tag !== 'undefined') {
+        filter['tags'] = [encodeURIComponent(req.params.tag)];
+      }
+
+      Object.keys(filter).map(function(key) {
+        url +=
+          encodeURIComponent('filter[' + key + ']') + '=' + filter[key] + '&';
+        return filter[key];
+      });
+      url +=
+        '&per-page=' +
+        data.pagination['per-page'] +
+        '&page=' +
+        data.pagination.page;
+      axios
+        .all([
+          request({
+            clientRequest: req,
+            url: url
+          }),
+          request({
+            clientRequest: req,
+            url: filtersUrl
+          })
+        ])
+        .then(response => {
+          data.api = response[0].items;
+          data.filters = response[1];
+          data.filter = filter;
+          data.origUrl = req.originalUrl;
+          data.lang = req.params.lang;
+          data.currency = req.globalData.geo !== 'RU' ? '$' : '₽';
+          data.pagination = Object.assign(response[0].meta, data.pagination);
+          data.pagination.sort = req.query.sort || '-rating';
+          data.pagination.view = req.query.view || 'grid';
+          data.page = 'movies';
+          return render(req, res, data);
+        })
+        .catch(error => res.send(error));
+    }
+  );
+
+  app.get('/:lang/support', function(req, res) {
+    let data = Object.assign({}, req.globalData);
+    data.page = 'support';
+    data.page.isCinema = false;
+    data.origUrl = req.originalUrl;
+    data.lang = req.params.lang;
+    data.adaptive = true;
+
+    data.origUrl = req.originalUrl;
+    data.lang = req.params.lang;
+    data.currency = req.globalData.geo !== 'RU' ? '$' : '₽';
+    data.title =
+      req.globalData.geo !== 'RU' ? 'Support the project' : 'Поддержать проект';
+
+    render(req, res, data);
+  });
+  app.get('/:lang/thanks-support', function(req, res) {
+    let data = Object.assign({}, req.globalData);
+    data.api = res;
+    data.page = 'thanks-support';
+    data.origUrl = req.originalUrl;
+    data.lang = req.params.lang;
+    data.adaptive = true;
+    data.title =
+      req.params.lang === 'en'
+        ? 'Payment successfull'
+        : 'Оплата прошла успешно';
+    if (data.api.error) {
+      data.page = 'error';
+      data.lang = req.params.lang;
+      data.title = 'payment-error'; // 'При оплате произошла ошибка'
+    }
+    return render(req, res, data);
   });
 
-  app.get('/:lang/movie/:name/buy', function (req, res, next) {
+  app.get('/:lang/movie/:name/buy', function(req, res, next) {
     let data = Object.assign({}, req.globalData);
     data.page = 'order';
     data.page.isCinema = false;
@@ -295,20 +387,27 @@ module.exports = app => {
     data.lang = req.params.lang;
     let url;
 
-    if (data.lang === 'en'){
-      url = '/api/movie/?sort=id&lang=en&expand=schedules,sessions,category,screenshots&code=' + encodeURIComponent(req.params.name)
+    if (data.lang === 'en') {
+      url =
+        '/api/movie/?sort=id&lang=en&expand=schedules,sessions,category,screenshots&code=' +
+        encodeURIComponent(req.params.name);
     } else {
-      if (req.globalData.geo !== 'RU'){
-        url = '/api/movie/?sort=id&expand=schedules,sessions,category,screenshots&code=' + encodeURIComponent(req.params.name) + '&currency=2'
+      if (req.globalData.geo !== 'RU') {
+        url =
+          '/api/movie/?sort=id&expand=schedules,sessions,category,screenshots&code=' +
+          encodeURIComponent(req.params.name) +
+          '&currency=2';
       } else {
-        url = '/api/movie/?sort=id&expand=schedules,sessions,category,screenshots&code=' + encodeURIComponent(req.params.name)
+        url =
+          '/api/movie/?sort=id&expand=schedules,sessions,category,screenshots&code=' +
+          encodeURIComponent(req.params.name);
       }
     }
     request({
       clientRequest: req,
       url: url
     })
-      .then( response => {
+      .then(response => {
         if (!response.items[0]) {
           next();
           return true;
@@ -316,56 +415,68 @@ module.exports = app => {
         data.api = {
           movie: response.items[0],
           type: 'rent',
-          time_gmt3: Math.ceil((((new Date()))/1000 + 60*60*24*3)/60/60)*60*60,
-        }
+          time_gmt3:
+            Math.ceil((new Date() / 1000 + 60 * 60 * 24 * 3) / 60 / 60) *
+            60 *
+            60
+        };
         data.origUrl = req.originalUrl;
         data.lang = req.params.lang;
         data.currency = req.globalData.geo !== 'RU' ? '$' : '₽';
         data.title = response.items[0].name;
-        data.meta.og.image = response.items[0].cover && response.items[0].cover.id
-          ? '//artdoc.media/upload/resize/' + response.items[0].cover.id + '/640x360.jpg'
-          : data.meta.og.image;
-        render( req, res, data );
-      } )
-      .catch(( error ) => {
+        data.meta.og.image =
+          response.items[0].cover && response.items[0].cover.id
+            ? '//artdoc.media/upload/resize/' +
+              response.items[0].cover.id +
+              '/640x360.jpg'
+            : data.meta.og.image;
+        render(req, res, data);
+      })
+      .catch(error => {
         console.log('error!!!');
-        res.send( error );
-      } );
-
-  })
+        res.send(error);
+      });
+  });
 
   // Movie
-  app.get( '/:lang/movie/:name', ( req, res, next ) => {
+  app.get('/:lang/movie/:name', (req, res, next) => {
     let data = Object.assign({}, req.globalData);
     // Check promo
     data.promo = {};
-    config.promo.forEach( promo => {
-      data.promo[ promo.name ] = Object.keys( promo.cookies ).every( key => {
-          return promo.cookies[ key ].value == req.cookies[ key ];
-        } )
+    config.promo.forEach(promo => {
+      data.promo[promo.name] = Object.keys(promo.cookies).every(key => {
+        return promo.cookies[key].value == req.cookies[key];
+      })
         ? promo.data
-        : false
-    } );
+        : false;
+    });
 
-    if ( req.query.hasOwnProperty( 'code' ) ) {
+    if (req.query.hasOwnProperty('code')) {
       data.page = 'order';
       data.isCinema = true;
       let url;
 
-      if(req.params.lang === 'en'){
-        url = '/api/session/?lang=en&expand=movie,category,city&code=' + encodeURIComponent(req.query.code);
+      if (req.params.lang === 'en') {
+        url =
+          '/api/session/?lang=en&expand=movie,category,city&code=' +
+          encodeURIComponent(req.query.code);
       } else {
         if (req.globalData.geo !== 'RU') {
-          url = '/api/session/?expand=movie,category,city&code=' + encodeURIComponent(req.query.code) + '&currency=2'
+          url =
+            '/api/session/?expand=movie,category,city&code=' +
+            encodeURIComponent(req.query.code) +
+            '&currency=2';
         } else {
-          url = '/api/session/?expand=movie,category,city&code=' + encodeURIComponent(req.query.code)
+          url =
+            '/api/session/?expand=movie,category,city&code=' +
+            encodeURIComponent(req.query.code);
         }
       }
       request({
         url: url,
         clientRequest: req
       })
-        .then( response => {
+        .then(response => {
           if (!response.items.length) {
             next();
           }
@@ -377,19 +488,26 @@ module.exports = app => {
           data.lang = req.params.lang;
           data.currency = req.globalData.geo !== 'RU' ? '$' : '₽';
           data.api.checked_city = req.query.city;
-          return render( req, res, data );
-        } )
-        .catch(( error ) => res.send( error ) );
+          return render(req, res, data);
+        })
+        .catch(error => res.send(error));
     } else {
       data.page = 'movie';
       let url;
-      if(req.params.lang === 'en'){
-        url = '/api/movie/?sort=id&lang=en&expand=schedules,sessions,category,screenshots&code=' + encodeURIComponent(req.params.name);
+      if (req.params.lang === 'en') {
+        url =
+          '/api/movie/?sort=id&lang=en&expand=schedules,sessions,category,screenshots&code=' +
+          encodeURIComponent(req.params.name);
       } else {
         if (req.globalData.geo !== 'RU') {
-          url = '/api/movie/?sort=id&expand=schedules,sessions,category,screenshots&code=' + encodeURIComponent(req.params.name) + '&currency=2'
+          url =
+            '/api/movie/?sort=id&expand=schedules,sessions,category,screenshots&code=' +
+            encodeURIComponent(req.params.name) +
+            '&currency=2';
         } else {
-          url = '/api/movie/?sort=id&expand=schedules,sessions,category,screenshots&code=' + encodeURIComponent(req.params.name)
+          url =
+            '/api/movie/?sort=id&expand=schedules,sessions,category,screenshots&code=' +
+            encodeURIComponent(req.params.name);
         }
       }
 
@@ -397,7 +515,7 @@ module.exports = app => {
         url: url,
         clientRequest: req
       })
-        .then( response => {
+        .then(response => {
           if (!response.items.length) {
             console.log('next!');
             next();
@@ -409,59 +527,78 @@ module.exports = app => {
           data.origUrl = req.originalUrl;
           data.lang = req.params.lang;
           data.currency = req.globalData.geo !== 'RU' ? '$' : '₽';
-          data.meta.og.image = response.items[0].cover && response.items[0].cover.id
-            ? '//artdoc.media/upload/resize/' + response.items[0].cover.id + '/640x360.jpg'
-            : data.meta.og.image;
-          return render( req, res, data );
-        } )
-        .catch( ( error ) => res.send( error ) );
+          data.meta.og.image =
+            response.items[0].cover && response.items[0].cover.id
+              ? '//artdoc.media/upload/resize/' +
+                response.items[0].cover.id +
+                '/640x360.jpg'
+              : data.meta.og.image;
+          return render(req, res, data);
+        })
+        .catch(error => res.send(error));
     }
   });
 
   // Collections
-  app.get( '/:lang/selection', ( req, res ) => {
+  app.get('/:lang/selection', (req, res) => {
     let data = Object.assign({}, req.globalData);
-    let req_url = new URL(req.protocol + '://' + req.get('host') + req.originalUrl);
+    let req_url = new URL(
+      req.protocol + '://' + req.get('host') + req.originalUrl
+    );
     data.pagination = {
-      'per-page' : 5,
-       page: req.query.page ? req.query.page : 1,
-       params: req_url.searchParams
+      'per-page': 5,
+      page: req.query.page ? req.query.page : 1,
+      params: req_url.searchParams
     };
     let url = '/api/authorcompilation/';
-    if (req.params.lang === 'en'){
-      url += '?sort=-sort&lang=en&per-page=' + data.pagination['per-page'] + '&page=' + data.pagination.page;
+    if (req.params.lang === 'en') {
+      url +=
+        '?sort=-sort&lang=en&per-page=' +
+        data.pagination['per-page'] +
+        '&page=' +
+        data.pagination.page;
     } else {
-      url += '?sort=-sort&per-page=' + data.pagination['per-page'] + '&page=' + data.pagination.page;
+      url +=
+        '?sort=-sort&per-page=' +
+        data.pagination['per-page'] +
+        '&page=' +
+        data.pagination.page;
     }
     data.page = 'selections';
     data.adaptive = true;
     data.origUrl = req.originalUrl;
     data.lang = req.params.lang;
-    data.title = req.params.lang === 'en' ? 'Author\'s collections' : 'Авторские подборки';
+    data.title =
+      req.params.lang === 'en' ? "Author's collections" : 'Авторские подборки';
     request({
       clientRequest: req,
       url: url
     })
-        .then( response => {
-          data.pagination = Object.assign(response.meta, data.pagination);
-          data.api = response.items;
-          data.lang = req.params.lang;
-          return render( req, res, data );
-        }).catch( error => res.send( error ) );
+      .then(response => {
+        data.pagination = Object.assign(response.meta, data.pagination);
+        data.api = response.items;
+        data.lang = req.params.lang;
+        return render(req, res, data);
+      })
+      .catch(error => res.send(error));
   });
 
   // Collection
-  app.get( '/:lang/selection/:code', ( req, res, next ) => {
+  app.get('/:lang/selection/:code', (req, res, next) => {
     let data = Object.assign({}, req.globalData);
     data.pagination = {
-      'per-page' : 20,
-      'page': req.query.page ? req.query.page : 1
+      'per-page': 20,
+      page: req.query.page ? req.query.page : 1
     };
     let url;
-    if ( req.params.lang === 'en'){
-      url = '/api/authorcompilation/?code=' + encodeURIComponent(req.params.code)+'&lang=en';
+    if (req.params.lang === 'en') {
+      url =
+        '/api/authorcompilation/?code=' +
+        encodeURIComponent(req.params.code) +
+        '&lang=en';
     } else {
-      url = '/api/authorcompilation/?code=' + encodeURIComponent(req.params.code);
+      url =
+        '/api/authorcompilation/?code=' + encodeURIComponent(req.params.code);
     }
     data.page = 'selection';
     data.lang = req.params.lang;
@@ -470,7 +607,7 @@ module.exports = app => {
       clientRequest: req,
       url: url
     })
-      .then( response => {
+      .then(response => {
         if (!response.items.length) {
           console.log('next!');
           next();
@@ -479,21 +616,21 @@ module.exports = app => {
         data.lang = req.params.lang;
         data.origUrl = req.originalUrl;
         data.title = response.items[0].name;
-        return render( req, res, data );
-      }).catch( error => res.send( error ) );
+        return render(req, res, data);
+      })
+      .catch(error => res.send(error));
   });
 
-
-  app.get( '/:lang/author/:id', ( req, res, next ) => {
+  app.get('/:lang/author/:id', (req, res, next) => {
     let data = Object.assign({}, req.globalData);
     data.pagination = {
-      'per-page' : 20,
-      'page': req.query.page ? req.query.page : 1
+      'per-page': 20,
+      page: req.query.page ? req.query.page : 1
     };
     let url;
 
-    if(req.params.lang === 'en'){
-      url = '/api/author/?lang=en&id=' + req.params.id
+    if (req.params.lang === 'en') {
+      url = '/api/author/?lang=en&id=' + req.params.id;
     } else {
       url = '/api/author/?id=' + req.params.id;
     }
@@ -505,72 +642,95 @@ module.exports = app => {
       clientRequest: req,
       url: url
     })
-      .then( response => {
+      .then(response => {
         if (!response.items.length) {
           console.log('next!');
           next();
         }
 
-
         if (response.items[0].movies && response.items[0].movies.length) {
-          response.items[0].movies = response.items[0].movies.filter((movie) => movie.status == 10)
+          response.items[0].movies = response.items[0].movies.filter(
+            movie => movie.status == 10
+          );
         }
 
         data.api = response.items[0];
         data.origUrl = req.originalUrl;
         data.lang = req.params.lang;
         data.title = response.items[0].name;
-        return render( req, res, data );
-      }).catch( error => res.send( error ) );
+        return render(req, res, data);
+      })
+      .catch(error => res.send(error));
   });
 
-
   // Cinema's catalog
-  app.get( '/:lang/cinema', ( req, res ) => {
+  app.get('/:lang/cinema', (req, res) => {
     let data = Object.assign({}, req.globalData);
     data.page = 'schedule';
     data.lang = req.params.lang;
-    data.title = req.params.lang === 'en' ? 'Showtimes schedules' : 'Расписание онлайн-киносеансов';
+    data.title =
+      req.params.lang === 'en'
+        ? 'Showtimes schedules'
+        : 'Расписание онлайн-киносеансов';
     let url;
-    if (data.lang === 'en'){
-      url = '/api/schedule/?expand=sessions,movie&lang=en&sort=date_gmt3&per-page=100&date_from=' + (Math.floor((Date.now() / 1000) / 3600) * 3600 - (31 * 60 * 60))
-    }else {
-      url = '/api/schedule/?expand=sessions,movie&sort=date_gmt3&per-page=100&date_from=' + (Math.floor((Date.now() / 1000) / 3600) * 3600 - (31 * 60 * 60));
+    if (data.lang === 'en') {
+      url =
+        '/api/schedule/?expand=sessions,movie&lang=en&sort=date_gmt3&per-page=100&date_from=' +
+        (Math.floor(Date.now() / 1000 / 3600) * 3600 - 31 * 60 * 60);
+    } else {
+      url =
+        '/api/schedule/?expand=sessions,movie&sort=date_gmt3&per-page=100&date_from=' +
+        (Math.floor(Date.now() / 1000 / 3600) * 3600 - 31 * 60 * 60);
     }
     request({
       clientRequest: req,
       url: url
     })
-      .then( response => {
+      .then(response => {
         data.api = response.items;
         data.origUrl = req.originalUrl;
         data.lang = req.params.lang;
-        return render( req, res, data );
-      } )
-      .catch( error => res.send( error ) );
+        return render(req, res, data);
+      })
+      .catch(error => res.send(error));
   });
 
-
   // Cinema's play or discuss
-  app.get( '/:lang/cinema/:type(release|discuss)', ( req, res ) => {
-    console.log('route ')
+  app.get('/:lang/cinema/:type(release|discuss)', (req, res) => {
+    console.log('route ');
     let data = Object.assign({}, req.globalData);
-    if ( req.query.hasOwnProperty( 'hash' ) && req.query.hasOwnProperty( 'sess_id' ) && req.query.hasOwnProperty( 'id' ) ) {
+    if (
+      req.query.hasOwnProperty('hash') &&
+      req.query.hasOwnProperty('sess_id') &&
+      req.query.hasOwnProperty('id')
+    ) {
       data.page = req.params.type === 'discuss' ? 'discuss' : 'play';
       data.lang = req.params.lang;
 
       let url;
-      if (data.lang === 'en'){
-        url = '/cinema/release/?id=' + req.query.id + '&lang=en&hash=' + req.query.hash + '&sess_id=' + req.query.sess_id
+      if (data.lang === 'en') {
+        url =
+          '/cinema/release/?id=' +
+          req.query.id +
+          '&lang=en&hash=' +
+          req.query.hash +
+          '&sess_id=' +
+          req.query.sess_id;
       } else {
-        url = '/cinema/release/?id=' + req.query.id + '&hash=' + req.query.hash + '&sess_id=' + req.query.sess_id
+        url =
+          '/cinema/release/?id=' +
+          req.query.id +
+          '&hash=' +
+          req.query.hash +
+          '&sess_id=' +
+          req.query.sess_id;
       }
 
       request({
         clientRequest: req,
         url: url
       })
-        .then( response => {
+        .then(response => {
           data.api = response;
           data.api.type = 'cinema';
           data.origUrl = req.originalUrl;
@@ -580,122 +740,153 @@ module.exports = app => {
               if (response.schedule.discuss_link) {
                 return res.redirect(response.schedule.discuss_link);
               } else if (response.schedule.discuss_preview) {
-                return render( req, res, data );
+                return render(req, res, data);
               }
             }
             return render(req, res, { view: '404', page: 'index' });
           }
-          return render( req, res, data );
-        } )
-        .catch( error => res.send( error ) );
+          return render(req, res, data);
+        })
+        .catch(error => res.send(error));
     }
   });
 
   // Order
-  app.get( '/:lang/order/:transaction_id', ( req, res ) => {
+  app.get('/:lang/order/:transaction_id', (req, res) => {
     let data = Object.assign({}, req.globalData);
     let url;
-    if (req.params.lang === 'en'){
-      url = '/payment/provide/?lang=en'
+    if (req.params.lang === 'en') {
+      url = '/payment/provide/?lang=en';
     } else {
-      url = '/payment/provide/'
+      url = '/payment/provide/';
     }
 
-    request( {
+    request({
       url: url,
       method: 'post',
       clientRequest: req,
-      data: { nonce: req.query.payment_nonce, transaction_id: req.params.transaction_id }
+      data: {
+        nonce: req.query.payment_nonce,
+        transaction_id: req.params.transaction_id
+      }
     })
-      .then( response => {
+      .then(response => {
         data.api = response;
         data.page = 'thanks';
         data.origUrl = req.originalUrl;
         data.lang = req.params.lang;
-        data.title = req.params.lang === 'en' ? 'Payment successfull' : 'Билет успешно оплачен';
-        if ( data.api.error ) {
+        data.title =
+          req.params.lang === 'en'
+            ? 'Payment successfull'
+            : 'Билет успешно оплачен';
+        if (data.api.error) {
           data.page = 'error';
           data.lang = req.params.lang;
           data.title = 'payment-error'; // 'При оплате произошла ошибка'
         }
-        return render( req, res, data );
-      } )
-      .catch( error => res.send(error) );
+        return render(req, res, data);
+      })
+      .catch(error => res.send(error));
   });
 
   // Promo activate
-  app.get( '/:lang/payment/freeactivate/', ( req, res ) => {
-      let data = Object.assign({}, req.globalData);
-      let url;
-      if (req.params.lang === 'en'){
-        url = '/payment/freeactivate/?lang=en&' + Object.keys(req.query).map(key => key + '=' + encodeURIComponent(req.query[key])).join('&')
-      } else {
-        url = '/payment/freeactivate/?' + Object.keys(req.query).map(key => key + '=' + encodeURIComponent(req.query[key])).join('&')
-      }
+  app.get('/:lang/payment/freeactivate/', (req, res) => {
+    let data = Object.assign({}, req.globalData);
+    let url;
+    if (req.params.lang === 'en') {
+      url =
+        '/payment/freeactivate/?lang=en&' +
+        Object.keys(req.query)
+          .map(key => key + '=' + encodeURIComponent(req.query[key]))
+          .join('&');
+    } else {
+      url =
+        '/payment/freeactivate/?' +
+        Object.keys(req.query)
+          .map(key => key + '=' + encodeURIComponent(req.query[key]))
+          .join('&');
+    }
     request({
       clientRequest: req,
       url: url
     })
-      .then( response => {
+      .then(response => {
         data.api = response;
         data.origUrl = req.originalUrl;
         data.lang = req.params.lang;
-        if ( !data.api.error ) {
+        if (!data.api.error) {
           data.page = 'thanks';
-          data.title = req.params.lang === 'en' ? 'Ticket is succesfully activated' : 'Билет успешно активирован';
-          render( req, res, data );
+          data.title =
+            req.params.lang === 'en'
+              ? 'Ticket is succesfully activated'
+              : 'Билет успешно активирован';
+          render(req, res, data);
         } else {
           data.page = 'error';
           data.lang = req.params.lang;
-          data.title = req.params.lang === 'en' ? 'Error occured during the activation' : 'При активации произошла ошибка';
-          return render( req, res, data );
+          data.title =
+            req.params.lang === 'en'
+              ? 'Error occured during the activation'
+              : 'При активации произошла ошибка';
+          return render(req, res, data);
         }
-
-      } )
-      .catch(() => res.send('error') );
+      })
+      .catch(() => res.send('error'));
   });
 
   // Free movie
-  app.get( '/:lang/movie/:name/watch', ( req, res ) => {
+  app.get('/:lang/movie/:name/watch', (req, res) => {
     let data = Object.assign({}, req.globalData);
 
     if (req.query.hash) {
       data.page = 'play';
       let url;
 
-      if (req.params.lang === 'en'){
-        url = '/cinema/release/rent/?id=' + req.query.id + '&lang=en&hash=' + req.query.hash
+      if (req.params.lang === 'en') {
+        url =
+          '/cinema/release/rent/?id=' +
+          req.query.id +
+          '&lang=en&hash=' +
+          req.query.hash;
       } else {
-        url = '/cinema/release/rent/?id=' + req.query.id + '&hash=' + req.query.hash
+        url =
+          '/cinema/release/rent/?id=' +
+          req.query.id +
+          '&hash=' +
+          req.query.hash;
       }
 
       request({
         clientRequest: req,
         url: url
       })
-        .then( response => {
+        .then(response => {
           data.origUrl = req.originalUrl;
           data.lang = req.params.lang;
           data.api = response;
           data.api.type = 'rent';
-          return render( req, res, data );
-        } )
+          return render(req, res, data);
+        })
         .catch(() => {
-          return res.send('error')
-        } );
+          return res.send('error');
+        });
     } else {
       let url;
-      if (req.params.lang === 'en'){
-        url = '/api/movie/?sort=id&expand=schedules,sessions,category,video_link,screenshots&lang=en&code=' + encodeURIComponent(req.params.name)
+      if (req.params.lang === 'en') {
+        url =
+          '/api/movie/?sort=id&expand=schedules,sessions,category,video_link,screenshots&lang=en&code=' +
+          encodeURIComponent(req.params.name);
       } else {
-        url = '/api/movie/?sort=id&expand=schedules,sessions,category,video_link,screenshots&code=' + encodeURIComponent(req.params.name)
+        url =
+          '/api/movie/?sort=id&expand=schedules,sessions,category,video_link,screenshots&code=' +
+          encodeURIComponent(req.params.name);
       }
 
       request({
         url: url,
         clientRequest: req
       })
-        .then( response => {
+        .then(response => {
           data.origUrl = req.originalUrl;
           data.lang = req.params.lang;
           data.api = {};
@@ -706,28 +897,36 @@ module.exports = app => {
           data.page = 'play';
           data.origUrl = req.originalUrl;
           data.lang = req.params.lang;
-          data.meta.og.image = response.items[0].cover && response.items[0].cover.id
-            ? '//artdoc.media/upload/resize/' + response.items[0].cover.id + '/640x360.jpg'
-            : data.meta.og.image;
-          return render( req, res, data );
-        } )
-        .catch( ( error ) => res.send( error ) );
+          data.meta.og.image =
+            response.items[0].cover && response.items[0].cover.id
+              ? '//artdoc.media/upload/resize/' +
+                response.items[0].cover.id +
+                '/640x360.jpg'
+              : data.meta.og.image;
+          return render(req, res, data);
+        })
+        .catch(error => res.send(error));
     }
   });
 
   // Search
-  app.get( '/:lang/search', ( req, res ) => {
+  app.get('/:lang/search', (req, res) => {
     let data = Object.assign({}, req.globalData);
     data.lang = req.params.lang;
     let url;
 
-    if (data.lang === 'en'){
-      url = '/search/search/?per-page=20&lang=en&q=' + encodeURIComponent(req.query.q)
+    if (data.lang === 'en') {
+      url =
+        '/search/search/?per-page=20&lang=en&q=' +
+        encodeURIComponent(req.query.q);
     } else {
-      if (req.globalData.geo !== 'RU'){
-        url = '/search/search/?per-page=20&currency=2&q=' + encodeURIComponent(req.query.q)
+      if (req.globalData.geo !== 'RU') {
+        url =
+          '/search/search/?per-page=20&currency=2&q=' +
+          encodeURIComponent(req.query.q);
       } else {
-        url = '/search/search/?per-page=20&q=' + encodeURIComponent(req.query.q)
+        url =
+          '/search/search/?per-page=20&q=' + encodeURIComponent(req.query.q);
       }
     }
 
@@ -735,58 +934,55 @@ module.exports = app => {
       clientRequest: req,
       url: url
     })
-      .then( response => {
+      .then(response => {
         data.api = response;
         data.page = 'search';
         data.origUrl = req.originalUrl;
         data.lang = req.params.lang;
         data.currency = req.globalData.geo !== 'RU' ? '$' : '₽';
-        data.title = req.params.lang === 'en' ? 'Search results' : 'Результаты поиска';
+        data.title =
+          req.params.lang === 'en' ? 'Search results' : 'Результаты поиска';
         data.search = req.query.q;
 
-        if ( !data.api.error ) {
-          return render( req, res, data );
+        if (!data.api.error) {
+          return render(req, res, data);
         }
-      } )
-      .catch( error => res.send( error ) );
+      })
+      .catch(error => res.send(error));
   });
-
-
-
-
 
   /*
    *  API Proxy
    *
    ***************************/
 
-  app.post( '/api/order/:session_id', ( req, res ) => {
+  app.post('/api/order/:session_id', (req, res) => {
     let promo_code = '';
     // Check promo
     let promoCode = {};
-    config.promo.forEach( promo => {
-      promoCode[ promo.name ] = Object.keys( promo.cookies ).every( key => {
-          return promo.cookies[ key ].value == req.cookies[ key ];
-        } )
+    config.promo.forEach(promo => {
+      promoCode[promo.name] = Object.keys(promo.cookies).every(key => {
+        return promo.cookies[key].value == req.cookies[key];
+      })
         ? promo.data
-        : false
-    } );
-    if ( promoCode.meduza ) {
+        : false;
+    });
+    if (promoCode.meduza) {
       promo_code = 'artdocmedia_free';
     }
 
     let url;
-    if (req.body.lang === 'en'){
-      url = '/cinema/booking/booking/?&lang=en&promo=' + promo_code
+    if (req.body.lang === 'en') {
+      url = '/cinema/booking/booking/?&lang=en&promo=' + promo_code;
     } else {
-      if (req.body.currency === '$'){
-        url = '/cinema/booking/booking/?&currency=2&promo=' + promo_code
+      if (req.body.currency === '$') {
+        url = '/cinema/booking/booking/?&currency=2&promo=' + promo_code;
       } else {
-        url = '/cinema/booking/booking/?&promo=' + promo_code
+        url = '/cinema/booking/booking/?&promo=' + promo_code;
       }
     }
 
-    request( {
+    request({
       url: url,
       method: 'post',
       clientRequest: req,
@@ -795,40 +991,42 @@ module.exports = app => {
         session_id: req.params.session_id,
         promo: promo_code
       }
-    }).then( api => {
-
-      if ( api.payment_url ) {
-        if( req.body.lang === 'en' ){
-          url = api.payment_url + '&lang=en'
-        } else {
-          if (req.body.currency === 2){
-            url = api.payment_url + '&currency=2'
+    })
+      .then(api => {
+        if (api.payment_url) {
+          if (req.body.lang === 'en') {
+            url = api.payment_url + '&lang=en';
           } else {
-            url = api.payment_url
+            if (req.body.currency === 2) {
+              url = api.payment_url + '&currency=2';
+            } else {
+              url = api.payment_url;
+            }
           }
+          request({
+            clientRequest: req,
+            url: url
+          })
+            .then(response => {
+              return res.json(response);
+            })
+            .catch(() => res.send('error'));
+        } else {
+          return res.json(api);
         }
-        request({
-          clientRequest: req,
-          url: url
-        }).then( response => {
-          return res.json( response )
-        }).catch(() => res.send('error') );
-      } else {
-        return res.json( api );
-      }
-    }).catch( error => res.send( error ) );
+      })
+      .catch(error => res.send(error));
   });
 
-  app.post( '/api/buy/:movie_id', ( req, res ) => {
-
+  app.post('/api/buy/:movie_id', (req, res) => {
     let url;
-    if (req.body.lang === 'en'){
-      url = '/cinema/booking/rent/?lang=en'
+    if (req.body.lang === 'en') {
+      url = '/cinema/booking/rent/?lang=en';
     } else {
-      if (req.body.currency === '$'){
-        url = '/cinema/booking/rent/?currency=2'
+      if (req.body.currency === '$') {
+        url = '/cinema/booking/rent/?currency=2';
       } else {
-        url = '/cinema/booking/rent/'
+        url = '/cinema/booking/rent/';
       }
     }
 
@@ -840,113 +1038,164 @@ module.exports = app => {
         RentTicketModel: { email: req.body.email },
         movie_id: req.params.movie_id
       }
-    }).then( api => {
-      if ( api.payment_url ) {
-        if( req.body.lang === 'en' ){
-          url = api.payment_url + '&lang=en'
-        } else {
-          if (req.body.currency === 2){
-            url = api.payment_url + '&currency=2'
-          } else {
-            url = api.payment_url
-          }
-        }
-        request({
-          clientRequest: req,
-          url: url
-        })
-          .then( response => {
-            res.json(  response );
-          } )
-          .catch(() => res.send('error') );
-      } else {
-        res.json( api );
-      }
     })
-      .catch((e) => {
+      .then(api => {
+        if (api.payment_url) {
+          if (req.body.lang === 'en') {
+            url = api.payment_url + '&lang=en';
+          } else {
+            if (req.body.currency === 2) {
+              url = api.payment_url + '&currency=2';
+            } else {
+              url = api.payment_url;
+            }
+          }
+          request({
+            clientRequest: req,
+            url: url
+          })
+            .then(response => {
+              res.json(response);
+            })
+            .catch(() => res.send('error'));
+        } else {
+          res.json(api);
+        }
+      })
+      .catch(e => {
         console.log(e);
-        return res.send('error')
-      } );
+        return res.send('error');
+      });
   });
 
-  app.post( '/api/payment/:transaction_id', ( req, res ) => {
-    request( {
+  app.post('/api/payment/donate', (req, res) => {
+    request({
+      url: `/payment/donate/?lang=${req.body.lang}&currency=${
+        req.body.lang === 'ru' ? 1 : 2
+      }`,
+      method: 'post',
+      clientRequest: req,
+      data: req.body
+    })
+      .then(api =>
+        request({
+          clientRequest: req,
+          url: `${api.payment_url}&lang=${req.body.lang}&currency=${
+            req.body.lang === 'ru' ? 1 : 2
+          }`
+        })
+          .then(response => {
+            res.json(response);
+          })
+          .catch(() => res.send('error'))
+      )
+      .catch(e => {
+        console.log(e);
+        return res.send('error');
+      });
+  });
+
+  app.post('/api/payment/:transaction_id', (req, res) => {
+    request({
       url: '/payment/provide/',
       method: 'post',
       clientRequest: req,
-      data: { nonce: req.body.payment_nonce, transaction_id: req.params.transaction_id}
+      data: {
+        nonce: req.body.payment_nonce,
+        transaction_id: req.params.transaction_id
+      }
     })
-      .then( api => res.json( api ) )
-      .catch( error => res.send( error ) );
+      .then(api => res.json(api))
+      .catch(error => res.send(error));
   });
 
-  app.get( '/api/filter/', ( req, res ) => {
+  app.get('/api/filter/', (req, res) => {
     const sort = req.query.sort || '-rating';
     const page = req.query.page || 1;
     const lang = req.query.lang === 'en' ? req.query.lang : '';
-    const code = req.query.code !== undefined ? '&filter[category]=' + req.query.code : '';
+    const code =
+      req.query.code !== undefined ? '&filter[category]=' + req.query.code : '';
 
-    const filters = Object.keys( req.query.filters ).map( filter => req.query.filters[ filter ] ? 'filter[' + filter + ']=' + req.query.filters[ filter ] : '' ).join('&');
+    const filters = Object.keys(req.query.filters)
+      .map(filter =>
+        req.query.filters[filter]
+          ? 'filter[' + filter + ']=' + req.query.filters[filter]
+          : ''
+      )
+      .join('&');
+
     request({
       clientRequest: req,
-      url: '/api/movie/filter/?per-page=20' + code + '&lang='+ lang +'&sort=' + sort + '&page=' + page + '&' + filters
+      url:
+        '/api/movie/filter/?per-page=20' +
+        code +
+        '&lang=' +
+        lang +
+        '&sort=' +
+        sort +
+        '&page=' +
+        page +
+        '&' +
+        filters
     })
-      .then( api => res.json( api ) )
-      .catch(  error => res.send( error ) )
+      .then(api => {
+        // eslint-disable-next-line
+        debugger;
+        return res.json(api);
+      })
+      .catch(error => res.send(error));
   });
 
-  app.get( '/api/lookfor', ( req, res ) => {
+  app.get('/api/lookfor', (req, res) => {
     let url;
-    if (req.query.lang === 'en'){
-      url = '/search/search/?per-page=20&lang=en&q=' + encodeURIComponent(req.query.q)
+    if (req.query.lang === 'en') {
+      url =
+        '/search/search/?per-page=20&lang=en&q=' +
+        encodeURIComponent(req.query.q);
     } else {
-      url = '/search/search/?per-page=20&q=' + encodeURIComponent(req.query.q)
+      url = '/search/search/?per-page=20&q=' + encodeURIComponent(req.query.q);
     }
-    if ( req.query.q ) {
+    if (req.query.q) {
       let axiosParams = {
         url: url,
         clientRequest: req
       };
-      request( axiosParams )
-        .then( api => {
-          res.json( api )
+      request(axiosParams)
+        .then(api => {
+          res.json(api);
         })
-        .catch( error => res.send( error ) );
+        .catch(error => res.send(error));
       req.apiRequests.push(axiosParams);
     } else {
-      return res.json( { api: { error: 'Empty data' } } )
+      return res.json({ api: { error: 'Empty data' } });
     }
   });
 
-  app.post( '/api/user/login', ( req, res, next ) => {
-    passport.authenticate( 'local', ( err, user, info ) => {
+  app.post('/api/user/login', (req, res, next) => {
+    passport.authenticate('local', (err, user, info) => {
       return err
-        ? next( err )
+        ? next(err)
         : user
-          ? req.logIn( user, fail => {
-              return fail
-                ? next( fail )
-                : res.json( user )
-            } )
-          : res.json( info )
-    } )(req, res, next);
+        ? req.logIn(user, fail => {
+            return fail ? next(fail) : res.json(user);
+          })
+        : res.json(info);
+    })(req, res, next);
   });
 
-  app.get( '/logout', ( req, res ) => {
+  app.get('/logout', (req, res) => {
     req.logOut();
-    res.redirect( 303, '/' );
+    res.redirect(303, '/');
+  });
 
-  } )
-
-
-  app.get( '/test/', ( req, res ) => {
-    request( {
-        url: '/auth/auth/',
-        clientRequest: req,
-      } )
-      .then( api => res.json( api ) )
-      .catch( error => res.send( error ) )
-  } )
+  app.get('/test/', (req, res) => {
+    request({
+      url: '/auth/auth/',
+      clientRequest: req
+    })
+      .then(api => res.json(api))
+      .catch(error => res.send(error));
+  });
 
   /*
    * Misc.
@@ -961,11 +1210,11 @@ module.exports = app => {
     data.view = '404';
     data.origUrl = req.originalUrl;
     data.lang = req.params.lang;
-    data.title = req.params.lang === 'en' ? '404 error – page not found' :  'Ошибка 404 – страница не найдена';
-    res.status( 404 );
+    data.title =
+      req.params.lang === 'en'
+        ? '404 error – page not found'
+        : 'Ошибка 404 – страница не найдена';
+    res.status(404);
     return render(req, res, data);
   });
-
-
-
 };

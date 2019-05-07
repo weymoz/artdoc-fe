@@ -11,7 +11,7 @@ block( 'card-movie' ).elem( 'name' )(
 
   content()( node => node._name ),
 
-  elemMod('link', true).match( node => node._url ).content()( node => {
+  elemMod('link', true).match( node =>  node._url ).content()( node => {
     return {
       block: 'link',
       mods: { view: 'text', theme: node.mods.theme },

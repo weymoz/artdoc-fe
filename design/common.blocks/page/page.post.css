@@ -14,9 +14,9 @@ block(page) {
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-touch-callout:none;
-  -webkit-text-size-adjust:none;
-  -webkit-tap-highlight-color:rgba(0,0,0,0);
+  -webkit-touch-callout: none;
+  -webkit-text-size-adjust: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 
   .elem(content) {
     lost-center: 1428px;
@@ -106,116 +106,108 @@ block(page) {
     }
   }
 
+  /*-----------------------*/
+  /*----Начало Адаптива----*/
+  /*-----------------------*/
 
-
-/*-----------------------*/
-/*----Начало Адаптива----*/
-/*-----------------------*/
-
-  .mod(adaptive){
+  .mod(adaptive) {
     min-width: 320px;
 
-    block(breadcrumbs){
-      @media(max-width: 1024px){
+    block(breadcrumbs) {
+      @media (max-width: 1024px) {
         display: none;
       }
     }
 
-    block(header){
-      @media(max-width: 880px){
+    block(header) {
+      @media (max-width: 1024px) {
         justify-content: flex-start;
 
-        elem(social){
+        elem(social) {
           display: none;
         }
 
-        elem(menu){
+        elem(menu) {
           display: none;
         }
 
-        elem(logo){
+        elem(logo) {
           display: none;
         }
 
-
-        elem(search){
+        elem(search) {
           display: block;
           padding: 16px;
           margin-left: auto;
-          block(icon){
+          block(icon) {
             display: block;
           }
-          block(text){
+          block(text) {
             display: none;
           }
         }
 
-        elem(show-menu){
+        elem(show-menu) {
           display: block;
           padding: 16px;
-          block(text){
+          block(text) {
             font-size: 12px;
             display: none;
           }
-
         }
 
-        elem(title){
+        elem(title) {
           width: 190px;
           padding: 8px 16px;
-
         }
       }
     }
 
-    block(footer){
-      @media(max-width: 1024px){
+    block(footer) {
+      @media (max-width: 1024px) {
         padding-top: 20px;
         padding-bottom: 23px;
         position: relative;
       }
 
-      elem(content){
-        @media(max-width: 880px){
+      elem(content) {
+        @media (max-width: 880px) {
           display: flex;
           flex-direction: column;
-          padding: 0!important;
+          padding: 0 !important;
         }
 
-        elem(about){
-
-          @media(max-width: 1024px) {
+        elem(about) {
+          @media (max-width: 1024px) {
             padding: 0 16px;
             max-width: 280px;
           }
 
-          @media(max-width: 880px){
+          @media (max-width: 880px) {
             padding-right: 0;
             width: 100%;
             padding: 16px;
             box-sizing: border-box;
 
-            block(link){
-              @media(max-width: 1024px){
+            block(link) {
+              @media (max-width: 1024px) {
                 margin-bottom: 8px;
               }
             }
 
-            block(paragraph){
+            block(paragraph) {
               font-size: 12px;
               margin-bottom: 0;
             }
           }
         }
 
-        elem(title){
+        elem(title) {
           @media (max-width: 1024px) {
             width: 100%;
             font-size: 14px;
             line-height: 20px;
             margin-bottom: 10px;
-
-
           }
 
           @media (max-width: 880px) {
@@ -226,49 +218,47 @@ block(page) {
           }
         }
 
-        elem(for-viewers){
-          @media(max-width: 880px){
-              padding-right: 40px;
-              width: 100%;
+        elem(for-viewers) {
+          @media (max-width: 880px) {
+            padding-right: 40px;
+            width: 100%;
           }
 
-
-
-          @media(max-width: 880px){
+          @media (max-width: 880px) {
             padding-right: 0;
             width: 100%;
           }
 
-          block(list){
-            @media(max-width: 880px){
+          block(list) {
+            @media (max-width: 880px) {
               padding: 16px;
               box-sizing: border-box;
               display: none;
             }
 
-            .mod(show){
-              @media(max-width: 880px){
+            .mod(show) {
+              @media (max-width: 880px) {
                 display: block;
               }
             }
           }
         }
 
-        elem(for-professionals){
-          @media(max-width: 880px){
+        elem(for-professionals) {
+          @media (max-width: 880px) {
             padding-right: 0;
             width: 100%;
             margin-top: -1px;
           }
 
-          block(list){
-            @media(max-width: 880px){
+          block(list) {
+            @media (max-width: 880px) {
               padding: 16px;
               box-sizing: border-box;
               display: none;
 
-              .mod(show){
-                @media(max-width: 880px){
+              .mod(show) {
+                @media (max-width: 880px) {
                   display: block;
                 }
               }
@@ -276,7 +266,7 @@ block(page) {
           }
         }
 
-        @media(max-width: 1024px) {
+        @media (max-width: 1024px) {
           block(list) {
             elem(item) {
               font-size: 11px;
@@ -284,46 +274,44 @@ block(page) {
                 display: none;
               }
             }
-            elem(item)::after{
+            elem(item)::after {
               display: none;
             }
           }
-
         }
 
-        elem(contacts){
-          @media(max-width: 800px){
+        elem(contacts) {
+          @media (max-width: 800px) {
             width: 100%;
             padding: 16px;
             box-sizing: border-box;
           }
 
-          elem(social){
+          elem(social) {
             @media (max-width: 1024px) {
               margin-bottom: 23px;
             }
           }
 
-          block(list){
-            elem(item){
-              @media(max-width: 1024px){
+          block(list) {
+            elem(item) {
+              @media (max-width: 1024px) {
                 font-size: 12px;
                 line-height: 16px;
-
               }
             }
           }
         }
 
-        .mod(section logo){
-          @media(max-width: 1024px){
+        .mod(section logo) {
+          @media (max-width: 1024px) {
             padding: 0 16px;
             box-sizing: border-box;
             position: absolute;
             bottom: 55px;
             display: inline;
 
-            block(link){
+            block(link) {
               width: 40px;
               height: 40px;
               padding: 8px;
@@ -333,43 +321,40 @@ block(page) {
           }
         }
 
-        .mod(section misc){
-          @media(max-width: 1024px){
+        .mod(section misc) {
+          @media (max-width: 1024px) {
             margin-top: 50px;
             margin-bottom: 50px;
             font-size: 11px;
-            padding: 0 16px!important;
-
-
+            padding: 0 16px !important;
           }
-          @media(max-width: 880px){
-            padding: 0 16px!important;
+          @media (max-width: 880px) {
+            padding: 0 16px !important;
             box-sizing: border-box;
 
-            block(paragraph){
+            block(paragraph) {
               margin-bottom: 0;
               font-size: 12px;
               line-height: 16px;
               margin-top: 5px;
             }
 
-            block(list){
+            block(list) {
               display: flex;
               flex-direction: column;
               justify-content: flex-end;
-              elem(item){
+              elem(item) {
                 font-size: 12px;
                 line-height: 16px;
-                &::after{
+                &::after {
                   display: none;
                 }
               }
             }
 
-            block(link){
+            block(link) {
               font-size: 12px;
               line-height: 16px;
-
             }
           }
         }
@@ -378,48 +363,46 @@ block(page) {
 
     /* Главная страница */
 
-    block(slider){
-      @media(max-width: 1024px){
+    block(slider) {
+      @media (max-width: 1024px) {
         display: none;
       }
     }
 
-
-    block(card-poster){
-      @media(max-width: 1024px){
+    block(card-poster) {
+      @media (max-width: 1024px) {
         flex-direction: column;
       }
 
-      elem(content){
-        @media(max-width: 1024px){
+      elem(content) {
+        @media (max-width: 1024px) {
           height: 40%;
         }
 
-        elem(image){
-          @media(max-width: 1024px){
+        elem(image) {
+          @media (max-width: 1024px) {
             height: 300px;
           }
         }
       }
 
-      block(card-movie){
-        &.mod(view slide){
-          @media(max-width: 1024px){
-
-            elem(content){
+      block(card-movie) {
+        &.mod(view slide) {
+          @media (max-width: 1024px) {
+            elem(content) {
               min-height: unset;
             }
 
-            elem(name){
+            elem(name) {
               font-size: 16px;
             }
 
-            elem(buy){
+            elem(buy) {
               margin: 0;
-              &block(button).mod(size xl){
+              &block(button).mod(size xl) {
                 font-size: 12px;
                 line-height: 16px;
-                elem(text){
+                elem(text) {
                   padding: 10px 22px;
                 }
               }
@@ -427,58 +410,57 @@ block(page) {
           }
         }
 
-        @media(max-width: 1024px) {
-          elem(cover){
+        @media (max-width: 1024px) {
+          elem(cover) {
             padding: 16px;
           }
 
-          elem(title){
+          elem(title) {
             font-size: 12px;
             line-height: 20px;
             padding: 8px;
           }
 
-          elem(description){
+          elem(description) {
             display: none;
           }
 
-
-          elem(list){
+          elem(list) {
             display: none;
           }
 
-          elem(icon){
+          elem(icon) {
             width: 32px;
             height: 32px;
           }
         }
       }
 
-      elem(aside){
-        @media(max-width: 1024px){
+      elem(aside) {
+        @media (max-width: 1024px) {
           width: unset;
         }
 
-        block(link){
-          @media(max-width: 1024px){
+        block(link) {
+          @media (max-width: 1024px) {
             display: none;
           }
         }
       }
     }
 
-    elem(content){
-      @media(max-width: 1024px){
+    elem(content) {
+      @media (max-width: 1024px) {
         padding: 0 16px 16px;
 
-        block(paragraph){
+        block(paragraph) {
           margin-bottom: 24px;
         }
       }
 
-      block(heading){
-        &.mod(size l){
-          @media(max-width: 880px){
+      block(heading) {
+        &.mod(size l) {
+          @media (max-width: 880px) {
             font-size: 24px;
             line-height: 1.3;
             margin-top: 40px;
@@ -486,28 +468,27 @@ block(page) {
             letter-spacing: 0;
           }
         }
-
       }
     }
 
-    elem(desktop-link-btn){
-      @media(max-width: 1024px){
+    elem(desktop-link-btn) {
+      @media (max-width: 1024px) {
         display: none;
       }
     }
 
-    elem(adaptive-link-btn){
+    elem(adaptive-link-btn) {
       display: none;
 
-      @media(max-width: 1024px){
+      @media (max-width: 1024px) {
         display: block;
         margin-bottom: 24px;
         width: 100%;
       }
 
-      &block(button).mod(size xxl){
-        elem(text){
-          @media(max-width: 1024px){
+      &block(button).mod(size xxl) {
+        elem(text) {
+          @media (max-width: 1024px) {
             padding: 12px 11px;
             font-size: 18px;
             line-height: 24px;
@@ -516,124 +497,114 @@ block(page) {
       }
     }
 
-    block(news){
-      block(news-block){
-
-        elem(title){
-          &block(heading).mod(size xs){
-            @media (max-width: 1024px){
+    block(news) {
+      block(news-block) {
+        elem(title) {
+          &block(heading).mod(size xs) {
+            @media (max-width: 1024px) {
               font-size: 16px;
             }
           }
         }
 
-        elem(footer){
-          @media(max-width: 1024px){
+        elem(footer) {
+          @media (max-width: 1024px) {
             flex-direction: column;
           }
         }
       }
 
-
-      elem(content){
-        @media (max-width: 1024px){
+      elem(content) {
+        @media (max-width: 1024px) {
           overflow-x: auto;
 
-          elem(item){
-            @media (max-width: 1024px){
+          elem(item) {
+            @media (max-width: 1024px) {
               flex-shrink: 0;
               width: 196px;
             }
           }
         }
       }
-
     }
 
-
-
-
-
-    elem(collections){
-      @media(max-width: 1024px){
+    elem(collections) {
+      @media (max-width: 1024px) {
         margin-left: 1px;
         margin-bottom: 24px;
       }
     }
 
-
-    block(card-selection){
-
-      @media(max-width: 1024px){
+    block(card-selection) {
+      @media (max-width: 1024px) {
         flex-direction: column;
       }
 
-      .mod(view selections){
+      .mod(view selections) {
         & + & {
           background-color: red;
-          @media(max-width: 1024px){
-            margin-top: 45px!important;
+          @media (max-width: 1024px) {
+            margin-top: 45px !important;
           }
         }
 
-        block(card-movie){
-          .mod(view selection){
-            @media (max-width: 1024px){
+        block(card-movie) {
+          .mod(view selection) {
+            @media (max-width: 1024px) {
               height: 286px;
             }
           }
         }
       }
 
-      .mod(theme artdoc){
-        &block(card-selection){
-          &.mod(view selections){
-            elem(content){
-              @media(max-width: 1024px){
+      .mod(theme artdoc) {
+        &block(card-selection) {
+          &.mod(view selections) {
+            elem(content) {
+              @media (max-width: 1024px) {
                 box-shadow: inset 0 5px 0 -1px #000, inset 0 -3px 0 -2px #000;
               }
             }
-
           }
         }
       }
 
-      elem(content){
-        @media(max-width: 1024px){
+      elem(content) {
+        @media (max-width: 1024px) {
           margin-bottom: 16px;
           height: 209px;
         }
       }
 
-      elem(counter-number){
-        @media(max-width: 1024px){
+      elem(counter-number) {
+        @media (max-width: 1024px) {
           font-size: 40px;
         }
       }
 
-      elem(counter-label){
-        @media(max-width: 1024px){
+      elem(counter-label) {
+        @media (max-width: 1024px) {
           font-size: 14px;
           line-height: 20px;
         }
       }
 
-      elem(cover){
+      elem(cover) {
         @media (max-width: 1024px) {
           padding: 17px 20px;
         }
       }
 
-      elem(aside){
-        @media (max-width: 1024px){
+      elem(aside) {
+        @media (max-width: 1024px) {
           overflow-x: auto;
           width: unset;
           margin-left: 0;
           display: flex;
         }
 
-        elem(item){
-          @media(max-width: 1024px){
+        elem(item) {
+          @media (max-width: 1024px) {
             width: 196px;
             flex-shrink: 0;
             box-shadow: inset 0 -3px 0 -2px #000;
@@ -641,213 +612,373 @@ block(page) {
         }
       }
 
-      elem(name){
-        @media(max-width: 1024px){
+      elem(name) {
+        @media (max-width: 1024px) {
           font-size: 24px;
           line-height: 28px;
         }
       }
 
-      elem(author){
-        @media(max-width: 1024px){
+      elem(author) {
+        @media (max-width: 1024px) {
           display: none;
         }
       }
     }
 
-
-
-    elem(section){
-      block(club-footer){
-        @media (max-width: 1024px){
+    elem(section) {
+      block(club-footer) {
+        @media (max-width: 1024px) {
           display: none;
         }
       }
     }
 
-  block(dropdown).mod(nav-menu){
-    @media(max-width: 1024px){
-      top: 56px !important;
+    block(dropdown).mod(nav-menu) {
+      @media (max-width: 1024px) {
+        top: 56px !important;
 
-      block(menu).mod(nav-menu){
-        column-count: 1;
-        padding: 32px 16px 0;
+        block(menu).mod(nav-menu) {
+          column-count: 1;
+          padding: 32px 16px 0;
 
-        block(nav-menu).elem(close){
-          display: block;
-        }
+          block(nav-menu).elem(close) {
+            display: block;
+          }
 
-        elem(item){
-          width: 60px;
-        }
-      }
-    }
-  }
-
-  block(popup){
-    &block(dropdown).mod(nav-menu){
-      @media(max-width: 1024px){
-        overflow: auto;
-        height: 100vh;
-      }
-    }
-  }
-
-  block(modal).mod(view mobile-menu){
-    @media(max-width: 1024px){
-      block(nav-menu){
-        width: 100%;
-        elem(item){
-          &block(link).mod(hovered){
-            background-color: transparent;
+          elem(item) {
+            width: 60px;
           }
         }
       }
-
-      block(popup){
-      }
-    }
-  }
-
-
-  /*Страница фильмов*/
-  &block(page).mod(view page-movies){
-    block(breadcrumbs){
-      @media(max-width: 1024px){
-        display: none;
-      }
     }
 
-    block(heading).mod(size xl){
-      @media(max-width: 1024px){
-        line-height: 24px;
-        margin-bottom: 32px;
-        margin-top: 32px;
-        font-size: 18px;
-      }
-
-    }
-
-    block(card-movie).mod(view grid){
-      @media(max-width: 1024px){
-        elem(name){
-          padding: 8px 0 16px;
-        }
-
-        elem(director){
-
+    block(popup) {
+      &block(dropdown).mod(nav-menu) {
+        @media (max-width: 1024px) {
+          overflow: auto;
+          height: 100vh;
         }
       }
     }
 
-    block(filters){
-      elem(header){
-        @media(max-width: 880px){
-          flex-direction: column;
-          align-items: stretch;
-          box-shadow: unset;
-        }
-      }
-
-      elem(view){
-        @media(max-width: 880px){
-          display: none;
-        }
-      }
-
-      elem(toggle){
-        @media(max-width: 880px){
+    block(modal).mod(view mobile-menu) {
+      @media (max-width: 1024px) {
+        block(nav-menu) {
           width: 100%;
-          display: block;
+          elem(item) {
+            &block(link).mod(hovered) {
+              background-color: transparent;
+            }
+          }
+        }
+
+        block(popup) {
+        }
+      }
+    }
+
+    /*Страница фильмов*/
+    &block(page).mod(view page-movies) {
+      block(breadcrumbs) {
+        @media (max-width: 1024px) {
+          display: none;
         }
       }
 
-      elem(actions){
-        @media(max-width: 880px){
-          flex-wrap: wrap;
-          margin: 0;
-          flex: 1;
+      block(heading).mod(size xl) {
+        @media (max-width: 1024px) {
+          line-height: 24px;
+          margin-bottom: 32px;
+          margin-top: 32px;
+          font-size: 18px;
+        }
+      }
 
-          elem(reset){
-            order: 2;
-            position: relative;
+      block(card-movie).mod(view grid) {
+        @media (max-width: 1024px) {
+          elem(name) {
+            padding: 8px 0 16px;
           }
 
-          elem(count){
-            order: 1;
-          }
-
-          elem(toggle){
-            margin-bottom: 12px;
+          elem(director) {
           }
         }
       }
 
-      elem(sort){
-        @media(max-width: 880px){
-          flex: unset;
-          flex-direction: row;
-          flex-wrap: wrap;
-          max-width: 234px;
+      block(filters) {
+        elem(header) {
+          @media (max-width: 1024px) {
+            flex-direction: column;
+            align-items: stretch;
+            box-shadow: unset;
+          }
+        }
 
-          block(radio){
-            margin-right: 10px;
-            margin-left: 0;
+        elem(view) {
+          @media (max-width: 880px) {
+            display: none;
+          }
+        }
 
-            elem(box){
-              margin-right: 0;
+        elem(toggle) {
+          @media (max-width: 880px) {
+            width: 100%;
+            display: block;
+          }
+        }
+
+        elem(actions) {
+          @media (max-width: 880px) {
+            flex-wrap: wrap;
+            margin: 0;
+            flex: 1;
+
+            elem(reset) {
+              order: 2;
+              position: relative;
             }
 
-            &.mod(checked){
-              elem(box){
-                margin-right: 4px;
+            elem(count) {
+              order: 1;
+            }
+
+            elem(toggle) {
+              margin-bottom: 12px;
+            }
+          }
+        }
+
+        elem(sort) {
+          @media (max-width: 880px) {
+            flex: unset;
+            flex-direction: row;
+            flex-wrap: wrap;
+            max-width: 234px;
+
+            block(radio) {
+              margin-right: 10px;
+              margin-left: 0;
+
+              elem(box) {
+                margin-right: 0;
+              }
+
+              &.mod(checked) {
+                elem(box) {
+                  margin-right: 4px;
+                }
+              }
+            }
+          }
+
+          &::before {
+            @media (max-width: 880px) {
+              margin-right: 0px;
+            }
+          }
+        }
+
+        elem(form) {
+          @media (max-width: 880px) {
+            overflow: auto;
+            position: relative;
+            &.mod(show) {
+              max-height: 1000px;
+              overflow: auto;
+              margin-top: 12px;
+              &::before {
+                content: '';
+                display: block;
+                position: absolute;
+                left: 50%;
+                margin-left: -12px;
+                top: 0;
+                margin-top: -12px;
+                width: 24px;
+                height: 24px;
+                background-color: #23232c;
+                transform: rotate(45deg);
+              }
+
+              block(form).mod(view filters) {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                padding-top: 37px;
+
+                block(select) {
+                  align-items: center;
+                }
+
+                block(filters) {
+                  elem(item) {
+                    margin-right: 0;
+                  }
+                }
               }
             }
           }
         }
 
-        &::before{
-          @media (max-width: 880px){
-            margin-right: 0px;
+        .mod(result grid) {
+          @media (max-width: 880px) {
+            .elem(content) {
+              padding-top: 40px;
+            }
+
+            .elem(result-item) {
+              /*lost-column: 1/1;*/
+            }
+          }
+
+          @media (max-width: 640px) {
+            .elem(result-item) {
+              lost-column: 1/1;
+            }
+          }
+        }
+      }
+    }
+    /*Страница Конкретного фильма*/
+    &block(page).mod(view page-movie) {
+      elem(content) {
+        @media (max-width: 1024px) {
+          padding: 0;
+        }
+
+        &.mod(gap top) {
+          @media (max-width: 1024px) {
+            margin-top: 32px;
           }
         }
       }
 
-      elem(form){
-        @media(max-width: 880px){
-          overflow: auto;
-          position: relative;
-          &.mod(show){
-            max-height: 1000px;
-            overflow: auto;
-            margin-top: 12px;
-            &::before{
-              content: '';
-              display: block;
-              position: absolute;
-              left: 50%;
-              margin-left: -12px;
-              top: 0;
-              margin-top: -12px;
-              width: 24px;
-              height: 24px;
-              background-color: #23232c;
-              transform: rotate(45deg);
+      block(breadcrumbs) {
+        @media (max-width: 1024px) {
+          display: none;
+        }
+      }
+
+      block(card-movie).mod(view full) {
+        @media (max-width: 1024px) {
+          margin-top: 20px;
+          elem(aside) {
+            margin-left: 40px;
+            margin-right: 20px;
+          }
+
+          elem(content) {
+            margin-left: 20px;
+          }
+        }
+
+        @media (max-width: 880px) {
+          flex-direction: column;
+
+          elem(content) {
+            padding-bottom: 77px;
+            width: 100%;
+          }
+
+          elem(slider) {
+            margin-bottom: 20px;
+          }
+
+          elem(aside) {
+            lost-column: 1/1;
+            margin-left: 0;
+            padding: 0 16px;
+            box-sizing: border-box;
+
+            elem(orig-name) {
+              font-size: 14px;
+              line-height: 20px;
             }
 
-            block(form).mod(view filters){
+            elem(name) {
+              padding: 8px 0 16px;
+              font-size: 24px;
+              line-height: 28px;
+              margin-bottom: 0;
+            }
+
+            block(list).mod(size s) {
+              font-size: 12px;
+              line-height: 16px;
+            }
+          }
+        }
+      }
+
+      block(ticket-case) {
+        @media (max-width: 1024px) {
+          padding: 28px 16px;
+
+          elem(calendar) {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 40px;
+
+            block(radio) {
+              lost-column: 1/1;
+            }
+          }
+
+          elem(content) {
+            display: flex;
+            flex-direction: column;
+
+            elem(aside) {
+              lost-column: 1/1;
+            }
+
+            elem(list-tickets) {
+              lost-column: 1/1;
+            }
+
+            block(list-tickets) {
               display: flex;
               flex-direction: column;
-              align-items: flex-start;
-              padding-top: 37px;
 
-              block(select){
-                align-items: center;
-              }
+              block(card-ticket) {
+                lost-column: 1/1;
+                position: relative;
+                margin-bottom: 10px;
 
-              block(filters){
-                elem(item){
-                  margin-right: 0;
+                elem(header) {
+                  display: flex;
+                  flex-direction: row;
+                  font-size: 12px;
+                  line-height: 16px;
+                  padding: 8px 5px 0;
+                }
+
+                elem(content) {
+                  padding: 0px 5px 8px;
+                }
+
+                elem(buy) {
+                  position: absolute;
+                  right: 0;
+                  top: 0;
+                  margin-top: 12px;
+                  margin-right: 10px;
+                  padding: 13px;
+                  box-sizing: border-box;
+                  margin-bottom: 0;
+                  border: 0;
+                  font-size: 16px;
+                  line-height: 20px;
+                }
+
+                elem(user-time) {
+                  font-size: 24px;
+                  line-height: 28px;
+                }
+                elem(user-date) {
+                  font-size: 12px;
+                  line-height: 16px;
                 }
               }
             }
@@ -855,290 +986,111 @@ block(page) {
         }
       }
 
-      .mod(result grid) {
-        @media(max-width: 880px){
-          .elem(content) {
-            padding-top: 40px;
+      block(movie-about) {
+        @media (max-width: 880px) {
+          padding: 0 16px;
+          box-sizing: border-box;
+          display: flex;
+          flex-direction: column;
+
+          elem(section) {
+            lost-column: 1/1;
+
+            &:nth-child(2) {
+              order: -1;
+            }
           }
 
-          .elem(result-item) {
-            /*lost-column: 1/1;*/
-          }
-        }
+          block(list) {
+            font-size: 12px;
 
-        @media(max-width: 640px) {
-          .elem(result-item) {
+            elem(term) {
+              width: 50%;
+            }
+          }
+
+          block(link).mod(view tag) {
+            padding: 2px 12px;
+          }
+
+          elem(award) {
             lost-column: 1/1;
           }
         }
       }
     }
 
-  }
-  /*Страница Конкретного фильма*/
-  &block(page).mod(view page-movie){
+    /*страница отдельной подборки*/
+    &.mod(view page-selection) {
+      @media (max-width: 880px) {
+        block(card-selection) {
+          &.mod(view detail) {
+            padding-bottom: 0;
 
-    elem(content){
-      @media(max-width: 1024px){
-        padding: 0;
-      }
-
-      &.mod(gap top){
-        @media (max-width: 1024px){
-          margin-top: 32px;
-        }
-      }
-    }
-
-    block(breadcrumbs){
-      @media(max-width: 1024px){
-        display: none;
-      }
-    }
-
-    block(card-movie).mod(view full){
-
-      @media(max-width: 1024px) {
-        margin-top: 20px;
-        elem(aside)  {
-
-          margin-left: 40px;
-        margin-right: 20px;
+            elem(author) {
+              margin-bottom: 0;
+            }
           }
 
-elem(content){
+          elem(header) {
+            block(page) {
+              elem(content) {
+                padding: 0;
+              }
+            }
+          }
 
-  margin-left: 20px;
+          elem(item) {
+            lost-column: 1/1;
+          }
 
-}
-      }
+          elem(author) {
+            display: block;
+          }
 
-      @media(max-width: 880px){
-        flex-direction: column;
+          elem(content) {
+            height: unset;
+            padding: 24px 0px 40px;
+            margin-bottom: 0;
+          }
 
-        elem(content){
-          padding-bottom: 77px;
-          width: 100%;
-        }
+          elem(section) {
+            border: none;
+          }
 
-        elem(slider){
-          margin-bottom: 20px;
-        }
+          elem(share) {
+            display: none;
+          }
 
-        elem(aside){
-          lost-column: 1/1;
-          margin-left: 0;
-          padding: 0 16px;
-          box-sizing: border-box;
-
-
-          elem(orig-name){
+          elem(description) {
+            width: 100%;
             font-size: 14px;
             line-height: 20px;
           }
 
-          elem(name){
-            padding: 8px 0 16px;
-            font-size: 24px;
-            line-height: 28px;
+          block(card-author) {
             margin-bottom: 0;
-          }
+            elem(aside) {
+              width: 48px;
+              height: 48px;
+            }
 
-          block(list).mod(size s){
-            font-size: 12px;
-            line-height: 16px;
-          }
-        }
-      }
-    }
-
-    block(ticket-case){
-      @media(max-width: 1024px){
-        padding: 28px 16px;
-
-      elem(calendar){
-        display: flex;
-        flex-direction: column;
-        margin-bottom: 40px;
-
-        block(radio){
-          lost-column: 1/1;
-        }
-      }
-
-      elem(content){
-        display: flex;
-        flex-direction: column;
-
-        elem(aside){
-          lost-column: 1/1;
-        }
-
-        elem(list-tickets){
-          lost-column: 1/1;
-        }
-
-        block(list-tickets){
-          display: flex;
-          flex-direction: column;
-
-          block(card-ticket){
-            lost-column: 1/1;
-            position: relative;
-            margin-bottom: 10px;
-
-            elem(header){
-              display: flex;
-              flex-direction: row;
+            elem(header) {
               font-size: 12px;
               line-height: 16px;
-              padding: 8px 5px 0;
             }
-
-            elem(content){
-              padding: 0px 5px 8px;
-            }
-
-            elem(buy){
-              position: absolute;
-              right: 0;
-              top: 0;
-              margin-top: 12px;
-              margin-right: 10px;
-              padding: 13px;
-              box-sizing: border-box;
-              margin-bottom: 0;
-              border: 0;
-              font-size: 16px;
-              line-height: 20px;
-            }
-
-            elem(user-time){
-              font-size: 24px;
-              line-height: 28px;
-            }
-            elem(user-date){
+            block(list) {
               font-size: 12px;
               line-height: 16px;
             }
           }
         }
       }
-
-      }
-    }
-
-    block(movie-about){
-      @media(max-width: 880px){
-
-        padding: 0 16px;
-        box-sizing: border-box;
-        display: flex;
-        flex-direction: column;
-
-        elem(section){
-          lost-column: 1/1;
-
-
-          &:nth-child(2){
-            order: -1;
-          }
-
-        }
-
-        block(list){
-          font-size: 12px;
-
-          elem(term){
-            width: 50%;
-          }
-        }
-
-        block(link).mod(view tag){
-          padding: 2px 12px;
-        }
-
-        elem(award) {
-          lost-column: 1/1;
-        }
-      }
     }
   }
-
-  /*страница отдельной подборки*/
-  &.mod(view page-selection){
-    @media(max-width: 880px){
-      block(card-selection){
-
-        &.mod(view detail){
-          padding-bottom: 0;
-
-          elem(author){
-            margin-bottom: 0;
-          }
-        }
-
-        elem(header){
-          block(page){
-            elem(content){
-              padding: 0;
-            }
-          }
-        }
-
-        elem(item){
-          lost-column: 1/1;
-        }
-
-        elem(author){
-          display: block;
-        }
-
-        elem(content){
-          height: unset;
-          padding: 24px 0px 40px;
-          margin-bottom: 0;
-        }
-
-        elem(section){
-          border: none;
-        }
-
-        elem(share){
-          display: none;
-        }
-
-        elem(description){
-          width: 100%;
-          font-size: 14px;
-          line-height: 20px;
-        }
-
-        block(card-author){
-          margin-bottom: 0;
-          elem(aside){
-            width: 48px;
-            height: 48px;
-          }
-
-          elem(header){
-            font-size: 12px;
-            line-height: 16px;
-          }
-          block(list){
-            font-size: 12px;
-            line-height: 16px;
-          }
-        }
-      }
-    }
-  }
-
-  }
-/*------------------*/
-/*--Конец адаптива--*/
-/*------------------*/
-
+  /*------------------*/
+  /*--Конец адаптива--*/
+  /*------------------*/
 }
 
 html {

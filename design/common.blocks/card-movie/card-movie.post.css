@@ -8,9 +8,9 @@ block(card-movie) {
     display: inline-block;
     width: 48px;
     height: 48px;
-    opacity: .8;
+    opacity: 0.8;
     z-index: 1;
-    padding: .5em;
+    padding: 0.5em;
     box-sizing: border-box;
     margin-right: 1px;
     float: left;
@@ -20,21 +20,25 @@ block(card-movie) {
     /*background-image: svg-load('./__awards/card-movie__awards.svg');*/
 
     .mod(type lavr) {
-      background-image: svg-load('./__awards/_type/card-movie__awards_type_lavr.svg');
-      background-color: rgba(17, 17, 17, .8);
+      background-image: svg-load(
+        './__awards/_type/card-movie__awards_type_lavr.svg'
+      );
+      background-color: rgba(17, 17, 17, 0.8);
     }
 
     .mod(type artdocfest) {
-      background-image: svg-load('./__awards/_type/card-movie__awards_type_artdocfest.svg');
-      background-color: rgba(17, 17, 17, .8);
+      background-image: svg-load(
+        './__awards/_type/card-movie__awards_type_artdocfest.svg'
+      );
+      background-color: rgba(17, 17, 17, 0.8);
     }
   }
 
   .elem(buy) {
     margin-top: 24px;
 
-    block(paragraph){
-      &.mod(empty){
+    block(paragraph) {
+      &.mod(empty) {
         display: none;
       }
     }
@@ -59,8 +63,8 @@ block(card-movie) {
 
   elem(duration),
   elem(language),
-  elem(subs){
-    block(text){
+  elem(subs) {
+    block(text) {
       vertical-align: 3%;
     }
   }
@@ -78,11 +82,13 @@ block(card-movie) {
   }
 
   .elem(description) {
-    margin-top: 24px;
+    margin-top: 16px;
     font-size: 14px;
     line-height: 1.5;
 
-    p { margin: 0 }
+    p {
+      margin: 0;
+    }
   }
 
   .elem(discussion) {
@@ -107,14 +113,13 @@ block(card-movie) {
       left: 0;
     }
 
-    &:hover{
-      elem(tooltip){
+    &:hover {
+      elem(tooltip) {
         opacity: 1;
       }
-
     }
 
-    elem(tooltip){
+    elem(tooltip) {
       position: absolute;
       padding: 12px 16px 24px;
       box-sizing: border-box;
@@ -122,16 +127,16 @@ block(card-movie) {
       opacity: 0;
       transition: opacity 0.5s;
       color: #111111;
-      box-shadow: 0 0 2px 1px #D9D9D9;
+      box-shadow: 0 0 2px 1px #d9d9d9;
 
-      .mod(schedule){
+      .mod(schedule) {
         bottom: -155px;
         left: -80px;
         width: 200px;
         height: 140px;
       }
 
-      .mod(promo){
+      .mod(promo) {
         top: -115px;
         left: -80px;
         width: 200px;
@@ -177,7 +182,7 @@ block(card-movie) {
     font-size: 14px;
     line-height: 1.5;
     text-transform: uppercase;
-    padding: .393em .785em;
+    padding: 0.393em 0.785em;
     box-sizing: border-box;
     float: left;
     margin-right: 1px;
@@ -192,7 +197,7 @@ block(card-movie) {
   }
 
   .elem(list) {
-    margin-bottom: 4px;
+    margin-bottom: 8px;
 
     & + & {
       margin-top: 16px;
@@ -205,6 +210,10 @@ block(card-movie) {
 
     .mod(link) {
       color: inherit;
+    }
+
+    .mod(offsetTop) {
+      margin-top: 18px;
     }
   }
 
@@ -236,8 +245,8 @@ block(card-movie) {
     display: inline-block;
     text-align: center;
     z-index: 1;
-    padding-right: .375em;
-    padding-left: .375em;
+    padding-right: 0.375em;
+    padding-left: 0.375em;
     box-sizing: border-box;
     margin-right: 1px;
     float: left;
@@ -257,15 +266,15 @@ block(card-movie) {
       top: 0;
       right: 0;
       display: block;
-      width: .3125em;
-      height: .3125em;
+      width: 0.3125em;
+      height: 0.3125em;
       background-color: #f3203b;
     }
   }
 
   .elem(schedule) {
     display: block;
-    padding-left: .75em;
+    padding-left: 0.75em;
 
     & + .elem(schedule):before {
       content: '…';
@@ -275,7 +284,7 @@ block(card-movie) {
       font-size: 27px;
       vertical-align: baseline;
       line-height: 0;
-      padding-bottom: .7em;
+      padding-bottom: 0.7em;
     }
 
     .mod(period) {
@@ -291,7 +300,7 @@ block(card-movie) {
     line-height: 1;
 
     @media (max-width: 1104px) {
-        font-size: 30px;
+      font-size: 30px;
     }
   }
 
@@ -310,13 +319,12 @@ block(card-movie) {
     font-weight: bold;
     line-height: 1.25;
 
-
     @media (max-width: 1280px) {
       font-size: 16px;
     }
 
     @media (max-width: 1104px) {
-        font-size: 14px;
+      font-size: 14px;
     }
   }
 
@@ -452,8 +460,8 @@ block(card-movie) {
     .elem(buy) {
       width: 100%;
 
-      block(paragraph){
-        &.mod(empty){
+      block(paragraph) {
+        &.mod(empty) {
           display: block;
         }
       }
@@ -483,7 +491,7 @@ block(card-movie) {
 
     .elem(name) {
       padding-top: 1em;
-      padding-bottom: 1em;
+      padding-bottom: 0.5em;
     }
 
     .elem(rating) {
@@ -500,7 +508,7 @@ block(card-movie) {
     .elem(awards) {
       width: 32px;
       height: 32px;
-      padding: .35em;
+      padding: 0.35em;
     }
 
     .elem(director) {
@@ -527,7 +535,7 @@ block(card-movie) {
     padding: 24px 0;
     box-sizing: border-box;
     box-shadow: inset 0px 1px 0px 0px currentColor,
-                inset 0px -1px 0px 0px currentColor;
+      inset 0px -1px 0px 0px currentColor;
 
     .elem(aside) {
       lost-column: 23/32 1 0;
@@ -545,7 +553,7 @@ block(card-movie) {
     padding: 24px 0;
     box-sizing: border-box;
     box-shadow: inset 0px 1px 0px 0px currentColor,
-                inset 0px -1px 0px 0px currentColor;
+      inset 0px -1px 0px 0px currentColor;
 
     .elem(aside) {
       lost-column: 23/32 1 0;
@@ -559,7 +567,7 @@ block(card-movie) {
     padding-top: 40px;
     padding-bottom: 40px;
     box-shadow: inset 0px 1px 0px 0px currentColor,
-                inset 0px -1px 0px 0px currentColor;
+      inset 0px -1px 0px 0px currentColor;
 
     & + & {
       box-shadow: inset 0px -1px 0px 0px currentColor;
@@ -608,7 +616,7 @@ block(card-movie) {
     .elem(awards) {
       width: 32px;
       height: 32px;
-      padding: .35em;
+      padding: 0.35em;
     }
   }
 
@@ -622,15 +630,15 @@ block(card-movie) {
     }
   }
 
-  .mod(view schedule){
-    elem(discussion){
-      elem(tooltip){
-        &::after{
+  .mod(view schedule) {
+    elem(discussion) {
+      elem(tooltip) {
+        &::after {
           content: '';
           position: absolute;
           width: 10px;
           height: 10px;
-          box-shadow: -1px -1px 1px 0 #D9D9D9;
+          box-shadow: -1px -1px 1px 0 #d9d9d9;
           transform: rotate(45deg);
           background-color: #fff;
           top: -5px;
@@ -675,26 +683,30 @@ block(card-movie) {
 
     .elem(cover) {
       padding: 56px 28px 40px;
-      background: linear-gradient(270deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.7) 100%);
+      background: linear-gradient(
+        270deg,
+        rgba(0, 0, 0, 0.1) 0%,
+        rgba(0, 0, 0, 0.7) 100%
+      );
     }
 
     .elem(awards) {
       width: 32px;
       height: 32px;
-      padding: .35em;
+      padding: 0.35em;
     }
 
-    elem(discussion){
+    elem(discussion) {
       margin-top: 20px;
       width: 250px;
 
-      elem(tooltip){
-        &::after{
+      elem(tooltip) {
+        &::after {
           content: '';
           position: absolute;
           width: 10px;
           height: 10px;
-          box-shadow: 1px 1px 1px 0 #D9D9D9;
+          box-shadow: 1px 1px 1px 0 #d9d9d9;
           transform: rotate(45deg);
           background-color: #fff;
           bottom: -5px;
@@ -735,7 +747,7 @@ block(card-movie) {
     }
 
     .elem(cover) {
-      background: linear-gradient(180deg, #090822 0%, rgba(9,8,34,0) 100%);
+      background: linear-gradient(180deg, #090822 0%, rgba(9, 8, 34, 0) 100%);
     }
 
     .elem(discussion) {
@@ -764,7 +776,7 @@ block(card-movie) {
     }
 
     .elem(date) {
-      color: #A0A0AC;
+      color: #a0a0ac;
       font-size: 14px;
       line-height: 20px;
       padding-top: 5px;
@@ -810,7 +822,7 @@ block(card-movie) {
     .elem(icon) {
       width: 48px;
       height: 48px;
-      background-color: #F3203B;
+      background-color: #f3203b;
       background-image: url(../../../static/assets/img/static/icon_ticket.svg);
       background-repeat: no-repeat;
       -webkit-background-size: cover;
@@ -818,7 +830,11 @@ block(card-movie) {
     }
 
     .elem(cover) {
-      background: linear-gradient(270deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.7) 100%);
+      background: linear-gradient(
+        270deg,
+        rgba(0, 0, 0, 0.1) 0%,
+        rgba(0, 0, 0, 0.7) 100%
+      );
       display: flex;
       justify-content: flex-end;
       flex-direction: column;
@@ -865,7 +881,7 @@ block(card-movie) {
     }
 
     .elem(name) {
-      font-size: .94em;
+      font-size: 0.94em;
     }
 
     .elem(cover) {
@@ -880,7 +896,8 @@ block(card-movie) {
       display: block;
       color: #676770;
       font-size: 14px;
-      margin: 10px 0;
+      margin-bottom: 28px;
+      margin-top: 6px;
     }
 
     .elem(aside) {
@@ -897,7 +914,6 @@ block(card-movie) {
   }
 
   .mod(view text) {
-
     .elem(content) {
       padding-top: 10px;
       padding-bottom: 10px;
@@ -925,7 +941,7 @@ block(card-movie) {
       font-size: 14px;
     }
 
-    .elem(orig-name){
+    .elem(orig-name) {
       margin-right: 10px;
     }
   }
