@@ -4,6 +4,8 @@ var
   client = axios.create( config.host ),
 
   request = options => {
+
+  const start = new Date();
     const onSuccess = response => {
       if (response.headers['set-cookie']) {
         response.data['__set_cookie'] = response.headers['set-cookie'];
@@ -11,6 +13,9 @@ var
           options.clientRequest.user.cookies = response.headers['set-cookie'];
         }
       }
+
+      console.log(Object.assign({}, options, { cache:response.data.meta.cache_mode }, { time: new Date() - start } ));
+
       return response.data;
     };
     const onError = error => {
