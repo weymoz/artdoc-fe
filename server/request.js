@@ -5,7 +5,7 @@ var
 
   request = options => {
 
-  const start = new Date();
+    const start = new Date();
     const onSuccess = response => {
       if (response.headers['set-cookie']) {
         response.data['__set_cookie'] = response.headers['set-cookie'];
