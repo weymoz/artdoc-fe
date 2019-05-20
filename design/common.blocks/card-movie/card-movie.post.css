@@ -2,6 +2,10 @@ block(card-movie) {
   display: flex;
   lost-center: 100%;
 
+  .elem(director):empty {
+    display: none !important;
+  }
+
   .elem(awards) {
     color: #fff;
     /*background-color: rgba(17, 17, 17, .8);*/
