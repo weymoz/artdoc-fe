@@ -374,7 +374,7 @@ block('footer')(
                             size: 's',
                             theme: 'artdoc'
                           },
-                          url: 'mailto:best.webapp.dev@gmail.com',
+                          url: 'https://breadhead.ru/',
                           target: '_blank',
                           attrs: { style: 'text-decoration: none;' },
                           content: node.i18n('footer', 'breadhead')
