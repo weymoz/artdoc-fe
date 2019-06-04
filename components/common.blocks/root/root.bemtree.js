@@ -1,17 +1,16 @@
 block('root').replace()(function() {
   const ctx = this.ctx,
-        data = this.data = ctx.data,
-        meta = data.meta || {},
-        og = meta.og || {},
-        bundle = data.bundle || 'desktop',
-        lang = data.lang || 'ru'
+    data = (this.data = ctx.data),
+    meta = data.meta || {},
+    og = meta.og || {},
+    bundle = data.bundle || 'desktop',
+    lang = data.lang || 'ru'
 
-
-  if (ctx.context) return ctx.context;
+  if (ctx.context) return ctx.context
 
   return {
     block: 'page',
-    title: data.title || data.view || "Artdoc.Media" || data.page,
+    title: data.title || data.view || 'Artdoc.Media' || data.page,
     favicon: '/favicon.ico',
     styles: [
       {
@@ -26,7 +25,8 @@ block('root').replace()(function() {
     scripts: [
       {
         elem: 'js',
-        content: '(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({\'gtm.start\':new Date().getTime(),event:\'gtm.js\'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!=\'dataLayer\'?\'&l=\'+l:\'\';j.async=true;j.src=\'https://www.googletagmanager.com/gtm.js?id=\'+i+dl;f.parentNode.insertBefore(j,f);})(window,document,\'script\',\'dataLayer\',\'GTM-MKD3FG5\');'
+        content:
+          "(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MKD3FG5');"
       },
       {
         elem: 'js',
@@ -36,12 +36,21 @@ block('root').replace()(function() {
         elem: 'js',
         url: '/assets/react/index.react.js'
       },
+      {
+        elem: 'js',
+        content: `window.appCurrency = "${data.currency}"`
+      }
     ],
     head: [
-
       data.adaptive
-      ?  { elem: 'meta', attrs: { name: 'viewport', content: 'width=device-width, initial-scale=1' } }
-      :  { elem: 'meta', attrs: { name: 'viewport', content: 'width=1024' } },
+        ? {
+            elem: 'meta',
+            attrs: {
+              name: 'viewport',
+              content: 'width=device-width, initial-scale=1'
+            }
+          }
+        : { elem: 'meta', attrs: { name: 'viewport', content: 'width=1024' } },
 
       // favicons
       {
@@ -56,12 +65,24 @@ block('root').replace()(function() {
       },
 
       // meta
-      { elem: 'meta', attrs: { name: 'description', content: meta.description } },
-      { elem: 'meta', attrs: { property: 'og:title', content: og.title || data.title } },
+      {
+        elem: 'meta',
+        attrs: { name: 'description', content: meta.description }
+      },
+      {
+        elem: 'meta',
+        attrs: { property: 'og:title', content: og.title || data.title }
+      },
       { elem: 'meta', attrs: { property: 'og:url', content: og.url } },
       { elem: 'meta', attrs: { property: 'og:image', content: og.image } },
-      { elem: 'meta', attrs: { property: 'og:site_name', content: og.siteName } },
-      { elem: 'meta', attrs: { property: 'og:locale', content: og.locale || 'ru_RU' } },
+      {
+        elem: 'meta',
+        attrs: { property: 'og:site_name', content: og.siteName }
+      },
+      {
+        elem: 'meta',
+        attrs: { property: 'og:locale', content: og.locale || 'ru_RU' }
+      },
       { elem: 'meta', attrs: { property: 'og:type', content: 'website' } },
       {
         elem: 'js',
@@ -73,6 +94,5 @@ block('root').replace()(function() {
       view: data.view,
       adaptive: data.adaptive
     }
-  };
-});
-
+  }
+})

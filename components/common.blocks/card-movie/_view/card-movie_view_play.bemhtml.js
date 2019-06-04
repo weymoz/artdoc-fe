@@ -1,23 +1,23 @@
 block('card-movie').mod('view', 'play')(
   def()((node, ctx) => {
-    ctx.movie.cover = ctx.movie.cover || {};
-    let lang = ctx.lang || node._lang;
+    ctx.movie.cover = ctx.movie.cover || {}
+    let lang = ctx.lang || node._lang
 
     return applyNext({
       'ctx.movie.cover.width': 1316,
       'ctx.movie.url': ctx.movie.code
         ? '/' + lang + '/movie/' + ctx.movie.code
         : null
-    });
+    })
   }),
 
-  content()(node => {
-    let status = 'finish';
+  content()((node, ctx) => {
+    let status = 'finish'
 
     if (node._starts_in) {
-      status = 'get';
+      status = 'get'
     } else if (node._play) {
-      status = 'ready';
+      status = 'ready'
     }
 
     return [
@@ -72,7 +72,7 @@ block('card-movie').mod('view', 'play')(
               elem: 'list',
               elemMods: { delimiter: 'vertical' },
               content: [
-                { elem: 'director' },
+                { elem: 'director', movie: ctx.movie },
                 { elem: 'countries' },
                 { elem: 'year' }
               ]
@@ -93,6 +93,6 @@ block('card-movie').mod('view', 'play')(
           { elem: 'description' }
         ]
       }
-    ];
+    ]
   })
-);
+)

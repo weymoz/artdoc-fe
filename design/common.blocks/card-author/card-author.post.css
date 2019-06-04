@@ -3,6 +3,9 @@ block(card-author) {
   align-items: center;
 
   &.mod(hide-image) {
+    .elem(aside) {
+      display: none !important;
+    }
     .block(image) {
       display: none !important;
     }

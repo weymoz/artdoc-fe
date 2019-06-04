@@ -1,9 +1,11 @@
 block('footer')(
-  match( node => node.data && node.data.meta && node.data.meta.social ).def()( node => {
-    return applyNext( { 'ctx.social': node.data.meta.social } );
-  }),
+  match(node => node.data && node.data.meta && node.data.meta.social).def()(
+    node => {
+      return applyNext({ 'ctx.social': node.data.meta.social })
+    }
+  ),
 
-  content()( ( node, ctx ) => {
+  content()((node, ctx) => {
     return [
       {
         elem: 'content',
@@ -21,7 +23,10 @@ block('footer')(
               {
                 block: 'paragraph',
                 mods: { size: 's' },
-                mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } },
+                mix: {
+                  block: 'font',
+                  mods: { family: 'pt-mono', loaded: true }
+                },
                 content: node.i18n('footer', 'description')
               }
             ]
@@ -32,7 +37,16 @@ block('footer')(
               {
                 block: 'heading',
                 mods: { caps: true, size: 'xs', theme: 'artdoc-dark' },
-                mix: [{ block: node.block, elem: 'title' }, { block: 'font', mods: { family: 'helvetica-neue-condensed-bold', loaded: true } }],
+                mix: [
+                  { block: node.block, elem: 'title' },
+                  {
+                    block: 'font',
+                    mods: {
+                      family: 'helvetica-neue-condensed-bold',
+                      loaded: true
+                    }
+                  }
+                ],
                 content: node.i18n('footer', 'viewers')
               },
               {
@@ -88,7 +102,7 @@ block('footer')(
                       url: '/' + ctx.lang + '/support',
                       content: node.i18n('footer', 'support')
                     }
-                  },
+                  }
                   // {
                   //   elem: 'item',
                   //   content: [
@@ -110,7 +124,16 @@ block('footer')(
               {
                 block: 'heading',
                 mods: { caps: true, size: 'xs', theme: 'artdoc-dark' },
-                mix: [{ block: node.block, elem: 'title' }, { block: 'font', mods: { family: 'helvetica-neue-condensed-bold', loaded: true } }],
+                mix: [
+                  { block: node.block, elem: 'title' },
+                  {
+                    block: 'font',
+                    mods: {
+                      family: 'helvetica-neue-condensed-bold',
+                      loaded: true
+                    }
+                  }
+                ],
                 content: node.i18n('footer', 'professionals')
               },
               {
@@ -119,7 +142,8 @@ block('footer')(
                   type: 'unstyled'
                 },
                 content: [
-                  { elem: 'item',
+                  {
+                    elem: 'item',
                     content: {
                       block: 'link',
                       mods: { view: 'text' },
@@ -128,7 +152,8 @@ block('footer')(
                       content: node.i18n('footer', 'club')
                     }
                   },
-                  { elem: 'item',
+                  {
+                    elem: 'item',
                     content: {
                       block: 'link',
                       mods: { view: 'text' },
@@ -136,37 +161,7 @@ block('footer')(
                       url: '/' + ctx.lang + '/club#festivals',
                       content: node.i18n('footer', 'fests')
                     }
-                  },
-                  // { elem: 'item',
-                  //   content: [
-                  //   {
-                  //     block: 'link',
-                  //     mods: { view: 'text' },
-                  //     mix: { block: node.block, elem: 'nav-item' },
-                  //     url: '/cinema',
-                  //     content: node.i18n('footer', 'press')
-                  //   }]
-                  // },
-                  // { elem: 'item',
-                  //   content: [
-                  //   {
-                  //     block: 'link',
-                  //     mods: { view: 'text' },
-                  //     mix: { block: node.block, elem: 'nav-item' },
-                  //     url: '/movie',
-                  //     content: 'Ретроспективы'
-                  //   }]
-                  // },
-                  // { elem: 'item',
-                  //   content: [
-                  //   {
-                  //     block: 'link',
-                  //     mods: { view: 'text' },
-                  //     mix: { block: node.block, elem: 'nav-item' },
-                  //     url: '',
-                  //     content: 'Предложить фильм'
-                  //   }]
-                  // }
+                  }
                 ]
               }
             ]
@@ -181,23 +176,43 @@ block('footer')(
                   type: 'unstyled'
                 },
                 content: [
-                  { elem: 'item', mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } }, content: 'media@artdocfest.com' },
-                  { elem: 'item', mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } }, content: 'LV 1011 Latvia Riga Stabu 19-2' },
+                  {
+                    elem: 'item',
+                    mix: {
+                      block: 'font',
+                      mods: { family: 'pt-mono', loaded: true }
+                    },
 
+                    content: [
+                      {
+                        block: 'link',
+                        mods: { size: 's' },
+                        mix: {
+                          block: 'font',
+                          mods: { family: 'pt-mono', loaded: true }
+                        },
+                        url: 'mailto:media@artdocfest.com',
+                        content: 'media@artdocfest.com'
+                      }
+                    ]
+                  },
+                  {
+                    elem: 'item',
+                    mix: {
+                      block: 'font',
+                      mods: {
+                        family: 'pt-mono',
+                        loaded: true
+                      }
+                    },
+                    elemMods: {
+                      'offset-bottom': true
+                    },
+                    content: 'LV 1011 Latvia Riga Stabu 19-2'
+                  },
 
-
-                  /*
-                   * Телефон: + 371 2727 4745
-                   Skype: ArtdocMedia Cinematheque [активная ссылка на skype:live:f91ebf19476ab97a]
-                   Whatsapp: + 371 2727 4745 [активная ссылка на https://wa.me/37127274745]
-                   Telegram: artdocmediaoffice [активная ссылка на https://t.me/artdocmediaoffice]
-                   Signal: + 371 2727 4745
-
-                   *
-                   * */
-
-
-                  { elem: 'item',
+                  {
+                    elem: 'item',
                     mix: {
                       block: 'font',
                       mods: { family: 'pt-mono', loaded: true }
@@ -207,14 +222,18 @@ block('footer')(
                       node.i18n('footer', 'phone') + ': ',
                       {
                         block: 'link',
-                        mods: { size: 's'},
-                        mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } },
+                        mods: { size: 's' },
+                        mix: {
+                          block: 'font',
+                          mods: { family: 'pt-mono', loaded: true }
+                        },
                         url: 'tel:+37127274745',
                         content: '+ 371 2727 4745'
                       }
                     ]
                   },
-                  { elem: 'item',
+                  {
+                    elem: 'item',
                     mix: {
                       block: 'font',
                       mods: { family: 'pt-mono', loaded: true }
@@ -224,14 +243,18 @@ block('footer')(
                       'Skype: ',
                       {
                         block: 'link',
-                        mods: { size: 's'},
-                        mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } },
+                        mods: { size: 's' },
+                        mix: {
+                          block: 'font',
+                          mods: { family: 'pt-mono', loaded: true }
+                        },
                         url: 'skype:live:f91ebf19476ab97a',
                         content: 'ArtdocMedia Cinematheque'
                       }
                     ]
                   },
-                  { elem: 'item',
+                  {
+                    elem: 'item',
                     mix: {
                       block: 'font',
                       mods: { family: 'pt-mono', loaded: true }
@@ -241,14 +264,18 @@ block('footer')(
                       'Whatsapp: ',
                       {
                         block: 'link',
-                        mods: { size: 's'},
-                        mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } },
+                        mods: { size: 's' },
+                        mix: {
+                          block: 'font',
+                          mods: { family: 'pt-mono', loaded: true }
+                        },
                         url: 'https://wa.me/37127274745',
                         content: '+ 371 2727 4745'
                       }
                     ]
                   },
-                  { elem: 'item',
+                  {
+                    elem: 'item',
                     mix: {
                       block: 'font',
                       mods: { family: 'pt-mono', loaded: true }
@@ -258,24 +285,25 @@ block('footer')(
                       'Telegram: ',
                       {
                         block: 'link',
-                        mods: { size: 's'},
-                        mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } },
+                        mods: { size: 's' },
+                        mix: {
+                          block: 'font',
+                          mods: { family: 'pt-mono', loaded: true }
+                        },
                         url: 'https://t.me/artdocmediaoffice',
                         content: 'artdocmediaoffice'
                       }
                     ]
                   },
-                  { elem: 'item',
+                  {
+                    elem: 'item',
                     mix: {
                       block: 'font',
                       mods: { family: 'pt-mono', loaded: true }
                     },
 
-                    content: [
-                      'Signal: + 371 2727 4745',
-
-                    ]
-                  },
+                    content: ['Signal: + 371 2727 4745']
+                  }
                 ]
               }
             ]
@@ -312,49 +340,60 @@ block('footer')(
                       delimiter: 'vertical',
                       size: 's'
                     },
-                    mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } },
+                    mix: {
+                      block: 'font',
+                      mods: { family: 'pt-mono', loaded: true }
+                    },
                     content: [
-                      { elem: 'item', content: { html: '© 2018 Artdoc Fest & Media' }},
                       {
                         elem: 'item',
-                        content: {
-                            block: 'link',
-                            mods: { view: 'text' },
-                            mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } },
-                            content: node.i18n('footer', 'user'),
-                            url: '/' + ctx.lang + '/terms'
-                          }
+                        content: { html: '© 2018 Artdoc Fest & Media' }
                       },
                       {
                         elem: 'item',
                         content: {
                           block: 'link',
                           mods: { view: 'text' },
-                          mix: { block: 'font', mods: { family: 'pt-mono', loaded: true } },
+                          mix: {
+                            block: 'font',
+                            mods: { family: 'pt-mono', loaded: true }
+                          },
+                          content: node.i18n('footer', 'user'),
+                          url: '/' + ctx.lang + '/terms'
+                        }
+                      },
+                      {
+                        elem: 'item',
+                        content: {
+                          block: 'link',
+                          mods: { view: 'text' },
+                          mix: {
+                            block: 'font',
+                            mods: { family: 'pt-mono', loaded: true }
+                          },
                           content: node.i18n('footer', 'terms'),
                           url: '/' + ctx.lang + '/terms/#privacy'
                         }
                       },
                       {
                         elem: 'item',
-                        content:
-                          {
-                            block: 'link',
-                            mods: {
-                              align: 'right',
-                              size: 's',
-                              theme: 'artdoc'
-                            },
-                            url: 'mailto:best.webapp.dev@gmail.com',
-                            target: '_blank',
-                            attrs: { style: 'text-decoration: none;' },
-                            content: node.i18n('footer', 'breadhead')
-                          }
+                        content: {
+                          block: 'link',
+                          mods: {
+                            align: 'right',
+                            size: 's',
+                            theme: 'artdoc'
+                          },
+                          url: 'mailto:best.webapp.dev@gmail.com',
+                          target: '_blank',
+                          attrs: { style: 'text-decoration: none;' },
+                          content: node.i18n('footer', 'breadhead')
+                        }
                       }
                     ]
                   }
                 ]
-              },
+              }
               // {
               //   elem: 'aside',
               //   content:
@@ -384,6 +423,6 @@ block('footer')(
           }
         ]
       }
-    ];
+    ]
   })
 )

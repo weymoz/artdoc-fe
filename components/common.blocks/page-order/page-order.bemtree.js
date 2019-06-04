@@ -1,34 +1,35 @@
 block('page-order')(
-  replace()( node => {
+  replace()(node => {
+    let ticket = node.data.api
 
-    let ticket = node.data.api;
-
-    if (node.data.lang){
+    if (node.data.lang) {
       node._lang = node.data.lang
     }
 
-    if (node.data.currency){
+    if (node.data.currency) {
       node._currency = node.data.currency
     }
 
-
     if (ticket.type == 'cinema') {
+      ticket.city = ticket.city[0]
 
-      ticket.city = ticket.city[0];
+      const promo = node.data.promo
 
-      const promo = node.data.promo;
-
-      if ( promo.meduza && promo.meduza.includes( ticket.id ) ) {
+      if (promo.meduza && promo.meduza.includes(ticket.id)) {
         ticket.promo = 'meduza'
       } else {
-        ticket.promo = null;
+        ticket.promo = null
       }
     }
 
-    let purchase = node._lang === 'en' ? 'Purchase' : 'Покупка';
-    let get = node._lang === 'en' ? 'Get' : 'Получение';
-    let access = node._lang === 'en' ? ' access to view the movie' : ' доступа к просмотрю фильма';
-    let tickets = node._lang === 'en' ? ' online ticket' : ' билета на онлайн-сеанс';
+    let purchase = node._lang === 'en' ? 'Purchase' : 'Покупка'
+    let get = node._lang === 'en' ? 'Get' : 'Получение'
+    let access =
+      node._lang === 'en'
+        ? ' access to view the movie'
+        : ' доступа к просмотру фильма'
+    let tickets =
+      node._lang === 'en' ? ' online ticket' : ' билета на онлайн-сеанс'
 
     return [
       {
@@ -42,8 +43,14 @@ block('page-order')(
             elem: 'title',
             elemMods: { size: 'xl' },
             mix: [
-              { block: 'heading', mods: { align: 'center', caps: true, size: 'l' } },
-              { block: 'font', mods: { family: 'helvetica-neue-condensed-bold', loaded: true } }
+              {
+                block: 'heading',
+                mods: { align: 'center', caps: true, size: 'l' }
+              },
+              {
+                block: 'font',
+                mods: { family: 'helvetica-neue-condensed-bold', loaded: true }
+              }
             ],
             content: [
               ticket.promo === 'meduza' ? get : purchase,
@@ -70,7 +77,6 @@ block('page-order')(
           }
         ]
       }
-    ];
-  } )
-
+    ]
+  })
 )
