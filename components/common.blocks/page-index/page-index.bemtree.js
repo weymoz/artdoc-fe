@@ -92,33 +92,6 @@ block('page-index').replace()( node => {
           content: slider
         },
         {
-          block: 'card-poster',
-          mix: { block: 'page', elem: 'poster' },
-          poster: poster
-        },
-        {
-          block: 'button',
-          mix: { block: 'page', elem: 'adaptive-link-btn' },
-          mods: {
-            type: 'link',
-            size: 'xxl',
-            theme: 'artdoc'
-          },
-          text: node.i18n('index', 'link-to-online'),
-          url: linkProvider + '/cinema'
-        },
-        node.data.lang !== 'en' && {
-          elem: 'title',
-          elemMods: { view: 'condensed-bold', size: 'xl', gap: 'both' },
-          mix: { block: 'heading', mods: { caps: true, align: 'center', size: 'l' } },
-          content: node.i18n('index', 'newsTitle')
-        },
-        node.data.lang !== 'en' && {
-          block: 'news',
-          mix: { block: 'page', elem: 'news' },
-          news: node.data.news
-        },
-        {
           elem: 'title',
           elemMods: { view: 'condensed-bold', size: 'xl', gap: 'both' },
           mix: { block: 'heading', mods: { caps: true, align: 'center', size: 'l' } },
@@ -137,6 +110,17 @@ block('page-index').replace()( node => {
               lang: node.data.lang
             }
           } )
+        },
+        node.data.lang !== 'en' && {
+          elem: 'title',
+          elemMods: { view: 'condensed-bold', size: 'xl', gap: 'both' },
+          mix: { block: 'heading', mods: { caps: true, align: 'center', size: 'l' } },
+          content: node.i18n('index', 'newsTitle')
+        },
+        node.data.lang !== 'en' && {
+          block: 'news',
+          mix: { block: 'page', elem: 'news' },
+          news: node.data.news
         },
         {
           block: 'paragraph',
