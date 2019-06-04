@@ -2,7 +2,7 @@ block('form').mod('view', 'order')(
   def()(function() {
     return applyNext({
       'ctx.method': 'POST',
-      'ctx.action': 'http://artdoc.breadhead.ru/cinema/booking/booking/',
+      'ctx.action': '/cinema/booking/booking/',
       'ctx.enctype': 'multipart/form-data',
       'ctx.directions': ['right-top'],
     });
