@@ -111,17 +111,6 @@ block('page-index').replace()( node => {
             }
           } )
         },
-        node.data.lang !== 'en' && {
-          elem: 'title',
-          elemMods: { view: 'condensed-bold', size: 'xl', gap: 'both' },
-          mix: { block: 'heading', mods: { caps: true, align: 'center', size: 'l' } },
-          content: node.i18n('index', 'newsTitle')
-        },
-        node.data.lang !== 'en' && {
-          block: 'news',
-          mix: { block: 'page', elem: 'news' },
-          news: node.data.news
-        },
         {
           block: 'paragraph',
           mods: { align: 'center' },
@@ -135,6 +124,17 @@ block('page-index').replace()( node => {
             text: node.i18n('index', 'link-to-selection'),
             url: linkProvider + '/selection'
           }
+        },
+        node.data.lang !== 'en' && {
+          elem: 'title',
+          elemMods: { view: 'condensed-bold', size: 'xl', gap: 'both' },
+          mix: { block: 'heading', mods: { caps: true, align: 'center', size: 'l' } },
+          content: node.i18n('index', 'newsTitle')
+        },
+        node.data.lang !== 'en' && {
+          block: 'news',
+          mix: { block: 'page', elem: 'news' },
+          news: node.data.news
         },
         {
           block: 'button',
