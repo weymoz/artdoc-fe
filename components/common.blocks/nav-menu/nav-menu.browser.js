@@ -24,10 +24,8 @@ modules.define(
                   links.get(0).setMod('checked');
                 } else if (isSelection) {
                   links.get(1).setMod('checked');
-                } else if (isCinema) {
-                  links.get(2).setMod('checked');
                 } else if (isSupport) {
-                  links.get(3).setMod('checked');
+                  links.get(2).setMod('checked');
                 }
               }
             }
