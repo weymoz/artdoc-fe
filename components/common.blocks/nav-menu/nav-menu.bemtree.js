@@ -49,7 +49,7 @@ block('nav-menu')(
                   val: item.code,
                   content: {
                     block: 'link',
-                    url: item.id ? ('/' + node.data.lang + '/movie/category-' + item.code + '?full_movie=on' ) : (item.code === 'online' ? '/' + node.data.lang + '/movie?page=1&sort=-rating&view=grid&full_movie=on' : '/' + node.data.lang + '/movie'),
+                    url: item.id ? ('/' + node.data.lang + '/movie/category-' + item.code + '/?full_movie=on' ) : (item.code === 'online' ? '/' + node.data.lang + '/movie?page=1&sort=-rating&view=grid&full_movie=on' : '/' + node.data.lang + '/movie'),
                     content: item.name
                   }
                 }
