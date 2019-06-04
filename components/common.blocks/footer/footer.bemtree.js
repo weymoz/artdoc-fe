@@ -79,16 +79,6 @@ block('footer')(
                       block: 'link',
                       mods: { view: 'text' },
                       mix: { block: node.block, elem: 'nav-item' },
-                      url: '/' + ctx.lang + '/cinema',
-                      content: node.i18n('footer', 'showtimes')
-                    }
-                  },
-                  {
-                    elem: 'item',
-                    content: {
-                      block: 'link',
-                      mods: { view: 'text' },
-                      mix: { block: node.block, elem: 'nav-item' },
                       url: '/' + ctx.lang + '/about',
                       content: node.i18n('footer', 'about')
                     }
