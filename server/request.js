@@ -14,7 +14,7 @@ var
         }
       }
 
-      console.log(Object.assign({}, options, { cache:response.data.meta.cache_mode }, { time: new Date() - start } ));
+      console.log(Object.assign({}, options, { cache:response.data && response.data.meta && response.data.meta.cache_mode }, { time: new Date() - start } ));
 
       return response.data;
     };
