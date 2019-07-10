@@ -329,7 +329,7 @@ module.exports = app => {
           data.filter = filter
           data.origUrl = req.originalUrl
           data.lang = req.params.lang
-          data.currency = '$'
+          data.currency = req.globalData.geo !== 'RU' ? '$' : '₽'
           data.pagination = Object.assign(response[0].meta, data.pagination)
           data.pagination.sort = req.query.sort || '-rating'
           data.pagination.view = req.query.view || 'grid'
