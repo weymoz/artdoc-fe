@@ -645,8 +645,10 @@ module.exports = app => {
         }
 
         if (response.items[0].movies && response.items[0].movies.length) {
+
           response.items[0].movies = response.items[0].movies.filter(
-            movie => movie.status == 10
+            movie => movie.status == 10 && 
+              movie.info_access >= response.meta.user.min_permission
           )
         }
 
