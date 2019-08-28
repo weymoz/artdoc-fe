@@ -55,7 +55,7 @@ block('card-movie').elem('buy')(
             block: 'font',
             mods: { family: 'helvetica-neue-condensed-bold', loaded: true }
           },
-          content: 'Артдокфест 2018'
+          content: 'Артдокфест 2019'
         }
       ]
     };
