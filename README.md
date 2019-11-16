@@ -1,9 +1,13 @@
 # ArtDocMedia
 
+## Последний баг
+[Неправильный вывод фильмов в филмографии автора](https://github.com/weymoz/artdoc-fe/commit/a12f84709edb2e6304f44da632fabc3fdb86d7d9)
+
+
 ## Установка
 
 ```sh
-git clone git@bitbucket.org:artdocfest/frontend.git
+https://github.com/weymoz/artdoc-fe
 cd frontend
 npm i
 ```
