@@ -89,7 +89,7 @@
     "mkdirp": "^0.5.1",
     "morgan": "^1.9.0",
     "node-eval": "^2.0.0",
-    "node-notifier": "^5.1.2",
+    "node-notifier": "^8.0.1",
     "node-notifier-cli": "^1.0.1",
     "nodemon": "^1.12.1",
     "normalizr": "^3.2.4",
