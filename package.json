@@ -35,7 +35,7 @@
     "lodash.isstring": "^4.0.1",
     "lodash.isundefined": "^3.0.1",
     "lodash.mapvalues": "^4.6.0",
-    "moment": "^2.21.0",
+    "moment": "^2.29.2",
     "pick-by-lang": "^1.0.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
