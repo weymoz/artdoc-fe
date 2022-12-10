@@ -80,7 +80,7 @@
     "eslint-config-pedant": "^1.0.0",
     "eslint-plugin-bem-xjst": "^2.2.0",
     "eslint-plugin-react": "^7.12.4",
-    "express": "^4.16.2",
+    "express": "^4.17.3",
     "express-session": "^1.15.6",
     "json-schema-normalizer": "^1.2.1",
     "lodash": "^4.17.4",
